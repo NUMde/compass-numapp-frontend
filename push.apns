@@ -1,0 +1,8 @@
+{
+    "Simulator Target Bundle": "com.apple.Preferences",
+    "aps": {
+        "alert": "This is a simulated notification!",
+        "badge": 3,
+        "sound": "default"
+    }
+}

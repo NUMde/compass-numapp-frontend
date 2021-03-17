@@ -1,0 +1,84 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# dependencies
+node_modules
+
+# IDEs and editors
+.c9/
+.project
+.settings/
+.classpath
+.editorconfig
+*.launch
+*.sublime-workspace
+/.idea
+
+# IDE - VSCode
+.vscode
+.vscode/*
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/settings.json
+!.vscode/extensions.json
+
+# misc
+/typings
+/coverage
+/.sass-cache
+/connect.lock
+/libpeerconnection.log
+testem.log
+manifest.yml
+npm-debug.log
+yarn-error.log
+
+# System Files
+.DS_Store
+Thumbs.db
+
+## User settings
+ios/*.xcworkspace
+
+## App packaging
+*.ipa
+*.dSYM
+*.dSYM.zip
+
+## Pods folder
+/ios/Pods/
+/ios/Podfile.lock
+
+## Build folder
+/ios/build/
+
+# Built application files
+/android/*.apk
+/android/*.aar
+/android/*.ap_
+/android/*.aab
+
+# Generated files
+/android/build/
+/android/bin/
+/android/gen/
+/android/out/
+
+# Gradle files
+/android/.gradle/
+/android/build/
+/android/app/build/
+
+# IDE
+/android/*.iml
+/android/.idea/
+
+# Local configuration file (sdk path, etc)
+/android/local.properties
+
+#keystore
+/android/app/*.store
+/android/*.hprof
+
+#customization
+/src/CUSTOMIZATION/images/*
+/src/CUSTOMIZATION/*.js

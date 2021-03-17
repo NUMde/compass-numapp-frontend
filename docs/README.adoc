@@ -1,0 +1,14 @@
+= COMPASS NumApp React Native Client - Documentation
+
+https://github.com/NUMde/compass-numapp[Main Repository] | link:../main[Frontend Landing]
+
+Hi and welcome to the documentation of the *COMPASS NumApp React Native Client*.
+
+The following documentation topics ar available (as of now):
+
+. **link:./setup[Initial Setup & the first Development Build]**
+. **link:./appConfiguration[Configuring the React Native Client]**
+. **link:./theming[Styling the React Native Client]**
+. **link:./content[Updating the Content of the React Native Client]**
+. **link:./development[Development Guide for the React Native Client]**
+. **link:./build[Production Build & Deployment to the Stores]**

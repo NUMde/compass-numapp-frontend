@@ -1,0 +1,39 @@
+= The Production Build
+
+https://github.com/NUMde/compass-numapp[Main Repository] | link:../main/docs[List of Content]
+
+The production build is the one that's going to be published on Google Play, respectively the App Store. To deploy the application, a production build is first needed. After the generation of those builds Android Studio and XCode need to be used to complete the deployment process.
+
+== Generating the Android Production Build
+Android Builds can be created as an *.apk*-file (application package) or *.aab*-file (app bundle). An app bundle is a publishing format that includes all the app’s compiled code and resources, and defers APK generation and signing to Google Play. The .apk-files are the packaging format which eventually will be installed on the device. These can also be installed manually on a physical Android device.
+
+*To generate a single .apk-file run:*
+....
+npm run build_apk
+....
+
+*The generated .akp-file can be found here:* + 
+*`link:../main/android/app/build/outputs/apk/release[android/app/build/outputs/apk/release]`*
+
+*To generate a .aab-file run:*
+....
+npm run build_aab
+....
+
+*The generated .aap-file can be found here:* + 
+*`link:../main/android/app/build/outputs/bundle/release[android/app/build/outputs/bundle/release]`*
+
+
+TIP: App bundles can be inspected by using link:https://github.com/google/bundletool[bundletool]
+
+== Generating the iOS Production Build
+...
+
+= The Deployment
+...
+
+== Deploying to Google Play
+...
+
+== Deploying to the Apple App Store
+...

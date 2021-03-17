@@ -1,0 +1,32 @@
+{
+  "project_info": {
+    "project_number": "593738492029",
+    "firebase_url": "https://gcstudy-235e8.firebaseio.com",
+    "project_id": "gcstudy-235e8",
+    "storage_bucket": "gcstudy-235e8.appspot.com"
+  },
+  "client": [{
+    "client_info": {
+      "mobilesdk_app_id": "1:593738492029:android:b3abd8b59768ae8ca9e914",
+      "android_client_info": {
+        "package_name": "de.num.compass.android"
+      }
+    },
+    "oauth_client": [{
+      "client_id": "593738492029-14v74r74cepd8ebug6arabus41b579u1.apps.googleusercontent.com",
+      "client_type": 3
+    }],
+    "api_key": [{
+      "current_key": "AIzaSyBd60_XtPvMVvAu6-xIxSxgDud7NSDpUrQ"
+    }],
+    "services": {
+      "appinvite_service": {
+        "other_platform_oauth_client": [{
+          "client_id": "593738492029-14v74r74cepd8ebug6arabus41b579u1.apps.googleusercontent.com",
+          "client_type": 3
+        }]
+      }
+    }
+  }],
+  "configuration_version": "1"
+}

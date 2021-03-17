@@ -1,0 +1,170 @@
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+
+= Configuring the React Native Client for Development and Production Environments
+
+https://github.com/NUMde/compass-numapp[Main Repository] | link:../main/docs[List of Content]
+
+The application configuration provides options that can influence how th app behaves in the development- and the production environment. Those options range from defining the endpoints of the backend to suspending the login in development mode:
+
+* *Development Options*
+* *Login Options*
+* *Local Storage Identifier*
+* *REST Endpoints*
+* *UI Related Options*
+* *Evaluation Options*
+* *encyption options*
+
+More on these later. Lets set up the custom configuration first.
+
+== Setting up the Custom Configuration File
+
+The options provided by this file, as well as other aspects of the react-native client can be adjusted to your needs. The project comes with a set of configuration files that allow for quick and indiviual changes. The file responsible for the currently used default values is **`link:../main/src/config/appConfig.js[src/config/appConfig.js]`**
+
+WARNING: However, it is not recommended to alter this file directly, as it will aggravate the process of merging future updates into your own forked project. To ensure the updatability of your repository, another file is provided: **`link:../main/src/CUSTOMIZATION/customAppConfig.js[src/CUSTOMIZATION/customAppConfig.js]`**. You can copy the content of the file **`link:../main/src/config/appConfig.js[appConfig.js]`** into **`link:../main/src/CUSTOMIZATION/customAppConfig.js[customAppConfig.js]`**. There you can make any change you may see fit. Both files contain explanations on how and where to copy the values.
+
+.Copying the default configuration to generate a custom app configuraton
+[caption="Example: "]
+==========================
+image:./images/copyingConfig.gif[auto, auto]
+==========================
+IMPORTANT: Please make sure to copy the whole content below the marked point, and not just parts of it.
+
+== Development Options
+These options are only meant for the development mode und will not carry over into production mode.
+
+* *automateQrLogin:*
+** This skips the login by QR-Code after 500ms
+* *automateQrLoginUserId:*
+** The user-id for the automated login
+* *showEraseAll:*
+** Shows a button to erase all data (in the about-menu)
+* *showLogout:*
+** Shows a button to log out the user (in the about-menu)
+* *logPureResponse:*
+** This logs out the response-json (that is being send to the server) parsed as an object in the developer console
+* *logPureResponseJSON:*
+** Logs out the response-json in the developer console
+* *logEncryptedResponse:*
+** Logs out the encrypted response-json in the developer console
+* *useLocalQuestionnaireInsteadOftheReceivedOne:*
+** Used the locally available link:../main/src/assets/files/questionnaire.js[questionnaire.js] instead of the procured one from the backend. This is usefule for testing purposes
+* *skipIncomingQuestionnaireCheck:*
+** This skips the id-comparison of an incomming questionnaire. This is useful should you want to carry over the state of a partially answered questionnaire using the local questionnaire instead of the one coming from the server
+
+== Login Options
+The  qr-code used to log the user in is formed like the following example:
+[.float-group]
+--
+image:./images/qrCode.png[auto, 175, float="left",]
+// Define float role, instead of attribute.
+[source, JSON]
+----
+{
+    "AppName":  "COMPASS",
+    "AppID":	"userId"
+}
+----
+The Login Options containt the attribute-names necessary to check the appIdentifer and to extract the userId. This way you can generate QR Code that contain your own AppName.
+--
+ 
+* *qrCodeAttributeHoldingTheAppIdentifier:*
+** The name of the attribute in the qr-code holding the app-identifier. If the scanned code contains such an attribute, the app-identifier will be checked against the next attribute:
+* *appIdentifier:*
+** The app-identifier itself. Should the one coming from the qr-code and the one defined with this attribute match, then we know that we're looking at a compatible qr-code. The only thing left to extract ist the:
+* *qrCodeAttributeHoldingTheUserName:*
+** The name of the attribute in the qr-code holding the user-id
+
+== Local Storage Identifiers
+In order for the app to function properly it must persist various values. It uses AsyncStorage: https://github.com/react-native-async-storage/async-storage[AsyncStorage@GitHub]
+
+The following values carry the strings used to generate the names of the values belonging to the compass-application. Another part of that name is the UserId of the current user (in case multiple user want to use the same device) - the names are generated here: **`link:../main/src/services/localStorage/localStorage.js[src/services/localStorage/localStorage.js]`**
+
+* *localStorageMap*
+** Part of the identifier used to persist the questionnaireItemMap
+* *localStorageList*
+** Part of the identifier used to persist the categories array
+* *lastUserId*
+** The user-id of the user last logged in
+* *lastQuestionnaireId*
+** Part of the identifier used to persist the id of the last active questionnaire of the last active user
+* *notificationState*
+** Part of the identifier used to persist all relevant information about the notification-service
+
+== REST Endpoints
+Thase are the enpoints used to communicate with the backend.
+
+* *baseUriProductive*
+** The base-uri for the production mode (first part of the concated uri-string)
+* *baseUriDevelopment*
+** The base-uri for the development mode (first part of the concated uri-string)
+* *login*
+** The endpoint used to log the user in and retrieve the accessToken
+* *getUser*
+** The endpoint used to get the user-profile
+* *report*
+** The endpoint used for a special report
+* *sendQuestionnare*
+** The endpoint used to post the questionnaire to	
+* *getQuestionnaire*
+** The endpoint used to receive the questionnaire
+
+IMPORTANT: All endpoints (including _baseUriProductive_ and _baseUriDevelopment_ must end with a **backslash** - like **"getuser/"**)
+
+== UI Related Options
+Groups some minor UI related options that does not belong into the theme.
+
+* *allowAccessToLegalInformationScreen*
+** This adds another LinkList to the About-Screen, which navigates to **`link:../main/src/screens/about/legalInformationScreen.js[LegalInformationScreen]`**. The content of that screen can be configured through the **`link:../main/src/config/textConfig.js[textConfiguration]`**
+* *scaleFontsFkt*
+** This function is meant to provide an additional means of scaling the fonts of the application. It is used sporadically throughout the application.
+* *scaleUiFkt*
+** This function is meant to provide an additional means of scaling ui-elements of the application. It is used sporadically throughout the application.
+
+== Evaluation Options
+Before encrypting a questionnaire response, a set of parameters is determined to be sent additionaly to the server (alongside the response). This is due to the fact that the encrypted response cannot be looked into on the server, because it is - well - encrypted. To know how to ascertain those values a ruleset is needed. This should be included in the response coming from the server when calling the **getUser**-Endpoint. 
+
+Should that be **not** the case, the defaultRulesConfig will be loaded instead, which looks like this:
+
+[source, JSON]
+----
+defaultRulesConfig: [
+		{
+			"type": "basicTrigger",
+			"rules": {
+				"compass-0-04": [
+					'01# Ja'
+				]
+			}
+		},
+
+		{
+			"type": "specialTrigger",
+			"rules": {
+				"compass-0-03-02": [
+					'02# positives Ergebnis'
+				]	
+			}
+		}
+	],
+----
+
+Of course, you could update the defaultRulesConfig to your liking and just not provide the ruleset by the server. This way you would have static (meaning hardcoded) rulset.
+
+* *defaultRulesConfig*
+** The defaultvalues, should there be no ruleset coming from the server with the user-update. Each entry contains definitions of questions (from the questionnaire) and their corresponding answers that would trigger that particular rule of the return object of the function createResponseJSON(), located in **`link:../main/src/services/questionnaireAnalyzer/questionnaireAnalyzer.js[src/services/questionnaireAnalyzer/questionnaireAnalyzer.js]`**
+* *defaultReportAttribute*
+** The name of the attribute used to signal a special report
+
+== Encryption Options
+Before a questionnaire-response can be sent to the backend it must be encrypted. For that reason a **RSA Public Certificate String** must be available. Such a certificate should be provided by the backend with a user update, but if not, the **defaultRecipientCertificatePemString** will be used instead. As the name suggests, a complete PEM string is needed.
+
+* *defaultRecipientCertificatePemString*
+** The default recipient key (in case nothing comes from the server)
+
+IMPORTANT: There must always be a code available. The application will try to access it when sending out a questionnaire-response
+
+TIP: A RSA-Key-Size of at least **2048B** is recommended
