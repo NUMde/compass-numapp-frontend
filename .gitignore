@@ -78,7 +78,3 @@ ios/*.xcworkspace
 #keystore
 /android/app/*.store
 /android/*.hprof
-
-#customization
-/src/CUSTOMIZATION/images/*
-/src/CUSTOMIZATION/*.js
