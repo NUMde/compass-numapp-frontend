@@ -65,4 +65,3 @@ To add another Browser-Link to the About-Screen, all you have to do is add anoth
 
 image:./images/redirect.png[auto, 650]
 |=== 
-
