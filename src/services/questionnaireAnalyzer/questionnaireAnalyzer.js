@@ -307,8 +307,8 @@ const checkCompletionStateOfMultipleItems = (items, props) => {
 				item.type === 'decimal' ||
 				item.type === 'number'
 			) {
-				// ...should not be empty
-				returnValue = questionnaireItemMap[item.linkId].answer && questionnaireItemMap[item.linkId].answer !== ''
+				// ...should not be empty -> but 0 is valid value
+				returnValue = (questionnaireItemMap[item.linkId].answer && questionnaireItemMap[item.linkId].answer !== '') || (questionnaireItemMap[item.linkId].answer === 0)
 			} 
 			// if there is no subItem..
 			else if (!item.item) {
@@ -333,7 +333,7 @@ const checkCompletionStateOfMultipleItems = (items, props) => {
 				returnValue = !(getCorrectlyFormatedAnswer(questionnaireItemMap[item.linkId]) === null || !questionnaireItemMap[item.linkId].answer.length)
 			}
 		}
-
+		
 		// sets the done property of the item
 		questionnaireItemMap[item.linkId].done = returnValue
 

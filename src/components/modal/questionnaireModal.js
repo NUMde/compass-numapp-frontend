@@ -568,11 +568,12 @@ class QuestionnaireModal extends Component {
 	 * @param  {QuestionnaireItem} item questionnaire item
 	 */
 	createSlider = item => {
+		
 		// creates the default slider-object
 		let sliderProperties = Object.create({
 			'questionnaire-sliderStepVal' : 1,
 			'minValue' : 2,
-			'maxValue' : 100,
+			'maxValue' : 300,
 			'questionnaire-highRangeLabel' : '',
 			'questionnaire-lowRangeLabel' : ''
 		})
@@ -605,7 +606,7 @@ class QuestionnaireModal extends Component {
 							})
 						}
 					}
-					value={(sliderProperties['minValue']+sliderProperties['maxValue'])/2}
+					value={typeof this.props.questionnaireItemMap[item.linkId].answer === 'number' ? this.props.questionnaireItemMap[item.linkId].answer : ((sliderProperties['minValue']+sliderProperties['maxValue'])/2)}
         		/>
 				<View style={localStyle.sliderLabel}>
 					<Text style={localStyle.sliderTextMin}>{sliderProperties['questionnaire-lowRangeLabel']}</Text>
@@ -645,14 +646,7 @@ class QuestionnaireModal extends Component {
 			// this also utilizes the decimal-pad or the num-pad
 			case 'integer':		
 			case 'decimal':
-				// in case the extension tells us to display a slider
-				if(item.extension && item.extension.length > 0) {
-					this.props.questionnaireItemMap[item.linkId].answer = this.props.questionnaireItemMap[item.linkId].answer ? this.props.questionnaireItemMap[item.linkId].answer : 2
-					return this.createSlider(item)
-				}
-				else {
-					return this.createInput(item)	
-				}
+				return (item.extension && item.extension.length > 0) ? this.createSlider(item) : this.createInput(item)
 			
 			// if nothing else matches - display the title if at least the dependendcies check out
 			default:
