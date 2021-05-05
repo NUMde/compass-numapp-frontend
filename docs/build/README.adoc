@@ -1,4 +1,4 @@
-== The Production Build
+== Production Build & Deployment to the Stores
 
 https://github.com/NUMde/compass-numapp[Main Repository] | link:../main/docs[List of Content]
 
@@ -26,14 +26,43 @@ npm run build_aab
 
 TIP: App bundles can be inspected by using link:https://github.com/google/bundletool[bundletool]
 
-=== Generating the iOS Production Build
-...
+=== Generating the iOS Production Build & Deployment to the App Store
 
-== The Deployment
-...
+The processes for build and deployment are bundled when developing iOS apps. Please follow the official documentation for building and deploying an app to the App Store.
+
+*Apple Developer* + 
+https://developer.apple.com/account/ 
+
+*App Store Connect* + 
+https://appstoreconnect.apple.com/ 
+
+*Documentation - Developer Account, Certificates, Keys, Identifiers, Profiles* + 
+https://help.apple.com/developer-account/#/dev7a05c5ce1 
+
+*App Store Review - Guidelines* + 
+https://developer.apple.com/app-store/review/guidelines/ 
+
+*App Store Submission* + 
+https://developer.apple.com/ios/submit/ 
+
 
 === Deploying to Google Play
-...
 
-=== Deploying to the Apple App Store
-...
+Please follow the official documentation for building and deploying an app to the Google Play Store.
+
+*Play Console* + 
+https://play.google.com/console/u/0/developers/console/
+
+*Developer Policy* + 
+https://play.google.com/about/developer-content-policy/
+
+*Launch Checklist* + 
+https://developer.android.com/distribute/best-practices/launch/launch-checklist
+
+*Documentation - How to Use Play Console* + 
+https://support.google.com/googleplay/android-developer/answer/6112435
+
+*Documentation - Create and set up your app* + 
+https://support.google.com/googleplay/android-developer/answer/9859152
+
+
