@@ -10,7 +10,7 @@
     "postinstall": "patch-package && jetify",
     "debug": "open 'rndebugger://set-debugger-loc?host=localhost&port=19001'",
     "clean_install_macos": "watchman watch-del-all && rm -rf node_modules && npm i && cd ios && rm -rf Pods && rm -rf Podfile.lock && pod install && cd ..",
-    "clean_install_windows": "rm -rf node_modules && npm i"
+    "clean_install_windows": "npm i rimraf --no-save && npx rimraf node_modules && npm i"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.11.0",
