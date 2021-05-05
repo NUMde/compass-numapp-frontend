@@ -36,6 +36,7 @@ import '../../typedef'
 import exportService from '../../services/questionnaireAnalyzer/questionnaireAnalyzer'
 import setAccessibilityResponder from '../../services/accessibility/setAccessbilityResponder'
 import config from '../../config/configProvider'
+import ProgressBar from '../../components/modal/progressbar';
 
 /***********************************************************************************************
 component:
@@ -717,6 +718,13 @@ class QuestionnaireModal extends Component {
 	createBottomBar = () => {
 		return (
 			<View style={localStyle.bottomBarWrapper}>
+				<ProgressBar
+            		progress={
+              			this.props.currentPageIndex /
+              			this.props.categories[this.props.currentCategoryIndex].item.length
+            		}
+          		/>
+				<View style={localStyle.bottomBarButtons}>
 				{/* the left navigational button if we're not on page 1 */}
 				{this.props.currentPageIndex > 1 && (
 					<Button
@@ -826,6 +834,7 @@ class QuestionnaireModal extends Component {
 						}}
 					/>
 				)}
+				</View>
 			</View>
 		)
 	}
@@ -856,7 +865,6 @@ class QuestionnaireModal extends Component {
 						{this.createModalContent()}
 
 						{/* renders the bottom bar */}
-						<View style={localStyle.separator}></View>
 						{this.createBottomBar()}
 					</RNModal>
 				)}
@@ -918,17 +926,20 @@ const localStyle = StyleSheet.create({
 	},
 
 	bottomBarWrapper: {
-		flexWrap: 'nowrap',
-		alignItems: 'center',
-		textAlign: 'center',
-		flexDirection: 'row',
-		justifyContent: 'space-between',
 		backgroundColor: config.theme.values.defaultModalBottomBarBackgroundColor,
-		shadowColor: '#000',
-		shadowOffset: { width: 0, height: 2 },
-		shadowOpacity: 0.8,
-		shadowRadius: 2
+		// shadowColor: '#000',
+		// shadowOffset: { width: 0, height: 2 },
+		// shadowOpacity: 0.8,
+		// shadowRadius: 2
 	},
+
+	bottomBarButtons: {
+		flexWrap: "nowrap",
+		alignItems: "center",
+		textAlign: "center",
+		flexDirection: "row",
+		justifyContent: "space-between",
+	  },
 
 	modalTitle: {
 		fontSize: 24,
