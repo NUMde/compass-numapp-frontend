@@ -926,11 +926,7 @@ const localStyle = StyleSheet.create({
 	},
 
 	bottomBarWrapper: {
-		backgroundColor: config.theme.values.defaultModalBottomBarBackgroundColor,
-		// shadowColor: '#000',
-		// shadowOffset: { width: 0, height: 2 },
-		// shadowOpacity: 0.8,
-		// shadowRadius: 2
+		backgroundColor: config.theme.values.defaultModalBottomBarBackgroundColor
 	},
 
 	bottomBarButtons: {
