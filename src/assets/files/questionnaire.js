@@ -284,7 +284,194 @@ export default {
                 "type": "string",
                 "required": true,
                 "maxLength": 10
-            }
+            },
+            {
+                "linkId": "1.20",
+                "text": "Diese Frage wird nur angezeigt, wenn 1.19 mit 'lala' beantwortet wurde",
+                "type": "string",
+                "required": true,
+                "enableWhen": [{
+                    "question": "1.19",
+                    "operator": "=",
+                    "answerString": "lala"
+                }]
+            },
+            {
+                "linkId": "1.21",
+                "text": "Diese Frage wird nur angezeigt, wenn 1.19 mit 'lala' beantwortet wurde",
+                "type": "string",
+                "required": true,
+                "enableWhen": [{
+                    "question": "1.19",
+                    "operator": "=",
+                    "answerString": "lala"
+                }]
+            },
+            {
+                "linkId": "1.22",
+                "text": "Diese Frage wird nur angezeigt, wenn 1.19 mit 'lala' beantwortet wurde",
+                "type": "string",
+                "required": true,
+                "enableWhen": [{
+                    "question": "1.19",
+                    "operator": "=",
+                    "answerString": "lala"
+                }]
+            },
+            {
+                "linkId": "1.23",
+                "text": "Diese Frage wird nur angezeigt, wenn 1.19 mit 'lala' beantwortet wurde",
+                "type": "string",
+                "required": true,
+                "enableWhen": [{
+                    "question": "1.19",
+                    "operator": "=",
+                    "answerString": "lala"
+                }]
+            },
+            {
+                "linkId": "1.24",
+                "text": "Diese Frage wird nur angezeigt, wenn 1.19 mit 'lala' beantwortet wurde",
+                "type": "string",
+                "required": true,
+                "enableWhen": [{
+                    "question": "1.19",
+                    "operator": "=",
+                    "answerString": "lala"
+                }]
+            },
+            {
+                "linkId": "1.25",
+                "text": "Diese Frage wird nur angezeigt, wenn 1.19 mit 'lala' beantwortet wurde",
+                "type": "string",
+                "required": true,
+                "enableWhen": [{
+                    "question": "1.19",
+                    "operator": "=",
+                    "answerString": "lala"
+                }]
+            },
+            {
+                "linkId": "1.26",
+                "text": "Diese Frage wird nur angezeigt, wenn 1.19 mit 'lala' beantwortet wurde",
+                "type": "string",
+                "required": true,
+                "enableWhen": [{
+                    "question": "1.19",
+                    "operator": "=",
+                    "answerString": "lala"
+                }]
+            },
+            {
+                "linkId": "1.27",
+                "text": "Diese Frage wird nur angezeigt, wenn 1.19 mit 'lala' beantwortet wurde",
+                "type": "string",
+                "required": true,
+                "enableWhen": [{
+                    "question": "1.19",
+                    "operator": "=",
+                    "answerString": "lala"
+                }]
+            },
+            {
+                "linkId": "1.28",
+                "text": "Diese Frage wird nur angezeigt, wenn 1.19 mit 'lala' beantwortet wurde",
+                "type": "string",
+                "required": true,
+                "enableWhen": [{
+                    "question": "1.19",
+                    "operator": "=",
+                    "answerString": "lala"
+                }]
+            },
+            {
+                "linkId": "1.29",
+                "text": "Diese Frage wird nur angezeigt, wenn 1.19 mit 'lala' beantwortet wurde",
+                "type": "string",
+                "required": true,
+                "enableWhen": [{
+                    "question": "1.19",
+                    "operator": "=",
+                    "answerString": "lala"
+                }]
+            },
+            {
+                "linkId": "1.30",
+                "text": "Diese Frage wird nur angezeigt, wenn 1.19 mit 'lala' beantwortet wurde",
+                "type": "string",
+                "required": true,
+                "enableWhen": [{
+                    "question": "1.19",
+                    "operator": "=",
+                    "answerString": "lala"
+                }]
+            },
+            {
+                "linkId": "1.31",
+                "text": "Diese Frage wird nur angezeigt, wenn 1.19 mit 'lala' beantwortet wurde",
+                "type": "string",
+                "required": true,
+                "enableWhen": [{
+                    "question": "1.19",
+                    "operator": "=",
+                    "answerString": "lala"
+                }]
+            },
+            {
+                "linkId": "1.32",
+                "text": "Diese Frage wird nur angezeigt, wenn 1.19 mit 'lala' beantwortet wurde",
+                "type": "string",
+                "required": true,
+                "enableWhen": [{
+                    "question": "1.19",
+                    "operator": "=",
+                    "answerString": "lala"
+                }]
+            },
+            {
+                "linkId": "1.33",
+                "text": "Diese Frage wird nur angezeigt, wenn 1.19 mit 'lala' beantwortet wurde",
+                "type": "string",
+                "required": true,
+                "enableWhen": [{
+                    "question": "1.19",
+                    "operator": "=",
+                    "answerString": "lala"
+                }]
+            },
+            {
+                "linkId": "1.34",
+                "text": "Diese Frage wird nur angezeigt, wenn 1.19 mit 'lala' beantwortet wurde",
+                "type": "string",
+                "required": true,
+                "enableWhen": [{
+                    "question": "1.19",
+                    "operator": "=",
+                    "answerString": "lala"
+                }]
+            },
+            {
+                "linkId": "1.35",
+                "text": "Diese Frage wird nur angezeigt, wenn 1.19 mit 'lala' beantwortet wurde",
+                "type": "string",
+                "required": true,
+                "enableWhen": [{
+                    "question": "1.19",
+                    "operator": "=",
+                    "answerString": "lala"
+                }]
+            },
+            {
+                "linkId": "1.36",
+                "text": "Diese Frage wird nur angezeigt, wenn 1.19 mit 'lala' beantwortet wurde",
+                "type": "string",
+                "required": true,
+                "enableWhen": [{
+                    "question": "1.19",
+                    "operator": "=",
+                    "answerString": "lala"
+                }]
+            },
         ]
     }, {
         "linkId": "2",

@@ -46,7 +46,7 @@ const { width } = Dimensions.get('window')
 const baseUriProductive = ''
 
 // development-base-backend-uri
-const baseUriDevelopment = 'http://127.0.0.1:8080/api/'
+const baseUriDevelopment = 'https://compass-backend.umopenshift01-27c74fb079246a1ac53f0d02625326eb-0000.eu-de.containers.appdomain.cloud/api/'
 
 /***********************************************************************************************
 configuration
@@ -96,11 +96,11 @@ const conf = {
 
 	/** dev-option:
 	 * used the locally available quesstionnaire.js instead of the procured one from the backend */
-	useLocalQuestionnaireInsteadOftheReceivedOne: __DEV__ && false,
+	useLocalQuestionnaireInsteadOftheReceivedOne: __DEV__ && true,
 
 	/** dev-option:
 	 * skips the id-comparison */
-	skipIncomingQuestionnaireCheck: false,
+	skipIncomingQuestionnaireCheck: true,
 
 	// login
 	/*-----------------------------------------------------------------------------------*/
