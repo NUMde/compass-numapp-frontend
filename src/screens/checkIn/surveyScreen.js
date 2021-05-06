@@ -78,6 +78,7 @@ class SurveyScreen extends Component {
 									(this.props.questionnaireItemMap && this.props.questionnaireItemMap.done )
 									&&
 									(<TouchableOpacity
+										accessibilityLabel={config.text.survery.send}
 										accessibilityRole={config.text.accessibility.types.button}
 										accessibilityHint={config.text.accessibility.questionnaire.sendHint}
 										onPress={() => this.props.exportAndUploadQuestionnaireResponse()}
@@ -110,6 +111,7 @@ class SurveyScreen extends Component {
 							containerStyle={localStyle.listItemContainer}
 							onPress={() => this.props.actions.showQuestionnaireModal(index)}
 							ref={index == 0 ? this.firstResponderRef : null}
+							accessibilityLabel={category.text}
 							accessibilityRole={config.text.accessibility.types.button}
 							accessibilityHint={config.text.accessibility.questionnaire.categoryCellHint +
 								((!this.props.questionnaireItemMap[category.linkId].done && this.props.questionnaireItemMap[category.linkId].started)

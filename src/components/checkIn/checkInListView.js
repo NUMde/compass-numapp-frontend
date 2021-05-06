@@ -58,6 +58,7 @@ class CheckInListView extends Component {
                                         localStyle.containerCompleted )
                         }}
                         onPress={() => this.props.navigation.navigate('Survey')}
+                        accessibilityLabel={(this.props.firstTime ? config.text.survery.surveryTitleFirstTime : config.text.survery.surveryTitle) + ". " + (config.text.survery.surverySubTitle + this.props.formatDateString(new Date(this.props.user.due_date)))}
                         accessibilityRole={config.text.accessibility.types.button}
                         accessibilityHint={config.text.accessibility.questionnaire.questionnaireCellHint + 
                             ((this.props.questionnaireItemMap && !this.props.questionnaireItemMap.done && this.props.questionnaireItemMap.started) 
