@@ -96,11 +96,11 @@ const conf = {
 
 	/** dev-option:
 	 * used the locally available quesstionnaire.js instead of the procured one from the backend */
-	useLocalQuestionnaireInsteadOftheReceivedOne: __DEV__ && false,
+	useLocalQuestionnaireInsteadOftheReceivedOne: __DEV__ && true,
 
 	/** dev-option:
 	 * skips the id-comparison */
-	skipIncomingQuestionnaireCheck: false,
+	skipIncomingQuestionnaireCheck: true,
 
 	// login
 	/*-----------------------------------------------------------------------------------*/
@@ -188,6 +188,17 @@ const conf = {
 	* the content of that screen can be configured through the textConfiguration
 	*/
 	allowAccessToLegalInformationScreen: true,
+
+	/** ui:
+	* adds a progressbar to the bottom of the questionnaireModal
+	*/
+	useProgressBar: true,
+
+	/** ui:
+	* when true: calculates the exact position of the progress in relation to the given answers.
+	* when false: uses absolute values to calculate the position.
+	*/
+	useStrictModeProgressBar: true,
 	
 	/**
 	 * the font-scaling function:

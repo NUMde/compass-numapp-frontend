@@ -7,7 +7,7 @@ imports
 
 import React, { Component } from 'react'
 import { Text } from 'react-native-elements'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View, Dimensions } from 'react-native'
 import QRCodeScanner from 'react-native-qrcode-scanner'
 
 import config from '../../config/configProvider'
@@ -96,6 +96,8 @@ localstyle
 // scaleUiFkt() (located in src/config/appConfig.js)
 // will dynamically alter some sized based on the physical device-measurements.
 
+const width = Dimensions.get('window').width
+
 const localStyle = StyleSheet.create({
 	wrapper: {
 		height: '100%',
@@ -119,11 +121,13 @@ const localStyle = StyleSheet.create({
 
 	qrScannerContainer: {
 		marginTop: 0,
-		width: '100%'
+		width: '100%',
+		height: width
 	},
 
 	qrScanner: {
 		width: '100%',
+		height: '100%',
 		overflow: 'hidden'
 	},
 
