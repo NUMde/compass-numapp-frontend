@@ -126,6 +126,32 @@ const checkIfAnswersToConditionsAreAvailable = item => {
 	}
 }
 
+/**
+ * calculates the relative progress of navigating through a category
+ * @param  {object} [props] props-object of the calling component
+ */
+const calculatePageProgress = (props) => {
+
+	let pageIndex = 0
+	let pageCountRead = 0
+	let pageCountRemaining = 0
+
+	props.categories[props.currentCategoryIndex].item.forEach(item => {
+
+		let dependencyCheck = checkDependenciesOfSingleItem(item)
+
+		if(dependencyCheck) {
+			
+			pageCountRemaining++
+
+			if(pageIndex < props.currentPageIndex) pageCountRead++
+		}
+		pageIndex++
+	})
+
+	return pageCountRead / pageCountRemaining
+}
+
 // exported functions
 /*-----------------------------------------------------------------------------------*/
 
@@ -656,5 +682,6 @@ export default {
 	createResponseJSON,
 	checkDependenciesOfSingleItem,
 	getCorrectlyFormatedAnswer,
-	checkCompletionStateOfMultipleItems
+	checkCompletionStateOfMultipleItems,
+	calculatePageProgress
 }

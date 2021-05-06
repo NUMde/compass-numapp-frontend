@@ -1,64 +1,75 @@
-import React, { useEffect, useRef } from "react";
-import { View, StyleSheet, Animated, Easing } from "react-native";
-import config from '../../config/configProvider';
 
-/**
- * @param {object} props 
- * @param {number} progress the progress as decimal between 0 and 1 
- */
-const ProgressBar = (props) => {
+// (C) Copyright IBM Deutschland GmbH 2021.  All rights reserved.
 
-  // init width of progress bar with progress
-  const width = useRef(new Animated.Value(0)).current;
+/***********************************************************************************************
+import
+***********************************************************************************************/
 
-  // run animation when view gets updated
-  useEffect(
-    () => {
-      Animated.timing(width, {
-        toValue: props.progress,
-        duration: 250,
-        easing: Easing.in(Easing.ease),
-        useNativeDriver: false,
-      }).start();
-      return () => {};
+import  React, { Component } from 'react'
+import { View, StyleSheet } from "react-native"
+
+import config from '../../config/configProvider'
+
+/***********************************************************************************************
+component:
+renders a progressbar on the bottom of the questionnaireModal
+***********************************************************************************************/
+
+class ProgressBar extends Component {
+
+    /**
+     * @constructor
+     * @param {object} props 
+     * @param {number} props.progress the progress as a decimal value between 0 and 1 
+     */
+    constructor(props) {
+        super(props)
+    }
+
+    // rendering
+    /*-----------------------------------------------------------------------------------*/
+
+    render() {
+
+        let width = this.setWidth(this.props.progress)
+        
+        return (
+            <View style={localStyle.container}>
+                <View style={{...localStyle.progressBar, ...width.progressBarWidth}}></View>   
+            </View>
+        )
+    }
+
+    setWidth(width) {
+       
+        return StyleSheet.create({
+            progressBarWidth: {
+              width: (width * 100) + '%',
+            }
+        })
+    }
+}
+
+/***********************************************************************************************
+local styling
+***********************************************************************************************/
+
+const localStyle = StyleSheet.create({
+  
+    container: {
+        width: "95%",
+        alignSelf: "center",
+        height: 5,
+        borderRadius: 2.5,
+        marginHorizontal: 5,
+        backgroundColor: config.theme.colors.accent2
     },
-    // only update when props have changed
-    [props.progress]
-  );
 
-  return (
-    <View style={localstyles.container} >
-      <Animated.View
-        style={[localstyles.progressBar,
-          {
-            //interpolate width, i.e. map decimal value to value in percent
-            width: width.interpolate({
-              inputRange: [0, 1],
-              outputRange: ["0%", "100%"],
-            }),
-          },
-        ]}
-      />
-    </View>
-  );
-};
+    progressBar: {
+        height: 5,
+        borderRadius: 2.5,
+        backgroundColor: config.theme.colors.primary
+    }
+})
 
-const localstyles = StyleSheet.create({
-  // styling for the container of the progressbar
-  container: {
-    width: "95%",
-    alignSelf: "center",
-    height: 5,
-    borderRadius: 2.5,
-    marginHorizontal: 5,
-    backgroundColor: config.theme.colors.accent2
-  },
-  // styling for the progressbar itself
-  progressBar: {
-    height: 5,
-    borderRadius: 2.5,
-    backgroundColor: config.theme.colors.primary
-  },
-});
-
-export default ProgressBar;
+export default ProgressBar

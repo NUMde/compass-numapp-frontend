@@ -720,8 +720,7 @@ class QuestionnaireModal extends Component {
 			<View style={localStyle.bottomBarWrapper}>
 				<ProgressBar
             		progress={
-              			this.props.currentPageIndex /
-              			this.props.categories[this.props.currentCategoryIndex].item.length
+              			exportService.calculatePageProgress(this.props)
             		}
           		/>
 				<View style={localStyle.bottomBarButtons}>
