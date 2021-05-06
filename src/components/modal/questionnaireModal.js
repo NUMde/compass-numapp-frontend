@@ -325,6 +325,7 @@ class QuestionnaireModal extends Component {
 			<View>
 				{/* title */}
 				<Text 
+					accessibilityLabel={item.text}
 					accessibilityHint={config.text.accessibility.questionnaire.singleChoice}
 					style={{...localStyle.contentTitle, marginLeft: this.calculateIndent(item.linkId), fontSize: this.calculateFontSize(item.linkId), lineHeight: this.calculateLineHeight(item.linkId)}}>
 						{item.text}
@@ -379,6 +380,7 @@ class QuestionnaireModal extends Component {
 			<View>
 				{/* title */}
 				<Text 
+					accessibilityLabel={item.text}
 					accessibilityHint={config.text.accessibility.questionnaire.multipleChoice}
 					style={{...localStyle.contentTitle, fontSize: this.calculateFontSize(item.linkId), marginLeft: this.calculateIndent(item.linkId) ,lineHeight: this.calculateLineHeight(item.linkId)}}>
 						{item.text}
@@ -485,6 +487,7 @@ class QuestionnaireModal extends Component {
 					value={this.props.questionnaireItemMap[item.linkId].answer}
 					keyboardType={this.getKeyboardType(item)}
 					maxLength = {item.maxLength || null}
+					// accessibilityLabel={ }
 					accessibilityHint={config.text.accessibility.questionnaire.textFieldHint}
 					onChangeText={(text) =>
 						{
@@ -535,8 +538,10 @@ class QuestionnaireModal extends Component {
 				{Platform.OS !== "ios" && (
 					<TouchableOpacity 
 						onPress={this.props.actions.showDatePicker} 
-						accessibilityRole={config.text.accessibility.types.button} 
-						accessibilityHint={config.text.accessibility.questionnaire.dateFieldHint}>
+						// accessibilityLabel={ }
+						// accessibilityRole={config.text.accessibility.types.button} 
+						// accessibilityHint={config.text.accessibility.questionnaire.dateFieldHint}
+						>
 						<Input
 							placeholder={config.text.login.inputPlaceholderTime}
 							value={this.props.questionnaireItemMap[item.linkId].answer ? exportService.getFormatedDate(this.props.questionnaireItemMap[item.linkId].answer.toString(), true) : null}
