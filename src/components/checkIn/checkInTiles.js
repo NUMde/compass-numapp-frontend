@@ -50,6 +50,7 @@ class CheckInTiles extends Component {
                                 style={{...localStyle.tile, ...localStyle.buttonGreen}}
                                 disabled={this.props.user && this.props.noNewQuestionnaireAvailableYet}
                                 onPress={this.props.exportAndUploadQuestionnaireResponse}
+                                accessibilityLabel={config.text.survery.send}
                                 accessibilityRole={config.text.accessibility.types.button}
                                 accessibilityHint={config.text.accessibility.questionnaire.sendHint}
                             >

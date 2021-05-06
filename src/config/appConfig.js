@@ -198,7 +198,7 @@ const conf = {
 	* when true: calculates the exact position of the progress in relation to the given answers.
 	* when false: uses absolute values to calculate the position.
 	*/
-	useStrictModeProgressBar: false,
+	useStrictModeProgressBar: true,
 	
 	/**
 	 * the font-scaling function:

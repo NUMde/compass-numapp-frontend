@@ -64,6 +64,7 @@ class LandingScreen extends Component {
 										onPress={() => {
 											this.props.navigation.navigate('Login')
 										}}
+										accessibilityLabel={config.text.login.landing.buttonText}
 										accessibilityRole={config.text.accessibility.types.button}
 										accessibilityHint={config.text.accessibility.loginHint}
 									>

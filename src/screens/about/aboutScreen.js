@@ -115,6 +115,7 @@ class AboutScreen extends Component {
 										<TouchableOpacity
 											style={localStyle.button}
 											onPress={this.props.logout}
+											accessibilityLabel={config.text.about.logout}
 											accessibilityRole={config.text.accessibility.types.button}
 											accessibilityHint={config.text.accessibility.logoutHint}
 										>
@@ -129,6 +130,7 @@ class AboutScreen extends Component {
 										<TouchableOpacity
 											style={localStyle.buttonAlert}
 											onPress={this.props.clearAll}
+											accessibilityLabel={config.text.about.delete}
 											accessibilityRole={config.text.accessibility.types.button}
 											accessibilityHint={config.text.accessibility.logoutHint}
 										>
