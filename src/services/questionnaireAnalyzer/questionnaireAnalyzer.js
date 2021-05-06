@@ -138,9 +138,7 @@ const calculatePageProgress = (props) => {
 
 	props.categories[props.currentCategoryIndex].item.forEach(item => {
 
-		let dependencyCheck = checkDependenciesOfSingleItem(item)
-
-		if(dependencyCheck) {
+		if(checkDependenciesOfSingleItem(item)) {
 			
 			pageCountRemaining++
 
