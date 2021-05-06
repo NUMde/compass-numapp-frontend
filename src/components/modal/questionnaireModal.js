@@ -717,12 +717,16 @@ class QuestionnaireModal extends Component {
 	 */
 	createBottomBar = () => {
 		return (
-			<View style={localStyle.bottomBarWrapper}>
-				<ProgressBar
-            		progress={
-              			exportService.calculatePageProgress(this.props)
+			<View style={config.appConfig.useProgressBar ? localStyle.bottomBarWrapper : localStyle.bottomBarWrapperWithShadow}>
+
+				{config.appConfig.useProgressBar && (
+					<ProgressBar
+            		progress={config.appConfig.useStrictModeProgressBar ? exportService.calculatePageProgress(this.props) : this.props.currentPageIndex /
+						this.props.categories[this.props.currentCategoryIndex].item.length
             		}
           		/>
+				)}
+				
 				<View style={localStyle.bottomBarButtons}>
 				{/* the left navigational button if we're not on page 1 */}
 				{this.props.currentPageIndex > 1 && (
@@ -926,6 +930,14 @@ const localStyle = StyleSheet.create({
 
 	bottomBarWrapper: {
 		backgroundColor: config.theme.values.defaultModalBottomBarBackgroundColor
+	},
+
+	bottomBarWrapperWithShadow: {
+		backgroundColor: config.theme.values.defaultModalBottomBarBackgroundColor,
+		shadowColor: '#000',
+		shadowOffset: { width: 0, height: 2 },
+		shadowOpacity: 0.8,
+		shadowRadius: 2
 	},
 
 	bottomBarButtons: {

@@ -188,6 +188,17 @@ const conf = {
 	* the content of that screen can be configured through the textConfiguration
 	*/
 	allowAccessToLegalInformationScreen: true,
+
+	/** ui:
+	* adds a progressbar to the bottom of the questionnaireModal
+	*/
+	useProgressBar: false,
+
+	/** ui:
+	* when true: calculates the exact position of the progress in relation to the given answers.
+	* when false: uses absolute values to calculate the position.
+	*/
+	useStrictModeProgressBar: false,
 	
 	/**
 	 * the font-scaling function:
