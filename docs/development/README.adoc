@@ -254,14 +254,7 @@ Follow the instructions in the README of the link:https://github.com/ibm-bluemix
 
 You necessarily need a developer provisioning profile & corresponding signing certificate, to be able to run and test the app with notifications on your device. The Simulator isn't able to register & receive push notifications.
 
-Also there is currently a bug with some React-Native versions which causes the following error: 
-```bash
-Illegal callback invocation from native module react native push notifications
-```
-A new version (1.4.4) with a fix will be published soon. A patch has been provided: https://github.ibm.com/OHPC/gcs-app/tree/UMGCS-90/patches
-
-
-To test the notifications on your phone, you have to clone [gcs-backend](https://github.ibm.com/OHPC/gcs-backend) as well and start the server locally. After starting the server you have to forward the localhost listening port to be available for the iPhone, e.g. expose with ngrok
+To test the notifications on your phone, you have to clone link:https://github.com/NUMde/compass-numapp-backend[COMPASS mobile back end] as well and start the server locally. After starting the server you have to forward the localhost listening port to be available for the iPhone, e.g. expose with ngrok
 ```bash
 ngrok http 8080
 ```
