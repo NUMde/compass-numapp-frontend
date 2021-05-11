@@ -32,7 +32,7 @@ TIP: This command can also be useful when trying to dissolve build problems afte
 . *Create local.properties*
 +
 --
-Android Studio needs a file `local.properties` referencing the android-sdk location. Create the file inside the *`link:../main/android[android]`* directory with the content as follows: + 
+Android Studio needs a file `local.properties` referencing the android-sdk location. Create the file inside the *`link:../../../../tree/main/android[android]`* directory with the content as follows: + 
 
 *`sdk.dir = [LOCATION_OF_YOUR_ANDROID_SDK]`*
 
@@ -70,7 +70,7 @@ cd android/app
 keytool -genkey -v -keystore key.store -alias COMPASS -keyalg RSA -keysize 2048 -validity 10000
 ....
 
-The process creating the keystore will first ask for a *keystore-password* and an *upload-key-password*. The password (you can use identical passwords) you choose has to be added to the file *`link:../main/android/gradle.properties[android/gradle.properties]`*. Open it and alter its content to match your choice:
+The process creating the keystore will first ask for a *keystore-password* and an *upload-key-password*. The password (you can use identical passwords) you choose has to be added to the file *`link:../../../../tree/main/android/gradle.properties[android/gradle.properties]`*. Open it and alter its content to match your choice:
 
 ....
 MYAPP_UPLOAD_STORE_PASSWORD=[YOUR_CHOSEN_PASSWORD]
@@ -144,7 +144,7 @@ Compass (Android)
 
 To change those values follow these instructions:
 
-.. Open the file *`link:../main/android/app/src/main/res/values/strings.xml[android/app/src/main/res/values/strings.xml]`*.
+.. Open the file *`link:../../../../tree/main/android/app/src/main/res/values/strings.xml[android/app/src/main/res/values/strings.xml]`*.
 .. Update the content of the string tag with you preferred *Android App Name*: + 
 + 
 --
@@ -166,7 +166,7 @@ The default *App Name* for the iOS Build is:
 Compass (iOS)
 ....
 
-You can update the iOS App Name and Bundle Identifier by simply open the *`link:../main/ios/Compass.xcworkspace[.xcworkspace]`* file in XCode. The _General_ tab will provide inputs for both values: +
+You can update the iOS App Name and Bundle Identifier by simply open the *`link:../../../../tree/main/ios/Compass.xcworkspace[.xcworkspace]`* file in XCode. The _General_ tab will provide inputs for both values: +
 
 .Updating the Display Name / Bundle Identifier in Xcode
 [caption="Example: "]
@@ -177,7 +177,7 @@ image:./images/xcode.png[auto, 650]
 ==== Withoud using XCode
 Should you want to update these values without using XCode, proceed as follows:
 
-.. Open the file *`link:../main/ios/Compass/Info.plist[ios/Compass/Info.plist]`*.
+.. Open the file *`link:../../../../tree/main/ios/Compass/Info.plist[ios/Compass/Info.plist]`*.
 .. Update the content of the string under the *CFBundleDisplayName*-tag with you preferred *iOS App Name*: + 
 + 
 --
@@ -186,7 +186,7 @@ Should you want to update these values without using XCode, proceed as follows:
 <string>YOUR_APP_NAME</string>
 ....
 --
-.. Open the file *`link:../main/ios/Compass.xcodeproj/project.pbxproj[ios/Compass.xcodeproj/project.pbxproj]`*.
+.. Open the file *`link:../../../../tree/main/ios/Compass.xcodeproj/project.pbxproj[ios/Compass.xcodeproj/project.pbxproj]`*.
 .. Search for the key *PRODUCT_BUNDLE_IDENTIFIER* (all occurrences) and set its value to your preferred *iOS Bundle Identifier* + 
 + 
 --
