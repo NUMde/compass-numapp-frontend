@@ -32,15 +32,15 @@ const createAuthorizationToken = token => {
 /**
  * generates the encapsuled message that will be transmitted to the server.
  * also triggers the encryption
- * @param  {string} userId
+ * @param  {string} subjectId
  * @param  {string} type type of the message
  * @param  {object} body body to encrypt 
  */
-const generateEncapsuledMessage = (userId, type, body = {}) => {
+const generateEncapsuledMessage = (subjectId, type, body = {}) => {
 	let msg = {
 		type,
 		data: { 
-			appId: userId
+			appId: subjectId
 		}
 	}
 	if(body) msg.data.body = body
@@ -63,13 +63,13 @@ clients
 /*-----------------------------------------------------------------------------------*/
 
 /**
- * gets the userId and calls the getUser-endpoint
+ * gets the subjectId and calls the getUser-endpoint
  */
 const getUserUpdate = async () => {
-	let userId = store.getState().Login.userId
-	if(!userId) userId = await localStorage.loadLastUserId()
+	let subjectId = store.getState().Login.subjectId
+	if(!subjectId) subjectId = await localStorage.loadLastSubjectId()
 	return axios.get(
-		config.appConfig.endpoints.getUser + userId
+		config.appConfig.endpoints.getUser + subjectId
 	)
 }
 
@@ -78,19 +78,19 @@ const getUserUpdate = async () => {
 
 /**
  * sends out the encapsuled message
- * @param  {string} userId string identifying the user
+ * @param  {string} subjectId string identifying the user
  */
-const sendReport = async userId => {
+const sendReport = async subjectId => {
 	return axios.post(
 		config.appConfig.endpoints.report,
-		generateEncapsuledMessage(userId, 'report'),
+		generateEncapsuledMessage(subjectId, 'report'),
 		{
 			headers: {
 				Authorization: createAuthorizationToken(),
 				Accept: 'application/json',
 			},
 			params: {
-				appId: userId,
+				appId: subjectId,
 				type: 'report',
 				updateValues: {
 					[config.appConfig.defaultReportAttribute]: true
@@ -107,14 +107,14 @@ const sendReport = async userId => {
  * 
  * @param  {object}  body questionnaire response
  * @param  {Object.<string, boolean>} triggerMap trigger that might be set if the rules are met
- * @param  {string}  userId string identifying the user
+ * @param  {string}  subjectId string identifying the user
  * @param  {string}  surveyId string identifying the current questionnaire
  * @param  {string}  instanceId instance of the current questionnaire
  */
-const sendQuestionnaire = async (body, triggerMap, userId, surveyId, instanceId) => {
+const sendQuestionnaire = async (body, triggerMap, subjectId, surveyId, instanceId) => {
 	return axios.post(
 		config.appConfig.endpoints.sendQuestionnare,
-		generateEncapsuledMessage(userId, 'questionnaire_response', body ),
+		generateEncapsuledMessage(subjectId, 'questionnaire_response', body ),
 		{
 			headers: {
 				Authorization: createAuthorizationToken(),
@@ -122,8 +122,8 @@ const sendQuestionnaire = async (body, triggerMap, userId, surveyId, instanceId)
 			},
 			params: {
 				type: 'questionnaire_response',
-				id: userId,
-				appId: userId,
+				id: subjectId,
+				appId: subjectId,
 				surveyId,
 				instanceId,
 				updateValues: {

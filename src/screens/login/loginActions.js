@@ -23,12 +23,12 @@ export const sendCredentialsStart = () => ({
 
 /**
  * action after login success
- * @param  {string} userId duh
+ * @param  {string} subjectId duh
  * @param  {object} session session object
  */
-export const sendCredentialsSuccess = (userId, session) => ({
+export const sendCredentialsSuccess = (subjectId, session) => ({
 	type: 'SEND_CREDENTIALS_SUCCESS',
-	userId,
+	subjectId,
 	session: session || null
 })
 
@@ -68,7 +68,7 @@ export const sendCredentials = (cleanedScanResult, camera) => async dispatch => 
 				recipientCertificatePemString: res.data.recipient_certificate_pem_string || config.appConfig.default_recipient_certificate_pem_string,
 			}
 			// the id of the user will be persisted in the AsyncStorage (for the auto-login next time)
-			localStorage.persistLastUserId(cleanedScanResult)
+			localStorage.persistLastSubjectId(cleanedScanResult)
 			// updates the state
 			setTimeout(() => dispatch(sendCredentialsSuccess(cleanedScanResult, data)), 0)
 		})
@@ -83,18 +83,18 @@ export const sendCredentials = (cleanedScanResult, camera) => async dispatch => 
 		// reactivates the camera
 		if(camera) camera.reactivate()
 		// persists a generic error
-		dispatch(sendCredentialsFail(textConf.login.noUserId))
+		dispatch(sendCredentialsFail(textConf.login.noSubjectId))
 	}
 }
 
 /**
- * just updates the userId
- * @param  {string} userId
+ * just updates the subjectId
+ * @param  {string} subjectId
  */
-export const updateUserId = userId => async dispatch => {
+export const updateSubjectId = subjectId => async dispatch => {
 	dispatch({
-        type: 'UPDATE_USER_ID',
-        userId
+        type: 'UPDATE_SUBJECT_ID',
+        subjectId
 	})
 }
 

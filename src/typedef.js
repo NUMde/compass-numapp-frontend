@@ -86,10 +86,10 @@
  * the response-object that is part of the body that is sent to the backend
  * @typedef {Object} QuestionnaireResponse
  * @property {any[]}   item tells if a basicTrigger was set
- * @property {string}  author user-id of the current user
+ * @property {string}  author subject-id of the current user
  * @property {string}  status status of the questionnaire ("false" || "true")
  * @property {string}  authored local datestring
- * @property {string}  identifier holds the user-id
+ * @property {string}  identifier holds the subject-id
  * @property {string}  resourceType string specifiying the resource-type
  * @property {string}  questionnaire reference link
  * 

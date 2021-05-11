@@ -93,7 +93,7 @@ class CheckInContainer extends Component {
 	registerPush = async () => {
 		// creates the options-object for the push-registration and sends out the request
 		Push.register({
-			"userId": this.props.user.userId
+			"subjectId": this.props.user.subjectId
 		})
 		.then(response => {
 			// redux output
@@ -206,7 +206,7 @@ class CheckInContainer extends Component {
 	updateUserSuccess = async data => {
 
 		// TODO: remove workaround
-		data.userId = data.study_id || null
+		data.subjectId = data.study_id || data.subjectId || null
 
 		// procures the id of the quationnaire used by the last active user
 		let lastQuestionnaireId = await localStorage.loadLastQuestionnaireId()
@@ -382,7 +382,7 @@ class CheckInContainer extends Component {
 			.sendQuestionnaire(
 				exportData.body,
 				exportData.triggerMap,
-				this.props.user.userId,
+				this.props.user.subjectId,
 				this.props.user.current_questionnaire_id,
 				this.props.user.current_instance_id
 			)
@@ -486,7 +486,7 @@ class CheckInContainer extends Component {
 	sendReportStart = () => {
 		this.props.actions.sendReportStart()
 							
-		loggedInClient.sendReport(this.props.user.userId).then(
+		loggedInClient.sendReport(this.props.user.subjectId).then(
 			response => this.sendReportSuccess(response),
 			error => this.sendReportFail(error)
 		)

@@ -16,11 +16,11 @@ client
 ***********************************************************************************************/
 
 /**
- * @param  {string} userId the id used to identify the user
+ * @param  {string} subjectId the id used to identify the user
  */
-export const login = async userId => {
+export const login = async subjectId => {
 	return axios.get(
-		config.appConfig.endpoints.login + userId,
+		config.appConfig.endpoints.login + subjectId,
 	)
 }
 

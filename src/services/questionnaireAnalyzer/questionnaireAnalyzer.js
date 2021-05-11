@@ -648,10 +648,10 @@ const createResponseJSON = () => {
 	* @type {QuestionnaireResponse}
 	*/
 	let questionnaireResponse = {
-		author: props.user.userId,
+		author: props.user.subjectId,
 		item: createItems(props.categories),
 		resourceType: 'QuestionnaireResponse',
-		identifier: props.user.userId + '-' + Date.now(),
+		identifier: props.user.subjectId + '-' + Date.now(),
 		status: props.questionnaireItemMap.done ? 'completed' : 'in-progress',
 		authored: new Date().toLocaleString("de-DE", {timeZone: "Europe/Berlin"}),
 		questionnaire: 'http://hl7.org/fhir/Questionnaire/FragebogenCOVID19_Kurzversion'

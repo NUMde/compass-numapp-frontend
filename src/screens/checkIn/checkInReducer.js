@@ -126,7 +126,7 @@ const valuesHandlers = {
 
 		// persists the new questionnaireItemMap in AsynStorage
 		setTimeout(() => {
-			localStorage.persistQuestionnaireItemMap(questionnaireItemMap, state.user.userId)
+			localStorage.persistQuestionnaireItemMap(questionnaireItemMap, state.user.subjectId)
 		}, 0)
 
 		// if multiple answers are allowed
@@ -173,7 +173,7 @@ const valuesHandlers = {
 	 */
 	['SET_QUESTIONNAIRE_ITEM_MAP']: (state, values) => {
 		setTimeout(() => {
-			localStorage.persistQuestionnaireItemMap(values.questionnaireItemMap, state.user.userId)
+			localStorage.persistQuestionnaireItemMap(values.questionnaireItemMap, state.user.subjectId)
 		}, 0)
 
 		return {
@@ -190,7 +190,7 @@ const valuesHandlers = {
 	 */
 	['GET_QUESTIONNAIRE_SUCCESS']: (state, values) => {
 		// generates the questionnaireItemMap
-		let questionnaireItemMap = generateQuestionnaireItemMap(values.questionnaire, state.user.userId)
+		let questionnaireItemMap = generateQuestionnaireItemMap(values.questionnaire, state.user.subjectId)
 
 		// generates the categories
 		let categories = []
@@ -198,8 +198,8 @@ const valuesHandlers = {
 
 		// persists them in AsncStorage
 		setTimeout(() => {
-			localStorage.persistCategories(categories, state.user.userId)
-			localStorage.persistQuestionnaireItemMap(questionnaireItemMap, state.user.userId)	
+			localStorage.persistCategories(categories, state.user.subjectId)
+			localStorage.persistQuestionnaireItemMap(questionnaireItemMap, state.user.subjectId)	
 		}, 0)
 		
 		return {
@@ -409,9 +409,9 @@ const traverseItem = (item, questionnaireItemMap) => {
 /**
  * generates the questionnaireItemMap
  * @param  {any} questionnaire a fhir questionnaire
- * @param  {any} userId userId of the user
+ * @param  {any} subjectId subjectId of the user
  */
-const generateQuestionnaireItemMap = (questionnaire, userId) => {
+const generateQuestionnaireItemMap = (questionnaire, subjectId) => {
 	let questionnaireItemMap = {}
 
 	// triggers the item-generation
@@ -428,7 +428,7 @@ const generateQuestionnaireItemMap = (questionnaire, userId) => {
 
 	// persists the last known questionnaireId in the AsyncStorage
 	setTimeout(() => {
-		localStorage.persistLastQuestionnaireId(questionnaire.title, userId)
+		localStorage.persistLastQuestionnaireId(questionnaire.title, subjectId)
 	}, 0)
 
 	return questionnaireItemMap

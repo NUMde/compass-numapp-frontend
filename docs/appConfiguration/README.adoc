@@ -38,8 +38,8 @@ These options are only meant for the development mode und will not carry over in
 
 * *automateQrLogin:*
 ** This skips the login by QR-Code after 500ms
-* *automateQrLoginUserId:*
-** The user-id for the automated login
+* *automateQrLoginSubjectId:*
+** The subject-id for the automated login
 * *showEraseAll:*
 ** Shows a button to erase all data (in the about-menu)
 * *showLogout:*
@@ -64,11 +64,11 @@ image:./images/qrCode.png[auto, 175, float="left",]
 [source, JSON]
 ----
 {
-    "AppName":  "COMPASS",
-    "AppID":	"userId"
+    "AppIdentifier":  "COMPASS",
+    "SubjectId":	"subjectId"
 }
 ----
-The Login Options containt the attribute-names necessary to check the appIdentifer and to extract the userId. This way you can generate QR Code that contain your own AppName.
+The Login Options containt the attribute-names necessary to check the appIdentifer and to extract the subjectId. This way you can generate QR Code that contain your own AppIdentifier.
 --
  
 * *qrCodeAttributeHoldingTheAppIdentifier:*
@@ -76,19 +76,19 @@ The Login Options containt the attribute-names necessary to check the appIdentif
 * *appIdentifier:*
 ** The app-identifier itself. Should the one coming from the qr-code and the one defined with this attribute match, then we know that we're looking at a compatible qr-code. The only thing left to extract ist the:
 * *qrCodeAttributeHoldingTheUserName:*
-** The name of the attribute in the qr-code holding the user-id
+** The name of the attribute in the qr-code holding the subject-id
 
 == Local Storage Identifiers
 In order for the app to function properly it must persist various values. It uses AsyncStorage: https://github.com/react-native-async-storage/async-storage[AsyncStorage@GitHub]
 
-The following values carry the strings used to generate the names of the values belonging to the compass-application. Another part of that name is the UserId of the current user (in case multiple user want to use the same device) - the names are generated here: **`link:../../../../tree/main/src/services/localStorage/localStorage.js[src/services/localStorage/localStorage.js]`**
+The following values carry the strings used to generate the names of the values belonging to the compass-application. Another part of that name is the SubjectId of the current user (in case multiple user want to use the same device) - the names are generated here: **`link:../../../../tree/main/src/services/localStorage/localStorage.js[src/services/localStorage/localStorage.js]`**
 
 * *localStorageMap*
 ** Part of the identifier used to persist the questionnaireItemMap
 * *localStorageList*
 ** Part of the identifier used to persist the categories array
-* *lastUserId*
-** The user-id of the user last logged in
+* *lastSubjectId*
+** The subject-id of the user last logged in
 * *lastQuestionnaireId*
 ** Part of the identifier used to persist the id of the last active questionnaire of the last active user
 * *notificationState*

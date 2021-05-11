@@ -42,7 +42,7 @@ const rootReducer = (state, action) => {
 
 	if (action.type === 'USER_LOGOUT') {
 		state = undefined
-		localStorage.removeLastUserId()
+		localStorage.removeLastSubjectId()
 	}
 
 	if (action.type === 'DELETE_ALL_LOCAL_DATA') {
@@ -56,10 +56,10 @@ const rootReducer = (state, action) => {
 		state.CheckIn.categoriesLoaded = false
 		state.CheckIn.currentPageIndex = 1
 
-		let userId = state.CheckIn.user.userId
-		localStorage.removeLastQuestionnaireId(userId)
-		localStorage.removeCategories(userId)
-		localStorage.removeQuestionnaireItemMap(userId)
+		let subjectId = state.CheckIn.user.subjectId
+		localStorage.removeLastQuestionnaireId(subjectId)
+		localStorage.removeCategories(subjectId)
+		localStorage.removeQuestionnaireItemMap(subjectId)
 	}
 	return appReducer(state, action)
 }

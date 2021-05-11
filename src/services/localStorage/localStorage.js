@@ -20,16 +20,16 @@ operations
 /**
  * persists the notification object that is returned after the push-registration
  * went through (per user)
- * @param  {string} [userId] userId of the user
+ * @param  {string} [subjectId] subjectId of the user
  * @param  {any} notificationState notification object
  */
-const persistNotificationState = async (notificationState, userId) => {
+const persistNotificationState = async (notificationState, subjectId) => {
     
-    if(!userId) userId = await loadLastUserId()
-    if(!userId) return
+    if(!subjectId) subjectId = await loadLastSubjectId()
+    if(!subjectId) return
 
     try {
-        await AsyncStorage.setItem(config.appConfig.notificationState + '_' +  userId, notificationState)
+        await AsyncStorage.setItem(config.appConfig.notificationState + '_' +  subjectId, notificationState)
     } 
     catch (error) {
         console.error(error)
@@ -38,16 +38,16 @@ const persistNotificationState = async (notificationState, userId) => {
 
 /**
  * loads the notification state of a user from the AsyncStorage
- * @param  {string} [userId] userId of the user
+ * @param  {string} [subjectId] subjectId of the user
  * @returns {Promise<{deviceId:string}>}
  */
-const loadNotificationState = async userId => {
+const loadNotificationState = async subjectId => {
 
-    if(!userId) userId = await loadLastUserId()
-    if(!userId) return
+    if(!subjectId) subjectId = await loadLastSubjectId()
+    if(!subjectId) return
 
     try {
-        return result = await AsyncStorage.getItem(config.appConfig.notificationState + '_' +  userId)
+        return result = await AsyncStorage.getItem(config.appConfig.notificationState + '_' +  subjectId)
     } 
     catch (error) {
         console.error(error)
@@ -57,36 +57,36 @@ const loadNotificationState = async userId => {
 
 /**
  * deletes the notification state of a user from the AsyncStorage
- * @param  {string} [userId] userId of the user
+ * @param  {string} [subjectId] subjectId of the user
  */
-const removeNotificationState = async userId => {
+const removeNotificationState = async subjectId => {
     
-    if(!userId) userId = await loadLastUserId()
-    if(!userId) return
+    if(!subjectId) subjectId = await loadLastSubjectId()
+    if(!subjectId) return
 
     try {
-        await AsyncStorage.removeItem(config.appConfig.notificationState + '_' +  userId)
+        await AsyncStorage.removeItem(config.appConfig.notificationState + '_' +  subjectId)
     } 
     catch (error) {
         console.error(error)
     }
 }
 
-// last user id
+// last subject-id
 /*-----------------------------------------------------------------------------------*/
 
 /**
- * persists the last userId that was logged in (to automatically re-login the user 
+ * persists the last subjectId that was logged in (to automatically re-login the user 
  * when he/she opens the app the next time)
- * @param  {string} [userId] userId of the user
+ * @param  {string} [subjectId] subjectId of the user
  */
-const persistLastUserId = async userId => {
+const persistLastSubjectId = async subjectId => {
 
-    if(!userId) userId = await loadLastUserId()
-    if(!userId) return
+    if(!subjectId) subjectId = await loadLastSubjectId()
+    if(!subjectId) return
 
     try {
-        await AsyncStorage.setItem(config.appConfig.lastUserId, userId)
+        await AsyncStorage.setItem(config.appConfig.lastSubjectId, subjectId)
     } 
     catch (error) {
         console.error(error)
@@ -94,13 +94,13 @@ const persistLastUserId = async userId => {
 }
 
 /**
- * loads the last used userId from the AsynStorage
+ * loads the last used subjectId from the AsynStorage
  * @returns string | null
  */
-const loadLastUserId = async () => {
+const loadLastSubjectId = async () => {
 
     try {
-        return await AsyncStorage.getItem(config.appConfig.lastUserId)
+        return await AsyncStorage.getItem(config.appConfig.lastSubjectId)
     } 
     catch (error) {
         console.error(error)
@@ -109,12 +109,12 @@ const loadLastUserId = async () => {
 }
 
 /**
- * deletes the last used userId from the AsynStorage
+ * deletes the last used subjectId from the AsynStorage
  */
-const removeLastUserId = async () => {
+const removeLastSubjectId = async () => {
 
     try {
-        await AsyncStorage.removeItem(config.appConfig.lastUserId)
+        await AsyncStorage.removeItem(config.appConfig.lastSubjectId)
     } 
     catch (error) {
         console.error(error)
@@ -130,15 +130,15 @@ const removeLastUserId = async () => {
  * checked against the just persisted one. if it matches the questionnaire will be loaded.
  * if not, the questionnaire will be deleted and a user update executed.
  * @param  {string} questionnaireId id of the questionnaire
- * @param  {string} [userId] id of the user
+ * @param  {string} [subjectId] id of the user
  */
-const persistLastQuestionnaireId = async (questionnaireId, userId) => {
+const persistLastQuestionnaireId = async (questionnaireId, subjectId) => {
 
-    if(!userId) userId = await loadLastUserId()
-    if(!(questionnaireId && userId)) return
+    if(!subjectId) subjectId = await loadLastSubjectId()
+    if(!(questionnaireId && subjectId)) return
 
     try {
-        await AsyncStorage.setItem(config.appConfig.lastQuestionnaireId + '_' +  userId, questionnaireId)
+        await AsyncStorage.setItem(config.appConfig.lastQuestionnaireId + '_' +  subjectId, questionnaireId)
     } 
     catch (error) {
         console.error(error)
@@ -147,16 +147,16 @@ const persistLastQuestionnaireId = async (questionnaireId, userId) => {
 
 /**
  * loads the last persisted questionnaire id (of a user) from the AsyncStorage
- * @param  {string} [userId] user id
+ * @param  {string} [subjectId] subject-id
  * @returns string | null
  */
-const loadLastQuestionnaireId = async userId => {
+const loadLastQuestionnaireId = async subjectId => {
 
-    if(!userId) userId = await loadLastUserId()
-    if(!userId) return
+    if(!subjectId) subjectId = await loadLastSubjectId()
+    if(!subjectId) return
 
     try {
-        return await AsyncStorage.getItem(config.appConfig.lastQuestionnaireId + '_' +  userId)
+        return await AsyncStorage.getItem(config.appConfig.lastQuestionnaireId + '_' +  subjectId)
     } 
     catch (error) {
         console.error(error)
@@ -166,15 +166,15 @@ const loadLastQuestionnaireId = async userId => {
 
 /**
  * deletes the last persisted questionnaire id (of a user) from the AsyncStorage
- * @param  {string} [userId] user-id
+ * @param  {string} [subjectId] subject-id
  */
-const removeLastQuestionnaireId= async userId => {
+const removeLastQuestionnaireId= async subjectId => {
 
-    if(!userId) userId = await loadLastUserId()
-    if(!userId) return
+    if(!subjectId) subjectId = await loadLastSubjectId()
+    if(!subjectId) return
 
     try {
-        await AsyncStorage.removeItem(config.appConfig.lastQuestionnaireId + '_' +  userId)
+        await AsyncStorage.removeItem(config.appConfig.lastQuestionnaireId + '_' +  subjectId)
     } 
     catch (error) {
         console.error(error)
@@ -187,17 +187,17 @@ const removeLastQuestionnaireId= async userId => {
 /**
  * persists the current categories object of the user
  * @param  {QuestionnaireItem[]} categories categories object of the user
- * @param  {string} [userId] if of the user
+ * @param  {string} [subjectId] if of the user
  */
-const persistCategories = async (categories, userId) => {
+const persistCategories = async (categories, subjectId) => {
 
-    if(!userId) userId = await loadLastUserId()
-    if(!(categories && userId)) return
+    if(!subjectId) subjectId = await loadLastSubjectId()
+    if(!(categories && subjectId)) return
 
     let stringToBePersisted = categories instanceof String ? categories : JSON.stringify(categories)
 
     try {
-        await AsyncStorage.setItem(config.appConfig.localStorageList + '_' +  userId, stringToBePersisted.toString())
+        await AsyncStorage.setItem(config.appConfig.localStorageList + '_' +  subjectId, stringToBePersisted.toString())
     } 
     catch (error) {
         console.error(error)
@@ -206,16 +206,16 @@ const persistCategories = async (categories, userId) => {
 
 /**
  * loads the last persisted category-object of the user from the AsyncStorage
- * @param  {string} [userId] user id
+ * @param  {string} [subjectId] subject-id
  * @returns string | null
  */
-const loadCategories = async userId => {
+const loadCategories = async subjectId => {
 
-    if(!userId) userId = await loadLastUserId()
-    if(!userId) return
+    if(!subjectId) subjectId = await loadLastSubjectId()
+    if(!subjectId) return
 
     try {
-        return JSON.parse(await AsyncStorage.getItem(config.appConfig.localStorageList + '_' +  userId))
+        return JSON.parse(await AsyncStorage.getItem(config.appConfig.localStorageList + '_' +  subjectId))
     } 
     catch (error) {
         console.error(error)
@@ -225,15 +225,15 @@ const loadCategories = async userId => {
 
 /**
  * deletes the last persisted category-object of the user from the AsyncStorage
- * @param  {string} [userId] user id
+ * @param  {string} [subjectId] subject-id
  */
-const removeCategories = async userId => {
+const removeCategories = async subjectId => {
 
-    if(!userId) userId = await loadLastUserId()
-    if(!userId) return
+    if(!subjectId) subjectId = await loadLastSubjectId()
+    if(!subjectId) return
 
     try {
-        await AsyncStorage.removeItem(config.appConfig.localStorageList + '_' + userId)
+        await AsyncStorage.removeItem(config.appConfig.localStorageList + '_' + subjectId)
     } 
     catch (error) {
         console.error(error)
@@ -246,17 +246,17 @@ const removeCategories = async userId => {
 /**
  * persists the current questionnaireItemMap object of the user
  * @param  {QuestionnaireItemMap} map qestionnaireItemMap object of the user
- * @param  {string} [userId] if of the user
+ * @param  {string} [subjectId] if of the user
  */
-const persistQuestionnaireItemMap = async (map, userId) => {
+const persistQuestionnaireItemMap = async (map, subjectId) => {
 
-    if(!userId) userId = await loadLastUserId()
-    if(!(map && userId)) return
+    if(!subjectId) subjectId = await loadLastSubjectId()
+    if(!(map && subjectId)) return
 
     let stringToBePersisted = map instanceof String ? map : JSON.stringify(map)
 
     try {
-        await AsyncStorage.setItem(config.appConfig.localStorageMap + '_' +  userId, stringToBePersisted.toString())
+        await AsyncStorage.setItem(config.appConfig.localStorageMap + '_' +  subjectId, stringToBePersisted.toString())
     } 
     catch (error) {
         console.error(error)
@@ -265,16 +265,16 @@ const persistQuestionnaireItemMap = async (map, userId) => {
 
 /**
  * loads the last persisted questionnaireItemMap-object of the user from the AsyncStorage
- * @param  {string} [userId] user id
+ * @param  {string} [subjectId] subject-id
  * @returns string | null
  */
-const loadQuestionnaireItemMap = async userId => {
+const loadQuestionnaireItemMap = async subjectId => {
     
-    if(!userId) userId = await loadLastUserId()
-    if(!userId) return
+    if(!subjectId) subjectId = await loadLastSubjectId()
+    if(!subjectId) return
 
     try {
-        return JSON.parse(await AsyncStorage.getItem(config.appConfig.localStorageMap + '_' +  userId))
+        return JSON.parse(await AsyncStorage.getItem(config.appConfig.localStorageMap + '_' +  subjectId))
     } 
     catch (error) {
         console.error(error)
@@ -284,15 +284,15 @@ const loadQuestionnaireItemMap = async userId => {
 
 /**
  * deletes the last persisted questionnaireItemMap-object of the user from the AsyncStorage
- * @param  {string} [userId] user id
+ * @param  {string} [subjectId] subject-id
  */
-const removeQuestionnaireItemMap = async userId => {
+const removeQuestionnaireItemMap = async subjectId => {
 
-    if(!userId) userId = await loadLastUserId()
-    if(!userId) return
+    if(!subjectId) subjectId = await loadLastSubjectId()
+    if(!subjectId) return
 
     try {
-        await AsyncStorage.removeItem(config.appConfig.localStorageMap + '_' + userId)
+        await AsyncStorage.removeItem(config.appConfig.localStorageMap + '_' + subjectId)
     } 
     catch (error) {
         console.error(error)
@@ -314,8 +314,8 @@ export
 ***********************************************************************************************/
 
 export default { 
-    persistLastUserId,
-    loadLastUserId,
+    persistLastSubjectId,
+    loadLastSubjectId,
     removeLastQuestionnaireId,
 
     persistQuestionnaireItemMap,
@@ -328,7 +328,7 @@ export default {
 
     persistLastQuestionnaireId,
     loadLastQuestionnaireId,
-    removeLastUserId,
+    removeLastSubjectId,
 
     persistNotificationState,
     loadNotificationState,

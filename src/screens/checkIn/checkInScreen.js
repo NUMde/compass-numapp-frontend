@@ -83,7 +83,6 @@ class CheckInScreen extends Component {
 									(<View style={{...localStyle.wrapper, ...localStyle.firstItem}}>
 										{/* displays the welcome text */}
 										<CheckInWelcomeText {...this.props}></CheckInWelcomeText>
-										{/* TODO: extra component just for 401 handling */}
 									</View>)
 								}
 							</View>

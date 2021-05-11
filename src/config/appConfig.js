@@ -68,8 +68,8 @@ const conf = {
 	automateQrLogin: __DEV__ && true,
 
 	/** dev-option:
-	 * user-id for automated login */
-	automateQrLoginUserId: '{"AppName":"COMPASS","AppID":"7bfc3b07-a97d-4e11-8ac6-b970c1745476"}',
+	 * subject-id for automated login */
+	automateQrLoginSubjectId: '{"AppIdentifier":"COMPASS","SubjectId":"7bfc3b07-a97d-4e11-8ac6-b970c1745476"}',
 
 	/** dev-option:
 	 * shows a button to erase all data (in the about-menu) - dev-only */
@@ -107,22 +107,22 @@ const conf = {
 
 	// the login qr-code is formed like the following example. 
 	// {
-	// 	"AppName":  "COMPASS",
-	// 	"AppID":	"userId"
+	// 	"AppIdentifier":  "COMPASS",
+	// 	"SubjectId":	"subjectId"
 	// }
-	// the attribute-names necessary to check the appIdentifer and to extract the userId
+	// the attribute-names necessary to check the appIdentifer and to extract the subjectId
 	
 	/** login-option:
 	 * the name of the attribute in the qr-code holding the app-identifier*/
-	qrCodeAttributeHoldingTheAppIdentifier: 'AppName',
+	qrCodeAttributeHoldingTheAppIdentifier: 'AppIdentifier',
 	
 	/** login-option:
 	 * the app-identifier */
 	appIdentifier: 'COMPASS',
 	
 	/** login-option:
-	 * the name of the attribute in the qr-code holding the user-id*/
-	qrCodeAttributeHoldingTheUserName: 'AppID',
+	 * the name of the attribute in the qr-code holding the subject-id*/
+	qrCodeAttributeHoldingTheSubjectId: 'SubjectId',
 
 	// local storage identifiers
 	/*-----------------------------------------------------------------------------------*/
@@ -140,8 +140,8 @@ const conf = {
 	localStorageList: '@COMPASS_STORE:persisted_survey_list',
 
 	/** local storage identifier:
-	 * the user id of the user last logged in */
-	lastUserId: '@COMPASS_STORE:last_active_user',
+	 * the subject-id of the user last logged in */
+	lastSubjectId: '@COMPASS_STORE:last_active_user',
 
 	/** local storage identifier:
 	 * the id of the last active questionnaire of the last active user */
@@ -161,11 +161,11 @@ const conf = {
 
 		/** rest:
 		 * endpoint to log the user in and retrieve the accessToken */
-		login: (__DEV__ ? baseUriDevelopment : baseUriProductive) + 'user/',
+		login: (__DEV__ ? baseUriDevelopment : baseUriProductive) + 'participant/',
 		
 		/** rest:
 		 * endpoint to get the user-profile */
-		getUser: (__DEV__ ? baseUriDevelopment : baseUriProductive) + 'user/',
+		getUser: (__DEV__ ? baseUriDevelopment : baseUriProductive) + 'participant/',
 
 		/** rest:
 		 * endpoint for a special report */
