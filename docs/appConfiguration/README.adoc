@@ -6,7 +6,7 @@
 
 = Configuring the React Native Client for Development and Production Environments
 
-https://github.com/NUMde/compass-numapp[Main Repository] | link:../main/docs[List of Content]
+https://github.com/NUMde/compass-numapp[Main Repository] | link:../[List of Content]
 
 The application configuration provides options that can influence how th app behaves in the development- and the production environment. Those options range from defining the endpoints of the backend to suspending the login in development mode:
 

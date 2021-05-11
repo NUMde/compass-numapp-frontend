@@ -1,6 +1,6 @@
 == Production Build & Deployment to the Stores
 
-https://github.com/NUMde/compass-numapp[Main Repository] | link:../main/docs[List of Content]
+https://github.com/NUMde/compass-numapp[Main Repository] | link:../[List of Content]
 
 The production build is the one that's going to be published on Google Play, respectively the App Store. To deploy the application, a production build is first needed. After the generation of those builds Android Studio and XCode need to be used to complete the deployment process.
 

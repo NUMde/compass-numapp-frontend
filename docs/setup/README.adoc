@@ -1,6 +1,6 @@
 = Setup & Production Build
 
-https://github.com/NUMde/compass-numapp[Main Repository] | link:../main/docs[List of Content]
+https://github.com/NUMde/compass-numapp[Main Repository] | link:../[List of Content]
 
 == Initial Setup
 

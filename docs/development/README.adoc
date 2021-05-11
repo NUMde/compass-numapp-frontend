@@ -6,7 +6,7 @@
 
 = Development Guide
 
-https://github.com/NUMde/compass-numapp[Main Repository] | link:../main/docs[List of Content]
+https://github.com/NUMde/compass-numapp[Main Repository] | link:../[List of Content]
 
 This section of the documentation will give a brief overview of some aspects that might be of help should you choose to actively take part in the development community.
 
@@ -63,15 +63,15 @@ This contains all react components that are not screens. Each component has a di
 
 ** */config* + 
 Holds various configurations files. For more information see: + 
-*`link:../main/docs/appConfiguration[-> App Configuration]`* + 
-*`link:../main/docs/content[-> Content Configuration]`* + 
+*`link:..//appConfiguration[-> App Configuration]`* + 
+*`link:..//content[-> Content Configuration]`* + 
 
 ** */CUSTOMIZATION* + 
 This contains the customization files that can be used to alter the style, content and some app options. 
 For more information see: + 
-*`link:../main/docs/appConfiguration[-> App Configuration]`* + 
-*`link:../main/docs/content[-> Content Configuration]`* + 
-*`link:../main/docs/theming[-> Theme Customization]`* + 
+*`link:..//appConfiguration[-> App Configuration]`* + 
+*`link:..//content[-> Content Configuration]`* + 
+*`link:..//theming[-> Theme Customization]`* + 
 
 ** */navigation* + 
 Provides the App-Navigator, basically the definition of which screen is provided under specific circumstances.
@@ -113,7 +113,7 @@ Used to handle the creation of a quationnaire response and to check the completi
 Handles all outgoing calls
 
 ** */theme* + 
-Holds the theme for the application, including spacing, colors, and typography. To updated it follow the steps provided by the *`link:../main/docs/theming[Theming Documentation]`*.
+Holds the theme for the application, including spacing, colors, and typography. To updated it follow the steps provided by the *`link:..//theming[Theming Documentation]`*.
 
 ** *store.js*
 Defines the appReducer by combining all state reducers.

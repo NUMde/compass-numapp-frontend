@@ -1,6 +1,6 @@
 = Updating the Content of the React Native Client
 
-https://github.com/NUMde/compass-numapp[Main Repository] | link:../main/docs[List of Content]
+https://github.com/NUMde/compass-numapp[Main Repository] | link:../[List of Content]
 
 == Setting up the Custom Configuration File
 The strings utilized in the app, as well as other aspects of the react-native client can be adjusted to your needs. The project comes with a set of configuration files that allow for quick and indiviual changes. The file responsible for the currently used strings is *`link:../main/src/config/textConfig.js[src/config/textConfig.js]`*

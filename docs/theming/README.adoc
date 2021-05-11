@@ -6,7 +6,7 @@
 
 = Styling the React Native Client
 
-https://github.com/NUMde/compass-numapp[Main Repository] | link:../main/docs[List of Content]
+https://github.com/NUMde/compass-numapp[Main Repository] | link:../[List of Content]
 
 == Setting up a Custom Theme
 

@@ -1,6 +1,6 @@
 = Questionnaire Requirements
 
-https://github.com/NUMde/compass-numapp[Main Repository] | link:../main/docs[List of Content]
+https://github.com/NUMde/compass-numapp[Main Repository] | link:../[List of Content]
 
 The NUM-Compass project uses FHIR to encode questionnaires. 
 However, only the necessary subset of extensions and attributes is supported as of now. Furthermore, there are certain requirements concerning the structure of the questionnaires that need to be met in order for the NUM-APP Frontend to work properly.
