@@ -13,8 +13,6 @@ import config from '../../config/configProvider'
 import Banner from '../../components/banner/banner'
 import QuestionnaireModal from '../../components/modal/questionnaireModal'
 import ScrollIndicatorWrapper from '../../components/scrollIndicatorWrapper/scrollIndicatorWrapper'
-import setAccessibilityResponder from '../../services/accessibility/setAccessbilityResponder'
-
 
 /***********************************************************************************************
 component:
@@ -22,12 +20,6 @@ renders the survey screen
 ***********************************************************************************************/
 
 class SurveyScreen extends Component {
-
-	/**
-	* reference for object that should be first responder for screenreader (accessibility)
-	* @type {object}
-	*/
-	firstResponderRef;
 	
 	/**
 	 * @param  {object}   props
@@ -39,19 +31,11 @@ class SurveyScreen extends Component {
 	 */
 	constructor(props) {
 		super(props)
-
-		// accessibility
-		this.firstResponderRef = React.createRef()	
-	}
-
-	componentDidMount() {
-		setAccessibilityResponder(this.firstResponderRef)
 	}
 
 	// rendering
 	/*-----------------------------------------------------------------------------------*/
 
-	
 	render() {
 		return (
 			<View style={{ ...localStyle.flexi, ...localStyle.wrapper }}>
@@ -110,7 +94,6 @@ class SurveyScreen extends Component {
 							key={index}
 							containerStyle={localStyle.listItemContainer}
 							onPress={() => this.props.actions.showQuestionnaireModal(index)}
-							ref={index == 0 ? this.firstResponderRef : null}
 							accessibilityLabel={category.text}
 							accessibilityRole={config.text.accessibility.types.button}
 							accessibilityHint={config.text.accessibility.questionnaire.categoryCellHint +
