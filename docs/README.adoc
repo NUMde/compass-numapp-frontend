@@ -1,6 +1,6 @@
 = COMPASS NumApp React Native Client - Documentation
 
-https://github.com/NUMde/compass-numapp[Main Repository] | link:../[Frontend Landing]
+https://github.com/NUMde/compass-numapp[Main Repository] | link:../../../tree/main[Frontend Landing]
 
 Hi and welcome to the documentation of the *COMPASS NumApp React Native Client*.
 
