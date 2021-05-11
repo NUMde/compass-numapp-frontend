@@ -21,7 +21,7 @@
     "@react-navigation/stack": "^5.9.3",
     "@react-navigation/web": "^1.0.0-alpha.9",
     "axios": ">=0.21.1",
-    "bmd-push-react-native": "1.4.3",
+    "bmd-push-react-native": "1.4.4",
     "btoa": "^1.2.1",
     "buffer": "^5.5.0",
     "jsc-android": "^241213.1.0",
