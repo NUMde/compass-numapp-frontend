@@ -17,7 +17,7 @@
       "client_type": 3
     }],
     "api_key": [{
-      "current_key": "TO BE UPDATEDQ"
+      "current_key": "TO BE UPDATED"
     }],
     "services": {
       "appinvite_service": {
@@ -28,5 +28,5 @@
       }
     }
   }],
-  "configuration_version": "TO BE UPDATED1"
+  "configuration_version": "TO BE UPDATED"
 }
