@@ -205,7 +205,7 @@ A state is anything that changes over time (i.e. in a Counter App, the state cou
 link:https://redux.js.org/[Redux] provides a predictable state container to centralize the global store of an application. It includes features like `store`, `reducer`, `actions` and `middleware`s, and methods such as `connect`, `mapStateToProps`, `mapDispatchToProps`and `bindActionsCreator`. Those allow to easily create and manage applications and their states.
 
 === Global Store and Root Reducer
-The App component is wrapped in a `Provider` from `react-redux` (see *`link:../main/App.js[App.js]`*), which has a store as its props. This store is built by passing the **root reducer** to the `createStore()` method (see *`link:../main/src/store.js[App.js]`*).
+The App component is wrapped in a `Provider` from `react-redux` (see *`link:../main/App.js[App.js]`*), which has a store as its props. This store is built by passing the **root reducer** to the `createStore()` method (see *`link:../../../../tree/main/src/store.js[App.js]`*).
 This global store allows different components to share data.
 
 The root reducer combines all reducers (see section **Reducers**) of an application together. The reducers are linked to the root reducer in the `store.js` file by calling `combineReducers()`.
@@ -258,7 +258,7 @@ To test the notifications on your phone, you have to clone link:https://github.c
 ```bash
 ngrok http 8080
 ```
-Additionally, the value of *baseUriDevelopment* url (located in *`link:../main/src/config/appConfig.js[appConfig.js]`*) has to be set to this public url.
+Additionally, the value of *baseUriDevelopment* url (located in *`link:../../../../tree/main/src/config/appConfig.js[appConfig.js]`*) has to be set to this public url.
 
 To trigger a notification just send a HTTP GET request to http://localhost:8080/api/test (e.g. via browser)
 
