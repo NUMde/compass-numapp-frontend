@@ -98,10 +98,14 @@ Right now, only the `=` operator is available for conditional rendering. More co
 * `all`
 
 == Available Extensions
-As of now, one extensions can be used, the slider:
+As of now, six extensions can be used, that are related to the use of a slider:
 
-* `slider`
-** http://hl7.org/fhir/R4/extension-questionnaire-itemcontrol.html
+* http://hl7.org/fhir/R4/extension-questionnaire-itemcontrol.html
+* http://hl7.org/fhir/StructureDefinition/questionnaire-lowRangeLabel
+* http://hl7.org/fhir/StructureDefinition/questionnaire-highRangeLabel
+* http://hl7.org/fhir/StructureDefinition/questionnaire-sliderStepValue
+* http://hl7.org/fhir/StructureDefinition/minValue
+* http://hl7.org/fhir/StructureDefinition/maxValue
 
 == Available ItemType Values
 As of now, the following item types are supported:
