@@ -472,6 +472,52 @@ export default {
                     "answerString": "lala"
                 }]
             },
+            {
+                "linkId": "1.37",
+                "text": "Das ist eine Single-Choice-Abfrage als Drop-Down",
+                "type": "choice",
+                "required": true,
+                "answerOption": [{
+                        "valueString": "Option A"
+                    },
+                    {
+                        "valueString": "Option B"
+                    },
+                    {
+                        "valueString": "Option C"
+                    },
+                    {
+                        "valueString": "Option D"
+                    },
+                    {
+                        "valueString": "Option E"
+                    },
+                    {
+                        "valueString": "Option F"
+                    },
+                    {
+                        "valueString": "Option G"
+                    },
+                    {
+                        "valueString": "Option H"
+                    },
+                    {
+                        "valueString": "Option I"
+                    }
+                ],
+                "extension": [{
+                    "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                    "valueCodeableConcept": {
+                        "CodeableConcept": {
+                            "coding": [{
+                                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                                "code": "drop-down"
+                            }]
+                        }
+                    }
+                },
+            ],
+            }
         ]
     }, {
         "linkId": "2",
