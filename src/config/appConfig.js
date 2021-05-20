@@ -161,11 +161,11 @@ const conf = {
 
 		/** rest:
 		 * endpoint to log the user in and retrieve the accessToken */
-		login: (__DEV__ ? baseUriDevelopment : baseUriProductive) + 'participant/',
+		login: (__DEV__ ? baseUriDevelopment : baseUriProductive) + 'user/',
 		
 		/** rest:
 		 * endpoint to get the user-profile */
-		getUser: (__DEV__ ? baseUriDevelopment : baseUriProductive) + 'participant/',
+		getUser: (__DEV__ ? baseUriDevelopment : baseUriProductive) + 'user/',
 
 		/** rest:
 		 * endpoint for a special report */
