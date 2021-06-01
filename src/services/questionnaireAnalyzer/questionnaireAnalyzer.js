@@ -495,6 +495,27 @@ const createResponseJSON = () => {
 		
 		let newItems = []
 
+		function createAnswerObject(answer) {
+			if (typeof answer === "string") {
+				return {
+					valueString: answer,
+				};
+			} else if (typeof answer === "number") {
+				return {
+					valueInteger: answer
+				};
+			} else if(typeof answer === "object"){
+				return {
+					valueCoding: answer
+				}
+			} else { //null or undefined
+				return {
+					valueString: answer
+				}
+			}
+
+		}
+
 		if (items)
 			items.forEach(function(item) {
 				
@@ -553,10 +574,7 @@ const createResponseJSON = () => {
 							break
 
 						case 'choice':
-							answerObject = {
-								// either there is an answer, or just null
-								valueString: String(itemDetails.answer),
-							}
+							answerObject = createAnswerObject(itemDetails.answer);
 							// traverse the child-items, if there are any and add them to the answer
 							childItems = item.item ? createItems(item.item) : []
 							if (childItems.length !== 0) answerObject.item = childItems
@@ -570,9 +588,7 @@ const createResponseJSON = () => {
 								// see?
 								itemDetails.answer.forEach(function (answer) {
 									// so now we create an object for each set answer
-									answerObject = { 
-										valueString: answer 
-									}
+									answerObject = createAnswerObject(answer)
 									// and check if there are any child-items.
 									// if yes: traverse the child-items and add them to the answer
 									childItems = item.item ? createItems(item.item, answer): []
