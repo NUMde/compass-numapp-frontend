@@ -652,7 +652,14 @@ class QuestionnaireModal extends Component {
 			// this also utilizes the decimal-pad or the num-pad
 			case 'integer':		
 			case 'decimal':
-				return (item.extension && item.extension.length > 0) ? this.createSlider(item) : this.createInput(item)
+				let itemControlExtension = item?.extension?.find(e => e.url === "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl");
+				if(itemControlExtension?.valueCodeableConcept?.coding?.find(c => c.system === "http://hl7.org/fhir/questionnaire-item-control" && c.code === "slider")) {
+					return this.createSlider(item);
+				} else {
+					return this.createInput(item);
+				}
+
+
 			
 			// if nothing else matches - display the title if at least the dependendcies check out
 			default:

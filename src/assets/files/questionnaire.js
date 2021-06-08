@@ -62,12 +62,10 @@ export default {
                 "extension": [{
                         "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
                         "valueCodeableConcept": {
-                            "CodeableConcept": {
                                 "coding": [{
                                     "system": "http://hl7.org/fhir/questionnaire-item-control",
                                     "code": "slider"
                                 }]
-                            }
                         }
                     },
                     {
@@ -471,7 +469,7 @@ export default {
                     "operator": "=",
                     "answerString": "lala"
                 }]
-            },
+            }
         ]
     }, {
         "linkId": "2",
