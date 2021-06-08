@@ -52,7 +52,7 @@ class aboutListLink extends Component {
 					{
 						this.props.webView.subTitle 
 						&& 
-						(<ListItem.Subtitle style={localStyle.subtTitle}>
+						(<ListItem.Subtitle style={localStyle.subTitle}>
 							{this.props.webView.subTitle }
 						</ListItem.Subtitle>)
 					}
@@ -88,7 +88,7 @@ const localStyle = StyleSheet.create({
 		backgroundColor: config.theme.values.defaultListLinkBackgroundColor
 	},
 
-	subtTitle: {
+	subTitle: {
 		color: config.theme.colors.accent4,
 		...config.theme.fonts.body	
 	},

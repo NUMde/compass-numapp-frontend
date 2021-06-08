@@ -54,7 +54,7 @@ class LoginScreen extends Component {
 					subTitle={config.text.login.subTitle}
 				noMenu/>
 
-				{/* scollindicator with qrcodescanner */}
+				{/* scrollIndicator with qrcode scanner */}
 				<View style={{ ...localStyle.flexi, ...localStyle.wrapper }}>
 					<ScrollIndicatorWrapper
 						contentData={
@@ -90,7 +90,7 @@ class LoginScreen extends Component {
 }
 
 /***********************************************************************************************
-localstyle
+localStyle
 ***********************************************************************************************/
 
 // scaleUiFkt() (located in src/config/appConfig.js)

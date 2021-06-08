@@ -42,7 +42,7 @@ class AboutContainer extends Component {
 		return this.props.navigation.state.routeName === 'About' ? 
 		// then renders the About Screen
 		(<AboutScreen {...this.props}  clearAll={this.clearAll} logout={this.logout}/>) :
-		// checks if the currently selected route equals 'LegalInforamtion'
+		// checks if the currently selected route equals 'LegalInformation'
 		this.props.navigation.state.routeName === 'LegalInformation' ? 
 		// then renders the LegalInformation Screen 
 		(<LegalInformationScreen {...this.props}/>) :
@@ -54,7 +54,7 @@ class AboutContainer extends Component {
 	/*-----------------------------------------------------------------------------------*/
 
 	/**
-	 * shows a confirmation-dialog. if confirmed, it deletes the local data, loggs the user
+	 * shows a confirmation-dialog. if confirmed, it deletes the local data, logs the user
 	 * out and navigates back to the landing-screen.
 	 */
 	clearAll = () => {
@@ -83,7 +83,7 @@ class AboutContainer extends Component {
 	}
 
 	/**
-	 * shows a confirmation-dialog. if confirmed, it loggs the user
+	 * shows a confirmation-dialog. if confirmed, it logs the user
 	 * out and navigates back to the landing-screen.
 	 */
 	logout = () => {

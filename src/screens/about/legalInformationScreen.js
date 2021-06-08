@@ -67,7 +67,7 @@ class LegalInformationScreen extends Component {
 
 
 /***********************************************************************************************
-localstyle
+localStyle
 ***********************************************************************************************/
 
 const localStyle = StyleSheet.create({

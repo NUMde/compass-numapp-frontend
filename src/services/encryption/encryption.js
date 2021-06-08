@@ -25,7 +25,7 @@ const encrypt = messageToBeEncrypted => {
 	let pemString = store.getState().Login.session.recipientCertificatePemString
 	pemString = pemString === "false" ? config.appConfig.defaultRecipientCertificatePemString : pemString
 
-	// retrieves the necesssary certificate
+	// retrieves the necessary certificate
 	let cert = forge.pki.certificateFromPem(pemString)
 
 	// creates enveloped data and provides the certificate

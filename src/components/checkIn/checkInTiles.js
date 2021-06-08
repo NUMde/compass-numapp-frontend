@@ -50,7 +50,7 @@ class CheckInTiles extends Component {
                                 style={{...localStyle.tile, ...localStyle.buttonGreen}}
                                 disabled={this.props.user && this.props.noNewQuestionnaireAvailableYet}
                                 onPress={this.props.exportAndUploadQuestionnaireResponse}
-                                accessibilityLabel={config.text.survery.send}
+                                accessibilityLabel={config.text.survey.send}
                                 accessibilityRole={config.text.accessibility.types.button}
                                 accessibilityHint={config.text.accessibility.questionnaire.sendHint}
                             >
@@ -62,7 +62,7 @@ class CheckInTiles extends Component {
                                     />
                                         
                                     <Text style={localStyle.tileText}>
-                                        {config.text.survery.send}
+                                        {config.text.survey.send}
                                     </Text>
                                 </View>
                             </TouchableOpacity>
@@ -72,7 +72,7 @@ class CheckInTiles extends Component {
                     {/* the 'send report' button */}
                     <TouchableOpacity
                         onPress={this.props.sendReport}
-                        // renders the button in grey if there is no qestionnaire available 
+                        // renders the button in grey if there is no questionnaire available 
                         // or if the user already send out a report and is still on a special interval (additional_iterations_left will be greater than 0 if thats the case)
                         style={(this.props.noNewQuestionnaireAvailableYet || (this.props.user && this.props.user.additional_iterations_left > 0)) ? localStyle.tile : localStyle.disabledTile}
                         accessibilityRole={config.text.accessibility.types.button}
@@ -99,7 +99,7 @@ local styling
 ***********************************************************************************************/
 
 // scaleUiFkt() (located in src/config/appConfig.js)
-// will dynamically alter some sized based on the physical device-measurements.
+// will dynamically alter some sizes based on the physical device measurements.
 
 const width = Dimensions.get('window').width
 

@@ -81,7 +81,7 @@ Provides the App-Navigator, basically the definition of which screen is provided
 
 This is where the screen components are located. A screen component is a React component which takes up the entire display and is therefore part of the navigational hierarchy. Each screen has a respective container file, which handles the business logic and provides the component with access to the current state as well as to additional methods defined within the container. + 
 + 
-Each Screen also respresents a state of the app. The app provides three states, as there are three main screens (Login, CheckIn & About) +  
+Each Screen also represents a state of the app. The app provides three states, as there are three main screens (Login, CheckIn & About) +  
 + 
 Each screen component has a directory containing following files along with any assets or other helper files:  
 + 
@@ -93,8 +93,8 @@ ignite-project
 │   │   ├── FEATURE
 │   │   │   ├── FEATUREScreen.js
 │   │   │   ├── FEATUREContainer.js
-│   │   │   ├── FEATURESactions.js
-│   │   │   └── FEATURESreducer.js
+│   │   │   ├── FEATUREActions.js
+│   │   │   └── FEATUREReducer.js
 ```
 --
 
@@ -102,13 +102,13 @@ ignite-project
 ** */services* + 
 The services directory provides simple JavaScript modules that (after import) provide specific functionalities:
 *** */accessibility*: + 
-Provides funtionality around the newly added accessibilty feature
+Provides functionality around the newly added accessibility feature
 *** */encryption* + 
-Used to encrpt an outgoing questionnaire response
+Used to encrypt an outgoing questionnaire response
 *** */localStorage* + 
 The module handling the internal storing of session data
 *** */questionnaireAnalyzer* + 
-Used to handle the creation of a quationnaire response and to check the completion of a filled out questionnaire
+Used to handle the creation of a questionnaire response and to check the completion of a filled out questionnaire
 *** */rest* + 
 Handles all outgoing calls
 
@@ -126,7 +126,7 @@ The starting point of the REACT-Native Application.
 
 == Accessibility
 
-Both Android and iOS provide some Accessbility features (like TalkBack and VoiceOver) that are supported in order to have an inclusive application for visually impaired users. 
+Both Android and iOS provide some Accessibility features (like TalkBack and VoiceOver) that are supported in order to have an inclusive application for visually impaired users. 
 
 * *accessible* (iOS & Android) + 
 Is used to describe that the view is an accessibility element. When a view is an accessibility element, it groups its children into a single selectable component. By default, all touchable elements are accessible.
@@ -163,11 +163,11 @@ Used to represent a radio button.
 ** *radiogroup* + 
 Used to represent a group of radio buttons.
 
-* *accessibilityState* (iOS & Android) - is used to describe the current state of a component. In tis applicaition, the accessibilityState.selected could be used to describe if an item is currently selected or not.
+* *accessibilityState* (iOS & Android) - is used to describe the current state of a component. In tis application, the accessibilityState.selected could be used to describe if an item is currently selected or not.
 
 === Examples:
 
-*accessible, accessbilityLabel and accessibilityHint*
+*accessible, accessibilityLabel and accessibilityHint*
 ``` 
 <TouchableOpacity
   accessible={true}
@@ -270,7 +270,7 @@ To trigger a notification just send a HTTP GET request to http://localhost:8080/
 |image:./images/debug.png[auto, 200]
 |When running the development build in a simulator, a debug menu is available. It can be opened by hitting *d* in launchPackager.command window. It allows for using a browser developer window to debug the application as well as some other useful features. 
 
-For more information on this visit link:https://reactnative.dev/docs/debugging[the React Native Documentation on Debuging]
+For more information on this visit link:https://reactnative.dev/docs/debugging[the React Native Documentation on Debugging]
 |=== 
 
 === Reading the current Redux State
