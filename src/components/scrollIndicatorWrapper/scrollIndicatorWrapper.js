@@ -20,7 +20,7 @@ export default class ScrollIndicatorWrapper extends Component {
 
 	/**
 	* adds a scroll-indicator button at the bottom of a ScrollView. this can be de-activated by
-	* manipulating the property 'allowScollIndicators' in src/config/developmentCOnfig.js
+	* manipulating the property 'allowScrollIndicators' in src/config/developmentConfig.js
 	* @constructor
 	* @param  {object}      props
 	* @param  {JSX.Element} props.contentData react-native content to be rendered
@@ -37,7 +37,7 @@ export default class ScrollIndicatorWrapper extends Component {
 		)
 	}
 
-	// pulic members
+	// public members
 	/*-----------------------------------------------------------------------------------*/
 
 	/**
@@ -53,7 +53,7 @@ export default class ScrollIndicatorWrapper extends Component {
 	scrollViewRef
 
 	/**
-	* tells us if the screenreader is enabled
+	* tells us if the screen reader is enabled
 	* @type {boolean}
 	*/
 	isAccessibilityOn
@@ -98,10 +98,10 @@ export default class ScrollIndicatorWrapper extends Component {
 					{this.props.contentData}
 				</KeyboardAwareScrollView>
 
-				{/* if "allowScollIndicators" is true and the situation calls for a scrollindicator ("showIndicator") and
+				{/* if "allowScrollIndicators" is true and the situation calls for a scroll indicator ("showIndicator") and
 				we are not in accessibility-mode */}
 				{
-					(config.theme.ui.allowScollIndicators && this.showIndicator && !this.isAccessibilityOn )
+					(config.theme.ui.allowScrollIndicators && this.showIndicator && !this.isAccessibilityOn )
 					&& 
 					(<TouchableOpacity
 						accessibilityRole={config.text.accessibility.types.button}
@@ -146,7 +146,7 @@ export default class ScrollIndicatorWrapper extends Component {
 }
 
 /***********************************************************************************************
-localstyle
+localStyle
 ***********************************************************************************************/
 
 const localStyle = StyleSheet.create({

@@ -81,7 +81,7 @@ const SignedInView = createStackNavigator(
 )
 
 /**
- * creates the app-constainer based on the two stack-navigators
+ * creates the app container based on the two stack-navigators
  */
 const createAppNavigator = () => {
 

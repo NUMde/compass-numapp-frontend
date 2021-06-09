@@ -64,7 +64,7 @@ class RedirectModal extends Component {
 	scrollOffset
 
 	/**
-	* tells us if the screenreader is enabled
+	* tells us if the screen reader is enabled
 	* @type {boolean}
 	*/
 	isAccessibilityOn = false
@@ -108,7 +108,7 @@ class RedirectModal extends Component {
 					</ScrollView>
 				</View>
 				
-				{/* seperator between content and bottom-bar */}
+				{/* separator between content and bottom-bar */}
 				<View style={localStyle.separator}></View>
 
 				{/* the navigation bar at the bottom of the modal */}
@@ -159,11 +159,11 @@ class RedirectModal extends Component {
 		)
 	}
 
-	// modal envents
+	// modal events
 	/*-----------------------------------------------------------------------------------*/
 
 	/**
-	 * handles the scroll-event of the scrollview
+	 * handles the scroll-event of the scrollView
 	 * @param {object} event scroll event 
 	 */
 	handleOnScroll = event => {

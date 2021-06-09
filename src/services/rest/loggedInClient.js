@@ -113,7 +113,7 @@ const sendReport = async subjectId => {
  */
 const sendQuestionnaire = async (body, triggerMap, subjectId, surveyId, instanceId) => {
 	return axios.post(
-		config.appConfig.endpoints.sendQuestionnare,
+		config.appConfig.endpoints.sendQuestionnaire,
 		generateEncapsuledMessage(subjectId, 'questionnaire_response', body ),
 		{
 			headers: {

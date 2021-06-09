@@ -2,7 +2,7 @@
 // (C) Copyright IBM Deutschland GmbH 2020.  All rights reserved.
 
 // the code contained in this file is meant to gather information about the
-// current state of the questionnaire as well as to create the responeJson that is
+// current state of the questionnaire as well as to create the responseJson that is
 // sent to the backend by the user.
 
 // there are a few terms that are used throughout the documentation:
@@ -158,7 +158,7 @@ const calculatePageProgress = (props) => {
  * @param  {string} date date to transform
  * @param  {boolean} [DMY] if true, outputs dd.mm.yyyy - if not: yyyy-mm-d 
  */
-const getFormatedDate = (date, DMY) => {
+const getFormattedDate = (date, DMY) => {
 
 	if(!date) return null
 	
@@ -180,11 +180,11 @@ const getFormatedDate = (date, DMY) => {
  * to parse the formats.
  * @param  {ItemMapEntry} item item from the the questionnaireItemMap-object
  */
-const getCorrectlyFormatedAnswer = item => {
+const getCorrectlyFormattedAnswer = item => {
 	switch (item.type) {
 		case 'date':
 			// formats the Date into yyyy-mm-dd
-			return getFormatedDate(String(item.answer))
+			return getFormattedDate(String(item.answer))
 		case 'integer':
 			// needed for string comparisons
 			return parseInt(String(item.answer))
@@ -207,13 +207,13 @@ const getCorrectlyFormatedAnswer = item => {
 const checkCompletionStateOfMultipleItems = (items, props) => {
 
 	/**
-	* local copy of the categories-array from the checkin-state
+	* local copy of the categories-array from the checkIn-state
 	* @type {QuestionnaireItem[]}
 	*/
 	let categories = items || props.categories
 
 	/**
-	* local copy of the questionnaireItemMap from the checkin-state
+	* local copy of the questionnaireItemMap from the checkIn-state
 	* @type {QuestionnaireItemMap}
 	*/
 	let questionnaireItemMap = Object.assign({}, { ...props.questionnaireItemMap, done: true })
@@ -242,7 +242,7 @@ const checkCompletionStateOfMultipleItems = (items, props) => {
 							// if the condition provides an array of answers and the needed answer is among then OR there is only one answer and it matches
 							((Array.isArray(questionnaireItemMap[condition.question].answer) && questionnaireItemMap[condition.question].answer.includes(condition[getEnableWhenAnswerType(condition)])) 
 							||
-							getCorrectlyFormatedAnswer(questionnaireItemMap[condition.question]) === condition[getEnableWhenAnswerType(condition)]) 
+							getCorrectlyFormattedAnswer(questionnaireItemMap[condition.question]) === condition[getEnableWhenAnswerType(condition)]) 
 							// and the item is not valid
 							&&
 							!checkItem(item)
@@ -262,26 +262,26 @@ const checkCompletionStateOfMultipleItems = (items, props) => {
 					/**
 					* will be set to TRUE if a single condition is met
 					*/
-					let aChangeOccured = false
+					let aChangeOccurred = false
 
-					// itereates over all conditions
+					// iterates over all conditions
 					item.enableWhen.forEach( condition => {
 						if (
 							// if the condition provides an array of answers and the current answer is among then
 							(Array.isArray(questionnaireItemMap[condition.question].answer) && questionnaireItemMap[condition.question].answer.includes(condition[getEnableWhenAnswerType(condition)])) 
 							|| 
 							// OR: there is only one answer and it matches
-							getCorrectlyFormatedAnswer(questionnaireItemMap[condition.question]) === condition[getEnableWhenAnswerType(condition)]
+							getCorrectlyFormattedAnswer(questionnaireItemMap[condition.question]) === condition[getEnableWhenAnswerType(condition)]
 						) {
 							// if the condition is met
-							aChangeOccured = true
+							aChangeOccurred = true
 							// if the content checks out, set itemValidityAny to true
 							if( checkItem(item) ) itemValidityAny = true
 						}
 					})	
 
 					// if no item met the conditions... then the question will never be rendered and is therefor not invalid, meaning TRUE
-					if(!aChangeOccured) itemValidityAny = true
+					if(!aChangeOccurred) itemValidityAny = true
 					
 					// if nothing checks out
 					if(!itemValidityAny) validityOfTraversedItems = false
@@ -354,7 +354,7 @@ const checkCompletionStateOfMultipleItems = (items, props) => {
 			// should the item be of type "open-choice"...
 			if (returnValue && item.type === 'open-choice') {
 				// ... make sure its not NULL and not empty
-				returnValue = !(getCorrectlyFormatedAnswer(questionnaireItemMap[item.linkId]) === null || !questionnaireItemMap[item.linkId].answer.length)
+				returnValue = !(getCorrectlyFormattedAnswer(questionnaireItemMap[item.linkId]) === null || !questionnaireItemMap[item.linkId].answer.length)
 			}
 		}
 		
@@ -395,7 +395,7 @@ const checkCompletionStateOfMultipleItems = (items, props) => {
 }
 
 /**
- * checks the depencies of a single item (presented through its "enableWhen" property).
+ * checks the dependencies of a single item (presented through its "enableWhen" property).
  * this basically tells us if the items needs to be rendered or if its answer should have
  * an impact on the completion state of the whole questionnaire
  * @param  {QuestionnaireItem} [item] questionnaire item
@@ -410,7 +410,7 @@ const checkDependenciesOfSingleItem = item => {
 	// if the item has a set of conditions
 	if (item && item.enableWhen) {
 
-		// checks if the items mentioned in the condtions are even answered...
+		// checks if the items mentioned in the conditions are even answered...
 		if (!checkIfAnswersToConditionsAreAvailable (item )) {
 			// ...if not, the returnValue is set to FALSE - game over
 			returnValue = false
@@ -419,7 +419,7 @@ const checkDependenciesOfSingleItem = item => {
 			// if no enableBehavior is set (or it is set to "all")
 			if(!item.enableBehavior || item.enableWhen.length === 0 || (item.enableBehavior && item.enableBehavior === 'all')) {
 				
-				// sets the default to TRUE, as one not-matching condtion is enough to turn the reslat FALSE
+				// sets the default to TRUE, as one non-matching condition is enough to turn the result FALSE
 				returnValue = true
 				
 				// iterates over all conditions
@@ -430,7 +430,7 @@ const checkDependenciesOfSingleItem = item => {
 							(Array.isArray(props.questionnaireItemMap[condition.question].answer) && props.questionnaireItemMap[condition.question].answer.includes( condition[getEnableWhenAnswerType(condition)])) 
 							||
 							// OR: there is only one answer and it matches
-							(getCorrectlyFormatedAnswer(props.questionnaireItemMap[condition.question]) === condition[getEnableWhenAnswerType(condition)])
+							(getCorrectlyFormattedAnswer(props.questionnaireItemMap[condition.question]) === condition[getEnableWhenAnswerType(condition)])
 						)
 					){
 						// in case a not-matching condition is found
@@ -447,7 +447,7 @@ const checkDependenciesOfSingleItem = item => {
 						(Array.isArray(props.questionnaireItemMap[condition.question].answer) && props.questionnaireItemMap[condition.question].answer.includes( condition[getEnableWhenAnswerType(condition)]))
 						||
 						// OR: there is only one answer and it matches
-						(getCorrectlyFormatedAnswer(props.questionnaireItemMap[condition.question]) === condition[getEnableWhenAnswerType(condition)])
+						(getCorrectlyFormattedAnswer(props.questionnaireItemMap[condition.question]) === condition[getEnableWhenAnswerType(condition)])
 					) {
 						// in case a matching condition is found
 						returnValue = true
@@ -505,7 +505,7 @@ const createResponseJSON = () => {
 				let childItems = []
 
 				/**
-				* wil hold the correct anwer
+				* wil hold the correct answer
 				* @type {ResponseAnswer}
 				*/
 				let answerObject = {}
@@ -565,7 +565,7 @@ const createResponseJSON = () => {
 
 						case 'open-choice':
 							newItem.answer = []
-							// if there are any andwers, they will be located in an array - so we have to traverse it
+							// if there are any answers, they will be located in an array - so we have to traverse it
 							if (Array.isArray(itemDetails.answer)) {
 								// see?
 								itemDetails.answer.forEach(function (answer) {
@@ -585,7 +585,7 @@ const createResponseJSON = () => {
 						case 'string':
 							newItem.answer = [
 								{
-									// just the anser
+									// just the answer
 									valueString: String(itemDetails.answer)
 								}
 							]
@@ -602,7 +602,7 @@ const createResponseJSON = () => {
 						case 'decimal':
 							newItem.answer = [
 								{
-									// the anser, as a float
+									// the answer as a float
 									valueDecimal: parseFloat(String(itemDetails.answer)),
 								},
 							]
@@ -611,7 +611,7 @@ const createResponseJSON = () => {
 						case 'date':
 							newItem.answer = [
 								{
-									valueDate: getFormatedDate(String(itemDetails.answer)),
+									valueDate: getFormattedDate(String(itemDetails.answer)),
 								},
 							]
 							break
@@ -676,10 +676,10 @@ export
 ***********************************************************************************************/
 
 export default { 
-	getFormatedDate,
+	getFormattedDate: getFormattedDate,
 	createResponseJSON,
 	checkDependenciesOfSingleItem,
-	getCorrectlyFormatedAnswer,
+	getCorrectlyFormattedAnswer: getCorrectlyFormattedAnswer,
 	checkCompletionStateOfMultipleItems,
 	calculatePageProgress
 }

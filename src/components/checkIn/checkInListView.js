@@ -19,7 +19,7 @@ class CheckInListView extends Component {
 
     /**
     * renders a single ListItem which represents the current state of a loaded questionnaire. 
-    * red for untouched, yellow for inclomplete and green for completed questionnaires.
+    * red for untouched, yellow for incomplete and green for completed questionnaires.
     * the state of the questionnaire also impacts wich icon will be rendered on the right-hand-side.
     * a click on the ListItem will navigate the user to the WebView-screen
     * @constructor
@@ -28,7 +28,7 @@ class CheckInListView extends Component {
     * @param  {object}      props.navigation the navigation object provided by 'react-navigation'
     * @param  {object}      props.questionnaireItemMap object holding every item from the questionnaire
         (the linkId of the item is the key)
-    * @param  {boolean}     props.firstTime true if the user never send out the first 
+    * @param  {boolean}     props.firstTime true if the user never sent out the first 
     * @param  {boolean}     props.noNewQuestionnaireAvailableYet true if there is currently no questionnaire available
     * @param  {boolean}     props.categoriesLoaded true if the questionnaire is ready to be rendered
     * @param  {Function}    props.formatDateString formats a date string
@@ -58,7 +58,7 @@ class CheckInListView extends Component {
                                         localStyle.containerCompleted )
                         }}
                         onPress={() => this.props.navigation.navigate('Survey')}
-                        accessibilityLabel={(this.props.firstTime ? config.text.survery.surveryTitleFirstTime : config.text.survery.surveryTitle) + ". " + (config.text.survery.surverySubTitle + this.props.formatDateString(new Date(this.props.user.due_date)))}
+                        accessibilityLabel={(this.props.firstTime ? config.text.survey.surveyTitleFirstTime : config.text.survey.surveyTitle) + ". " + (config.text.survey.surveySubTitle + this.props.formatDateString(new Date(this.props.user.due_date)))}
                         accessibilityRole={config.text.accessibility.types.button}
                         accessibilityHint={config.text.accessibility.questionnaire.questionnaireCellHint + 
                             ((this.props.questionnaireItemMap && !this.props.questionnaireItemMap.done && this.props.questionnaireItemMap.started) 
@@ -72,12 +72,12 @@ class CheckInListView extends Component {
                         <ListItem.Content>
                             {/* shows a special title for first-time-users or the regular title for all other users */}
                             <ListItem.Title style={localStyle.title}>
-                                {this.props.firstTime ? config.text.survery.surveryTitleFirstTime : config.text.survery.surveryTitle}
+                                {this.props.firstTime ? config.text.survey.surveyTitleFirstTime : config.text.survey.surveyTitle}
                             </ListItem.Title>
     
-                            {/* subtitle with formated due date of the questionnaire */}
-                            <ListItem.Subtitle style={localStyle.subtTitle} >
-                                {config.text.survery.surverySubTitle + this.props.formatDateString(new Date(this.props.user.due_date))}
+                            {/* subtitle with formatted due date of the questionnaire */}
+                            <ListItem.Subtitle style={localStyle.subTitle} >
+                                {config.text.survey.surveySubTitle + this.props.formatDateString(new Date(this.props.user.due_date))}
                             </ListItem.Subtitle>
                         </ListItem.Content>
     
@@ -165,11 +165,11 @@ const localStyle = StyleSheet.create({
     
     title: {
         ...config.theme.fonts.title2,
-        color: config.theme.values.defaultCheckinListViewTitleColor
+        color: config.theme.values.defaultCheckInListViewTitleColor
     },  
 
-    subtTitle: {
-        color: config.theme.values.defaultCheckinListViewSubTitleColor,
+    subTitle: {
+        color: config.theme.values.defaultCheckInListViewSubTitleColor,
         ...config.theme.fonts.body,
     },
 
