@@ -112,7 +112,7 @@ These are the endpoints used to communicate with the backend.
 * *getQuestionnaire*
 ** The endpoint used to receive the questionnaire
 
-IMPORTANT: All endpoints (including _baseUriProductive_ and _baseUriDevelopment_ must end with a **backslash** - like **"getUser/"**)
+IMPORTANT: All endpoints (including _baseUriProductive_ and _baseUriDevelopment_ must end with a **backslash** - like **"getParticipant/"**)
 
 == UI Related Options
 Groups some minor UI related options that does not belong into the theme.
