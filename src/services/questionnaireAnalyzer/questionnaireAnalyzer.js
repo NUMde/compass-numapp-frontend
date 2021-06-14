@@ -38,7 +38,7 @@ service methods
  * was correctly answered.
  * @param {string} linkId linkId of a questionnaire-item
  */
-const checkExtension = linkId => {
+const checkRegExExtension = linkId => {
 
 	let props = store.getState().CheckIn
 
@@ -48,20 +48,12 @@ const checkExtension = linkId => {
 	*/
 	let item = props.questionnaireItemMap[linkId]
 
-	// if there is an extension and check it
-	if(item.extension && item.extension.length) {
-		
-		//runs through the extensions and tests it
-		for(let i = 0; i < item.extension.length; i++) {
+	let itemControlExtension = item?.extension?.find(e => e.url === "http://hl7.org/fhir/StructureDefinition/regex")
 
-			if(item.extension[i].valueString === "/\S+@\S+\.\S+/") {
-				return /\S+@\S+\.\S+/.test(props.questionnaireItemMap[item.linkId].answer)
-			}
-			else if(!RegExp(item.extension[i].valueString).test(props.questionnaireItemMap[item.linkId].answer)) {
-				return false
-			}
-		}
+	if(itemControlExtension?.valueString) {
+		return RegExp(itemControlExtension.valueString).test(props.questionnaireItemMap[item.linkId].answer)
 	}
+
 	// just returns true if there is no extension
 	return true
 }
@@ -312,7 +304,7 @@ const checkCompletionStateOfMultipleItems = (items, props) => {
 			returnValue = true
 		} 
 		// if the item does not met its own regEx
-		else if(!checkExtension(item.linkId)) {
+		else if(!checkRegExExtension(item.linkId)) {
 			returnValue = false
 		}
 		else {
