@@ -136,16 +136,20 @@ const valuesHandlers = {
 			if (!Array.isArray(questionnaireItemMap[values.answer.linkId].answer)) {
 				questionnaireItemMap[values.answer.linkId].answer = []
 			}
+			let answers = questionnaireItemMap[values.answer.linkId].answer;
+
 			// removes the answer is already present
-			if (questionnaireItemMap[values.answer.linkId].answer.includes(values.answer.answer)) {
-				questionnaireItemMap[values.answer.linkId].answer.splice(
-					questionnaireItemMap[values.answer.linkId].answer.indexOf(values.answer.answer),
-					1
-				)
-			} 
+			let contained = false;
+			for(let i = answers.length -1 ; i>=0; i--) {
+				if(answers[i] === values.answer.answer ||
+					(typeof answers[i] === "object" && answers[i].code === values.answer.answer.code && answers[i].system === values.answer.answer.system)) {
+					answers.splice(i,1);
+					contained = true;
+				}
+			}
 			// adds the answer if not already present
-			else {
-				questionnaireItemMap[values.answer.linkId].answer.push(values.answer.answer)
+			if(!contained) {
+				answers.push(values.answer.answer)
 			}
 		} 
 		// if its just a single-value answer

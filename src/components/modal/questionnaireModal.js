@@ -204,8 +204,12 @@ class QuestionnaireModal extends Component {
 	 * @param  {AnswerOption} item entry of an answerOption-entry.
 	 */
 	getItemTitle = item => {
+		if (item.valueCoding) {
+			return item.valueCoding.display ?? item.valueCoding.code;
+		}
+
 		// get the string
-		let title = item.valueString || (item.valueInteger ? item.valueInteger.toString() : 'NO NAME FOUND')
+		let title = item.valueString || (item.valueInteger ? item.valueInteger.toString() : 'NO NAME FOUND');
 		// splits it
 		return title.split('#')[title.includes('# ') ? 1 : 0].trim()
 	}
@@ -343,21 +347,23 @@ class QuestionnaireModal extends Component {
 								onPress={() =>
 									this.props.actions.setAnswer({
 										linkId: item.linkId,
-										answer: answerOption.valueString || answerOption.valueInteger,
+										answer: answerOption.valueCoding || answerOption.valueString || answerOption.valueInteger,
 									})
 								}
 								onIconPress={() =>
 									this.props.actions.setAnswer({
 										linkId: item.linkId,
-										answer: answerOption.valueString || answerOption.valueInteger,
+										answer: answerOption.valueCoding || answerOption.valueString || answerOption.valueInteger,
 									})
 								}
 								checkedColor={config.theme.colors.primary}
 								uncheckedColor={config.theme.colors.accent1}
 								checked={
-									exportService.getCorrectlyFormattedAnswer(this.props.questionnaireItemMap[item.linkId]) ===
+									this.compareCoding(exportService.getCorrectlyFormatedAnswer(this.props.questionnaireItemMap[item.linkId]),
+										answerOption.valueCoding) ||
+									exportService.getCorrectlyFormatedAnswer(this.props.questionnaireItemMap[item.linkId]) ===
 										answerOption.valueString ||
-									exportService.getCorrectlyFormattedAnswer(this.props.questionnaireItemMap[item.linkId]) ===
+									exportService.getCorrectlyFormatedAnswer(this.props.questionnaireItemMap[item.linkId]) ===
 										answerOption.valueInteger
 								}
 								key={`${item.linkId}.a_${index}`}
@@ -369,6 +375,14 @@ class QuestionnaireModal extends Component {
 				</View>
 			</View>
 		) : null
+	}
+
+	compareCoding = (val1, val2) => {
+		if (val1 && val2) {
+			return val1.system === val2.system && val1.code === val2.code;
+		} else {
+			return false;
+		}
 	}
 
 	/**
@@ -398,18 +412,23 @@ class QuestionnaireModal extends Component {
 								onPress={() =>
 									this.props.actions.setAnswer({
 										linkId: item.linkId,
-										answer: answerOption.valueString || answerOption.valueInteger,
+										answer: answerOption.valueCoding || answerOption.valueString || answerOption.valueInteger,
 										openAnswer: true,
 									})
 								}
 								onIconPress={() =>
 									this.props.actions.setAnswer({
 										linkId: item.linkId,
-										answer: answerOption.valueString || answerOption.valueInteger,
+										answer: answerOption.valueCoding ||answerOption.valueString || answerOption.valueInteger,
 										openAnswer: true,
 									})
 								}
 								checked={
+									(this.props.questionnaireItemMap[item.linkId].answer &&
+										answerOption.valueCoding &&
+										this.props.questionnaireItemMap[item.linkId].answer.some(
+											c => c.code === answerOption.valueCoding.code && c.system === answerOption.valueCoding.system
+										)) ||
 									(this.props.questionnaireItemMap[item.linkId].answer &&
 										this.props.questionnaireItemMap[item.linkId].answer.includes(
 											answerOption.valueString
