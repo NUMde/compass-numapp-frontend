@@ -144,8 +144,8 @@ const valuesHandlers = {
 				if(  
 					answers[i] === values.answer.answer || 
 					(
-						!(answers[i] instanceof Array) && 
-						typeof answers[i] === "object" && 
+						answers[i].code &&
+						answers[i].system &&
 						answers[i].code === values.answer.answer.code && 
 						answers[i].system === values.answer.answer.system
 					)
