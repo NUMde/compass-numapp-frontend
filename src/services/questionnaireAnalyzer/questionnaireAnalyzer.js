@@ -477,6 +477,21 @@ const createResponseJSON = () => {
 	let props = store.getState().CheckIn
 
 	/**
+	 * return the correct answer object
+	 * @param  {{valueString?:string, valueInteger?: number, valueCoding?: Object}} answer answer-object
+	 */
+	const createAnswerObject = answer => {
+
+		if (typeof answer === "string") return { valueString: answer }
+
+		if (typeof answer === "number") return { valueInteger: answer }
+
+		if(typeof answer === "object") return { valueCoding: answer }
+		
+		return { valueString: answer }
+	}
+
+	/**
 	 * traverses a set of items and its children (and so on) and creates the structure
 	 * that will hold the answers of the questionnaire-response
 	 * @param  {QuestionnaireItem[]} items the questionnaire-items
@@ -486,27 +501,6 @@ const createResponseJSON = () => {
 	const createItems = (items, necessaryAnswer) => {
 		
 		let newItems = []
-
-		function createAnswerObject(answer) {
-			if (typeof answer === "string") {
-				return {
-					valueString: answer,
-				};
-			} else if (typeof answer === "number") {
-				return {
-					valueInteger: answer
-				};
-			} else if(typeof answer === "object"){
-				return {
-					valueCoding: answer
-				}
-			} else { //null or undefined
-				return {
-					valueString: answer
-				}
-			}
-
-		}
 
 		if (items)
 			items.forEach(function(item) {
@@ -544,6 +538,8 @@ const createResponseJSON = () => {
 						text: item.text,
 						// if there is a uui it will be coded into the definition-attribute
 						...(itemDetails.definition && {definition: itemDetails.definition}),
+						// if there is an extension...
+						...(itemDetails.extension && {extension: itemDetails.extension}),
 						answer: []
 					}
 
@@ -566,7 +562,7 @@ const createResponseJSON = () => {
 							break
 
 						case 'choice':
-							answerObject = createAnswerObject(itemDetails.answer);
+							answerObject = createAnswerObject(itemDetails.answer)
 							// traverse the child-items, if there are any and add them to the answer
 							childItems = item.item ? createItems(item.item) : []
 							if (childItems.length !== 0) answerObject.item = childItems

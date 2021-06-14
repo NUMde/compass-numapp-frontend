@@ -204,12 +204,16 @@ class QuestionnaireModal extends Component {
 	 * @param  {AnswerOption} item entry of an answerOption-entry.
 	 */
 	getItemTitle = item => {
-		if (item.valueCoding) {
-			return item.valueCoding.display ?? item.valueCoding.code;
-		}
+
+		// default value
+		let title = 'NO NAME FOUND'
+
+		// sets the title in case of a valueCoding attribute
+		if (item.valueCoding) title = item.valueCoding.display ?? item.valueCoding.code
 
 		// get the string
-		let title = item.valueString || (item.valueInteger ? item.valueInteger.toString() : 'NO NAME FOUND');
+		title = item.valueString || (item.valueInteger ? item.valueInteger.toString() : title)
+
 		// splits it
 		return title.split('#')[title.includes('# ') ? 1 : 0].trim()
 	}
@@ -359,12 +363,9 @@ class QuestionnaireModal extends Component {
 								checkedColor={config.theme.colors.primary}
 								uncheckedColor={config.theme.colors.accent1}
 								checked={
-									this.compareCoding(exportService.getCorrectlyFormatedAnswer(this.props.questionnaireItemMap[item.linkId]),
-										answerOption.valueCoding) ||
-									exportService.getCorrectlyFormatedAnswer(this.props.questionnaireItemMap[item.linkId]) ===
-										answerOption.valueString ||
-									exportService.getCorrectlyFormatedAnswer(this.props.questionnaireItemMap[item.linkId]) ===
-										answerOption.valueInteger
+									this.compareCoding(exportService.getCorrectlyFormattedAnswer(this.props.questionnaireItemMap[item.linkId]), answerOption.valueCoding) ||
+									exportService.getCorrectlyFormattedAnswer(this.props.questionnaireItemMap[item.linkId]) === answerOption.valueString ||
+									exportService.getCorrectlyFormattedAnswer(this.props.questionnaireItemMap[item.linkId]) === answerOption.valueInteger
 								}
 								key={`${item.linkId}.a_${index}`}
 								containerStyle={{...localStyle.choice, marginLeft: this.calculateIndent(item.linkId)}}
@@ -377,12 +378,14 @@ class QuestionnaireModal extends Component {
 		) : null
 	}
 
+	/**
+	 * compares two different valueCoding Objects
+	 */
 	compareCoding = (val1, val2) => {
-		if (val1 && val2) {
-			return val1.system === val2.system && val1.code === val2.code;
-		} else {
-			return false;
-		}
+		
+		if (val1 && val2) return val1.system === val2.system && val1.code === val2.code
+
+		return false
 	}
 
 	/**
@@ -419,24 +422,16 @@ class QuestionnaireModal extends Component {
 								onIconPress={() =>
 									this.props.actions.setAnswer({
 										linkId: item.linkId,
-										answer: answerOption.valueCoding ||answerOption.valueString || answerOption.valueInteger,
+										answer: answerOption.valueCoding || answerOption.valueString || answerOption.valueInteger,
 										openAnswer: true,
 									})
 								}
 								checked={
-									(this.props.questionnaireItemMap[item.linkId].answer &&
-										answerOption.valueCoding &&
-										this.props.questionnaireItemMap[item.linkId].answer.some(
-											c => c.code === answerOption.valueCoding.code && c.system === answerOption.valueCoding.system
-										)) ||
-									(this.props.questionnaireItemMap[item.linkId].answer &&
-										this.props.questionnaireItemMap[item.linkId].answer.includes(
-											answerOption.valueString
-										)) ||
-									(this.props.questionnaireItemMap[item.linkId].answer &&
-										this.props.questionnaireItemMap[item.linkId].answer.includes(
-											answerOption.valueInteger
-										))
+									(this.props.questionnaireItemMap[item.linkId].answer && answerOption.valueCoding && this.props.questionnaireItemMap[item.linkId].answer.some( c => c.code === answerOption.valueCoding.code && c.system === answerOption.valueCoding.system ))
+									||
+									(this.props.questionnaireItemMap[item.linkId].answer && this.props.questionnaireItemMap[item.linkId].answer.includes( answerOption.valueString ))
+									||
+									(this.props.questionnaireItemMap[item.linkId].answer && this.props.questionnaireItemMap[item.linkId].answer.includes( answerOption.valueInteger ))
 								}
 								key={`${item.linkId}.a_${index}`}
 								containerStyle={{...localStyle.choice, marginLeft: this.calculateIndent(item.linkId)}}
@@ -667,19 +662,14 @@ class QuestionnaireModal extends Component {
 			case 'open-choice':
 				return this.createOpenChoices(item)
 
-			// creates the inputs for decimals and integers 
+			// creates the inputs for decimals and integers (and numerical sliders)
 			// this also utilizes the decimal-pad or the num-pad
 			case 'integer':		
 			case 'decimal':
-				let itemControlExtension = item?.extension?.find(e => e.url === "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl");
-				if(itemControlExtension?.valueCodeableConcept?.coding?.find(c => c.system === "http://hl7.org/fhir/questionnaire-item-control" && c.code === "slider")) {
-					return this.createSlider(item);
-				} else {
-					return this.createInput(item);
-				}
+				let itemControlExtension = item?.extension?.find(e => e.url === "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl")
+				let isSlider = itemControlExtension?.valueCodeableConcept?.coding?.find(c => c.system === "http://hl7.org/fhir/questionnaire-item-control" && c.code === "slider")
+				return isSlider ? this.createSlider(item) : this.createInput(item)
 
-
-			
 			// if nothing else matches - display the title if at least the dependencies check out
 			default:
 				// checks the dependencies of the item and renders it (if the dependencies check out)

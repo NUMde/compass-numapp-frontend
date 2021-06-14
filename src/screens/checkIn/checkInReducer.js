@@ -5,7 +5,6 @@
 import
 ***********************************************************************************************/
 
-import config from '../../config/configProvider'
 import localStorage from '../../services/localStorage/localStorage'
 
 /***********************************************************************************************
@@ -131,26 +130,35 @@ const valuesHandlers = {
 
 		// if multiple answers are allowed
 		if (values.answer.openAnswer) {
+
+			let contained = false
+			
 			// updates the answer-attribut in questionnaireItemMap to an array so that
 			// it can hold multiple answers
-			if (!Array.isArray(questionnaireItemMap[values.answer.linkId].answer)) {
-				questionnaireItemMap[values.answer.linkId].answer = []
-			}
-			let answers = questionnaireItemMap[values.answer.linkId].answer;
+			if (!Array.isArray(questionnaireItemMap[values.answer.linkId].answer)) questionnaireItemMap[values.answer.linkId].answer = []
 
-			// removes the answer is already present
-			let contained = false;
-			for(let i = answers.length -1 ; i>=0; i--) {
-				if(answers[i] === values.answer.answer ||
-					(typeof answers[i] === "object" && answers[i].code === values.answer.answer.code && answers[i].system === values.answer.answer.system)) {
-					answers.splice(i,1);
-					contained = true;
+			let answers = questionnaireItemMap[values.answer.linkId].answer
+
+			// removes the answer if already present
+			for(let i = answers.length - 1; i >= 0; i--) {
+				if(  
+					answers[i] === values.answer.answer || 
+					(
+						!(answers[i] instanceof Array) && 
+						typeof answers[i] === "object" && 
+						answers[i].code === values.answer.answer.code && 
+						answers[i].system === values.answer.answer.system
+					)
+				)
+				{
+					answers.splice(i, 1)
+					contained = true
+					break
 				}
 			}
+
 			// adds the answer if not already present
-			if(!contained) {
-				answers.push(values.answer.answer)
-			}
+			if(!contained) answers.push(values.answer.answer)
 		} 
 		// if its just a single-value answer
 		else {
