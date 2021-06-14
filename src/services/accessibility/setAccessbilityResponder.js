@@ -17,7 +17,7 @@ export default function setAccessibilityResponder(object) {
         if (temp) {
             Platform.OS === 'android'
                 ? UIManager.sendAccessibilityEvent(temp, 8)
-                : AccessibilityInfo.setAccessibilityFocus(temp);        
+                : AccessibilityInfo.setAccessibilityFocus(temp)
             return true
         }
     }

@@ -62,10 +62,10 @@ export default {
                 "extension": [{
                         "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
                         "valueCodeableConcept": {
-                                "coding": [{
-                                    "system": "http://hl7.org/fhir/questionnaire-item-control",
-                                    "code": "slider"
-                                }]
+                            "coding": [{
+                                "system": "http://hl7.org/fhir/questionnaire-item-control",
+                                "code": "slider"
+                            }]
                         }
                     },
                     {

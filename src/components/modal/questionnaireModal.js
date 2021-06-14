@@ -36,7 +36,7 @@ import '../../typedef'
 import exportService from '../../services/questionnaireAnalyzer/questionnaireAnalyzer'
 import setAccessibilityResponder from '../../services/accessibility/setAccessbilityResponder'
 import config from '../../config/configProvider'
-import ProgressBar from '../../components/modal/progressbar';
+import ProgressBar from '../../components/modal/progressbar'
 
 /***********************************************************************************************
 component:

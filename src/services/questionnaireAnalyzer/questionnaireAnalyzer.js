@@ -586,7 +586,7 @@ const createResponseJSON = () => {
 							newItem.answer = [
 								{
 									// just the answer
-									valueString: String(itemDetails.answer)
+									valueString: itemDetails.answer ? String(itemDetails.answer) : null
 								}
 							]
 							break
@@ -641,21 +641,69 @@ const createResponseJSON = () => {
 		return newItems
 	}
 
-	// creates the actual questionnaireResponse
+	/**
+	* removes empty arrays and null-valued attributes
+	* @param  {QuestionnaireItem} rootItem the questionnaire-items
+	* @returns {Boolean}
+	*/
+	const cleanItem = (rootItem) => {
+
+		if(Array.isArray(rootItem)) {
+
+			rootItem.forEach((item, index) => {
+
+				if(!cleanItem(item)) rootItem.splice(index, 1)
+			})
+
+			return rootItem.length > 0
+		}
+
+		if (typeof rootItem === 'string' || rootItem instanceof String) {
+
+			return rootItem && rootItem.length && rootItem !== "NaN-NaN-NaN"
+		}
+
+		if((typeof rootItem === "object" || typeof rootItem === 'function') && (rootItem !== null)){
+
+			let hasProperties = false
+
+			for (let key in rootItem) {
+
+				if (rootItem.hasOwnProperty(key)) {
+
+					if(!cleanItem(rootItem[key])) {
+
+						delete rootItem[key]
+					}
+					else {
+
+						hasProperties = true
+					}
+				}
+			}
+
+			return rootItem.linkId ? rootItem.item || rootItem.answer ? hasProperties : false : hasProperties
+		}
+
+		return rootItem !== undefined && rootItem !== null && rootItem !== NaN
+	}
 	
 	/**
 	* the actual questionnaire response
 	* @type {QuestionnaireResponse}
 	*/
 	let questionnaireResponse = {
-		author: props.user.subjectId,
 		item: createItems(props.categories),
 		resourceType: 'QuestionnaireResponse',
-		identifier: props.user.subjectId + '-' + Date.now(),
 		status: props.questionnaireItemMap.done ? 'completed' : 'in-progress',
-		authored: new Date().toLocaleString("de-DE", {timeZone: "Europe/Berlin"}),
-		questionnaire: 'http://hl7.org/fhir/Questionnaire/FragebogenCOVID19_Kurzversion'
+		authored: new Date().toString(),
+		identifier: props.questionnaireItemMap.identifier,
+		resourceType: 'QuestionnaireResponse',
+		questionnaire: props.questionnaireItemMap.url
 	}
+
+	// removes empty entries
+	cleanItem(questionnaireResponse.item)
 
 	// console output
 	if(config.appConfig.logPureResponse) {
@@ -676,10 +724,10 @@ export
 ***********************************************************************************************/
 
 export default { 
-	getFormattedDate: getFormattedDate,
+	getFormattedDate,
 	createResponseJSON,
+	calculatePageProgress,
+	getCorrectlyFormattedAnswer,
 	checkDependenciesOfSingleItem,
-	getCorrectlyFormattedAnswer: getCorrectlyFormattedAnswer,
-	checkCompletionStateOfMultipleItems,
-	calculatePageProgress
+	checkCompletionStateOfMultipleItems
 }

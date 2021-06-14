@@ -425,6 +425,9 @@ const generateQuestionnaireItemMap = (questionnaire, subjectId) => {
 	questionnaireItemMap.started = false
 	// used to identify the questionnaire
 	questionnaireItemMap.id = questionnaire.title
+	// used to build the questionnaire-response
+	questionnaireItemMap.url = questionnaire.url
+	questionnaireItemMap.identifier = questionnaire.identifier
 
 	// persists the last known questionnaireId in the AsyncStorage
 	setTimeout(() => {
