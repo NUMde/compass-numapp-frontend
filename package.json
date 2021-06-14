@@ -65,7 +65,7 @@
     "babel-plugin-module-resolver": "^4.1.0",
     "babel-plugin-root-import": "^6.6.0",
     "babel-preset-expo": "^7.0.0",
-    "jest": "24.9.0",
+    "jest": "^27.0.4",
     "jetifier": "^1.6.4",
     "jsrsasign": ">=10.2.0",
     "metro-react-native-babel-preset": "0.56.0",
