@@ -12,7 +12,7 @@ import appConfig from '../config/appConfig'
 // ================================================================================================
 // THEME CONFIGURATION VALUES
 
-// TO CUSTOMIZE THE THE THEME OF THS APPLICATON PLEASE COPY THE WHOLE CONTENT BELOW 
+// TO CUSTOMIZE THE THE THEME OF THS APPLICATION PLEASE COPY THE WHOLE CONTENT BELOW 
 // THIS COMMENT INTO THE FILE 'customTheme.js' located under 'src/CUSTOMIZATION'. THOSE VALUES WILL
 // THEN OVERWRITE THE DEFAULT-VALUES DEFINED IN THIS FILE.
 //                                                                           /$$          
@@ -52,8 +52,8 @@ const defaultUiSettings = {
     useCustomLogo: false,
 
 	/** set to TRUE if the banner component should use a full-width background, that is rendered
-	 * behind the app-logo. if set to false, the banner will display its own backgroundcolor instead.
-	 * the colors for the banner can be chaged through the theme
+	 * behind the app-logo. if set to false, the banner will display its own background color instead.
+	 * the colors for the banner can be changed through the theme
 	 */
 	useBannerBackground: true,
 
@@ -63,9 +63,9 @@ const defaultUiSettings = {
     useCustomLogoBackground: false,
 
 	/** ui-option
-	 * allows the use of an scrollwrapper that permanently shows the scroll indicator
+	 * allows the use of an scroll-wrapper that permanently shows the scroll indicator
 	(this is only used on the screens, not in the modals) */
-	allowScollIndicators: true
+	allowScrollIndicators: true
 }
 
 // default colors
@@ -229,9 +229,9 @@ const defaultValues = {
     defaultSurveyIconTouchedColor: defaultColors.secondary,
     defaultSurveyIconCompletedColor: defaultColors.success,
 
-    // checkin-screen
-    defaultCheckinListViewTitleColor: defaultColors.white,
-    defaultCheckinListViewSubTitleColor: defaultColors.accent3,
+    // checkIn-screen
+    defaultCheckInListViewTitleColor: defaultColors.white,
+    defaultCheckInListViewSubTitleColor: defaultColors.accent3,
     defaultContainerUntouchedBackgroundColor: defaultColors.alert,
     defaultContainerTouchedBackgroundColor: defaultColors.secondary,
     defaultContainerCompletedBackgroundColor: defaultColors.success,

@@ -7,33 +7,33 @@
  * @property {string} 		       type type if the item ("ignore" || "display" || "boolean" || "date" || "string" || "integer" || "decimal" || "number" || "choice" || "open-choice")
  * @property {string} 		       linkId id of the item
  * @property {boolean} 		       [required] if true: item needs to be answered to complete the questionnaire
- * @property {number} 		       [maxLength] the allowes number of chars for the response
+ * @property {number} 		       [maxLength] the allows number of chars for the response
  * @property {Extension[]} 		   [extension] extensions defined by fhir
  * @property {Condition[]} 	       [enableWhen] array of conditions necessary to render the item
- * @property {string} 		       [enableBehavior] defines how multiple condtions are handled ("all" || "any")
+ * @property {string} 		       [enableBehavior] defines how multiple conditions are handled ("all" || "any")
  * @property {AnswerOption[]}      [answerOption] holds predefined answers (if there are any)
  * @property {QuestionnaireItem[]} [item] sub-items of the item
  */
 
 /**
- * the questionnaireItemMap is an object that is held by the checkin-state. it is created from the questionnaire-items
+ * the questionnaireItemMap is an object that is held by the checkIn-state. it is created from the questionnaire-items
  * coming from the backend after a user-update. for each questionnaire-item that is found in the questionnaire,
- * a property is added to this object (with the property name beeing the linkId of the questionnaire-item) holding 
- * the item itself. additionnaly, it contains three further properties: "id", "started" and "done".
+ * a property is added to this object (with the property name being the linkId of the questionnaire-item) holding 
+ * the item itself. Additionally, it contains three further properties: "id", "started" and "done".
  * the questionnaireItemMap is used to preserve the current state of the questionnaire. meaning all given answers,
- * the completion-state of a single questionniare-item or even the whole questionnaire. 
- * (found in the checkin-state)
+ * the completion-state of a single questionnaire-item or even the whole questionnaire. 
+ * (found in the checkIn-state)
  * @typedef {Object} QuestionnaireItemMap
  * @property {string} 	id id of the questionnaire
- * @property {boolean} 	done is set to TRUE if the questionnire was completed
+ * @property {boolean} 	done is set to TRUE if the questionnaire was completed
  * @property {boolean} 	started is set to true after a single answer was given
  * @property {Object.<string, QuestionnaireItem>} [linkId] is set to true after a single answer was given
  */
 
  /**
  * an entry of the questionnaireItemMap. this holds all the data about the current state of a questionnaire-item
- * (and some redundand data from "QuestionnaireItem" - its just easier to access this way)
- * (found in the checkin-state)
+ * (and some redundant data from "QuestionnaireItem" - its just easier to access this way)
+ * (found in the checkIn-state)
  * @typedef {Object} ItemMapEntry
  * @property {boolean} 		done shows if the item was completed (this includes its sub-items)
  * @property {Object} 		text the text-item to be displayed
@@ -48,10 +48,10 @@
  /**
  * a condition used to define under what circumstances a questionnaire-item is rendered.
  * based on its type, the property holding the answer is named differently
- * (found in the checkin-state)
+ * (found in the checkIn-state)
  * @typedef {Object} Condition
  * @property {string}  operator string representing the operator
- * @property {string}  question the linkId of the question that is part of the condtion
+ * @property {string}  question the linkId of the question that is part of the condition
  * @property {string}  [answerString] the answer-string of this condition
  * @property {string}  [answerDate] the answer-string of this condition
  * @property {string}  [answerTime] the answer-string of this condition
@@ -88,9 +88,9 @@
  * @property {any[]}   item tells if a basicTrigger was set
  * @property {string}  author subject-id of the current user
  * @property {string}  status status of the questionnaire ("false" || "true")
- * @property {string}  authored local datestring
+ * @property {string}  authored local date string
  * @property {string}  identifier holds the subject-id
- * @property {string}  resourceType string specifiying the resource-type
+ * @property {string}  resourceType string specifying the resource-type
  * @property {string}  questionnaire reference link
  * 
  */

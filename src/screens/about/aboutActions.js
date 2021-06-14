@@ -2,7 +2,7 @@
 // (C) Copyright IBM Deutschland GmbH 2020.  All rights reserved.
 
 /**
- * loggs the user out
+ * logs the user out
  */
 export const logout = () => async dispatch => {
 	dispatch({

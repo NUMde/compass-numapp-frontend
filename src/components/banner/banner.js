@@ -22,9 +22,9 @@ class Banner extends Component {
     * @constructor
     * @param  {object}    props
     * @param  {string}    props.title the title displayed
-    * @param  {string}    props.subTitle the subtitle diplayed
+    * @param  {string}    props.subTitle the subtitle displayed
     * @param  {boolean}   props.noMenu if true no menu-button will be rendered in the top right corner
-    * @param  {boolean}   props.isCheckIn true if the banner is used on the checkin-screen
+    * @param  {boolean}   props.isCheckIn true if the banner is used on the checkIn-screen
     * @param  {boolean}   props.noWayBack if true no 'back'-button will be rendered
     * @param  {function}  props.updateUser triggers a user update
     * @param  {object}    props.nav the navigation object provided by 'react-navigation'
@@ -55,7 +55,7 @@ class Banner extends Component {
             <View style={localStyle.banner}>
                 <View style={localStyle.bannerUpperHalf}>
                     <View style={localStyle.bannerTitleWrapper}>
-                        {/* If this is the checkin-screen and reloads are allowed shows a reload button in the top left corner. */}
+                        {/* If this is the checkIn-screen and reloads are allowed shows a reload button in the top left corner. */}
                         {
                             this.props.isCheckIn
                             &&
@@ -78,7 +78,7 @@ class Banner extends Component {
                         }
 
                         {/* If navigating back is allowed and there actually is a 'back' in the nav-stack shows the back-button in the top left corner.
-                            There will be no back-button on the checkin-screen as it is the first screen of the SignedInView defined in '../../navigation/appNavigator.js'  */}
+                            There will be no back-button on the checkIn-screen as it is the first screen of the SignedInView defined in '../../navigation/appNavigator.js'  */}
                         {
                             (!this.props.noWayBack && this.props.nav)
                             && 

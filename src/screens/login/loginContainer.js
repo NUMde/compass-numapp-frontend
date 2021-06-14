@@ -28,7 +28,7 @@ class LoginContainer extends Component {
 	* @param  {object}    props
 	* @param  {string}    props.subjectId holds the subjectId that is used to log in
 	* @param  {object}    props.actions holds actions for the component (./loginActions.js)
-	* @param  {boolean}   props.loggedIn if true: user is looged in
+	* @param  {boolean}   props.loggedIn if true: user is logged in
 	* @param  {object}    props.navigation the navigation object provided by 'react-navigation'
 	*/
 	constructor(props) {
@@ -61,7 +61,7 @@ class LoginContainer extends Component {
 		
 		// triggers the auto-login when on the login-screen (only on DEV)
 		if(config.appConfig.automateQrLogin && this.props.navigation.state.routeName === 'Login') {
-			// parses the input string to determin the subjectId (from the qr-code)
+			// parses the input string to determine the subjectId (from the qr-code)
 			let subjectId = this.checkQrCodeForUsername(config.appConfig.automateQrLoginSubjectId || '')
 			// sets the subjectId defined in appConfig.js
 			this.props.actions.updateSubjectId(subjectId)
@@ -74,7 +74,7 @@ class LoginContainer extends Component {
 	}
 
 	/**
-	 * checks after each update if the user is logged in and (if yes) navigates to the checkin-screen
+	 * checks after each update if the user is logged in and (if yes) navigates to the checkIn-screen
 	 */
 	componentDidUpdate = () => {
 		if (this.props.loggedIn) this.props.navigation.navigate('CheckIn')
@@ -120,10 +120,10 @@ class LoginContainer extends Component {
 	 * basically checks if it is a qr-code, then tries to parse it and uses the result
 	 * for a login-attempt
 	 * @param  {{data: string}} scanResult scan result from the qr-code scanner
-	 * @param  {any} camera camera refenrence
+	 * @param  {any} camera camera reference
 	 */
 	scanSuccess = (scanResult, camera) => {
-		// parses the input string to determin the subjectId (from the qr-code)
+		// parses the input string to determine the subjectId (from the qr-code)
 		let subjectId = this.checkQrCodeForUsername(scanResult.data)
 		// sets the subjectId defined in appConfig.js
 		this.props.actions.updateSubjectId(subjectId)

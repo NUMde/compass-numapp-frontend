@@ -35,7 +35,7 @@ class CheckInContainer extends Component {
 	/*-----------------------------------------------------------------------------------*/
 	
 	/**
-	 * checks the current route name and renders the appropriate temmplate
+	 * checks the current route name and renders the appropriate template
 	 */
 	render() {
 		
@@ -64,7 +64,7 @@ class CheckInContainer extends Component {
 	/*-----------------------------------------------------------------------------------*/
 	
 	/**
-	 * triggers the update of the user afer mounting the chekckin-template
+	 * triggers the update of the user after mounting the checkIn-template
 	 */
 	componentDidMount = () => {
 		if(this.props.navigation.state.routeName === 'CheckIn') {
@@ -75,8 +75,8 @@ class CheckInContainer extends Component {
 	}
 	
 	/**
-	 * reroutes to the checkin-screen should no questionnaire be available after the
-	 * component upated. When there is no questionnaire the survey-screen does not has
+	 * reroutes to the checkIn-screen should no questionnaire be available after the
+	 * component updated. When there is no questionnaire the survey-screen does not has
 	 * any content to render
 	 */
 	componentDidUpdate = () => {
@@ -87,7 +87,7 @@ class CheckInContainer extends Component {
 	/*-----------------------------------------------------------------------------------*/
 	
 	/**
-	 * registers the push notification service (if it hasnt happened before).
+	 * registers the push notification service (if it hasn't happened before).
 	   should it contain no deviceId the push-registration will be triggered
 	 */
 	registerPush = async () => {
@@ -208,7 +208,7 @@ class CheckInContainer extends Component {
 		// TODO: remove workaround
 		data.subjectId = data.study_id || data.subjectId || null
 
-		// procures the id of the quationnaire used by the last active user
+		// procures the id of the questionnaire used by the last active user
 		let lastQuestionnaireId = await localStorage.loadLastQuestionnaireId()
 
 		// checks if the current due date is still not reached
@@ -226,10 +226,10 @@ class CheckInContainer extends Component {
 		setTimeout(() => {
 			// if we have locally persisted questionnaire
 			if(lastQuestionnaireId && !this.props.noNewQuestionnaireAvailableYet) {
-				// checks if the id of the persisted questionaiire matches the one of the
+				// checks if the id of the persisted questionnaire matches the one of the
 				// questionnaire the user is supposed to look at now
 				if( config.appConfig.skipIncomingQuestionnaireCheck || lastQuestionnaireId === data.current_questionnaire_id) {
-					// loads the persistet questionnaire
+					// loads the persisted questionnaire
 					this.checkForCachedData()
 				}
 				else {
@@ -401,7 +401,7 @@ class CheckInContainer extends Component {
 			// shows a message remembering the user to complete the questionnaire
 			Alert.alert(
 				config.text.generic.info,
-				config.text.survery.sendUnfinishedMessageDenied,
+				config.text.survey.sendUnfinishedMessageDenied,
 				[{
 					text: config.text.generic.ok
 				}],
@@ -413,9 +413,9 @@ class CheckInContainer extends Component {
 		else {
 			Alert.alert(
 				config.text.generic.info,
-				config.text.survery.sendFinishedMessage,
+				config.text.survey.sendFinishedMessage,
 				[{
-						text: config.text.survery.sendFinished,
+						text: config.text.survey.sendFinished,
 						onPress: this.exportAndUploadQuestionnaireResponseStart
 				},
 				{
@@ -431,7 +431,7 @@ class CheckInContainer extends Component {
 	/*-----------------------------------------------------------------------------------*/
 
 	/**
-	 * handles the failur after sending a report
+	 * handles the failure after sending a report
 	 * @param  {object} error http error
 	 */
 	sendReportFail = error => {
@@ -493,8 +493,8 @@ class CheckInContainer extends Component {
 	}
 	
 	/**
-	 * shows the user an alert window to confirm the action, then sneds the report.
-	 * is only availabe if there is no current questionnaire available and if the user is not 
+	 * shows the user an alert window to confirm the action, then sends the report.
+	 * is only available if there is no current questionnaire available and if the user is not 
 	 * already on a special iteration
 	 */
 	sendReport = () => {
@@ -533,7 +533,7 @@ class CheckInContainer extends Component {
 					{
 					text: config.text.reporting.symptoms_yes,
 						onPress: () => {
-							//sennds out the report
+							//sends out the report
 							this.sendReportStart()
 						}
 					},
@@ -551,7 +551,7 @@ class CheckInContainer extends Component {
 	/*-----------------------------------------------------------------------------------*/
 	
 	/**
-	 * generates a datestring from Date Object (dd.mm.yyyy)
+	 * generates a date string from Date Object (dd.mm.yyyy)
 	 * @param  {Date}    inputDate the input date
 	 * @param  {boolean} includeTime if true: the exported string will also contain the time
 	 */

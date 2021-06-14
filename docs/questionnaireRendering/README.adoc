@@ -77,7 +77,7 @@ Both items a rendered on the same modal page, because their LinkIds contain the 
 ==== Nth-Level Items
 * Any item that contains at least two dots in its LinkId is a nth-level item.
 * Each nth-level item will be rendered directly below its parent.
-* The fontsize is determined by the number of dots within the LinkId.
+* The font size is determined by the number of dots within the LinkId.
 * All nth-level items that share the first two numerical values in there LinkId, will be rendered on a single modal page.
 
 === Nesting Example

@@ -37,7 +37,7 @@ export const hideDatePicker = () => async dispatch => {
  */
 export const showQuestionnaireModal = currentCategoryIndex => async dispatch => {
 	dispatch({
-		type: 'SHOW_QUESTIONNARE_MODAL',
+		type: 'SHOW_QUESTIONNAIRE_MODAL',
 		values: { currentCategoryIndex, currentPageIndex: 1 }
 	})
 }
@@ -47,7 +47,7 @@ export const showQuestionnaireModal = currentCategoryIndex => async dispatch => 
  */
 export const hideQuestionnaireModal = () => async dispatch => {
 	dispatch({
-		type: 'HIDE_QUESTIONNARE_MODAL'
+		type: 'HIDE_QUESTIONNAIRE_MODAL'
 	})
 }
 
@@ -66,10 +66,10 @@ export const switchContent = (forward, numberOfPages, currentPageIndex) => async
 		numberOfPages === currentPageIndex
 	) {
 		dispatch({
-			type: 'HIDE_QUESTIONNARE_MODAL'
+			type: 'HIDE_QUESTIONNAIRE_MODAL'
 		})
 	}
-	// if its not the last page, siwtches the content
+	// if its not the last page, switches the content
 	else {
 		dispatch({
 			type: 'SWITCH_CONTENT',
@@ -102,7 +102,7 @@ export const setQuestionnaireItemMap = questionnaireItemMap => async dispatch =>
 /**
  * loads a locally persisted questionnaireItemMap and categories-array
  * @param  {QuestionnaireItemMap} map locally persisted questionnaireItemMap
- * @param  {QuestionnaireItem[]} list locally persistet categories array
+ * @param  {QuestionnaireItem[]} list locally persisted categories array
  */
 export const loadLocalQuestionnaire = (map, list) => async dispatch => {
 	dispatch({
@@ -178,7 +178,7 @@ export const getQuestionnaireSuccess = questionnaire => async dispatch => {
 
 /**
  * fail of the questionnaire procuring
- * @param  {any} error http error to be persistet
+ * @param  {any} error http error to be persisted
  */
 export const getQuestionnaireFail = error => async dispatch => {
 	dispatch({

@@ -23,7 +23,7 @@ class SurveyScreen extends Component {
 	
 	/**
 	 * @param  {object}   props
-	 * @param  {object}   props.actions holds actions for the component (./checkinActions.js)
+	 * @param  {object}   props.actions holds actions for the component (./checkInActions.js)
 	 * @param  {object}   props.navigation the navigation object provided by 'react-navigation'
 	 * @param  {Array}	  props.categories array with an entry for each category 
 	 * @param  {Function} props.exportAndUploadQuestionnaireResponse exports the questionnaire
@@ -43,7 +43,7 @@ class SurveyScreen extends Component {
 				{/* render the top banner */}
 				<Banner
 					nav={this.props.navigation}
-					title={config.text.survery.title}
+					title={config.text.survey.title}
 				/>
 
 				{/* the questionnaire modal */}
@@ -62,13 +62,13 @@ class SurveyScreen extends Component {
 									(this.props.questionnaireItemMap && this.props.questionnaireItemMap.done )
 									&&
 									(<TouchableOpacity
-										accessibilityLabel={config.text.survery.send}
+										accessibilityLabel={config.text.survey.send}
 										accessibilityRole={config.text.accessibility.types.button}
 										accessibilityHint={config.text.accessibility.questionnaire.sendHint}
 										onPress={() => this.props.exportAndUploadQuestionnaireResponse()}
 										style={{...localStyle.button, ...localStyle.buttonComplete}}
 									>
-										<Text style={localStyle.buttonLabel}>{config.text.survery.send}</Text>
+										<Text style={localStyle.buttonLabel}>{config.text.survey.send}</Text>
 									</TouchableOpacity>)
 								}
 							</View>
@@ -167,7 +167,7 @@ class SurveyScreen extends Component {
 }
 
 /***********************************************************************************************
-localstyle
+localStyle
 ***********************************************************************************************/
 
 const localStyle = StyleSheet.create({
