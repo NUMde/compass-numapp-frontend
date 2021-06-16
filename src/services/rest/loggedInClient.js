@@ -123,7 +123,7 @@ const sendQuestionnaire = async (body, triggerMap, subjectId, surveyId, instance
 			params: {
 				type: 'questionnaire_response',
 				id: subjectId,
-				appId: subjectId,
+				subjectId: subjectId,
 				surveyId,
 				instanceId,
 				updateValues: {
