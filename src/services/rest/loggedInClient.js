@@ -40,7 +40,7 @@ const generateEncapsuledMessage = (subjectId, type, body = {}) => {
 	let msg = {
 		type,
 		data: { 
-			appId: subjectId
+			subjectId: subjectId
 		}
 	}
 	if(body) msg.data.body = body
