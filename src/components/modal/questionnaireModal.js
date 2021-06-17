@@ -4,7 +4,7 @@
 // the code contained in this file is rendering the content (meaning the ui-elements) of 
 // the modal that opens when an item on the survey screen is clicked on. the user-input 
 // received by these ui-elements is persisted in the object "questionnaireItemMap", located
-// in the checkin-state.
+// in the checkIn state.
 
 // the following terms are used in the comments in this file:
 
@@ -65,7 +65,7 @@ class QuestionnaireModal extends Component {
 	modalTitleRef
 
 	/**
-	* tells us if the screenreader is enabled
+	* tells us if the screen reader is enabled
 	* @type {boolean}
 	*/
 	isAccessibilityOn = false
@@ -88,7 +88,7 @@ class QuestionnaireModal extends Component {
 	/**
 	* @constructor
 	* @param  {object}  props
-	* @param  {object}  props.actions the redux actions of the parents state of this (checkinActions)
+	* @param  {object}  props.actions the redux actions of the parents state of this (checkInActions)
 	* @param  {boolean} props.showDatePicker if true: shows the DatePicker
 	* @param  {number}  props.currentPageIndex the index of the page of the current category that is 
 	* @param  {QuestionnaireItem[]}	props.categories array with an entry for each category 
@@ -101,7 +101,7 @@ class QuestionnaireModal extends Component {
 		through an action then the ui will be refreshed directly afterwards
 	* @param  {number}  props.currentCategoryIndex the index of the currently active category (that means 
 		all first level items with linkIds like "1" or "6") also: categories must be of type "group"
-	* @param  {boolean} props.showQuestionnaireModal if true: displays the QuetionnaireModal
+	* @param  {boolean} props.showQuestionnaireModal if true: displays the QuestionnaireModal
 	*/
 	constructor(props) {
 		
@@ -176,11 +176,11 @@ class QuestionnaireModal extends Component {
 	/*-----------------------------------------------------------------------------------*/
 
 	/**
-	 * handles the scroll-event of the scrollview
+	 * handles the scroll-event of the scrollView
 	 * @param  {object} event scroll event 
 	 */
 	handleOnScroll = (event) => {
-		// just sets the current scolloffset
+		// just sets the current scrollOffset
 		this.scrollOffset = event.nativeEvent.contentOffset.y
 	}
 
@@ -188,7 +188,7 @@ class QuestionnaireModal extends Component {
 	 * @param  {{ y: number, animated: boolean }} element UI element that RNModal will scroll to (for example if the software-keyboard is shown)
 	 */
 	handleScrollTo = element => {
-		// scrolls to the given element if the scrollview is currently active
+		// scrolls to the given element if the scrollView is currently active
 		if (this.scrollViewRef.current) this.scrollViewRef.current.scrollTo({ ...element, animated: true })
 	}
 
@@ -199,14 +199,22 @@ class QuestionnaireModal extends Component {
 	 * when an item is of type choice or open-choice it has the attribute "answerOptions".
 	 * the entries of that attribute contain the possible choices - and the titles of those
 	 * choices are either provided by the attribute valueString ot valueInteger.
-	 * this functions determins what is available an returns it.
+	 * this functions determines what is available an returns it.
 	 * the title is then stripped of an id, should it be encoded in the string.
-	 * for exapmle "01# test-answer" becomes "test-answer".
+	 * for example "01# test-answer" becomes "test-answer".
 	 * @param  {AnswerOption} item entry of an answerOption-entry.
 	 */
 	getItemTitle = item => {
+
+		// default value
+		let title = 'NO NAME FOUND'
+
+		// sets the title in case of a valueCoding attribute
+		if (item.valueCoding) title = item.valueCoding.display ?? item.valueCoding.code
+
 		// get the string
-		let title = item.valueString || (item.valueInteger ? item.valueInteger.toString() : 'NO NAME FOUND')
+		title = item.valueString || (item.valueInteger ? item.valueInteger.toString() : title)
+
 		// splits it
 		return title.split('#')[title.includes('# ') ? 1 : 0].trim()
 	}
@@ -220,7 +228,7 @@ class QuestionnaireModal extends Component {
 			// numpad for integers
 			case 'integer':
 				return 'number-pad'
-			// decimalpad for decimals
+			// decimalPad for decimals
 			case 'decimal':
 				return 'decimal-pad'			
 			// and the rest
@@ -236,13 +244,13 @@ class QuestionnaireModal extends Component {
 	 */
 	getSecondIndexOfLinkId = linkId => {
 		/**
-		 * gets and returns the index of the character "." - occurence defines which "." (the first or the second)
-		 * @param  {number} occurence the occurence of the char "."
+		 * gets and returns the index of the character "." - occurrence defines which "." (the first or the second)
+		 * @param  {number} occurrence the occurrence of the char "."
 		 */
-		let getPosition = (occurence) => {
-			return linkId.split('.', occurence).join('.').length
+		let getPosition = (occurrence) => {
+			return linkId.split('.', occurrence).join('.').length
 		}
-		// returns the middle index - the one between the twho dots
+		// returns the middle index - the one between the two dots
 		// (like the "15" in 308.15.33)
 		return linkId.substring(getPosition(1) + 1, getPosition(2))
 	}
@@ -291,7 +299,7 @@ class QuestionnaireModal extends Component {
 	checkCurrentPageState = () => {
 		return exportService.checkCompletionStateOfMultipleItems([
 			this.props.categories[this.props.currentCategoryIndex].item[
-				// the -1 is necessary as the indexs of the questionnaire-items start wit 1
+				// the -1 is necessary as the indexes of the questionnaire-items start wit 1
 				this.props.currentPageIndex - 1
 			]
 		],
@@ -299,7 +307,7 @@ class QuestionnaireModal extends Component {
 	}
 	
 	/**
-	 * checks the depencies of a single item (presented through its "enableWhen" property).
+	 * checks the dependencies of a single item (presented through its "enableWhen" property).
 	 * this basically tells us if the items needs to be rendered or if its answer should have
 	 * an impact on the completion state of the whole questionnaire. also, sets the value
 	 * "currentPageNeedsRendering"
@@ -308,7 +316,7 @@ class QuestionnaireModal extends Component {
 	getRenderStatusOfItem = item => {
 		// uses the checkDependenciesOfSingleItem-function from the export service
 		let returnValue = exportService.checkDependenciesOfSingleItem(item)
-		// if an item meets its dependencies it needs to be dislayed
+		// if an item meets its dependencies it needs to be displayed
 		if (returnValue) this.currentPageNeedsRendering = true
 
 		return returnValue
@@ -362,22 +370,21 @@ class QuestionnaireModal extends Component {
 								onPress={() =>
 									this.props.actions.setAnswer({
 										linkId: item.linkId,
-										answer: answerOption.valueString || answerOption.valueInteger,
+										answer: answerOption.valueCoding || answerOption.valueString || answerOption.valueInteger,
 									})
 								}
 								onIconPress={() =>
 									this.props.actions.setAnswer({
 										linkId: item.linkId,
-										answer: answerOption.valueString || answerOption.valueInteger,
+										answer: answerOption.valueCoding || answerOption.valueString || answerOption.valueInteger,
 									})
 								}
 								checkedColor={config.theme.colors.primary}
 								uncheckedColor={config.theme.colors.accent1}
 								checked={
-									exportService.getCorrectlyFormatedAnswer(this.props.questionnaireItemMap[item.linkId]) ===
-										answerOption.valueString ||
-									exportService.getCorrectlyFormatedAnswer(this.props.questionnaireItemMap[item.linkId]) ===
-										answerOption.valueInteger
+									this.compareCoding(exportService.getCorrectlyFormattedAnswer(this.props.questionnaireItemMap[item.linkId]), answerOption.valueCoding) ||
+									exportService.getCorrectlyFormattedAnswer(this.props.questionnaireItemMap[item.linkId]) === answerOption.valueString ||
+									exportService.getCorrectlyFormattedAnswer(this.props.questionnaireItemMap[item.linkId]) === answerOption.valueInteger
 								}
 								key={`${item.linkId}.a_${index}`}
 								containerStyle={{...localStyle.choice, marginLeft: this.calculateIndent(item.linkId)}}
@@ -391,6 +398,16 @@ class QuestionnaireModal extends Component {
 			
 			</View>
 		) : null
+	}
+
+	/**
+	 * compares two different valueCoding Objects
+	 */
+	compareCoding = (val1, val2) => {
+		
+		if (val1 && val2) return val1.system === val2.system && val1.code === val2.code
+
+		return false
 	}
 
 	/**
@@ -420,26 +437,23 @@ class QuestionnaireModal extends Component {
 								onPress={() =>
 									this.props.actions.setAnswer({
 										linkId: item.linkId,
-										answer: answerOption.valueString || answerOption.valueInteger,
+										answer: answerOption.valueCoding || answerOption.valueString || answerOption.valueInteger,
 										openAnswer: true,
 									})
 								}
 								onIconPress={() =>
 									this.props.actions.setAnswer({
 										linkId: item.linkId,
-										answer: answerOption.valueString || answerOption.valueInteger,
+										answer: answerOption.valueCoding || answerOption.valueString || answerOption.valueInteger,
 										openAnswer: true,
 									})
 								}
 								checked={
-									(this.props.questionnaireItemMap[item.linkId].answer &&
-										this.props.questionnaireItemMap[item.linkId].answer.includes(
-											answerOption.valueString
-										)) ||
-									(this.props.questionnaireItemMap[item.linkId].answer &&
-										this.props.questionnaireItemMap[item.linkId].answer.includes(
-											answerOption.valueInteger
-										))
+									(this.props.questionnaireItemMap[item.linkId].answer && answerOption.valueCoding && this.props.questionnaireItemMap[item.linkId].answer.some( c => c.code === answerOption.valueCoding.code && c.system === answerOption.valueCoding.system ))
+									||
+									(this.props.questionnaireItemMap[item.linkId].answer && this.props.questionnaireItemMap[item.linkId].answer.includes( answerOption.valueString ))
+									||
+									(this.props.questionnaireItemMap[item.linkId].answer && this.props.questionnaireItemMap[item.linkId].answer.includes( answerOption.valueInteger ))
 								}
 								key={`${item.linkId}.a_${index}`}
 								containerStyle={{...localStyle.choice, marginLeft: this.calculateIndent(item.linkId)}}
@@ -469,7 +483,7 @@ class QuestionnaireModal extends Component {
 						this.props.actions.setAnswer({
 							linkId: item.linkId,
 							answer:
-								exportService.getCorrectlyFormatedAnswer(this.props.questionnaireItemMap[item.linkId]) === null
+								exportService.getCorrectlyFormattedAnswer(this.props.questionnaireItemMap[item.linkId]) === null
 									? true
 									: !this.props.questionnaireItemMap[item.linkId].answer,
 						})
@@ -478,7 +492,7 @@ class QuestionnaireModal extends Component {
 						this.props.actions.setAnswer({
 							linkId: item.linkId,
 							answer:
-							exportService.getCorrectlyFormatedAnswer(this.props.questionnaireItemMap[item.linkId]) === null
+							exportService.getCorrectlyFormattedAnswer(this.props.questionnaireItemMap[item.linkId]) === null
 									? true
 									: !this.props.questionnaireItemMap[item.linkId].answer,
 						})
@@ -567,7 +581,7 @@ class QuestionnaireModal extends Component {
 						>
 						<Input
 							placeholder={config.text.login.inputPlaceholderTime}
-							value={this.props.questionnaireItemMap[item.linkId].answer ? exportService.getFormatedDate(this.props.questionnaireItemMap[item.linkId].answer.toString(), true) : null}
+							value={this.props.questionnaireItemMap[item.linkId].answer ? exportService.getFormattedDate(this.props.questionnaireItemMap[item.linkId].answer.toString(), true) : null}
 							editable={false}
 							leftIcon={{ type: 'font-awesome', name: 'calendar' }}
 							pointerEvents="none"
@@ -658,11 +672,11 @@ class QuestionnaireModal extends Component {
 			case 'choice':
 				return this.createChoices(item)
 
-			// creates a checkbock
+			// creates a checkbox
 			case 'boolean':
 				return this.createBoolean(item)
 
-			// creates a dateinput
+			// creates a date input
 			case 'date':
 				return this.createDatePicker(item)
 
@@ -670,13 +684,15 @@ class QuestionnaireModal extends Component {
 			case 'open-choice':
 				return this.createOpenChoices(item)
 
-			// creates the inputs for decimals and integers 
+			// creates the inputs for decimals and integers (and numerical sliders)
 			// this also utilizes the decimal-pad or the num-pad
 			case 'integer':		
 			case 'decimal':
-				return (item.extension && item.extension.length > 0) ? this.createSlider(item) : this.createInput(item)
-			
-			// if nothing else matches - display the title if at least the dependendcies check out
+				let itemControlExtension = item?.extension?.find(e => e.url === "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl")
+				let isSlider = itemControlExtension?.valueCodeableConcept?.coding?.find(c => c.system === "http://hl7.org/fhir/questionnaire-item-control" && c.code === "slider")
+				return isSlider ? this.createSlider(item) : this.createInput(item)
+
+			// if nothing else matches - display the title if at least the dependencies check out
 			default:
 				// checks the dependencies of the item and renders it (if the dependencies check out)
 				return this.getRenderStatusOfItem(item) ? (
@@ -854,7 +870,7 @@ class QuestionnaireModal extends Component {
 					/>
 				)}
 
-				{/* placeholde in for the button on the right side - if we're on the last page */}
+				{/* placeholder in for the button on the right side - if we're on the last page */}
 				{this.props.currentPageIndex ===
 					this.props.categories[this.props.currentCategoryIndex].item.length && (
 					<View

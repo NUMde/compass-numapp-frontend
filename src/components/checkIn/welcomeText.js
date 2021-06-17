@@ -18,7 +18,7 @@ class WelcomeText extends Component {
 
 	/**
 	* renders a welcome text composed of multiple strings (originating from 'src/config/textConfig.js)
-	* and a formated Date-string (representing the due date of the current questionnaire or the 
+	* and a formatted Date-string (representing the due date of the current questionnaire or the 
 	* start date of the next one)
 	* @constructor
 	* @param  {object}      props
@@ -26,8 +26,8 @@ class WelcomeText extends Component {
 	* @param  {object}      props.navigation the navigation object provided by 'react-navigation'
 	* @param  {object}      props.questionnaireError the return object should the sendQuestionnaire 
 		function produce an error
-	* @param  {boolean}     props.firstTime true if the user never send out the first questionnaire
-	* @param  {boolean}     props.error401 true if an the user was rejected by the backend
+	* @param  {boolean}     props.firstTime true if the user never sent out the first questionnaire
+	* @param  {boolean}     props.error401 true if the user was rejected by the backend
 	* @param  {boolean}     props.noNewQuestionnaireAvailableYet true if there is currently no 
 		questionnaire available
 	* @param  {Function}    props.formatDateString formats a date string
@@ -47,30 +47,30 @@ class WelcomeText extends Component {
 					(!this.props.error401 && this.props.questionnaireError === null )
 					&& 
 					(<View>
-						{/* title text: dependens on the params 'firstTime' & 'noNewQuestionnaireAvailableYet'*/}
+						{/* title text: depends on the params 'firstTime' & 'noNewQuestionnaireAvailableYet'*/}
 						<Text style={localStyle.welcomeText}> 
 							{ this.props.firstTime ? 
-								config.text.survery.welcomeTitleFirstTime : 
+								config.text.survey.welcomeTitleFirstTime : 
 									this.props.noNewQuestionnaireAvailableYet ?
-										config.text.survery.noNewQuestionnaireAvailableYetTitle :
-											config.text.survery.welcomeTitle }
+										config.text.survey.noNewQuestionnaireAvailableYetTitle :
+											config.text.survey.welcomeTitle }
 						</Text>
 	
 						{/* if this is a new user */}
 						{this.props.firstTime && this.props.user && (
 							<Text  style={localStyle.infoText}>
-								{config.text.survery.welcomeTextFirstTimeUser1}
+								{config.text.survey.welcomeTextFirstTimeUser1}
 								<Text style={{...localStyle.timeTextSmall}}>
 									{ this.props.formatDateString(this.props.user.due_date, true) }.
 								</Text>
-								{config.text.survery.welcomeTextFirstTimeUser2}
+								{config.text.survey.welcomeTextFirstTimeUser2}
 							</Text>
 						)}
 	
 						{/* if this is not a first-time-user and NO new questionnaire is currently available */}
 						{!this.props.firstTime && this.props.noNewQuestionnaireAvailableYet && (
 							<Text style={localStyle.infoText}>
-								{config.text.survery.noNewQuestionnaireAvailableYet}
+								{config.text.survey.noNewQuestionnaireAvailableYet}
 							</Text>
 						)}
 	
@@ -78,7 +78,7 @@ class WelcomeText extends Component {
 						{!this.props.firstTime && !this.props.noNewQuestionnaireAvailableYet && (
 							<View>
 								<Text style={localStyle.infoText}>
-									{config.text.survery.welcomeTextUser}
+									{config.text.survey.welcomeTextUser}
 								</Text>
 								<Text style={{...localStyle.timeText}}>
 									{ this.props.formatDateString(this.props.user.due_date, true) }.
@@ -90,7 +90,7 @@ class WelcomeText extends Component {
 						{!this.props.firstTime && this.props.noNewQuestionnaireAvailableYet && (
 							<View>
 								<Text style={localStyle.timeText}>
-									{config.text.survery.nextOne}
+									{config.text.survey.nextOne}
 								</Text>
 								<Text style={{...localStyle.timeText, ...localStyle.timeTextGreen}}>
 									{ this.props.formatDateString(this.props.user.start_date, true) }.
@@ -102,7 +102,7 @@ class WelcomeText extends Component {
 						{this.props.firstTime && this.props.noNewQuestionnaireAvailableYet &&(
 							<View>
 								<Text style={localStyle.timeText}>
-									{config.text.survery.nextOneNew}
+									{config.text.survey.nextOneNew}
 								</Text>
 								<Text style={{...localStyle.timeText, ...localStyle.timeTextGreen}}>
 									{ this.props.formatDateString(this.props.user.start_date, true) }.
@@ -111,7 +111,7 @@ class WelcomeText extends Component {
 						)}
 	
 						<Text style={localStyle.infoText}>
-							{config.text.survery.furtherInfo}
+							{config.text.survey.furtherInfo}
 						</Text>
 					</View>)
 				}
@@ -120,25 +120,25 @@ class WelcomeText extends Component {
 				{(this.props.error401) && (
 					<View>
 						<Text style={{...localStyle.welcomeText, ...localStyle.welcomeTextRed}}> 
-							{config.text.survery.noUserTitle }
+							{config.text.survey.noUserTitle }
 						</Text>
 	
 						<Text style={localStyle.infoText}>
-							{config.text.survery.noUserText}
+							{config.text.survey.noUserText}
 						</Text>
 	
 					</View>
 				)}
 	
-				{/* if there occured an error while transmitting a questionnaire */}
+				{/* if there occurred an error while transmitting a questionnaire */}
 				{this.props.questionnaireError && (
 					<View>
 						<Text style={{...localStyle.welcomeText, ...localStyle.welcomeTextRed}}> 
-							{config.text.survery.noQuestionnaireTitle}
+							{config.text.survey.noQuestionnaireTitle}
 						</Text>
 	
 						<Text style={localStyle.infoText}>
-							{config.text.survery.noQuestionnaireText}
+							{config.text.survey.noQuestionnaireText}
 						</Text>
 	
 					</View>

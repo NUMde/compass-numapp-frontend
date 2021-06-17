@@ -16,17 +16,17 @@ The application configuration provides options that can influence how th app beh
 * *REST Endpoints*
 * *UI Related Options*
 * *Evaluation Options*
-* *encyption options*
+* *encryption options*
 
 More on these later. Lets set up the custom configuration first.
 
 == Setting up the Custom Configuration File
 
-The options provided by this file, as well as other aspects of the react-native client can be adjusted to your needs. The project comes with a set of configuration files that allow for quick and indiviual changes. The file responsible for the currently used default values is **`link:../../../../tree/main/src/config/appConfig.js[src/config/appConfig.js]`**
+The options provided by this file, as well as other aspects of the react-native client can be adjusted to your needs. The project comes with a set of configuration files that allow for quick and individual changes. The file responsible for the currently used default values is **`link:../../../../tree/main/src/config/appConfig.js[src/config/appConfig.js]`**
 
 WARNING: However, it is not recommended to alter this file directly, as it will aggravate the process of merging future updates into your own forked project. To ensure the updatability of your repository, another file is provided: **`link:../../../../tree/main/src/CUSTOMIZATION/customAppConfig.js[src/CUSTOMIZATION/customAppConfig.js]`**. You can copy the content of the file **`link:../../../../tree/main/src/config/appConfig.js[appConfig.js]`** into **`link:../../../../tree/main/src/CUSTOMIZATION/customAppConfig.js[customAppConfig.js]`**. There you can make any change you may see fit. Both files contain explanations on how and where to copy the values.
 
-.Copying the default configuration to generate a custom app configuraton
+.Copying the default configuration to generate a custom app configuration
 [caption="Example: "]
 ==========================
 image:./images/copyingConfig.gif[auto, auto]
@@ -51,9 +51,9 @@ These options are only meant for the development mode und will not carry over in
 * *logEncryptedResponse:*
 ** Logs out the encrypted response-json in the developer console
 * *useLocalQuestionnaireInsteadOftheReceivedOne:*
-** Used the locally available link:../../../../tree/main/src/assets/files/questionnaire.js[questionnaire.js] instead of the procured one from the backend. This is usefule for testing purposes
+** Used the locally available link:../../../../tree/main/src/assets/files/questionnaire.js[questionnaire.js] instead of the procured one from the backend. This is useful for testing purposes
 * *skipIncomingQuestionnaireCheck:*
-** This skips the id-comparison of an incomming questionnaire. This is useful should you want to carry over the state of a partially answered questionnaire using the local questionnaire instead of the one coming from the server
+** This skips the id-comparison of an incoming questionnaire. This is useful should you want to carry over the state of a partially answered questionnaire using the local questionnaire instead of the one coming from the server
 
 == Login Options
 The  qr-code used to log the user in is formed like the following example:
@@ -68,7 +68,7 @@ image:./images/qrCode.png[auto, 175, float="left",]
     "SubjectId":	"subjectId"
 }
 ----
-The Login Options containt the attribute-names necessary to check the appIdentifer and to extract the subjectId. This way you can generate QR Code that contain your own AppIdentifier.
+The Login Options contains the attribute-names necessary to check the appIdentifer and to extract the subjectId. This way you can generate QR Code that contain your own AppIdentifier.
 --
  
 * *qrCodeAttributeHoldingTheAppIdentifier:*
@@ -95,24 +95,24 @@ The following values carry the strings used to generate the names of the values 
 ** Part of the identifier used to persist all relevant information about the notification-service
 
 == REST Endpoints
-Thase are the enpoints used to communicate with the backend.
+These are the endpoints used to communicate with the backend.
 
 * *baseUriProductive*
-** The base-uri for the production mode (first part of the concated uri-string)
+** The base-uri for the production mode (first part of the concatenated uri-string)
 * *baseUriDevelopment*
-** The base-uri for the development mode (first part of the concated uri-string)
+** The base-uri for the development mode (first part of the concatenated uri-string)
 * *login*
 ** The endpoint used to log the user in and retrieve the accessToken
 * *getUser*
 ** The endpoint used to get the user-profile
 * *report*
 ** The endpoint used for a special report
-* *sendQuestionnare*
+* *sendQuestionnaire*
 ** The endpoint used to post the questionnaire to	
 * *getQuestionnaire*
 ** The endpoint used to receive the questionnaire
 
-IMPORTANT: All endpoints (including _baseUriProductive_ and _baseUriDevelopment_ must end with a **backslash** - like **"getuser/"**)
+IMPORTANT: All endpoints (including _baseUriProductive_ and _baseUriDevelopment_ must end with a **backslash** - like **"getParticipant/"**)
 
 == UI Related Options
 Groups some minor UI related options that does not belong into the theme.
@@ -125,7 +125,7 @@ Groups some minor UI related options that does not belong into the theme.
 ** This function is meant to provide an additional means of scaling ui-elements of the application. It is used sporadically throughout the application.
 
 == Evaluation Options
-Before encrypting a questionnaire response, a set of parameters is determined to be sent additionaly to the server (alongside the response). This is due to the fact that the encrypted response cannot be looked into on the server, because it is - well - encrypted. To know how to ascertain those values a ruleset is needed. This should be included in the response coming from the server when calling the **getUser**-Endpoint. 
+Before encrypting a questionnaire response, a set of parameters is determined to be sent additionally to the server (alongside the response). This is due to the fact that the encrypted response cannot be looked into on the server, because it is - well - encrypted. To know how to ascertain those values a ruleset is needed. This should be included in the response coming from the server when calling the **getUser**-Endpoint. 
 
 Should that be **not** the case, the defaultRulesConfig will be loaded instead, which looks like this:
 
@@ -152,10 +152,10 @@ defaultRulesConfig: [
 	],
 ----
 
-Of course, you could update the defaultRulesConfig to your liking and just not provide the ruleset by the server. This way you would have static (meaning hardcoded) rulset.
+Of course, you could update the defaultRulesConfig to your liking and just not provide the ruleset by the server. This way you would have static (meaning hardcoded) ruleset.
 
 * *defaultRulesConfig*
-** The defaultvalues, should there be no ruleset coming from the server with the user-update. Each entry contains definitions of questions (from the questionnaire) and their corresponding answers that would trigger that particular rule of the return object of the function createResponseJSON(), located in **`link:../../../../tree/main/src/services/questionnaireAnalyzer/questionnaireAnalyzer.js[src/services/questionnaireAnalyzer/questionnaireAnalyzer.js]`**
+** The default values, should there be no ruleset coming from the server with the user-update. Each entry contains definitions of questions (from the questionnaire) and their corresponding answers that would trigger that particular rule of the return object of the function createResponseJSON(), located in **`link:../../../../tree/main/src/services/questionnaireAnalyzer/questionnaireAnalyzer.js[src/services/questionnaireAnalyzer/questionnaireAnalyzer.js]`**
 * *defaultReportAttribute*
 ** The name of the attribute used to signal a special report
 

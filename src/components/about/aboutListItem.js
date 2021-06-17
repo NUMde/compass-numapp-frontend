@@ -57,7 +57,7 @@ class aboutListItem extends Component {
 					{
 						this.props.modalLink.subTitle 
 						&&
-						(<ListItem.Subtitle style={localStyle.subtTitle}>
+						(<ListItem.Subtitle style={localStyle.subTitle}>
 							{this.props.modalLink.subTitle}
 						</ListItem.Subtitle>)
 					}
@@ -97,7 +97,7 @@ const localStyle = StyleSheet.create({
 		...config.theme.fonts.title2
 	},
 
-	subtTitle: {
+	subTitle: {
 		color: config.theme.colors.accent4,
 		...config.theme.fonts.body	
 	}

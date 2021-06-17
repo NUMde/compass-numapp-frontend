@@ -21,11 +21,11 @@ export default {
         "type": "group",
         "required": true,
         "item": [{
-                "linkId": "1.1",
-                "text": "Das ist eine Freitextabfrage",
-                "type": "string",
-                "required": true
-            },
+            "linkId": "1.1",
+            "text": "Das ist eine Freitextabfrage",
+            "type": "string",
+            "required": true
+        },
             {
                 "linkId": "1.2",
                 "text": "Das ist eine Datumsabfrage",
@@ -60,16 +60,14 @@ export default {
                 "text": "Das ist eine Slider-Abfrage",
                 "type": "integer",
                 "extension": [{
-                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
-                        "valueCodeableConcept": {
-                            "CodeableConcept": {
-                                "coding": [{
-                                    "system": "http://hl7.org/fhir/questionnaire-item-control",
-                                    "code": "slider"
-                                }]
-                            }
-                        }
-                    },
+                    "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl",
+                    "valueCodeableConcept": {
+                        "coding": [{
+                            "system": "http://hl7.org/fhir/questionnaire-item-control",
+                            "code": "slider"
+                        }]
+                    }
+                },
                     {
                         "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-lowRangeLabel",
                         "valueString": "Niedrig"
@@ -105,8 +103,8 @@ export default {
                 "type": "open-choice",
                 "required": true,
                 "answerOption": [{
-                        "valueString": "Option A"
-                    },
+                    "valueString": "Option A"
+                },
                     {
                         "valueString": "Option B"
                     },
@@ -121,11 +119,11 @@ export default {
                 "type": "group",
                 "required": true,
                 "item": [{
-                        "linkId": "1.10.1",
-                        "text": "Option A",
-                        "type": "boolean",
-                        "required": true
-                    },
+                    "linkId": "1.10.1",
+                    "text": "Option A",
+                    "type": "boolean",
+                    "required": true
+                },
                     {
                         "linkId": "1.10.2",
                         "text": "Option B",
@@ -146,8 +144,8 @@ export default {
                 "type": "choice",
                 "required": true,
                 "answerOption": [{
-                        "valueString": "Option A"
-                    },
+                    "valueString": "Option A"
+                },
                     {
                         "valueString": "Option B"
                     },
@@ -205,11 +203,11 @@ export default {
                 "type": "group",
                 "required": true,
                 "item": [{
-                        "linkId": "1.15.1",
-                        "text": "Abfrage Dezimalzahl (erwartet = 1.5)",
-                        "type": "decimal",
-                        "required": true
-                    },
+                    "linkId": "1.15.1",
+                    "text": "Abfrage Dezimalzahl (erwartet = 1.5)",
+                    "type": "decimal",
+                    "required": true
+                },
                     {
                         "linkId": "1.15.2",
                         "text": "Diese Frage wird nur bei erwarteter Eingabe angezeigt",
@@ -229,11 +227,11 @@ export default {
                 "type": "group",
                 "required": true,
                 "item": [{
-                        "linkId": "1.16.1",
-                        "text": "Abfrage Ganzzahl (erwartet = 1)",
-                        "type": "integer",
-                        "required": true
-                    },
+                    "linkId": "1.16.1",
+                    "text": "Abfrage Ganzzahl (erwartet = 1)",
+                    "type": "integer",
+                    "required": true
+                },
                     {
                         "linkId": "1.16.2",
                         "text": "Diese Frage wird nur bei erwarteter Eingabe angezeigt",
@@ -253,11 +251,11 @@ export default {
                 "type": "group",
                 "required": true,
                 "item": [{
-                        "linkId": "1.17.1",
-                        "text": "Abfrage Datum (erwartet = 01.01.2021)",
-                        "type": "date",
-                        "required": true
-                    },
+                    "linkId": "1.17.1",
+                    "text": "Abfrage Datum (erwartet = 01.01.2021)",
+                    "type": "date",
+                    "required": true
+                },
                     {
                         "linkId": "1.17.2",
                         "text": "Diese Frage wird nur bei erwarteter Eingabe angezeigt",
@@ -474,6 +472,50 @@ export default {
             },
             {
                 "linkId": "1.37",
+                "text": "Das ist eine Multiple-Choice-Abfrage mit Coding",
+                "type": "open-choice",
+                "required": true,
+                "answerOption": [{
+                        "valueCoding": {
+                            "system": "snomed", "code": "A", "display": "Alpha"
+                        }
+                    },
+                    {
+                        "valueCoding": {
+                            "system": "snomed", "code": "B", "display": "Beta"
+                        }
+                    },
+                    {
+                        "valueCoding": {
+                            "system": "snomed", "code": "C", "display": "Gamma"
+                        }
+                    }
+                ]
+            },
+            {
+                "linkId": "1.38",
+                "text": "Das ist eine Single-Choice-Abfrage mit Coding",
+                "type": "choice",
+                "required": true,
+                "answerOption": [{
+                        "valueCoding": {
+                            "system": "snomed", "code": "A", "display": "Alpha"
+                        }
+                    },
+                    {
+                        "valueCoding": {
+                            "system": "snomed", "code": "B", "display": "Beta"
+                        }
+                    },
+                    {
+                        "valueCoding": {
+                            "system": "snomed", "code": "C", "display": "Gamma"
+                        }
+                    }
+                ]
+            },
+            {
+                "linkId": "1.39",
                 "text": "Das ist eine Single-Choice-Abfrage als Drop-Down",
                 "type": "choice",
                 "required": true,
@@ -517,9 +559,11 @@ export default {
                     }
                 },
             ],
-            }
-        ]
-    }, {
+          } 
+       ]
+    }, 
+       
+       {
         "linkId": "2",
         "text": "Fragegruppe 2",
         "type": "group",
@@ -530,37 +574,37 @@ export default {
             "type": "group",
             "required": true,
             "item": [{
-                    "linkId": "2.1.1",
-                    "text": "Untergruppe 2",
-                    "type": "group",
-                    "required": true,
-                    "item": [{
-                            "linkId": "2.1.1.1",
-                            "text": "Frage der Untergruppe 2",
+                "linkId": "2.1.1",
+                "text": "Untergruppe 2",
+                "type": "group",
+                "required": true,
+                "item": [{
+                    "linkId": "2.1.1.1",
+                    "text": "Frage der Untergruppe 2",
+                    "type": "string",
+                    "required": true
+                },
+                    {
+                        "linkId": "2.1.1.2",
+                        "text": "Untergruppe 3",
+                        "type": "group",
+                        "required": true,
+                        "item": [{
+                            "linkId": "2.1.1.2.1",
+                            "text": "Frage 1 der Untergruppe 3",
                             "type": "string",
                             "required": true
                         },
-                        {
-                            "linkId": "2.1.1.2",
-                            "text": "Untergruppe 3",
-                            "type": "group",
-                            "required": true,
-                            "item": [{
-                                    "linkId": "2.1.1.2.1",
-                                    "text": "Frage 1 der Untergruppe 3",
-                                    "type": "string",
-                                    "required": true
-                                },
-                                {
-                                    "linkId": "2.1.1.2.2",
-                                    "text": "Frage 2 der Untergruppe 3",
-                                    "type": "string",
-                                    "required": true
-                                }
-                            ]
-                        }
-                    ]
-                },
+                            {
+                                "linkId": "2.1.1.2.2",
+                                "text": "Frage 2 der Untergruppe 3",
+                                "type": "string",
+                                "required": true
+                            }
+                        ]
+                    }
+                ]
+            },
                 {
                     "linkId": "2.1.2",
                     "text": "Frage der Untergruppe 1",

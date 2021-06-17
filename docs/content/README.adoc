@@ -3,7 +3,7 @@
 https://github.com/NUMde/compass-numapp[Main Repository] | link:../[List of Content]
 
 == Setting up the Custom Configuration File
-The strings utilized in the app, as well as other aspects of the react-native client can be adjusted to your needs. The project comes with a set of configuration files that allow for quick and indiviual changes. The file responsible for the currently used strings is *`link:../../../../tree/main/src/config/textConfig.js[src/config/textConfig.js]`*
+The strings utilized in the app, as well as other aspects of the react-native client can be adjusted to your needs. The project comes with a set of configuration files that allow for quick and individual changes. The file responsible for the currently used strings is *`link:../../../../tree/main/src/config/textConfig.js[src/config/textConfig.js]`*
 
 WARNING: However, it is not recommended to alter this file directly, as it will aggravate the process of merging future updates into your own forked project. To ensure the updatability of your repository, another file is provided: *`link:../../../../tree/main/src/CUSTOMIZATION/customTextConfig.js[src/CUSTOMIZATION/customTextConfig.js]`* You can copy the content of the file *`link:../../../../tree/main/src/config/textConfig.js[textConfig.js]`* into *`link:../../../../tree/main/src/CUSTOMIZATION/customTextConfig.js[customTextConfig.js]`*. There you can change any string as you see fit. Both files contain explanations on how and where to copy the values.
 
@@ -17,7 +17,7 @@ IMPORTANT: Please make sure to copy the whole content below the marked point, an
 == Updating the App Strings
 As soon as you have copied the content of *`link:../../../../tree/main/src/config/textConfig.js[textConfig.js]`* into *`link:../../../../tree/main/src/CUSTOMIZATION/customTextConfig.js[customTextConfig.js]`*, you can change the strings to customize your app.
 
-TIP: These are Javascript strings. That means you can use escape characters and sequences like "*\n*" (would produce a linebreak). 
+TIP: These are Javascript strings. That means you can use escape characters and sequences like "*\n*" (would produce a line break). 
 
 TIP: Template literals are also possible - meaning you can write multi-line content without using escape sequences (see the attribute "content"): 
 image:./images/literals.png[auto, 650]

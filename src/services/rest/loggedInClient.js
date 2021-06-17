@@ -90,7 +90,7 @@ const sendReport = async subjectId => {
 				Accept: 'application/json',
 			},
 			params: {
-				appId: subjectId,
+				subjectId: subjectId,
 				type: 'report',
 				updateValues: {
 					[config.appConfig.defaultReportAttribute]: true
@@ -113,7 +113,7 @@ const sendReport = async subjectId => {
  */
 const sendQuestionnaire = async (body, triggerMap, subjectId, surveyId, instanceId) => {
 	return axios.post(
-		config.appConfig.endpoints.sendQuestionnare,
+		config.appConfig.endpoints.sendQuestionnaire,
 		generateEncapsuledMessage(subjectId, 'questionnaire_response', body ),
 		{
 			headers: {

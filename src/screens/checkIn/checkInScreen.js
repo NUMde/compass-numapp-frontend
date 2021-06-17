@@ -18,7 +18,7 @@ import ScrollIndicatorWrapper from '../../components/scrollIndicatorWrapper/scro
 
 /***********************************************************************************************
 component:
-renders the checkin-screen
+renders the checkIn-screen
 ***********************************************************************************************/
 
 class CheckInScreen extends Component {
@@ -49,8 +49,8 @@ class CheckInScreen extends Component {
 				{/* banner at the top */}
 				<Banner
 					nav={this.props.navigation}
-					title={config.text.survery.titleCheckIn}
-					subTitle={config.text.survery.subTitleCheckin}
+					title={config.text.survey.titleCheckIn}
+					subTitle={config.text.survey.subTitleCheckIn}
 					updateUser={this.props.updateUser}
 					isCheckIn
 					noWayBack
@@ -95,7 +95,7 @@ class CheckInScreen extends Component {
 }
 
 /***********************************************************************************************
-localstyle
+localStyle
 ***********************************************************************************************/
 
 const localStyle = StyleSheet.create({

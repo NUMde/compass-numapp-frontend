@@ -13,29 +13,29 @@ image:./docs/images/gallery.png[auto, auto]
 == Welcome
 This repository provides the source code for the React Native client of the link:https://github.com/NUMde/compass-numapp[Compass NUM-App Project]. This project provides a set of open source components meant for the digital conduct of questionnaire based studies. NUM-App itself is a  part of link:https://num-compass.science/[COMPASS] (**C**oordination **O**n **M**obile **P**andemic **A**pps best practice and **S**olution **S**haring).
 
-The NUM-App enables the display of link:https://www.hl7.org/fhir/questionnaire.html[FHIR Questionnaires] as well as the encrypted transmission and storage of corresponsing link:https://www.hl7.org/fhir/questionnaireresponse.html[FHIR Questionnaire Responses].
+The NUM-App enables the display of link:https://www.hl7.org/fhir/questionnaire.html[FHIR Questionnaires] as well as the encrypted transmission and storage of corresponding link:https://www.hl7.org/fhir/questionnaireresponse.html[FHIR Questionnaire Responses].
 
 == Features
 
 The client provides these main functionalities:
 
-. *Login & User Managment*
+. *Login & User Management*
 + 
 --
 Users can authenticate using a QR-Code, which contains the ID for his/her participation. This ID will be persisted on the device to automatically log the user in the next time the app is opened. +
 Every time the user triggers an action that enables a connection to the link:https://github.com/NUMde/compass-numapp-backend[backend], the user will be updated and the frontend refreshed (with the data of the now updated user).
 
-IMPORTANT: The user has no option to logout - as soon as he/she is logged in it stys that way. But while in development mode a logout button is available from the burger menu.
+IMPORTANT: The user has no option to logout - as soon as he/she is logged in it stays that way. But while in development mode a logout button is available from the burger menu.
 --
 
 . *FHIR Questionnaire Retrieval*
 + 
 --
-The application will download a questionnaire as soon as an updated user sugests that a new one is available. When restarting the app the questionnaire (and the given answers) of the last active user will be loaded from the local storage. Should the ID of that questionnaire not match the one transmitted with the user object, the local one will be deleted and a new one from the link:https://github.com/NUMde/compass-numapp-backend[backend] procured. 
+The application will download a questionnaire as soon as an updated user suggests that a new one is available. When restarting the app the questionnaire (and the given answers) of the last active user will be loaded from the local storage. Should the ID of that questionnaire not match the one transmitted with the user object, the local one will be deleted and a new one from the link:https://github.com/NUMde/compass-numapp-backend[backend] procured. 
 
 IMPORTANT: The decision which questionnaire the user will get is made in the link:https://github.com/NUMde/compass-numapp-backend[backend].
 
-The user will always be informed when a given questionnaire is due as well when the next one is available as this information is diplayed on the *CheckIn-Screen*:
+The user will always be informed when a given questionnaire is due as well when the next one is available as this information is displayed on the *CheckIn-Screen*:
 
 image:./docs/images/dates.png[auto, 600]
 --
@@ -65,7 +65,7 @@ The parameters are then used to determine the update values for the user (as the
 . *Transmitting a Report (if no questionnaire is available)*
 + 
 --
-If no questionnaire is available the user has the option to transmit a report. This report is nothing more than REST-call to the link:https://github.com/NUMde/compass-numapp-backend[backend] that can only be send out when no questionnaire is available. There is no actual data transmission aside from the fact that the call was send out. This is meant for situations that need reporting while no questionnaire (through which the user would normaly report such an event) is available. 
+If no questionnaire is available the user has the option to transmit a report. This report is nothing more than REST-call to the link:https://github.com/NUMde/compass-numapp-backend[backend] that can only be send out when no questionnaire is available. There is no actual data transmission aside from the fact that the call was send out. This is meant for situations that need reporting while no questionnaire (through which the user would normally report such an event) is available. 
 
 The incoming report will trigger a user update within the link:https://github.com/NUMde/compass-numapp-backend[backend]. This might then lead to another questionnaire.
 --
@@ -79,7 +79,7 @@ Aside from opening menus and links, the app does basically just four things:
 --
 The app will query the user. This happens almost every time a connection to the link:https://github.com/NUMde/compass-numapp-backend[backend] is established:
 
-** login -> user upadate
+** login -> user update
 ** manual refresh -> user update
 ** sending out a questionnaire -> user update
 ** sending out a report -> user update
@@ -96,7 +96,7 @@ Should the due date be exceeded then the local questionnaire will be deleted.
 . *The app renders a received questionnaire and allows the user to interact with it*
 +
 --
-The user ansers the questionnaire. The app checks if the questionnaire was answered completely (as only then it can be send to the link:https://github.com/NUMde/compass-numapp-backend[backend]).
+The user answers the questionnaire. The app checks if the questionnaire was answered completely (as only then it can be send to the link:https://github.com/NUMde/compass-numapp-backend[backend]).
 --
 
 . *The user sends out a completed questionnaire (or a report)*

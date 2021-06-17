@@ -1,7 +1,7 @@
 
 // (C) Copyright IBM Deutschland GmbH 2020.  All rights reserved.
 
-// this file contains functions that inteact with the AsysStorage
+// this file contains functions that interact with the AsyncStorage
 
 /***********************************************************************************************
 imports
@@ -94,7 +94,7 @@ const persistLastSubjectId = async subjectId => {
 }
 
 /**
- * loads the last used subjectId from the AsynStorage
+ * loads the last used subjectId from the AsyncStorage
  * @returns string | null
  */
 const loadLastSubjectId = async () => {
@@ -109,7 +109,7 @@ const loadLastSubjectId = async () => {
 }
 
 /**
- * deletes the last used subjectId from the AsynStorage
+ * deletes the last used subjectId from the AsyncStorage
  */
 const removeLastSubjectId = async () => {
 
@@ -245,7 +245,7 @@ const removeCategories = async subjectId => {
 
 /**
  * persists the current questionnaireItemMap object of the user
- * @param  {QuestionnaireItemMap} map qestionnaireItemMap object of the user
+ * @param  {QuestionnaireItemMap} map questionnaireItemMap object of the user
  * @param  {string} [subjectId] if of the user
  */
 const persistQuestionnaireItemMap = async (map, subjectId) => {
