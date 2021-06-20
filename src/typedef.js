@@ -55,11 +55,11 @@
  * @property {string}  [answerString] the answer-string of this condition
  * @property {string}  [answerDate] the answer-string of this condition
  * @property {string}  [answerTime] the answer-string of this condition
- * @property {string}  [answerCoding] the answer-string of this condition
- * @property {number}  [answerInteger] the answer-string of this condition
- * @property {number}  [answerDecimal] the answer-string of this condition
- * @property {boolean} [answerBoolean] the answer-string of this condition
- * @property {string}  [answerDateTime] the answer-string of this condition
+ * @property {string}  [answerCoding] the answer-coding of this condition
+ * @property {number}  [answerInteger] the answer-integer of this condition
+ * @property {number}  [answerDecimal] the answer-decimal of this condition
+ * @property {boolean} [answerBoolean] the answer-boolean of this condition
+ * @property {string}  [answerDateTime] the answer-date-time of this condition
  */
 
  /**

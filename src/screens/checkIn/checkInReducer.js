@@ -5,7 +5,6 @@
 import
 ***********************************************************************************************/
 
-import config from '../../config/configProvider'
 import localStorage from '../../services/localStorage/localStorage'
 
 /***********************************************************************************************
@@ -131,22 +130,35 @@ const valuesHandlers = {
 
 		// if multiple answers are allowed
 		if (values.answer.openAnswer) {
+
+			let contained = false
+			
 			// updates the answer-attribut in questionnaireItemMap to an array so that
 			// it can hold multiple answers
-			if (!Array.isArray(questionnaireItemMap[values.answer.linkId].answer)) {
-				questionnaireItemMap[values.answer.linkId].answer = []
-			}
-			// removes the answer is already present
-			if (questionnaireItemMap[values.answer.linkId].answer.includes(values.answer.answer)) {
-				questionnaireItemMap[values.answer.linkId].answer.splice(
-					questionnaireItemMap[values.answer.linkId].answer.indexOf(values.answer.answer),
-					1
+			if (!Array.isArray(questionnaireItemMap[values.answer.linkId].answer)) questionnaireItemMap[values.answer.linkId].answer = []
+
+			let answers = questionnaireItemMap[values.answer.linkId].answer
+
+			// removes the answer if already present
+			for(let i = answers.length - 1; i >= 0; i--) {
+				if(  
+					answers[i] === values.answer.answer || 
+					(
+						answers[i].code &&
+						answers[i].system &&
+						answers[i].code === values.answer.answer.code && 
+						answers[i].system === values.answer.answer.system
+					)
 				)
-			} 
-			// adds the answer if not already present
-			else {
-				questionnaireItemMap[values.answer.linkId].answer.push(values.answer.answer)
+				{
+					answers.splice(i, 1)
+					contained = true
+					break
+				}
 			}
+
+			// adds the answer if not already present
+			if(!contained) answers.push(values.answer.answer)
 		} 
 		// if its just a single-value answer
 		else {
@@ -385,16 +397,14 @@ support
  * @param  {any} item questionnaireItem
  */
 const traverseItem = (item, questionnaireItemMap) => {
+
 	// generates the item
 	questionnaireItemMap[item.linkId] = {
-		linkId: item.linkId,
+		...item,
 		done: false,
 		answer: null,
-		text: item.text,
 		type: item.type || 'ignore',
-		required: item.required || false,
-		enableWhen: item.enableWhen,
-		definition: item.definition,
+		required: item.required || false
 	}
 	// sets the started value to false if the item is category
 	if(item.linkId.length === 1) {
@@ -425,6 +435,9 @@ const generateQuestionnaireItemMap = (questionnaire, subjectId) => {
 	questionnaireItemMap.started = false
 	// used to identify the questionnaire
 	questionnaireItemMap.id = questionnaire.title
+	// used to build the questionnaire-response
+	questionnaireItemMap.url = questionnaire.url
+	questionnaireItemMap.identifier = questionnaire.identifier
 
 	// persists the last known questionnaireId in the AsyncStorage
 	setTimeout(() => {
