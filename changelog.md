@@ -5,7 +5,7 @@
 * Update dependencies
 * Minor code cleanup
 * Minor code cleanup
-* Merge pull request #21 from JohannesOehm/feature-answerOption-coding Adding support for Questionnaire.item.answerOption.valueCoding, fixin…
+* Merge pull request #21 from JohannesOehm/feature-answerOption-coding ,Adding support for Questionnaire.item.answerOption.valueCoding
 * Merge branch 'PR--feature-answerOption-coding' into feature-answerOption-coding
 * Minor fix concerning the use of regex expressions
 * Fixed some comformity problems of the generated questionnaire response
@@ -18,7 +18,7 @@
 **v1.0.7 (2021-06-08)**
 ---------------------------------------------------------------------------
 * Merge pull request #19 from JohannesOehm/bugfix-any-extension-creates-slider
-Fixing bug that every extension on a numeric type converts a input field into a slider.
+,Fixing bug that every extension on a numeric type converts a input field into a slider.
 * fix spelling errors
 
 
