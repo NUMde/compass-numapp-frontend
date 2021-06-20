@@ -38,7 +38,7 @@ service methods
  * was correctly answered.
  * @param {string} linkId linkId of a questionnaire-item
  */
-const checkExtension = linkId => {
+const checkRegExExtension = linkId => {
 
 	let props = store.getState().CheckIn
 
@@ -48,20 +48,12 @@ const checkExtension = linkId => {
 	*/
 	let item = props.questionnaireItemMap[linkId]
 
-	// if there is an extension and check it
-	if(item.extension && item.extension.length) {
-		
-		//runs through the extensions and tests it
-		for(let i = 0; i < item.extension.length; i++) {
+	let itemControlExtension = item?.extension?.find(e => e.url === "http://hl7.org/fhir/StructureDefinition/regex")
 
-			if(item.extension[i].valueString === "/\S+@\S+\.\S+/") {
-				return /\S+@\S+\.\S+/.test(props.questionnaireItemMap[item.linkId].answer)
-			}
-			else if(!RegExp(item.extension[i].valueString).test(props.questionnaireItemMap[item.linkId].answer)) {
-				return false
-			}
-		}
+	if(itemControlExtension?.valueString) {
+		return RegExp(itemControlExtension.valueString).test(props.questionnaireItemMap[item.linkId].answer)
 	}
+
 	// just returns true if there is no extension
 	return true
 }
@@ -312,7 +304,7 @@ const checkCompletionStateOfMultipleItems = (items, props) => {
 			returnValue = true
 		} 
 		// if the item does not met its own regEx
-		else if(!checkExtension(item.linkId)) {
+		else if(!checkRegExExtension(item.linkId)) {
 			returnValue = false
 		}
 		else {
@@ -485,6 +477,21 @@ const createResponseJSON = () => {
 	let props = store.getState().CheckIn
 
 	/**
+	 * return the correct answer object
+	 * @param  {{valueString?:string, valueInteger?: number, valueCoding?: Object}} answer answer-object
+	 */
+	const createAnswerObject = answer => {
+
+		if (typeof answer === "string") return { valueString: answer }
+
+		if (typeof answer === "number") return { valueInteger: answer }
+
+		if(typeof answer === "object") return { valueCoding: answer }
+		
+		return { valueString: answer }
+	}
+
+	/**
 	 * traverses a set of items and its children (and so on) and creates the structure
 	 * that will hold the answers of the questionnaire-response
 	 * @param  {QuestionnaireItem[]} items the questionnaire-items
@@ -531,6 +538,8 @@ const createResponseJSON = () => {
 						text: item.text,
 						// if there is a uui it will be coded into the definition-attribute
 						...(itemDetails.definition && {definition: itemDetails.definition}),
+						// if there is an extension...
+						...(itemDetails.extension && {extension: itemDetails.extension}),
 						answer: []
 					}
 
@@ -553,10 +562,7 @@ const createResponseJSON = () => {
 							break
 
 						case 'choice':
-							answerObject = {
-								// either there is an answer, or just null
-								valueString: String(itemDetails.answer),
-							}
+							answerObject = createAnswerObject(itemDetails.answer)
 							// traverse the child-items, if there are any and add them to the answer
 							childItems = item.item ? createItems(item.item) : []
 							if (childItems.length !== 0) answerObject.item = childItems
@@ -570,9 +576,7 @@ const createResponseJSON = () => {
 								// see?
 								itemDetails.answer.forEach(function (answer) {
 									// so now we create an object for each set answer
-									answerObject = { 
-										valueString: answer 
-									}
+									answerObject = createAnswerObject(answer)
 									// and check if there are any child-items.
 									// if yes: traverse the child-items and add them to the answer
 									childItems = item.item ? createItems(item.item, answer): []
@@ -586,7 +590,7 @@ const createResponseJSON = () => {
 							newItem.answer = [
 								{
 									// just the answer
-									valueString: String(itemDetails.answer)
+									valueString: itemDetails.answer ? String(itemDetails.answer) : null
 								}
 							]
 							break
@@ -641,21 +645,69 @@ const createResponseJSON = () => {
 		return newItems
 	}
 
-	// creates the actual questionnaireResponse
+	/**
+	* removes empty arrays and null-valued attributes
+	* @param  {QuestionnaireItem} rootItem the questionnaire-items
+	* @returns {Boolean}
+	*/
+	const cleanItem = (rootItem) => {
+
+		if(Array.isArray(rootItem)) {
+
+			rootItem.forEach((item, index) => {
+
+				if(!cleanItem(item)) rootItem.splice(index, 1)
+			})
+
+			return rootItem.length > 0
+		}
+
+		if (typeof rootItem === 'string' || rootItem instanceof String) {
+
+			return rootItem && rootItem.length && rootItem !== "NaN-NaN-NaN"
+		}
+
+		if((typeof rootItem === "object" || typeof rootItem === 'function') && (rootItem !== null)){
+
+			let hasProperties = false
+
+			for (let key in rootItem) {
+
+				if (rootItem.hasOwnProperty(key)) {
+
+					if(!cleanItem(rootItem[key])) {
+
+						delete rootItem[key]
+					}
+					else {
+
+						hasProperties = true
+					}
+				}
+			}
+
+			return rootItem.linkId ? rootItem.item || rootItem.answer ? hasProperties : false : hasProperties
+		}
+
+		return rootItem !== undefined && rootItem !== null && rootItem !== NaN
+	}
 	
 	/**
 	* the actual questionnaire response
 	* @type {QuestionnaireResponse}
 	*/
 	let questionnaireResponse = {
-		author: props.user.subjectId,
 		item: createItems(props.categories),
 		resourceType: 'QuestionnaireResponse',
-		identifier: props.user.subjectId + '-' + Date.now(),
 		status: props.questionnaireItemMap.done ? 'completed' : 'in-progress',
-		authored: new Date().toLocaleString("de-DE", {timeZone: "Europe/Berlin"}),
-		questionnaire: 'http://hl7.org/fhir/Questionnaire/FragebogenCOVID19_Kurzversion'
+		authored: new Date().toString(),
+		identifier: props.questionnaireItemMap.identifier,
+		resourceType: 'QuestionnaireResponse',
+		questionnaire: props.questionnaireItemMap.url
 	}
+
+	// removes empty entries
+	cleanItem(questionnaireResponse.item)
 
 	// console output
 	if(config.appConfig.logPureResponse) {
@@ -676,10 +728,10 @@ export
 ***********************************************************************************************/
 
 export default { 
-	getFormattedDate: getFormattedDate,
+	getFormattedDate,
 	createResponseJSON,
+	calculatePageProgress,
+	getCorrectlyFormattedAnswer,
 	checkDependenciesOfSingleItem,
-	getCorrectlyFormattedAnswer: getCorrectlyFormattedAnswer,
-	checkCompletionStateOfMultipleItems,
-	calculatePageProgress
+	checkCompletionStateOfMultipleItems
 }
