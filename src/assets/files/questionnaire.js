@@ -69,11 +69,11 @@ export default {
                     }
                 },
                     {
-                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-lowRangeLabel",
+                        "url": "https://num-compass.science/fhir/StructureDefinition/LowRangeLabel",
                         "valueString": "Niedrig"
                     },
                     {
-                        "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-highRangeLabel",
+                        "url": "https://num-compass.science/fhir/StructureDefinition/HighRangeLabel",
                         "valueString": "Hoch"
                     },
                     {
