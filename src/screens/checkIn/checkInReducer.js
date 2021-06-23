@@ -434,14 +434,15 @@ const generateQuestionnaireItemMap = (questionnaire, subjectId) => {
 	// used to determine if the questionnaire was even opened
 	questionnaireItemMap.started = false
 	// used to identify the questionnaire
-	questionnaireItemMap.id = questionnaire.title
-	// used to build the questionnaire-response
+	questionnaireItemMap.constructedId = questionnaire.url + "|" + questionnaire.version
 	questionnaireItemMap.url = questionnaire.url
+	questionnaireItemMap.version = questionnaire.version
+	// used to build the questionnaire-response
 	questionnaireItemMap.identifier = questionnaire.identifier
 
 	// persists the last known questionnaireId in the AsyncStorage
-	setTimeout(() => {
-		localStorage.persistLastQuestionnaireId(questionnaire.title, subjectId)
+	setTimeout(async () => {
+		localStorage.persistLastQuestionnaireId(questionnaireItemMap.constructedId, subjectId)
 	}, 0)
 
 	return questionnaireItemMap
