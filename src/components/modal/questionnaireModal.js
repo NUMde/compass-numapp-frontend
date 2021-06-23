@@ -36,7 +36,8 @@ import '../../typedef'
 import exportService from '../../services/questionnaireAnalyzer/questionnaireAnalyzer'
 import setAccessibilityResponder from '../../services/accessibility/setAccessbilityResponder'
 import config from '../../config/configProvider'
-import ProgressBar from '../../components/modal/progressbar'
+import ProgressBar from '../../components/modal/progressbar';
+import { Picker } from '@react-native-picker/picker'
 
 /***********************************************************************************************
 component:
@@ -340,7 +341,25 @@ class QuestionnaireModal extends Component {
 						{item.text}
 				</Text>
 
-				{/* renders all answer options */}
+				{ item.extension && 
+				item.extension[0].valueCodeableConcept && 
+				item.extension[0].valueCodeableConcept.CodeableConcept && 
+				item.extension[0].valueCodeableConcept.CodeableConcept.coding &&
+				item.extension[0].valueCodeableConcept.CodeableConcept.coding[0].code === "drop-down" ? 
+				<View>
+					<Picker
+						selectedValue={this.props.questionnaireItemMap[item.linkId].answer}
+						onValueChange={value => {this.props.actions.setAnswer({linkId: item.linkId, answer: value})}}
+					>
+						{item.answerOption.map((answerOption, index) => {
+							return <Picker.Item
+								label={answerOption.valueString}
+								value={answerOption.valueString}
+								key={index}
+							/>
+						})}
+					</Picker>
+				</View> : 
 				<View>
 					{item.answerOption.map((answerOption, index) => {
 						return (
@@ -373,7 +392,10 @@ class QuestionnaireModal extends Component {
 							/>
 						)
 					})}
-				</View>
+				</View>}
+				{/* renders all answer options */}
+				
+			
 			</View>
 		) : null
 	}
