@@ -8,7 +8,6 @@ import { Alert} from 'react-native'
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
-import { Push } from 'bmd-push-react-native'
 
 import store from '../../store'
 
@@ -91,53 +90,57 @@ class CheckInContainer extends Component {
 	   should it contain no deviceId the push-registration will be triggered
 	 */
 	registerPush = async () => {
-		// creates the options-object for the push-registration and sends out the request
-		Push.register({
-			"subjectId": this.props.user.subjectId
-		})
-		.then(response => {
-			// redux output
-			this.props.actions.setupPushServiceSuccess()
-			// persists the response as new notificationState.
-			// this also contains the deviceId which prohibits the registration from
-			// being triggered the next time
-			localStorage.persistNotificationState(response)
-		})
-		.catch((err) => {
-			// redux output
-			this.props.actions.setupPushServiceFail()
-		})
+		return true
+		// // creates the options-object for the push-registration and sends out the request
+		// Push.register({
+		// 	"subjectId": this.props.user.subjectId
+		// })
+		// .then(response => {
+		// 	// redux output
+		// 	this.props.actions.setupPushServiceSuccess()
+		// 	// persists the response as new notificationState.
+		// 	// this also contains the deviceId which prohibits the registration from
+		// 	// being triggered the next time
+		// 	localStorage.persistNotificationState(response)
+		// })
+		// .catch((err) => {
+		// 	// redux output
+		// 	this.props.actions.setupPushServiceFail()
+		// })
 	}
 
 	/**
 	 * initializes the push-service-registration
 	 */
 	initPush = async () => {
-		// gets the current user
-		const sessionData = store.getState().CheckIn.user
-		// gets the notificationState that was persisted last time - if there was no
-		// last time then the initial value is FALSE
-		const notificationState = await localStorage.loadNotificationState()
 
-		// if there is a user
-		if(sessionData && (!notificationState || !notificationState.deviceId)) {
-			// redux output
-			this.props.actions.setupPushServiceStart()
-			// asks the user to allow push notifications
-			Push.init({
-				"appGUID": sessionData.pushAppGUID,
-				"clientSecret": sessionData.pushClientSecret,
-				"region": "eu-de"
-			})
-			.then(() =>  {
-				// triggers the execution
-				this.registerPush()
-			})
-			.catch(() => {
-				// redux output
-				this.props.actions.setupPushServiceFail()
-			})
-		}
+		return true
+
+		// // gets the current user
+		// const sessionData = store.getState().CheckIn.user
+		// // gets the notificationState that was persisted last time - if there was no
+		// // last time then the initial value is FALSE
+		// const notificationState = await localStorage.loadNotificationState()
+
+		// // if there is a user
+		// if(sessionData && (!notificationState || !notificationState.deviceId)) {
+		// 	// redux output
+		// 	this.props.actions.setupPushServiceStart()
+		// 	// asks the user to allow push notifications
+		// 	Push.init({
+		// 		"appGUID": sessionData.pushAppGUID,
+		// 		"clientSecret": sessionData.pushClientSecret,
+		// 		"region": "eu-de"
+		// 	})
+		// 	.then(() =>  {
+		// 		// triggers the execution
+		// 		this.registerPush()
+		// 	})
+		// 	.catch(() => {
+		// 		// redux output
+		// 		this.props.actions.setupPushServiceFail()
+		// 	})
+		// }
 	}
 
 	// methods: procuring questionnaire

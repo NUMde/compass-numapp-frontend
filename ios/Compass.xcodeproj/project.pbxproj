@@ -16,6 +16,7 @@
 		4BC0E6D3243DDFD200AC822E /* IBMPlexSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4BC0E6CF243DDFD200AC822E /* IBMPlexSans-LightItalic.ttf */; };
 		4D132C81EE2FFCDFF6666C3C /* Pods_Compass.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E80D8D1041D28E946359DD6 /* Pods_Compass.framework */; };
 		982B8A1C25123B840086FC0A /* empty_file.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982B8A1B25123B840086FC0A /* empty_file.swift */; };
+		98D1B82F2689F6A700968FA0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 98D1B82E2689F6A700968FA0 /* GoogleService-Info.plist */; };
 		98EE55502601FEB8001299B7 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98EE554F2601FEB7001299B7 /* Launch Screen.storyboard */; };
 		BA78BE4A2520D2640063C353 /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BA78BE3A2520D2640063C353 /* Fontisto.ttf */; };
 		BA78BE4B2520D2640063C353 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BA78BE3B2520D2640063C353 /* Octicons.ttf */; };
@@ -65,6 +66,7 @@
 		982B8A1A25123B830086FC0A /* Compass-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Compass-Bridging-Header.h"; sourceTree = "<group>"; };
 		982B8A1B25123B840086FC0A /* empty_file.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = empty_file.swift; sourceTree = "<group>"; };
 		982B8A1D25123C8D0086FC0A /* Compass.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Compass.entitlements; path = Compass/Compass.entitlements; sourceTree = "<group>"; };
+		98D1B82E2689F6A700968FA0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		98EE554F2601FEB7001299B7 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		9A3A277A4353424498BDAC95 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		AB9D53A014F944239FA61326 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 		13B07FAE1A68108700A75B9A /* Compass */ = {
 			isa = PBXGroup;
 			children = (
+				98D1B82E2689F6A700968FA0 /* GoogleService-Info.plist */,
 				982B8A1D25123C8D0086FC0A /* Compass.entitlements */,
 				4BC0E6CB243DDFBA00AC822E /* IBMFonts */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
@@ -252,7 +255,7 @@
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				3F03A062BA8009E8500D3E5E /* [CP] Embed Pods Frameworks */,
-				21A14DA94D540B0E110BB505 /* [CP-User] [RNFB] Core Configuration */,
+				13C095EFFA04AD9953CAF2B3 /* [CP-User] [RNFB] Core Configuration */,
 			);
 			buildRules = (
 			);
@@ -321,6 +324,7 @@
 				4BC0E6D1243DDFD200AC822E /* IBMPlexSans-SemiBold.ttf in Resources */,
 				4BC0E6D0243DDFD200AC822E /* IBMPlexSans-Italic.ttf in Resources */,
 				BA78BE4A2520D2640063C353 /* Fontisto.ttf in Resources */,
+				98D1B82F2689F6A700968FA0 /* GoogleService-Info.plist in Resources */,
 				BA78BE4F2520D2640063C353 /* MaterialCommunityIcons.ttf in Resources */,
 				BA78BE542520D2640063C353 /* FontAwesome5_Regular.ttf in Resources */,
 				BA78BE4C2520D2640063C353 /* Feather.ttf in Resources */,
@@ -344,7 +348,7 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
-		21A14DA94D540B0E110BB505 /* [CP-User] [RNFB] Core Configuration */ = {
+		13C095EFFA04AD9953CAF2B3 /* [CP-User] [RNFB] Core Configuration */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -364,9 +368,6 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Compass/Pods-Compass-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/BMSAnalyticsAPI/BMSAnalyticsAPI.framework",
-				"${BUILT_PRODUCTS_DIR}/BMSCore/BMSCore.framework",
-				"${BUILT_PRODUCTS_DIR}/BMSPush/BMSPush.framework",
 				"${BUILT_PRODUCTS_DIR}/DoubleConversion/DoubleConversion.framework",
 				"${BUILT_PRODUCTS_DIR}/EXAppLoaderProvider/EXAppLoaderProvider.framework",
 				"${BUILT_PRODUCTS_DIR}/EXConstants/EXConstants.framework",
@@ -375,6 +376,8 @@
 				"${BUILT_PRODUCTS_DIR}/FBReactNativeSpec/FBReactNativeSpec.framework",
 				"${BUILT_PRODUCTS_DIR}/FirebaseCore/FirebaseCore.framework",
 				"${BUILT_PRODUCTS_DIR}/FirebaseCoreDiagnostics/FirebaseCoreDiagnostics.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseInstallations/FirebaseInstallations.framework",
+				"${BUILT_PRODUCTS_DIR}/FirebaseMessaging/FirebaseMessaging.framework",
 				"${BUILT_PRODUCTS_DIR}/Folly/folly.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleDataTransport/GoogleDataTransport.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
@@ -385,6 +388,7 @@
 				"${BUILT_PRODUCTS_DIR}/RNCPicker/RNCPicker.framework",
 				"${BUILT_PRODUCTS_DIR}/RNDateTimePicker/RNDateTimePicker.framework",
 				"${BUILT_PRODUCTS_DIR}/RNFBApp/RNFBApp.framework",
+				"${BUILT_PRODUCTS_DIR}/RNFBMessaging/RNFBMessaging.framework",
 				"${BUILT_PRODUCTS_DIR}/RNGestureHandler/RNGestureHandler.framework",
 				"${BUILT_PRODUCTS_DIR}/RNSVG/RNSVG.framework",
 				"${BUILT_PRODUCTS_DIR}/RNScreens/RNScreens.framework",
@@ -418,9 +422,6 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BMSAnalyticsAPI.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BMSCore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BMSPush.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DoubleConversion.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EXAppLoaderProvider.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EXConstants.framework",
@@ -429,6 +430,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBReactNativeSpec.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseCoreDiagnostics.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseInstallations.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FirebaseMessaging.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/folly.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleDataTransport.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
@@ -439,6 +442,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNCPicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNDateTimePicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNFBApp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNFBMessaging.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNGestureHandler.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNSVG.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNScreens.framework",
