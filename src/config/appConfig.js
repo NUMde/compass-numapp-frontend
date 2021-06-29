@@ -151,6 +151,22 @@ const conf = {
 	 * persists all relevant information about the notification-service */
 	notificationState: '@COMPASS_STORE:notification_state',
 
+	// push notification
+	/*-----------------------------------------------------------------------------------*/
+
+	/** push:
+	 * if set to true the app tries to connect to a FCM instance that in turn will be able 
+	 * to send out push notifications reminding the participants to open the app. 
+	 * 
+	 * To establish the connections three other files must be updated:
+	 * - AppDelegate.m // comment-in line 25
+	 * - google-services.json // replace with your FCM credentials
+	 * - GoogleService-Info.plist replace with your FCM credentials
+	 * 
+	 * WARNING: The app will build if those files are not updated accordingly.
+	 * */
+	 connectToFCM: false,
+
 	// rest endpoints
 	/*-----------------------------------------------------------------------------------*/
 
