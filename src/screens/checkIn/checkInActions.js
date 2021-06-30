@@ -324,3 +324,12 @@ export const setupPushServiceFail = () => dispatch => {
 		type: 'SETUP_PUSH_SERVICE_FAIL'
 	})
 }
+
+/**
+ * failure of setting up the push service
+ */
+ export const setupPushServiceNoUpdate = () => dispatch => {
+	dispatch({
+		type: 'FCM_DID_NOT_CHANGE_SO_NO_UPDATE'
+	})
+}

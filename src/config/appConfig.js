@@ -149,7 +149,7 @@ const conf = {
 
 	/** local storage identifier:
 	 * persists all relevant information about the notification-service */
-	notificationState: '@COMPASS_STORE:notification_state',
+	FCMToken: '@COMPASS_STORE:fcm_token',
 
 	// push notification
 	/*-----------------------------------------------------------------------------------*/
@@ -166,6 +166,9 @@ const conf = {
 	 * WARNING: The app will build if those files are not updated accordingly.
 	 * */
 	connectToFCM: true,
+
+	// updates the locally generated device token with the backend on each user update
+	reconnectOnEachUserUpdate: false,
 
 	// rest endpoints
 	/*-----------------------------------------------------------------------------------*/

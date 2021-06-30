@@ -91,7 +91,7 @@ The following values carry the strings used to generate the names of the values 
 ** The subject-id of the user last logged in
 * *lastQuestionnaireId*
 ** Part of the identifier used to persist the id of the last active questionnaire of the last active user
-* *notificationState*
+* *FCMToken*
 ** Part of the identifier used to persist all relevant information about the notification-service
 
 == Push Notifications

@@ -81,7 +81,7 @@ const getUserUpdate = async () => {
  * @param  {string} subjectId string identifying the user
  * @param  {string} token the token
  */
-const updateDeviceToken = async () => {
+const updateDeviceToken = async (subjectId, token) => {
 	return axios.post(
 		config.appConfig.endpoints.updateToken,
 		{
