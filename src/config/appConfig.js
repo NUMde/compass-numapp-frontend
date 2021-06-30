@@ -46,7 +46,7 @@ const { width } = Dimensions.get('window')
 const baseUriProductive = ''
 
 // development-base-backend-uri
-const baseUriDevelopment = 'http://127.0.0.1/api/'
+const baseUriDevelopment = 'http://127.0.0.1:8080/api/'
 
 /***********************************************************************************************
 configuration
@@ -167,7 +167,7 @@ const conf = {
 	 * */
 	connectToFCM: false,
 
-	// updates the locally generated device token with the backend on each user-update
+	// updates the locally generated device token with the backend on each user update
 	reconnectOnEachUserUpdate: false,
 
 	// rest endpoints
@@ -200,7 +200,7 @@ const conf = {
 		
 		/** rest:
 		 * endpoint to receive the questionnaire */
-		updateToken: (__DEV__ ? baseUriDevelopment : baseUriProductive) + 'participant/update-device-token/',
+		updateToken: (__DEV__ ? baseUriDevelopment : baseUriProductive) + 'participant/update-device-token',
 	},
 	
 	// ui
