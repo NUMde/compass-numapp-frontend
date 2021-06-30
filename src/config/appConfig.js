@@ -46,7 +46,7 @@ const { width } = Dimensions.get('window')
 const baseUriProductive = ''
 
 // development-base-backend-uri
-const baseUriDevelopment = 'http://127.0.0.1:8080/api/'
+const baseUriDevelopment = 'http://192.168.4.34:8080/api/'
 
 /***********************************************************************************************
 configuration
@@ -165,7 +165,7 @@ const conf = {
 	 * 
 	 * WARNING: The app will build if those files are not updated accordingly.
 	 * */
-	 connectToFCM: false,
+	connectToFCM: true,
 
 	// rest endpoints
 	/*-----------------------------------------------------------------------------------*/
@@ -194,6 +194,10 @@ const conf = {
 		/** rest:
 		 * endpoint to receive the questionnaire */
 		getQuestionnaire: (__DEV__ ? baseUriDevelopment : baseUriProductive) + 'questionnaire/',
+		
+		/** rest:
+		 * endpoint to receive the questionnaire */
+		updateToken: (__DEV__ ? baseUriDevelopment : baseUriProductive) + 'token/',
 	},
 	
 	// ui

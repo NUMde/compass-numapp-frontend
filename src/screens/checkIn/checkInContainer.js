@@ -105,8 +105,9 @@ class CheckInContainer extends Component {
 			// redux output
 			this.props.actions.setupPushServiceStart()
 
-			// requests the permission
+			// requests the permission and gets the token
 			const authStatus = await messaging().requestPermission()
+			let token = await messaging().getToken()
 
 			// if everything checks out...
 			if (authStatus === messaging.AuthorizationStatus.AUTHORIZED || authStatus === messaging.AuthorizationStatus.PROVISIONAL) {
@@ -115,7 +116,7 @@ class CheckInContainer extends Component {
 				// persists the response as new notificationState.
 				// this also contains the deviceId which prohibits the registration from
 				// being triggered the next time
-				localStorage.persistNotificationState(authStatus.toString())
+				localStorage.persistNotificationState(token)
 
 				return true
 			}

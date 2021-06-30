@@ -59,6 +59,9 @@ const generateEncapsuledMessage = (subjectId, type, body = {}) => {
 clients
 ***********************************************************************************************/
 
+// push
+/*-----------------------------------------------------------------------------------*/
+
 // user handling
 /*-----------------------------------------------------------------------------------*/
 
@@ -71,6 +74,27 @@ const getUserUpdate = async () => {
 	return axios.get(
 		config.appConfig.endpoints.getUser + subjectId
 	)
+}
+
+/**
+ * updates the backend with the current FCM token
+ * @param  {string} subjectId string identifying the user
+ * @param  {string} token the token
+ */
+const updateDeviceToken = async () => {
+	return axios.post(
+		config.appConfig.endpoints.updateToken,
+		{
+			headers: {
+				Authorization: createAuthorizationToken(),
+				Accept: 'application/json',
+			},
+			params: {
+				subjectId,
+				token
+			}
+		}
+	)	
 }
 
 // reports
@@ -158,5 +182,6 @@ export default {
 	sendReport,
 	getBaseQuestionnaire,
 	sendQuestionnaire,
-	getUserUpdate
+	getUserUpdate,
+	updateDeviceToken
 }
