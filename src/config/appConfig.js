@@ -46,7 +46,7 @@ const { width } = Dimensions.get('window')
 const baseUriProductive = ''
 
 // development-base-backend-uri
-const baseUriDevelopment = 'http://192.168.4.34:8080/api/'
+const baseUriDevelopment = 'http://127.0.0.1/api/'
 
 /***********************************************************************************************
 configuration
@@ -163,11 +163,11 @@ const conf = {
 	 * - google-services.json // replace with your FCM credentials
 	 * - GoogleService-Info.plist replace with your FCM credentials
 	 * 
-	 * WARNING: The app will build if those files are not updated accordingly.
+	 * WARNING: The app will NOT build if those files are not updated accordingly.
 	 * */
 	connectToFCM: false,
 
-	// updates the locally generated device token with the backend on each user update
+	// updates the locally generated device token with the backend on each user-update
 	reconnectOnEachUserUpdate: false,
 
 	// rest endpoints
@@ -200,7 +200,7 @@ const conf = {
 		
 		/** rest:
 		 * endpoint to receive the questionnaire */
-		updateToken: (__DEV__ ? baseUriDevelopment : baseUriProductive) + 'token/',
+		updateToken: (__DEV__ ? baseUriDevelopment : baseUriProductive) + 'participant/update-device-token/',
 	},
 	
 	// ui
