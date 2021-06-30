@@ -313,7 +313,7 @@ export const setupPushServiceStart = () => dispatch => {
 export const setupPushServiceSuccess = (response, token) => dispatch => {
 	dispatch({
 		type: 'SETUP_PUSH_SERVICE_SUCCESS',
-		reponse,
+		response,
 		token
 	})
 }
