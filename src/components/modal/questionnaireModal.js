@@ -37,6 +37,7 @@ import exportService from '../../services/questionnaireAnalyzer/questionnaireAna
 import setAccessibilityResponder from '../../services/accessibility/setAccessbilityResponder'
 import config from '../../config/configProvider'
 import ProgressBar from '../../components/modal/progressbar'
+import { Picker } from '@react-native-picker/picker'
 
 /***********************************************************************************************
 component:
@@ -340,7 +341,25 @@ class QuestionnaireModal extends Component {
 						{item.text}
 				</Text>
 
-				{/* renders all answer options */}
+				{ item.extension && 
+				item.extension[0].valueCodeableConcept && 
+				item.extension[0].valueCodeableConcept.CodeableConcept && 
+				item.extension[0].valueCodeableConcept.CodeableConcept.coding &&
+				item.extension[0].valueCodeableConcept.CodeableConcept.coding[0].code === "drop-down" ? 
+				<View>
+					<Picker
+						selectedValue={this.props.questionnaireItemMap[item.linkId].answer}
+						onValueChange={value => {this.props.actions.setAnswer({linkId: item.linkId, answer: value})}}
+					>
+						{item.answerOption.map((answerOption, index) => {
+							return <Picker.Item
+								label={answerOption.valueString}
+								value={answerOption.valueString}
+								key={index}
+							/>
+						})}
+					</Picker>
+				</View> : 
 				<View>
 					{item.answerOption.map((answerOption, index) => {
 						return (
@@ -373,7 +392,10 @@ class QuestionnaireModal extends Component {
 							/>
 						)
 					})}
-				</View>
+				</View>}
+				{/* renders all answer options */}
+				
+			
 			</View>
 		) : null
 	}
@@ -616,8 +638,8 @@ class QuestionnaireModal extends Component {
 			'questionnaire-sliderStepVal' : 1,
 			'minValue' : 2,
 			'maxValue' : 300,
-			'questionnaire-highRangeLabel' : '',
-			'questionnaire-lowRangeLabel' : ''
+			'HighRangeLabel' : '',
+			'LowRangeLabel' : ''
 		})
 
 		// gets the slider properties from the extension-attribute and feeds it to the
@@ -638,9 +660,9 @@ class QuestionnaireModal extends Component {
 					minimumTrackTintColor={config.theme.colors.primary}
 					maximumTrackTintColor={config.theme.colors.primary}
 					accessibilityHint={sliderProperties['minValue'] + config.text.accessibility.questionnaire.sliderFieldEquals + 
-										sliderProperties['questionnaire-lowRangeLabel'] + config.text.accessibility.questionnaire.sliderFieldAnd + 
+										sliderProperties['LowRangeLabel'] + config.text.accessibility.questionnaire.sliderFieldAnd + 
 										sliderProperties['maxValue'] + config.text.accessibility.questionnaire.sliderFieldEquals + 
-										sliderProperties['questionnaire-highRangeLabel']}
+										sliderProperties['HighRangeLabel']}
 					onSlidingComplete={(value) => {
 							this.props.actions.setAnswer({
 								linkId: item.linkId,
@@ -651,8 +673,8 @@ class QuestionnaireModal extends Component {
 					value={typeof this.props.questionnaireItemMap[item.linkId].answer === 'number' ? this.props.questionnaireItemMap[item.linkId].answer : ((sliderProperties['minValue']+sliderProperties['maxValue'])/2)}
         		/>
 				<View style={localStyle.sliderLabel}>
-					<Text style={localStyle.sliderTextMin}>{sliderProperties['questionnaire-lowRangeLabel']}</Text>
-					<Text style={localStyle.sliderTextMax}>{sliderProperties['questionnaire-highRangeLabel']}</Text>
+					<Text style={localStyle.sliderTextMin}>{sliderProperties['LowRangeLabel']}</Text>
+					<Text style={localStyle.sliderTextMax}>{sliderProperties['HighRangeLabel']}</Text>
                 </View>
 			</View>
 		) : null

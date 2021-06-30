@@ -228,7 +228,7 @@ class CheckInContainer extends Component {
 			if(lastQuestionnaireId && !this.props.noNewQuestionnaireAvailableYet) {
 				// checks if the id of the persisted questionnaire matches the one of the
 				// questionnaire the user is supposed to look at now
-				if( config.appConfig.skipIncomingQuestionnaireCheck || lastQuestionnaireId === data.current_questionnaire_id) {
+				if(config.appConfig.skipIncomingQuestionnaireCheck || lastQuestionnaireId === data.current_questionnaire_id) {
 					// loads the persisted questionnaire
 					this.checkForCachedData()
 				}
