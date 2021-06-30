@@ -310,18 +310,21 @@ export const setupPushServiceStart = () => dispatch => {
 /**
  * success of setting up the push service
  */
-export const setupPushServiceSuccess= () => dispatch => {
+export const setupPushServiceSuccess = (response, token) => dispatch => {
 	dispatch({
-		type: 'SETUP_PUSH_SERVICE_SUCCESS'
+		type: 'SETUP_PUSH_SERVICE_SUCCESS',
+		reponse,
+		token
 	})
 }
 
 /**
  * failure of setting up the push service
  */
-export const setupPushServiceFail = () => dispatch => {
+export const setupPushServiceFail = error => dispatch => {
 	dispatch({
-		type: 'SETUP_PUSH_SERVICE_FAIL'
+		type: 'SETUP_PUSH_SERVICE_FAIL',
+		error
 	})
 }
 
