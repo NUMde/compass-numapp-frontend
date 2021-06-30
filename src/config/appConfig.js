@@ -165,7 +165,7 @@ const conf = {
 	 * 
 	 * WARNING: The app will build if those files are not updated accordingly.
 	 * */
-	connectToFCM: true,
+	connectToFCM: false,
 
 	// updates the locally generated device token with the backend on each user update
 	reconnectOnEachUserUpdate: false,
