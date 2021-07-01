@@ -589,7 +589,6 @@ class QuestionnaireModal extends Component {
 					</TouchableOpacity>
 				)}
 
-				{/* ios datepicker */}
 				{(this.props.showDatePicker ) && (
 					<DateTimePicker
 						value={this.props.questionnaireItemMap[item.linkId].answer || new Date()}
@@ -597,11 +596,13 @@ class QuestionnaireModal extends Component {
 						locale='de-de'
 						display='spinner'
 						onChange={(event, date) => {
-							this.props.actions.setAnswer({ linkId: item.linkId, answer: date, showDatePicker: true})
+							this.props.actions.setAnswer({ linkId: item.linkId, answer: date, showDatePicker:
+								Platform.OS === "ios" ? true : false})
 							}
 						}
 					/>
 				)}
+				{/* ios datepicker- Buttons*/}
 				{(Platform.OS === "ios") && (this.props.showDatePicker ) && (
 					<View style={localStyle.dateTimePickerButtonBar}>
 						<Button title = {config.text.generic.abort}
