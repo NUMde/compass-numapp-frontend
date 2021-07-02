@@ -46,7 +46,7 @@ const { width } = Dimensions.get('window')
 const baseUriProductive = ''
 
 // development-base-backend-uri
-const baseUriDevelopment = 'http://127.0.0.1/api/'
+const baseUriDevelopment = 'http://127.0.0.1:8080/api/'
 
 /***********************************************************************************************
 configuration
@@ -165,10 +165,10 @@ const conf = {
 	 * 
 	 * WARNING: The app will NOT build if those files are not updated accordingly.
 	 * */
-	connectToFCM: false,
+	connectToFCM: true,
 
 	// updates the locally generated device token with the backend on each user-update
-	reconnectOnEachUserUpdate: false,
+	reconnectOnEachUserUpdate: true,
 
 	// rest endpoints
 	/*-----------------------------------------------------------------------------------*/

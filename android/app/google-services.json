@@ -1,40 +1,40 @@
 {
   "project_info": {
-    "project_number": "TO BE UPDATED",
-    "project_id": "TO BE UPDATED",
-    "storage_bucket": "TO BE UPDATED"
+    "project_number": "77085736646",
+    "project_id": "gospace-f728b",
+    "storage_bucket": "gospace-f728b.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "TO BE UPDATED",
+        "mobilesdk_app_id": "1:77085736646:android:5f25d59a84ee1b198761c7",
         "android_client_info": {
-          "package_name": "TO BE UPDATED"
+          "package_name": "de.num.compass.android"
         }
       },
       "oauth_client": [
         {
-          "client_id": "TO BE UPDATED",
+          "client_id": "77085736646-utp1ftr6vdghc9qol9slm9lki3nuj604.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "TO BE UPDATED"
+          "current_key": "AIzaSyBAxocOFHiDVIIrVHLnG9X0rDHLTWfXWc8"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "TO BE UPDATED",
+              "client_id": "77085736646-utp1ftr6vdghc9qol9slm9lki3nuj604.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "TO BE UPDATED",
+              "client_id": "77085736646-fdqpm280njndvg2e8ojliij2f4qfoija.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "TO BE UPDATED"
+                "bundle_id": "com.alexandergottschall.gospace"
               }
             }
           ]
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "configuration_version": "TO BE UPDATED"
+  "configuration_version": "1"
 }
