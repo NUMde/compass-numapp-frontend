@@ -83,7 +83,7 @@ const getUserUpdate = async () => {
  */
 const updateDeviceToken = async (subjectId, token) => {
 	return axios.post(
-		config.appConfig.endpoints.updateToken,
+		config.appConfig.endpoints.updateToken + subjectId,
 		{
 			token
 		},
@@ -91,9 +91,6 @@ const updateDeviceToken = async (subjectId, token) => {
 			headers: {
 				Authorization: createAuthorizationToken(),
 				Accept: 'application/json',
-			},
-			params: {
-				subjectId
 			}
 		}
 	)	
