@@ -572,7 +572,7 @@ class QuestionnaireModal extends Component {
 				<Text style={{...localStyle.contentTitle}}>{item.text}</Text>
 
 				{/* android datepicker */}
-				{Platform.OS !== "ios" && (
+				{(
 					<TouchableOpacity 
 						onPress={this.props.actions.showDatePicker} 
 						// accessibilityLabel={ }
@@ -589,16 +589,39 @@ class QuestionnaireModal extends Component {
 					</TouchableOpacity>
 				)}
 
-				{/* ios datepicker */}
-				{( Platform.OS === "ios" || this.props.showDatePicker ) && (
+				{(this.props.showDatePicker ) && (
 					<DateTimePicker
 						value={this.props.questionnaireItemMap[item.linkId].answer || new Date()}
 						mode='date'
 						locale='de-de'
 						display='spinner'
-						onChange={(event, date) => this.props.actions.setAnswer({ linkId: item.linkId, answer: date })}
-
+						onChange={(event, date) => {
+							this.props.actions.setAnswer({ linkId: item.linkId, answer: date, showDatePicker:
+								Platform.OS === "ios" ? true : false})
+							}
+						}
 					/>
+				)}
+				{/* ios datepicker- Buttons*/}
+				{(Platform.OS === "ios") && (this.props.showDatePicker ) && (
+					<View style={localStyle.dateTimePickerButtonBar}>
+						<Button title = {config.text.generic.abort}
+							onPress = {() => {
+								this.props.actions.setAnswer({ linkId: item.linkId, answer: "", showDatePicker: false})
+							}}
+							style = {localStyle.dateTimePickerButton}
+							type = "clear"
+							titleStyle ={{color: config.theme.colors.accent4}}
+						/>
+						<Button title = {config.text.generic.ok} color= {config.theme.colors.secondary}
+							onPress = {() => {
+								const selectedDate = this.props.questionnaireItemMap[item.linkId].answer|| new Date()
+								this.props.actions.setAnswer({ linkId: item.linkId, answer: selectedDate, showDatePicker:false })
+							}}
+							type = "clear"
+							titleStyle ={{color: config.theme.colors.accent4}}
+						/>
+					</View>
 				)}
 				
 			</View>
@@ -1034,7 +1057,19 @@ const localStyle = StyleSheet.create({
 		flex: 1,
 		flexDirection: 'row',
 		justifyContent: 'space-between'
-    }
+    },
+	dateTimePickerButtonBar: {
+		flexWrap: "nowrap",
+		textAlign: "center",
+		flexDirection: "row",
+		justifyContent: "flex-end",
+		backgroundColor: 'transparent',
+		paddingRight: 20,
+	  },
+	  dateTimePickerButton: {
+		paddingRight: 40,
+	  },
+
 })
 
 /***********************************************************************************************

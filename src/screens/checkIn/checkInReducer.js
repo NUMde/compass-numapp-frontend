@@ -173,7 +173,7 @@ const valuesHandlers = {
 
 		return {
 			...state,
-			showDatePicker: false,
+			showDatePicker: values.answer.showDatePicker,
 			questionnaireItemMap
 		}
 	},
