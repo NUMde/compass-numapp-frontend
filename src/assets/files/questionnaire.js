@@ -557,7 +557,42 @@ export default {
                     }
                 },
             ],
-          } 
+          } ,
+          {
+              "linkId": "1.40",
+              "text": "Das ist eine Frage mit hidden-extension",
+              "type": "string",
+              "extension":[
+              {
+                  "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+                  "valueBoolean": true
+              }
+          ]
+          },
+          {
+            "linkId": "1.41",
+            "text": "Diese Frage besteht aus zwei Teilen. Der zweiter Teil wurde auf Hidden gesetzt und wird nicht angezeigt.",
+            "type": "group",
+            "required": true,
+            "item": [{
+                "linkId": "1.41.1",
+                "text": "Abfrage Datum",
+                "type": "date",
+                "required": true
+            },
+                {
+                    "linkId": "1.41.2",
+                    "text": "Diese Frage wird nur bei erwarteter Eingabe angezeigt",
+                    "type": "string",
+                    "extension":[
+                        {
+                            "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
+                            "valueBoolean": true
+                        }
+                    ]
+                }
+            ]
+        }
        ]
     }, 
        
