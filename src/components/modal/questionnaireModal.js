@@ -343,9 +343,8 @@ class QuestionnaireModal extends Component {
 
 				{ item.extension && 
 				item.extension[0].valueCodeableConcept && 
-				item.extension[0].valueCodeableConcept.CodeableConcept && 
-				item.extension[0].valueCodeableConcept.CodeableConcept.coding &&
-				item.extension[0].valueCodeableConcept.CodeableConcept.coding[0].code === "drop-down" ? 
+				item.extension[0].valueCodeableConcept.coding &&
+				item.extension[0].valueCodeableConcept.coding[0].code === "drop-down" ? 
 				<View>
 					<Picker
 						selectedValue={this.props.questionnaireItemMap[item.linkId].answer}

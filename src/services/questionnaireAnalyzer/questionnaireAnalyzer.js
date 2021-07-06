@@ -398,9 +398,13 @@ const checkDependenciesOfSingleItem = item => {
 	let returnValue = false
 
 	let props = store.getState().CheckIn
-
+	
+	//if item is supposed to be hidden
+	if(item.extension && item.extension[0].valueBoolean && item.extension[0].valueBoolean === true){
+		returnValue = false
+	}
 	// if the item has a set of conditions
-	if (item && item.enableWhen) {
+	else if (item && item.enableWhen) {
 
 		// checks if the items mentioned in the conditions are even answered...
 		if (!checkIfAnswersToConditionsAreAvailable (item )) {
