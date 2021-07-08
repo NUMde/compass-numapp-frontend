@@ -162,8 +162,20 @@ const valuesHandlers = {
 		} 
 		// if its just a single-value answer
 		else {
-			// just updates the answer value
-			questionnaireItemMap[values.answer.linkId].answer = values.answer.answer
+
+			// nulls an empty string
+			if(typeof values.answer.answer === 'string' && !values.answer.answer) values.answer.answer = null
+
+			// writes the open-answer value in a separate variable
+			if(values.answer.isOpenAnswer) {
+				let answer = questionnaireItemMap[values.answer.linkId].answerOption.filter(e => e.isOpenQuestionAnswer)[0]
+				answer.answer = values.answer.answer
+			}
+
+			if(!values.answer.isAdditionalAnswer) {
+				// just updates the answer value
+				questionnaireItemMap[values.answer.linkId].answer = values.answer.answer
+			}
 		}
 
 		// updates the questionnaireItemMap to reflect the state of the questionnaire
@@ -406,6 +418,12 @@ const traverseItem = (item, questionnaireItemMap) => {
 		type: item.type || 'ignore',
 		required: item.required || false
 	}
+
+	// adds another answer object in case  we have an open-choice
+	if(item.type === 'open-choice' && !questionnaireItemMap[item.linkId].answerOption.some(e => e.isOpenQuestionAnswer)) {
+		questionnaireItemMap[item.linkId].answerOption.push({isOpenQuestionAnswer:true, answer: null})
+	}
+
 	// sets the started value to false if the item is category
 	if(item.linkId.length === 1) {
 		questionnaireItemMap[item.linkId].started = false

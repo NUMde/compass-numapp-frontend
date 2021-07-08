@@ -322,6 +322,16 @@ class QuestionnaireModal extends Component {
 		return returnValue
 	}
 
+	/**
+	 * compares two different valueCoding Objects
+	 */
+	compareCoding = (val1, val2) => {
+		
+		if (val1 && val2) return val1.system === val2.system && val1.code === val2.code
+
+		return false
+	}
+
 	// creating questionnaire items
 	/*-----------------------------------------------------------------------------------*/
 
@@ -348,7 +358,6 @@ class QuestionnaireModal extends Component {
 				{/* if not, the default way is chosen. */}
 				{ 
 					item.extension && 
-					!item.repeats &&
 					item.extension[0].valueCodeableConcept && 
 					item.extension[0].valueCodeableConcept.coding &&
 					item.extension[0].valueCodeableConcept.coding[0].code === "drop-down" ? 
@@ -372,11 +381,12 @@ class QuestionnaireModal extends Component {
 					:
 					(
 						<View>
+							{/* repeat: true */}
 							{!item.repeats && (
 								<View>
 									{/* renders a list of answers */}
 									{item.answerOption.map((answerOption, index) => {
-										return (
+										return !answerOption.isOpenQuestionAnswer && (
 											<CheckBox
 												uncheckedIcon='circle-o'
 												checkedIcon='dot-circle-o'
@@ -387,16 +397,24 @@ class QuestionnaireModal extends Component {
 												uncheckedColor={config.theme.colors.accent1}
 												containerStyle={{...localStyle.choice, marginLeft: this.calculateIndent(item.linkId)}}
 												onPress={() =>
-													this.props.actions.setAnswer({
-														linkId: item.linkId,
-														answer: answerOption.valueCoding || answerOption.valueString || answerOption.valueInteger,
-													})
+													{
+														this.props.actions.setAnswer({
+															linkId: item.linkId,
+															answer: answerOption.valueCoding || answerOption.valueString || answerOption.valueInteger,
+														})
+														
+														this.removeOpenAnswer(item)
+													}
 												}
 												onIconPress={() =>
-													this.props.actions.setAnswer({
-														linkId: item.linkId,
-														answer: answerOption.valueCoding || answerOption.valueString || answerOption.valueInteger,
-													})
+													{
+														this.props.actions.setAnswer({
+															linkId: item.linkId,
+															answer: answerOption.valueCoding || answerOption.valueString || answerOption.valueInteger,
+														})
+														
+														this.removeOpenAnswer(item)
+													}
 												}
 												checked={
 													this.compareCoding(exportService.getCorrectlyFormattedAnswer(this.props.questionnaireItemMap[item.linkId]), answerOption.valueCoding) ||
@@ -409,42 +427,66 @@ class QuestionnaireModal extends Component {
 								</View>	
 							)}
 
+							{/* repeat: true */}
 							{item.repeats && (
 								<View>
 									{item.answerOption.map((answerOption, index) => {
-										return (
+										return !answerOption.isOpenQuestionAnswer && (
 											<CheckBox
-												title={this.getItemTitle(answerOption)}
-												checkedColor={config.theme.colors.primary}
-												uncheckedColor={config.theme.colors.accent1}
-												onPress={() =>
+											title={this.getItemTitle(answerOption)}
+											checkedColor={config.theme.colors.primary}
+											uncheckedColor={config.theme.colors.accent1}
+											onPress={() =>
+												{
 													this.props.actions.setAnswer({
 														linkId: item.linkId,
 														answer: answerOption.valueCoding || answerOption.valueString || answerOption.valueInteger,
 														openAnswer: true,
 													})
 												}
-												onIconPress={() =>
+											}
+											onIconPress={() =>
+												{
 													this.props.actions.setAnswer({
 														linkId: item.linkId,
 														answer: answerOption.valueCoding || answerOption.valueString || answerOption.valueInteger,
 														openAnswer: true,
 													})
 												}
-												checked={
-													(this.props.questionnaireItemMap[item.linkId].answer && answerOption.valueCoding && this.props.questionnaireItemMap[item.linkId].answer.some( c => c.code === answerOption.valueCoding.code && c.system === answerOption.valueCoding.system ))
-													||
-													(this.props.questionnaireItemMap[item.linkId].answer && this.props.questionnaireItemMap[item.linkId].answer.includes( answerOption.valueString ))
-													||
-													(this.props.questionnaireItemMap[item.linkId].answer && this.props.questionnaireItemMap[item.linkId].answer.includes( answerOption.valueInteger ))
-												}
-												key={`${item.linkId}.a_${index}`}
-												containerStyle={{...localStyle.choice, marginLeft: this.calculateIndent(item.linkId)}}
-												textStyle={localStyle.choiceText}
-											/>
-										)
+											}
+											checked={
+												(this.props.questionnaireItemMap[item.linkId].answer && answerOption.valueCoding && this.props.questionnaireItemMap[item.linkId].answer.some( c => c.code === answerOption.valueCoding.code && c.system === answerOption.valueCoding.system ))
+												||
+												(this.props.questionnaireItemMap[item.linkId].answer && this.props.questionnaireItemMap[item.linkId].answer.includes( answerOption.valueString ))
+												||
+												(this.props.questionnaireItemMap[item.linkId].answer && this.props.questionnaireItemMap[item.linkId].answer.includes( answerOption.valueInteger ))
+											}
+											key={`${item.linkId}.a_${index}`}
+											containerStyle={{...localStyle.choice, marginLeft: this.calculateIndent(item.linkId)}}
+											textStyle={localStyle.choiceText}
+										/>)
 									})}
-								</View>
+								</View>	
+							)}
+
+							{/* if type: 'open-choice' */}
+							{item.type === "open-choice" && (
+								<Input
+									placeholder={item.repeats ? config.text.survey.additionalAnswer : config.text.survey.alternativeAnswer}
+									value = {this.procureOpenAnswer(item)}
+									accessibilityHint={config.text.accessibility.questionnaire.textFieldHint}
+									onChangeText={(text) =>
+										{	
+											// sets the answer
+											this.props.actions.setAnswer({
+												linkId: item.linkId,
+												answer: text,
+												isOpenAnswer: true,
+												isAdditionalAnswer: item.repeats
+											})
+										}
+									}
+								/>		
 							)}
 						</View>
 					) 
@@ -453,14 +495,26 @@ class QuestionnaireModal extends Component {
 		) : null
 	}
 
-	/**
-	 * compares two different valueCoding Objects
-	 */
-	compareCoding = (val1, val2) => {
-		
-		if (val1 && val2) return val1.system === val2.system && val1.code === val2.code
+	removeOpenAnswer = item => {
+		if(item.type !== 'open-choice') return
+		let a = this.props.questionnaireItemMap[item.linkId].answerOption.filter(e => e.isOpenQuestionAnswer)[0]
+		a.answer = null
+	}
 
-		return false
+	procureOpenAnswer = item => {
+		if(item.type !== 'open-choice') return
+		return this.props.questionnaireItemMap[item.linkId].answerOption.filter(e => e.isOpenQuestionAnswer)[0].answer
+	}
+
+	checkIfOpenAnswerWasChosen = (item) => {
+
+		let answer = this.props.questionnaireItemMap[item.linkId].answer
+
+		this.props.questionnaireItemMap[item.linkId].answerOption.some(
+			e => {
+				return e.valueString === answer || e.valueInteger === answer || e.valueDecimal === answer || e.valueDate === answer
+			}
+		)
 	}
 
 	/**
@@ -746,6 +800,7 @@ class QuestionnaireModal extends Component {
 
 			// creates a radio-item
 			case 'choice':
+			case 'open-choice':
 				return this.createChoices(item)
 
 			// creates a checkbox

@@ -338,7 +338,7 @@ const checkCompletionStateOfMultipleItems = (items, props) => {
 			}
 
 			// should the item be of type "choice"...
-			if (returnValue && item.type === 'choice') {
+			if (returnValue && (item.type === 'choice' || item.type === 'open-choice')) {
 
 				// ... and only accept a single answer
 				if(!item.repeats) {
@@ -347,16 +347,12 @@ const checkCompletionStateOfMultipleItems = (items, props) => {
 				}
 				// if multiple answers are allowed
 				else {
-					// make sure there is something
-					returnValue = Array.isArray(questionnaireItemMap[item.linkId].answer) && questionnaireItemMap[item.linkId].answer.length
+					// make sure there is something							
+					let isArray = (Array.isArray(questionnaireItemMap[item.linkId].answer) && questionnaireItemMap[item.linkId].answer.length )
+					let hasAdditionalAnswer = item.type === 'open-choice' && questionnaireItemMap[item.linkId].answerOption.filter(e => e.isOpenQuestionAnswer)[0].answer
+					returnValue = isArray || hasAdditionalAnswer
 				}
 			}
-
-			// should the item be of type "open-choice"...
-			// if (returnValue && item.type === 'open-choice') {
-			// 	// ... make sure its not NULL and not empty
-			// 	returnValue = !(getCorrectlyFormattedAnswer(questionnaireItemMap[item.linkId]) === null || !questionnaireItemMap[item.linkId].answer.length)
-			// }
 		}
 		
 		// sets the done property of the item
@@ -575,6 +571,7 @@ const createResponseJSON = () => {
 							break
 
 						case 'choice':
+						case 'open-choice':
 							// if there are multiple answers
 							if (Array.isArray(itemDetails.answer)) {
 								// iterates over all answers
@@ -587,6 +584,12 @@ const createResponseJSON = () => {
 									if (childItems.length !== 0) answerObject.item = childItems
 									newItem.answer.push(answerObject)
 								})
+
+								// should the type be open-choice and an extra answer is possible
+								if(itemDetails.type === 'open-choice') {
+									let additionalAnswer = itemDetails.answerOption.filter(e => e.isOpenQuestionAnswer)[0]
+									if(additionalAnswer.answer) newItem.answer.push(createAnswerObject(additionalAnswer.answer))
+								}
 							}
 							// if there is just a single answer
 							else {
