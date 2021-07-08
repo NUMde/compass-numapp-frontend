@@ -4,6 +4,7 @@
  * these are items coming from the questionnaire that is procured from the backend.
  * @typedef {Object} QuestionnaireItem
  * @property {string} 		       text the text-item to be displayed
+ * @property {boolen} 		       repeats decides if more than one answer is allowed
  * @property {string} 		       type type if the item ("ignore" || "display" || "boolean" || "date" || "string" || "integer" || "decimal" || "number" || "choice" || "open-choice")
  * @property {string} 		       linkId id of the item
  * @property {boolean} 		       [required] if true: item needs to be answered to complete the questionnaire

@@ -82,7 +82,7 @@ const conf = {
 	/** dev-option:
 	 * logs out the response-json parsed as an object in the developer console
 	 * */
-	logPureResponse: __DEV__ && false,
+	logPureResponse: __DEV__ && true,
 
 	/** dev-option:
 	 * logs out the response-json in the developer console

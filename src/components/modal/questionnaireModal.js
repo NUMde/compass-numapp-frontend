@@ -327,11 +327,13 @@ class QuestionnaireModal extends Component {
 
 	/**
 	 * renders a choice-type ui-element (if its dependencies check out)
+	 * supports the drop-down extension (without repeat)
 	 * @param  {QuestionnaireItem} item questionnaire item
 	 */
 	createChoices = item => {
 		// checks the dependencies of the item and renders it (if the dependencies check out)
 		return this.getRenderStatusOfItem(item) ? (
+
 			<View>
 				{/* title */}
 				<Text 
@@ -341,60 +343,112 @@ class QuestionnaireModal extends Component {
 						{item.text}
 				</Text>
 
-				{ item.extension && 
-				item.extension[0].valueCodeableConcept && 
-				item.extension[0].valueCodeableConcept.coding &&
-				item.extension[0].valueCodeableConcept.coding[0].code === "drop-down" ? 
-				<View>
-					<Picker
-						selectedValue={this.props.questionnaireItemMap[item.linkId].answer}
-						onValueChange={value => {this.props.actions.setAnswer({linkId: item.linkId, answer: value})}}
-					>
-						{item.answerOption.map((answerOption, index) => {
-							return <Picker.Item
-								label={answerOption.valueString}
-								value={answerOption.valueString}
-								key={index}
-							/>
-						})}
-					</Picker>
-				</View> : 
-				<View>
-					{item.answerOption.map((answerOption, index) => {
-						return (
-							<CheckBox
-								title={this.getItemTitle(answerOption)}
-								checkedIcon='dot-circle-o'
-								uncheckedIcon='circle-o'
-								onPress={() =>
-									this.props.actions.setAnswer({
-										linkId: item.linkId,
-										answer: answerOption.valueCoding || answerOption.valueString || answerOption.valueInteger,
-									})
-								}
-								onIconPress={() =>
-									this.props.actions.setAnswer({
-										linkId: item.linkId,
-										answer: answerOption.valueCoding || answerOption.valueString || answerOption.valueInteger,
-									})
-								}
-								checkedColor={config.theme.colors.primary}
-								uncheckedColor={config.theme.colors.accent1}
-								checked={
-									this.compareCoding(exportService.getCorrectlyFormattedAnswer(this.props.questionnaireItemMap[item.linkId]), answerOption.valueCoding) ||
-									exportService.getCorrectlyFormattedAnswer(this.props.questionnaireItemMap[item.linkId]) === answerOption.valueString ||
-									exportService.getCorrectlyFormattedAnswer(this.props.questionnaireItemMap[item.linkId]) === answerOption.valueInteger
-								}
-								key={`${item.linkId}.a_${index}`}
-								containerStyle={{...localStyle.choice, marginLeft: this.calculateIndent(item.linkId)}}
-								textStyle={localStyle.choiceText}
-							/>
-						)
-					})}
-				</View>}
-				{/* renders all answer options */}
-				
-			
+				{/* checks if the drop-down extension is available. */}
+				{/* if yes, it will render it. */}
+				{/* if not, the default way is chosen. */}
+				{ 
+					item.extension && 
+					!item.repeats &&
+					item.extension[0].valueCodeableConcept && 
+					item.extension[0].valueCodeableConcept.coding &&
+					item.extension[0].valueCodeableConcept.coding[0].code === "drop-down" ? 
+					(
+						<View>
+							{/* renders the drop-down */}
+							<Picker
+								selectedValue={this.props.questionnaireItemMap[item.linkId].answer}
+								onValueChange={value => {this.props.actions.setAnswer({linkId: item.linkId, answer: value})}}
+							>
+								{item.answerOption.map((answerOption, index) => {
+									return <Picker.Item
+										label={answerOption.valueString}
+										value={answerOption.valueString}
+										key={index}
+									/>
+								})}
+							</Picker>
+						</View>
+					) 
+					:
+					(
+						<View>
+							{!item.repeats && (
+								<View>
+									{/* renders a list of answers */}
+									{item.answerOption.map((answerOption, index) => {
+										return (
+											<CheckBox
+												uncheckedIcon='circle-o'
+												checkedIcon='dot-circle-o'
+												key={`${item.linkId}.a_${index}`}
+												textStyle={localStyle.choiceText}
+												title={this.getItemTitle(answerOption)}
+												checkedColor={config.theme.colors.primary}
+												uncheckedColor={config.theme.colors.accent1}
+												containerStyle={{...localStyle.choice, marginLeft: this.calculateIndent(item.linkId)}}
+												onPress={() =>
+													this.props.actions.setAnswer({
+														linkId: item.linkId,
+														answer: answerOption.valueCoding || answerOption.valueString || answerOption.valueInteger,
+													})
+												}
+												onIconPress={() =>
+													this.props.actions.setAnswer({
+														linkId: item.linkId,
+														answer: answerOption.valueCoding || answerOption.valueString || answerOption.valueInteger,
+													})
+												}
+												checked={
+													this.compareCoding(exportService.getCorrectlyFormattedAnswer(this.props.questionnaireItemMap[item.linkId]), answerOption.valueCoding) ||
+													exportService.getCorrectlyFormattedAnswer(this.props.questionnaireItemMap[item.linkId]) === answerOption.valueString ||
+													exportService.getCorrectlyFormattedAnswer(this.props.questionnaireItemMap[item.linkId]) === answerOption.valueInteger
+												}									
+											/>
+										)
+									})}
+								</View>	
+							)}
+
+							{item.repeats && (
+								<View>
+									{item.answerOption.map((answerOption, index) => {
+										return (
+											<CheckBox
+												title={this.getItemTitle(answerOption)}
+												checkedColor={config.theme.colors.primary}
+												uncheckedColor={config.theme.colors.accent1}
+												onPress={() =>
+													this.props.actions.setAnswer({
+														linkId: item.linkId,
+														answer: answerOption.valueCoding || answerOption.valueString || answerOption.valueInteger,
+														openAnswer: true,
+													})
+												}
+												onIconPress={() =>
+													this.props.actions.setAnswer({
+														linkId: item.linkId,
+														answer: answerOption.valueCoding || answerOption.valueString || answerOption.valueInteger,
+														openAnswer: true,
+													})
+												}
+												checked={
+													(this.props.questionnaireItemMap[item.linkId].answer && answerOption.valueCoding && this.props.questionnaireItemMap[item.linkId].answer.some( c => c.code === answerOption.valueCoding.code && c.system === answerOption.valueCoding.system ))
+													||
+													(this.props.questionnaireItemMap[item.linkId].answer && this.props.questionnaireItemMap[item.linkId].answer.includes( answerOption.valueString ))
+													||
+													(this.props.questionnaireItemMap[item.linkId].answer && this.props.questionnaireItemMap[item.linkId].answer.includes( answerOption.valueInteger ))
+												}
+												key={`${item.linkId}.a_${index}`}
+												containerStyle={{...localStyle.choice, marginLeft: this.calculateIndent(item.linkId)}}
+												textStyle={localStyle.choiceText}
+											/>
+										)
+									})}
+								</View>
+							)}
+						</View>
+					) 
+				}
 			</View>
 		) : null
 	}
@@ -703,8 +757,8 @@ class QuestionnaireModal extends Component {
 				return this.createDatePicker(item)
 
 			// creates a group of checkboxes, at least one must be checked
-			case 'open-choice':
-				return this.createOpenChoices(item)
+			// case 'open-choice':
+			// 	return this.createOpenChoices(item)
 
 			// creates the inputs for decimals and integers (and numerical sliders)
 			// this also utilizes the decimal-pad or the num-pad
@@ -1011,7 +1065,7 @@ const localStyle = StyleSheet.create({
 		textAlign: "center",
 		flexDirection: "row",
 		justifyContent: "space-between",
-	  },
+	},
 
 	modalTitle: {
 		fontSize: 24,
