@@ -72,18 +72,6 @@ class SurveyScreen extends Component {
 									</TouchableOpacity>)
 								}
 							</View>
-
-
-
-							<TouchableOpacity
-								accessibilityLabel={config.text.survey.send}
-								accessibilityRole={config.text.accessibility.types.button}
-								accessibilityHint={config.text.accessibility.questionnaire.sendHint}
-								onPress={() => this.props.exportAndUploadQuestionnaireResponse()}
-								style={{...localStyle.button, ...localStyle.buttonComplete}}
-							>
-								<Text style={localStyle.buttonLabel}>{config.text.survey.send}</Text>
-							</TouchableOpacity>
 						</View>
 					}
 				/>
