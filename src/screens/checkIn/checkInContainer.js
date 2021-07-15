@@ -147,6 +147,9 @@ class CheckInContainer extends Component {
 	 * tries to procure the current questionnaire
 	 */
 	getQuestionnaire = async () => {
+
+		if(!this.props.user.current_questionnaire_id || this.props.user.lastTime) return true
+
 		// redux output
 		this.props.actions.getQuestionnaireStart()
 		
