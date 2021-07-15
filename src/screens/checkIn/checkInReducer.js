@@ -15,6 +15,7 @@ const initialState = {
 	loading: false,
 	error401: false,
 	firstTime: true,
+	lastTime: false,
 	categories: null,
 	currentPageIndex: 1,
 	showDatePicker: false,
@@ -332,6 +333,7 @@ const valuesHandlers = {
 			loading: false,
 			user: values.user,
 			firstTime: values.user.firstTime,
+			lastTime: values.user.lastTime,
 			questionnaireError: null,
 			noNewQuestionnaireAvailableYet: new Date() < new Date(values.user.start_date),
 		}

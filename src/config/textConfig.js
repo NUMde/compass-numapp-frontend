@@ -197,6 +197,8 @@ export default {
 		"noUserText":"Your ID could not be verified. Please try again.",
 		"noNewQuestionnaireAvailableYetTitle":"Title, in case no Questionnaire is available",
 		"sendFinishedMessage":"confirmation dialog for sending the completed questionnaire?",
+		"lastTime":"Text telling the user that the study has concluded.",
+		"lastTimeTitle":"Title of the final message",
 		"sendUnfinishedMessageDenied":"The current questionnaire is not yet completed. Please do so.",
 		"nextOne":"This text will be shown to communicate when the next questionnaire is available: ",
 		"noQuestionnaireText":"There occurred an error while loading the questionnaire - Please try again.",

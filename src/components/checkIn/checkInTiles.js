@@ -24,6 +24,7 @@ class CheckInTiles extends Component {
     * @param  {object}      props
     * @param  {object}      props.user holds the userdata
     * @param  {boolean}     props.loading true if the questionnaire is still loading
+    * @param  {boolean}     props.lastTime true if the user received the last questionnaire
     * @param  {Function}    props.sendReport function to send out an report
     * @param  {boolean}     props.categoriesLoaded true if the questionnaire is ready to be rendered
     * @param  {object}      props.questionnaireItemMap object holding every item from the questionnaire (the linkId of the item is the key)
@@ -39,57 +40,59 @@ class CheckInTiles extends Component {
 
     render() {
         return (
-            <View style={localStyle.tileWrapper}>
-                <View style={localStyle.tileContainer}>
-                    {/* if there is a completed questionnaire render the button to transmit the it*/}
-                    {
-                        (!this.props.noNewQuestionnaireAvailableYet && this.props.categoriesLoaded && !this.props.loading && this.props.questionnaireItemMap.done) 
-                        &&
-                        (<View>
-                            <TouchableOpacity
-                                style={{...localStyle.tile, ...localStyle.buttonGreen}}
-                                disabled={this.props.user && this.props.noNewQuestionnaireAvailableYet}
-                                onPress={this.props.exportAndUploadQuestionnaireResponse}
-                                accessibilityLabel={config.text.survey.send}
-                                accessibilityRole={config.text.accessibility.types.button}
-                                accessibilityHint={config.text.accessibility.questionnaire.sendHint}
-                            >
-                                <View style={localStyle.buttonWrapper}>
-                                    <Icon
-                                        name='school'
-                                        color={config.theme.colors.white}
-                                        iconStyle={localStyle.buttonIcon}
-                                    />
-                                        
-                                    <Text style={localStyle.tileText}>
-                                        {config.text.survey.send}
-                                    </Text>
-                                </View>
-                            </TouchableOpacity>
-                        </View>)
-                    }
-    
-                    {/* the 'send report' button */}
-                    <TouchableOpacity
-                        onPress={this.props.sendReport}
-                        // renders the button in grey if there is no questionnaire available 
-                        // or if the user already send out a report and is still on a special interval (additional_iterations_left will be greater than 0 if thats the case)
-                        style={(this.props.noNewQuestionnaireAvailableYet || (this.props.user && this.props.user.additional_iterations_left > 0)) ? localStyle.tile : localStyle.disabledTile}
-                        accessibilityRole={config.text.accessibility.types.button}
-                    >
-                        <View style={localStyle.buttonWrapper}>
-                            <Icon
-                                name='error'
-                                color={config.theme.colors.white}
-                                iconStyle={localStyle.buttonIcon}
-                            />
-                            <Text style={localStyle.tileText}>
-                                {config.text.reporting.symptoms_header}
-                            </Text>
-                        </View>
-                    </TouchableOpacity>
+            !this.props.lastTime ?
+                <View style={localStyle.tileWrapper}>
+                    <View style={localStyle.tileContainer}>
+                        {/* if there is a completed questionnaire render the button to transmit the it*/}
+                        {
+                            (!this.props.noNewQuestionnaireAvailableYet && this.props.categoriesLoaded && !this.props.loading && this.props.questionnaireItemMap.done) 
+                            &&
+                            (<View>
+                                <TouchableOpacity
+                                    style={{...localStyle.tile, ...localStyle.buttonGreen}}
+                                    disabled={this.props.user && this.props.noNewQuestionnaireAvailableYet}
+                                    onPress={this.props.exportAndUploadQuestionnaireResponse}
+                                    accessibilityLabel={config.text.survey.send}
+                                    accessibilityRole={config.text.accessibility.types.button}
+                                    accessibilityHint={config.text.accessibility.questionnaire.sendHint}
+                                >
+                                    <View style={localStyle.buttonWrapper}>
+                                        <Icon
+                                            name='school'
+                                            color={config.theme.colors.white}
+                                            iconStyle={localStyle.buttonIcon}
+                                        />
+                                            
+                                        <Text style={localStyle.tileText}>
+                                            {config.text.survey.send}
+                                        </Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>)
+                        }
+        
+                        {/* the 'send report' button */}
+                        <TouchableOpacity
+                            onPress={this.props.sendReport}
+                            // renders the button in grey if there is no questionnaire available 
+                            // or if the user already send out a report and is still on a special interval (additional_iterations_left will be greater than 0 if thats the case)
+                            style={(this.props.noNewQuestionnaireAvailableYet || (this.props.user && this.props.user.additional_iterations_left > 0)) ? localStyle.tile : localStyle.disabledTile}
+                            accessibilityRole={config.text.accessibility.types.button}
+                        >
+                            <View style={localStyle.buttonWrapper}>
+                                <Icon
+                                    name='error'
+                                    color={config.theme.colors.white}
+                                    iconStyle={localStyle.buttonIcon}
+                                />
+                                <Text style={localStyle.tileText}>
+                                    {config.text.reporting.symptoms_header}
+                                </Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
                 </View>
-            </View>
+            :<View></View>
         )
     }
 }

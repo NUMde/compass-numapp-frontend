@@ -27,6 +27,7 @@ class WelcomeText extends Component {
 	* @param  {object}      props.questionnaireError the return object should the sendQuestionnaire 
 		function produce an error
 	* @param  {boolean}     props.firstTime true if the user never sent out the first questionnaire
+	* @param  {boolean}     props.lastTime true if the user received the last questionnaire
 	* @param  {boolean}     props.error401 true if the user was rejected by the backend
 	* @param  {boolean}     props.noNewQuestionnaireAvailableYet true if there is currently no 
 		questionnaire available
@@ -51,68 +52,84 @@ class WelcomeText extends Component {
 						<Text style={localStyle.welcomeText}> 
 							{ this.props.firstTime ? 
 								config.text.survey.welcomeTitleFirstTime : 
-									this.props.noNewQuestionnaireAvailableYet ?
-										config.text.survey.noNewQuestionnaireAvailableYetTitle :
-											config.text.survey.welcomeTitle }
+									this.props.lastTime ?
+										config.text.survey.lastTimeTitle :
+											this.props.noNewQuestionnaireAvailableYet ?
+												config.text.survey.noNewQuestionnaireAvailableYetTitle :
+													config.text.survey.welcomeTitle }
 						</Text>
-	
-						{/* if this is a new user */}
-						{this.props.firstTime && this.props.user && (
-							<Text  style={localStyle.infoText}>
-								{config.text.survey.welcomeTextFirstTimeUser1}
-								<Text style={{...localStyle.timeTextSmall}}>
-									{ this.props.formatDateString(this.props.user.due_date, true) }.
+
+						{/* if the study is still running */}
+						{!this.props.lastTime && (
+							<View>
+								{/* if this is a new user */}
+								{this.props.firstTime && this.props.user && (
+									<Text  style={localStyle.infoText}>
+										{config.text.survey.welcomeTextFirstTimeUser1}
+										<Text style={{...localStyle.timeTextSmall}}>
+											{ this.props.formatDateString(this.props.user.due_date, true) }.
+										</Text>
+										{config.text.survey.welcomeTextFirstTimeUser2}
+									</Text>
+								)}
+			
+								{/* if this is not a first-time-user and NO new questionnaire is currently available */}
+								{!this.props.firstTime && this.props.noNewQuestionnaireAvailableYet && (
+									<Text style={localStyle.infoText}>
+										{config.text.survey.noNewQuestionnaireAvailableYet}
+									</Text>
+								)}
+			
+								{/* if this is not a first-time-user and A questionnaire is currently available */}
+								{!this.props.firstTime && !this.props.noNewQuestionnaireAvailableYet && (
+									<View>
+										<Text style={localStyle.infoText}>
+											{config.text.survey.welcomeTextUser}
+										</Text>
+										<Text style={{...localStyle.timeText}}>
+											{ this.props.formatDateString(this.props.user.due_date, true) }.
+										</Text>
+									</View>
+								)}
+			
+								{/* if this is not a first-time-user and NO new questionnaire is currently available */}
+								{!this.props.firstTime && this.props.noNewQuestionnaireAvailableYet && (
+									<View>
+										<Text style={localStyle.timeText}>
+											{config.text.survey.nextOne}
+										</Text>
+										<Text style={{...localStyle.timeText, ...localStyle.timeTextGreen}}>
+											{ this.props.formatDateString(this.props.user.start_date, true) }.
+										</Text>
+									</View>
+								)}
+			
+								{/* if this is a first-time-user and A questionnaire is currently available */}
+								{this.props.firstTime && this.props.noNewQuestionnaireAvailableYet &&(
+									<View>
+										<Text style={localStyle.timeText}>
+											{config.text.survey.nextOneNew}
+										</Text>
+										<Text style={{...localStyle.timeText, ...localStyle.timeTextGreen}}>
+											{ this.props.formatDateString(this.props.user.start_date, true) }.
+										</Text>
+									</View>
+								)}
+			
+								<Text style={localStyle.infoText}>
+									{config.text.survey.furtherInfo}
 								</Text>
-								{config.text.survey.welcomeTextFirstTimeUser2}
-							</Text>
+							</View>
 						)}
-	
-						{/* if this is not a first-time-user and NO new questionnaire is currently available */}
-						{!this.props.firstTime && this.props.noNewQuestionnaireAvailableYet && (
-							<Text style={localStyle.infoText}>
-								{config.text.survey.noNewQuestionnaireAvailableYet}
-							</Text>
-						)}
-	
-						{/* if this is not a first-time-user and A questionnaire is currently available */}
-						{!this.props.firstTime && !this.props.noNewQuestionnaireAvailableYet && (
+
+						{/* if the study was ended */}
+						{this.props.lastTime && (
 							<View>
 								<Text style={localStyle.infoText}>
-									{config.text.survey.welcomeTextUser}
-								</Text>
-								<Text style={{...localStyle.timeText}}>
-									{ this.props.formatDateString(this.props.user.due_date, true) }.
-								</Text>
+									{config.text.survey.lastTime}
+								</Text>	
 							</View>
 						)}
-	
-						{/* if this is not a first-time-user and NO new questionnaire is currently available */}
-						{!this.props.firstTime && this.props.noNewQuestionnaireAvailableYet && (
-							<View>
-								<Text style={localStyle.timeText}>
-									{config.text.survey.nextOne}
-								</Text>
-								<Text style={{...localStyle.timeText, ...localStyle.timeTextGreen}}>
-									{ this.props.formatDateString(this.props.user.start_date, true) }.
-								</Text>
-							</View>
-						)}
-	
-						{/* if this is a first-time-user and A questionnaire is currently available */}
-						{this.props.firstTime && this.props.noNewQuestionnaireAvailableYet &&(
-							<View>
-								<Text style={localStyle.timeText}>
-									{config.text.survey.nextOneNew}
-								</Text>
-								<Text style={{...localStyle.timeText, ...localStyle.timeTextGreen}}>
-									{ this.props.formatDateString(this.props.user.start_date, true) }.
-								</Text>
-							</View>
-						)}
-	
-						<Text style={localStyle.infoText}>
-							{config.text.survey.furtherInfo}
-						</Text>
 					</View>)
 				}
 	

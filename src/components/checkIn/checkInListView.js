@@ -29,6 +29,7 @@ class CheckInListView extends Component {
     * @param  {object}      props.questionnaireItemMap object holding every item from the questionnaire
         (the linkId of the item is the key)
     * @param  {boolean}     props.firstTime true if the user never sent out the first 
+    * @param  {boolean}     props.lastTime true if the user received the last questionnaire
     * @param  {boolean}     props.noNewQuestionnaireAvailableYet true if there is currently no questionnaire available
     * @param  {boolean}     props.categoriesLoaded true if the questionnaire is ready to be rendered
     * @param  {Function}    props.formatDateString formats a date string
@@ -42,104 +43,106 @@ class CheckInListView extends Component {
 
     render() {
         return (
-            <View style={localStyle.wrapper}>
-                {/* if all categories are loaded AND there is a current questionnaire available render a single ListLink*/}
-                {
-                    (this.props.categoriesLoaded && !this.props.noNewQuestionnaireAvailableYet )
-                    && 
-                    (<ListItem 
-                        containerStyle={{
-                            ...localStyle.containerStyle,
-                            // if the questionnaire is partially filled out render in yellow
-                            ...(this.props.questionnaireItemMap && !this.props.questionnaireItemMap.done && this.props.questionnaireItemMap.started ? localStyle.containerTouched :
-                                    // if the questionnaire is untouched render in red
-                                    !this.props.questionnaireItemMap.done && !this.props.questionnaireItemMap.started ? localStyle.containerUntouched :
-                                        // if the questionnaire is completed render in green
-                                        localStyle.containerCompleted )
-                        }}
-                        onPress={() => this.props.navigation.navigate('Survey')}
-                        accessibilityLabel={(this.props.firstTime ? config.text.survey.surveyTitleFirstTime : config.text.survey.surveyTitle) + ". " + (config.text.survey.surveySubTitle + this.props.formatDateString(new Date(this.props.user.due_date)))}
-                        accessibilityRole={config.text.accessibility.types.button}
-                        accessibilityHint={config.text.accessibility.questionnaire.questionnaireCellHint + 
-                            ((this.props.questionnaireItemMap && !this.props.questionnaireItemMap.done && this.props.questionnaireItemMap.started) 
-                            ? config.text.accessibility.questionnaire.questionnaire + config.text.accessibility.questionnaire.notFinished 
-                            : (!this.props.questionnaireItemMap.done && !this.props.questionnaireItemMap.started)
-                                ? config.text.accessibility.questionnaire.questionnaire + config.text.accessibility.questionnaire.notStarted 
-                                : (this.props.questionnaireItemMap && this.props.questionnaireItemMap.done)
-                                    ? config.text.accessibility.questionnaire.questionnaire + config.text.accessibility.questionnaire.finished 
-                                    : "")}
-                    >
-                        <ListItem.Content>
-                            {/* shows a special title for first-time-users or the regular title for all other users */}
-                            <ListItem.Title style={localStyle.title}>
-                                {this.props.firstTime ? config.text.survey.surveyTitleFirstTime : config.text.survey.surveyTitle}
-                            </ListItem.Title>
-    
-                            {/* subtitle with formatted due date of the questionnaire */}
-                            <ListItem.Subtitle style={localStyle.subTitle} >
-                                {config.text.survey.surveySubTitle + this.props.formatDateString(new Date(this.props.user.due_date))}
-                            </ListItem.Subtitle>
-                        </ListItem.Content>
-    
-                        {/* renders the yellow icon if the questionnaire is partially completed */}
-                        {
-                            this.props.questionnaireItemMap && !this.props.questionnaireItemMap.done && this.props.questionnaireItemMap.started && 
-                            (<ListItem.Chevron
-                                {
-                                    ...{
-                                        type: 'material-community',
-                                        name: 'dots-horizontal',
-                                        color: config.theme.colors.secondary,
-                                        size: 12,
-                                        raised: true,
-                                        containerStyle: {
-                                            backgroundColor: config.theme.colors.white
+            !this.props.lastTime ?
+                <View style={localStyle.wrapper}>
+                    {/* if all categories are loaded AND there is a current questionnaire available render a single ListLink*/}
+                    {
+                        (this.props.categoriesLoaded && !this.props.noNewQuestionnaireAvailableYet )
+                        && 
+                        (<ListItem 
+                            containerStyle={{
+                                ...localStyle.containerStyle,
+                                // if the questionnaire is partially filled out render in yellow
+                                ...(this.props.questionnaireItemMap && !this.props.questionnaireItemMap.done && this.props.questionnaireItemMap.started ? localStyle.containerTouched :
+                                        // if the questionnaire is untouched render in red
+                                        !this.props.questionnaireItemMap.done && !this.props.questionnaireItemMap.started ? localStyle.containerUntouched :
+                                            // if the questionnaire is completed render in green
+                                            localStyle.containerCompleted )
+                            }}
+                            onPress={() => this.props.navigation.navigate('Survey')}
+                            accessibilityLabel={(this.props.firstTime ? config.text.survey.surveyTitleFirstTime : config.text.survey.surveyTitle) + ". " + (config.text.survey.surveySubTitle + this.props.formatDateString(new Date(this.props.user.due_date)))}
+                            accessibilityRole={config.text.accessibility.types.button}
+                            accessibilityHint={config.text.accessibility.questionnaire.questionnaireCellHint + 
+                                ((this.props.questionnaireItemMap && !this.props.questionnaireItemMap.done && this.props.questionnaireItemMap.started) 
+                                ? config.text.accessibility.questionnaire.questionnaire + config.text.accessibility.questionnaire.notFinished 
+                                : (!this.props.questionnaireItemMap.done && !this.props.questionnaireItemMap.started)
+                                    ? config.text.accessibility.questionnaire.questionnaire + config.text.accessibility.questionnaire.notStarted 
+                                    : (this.props.questionnaireItemMap && this.props.questionnaireItemMap.done)
+                                        ? config.text.accessibility.questionnaire.questionnaire + config.text.accessibility.questionnaire.finished 
+                                        : "")}
+                        >
+                            <ListItem.Content>
+                                {/* shows a special title for first-time-users or the regular title for all other users */}
+                                <ListItem.Title style={localStyle.title}>
+                                    {this.props.firstTime ? config.text.survey.surveyTitleFirstTime : config.text.survey.surveyTitle}
+                                </ListItem.Title>
+        
+                                {/* subtitle with formatted due date of the questionnaire */}
+                                <ListItem.Subtitle style={localStyle.subTitle} >
+                                    {config.text.survey.surveySubTitle + this.props.formatDateString(new Date(this.props.user.due_date))}
+                                </ListItem.Subtitle>
+                            </ListItem.Content>
+        
+                            {/* renders the yellow icon if the questionnaire is partially completed */}
+                            {
+                                this.props.questionnaireItemMap && !this.props.questionnaireItemMap.done && this.props.questionnaireItemMap.started && 
+                                (<ListItem.Chevron
+                                    {
+                                        ...{
+                                            type: 'material-community',
+                                            name: 'dots-horizontal',
+                                            color: config.theme.colors.secondary,
+                                            size: 12,
+                                            raised: true,
+                                            containerStyle: {
+                                                backgroundColor: config.theme.colors.white
+                                            }
                                         }
                                     }
-                                }
-                            />
-                        )}
-    
-                        {/* renders the red icon if the questionnaire is untouched */}
-                        {!this.props.questionnaireItemMap.done &&
-                            !this.props.questionnaireItemMap.started && 
-                            (<ListItem.Chevron
-                                {
-                                    ...{
-                                        type: 'material-community',
-                                        name: 'pencil-outline',
-                                        color: config.theme.colors.alert,
-                                        size: 12,
-                                        raised: true,
-                                        containerStyle: {
-                                            backgroundColor: config.theme.colors.white
+                                />
+                            )}
+        
+                            {/* renders the red icon if the questionnaire is untouched */}
+                            {!this.props.questionnaireItemMap.done &&
+                                !this.props.questionnaireItemMap.started && 
+                                (<ListItem.Chevron
+                                    {
+                                        ...{
+                                            type: 'material-community',
+                                            name: 'pencil-outline',
+                                            color: config.theme.colors.alert,
+                                            size: 12,
+                                            raised: true,
+                                            containerStyle: {
+                                                backgroundColor: config.theme.colors.white
+                                            }
                                         }
                                     }
-                                }
-                            />
-                        )}
-    
-                        {/* renders the green icon if the questionnaire is completed */}
-                        {this.props.questionnaireItemMap && 
-                            this.props.questionnaireItemMap.done && 
-                            (<ListItem.Chevron
-                                {
-                                    ...{
-                                        type: 'material-community',
-                                        name: 'check',
-                                        color: config.theme.colors.success,
-                                        size: 12,
-                                        raised: true,
-                                        containerStyle: {
-                                            backgroundColor: config.theme.colors.white
+                                />
+                            )}
+        
+                            {/* renders the green icon if the questionnaire is completed */}
+                            {this.props.questionnaireItemMap && 
+                                this.props.questionnaireItemMap.done && 
+                                (<ListItem.Chevron
+                                    {
+                                        ...{
+                                            type: 'material-community',
+                                            name: 'check',
+                                            color: config.theme.colors.success,
+                                            size: 12,
+                                            raised: true,
+                                            containerStyle: {
+                                                backgroundColor: config.theme.colors.white
+                                            }
                                         }
                                     }
-                                }
-                            />
-                        )}
-                    </ListItem>)
-                }
-            </View>
+                                />
+                            )}
+                        </ListItem>)
+                    }
+                </View>
+            :<View></View>
         )
     }
 }
