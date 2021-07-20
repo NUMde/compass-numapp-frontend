@@ -139,7 +139,7 @@ class CheckInContainer extends Component {
 				}
 
 				// in case there is nothing to update
-				this.props.actions.setupPushServiceNoUpdate()
+				this.props.actions.setupPushServiceNoUpdate(FCMToken)
 			}
 		}
 	}
