@@ -200,7 +200,7 @@ const conf = {
 		
 		/** rest:
 		 * endpoint to receive the questionnaire */
-		updateToken: (__DEV__ ? baseUriDevelopment : baseUriProductive) + 'participant/update-device-token',
+		updateToken: (__DEV__ ? baseUriDevelopment : baseUriProductive) + 'participant/update-device-token/',
 	},
 	
 	// ui
