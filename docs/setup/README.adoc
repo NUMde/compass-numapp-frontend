@@ -208,9 +208,9 @@ To connect the app to your FCM instance update the following files:
 * *`link:../../../../tree/main/ios/Compass/AppDelegate.m[ios/Compass/AppDelegate.m]`*
 ** Comment in line 25: `[FIRApp configure];`
 * *`link:../../../../tree/main/ios/GoogleService-Info.plist[ios/GoogleService-Info.plist]`*
-** Replace with you credentials`
+** Replace with your credentials`
 * *`link:../../../../tree/main/android/app/google-services.json[android/app/google-services.json]`*
-** Replace with you credentials`
+** Replace with your credentials`
 
 Finally, to trigger the registration of the app with the FCM (only after the aforementioned files were updated), set the option `connectToFCM` to `true` as described in *`link:../appConfiguration[Configuring the React Native Client]`*
 

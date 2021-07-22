@@ -111,7 +111,7 @@ class CheckInContainer extends Component {
 			// if the authStatus checks out...
 			if (authStatus === messaging.AuthorizationStatus.AUTHORIZED || authStatus === messaging.AuthorizationStatus.PROVISIONAL) {
 
-				// ... check ig there is a new token
+				// ... check if there is a new token
 				if(newlyGeneratedToken !== FCMToken) {
 
 					// redux output
