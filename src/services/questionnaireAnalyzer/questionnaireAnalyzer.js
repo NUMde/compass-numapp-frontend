@@ -723,13 +723,12 @@ const createResponseJSON = () => {
 	* @type {QuestionnaireResponse}
 	*/
 	let questionnaireResponse = {
+		authored: new Date().toISOString(),
 		item: createItems(props.categories),
 		resourceType: 'QuestionnaireResponse',
-		status: props.questionnaireItemMap.done ? 'completed' : 'in-progress',
-		authored: new Date().toString(),
+		questionnaire: props.questionnaireItemMap.url,
 		identifier: props.questionnaireItemMap.identifier,
-		resourceType: 'QuestionnaireResponse',
-		questionnaire: props.questionnaireItemMap.url
+		status: props.questionnaireItemMap.done ? 'completed' : 'in-progress'
 	}
 
 	// removes empty entries

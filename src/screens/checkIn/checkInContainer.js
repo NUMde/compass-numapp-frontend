@@ -4,11 +4,10 @@
 imports
 ***********************************************************************************************/
 
-import { Alert} from 'react-native'
+import { Alert } from 'react-native'
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
-import { Push } from 'bmd-push-react-native'
 
 import store from '../../store'
 
@@ -20,6 +19,8 @@ import SurveyScreen from './surveyScreen'
 import * as actions from './checkInActions'
 import CheckInScreen from './checkInScreen'
 import config from '../../config/configProvider'
+
+import messaging from '@react-native-firebase/messaging'
 
 /***********************************************************************************************
 component:
@@ -85,58 +86,61 @@ class CheckInContainer extends Component {
 
 	// methods: push
 	/*-----------------------------------------------------------------------------------*/
-	
-	/**
-	 * registers the push notification service (if it hasn't happened before).
-	   should it contain no deviceId the push-registration will be triggered
-	 */
-	registerPush = async () => {
-		// creates the options-object for the push-registration and sends out the request
-		Push.register({
-			"subjectId": this.props.user.subjectId
-		})
-		.then(response => {
-			// redux output
-			this.props.actions.setupPushServiceSuccess()
-			// persists the response as new notificationState.
-			// this also contains the deviceId which prohibits the registration from
-			// being triggered the next time
-			localStorage.persistNotificationState(response)
-		})
-		.catch((err) => {
-			// redux output
-			this.props.actions.setupPushServiceFail()
-		})
-	}
 
 	/**
 	 * initializes the push-service-registration
+	 *
+	 * @param {string} subjectId
 	 */
-	initPush = async () => {
+	initPush = async subjectId => {
+
 		// gets the current user
 		const sessionData = store.getState().CheckIn.user
-		// gets the notificationState that was persisted last time - if there was no
+		
+		// gets the FCMToken that was persisted last time - if there was no
 		// last time then the initial value is FALSE
-		const notificationState = await localStorage.loadNotificationState()
+		const FCMToken = await localStorage.loadFCMToken()
 
-		// if there is a user
-		if(sessionData && (!notificationState || !notificationState.deviceId)) {
-			// redux output
-			this.props.actions.setupPushServiceStart()
-			// asks the user to allow push notifications
-			Push.init({
-				"appGUID": sessionData.pushAppGUID,
-				"clientSecret": sessionData.pushClientSecret,
-				"region": "eu-de"
-			})
-			.then(() =>  {
-				// triggers the execution
-				this.registerPush()
-			})
-			.catch(() => {
-				// redux output
-				this.props.actions.setupPushServiceFail()
-			})
+		// if there is a user and no FCMToken (or you just want to redo this over and over...)
+		if(config.appConfig.reconnectOnEachUserUpdate || (sessionData && (!FCMToken || !FCMToken.length))) {
+
+			// requests the permission and gets the token
+			const authStatus = await messaging().requestPermission()
+			let newlyGeneratedToken = await messaging().getToken()
+
+			// if the authStatus checks out...
+			if (authStatus === messaging.AuthorizationStatus.AUTHORIZED || authStatus === messaging.AuthorizationStatus.PROVISIONAL) {
+
+				// ... check if there is a new token
+				if(newlyGeneratedToken !== FCMToken) {
+
+					// redux output
+					this.props.actions.setupPushServiceStart()
+					
+					// ...updates the device token
+					await loggedInClient.updateDeviceToken(subjectId, newlyGeneratedToken)
+					.then(response => {
+						
+						// persists the response as new FCMToken.
+						// this also contains the deviceId which prohibits the registration from
+						// being triggered the next time
+						localStorage.persistFCMToken(newlyGeneratedToken)	
+
+						// redux output
+						this.props.actions.setupPushServiceSuccess(response, newlyGeneratedToken)
+					})
+					.catch(error => {
+						
+						// logs out the error
+						this.props.actions.setupPushServiceFail(error)
+					})
+
+					return true
+				}
+
+				// in case there is nothing to update
+				this.props.actions.setupPushServiceNoUpdate(FCMToken)
+			}
 		}
 	}
 
@@ -221,7 +225,7 @@ class CheckInContainer extends Component {
 		this.props.actions.updateUserSuccess(data)
 
 		// tries to init the push service
-		setTimeout(() => this.initPush(), 0)
+		if(config.appConfig.connectToFCM) setTimeout(() => this.initPush(data.subjectId), 0)
 
 		setTimeout(() => {
 			// if we have locally persisted questionnaire

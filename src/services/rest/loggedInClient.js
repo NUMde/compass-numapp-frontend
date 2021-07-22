@@ -73,6 +73,29 @@ const getUserUpdate = async () => {
 	)
 }
 
+// push
+/*-----------------------------------------------------------------------------------*/
+
+/**
+ * updates the backend with the current FCM token
+ * @param  {string} subjectId string identifying the user
+ * @param  {string} token the token
+ */
+const updateDeviceToken = async (subjectId, token) => {
+	return axios.post(
+		config.appConfig.endpoints.updateToken + subjectId,
+		{
+			token
+		},
+		{
+			headers: {
+				Authorization: createAuthorizationToken(),
+				Accept: 'application/json',
+			}
+		}
+	)	
+}
+
 // reports
 /*-----------------------------------------------------------------------------------*/
 
@@ -158,5 +181,6 @@ export default {
 	sendReport,
 	getBaseQuestionnaire,
 	sendQuestionnaire,
-	getUserUpdate
+	getUserUpdate,
+	updateDeviceToken
 }

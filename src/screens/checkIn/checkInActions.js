@@ -310,17 +310,30 @@ export const setupPushServiceStart = () => dispatch => {
 /**
  * success of setting up the push service
  */
-export const setupPushServiceSuccess= () => dispatch => {
+export const setupPushServiceSuccess = (response, token) => dispatch => {
 	dispatch({
-		type: 'SETUP_PUSH_SERVICE_SUCCESS'
+		type: 'SETUP_PUSH_SERVICE_SUCCESS',
+		response,
+		token
 	})
 }
 
 /**
  * failure of setting up the push service
  */
-export const setupPushServiceFail = () => dispatch => {
+export const setupPushServiceFail = error => dispatch => {
 	dispatch({
-		type: 'SETUP_PUSH_SERVICE_FAIL'
+		type: 'SETUP_PUSH_SERVICE_FAIL',
+		error
+	})
+}
+
+/**
+ * failure of setting up the push service
+ */
+ export const setupPushServiceNoUpdate = token => dispatch => {
+	dispatch({
+		type: 'FCM_DID_NOT_CHANGE_SO_NO_UPDATE',
+		token
 	})
 }

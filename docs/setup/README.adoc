@@ -195,6 +195,26 @@ PRODUCT_BUNDLE_IDENTIFIER = YOUR_IOS_BUNDLE_IDENTIFIER;
 ....
 --
 
+== Enabling Push Notifications
+In order for the app to receive push notifications you need to establish a Firebase Cloud-Messaging Service instance and provide the credentials to said instance. 
+
+More information on FCM can be found using the following link:
+
+* https://firebase.google.com/docs/cloud-messaging[Google Documentation on FCM]
+* https://rnfirebase.io/[Using React Native with Firebase]
+
+To connect the app to your FCM instance update the following files: 
+
+* *`link:../../../../tree/main/ios/Compass/AppDelegate.m[ios/Compass/AppDelegate.m]`*
+** Uncomment line 25: `[FIRApp configure];`
+* *`link:../../../../tree/main/ios/GoogleService-Info.plist[ios/GoogleService-Info.plist]`*
+** Replace with your credentials`
+* *`link:../../../../tree/main/android/app/google-services.json[android/app/google-services.json]`*
+** Replace with your credentials`
+
+Finally, to trigger the registration of the app with the FCM (only after the aforementioned files were updated), set the option `connectToFCM` to `true` as described in *`link:../appConfiguration[Configuring the React Native Client]`*
+
+
 == Development-Build 
 
 While developing, a live preview is irreplaceable. So with any persisted change in your code you can create and run a new development build on iOS-Simulators & Android Emulators, as well as physical devices. For that to work you need to start a development server which will funnel your build into your chosen emulator/simulator/device.

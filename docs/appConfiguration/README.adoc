@@ -91,8 +91,14 @@ The following values carry the strings used to generate the names of the values 
 ** The subject-id of the user last logged in
 * *lastQuestionnaireId*
 ** Part of the identifier used to persist the id of the last active questionnaire of the last active user
-* *notificationState*
+* *FCMToken*
 ** Part of the identifier used to persist all relevant information about the notification-service
+
+== Push Notifications
+Contains options concerning the push notification service
+
+* *connectToFCM*
+** if set to true the app tries to connect to a FCM instance that in turn will be able to send out push notifications reminding the participants to open the app. 
 
 == REST Endpoints
 These are the endpoints used to communicate with the backend.

@@ -1,8 +1,6 @@
-apply from: '../node_modules/react-native-unimodules/gradle.groovy'
-include ':bmd-push-react-native'
-project(':bmd-push-react-native').projectDir = new File(rootProject.projectDir, '../node_modules/bmd-push-react-native/android')
-includeUnimodulesProjects()
-
 rootProject.name = 'Compass'
-apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)
+apply from: '../node_modules/react-native-unimodules/gradle.groovy'; 
+includeUnimodulesProjects ()
+apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); 
+applyNativeModulesSettingsGradle(settings)
 include ':app'

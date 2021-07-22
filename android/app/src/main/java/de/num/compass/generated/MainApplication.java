@@ -3,7 +3,6 @@ package de.num.compass.android;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.bmdpush.react.RNBmdPushReactPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.PackageList;
