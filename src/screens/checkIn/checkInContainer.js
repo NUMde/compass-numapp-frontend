@@ -4,7 +4,7 @@
 imports
 ***********************************************************************************************/
 
-import { Alert, Clipboard } from 'react-native'
+import { Alert } from 'react-native'
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
@@ -107,20 +107,6 @@ class CheckInContainer extends Component {
 			// requests the permission and gets the token
 			const authStatus = await messaging().requestPermission()
 			let newlyGeneratedToken = await messaging().getToken()
-
-			Alert.alert(
-				"TOKEN",
-				newlyGeneratedToken,
-				[
-					{
-					text: "copy & close",
-						onPress: () => {
-							Clipboard.setString(newlyGeneratedToken)
-						}
-					}
-				],
-				{ cancelable: false }
-			)
 
 			// if the authStatus checks out...
 			if (authStatus === messaging.AuthorizationStatus.AUTHORIZED || authStatus === messaging.AuthorizationStatus.PROVISIONAL) {
