@@ -1,18 +1,17 @@
 module.exports = {
 
-    moduleDirectories: [
+  	preset: "react-native",
+
+  	moduleDirectories: [
 		'node_modules', 
 		'src'
 	],
 
     setupFiles: [
-		"<rootDir>/__mocks__/mocks.js"
+        "./node_modules/react-native-gesture-handler/jestSetup.js",
+        "<rootDir>/__mocks__/mocks.js"
 	],
 
-    transformIgnorePatterns: [
-
-    ],
-    
     globals: {
       	"__DEV__": true
     },
@@ -21,4 +20,7 @@ module.exports = {
 		'^.+\\.(js|ts|tsx)$': 'babel-jest',
 	},
 
-  };
+    transformIgnorePatterns: [ 
+        "node_modules/(?!((jest-)?react-native|react-navigation|react-native-gesture-handler|react-native-firebase|@react-navigation/.*))"
+    ]
+};
