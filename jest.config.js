@@ -7,6 +7,8 @@ module.exports = {
 		'src'
 	],
 
+	testEnvironment: 'jsdom',
+
     setupFiles: [
         "./node_modules/react-native-gesture-handler/jestSetup.js",
         "<rootDir>/__mocks__/mocks.js"

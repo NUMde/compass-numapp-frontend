@@ -1,5 +1,5 @@
 
-// (C) Copyright IBM Deutschland GmbH 2020.  All rights reserved.
+// (C) Copyright IBM Deutschland GmbH 2021.  All rights reserved.
 
 // the code contained in this file is rendering the content (meaning the ui-elements) of 
 // the modal that opens when an item on the survey screen is clicked on. the user-input 

@@ -1,5 +1,5 @@
 
-// (C) Copyright IBM Deutschland GmbH 2020.  All rights reserved.
+// (C) Copyright IBM Deutschland GmbH 2021.  All rights reserved.
 
 // ================================================================================================
 // ================================================================================================
@@ -165,10 +165,10 @@ const conf = {
 	 * 
 	 * WARNING: The app will NOT build if those files are not updated accordingly.
 	 * */
-	connectToFCM: true,
+	connectToFCM: false,
 
 	// updates the locally generated device token with the backend on each user-update
-	reconnectOnEachUserUpdate: true,
+	reconnectOnEachUserUpdate: false,
 
 	// rest endpoints
 	/*-----------------------------------------------------------------------------------*/
