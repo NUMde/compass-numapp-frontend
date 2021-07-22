@@ -206,7 +206,7 @@ More information on FCM can be found using the following link:
 To connect the app to your FCM instance update the following files: 
 
 * *`link:../../../../tree/main/ios/Compass/AppDelegate.m[ios/Compass/AppDelegate.m]`*
-** Comment in line 25: `[FIRApp configure];`
+** Uncomment line 25: `[FIRApp configure];`
 * *`link:../../../../tree/main/ios/GoogleService-Info.plist[ios/GoogleService-Info.plist]`*
 ** Replace with your credentials`
 * *`link:../../../../tree/main/android/app/google-services.json[android/app/google-services.json]`*
