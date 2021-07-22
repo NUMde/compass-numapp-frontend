@@ -396,6 +396,7 @@ class CheckInContainer extends Component {
 	 * checks if the questionnaire was completed and if true triggers the export
 	 */
 	exportAndUploadQuestionnaireResponse = () => {
+
 		// if the questionnaire was NOT completed
 		if(this.props.questionnaireItemMap && !this.props.questionnaireItemMap.done) {
 			// shows a message remembering the user to complete the questionnaire

@@ -160,6 +160,8 @@ class SurveyScreen extends Component {
 							)}
 						</ListItem>
 					))}
+
+					
 				</View>
 			)
 		return <View></View>

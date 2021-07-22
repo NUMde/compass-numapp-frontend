@@ -172,7 +172,9 @@ export default {
 
 	/** strings of the survey-screen */
 	"survey":{
+		"subTitle":"",
 		"logout":"logout",
+		"subTitleCheckIn":"",
 		"title":"Questionnaire",
 		"isLoading":"loading...",
 		"yourAnswer":"your answer",
@@ -181,12 +183,12 @@ export default {
 		"noUserTitle":"User not found",
 		"sendFinished":"send questionnaire",
 		"send":"Send Questionnaire Button Title",
-		"subTitle":"",
+		"additionalAnswer": "zusätzliche Antwort",
+		"alternativeAnswer": "alternative Antwort",
 		"surveySubTitle":"To be completed till:  ",
 		"surveyTitle":"Your current questionnaire",
 		"inputPlaceholder":"please enter your answer",
 		"noQuestionnaireTitle":"Questionnaire not found",
-		"subTitleCheckIn":"",
 		"loadingQuestionnaire":"requesting\nquestionnaire",
 		"inputPlaceholderTime":"please enter the date here",
 		"sessionTimeout":"Your user could not re recognized",
