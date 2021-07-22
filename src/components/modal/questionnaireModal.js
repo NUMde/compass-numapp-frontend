@@ -381,7 +381,7 @@ class QuestionnaireModal extends Component {
 					:
 					(
 						<View>
-							{/* repeat: true */}
+							{/* repeat: false */}
 							{!item.repeats && (
 								<View>
 									{/* renders a list of answers */}
