@@ -71,6 +71,8 @@
     "babel-preset-react-native": "^4.0.1",
     "jest": "^26.5.0",
     "jetifier": "^1.6.4",
+    "jsdom": "16.6.0",
+    "jsdom-global": "3.0.2",
     "jsrsasign": ">=10.2.0",
     "metro-react-native-babel-preset": "^0.66.2",
     "node-notifier": ">=8.0.1",

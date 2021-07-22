@@ -2,11 +2,11 @@
  * @jest-environment jsdom
  */
 
-import App from '../App'
-
 import React from 'react'
 import renderer from 'react-test-renderer'
 import NavigationTestUtils from 'react-navigation/NavigationTestUtils'
+
+import App from '../App'
 import LandingScreen from '../src/screens/login/landingScreen'
 import LoginScreen from '../src/screens/login/loginScreen'
 import CheckInScreen from '../src/screens/checkIn/checkInScreen'
@@ -14,6 +14,8 @@ import AboutScreen from '../src/screens/about/aboutScreen'
 import LegalInformationScreen from '../src/screens/about/legalInformationScreen'
 import WebViewScreen from '../src/screens/about/webViewScreen'
 import SurveyScreen from '../src/screens/checkIn/surveyScreen'
+
+// const flushPromises = () => new Promise(setImmediate);
 
 describe('App', () => {
     
@@ -32,6 +34,11 @@ describe('App', () => {
         const tree = renderer.create(<LandingScreen />).toJSON()
         expect(tree).toMatchSnapshot()
     })
+
+    it('renders the login screen', async () => {
+        mount(<LoginScreen/>);
+        await flushPromises();
+    });
 
     // it(`renders the login screen`, () => {
     //     const tree = renderer.create(<LoginScreen />).toJSON()
