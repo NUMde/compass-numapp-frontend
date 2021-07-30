@@ -323,34 +323,6 @@ export default {
                 },
                 {
                     "linkId": "1.20",
-                    "text": "Das ist eine Open-Choice-Abfrage mit Coding",
-                    "type": "open-choice",
-                    "required": true,
-                    "answerOption": [{
-                            "valueCoding": {
-                                "system": "snomed",
-                                "code": "A",
-                                "display": "Alpha"
-                            }
-                        },
-                        {
-                            "valueCoding": {
-                                "system": "snomed",
-                                "code": "B",
-                                "display": "Beta"
-                            }
-                        },
-                        {
-                            "valueCoding": {
-                                "system": "snomed",
-                                "code": "C",
-                                "display": "Gamma"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "linkId": "1.21",
                     "text": "Das ist eine Single-Choice-Abfrage mit Coding",
                     "type": "choice",
                     "required": true,
@@ -378,7 +350,7 @@ export default {
                     ]
                 },
                 {
-                    "linkId": "1.22",
+                    "linkId": "1.21",
                     "text": "Das ist eine Single-Choice-Abfrage als Drop-Down",
                     "type": "choice",
                     "required": true,
@@ -418,10 +390,10 @@ export default {
                                 "code": "drop-down"
                             }]
                         }
-                    }, ],
+                    }]
                 },
                 {
-                    "linkId": "1.23",
+                    "linkId": "1.22",
                     "text": "Das ist eine Frage mit hidden-extension",
                     "type": "string",
                     "extension": [{
@@ -430,57 +402,24 @@ export default {
                     }]
                 },
                 {
-                    "linkId": "1.24",
+                    "linkId": "1.23",
                     "text": "Diese Frage besteht aus zwei Teilen. Der zweiter Teil wurde auf Hidden gesetzt und wird nicht angezeigt.",
                     "type": "group",
                     "required": true,
                     "item": [{
-                            "linkId": "1.24.1",
+                            "linkId": "1.23.1",
                             "text": "Abfrage Datum",
                             "type": "date",
                             "required": true
                         },
                         {
-                            "linkId": "1.24.2",
+                            "linkId": "1.23.2",
                             "text": "Diese Frage wird nur bei erwarteter Eingabe angezeigt",
                             "type": "string",
                             "extension": [{
                                 "url": "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden",
                                 "valueBoolean": true
                             }]
-                        }
-                    ]
-                },
-                {
-                    "linkId": "1.25",
-                    "text": "Das ist eine Open-Choice-Abfrage ohne Repeat",
-                    "type": "open-choice",
-                    "required": true,
-                    "answerOption": [{
-                            "valueString": "Option A"
-                        },
-                        {
-                            "valueString": "Option B"
-                        },
-                        {
-                            "valueString": "Option C"
-                        }
-                    ]
-                },
-                {
-                    "linkId": "1.26",
-                    "text": "Das ist eine Open-Choice-Abfrage mit Repeat",
-                    "type": "open-choice",
-                    "repeats": true,
-                    "required": true,
-                    "answerOption": [{
-                            "valueString": "Option A"
-                        },
-                        {
-                            "valueString": "Option B"
-                        },
-                        {
-                            "valueString": "Option C"
                         }
                     ]
                 }
