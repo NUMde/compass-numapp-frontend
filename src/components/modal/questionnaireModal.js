@@ -654,11 +654,14 @@ class QuestionnaireModal extends Component {
 								if(split.length - 1 > 1) text = split[0] + '.' + split[1]
 								if(text === '.') text = ''
 							}	
-							// sets the answer
-							this.props.actions.setAnswer({
-								linkId: item.linkId,
-								answer: text,
-							})
+							//only set/update given answer if it is not empty (i.e. consists of valid characters)
+							if (text !== '') {
+								this.props.actions.setAnswer({
+									linkId: item.linkId,
+									answer: text,
+								})
+							}
+							
 						}
 					}
 				/>
