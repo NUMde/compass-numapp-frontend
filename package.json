@@ -31,7 +31,6 @@
     "prop-types": "^15.7.2",
     "qs": "^6.9.1",
     "react": "16.9.0",
-    "react-dom": "16.8.3",
     "react-native": "0.63.3",
     "react-native-camera": "^3.36.0",
     "react-native-elements": "^3.2.0",
