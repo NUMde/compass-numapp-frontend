@@ -44,7 +44,6 @@
     "react-native-splash-screen": "^3.2.0",
     "react-native-status-bar-height": "^2.5.0",
     "react-native-vector-icons": "^6.7.0",
-    "react-native-web": "^0.16.2",
     "react-native-webview": ">=11.0.0",
     "react-navigation": "^4.x",
     "react-navigation-stack": "^2.8.4",
