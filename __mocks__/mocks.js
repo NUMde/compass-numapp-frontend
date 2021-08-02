@@ -24,10 +24,10 @@ const mockState = {
 
 
 /***********************************************************************************************
-prepartion
+preparation
 ***********************************************************************************************/
 
-// in this point store.getState is going to be mocked
+// store.getState is going to be mocked
 store.getState = () => mockState
 
 
@@ -40,7 +40,6 @@ jest.mock('@react-native-community/async-storage', () => mockAsyncStorage)
 jest.mock('react-native-permissions', () => mockReactNativePermissions)
 jest.mock('@react-native-community/datetimepicker', () => jest.fn())
 jest.mock('@react-native-picker/picker', () => jest.fn())
-
 jest.mock('react-native/Libraries/Animated/src/NativeAnimatedHelper')
 
 jest.mock('@react-native-firebase/messaging', () => {

@@ -43,7 +43,7 @@ let props = {
 base tests
 ***********************************************************************************************/
 
-describe('App', () => {
+describe('App Start', () => {
     
     jest.useFakeTimers()
 
