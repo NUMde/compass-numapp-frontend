@@ -3,7 +3,6 @@ platform :ios, '10.0'
 permissions_path = '../node_modules/react-native-permissions/ios'
 
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
-require_relative '../node_modules/react-native-unimodules/cocoapods.rb'
 
 # Convert all permission pods into static libraries
 pre_install do |installer|
@@ -58,7 +57,6 @@ target 'Compass' do
   pod 'Permission-Notifications', :path => "#{permissions_path}/Notifications.podspec"
 
   use_native_modules!
-  use_unimodules!
   use_frameworks!
   # use_frameworks! :linkage => :static
   ENV['SWIFT_VERSION'] = '5.0'
