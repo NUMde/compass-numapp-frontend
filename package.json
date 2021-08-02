@@ -28,7 +28,6 @@
     "mimemessage": "^1.0.5",
     "node-forge": "^0.10.0",
     "object-sizeof": "^1.5.3",
-    "prop-types": "^15.7.2",
     "qs": "^6.9.1",
     "react": "16.9.0",
     "react-native": "0.63.3",
