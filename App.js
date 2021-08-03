@@ -74,7 +74,6 @@ global variables / settings
 ***********************************************************************************************/
 
 // both needed by node-forge for the encryption functionality
-global.Buffer = require('buffer').Buffer
 global.btoa = require('btoa')
 
 // deactivates the logbox-warning about the debugger running in the background
