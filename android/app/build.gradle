@@ -156,11 +156,8 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
-    implementation "com.facebook.react:react-native:+"  // From node_modules
-    // implementation 'com.google.firebase:firebase-messaging:17.3.4'
-    // implementation "com.google.firebase:firebase-iid:20.0.0"
+    implementation "com.facebook.react:react-native:+"
     implementation 'org.webkit:android-jsc:+'
-    implementation ("com.facebook.react:react-native:0.63.3") { force = true }
 }
 
 
@@ -171,6 +168,7 @@ task copyDownloadableDepsToLibs(type: Copy) {
     into 'libs'
 }
 
-apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
+apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle");
+applyNativeModulesAppBuildGradle(project)
 
 apply plugin: 'com.google.gms.google-services'
