@@ -56,6 +56,7 @@ class LoginContainer extends Component {
 	 * configured in appConfig.js
 	 */
 	componentDidMount = () => {
+
 		// logout of an existing user 
 		if(this.props.subjectId) this.props.actions.logout()
 		
@@ -65,6 +66,7 @@ class LoginContainer extends Component {
 			let subjectId = this.checkQrCodeForUsername(config.appConfig.automateQrLoginSubjectId || '')
 			// sets the subjectId defined in appConfig.js
 			this.props.actions.updateSubjectId(subjectId)
+
 			// triggers the login
 			setTimeout(() => this.props.actions.sendCredentials(subjectId), 1000)
 		} 

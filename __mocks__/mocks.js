@@ -68,3 +68,10 @@ jest.mock('react-native-splash-screen', () => {
         show: jest.fn()
     }
 })
+
+jest.mock('axios', () => {
+    return {
+        get: jest.fn(() => Promise.resolve({ data: "mocked" })),
+        post: jest.fn(() => Promise.resolve({ data: "mocked" }))
+    }
+})
