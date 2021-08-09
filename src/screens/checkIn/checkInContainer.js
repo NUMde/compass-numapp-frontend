@@ -162,7 +162,6 @@ class CheckInContainer extends Component {
 		// success
 		.then(response => {
 			setTimeout(async() => {
-				console.log("!!!!!!!!!!!!!!!!!!!!", response.data)
 				// persists the questionnaire
 				this.props.actions.getQuestionnaireSuccess(response.data || {})
 			}, 0)

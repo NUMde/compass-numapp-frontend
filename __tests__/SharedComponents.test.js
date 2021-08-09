@@ -5,7 +5,7 @@ import { renderWithRedux } from '../__utils__/render'
 
 import Banner from '../src/components/banner/banner'
 
-describe('SIMPLE COMPONENTS:', () => {
+describe('SHARED COMPONENTS:', () => {
     
     test ('<Banner /> can be rendered', async () => {
     
