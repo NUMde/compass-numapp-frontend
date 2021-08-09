@@ -47,6 +47,7 @@ class CheckInContainer extends Component {
 				{...this.props}
 				getQuestionnaire={this.getQuestionnaire}
 				exportAndUploadQuestionnaireResponse={this.exportAndUploadQuestionnaireResponse}
+				exportAndUploadQuestionnaireResponseStart={this.exportAndUploadQuestionnaireResponseStart}
 				sendReport={this.sendReport}
 				updateUser={this.updateUser}
 				formatDateString={this.formatDateString}
@@ -382,7 +383,7 @@ class CheckInContainer extends Component {
 	/**
 	 * creates the questionnaire-response and sends it out
 	 */
-	exportAndUploadQuestionnaireResponseStart = () => {
+	exportAndUploadQuestionnaireResponseStart = async () => {
 		// redux output
 		this.props.actions.sendQuestionnaireResponseStart()
 
@@ -392,7 +393,7 @@ class CheckInContainer extends Component {
 		let exportData = documentCreator.createResponseJSON()
 		
 		// sends the questionnaire
-		loggedInClient
+		await loggedInClient
 			.sendQuestionnaire(
 				exportData.body,
 				exportData.triggerMap,
