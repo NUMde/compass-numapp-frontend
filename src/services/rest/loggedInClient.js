@@ -24,6 +24,7 @@ support functions
  * @param  {string} [token] access token
  */
 const createAuthorizationToken = token => {
+	console.log(store.getState())
 	let _store = store.getState().Login
 	token = token || _store.session.accessToken
 	return `Bearer ${token}`

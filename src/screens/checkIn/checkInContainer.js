@@ -151,32 +151,43 @@ class CheckInContainer extends Component {
 	 * tries to procure the current questionnaire
 	 */
 	getQuestionnaire = async () => {
+
+		let lala
+
 		// redux output
 		this.props.actions.getQuestionnaireStart()
-		
+
 		// gets the questionnaire with the correct id
 		await loggedInClient.getBaseQuestionnaire(this.props.user.current_questionnaire_id)
-			// success
-			.then(response => {
-				setTimeout(async() => {
-					// persists the questionnaire
-					this.props.actions.getQuestionnaireSuccess(response.data || {})
-				}, 0)
-			})
-			// fail: displays an alert window with an error output and updates the state on button-click
-			.catch(error => {
-				Alert.alert(
-					config.text.generic.errorTitle,
-					config.text.generic.sendError,
-					[{
-						text: config.text.generic.ok,
-						onPress: () => {
-							this.props.actions.getQuestionnaireFail(error || 'n/a')
-						}
-					}],
-					{ cancelable: false }
-				)
-			})
+		// success
+		.then(response => {
+			setTimeout(async() => {
+				console.log("!!!!!!!!!!!!!!!!!!!!", response.data)
+				// persists the questionnaire
+				this.props.actions.getQuestionnaireSuccess(response.data || {})
+			}, 0)
+
+			lala = response.data
+		})
+		// fail: displays an alert window with an error output and updates the state on button-click
+		.catch(error => {
+
+			Alert.alert(
+				config.text.generic.errorTitle,
+				config.text.generic.sendError,
+				[{
+					text: config.text.generic.ok,
+					onPress: () => {
+						this.props.actions.getQuestionnaireFail(error || 'n/a')
+					}
+				}],
+				{ cancelable: false }
+			)
+
+			lala = error
+		})
+
+		return lala
 	}
 
 	// methods: updating user
@@ -602,4 +613,4 @@ const ConnectedCheckIn = connect(mapStateToProps, mapDispatchToProps)(CheckInCon
 export
 ***********************************************************************************************/
 
-export { ConnectedCheckIn as CheckIn }
+export { ConnectedCheckIn as CheckIn, CheckInContainer }
