@@ -1,5 +1,41 @@
 **Changelog**
 ==========================================
+**v1.0.23 (2021-07-22)**
+---------------------------------------------------------------------------
+* removed debug outputs
+* removed typos
+* corrected typo
+* Merge pull request #30 from NUMde/update-open-choice .Updating Choice- and Ope-Choice Handling
+* altered a phrase in the documentation
+* Merge pull request #28 from NUMde/firebase-integration. Firebase integration
+
+**v1.0.22 (2021-07-21)**
+---------------------------------------------------------------------------
+* added outputs to fcm-event-handlers to test push capabilites under iOS
+* added another eventhandler
+
+**v1.0.21 (2021-07-20)**
+---------------------------------------------------------------------------
+* added missing character '/' in appConfig.js
+* added FCM token to redux output (also in cases when no update is necessary)
+
+**v1.0.20 (2021-07-09)**
+---------------------------------------------------------------------------
+* updated example questionnaire
+* removed test-button
+
+**v1.0.19 (2021-07-08)**
+---------------------------------------------------------------------------
+* updated choice-handling
+* log
+
+**v1.0.18 (2021-07-06)**
+---------------------------------------------------------------------------
+* fixing bug from commit #19
+* implementation of extension-questionnaire-hidden
+* Merge branch 'main' of https://github.com/NUMde/compass-numapp-frontend (get changes from #27)
+* Merge pull request #29 from mahvaezi/main. Support for FHIR extension-questionnaire-hidden
+
 **v1.0.17 (2021-07-05)**
 ---------------------------------------------------------------------------
 * Merge pull request #26 from mahvaezi/main
