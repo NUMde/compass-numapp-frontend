@@ -234,7 +234,7 @@ class CheckInContainer extends Component {
 
 		// persists the new data
 		this.props.actions.updateUserSuccess(data)
-
+		
 		// tries to init the push service
 		if(config.appConfig.connectToFCM) setTimeout(() => this.initPush(data.subjectId), 0)
 

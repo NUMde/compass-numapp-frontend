@@ -55,7 +55,7 @@ class LoginContainer extends Component {
 	 * after the component mounted (to clean the state). also triggers the auto-login if 
 	 * configured in appConfig.js
 	 */
-	componentDidMount = () => {
+	componentDidMount = async () => {
 
 		// logout of an existing user 
 		if(this.props.subjectId) this.props.actions.logout()
@@ -66,9 +66,8 @@ class LoginContainer extends Component {
 			let subjectId = this.checkQrCodeForUsername(config.appConfig.automateQrLoginSubjectId || '')
 			// sets the subjectId defined in appConfig.js
 			this.props.actions.updateSubjectId(subjectId)
-
 			// triggers the login
-			setTimeout(() => this.props.actions.sendCredentials(subjectId), 1000)
+			setTimeout(async () => this.props.actions.sendCredentials(subjectId), 1000)
 		} 
 		else {
 			this.autoLoginLastUser()
@@ -127,6 +126,7 @@ class LoginContainer extends Component {
 	scanSuccess = (scanResult, camera) => {
 		// parses the input string to determine the subjectId (from the qr-code)
 		let subjectId = this.checkQrCodeForUsername(scanResult.data)
+
 		// sets the subjectId defined in appConfig.js
 		this.props.actions.updateSubjectId(subjectId)
 		// triggers the login

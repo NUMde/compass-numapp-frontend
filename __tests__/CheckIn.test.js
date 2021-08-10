@@ -6,7 +6,6 @@ imports
 
 import React from 'react'
 import { Alert } from 'react-native';
-import '@testing-library/jest-native/extend-expect'
 import { renderWithRedux, initRenderModule } from '../__utils__/render'
 
 import store from '../src/store.js';
@@ -15,7 +14,7 @@ import WelcomeText from '../src/components/checkIn/welcomeText'
 import * as actions from '../src/screens/checkIn/checkInActions'
 import CheckInScreen from '../src/screens/checkIn/checkInScreen'
 import CheckInTiles from '../src/components/checkIn/checkInTiles'
-import {CheckInContainer} from '../src/screens/checkIn/checkInContainer'
+import {CheckInContainer, CheckIn} from '../src/screens/checkIn/checkInContainer'
 import CheckInListView from '../src/components/checkIn/checkInListView'
 import questionnaireAnalyzer from '../src/services/questionnaireAnalyzer/questionnaireAnalyzer'
 import loggedInClient from '../src/services/rest/loggedInClient'

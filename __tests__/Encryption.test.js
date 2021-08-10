@@ -7,7 +7,6 @@ imports
 import * as forge from 'node-forge'
 import { expect } from '@jest/globals'
 import config from '../src/config/configProvider'
-import '@testing-library/jest-native/extend-expect'
 
 import encryption from '../src/services/encryption/encryption'
 
@@ -20,7 +19,7 @@ describe('ENCRYPTION:', () => {
     // retrieves the test-pem-string from the appConfig
     let pemString = config.appConfig.defaultRecipientCertificatePemString
 
-    // tests if the sgtring is set in the appConfig
+    // tests if the string is set in the appConfig (as we need that one)
     test ('Test PEM-String is available through configProvider', () => {
 
         expect(pemString.length).toBeGreaterThan(3)

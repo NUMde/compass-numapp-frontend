@@ -6,7 +6,6 @@ imports
 
 import React from 'react'
 import { expect } from '@jest/globals'
-import '@testing-library/jest-native/extend-expect'
 import { renderWithRedux } from '../__utils__/render'
 import createAppNavigator from '../src/navigation/appNavigator'
 
@@ -17,7 +16,6 @@ tests
 ***********************************************************************************************/
 
 describe('APP START AND RENDERING:', () => {
-
 
     let createAppTree = () => {
     
@@ -46,8 +44,8 @@ describe('APP START AND RENDERING:', () => {
     test ('User is navigated to <LandingScreen /> after app start', () => {
     
         // checks if right now the login-button is rendered
-        let loginButtun = createAppTree().getByText('Navigate to Login Screen')
+        let loginButton = createAppTree().getByText('Navigate to Login Screen')
         
-        expect(loginButtun).toBeTruthy()
+        expect(loginButton).toBeTruthy()
     })
 })
