@@ -81,12 +81,12 @@ describe('LOGIN RENDERING:', () => {
     })
 })
 
-describe('LOGIN USER FLOW:', () => {
+describe('LOGIN Handling:', () => {
     
     // tests if the flow from the landing screen to the checkin screen can be executed.
     // the test can use the login-automation defined in "config.appConfig.automateQrLogin".
     // if that is not possible the function "scanSuccess" will be executed directly.
-    it(`TEST: Landing -> Login -> Checkin`, async () => {
+    it(`User can load the app, login and then trigger the automatic questionnaire download`, async () => {
 
         // creates an actual navigator
         let Navigator = createAppNavigator()

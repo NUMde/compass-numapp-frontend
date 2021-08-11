@@ -247,7 +247,7 @@ describe('CHECKIN RENDERING:', () => {
 describe('QUESTIONNAIRE HANDLING:', () => {
     
     // checks if the checkinScreen is rendered after the checkinContainer loaded
-    test ('<CheckInContainer /> triggers the questionnaire Download after login', async () => {
+    test ('<CheckInContainer /> triggers the questionnaire download after login', async () => {
         
         // initiates a global mock-redux-store 
         let _mockStore = initRenderModule(initialState)
