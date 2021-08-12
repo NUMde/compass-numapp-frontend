@@ -16,6 +16,8 @@ When you checkout the project for the first time it will look somewhat like the 
 ```
 compass
 ├── __tests__
+├── __mocks__
+├── __utils__
 ├── android
 ├── docs
 ├── ios
