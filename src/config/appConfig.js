@@ -100,7 +100,7 @@ const conf = {
 
 	/** dev-option:
 	 * skips the id-comparison */
-	skipIncomingQuestionnaireCheck: false,
+	skipIncomingQuestionnaireCheck: __DEV__ && false,
 
 	// login
 	/*-----------------------------------------------------------------------------------*/
