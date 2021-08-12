@@ -55,7 +55,7 @@ class LoginContainer extends Component {
 	 * after the component mounted (to clean the state). also triggers the auto-login if 
 	 * configured in appConfig.js
 	 */
-	componentDidMount = async () => {
+	componentDidMount = () => {
 
 		// logout of an existing user 
 		if(this.props.subjectId) this.props.actions.logout()

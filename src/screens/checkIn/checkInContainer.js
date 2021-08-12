@@ -153,7 +153,7 @@ class CheckInContainer extends Component {
 	 */
 	getQuestionnaire = async () => {
 
-		let lala
+		let response
 
 		// redux output
 		this.props.actions.getQuestionnaireStart()
@@ -161,13 +161,13 @@ class CheckInContainer extends Component {
 		// gets the questionnaire with the correct id
 		await loggedInClient.getBaseQuestionnaire(this.props.user.current_questionnaire_id)
 		// success
-		.then(response => {
+		.then(resp => {
 			setTimeout(async() => {
 				// persists the questionnaire
-				this.props.actions.getQuestionnaireSuccess(response.data || {})
+				this.props.actions.getQuestionnaireSuccess(resp.data || {})
 			}, 0)
 
-			lala = response.data
+			response = resp.data
 		})
 		// fail: displays an alert window with an error output and updates the state on button-click
 		.catch(error => {
@@ -184,10 +184,10 @@ class CheckInContainer extends Component {
 				{ cancelable: false }
 			)
 
-			lala = error
+			response = error
 		})
 
-		return lala
+		return response
 	}
 
 	// methods: updating user
