@@ -100,7 +100,7 @@ describe('LOGIN Handling:', () => {
         // ...which should be noted in the navigation-object:
         expect(instance.props.navigation.state.routeName === 'Landing').toBeTruthy()
 
-        // also, there is a button on that screen thsat should take us to the login screen
+        // also, there is a button on that screen that should take us to the login screen
         let loginButton = tree.getByText('Navigate to Login Screen')
 
         // checks if that button exists..
