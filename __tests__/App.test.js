@@ -17,8 +17,12 @@ tests
 
 describe('APP START AND RENDERING:', () => {
 
+    /**
+     * creates an instance of the app with working navigational properties
+     */
     let createAppTree = () => {
     
+        // creates the regular appNavigator
         let Navigator = createAppNavigator()
             
         return renderWithRedux(<Navigator><App /></Navigator>);   

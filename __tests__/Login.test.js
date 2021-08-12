@@ -111,7 +111,7 @@ describe('LOGIN Handling:', () => {
 
         // if the automateQrLogin-option is set
         if(config.appConfig.automateQrLogin) {
-            // checks if the checkin ccreen was already loaded
+            // checks if the checkin screen was already loaded
             waitFor(() => instance = tree.UNSAFE_getByType(CheckInScreen).instance)
                 // waits for the loading screen to turn invisible 
                 .then(() => waitFor(() => expect(tree.UNSAFE_getByType(Spinner).instance.props.visible === false).toBeTruthy())

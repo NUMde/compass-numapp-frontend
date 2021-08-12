@@ -53,7 +53,7 @@ const props = {
     actions
 }
 
-// defualt initial state
+// default initial state
 const initialState = {
     CheckIn: {
         ...user,
@@ -189,6 +189,7 @@ describe('CHECKIN RENDERING:', () => {
     // simple render test
     test('<CheckInContainer /> can be rendered', async () => {
 
+        // renders the component
         let tree = renderWithRedux(<CheckInContainer {...props} />)
 
         // checks if the screen matches the snapshot
@@ -221,6 +222,7 @@ describe('CHECKIN RENDERING:', () => {
         // renders the component
         let tree = renderWithRedux(<CheckInListView />)
     
+        // checks if the screen matches the snapshot
         expect(tree).toMatchSnapshot()
     })
 
@@ -230,6 +232,7 @@ describe('CHECKIN RENDERING:', () => {
         // renders the component
         let tree = renderWithRedux(<WelcomeText />)
     
+        // checks if the screen matches the snapshot
         expect(tree).toMatchSnapshot()
     })
 
@@ -239,6 +242,7 @@ describe('CHECKIN RENDERING:', () => {
         // renders the component
         let tree = renderWithRedux(<CheckInTiles />)
     
+        // checks if the screen matches the snapshot
         expect(tree).toMatchSnapshot()
     })
 })
@@ -266,7 +270,7 @@ describe('QUESTIONNAIRE HANDLING:', () => {
     // checks if a response is generated
     test ('Questionnaire Response can be generated', async () => {
 
-        // updates the initial state woith a questionnaireItemMap
+        // updates the initial state with a questionnaireItemMap
         let _initialState = {...initialState}
         _initialState.CheckIn.questionnaireItemMap = exampleQuestionnaireItemMap
 
@@ -332,7 +336,7 @@ describe('QUESTIONNAIRE HANDLING:', () => {
         // triggers the export and upload
         instance.props.exportAndUploadQuestionnaireResponse()
             
-        // checks if the app produces an alert-window (before dending out the date)
+        // checks if the app produces an alert-window (before sending out the data)
         expect(Alert.alert).toHaveBeenCalled()
 
         // confirms the alert and triggers the transport
