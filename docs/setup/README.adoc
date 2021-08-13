@@ -27,6 +27,21 @@ If you are working on windows, please use this command (it omits the MacOS insta
 npm run clean_install_windows
 ....
 TIP: This command can also be useful when trying to dissolve build problems after dependency updates.
+
+If you use nvm to switch between different versions of node/npm you might run into the following error when trying to build the app:
+
+....
+** BUILD FAILED **
+
+The following build commands failed:
+PhaseScriptExecution [CP-User]\ Generate\ Specs /Users/[useranme]/Library/Developer/Xcode/DerivedData/[AppName]/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FBReactNativeSpec.build/Script-**.sh
+....
+
+In that case run the following command to fix it:
+
+....
+nvm unalias default
+....
 --
 
 . *Create local.properties*
