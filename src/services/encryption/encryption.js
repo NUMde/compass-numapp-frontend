@@ -1,5 +1,5 @@
 
-// (C) Copyright IBM Deutschland GmbH 2020.  All rights reserved.
+// (C) Copyright IBM Deutschland GmbH 2021.  All rights reserved.
 
 // this file provides functionality  
 
@@ -22,8 +22,8 @@ encryption
 const encrypt = messageToBeEncrypted => {
 
 	// TODO: remove workaround
-	let pemString = store.getState().Login.session.recipientCertificatePemString
-	pemString = pemString === "false" ? config.appConfig.defaultRecipientCertificatePemString : pemString
+	let pemString = store?.getState().Login?.session?.recipientCertificatePemString
+	pemString = (pemString === "false" || !pemString) ? config.appConfig.defaultRecipientCertificatePemString : pemString
 
 	// retrieves the necessary certificate
 	let cert = forge.pki.certificateFromPem(pemString)

@@ -1,5 +1,5 @@
 
-// (C) Copyright IBM Deutschland GmbH 2020.  All rights reserved.
+// (C) Copyright IBM Deutschland GmbH 2021.  All rights reserved.
 
 // the code contained in this file is meant to gather information about the
 // current state of the questionnaire as well as to create the responseJson that is

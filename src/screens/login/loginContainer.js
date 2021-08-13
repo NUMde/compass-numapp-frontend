@@ -1,5 +1,5 @@
 
-// (C) Copyright IBM Deutschland GmbH 2020.  All rights reserved.
+// (C) Copyright IBM Deutschland GmbH 2021.  All rights reserved.
 
 /***********************************************************************************************
 imports
@@ -56,6 +56,7 @@ class LoginContainer extends Component {
 	 * configured in appConfig.js
 	 */
 	componentDidMount = () => {
+
 		// logout of an existing user 
 		if(this.props.subjectId) this.props.actions.logout()
 		
@@ -66,7 +67,7 @@ class LoginContainer extends Component {
 			// sets the subjectId defined in appConfig.js
 			this.props.actions.updateSubjectId(subjectId)
 			// triggers the login
-			setTimeout(() => this.props.actions.sendCredentials(subjectId), 1000)
+			setTimeout(async () => this.props.actions.sendCredentials(subjectId), 1000)
 		} 
 		else {
 			this.autoLoginLastUser()
@@ -125,6 +126,7 @@ class LoginContainer extends Component {
 	scanSuccess = (scanResult, camera) => {
 		// parses the input string to determine the subjectId (from the qr-code)
 		let subjectId = this.checkQrCodeForUsername(scanResult.data)
+
 		// sets the subjectId defined in appConfig.js
 		this.props.actions.updateSubjectId(subjectId)
 		// triggers the login

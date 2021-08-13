@@ -8,21 +8,20 @@ imports
 // redux
 /*-----------------------------------------------------------------------------------*/
 
-import { combineReducers, createStore, applyMiddleware } from 'redux'
-import { createLogger } from 'redux-logger'
 import thunk from 'redux-thunk'
+import { combineReducers, createStore, applyMiddleware } from 'redux'
 
 // reducers
 /*-----------------------------------------------------------------------------------*/
 
-import LoginReducer from './screens/login/loginReducer'
-import AboutReducer from './screens/about/aboutReducer'
-import CheckInReducer from './screens/checkIn/checkInReducer'
+import LoginReducer from '../src/screens/login/loginReducer'
+import AboutReducer from '../src/screens/about/aboutReducer'
+import CheckInReducer from '../src/screens/checkIn/checkInReducer'
 
 // services
 /*-----------------------------------------------------------------------------------*/
 
-import localStorage from './services/localStorage/localStorage'
+import localStorage from '../src/services/localStorage/localStorage'
 
 /***********************************************************************************************
 reducer
@@ -61,6 +60,7 @@ const rootReducer = (state, action) => {
 		localStorage.removeCategories(subjectId)
 		localStorage.removeQuestionnaireItemMap(subjectId)
 	}
+
 	return appReducer(state, action)
 }
 
@@ -71,10 +71,19 @@ middleware
 const middleware = []
 middleware.push(thunk)
 
-if(__DEV__) middleware.push(createLogger({collapsed: true}))
+// if(__DEV__) middleware.push(createLogger({collapsed: true}))
 
 /***********************************************************************************************
 export
 ***********************************************************************************************/
 
-export default createStore(rootReducer, applyMiddleware(...middleware))
+let globalMockStore
+
+export function buildStore(state) {
+	if(state) globalMockStore = createStore(rootReducer, state, applyMiddleware(...middleware))
+	if(!state) globalMockStore = createStore(rootReducer, applyMiddleware(...middleware))
+	
+	return globalMockStore
+}
+
+export default buildStore()

@@ -11,5 +11,6 @@ The following documentation topics ar available (as of now):
 . **link:./theming[Styling the React Native Client]**
 . **link:./content[Updating the Content of the React Native Client]**
 . **link:./development[Development Guide for the React Native Client]**
+. **link:./testing[Unit- & Integration Testing]**
 . **link:./build[Production Build & Deployment to the Stores]**
 . **link:./questionnaireRendering[Questionnaire Requirements]**

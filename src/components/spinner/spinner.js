@@ -1,11 +1,11 @@
 
-// (C) Copyright IBM Deutschland GmbH 2020.  All rights reserved.
+// (C) Copyright IBM Deutschland GmbH 2021.  All rights reserved.
 
 /***********************************************************************************************
 import
 ***********************************************************************************************/
 
-import React from 'react'
+import * as React from 'react';
 import { StyleSheet, View, Modal, ActivityIndicator } from 'react-native'
 
 import config from '../../config/configProvider'

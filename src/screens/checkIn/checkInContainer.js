@@ -1,4 +1,4 @@
-// (C) Copyright IBM Deutschland GmbH 2020.  All rights reserved.
+// (C) Copyright IBM Deutschland GmbH 2021.  All rights reserved.
 
 /***********************************************************************************************
 imports
@@ -47,6 +47,7 @@ class CheckInContainer extends Component {
 				{...this.props}
 				getQuestionnaire={this.getQuestionnaire}
 				exportAndUploadQuestionnaireResponse={this.exportAndUploadQuestionnaireResponse}
+				exportAndUploadQuestionnaireResponseStart={this.exportAndUploadQuestionnaireResponseStart}
 				sendReport={this.sendReport}
 				updateUser={this.updateUser}
 				formatDateString={this.formatDateString}
@@ -151,32 +152,42 @@ class CheckInContainer extends Component {
 	 * tries to procure the current questionnaire
 	 */
 	getQuestionnaire = async () => {
+
+		let response
+
 		// redux output
 		this.props.actions.getQuestionnaireStart()
-		
+
 		// gets the questionnaire with the correct id
 		await loggedInClient.getBaseQuestionnaire(this.props.user.current_questionnaire_id)
-			// success
-			.then(response => {
-				setTimeout(async() => {
-					// persists the questionnaire
-					this.props.actions.getQuestionnaireSuccess(response.data || {})
-				}, 0)
-			})
-			// fail: displays an alert window with an error output and updates the state on button-click
-			.catch(error => {
-				Alert.alert(
-					config.text.generic.errorTitle,
-					config.text.generic.sendError,
-					[{
-						text: config.text.generic.ok,
-						onPress: () => {
-							this.props.actions.getQuestionnaireFail(error || 'n/a')
-						}
-					}],
-					{ cancelable: false }
-				)
-			})
+		// success
+		.then(resp => {
+			setTimeout(async() => {
+				// persists the questionnaire
+				this.props.actions.getQuestionnaireSuccess(resp.data || {})
+			}, 0)
+
+			response = resp.data
+		})
+		// fail: displays an alert window with an error output and updates the state on button-click
+		.catch(error => {
+
+			Alert.alert(
+				config.text.generic.errorTitle,
+				config.text.generic.sendError,
+				[{
+					text: config.text.generic.ok,
+					onPress: () => {
+						this.props.actions.getQuestionnaireFail(error || 'n/a')
+					}
+				}],
+				{ cancelable: false }
+			)
+
+			response = error
+		})
+
+		return response
 	}
 
 	// methods: updating user
@@ -223,7 +234,7 @@ class CheckInContainer extends Component {
 
 		// persists the new data
 		this.props.actions.updateUserSuccess(data)
-
+		
 		// tries to init the push service
 		if(config.appConfig.connectToFCM) setTimeout(() => this.initPush(data.subjectId), 0)
 
@@ -372,7 +383,7 @@ class CheckInContainer extends Component {
 	/**
 	 * creates the questionnaire-response and sends it out
 	 */
-	exportAndUploadQuestionnaireResponseStart = () => {
+	exportAndUploadQuestionnaireResponseStart = async () => {
 		// redux output
 		this.props.actions.sendQuestionnaireResponseStart()
 
@@ -382,7 +393,7 @@ class CheckInContainer extends Component {
 		let exportData = documentCreator.createResponseJSON()
 		
 		// sends the questionnaire
-		loggedInClient
+		await loggedInClient
 			.sendQuestionnaire(
 				exportData.body,
 				exportData.triggerMap,
@@ -602,4 +613,4 @@ const ConnectedCheckIn = connect(mapStateToProps, mapDispatchToProps)(CheckInCon
 export
 ***********************************************************************************************/
 
-export { ConnectedCheckIn as CheckIn }
+export { ConnectedCheckIn as CheckIn, CheckInContainer }

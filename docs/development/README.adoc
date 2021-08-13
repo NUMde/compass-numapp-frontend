@@ -16,6 +16,8 @@ When you checkout the project for the first time it will look somewhat like the 
 ```
 compass
 ├── __tests__
+├── __mocks__
+├── __utils__
 ├── android
 ├── docs
 ├── ios
@@ -34,8 +36,14 @@ compass
 |   └── store.js
 └── App.js
 ```
-* *_ __tests__ _* + 
-The directory containing link:https://jestjs.io/[Jest] Frontend Tests. Not in use right now.
+* *_ /__tests__ _* + 
+The directory containing link:https://jestjs.io/[Jest] Frontend Tests. Those tests utilize link:https://testing-library.com/docs/react-native-testing-library/intro/[React Native Testing Library] for their implementation.
+
+* *_ /__mocks__ _* + 
+The directory containing the mock services for the link:https://jestjs.io/[Jest] Frontend Tests.
+
+* *_ /__utils__ _* + 
+The directory containing the utilities needed (renderer and mock-redux-store) for the link:https://jestjs.io/[Jest] Frontend Tests.
 
 * */android* + 
 The working directory for the android project.
@@ -53,7 +61,7 @@ The home of all the files that npm will install.
 Holds some additional patches that will be installed after a successful *npm install*.
 
 * */src* + 
-Contains the Source Files.
+Contains the source files.
 
 ** */assets* + 
 This is where the additional files (images, fonts, etc...) are located.

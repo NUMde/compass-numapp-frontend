@@ -1,5 +1,5 @@
 
-// (C) Copyright IBM Deutschland GmbH 2020.  All rights reserved.
+// (C) Copyright IBM Deutschland GmbH 2021.  All rights reserved.
 
 /***********************************************************************************************
 import
@@ -26,7 +26,7 @@ const actionHandlers = {
 	
 	/**
 	 * shows the regular modal and sets its content by id (see modal.js)
-	 * @param  {Lala}   state redux state
+	 * @param  {object} state redux state
 	 * @param  {object} value redux action
 	 * @param  {{title:string,subTitle: string,uri: string}} value.modalLink the identifying string
 	 */

@@ -1,5 +1,5 @@
 
-// (C) Copyright IBM Deutschland GmbH 2020.  All rights reserved.
+// (C) Copyright IBM Deutschland GmbH 2021.  All rights reserved.
 
 // ================================================================================================
 // ================================================================================================
@@ -65,7 +65,7 @@ const conf = {
 
 	/** dev-option:
 	 * skips the QR login after 500ms */
-	automateQrLogin: __DEV__ && true,
+	automateQrLogin: __DEV__ && false,
 
 	/** dev-option:
 	 * subject-id for automated login */
