@@ -1,5 +1,5 @@
 
-// (C) Copyright IBM Deutschland GmbH 2020.  All rights reserved.
+// (C) Copyright IBM Deutschland GmbH 2021.  All rights reserved.
 
 /***********************************************************************************************
 imports
@@ -72,7 +72,7 @@ class AboutScreen extends Component {
 													{config.text.about.legal.title}
 												</ListItem.Title>
 
-												<ListItem.Subtitle style={localStyle.subtTitle}>
+												<ListItem.Subtitle style={localStyle.subTitle}>
 													{config.text.about.legal.subTitle}
 												</ListItem.Subtitle>
 											</ListItem.Content>
@@ -196,7 +196,7 @@ const localStyle = StyleSheet.create({
 		backgroundColor: config.theme.values.defaultListLinkBackgroundColor
 	},
 
-	subtTitle: {
+	subTitle: {
 		color: config.theme.colors.accent4,
 		...config.theme.fonts.body	
 	},

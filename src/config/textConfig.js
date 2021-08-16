@@ -1,11 +1,11 @@
 
-// (C) Copyright IBM Deutschland GmbH 2020.  All rights reserved
+// (C) Copyright IBM Deutschland GmbH 2021.  All rights reserved
 
 // ================================================================================================
 // ================================================================================================
 // TEXT CONFIGURATION VALUES
 
-// TO CUSTOMIZE THE THE USED STRINGS OF THS APPLICATON PLEASE COPY THE WHOLE CONTENT BELOW  THIS
+// TO CUSTOMIZE THE THE USED STRINGS OF THS APPLICATION PLEASE COPY THE WHOLE CONTENT BELOW  THIS
 // COMMENT INTO THE FILE 'customTextConfig.js' located under 'src/CUSTOMIZATION'. THOSE VALUES WILL
 // THEN OVERWRITE THE DEFAULT-VALUES DEFINED IN THIS FILE.
 //                                                                           /$$          
@@ -104,7 +104,7 @@ export default {
 		"noSubjectId":"no valid subjectId found",
 		"errorUserUnauthorized":"Invalid user data.",
 		"qrInfo":"Please point the camera onto the qr-code.",
-		"errorUserGeneric":"There occured a problem during login.",
+		"errorUserGeneric":"There occurred a problem during login.",
 		"permissionDialog":"Please allow the app to access your camera.",
 
 		/** contains all strings of the landing-screen */
@@ -117,7 +117,7 @@ export default {
 		},
 	},
 
-	/** strings with genric purpose that can be used throughout the application */
+	/** strings with generic purpose that can be used throughout the application */
 	"generic":{
 		"ok":"OK",
 		"error":"Error",
@@ -171,40 +171,42 @@ export default {
 	},
 
 	/** strings of the survey-screen */
-	"survery":{
+	"survey":{
+		"subTitle":"",
 		"logout":"logout",
+		"subTitleCheckIn":"",
 		"title":"Questionnaire",
 		"isLoading":"loading...",
-		"yourAnswer":"your anwer",
+		"yourAnswer":"your answer",
 		"titleCheckIn":"Check-In",
 		"welcomeTitle":"CheckIn-Title",
 		"noUserTitle":"User not found",
 		"sendFinished":"send questionnaire",
 		"send":"Send Questionnaire Button Title",
-		"subTitle":"",
-		"surverySubTitle":"To be completed till:  ",
-		"surveryTitle":"Your current questionnaire",
+		"additionalAnswer": "zusätzliche Antwort",
+		"alternativeAnswer": "alternative Antwort",
+		"surveySubTitle":"To be completed till:  ",
+		"surveyTitle":"Your current questionnaire",
 		"inputPlaceholder":"please enter your answer",
 		"noQuestionnaireTitle":"Questionnaire not found",
-		"subTitleCheckin":"",
 		"loadingQuestionnaire":"requesting\nquestionnaire",
 		"inputPlaceholderTime":"please enter the date here",
 		"sessionTimeout":"Your user could not re recognized",
 		"reloadingQuestionnaire":"re-loading\nquestionnaire",
 		"welcomeTitleFirstTime":"CheckIn-Title for new Users",
-		"surveryTitleFirstTime":"Your Entry-Questionnaire Title",
+		"surveyTitleFirstTime":"Your Entry-Questionnaire Title",
 		"welcomeTextFirstTimeUser2":" - See? This is the second part of that message.",
-		"noUserText":"Yout ID could not be verified. Please try again.",
+		"noUserText":"Your ID could not be verified. Please try again.",
 		"noNewQuestionnaireAvailableYetTitle":"Title, in case no Questionnaire is available",
 		"sendFinishedMessage":"confirmation dialog for sending the completed questionnaire?",
 		"sendUnfinishedMessageDenied":"The current questionnaire is not yet completed. Please do so.",
 		"nextOne":"This text will be shown to communicate when the next questionnaire is available: ",
-		"noQuestionnaireText":"There occured an error while loading the questionnaire - Please try again.",
-		"noNewQuestionnaireAvailableYet":"This text will be diplayed if no questionnaire is available right now.",
+		"noQuestionnaireText":"There occurred an error while loading the questionnaire - Please try again.",
+		"noNewQuestionnaireAvailableYet":"This text will be displayed if no questionnaire is available right now.",
 		"nextOneNew":"This text will be shown to communicate TO A NEW USER when the next questionnaire is available: ",
 		"furtherInfo":"This is the bottom snippet of the welcomeText. You may place something useful here... like a limerick.",
 		"welcomeTextUser":"This is the regular welcome message. It will be shown if a questionnaire is available and the user a recurring one. Below this, the due date should be displayed.",
-		"welcomeTextFirstTimeUser1":"This is text that is presentend to first-time-users. It tells them when the first questionnaire is due: ",
+		"welcomeTextFirstTimeUser1":"This is text that is presented to first-time-users. It tells them when the first questionnaire is due: ",
 	},
 
 	/** strings for the special-report-flow */
@@ -219,7 +221,7 @@ export default {
 	},
 
 	/** each entry in this array will generate a new listItem on the about-screen. When clicked on such an item, a webView will open that
-	 * can diplay any website. "iconType" is the name of a free Webfont and the title is the name of the particular icon. .
+	 * can display any website. "iconType" is the name of a free Webfont and the title is the name of the particular icon. .
 	 * as this app is using react-native-elements, the list of compatible fonts can be found in its documentation:
 	 * https://reactnativeelements.com/docs/icon
 	 */
@@ -243,14 +245,14 @@ export default {
 	],
 
 	/** each entry in this array will generate a new listItem on the about-screen. When clicked on such an item, a modal will open
-	 * that informs the user that he/she is beeing redirected to their local browser. "iconType" is the name of a free Webfont and the title is the name of the particular icon. .
+	 * that informs the user that he/she is being redirected to their local browser. "iconType" is the name of a free Webfont and the title is the name of the particular icon. .
 	 * as this app is using react-native-elements, the list of compatible fonts can be found in its documentation:
 	 * https://reactnativeelements.com/docs/icon
 	 */
 	"modalLinks": [
 		{
 			"title":"First Link",
-			"subTitle": "This is a regular link. It will open a modal before redicrecting the user to his/her own browser."	,
+			"subTitle": "This is a regular link. It will open a modal before redirecting the user to his/her own browser."	,
 			"text": "your are now being redirected.",
 			"uri": 'https://github.blog/',
 			"iconTitle": "link",

@@ -1,5 +1,5 @@
 
-// (C) Copyright IBM Deutschland GmbH 2020.  All rights reserved.
+// (C) Copyright IBM Deutschland GmbH 2021.  All rights reserved.
 
 /***********************************************************************************************
 import
@@ -17,7 +17,7 @@ export default function setAccessibilityResponder(object) {
         if (temp) {
             Platform.OS === 'android'
                 ? UIManager.sendAccessibilityEvent(temp, 8)
-                : AccessibilityInfo.setAccessibilityFocus(temp);        
+                : AccessibilityInfo.setAccessibilityFocus(temp)
             return true
         }
     }

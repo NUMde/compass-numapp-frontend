@@ -1,5 +1,5 @@
 
-// (C) Copyright IBM Deutschland GmbH 2020.  All rights reserved.
+// (C) Copyright IBM Deutschland GmbH 2021.  All rights reserved.
 
 // this file provides methods concerning the communication with the backend after the user
 // is logged in.
@@ -73,6 +73,29 @@ const getUserUpdate = async () => {
 	)
 }
 
+// push
+/*-----------------------------------------------------------------------------------*/
+
+/**
+ * updates the backend with the current FCM token
+ * @param  {string} subjectId string identifying the user
+ * @param  {string} token the token
+ */
+const updateDeviceToken = async (subjectId, token) => {
+	return axios.post(
+		config.appConfig.endpoints.updateToken + subjectId,
+		{
+			token
+		},
+		{
+			headers: {
+				Authorization: createAuthorizationToken(),
+				Accept: 'application/json',
+			}
+		}
+	)	
+}
+
 // reports
 /*-----------------------------------------------------------------------------------*/
 
@@ -113,7 +136,7 @@ const sendReport = async subjectId => {
  */
 const sendQuestionnaire = async (body, triggerMap, subjectId, surveyId, instanceId) => {
 	return axios.post(
-		config.appConfig.endpoints.sendQuestionnare,
+		config.appConfig.endpoints.sendQuestionnaire,
 		generateEncapsuledMessage(subjectId, 'questionnaire_response', body ),
 		{
 			headers: {
@@ -158,5 +181,6 @@ export default {
 	sendReport,
 	getBaseQuestionnaire,
 	sendQuestionnaire,
-	getUserUpdate
+	getUserUpdate,
+	updateDeviceToken
 }

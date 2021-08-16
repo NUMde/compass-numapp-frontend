@@ -1,11 +1,10 @@
 
-// (C) Copyright IBM Deutschland GmbH 2020.  All rights reserved.
+// (C) Copyright IBM Deutschland GmbH 2021.  All rights reserved.
 
 /***********************************************************************************************
 import
 ***********************************************************************************************/
 
-import config from '../../config/configProvider'
 import localStorage from '../../services/localStorage/localStorage'
 
 /***********************************************************************************************
@@ -27,13 +26,13 @@ const initialState = {
 }
 
 /***********************************************************************************************
-valuess handlers
+value handlers
 ***********************************************************************************************/
 
 const valuesHandlers = {
 	
 	/**
-	 * diplays the datepicker component
+	 * displays the datepicker component
 	 * @param  {any} state redux state
 	 */
 	['SHOW_DATEPICKER']: state => {
@@ -59,7 +58,7 @@ const valuesHandlers = {
 	 * @param  {any} state redux state
 	 * @param  {any} values values to be set
 	 */
-	['SHOW_QUESTIONNARE_MODAL']: (state, values) => {
+	['SHOW_QUESTIONNAIRE_MODAL']: (state, values) => {
 		return {
 			...state,
 			showQuestionnaireModal: true,
@@ -70,11 +69,11 @@ const valuesHandlers = {
 	},
 
 	/**
-	 * hides the quesrtionnaire modal
+	 * hides the questionnaire modal
 	 * @param  {any} state redux state
 	 * @param  {any} values values to be set
 	 */
-	['HIDE_QUESTIONNARE_MODAL']: state => {
+	['HIDE_QUESTIONNAIRE_MODAL']: state => {
 		return {
 			...state,
 			showQuestionnaireModal: false,
@@ -115,7 +114,7 @@ const valuesHandlers = {
 	},
 
 	/**
-	 * sets the aswer of a single item
+	 * sets the answer of a single item
 	 * @param  {any} state redux state
 	 * @param  {any} values values to be set
 	 */
@@ -124,38 +123,59 @@ const valuesHandlers = {
 		// generates local copy of questionnaireItemMap
 		let questionnaireItemMap = Object.assign({}, state.questionnaireItemMap)
 
-		// persists the new questionnaireItemMap in AsynStorage
+		// persists the new questionnaireItemMap in AsyncStorage
 		setTimeout(() => {
 			localStorage.persistQuestionnaireItemMap(questionnaireItemMap, state.user.subjectId)
 		}, 0)
 
 		// if multiple answers are allowed
 		if (values.answer.openAnswer) {
+
+			let contained = false
+			
 			// updates the answer-attribut in questionnaireItemMap to an array so that
 			// it can hold multiple answers
-			if (!Array.isArray(questionnaireItemMap[values.answer.linkId].answer)) {
-				questionnaireItemMap[values.answer.linkId].answer = []
-			}
-			let answers = questionnaireItemMap[values.answer.linkId].answer;
+			if (!Array.isArray(questionnaireItemMap[values.answer.linkId].answer)) questionnaireItemMap[values.answer.linkId].answer = []
 
-			// removes the answer is already present
-			let contained = false;
-			for(let i = answers.length -1 ; i>=0; i--) {
-				if(answers[i] === values.answer.answer ||
-					(typeof answers[i] === "object" && answers[i].code === values.answer.answer.code && answers[i].system === values.answer.answer.system)) {
-					answers.splice(i,1);
-					contained = true;
+			let answers = questionnaireItemMap[values.answer.linkId].answer
+
+			// removes the answer if already present
+			for(let i = answers.length - 1; i >= 0; i--) {
+				if(  
+					answers[i] === values.answer.answer || 
+					(
+						answers[i].code &&
+						answers[i].system &&
+						answers[i].code === values.answer.answer.code && 
+						answers[i].system === values.answer.answer.system
+					)
+				)
+				{
+					answers.splice(i, 1)
+					contained = true
+					break
 				}
 			}
+
 			// adds the answer if not already present
-			if(!contained) {
-				answers.push(values.answer.answer)
-			}
+			if(!contained) answers.push(values.answer.answer)
 		} 
 		// if its just a single-value answer
 		else {
-			// jsut updates the answer value
-			questionnaireItemMap[values.answer.linkId].answer = values.answer.answer
+
+			// nulls an empty string
+			if(typeof values.answer.answer === 'string' && !values.answer.answer) values.answer.answer = null
+
+			// writes the open-answer value in a separate variable
+			if(values.answer.isOpenAnswer) {
+				let answer = questionnaireItemMap[values.answer.linkId].answerOption.filter(e => e.isOpenQuestionAnswer)[0]
+				answer.answer = values.answer.answer
+			}
+
+			if(!values.answer.isAdditionalAnswer) {
+				// just updates the answer value
+				questionnaireItemMap[values.answer.linkId].answer = values.answer.answer
+			}
 		}
 
 		// updates the questionnaireItemMap to reflect the state of the questionnaire
@@ -165,7 +185,7 @@ const valuesHandlers = {
 
 		return {
 			...state,
-			showDatePicker: false,
+			showDatePicker: values.answer.showDatePicker,
 			questionnaireItemMap
 		}
 	},
@@ -200,7 +220,7 @@ const valuesHandlers = {
 		let categories = []
 		values.questionnaire.item.forEach(item => categories.push(item))
 
-		// persists them in AsncStorage
+		// persists them in AsyncStorage
 		setTimeout(() => {
 			localStorage.persistCategories(categories, state.user.subjectId)
 			localStorage.persistQuestionnaireItemMap(questionnaireItemMap, state.user.subjectId)	
@@ -245,7 +265,7 @@ const valuesHandlers = {
 	},
 
 	/**
-	 * handles a failed attempt to download a questionaire
+	 * handles a failed attempt to download a questionnaire
 	 * @param  {any} state redux state
 	 * @param  {any} values values to be set
 	 */
@@ -389,17 +409,21 @@ support
  * @param  {any} item questionnaireItem
  */
 const traverseItem = (item, questionnaireItemMap) => {
+
 	// generates the item
 	questionnaireItemMap[item.linkId] = {
-		linkId: item.linkId,
+		...item,
 		done: false,
 		answer: null,
-		text: item.text,
 		type: item.type || 'ignore',
-		required: item.required || false,
-		enableWhen: item.enableWhen,
-		definition: item.definition,
+		required: item.required || false
 	}
+
+	// adds another answer object in case  we have an open-choice
+	if(item.type === 'open-choice' && !questionnaireItemMap[item.linkId].answerOption.some(e => e.isOpenQuestionAnswer)) {
+		questionnaireItemMap[item.linkId].answerOption.push({isOpenQuestionAnswer:true, answer: null})
+	}
+
 	// sets the started value to false if the item is category
 	if(item.linkId.length === 1) {
 		questionnaireItemMap[item.linkId].started = false
@@ -412,7 +436,7 @@ const traverseItem = (item, questionnaireItemMap) => {
 
 /**
  * generates the questionnaireItemMap
- * @param  {any} questionnaire a fhir questionnaire
+ * @param  {any} questionnaire a FHIR questionnaire
  * @param  {any} subjectId subjectId of the user
  */
 const generateQuestionnaireItemMap = (questionnaire, subjectId) => {
@@ -423,16 +447,20 @@ const generateQuestionnaireItemMap = (questionnaire, subjectId) => {
 		questionnaire.item.forEach(subItem => traverseItem(subItem, questionnaireItemMap))
 	}
 	
-	// used to determin the completion state of the questionnaire
+	// used to determine the completion state of the questionnaire
 	questionnaireItemMap.done = false
-	// used to determin if the questionnaire was even opened
+	// used to determine if the questionnaire was even opened
 	questionnaireItemMap.started = false
-	// used to identify the quesitonnaire
-	questionnaireItemMap.id = questionnaire.title
+	// used to identify the questionnaire
+	questionnaireItemMap.constructedId = questionnaire.url + "|" + questionnaire.version
+	questionnaireItemMap.url = questionnaire.url
+	questionnaireItemMap.version = questionnaire.version
+	// used to build the questionnaire-response
+	questionnaireItemMap.identifier = questionnaire.identifier
 
 	// persists the last known questionnaireId in the AsyncStorage
-	setTimeout(() => {
-		localStorage.persistLastQuestionnaireId(questionnaire.title, subjectId)
+	setTimeout(async () => {
+		localStorage.persistLastQuestionnaireId(questionnaireItemMap.constructedId, subjectId)
 	}, 0)
 
 	return questionnaireItemMap

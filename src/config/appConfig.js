@@ -1,11 +1,11 @@
 
-// (C) Copyright IBM Deutschland GmbH 2020.  All rights reserved.
+// (C) Copyright IBM Deutschland GmbH 2021.  All rights reserved.
 
 // ================================================================================================
 // ================================================================================================
 // CONFIGURATION VALUES
 
-// TO CUSTOMIZE THE THE DEVELOPMENT SETTINGS OF THS APPLICATON PLEASE COPY THE WHOLE CONTENT BELOW 
+// TO CUSTOMIZE THE THE DEVELOPMENT SETTINGS OF THS APPLICATION PLEASE COPY THE WHOLE CONTENT BELOW 
 // THIS COMMENT (INCLUDING THE IMPORT, SHOULD YOU WANT TO USE IT) INTO THE FILE 
 // 'customAppConfig.js' located under 'src/CUSTOMIZATION'. THOSE VALUES WILL THEN OVERWRITE 
 // THE DEFAULT-VALUES DEFINED IN THIS FILE.
@@ -54,7 +54,7 @@ configuration
 
 /**
  * this object contains the configuration for the application. some options are only valid in 
- * developemt environment.
+ * development environment.
  */
 const conf = {
 
@@ -65,7 +65,7 @@ const conf = {
 
 	/** dev-option:
 	 * skips the QR login after 500ms */
-	automateQrLogin: __DEV__ && true,
+	automateQrLogin: __DEV__ && false,
 
 	/** dev-option:
 	 * subject-id for automated login */
@@ -95,12 +95,12 @@ const conf = {
 	logEncryptedResponse: __DEV__ && false,
 
 	/** dev-option:
-	 * used the locally available quesstionnaire.js instead of the procured one from the backend */
-	useLocalQuestionnaireInsteadOftheReceivedOne: __DEV__ && true,
+	 * used the locally available questionnaire.js instead of the procured one from the backend */
+	useLocalQuestionnaireInsteadOftheReceivedOne: __DEV__ && false,
 
 	/** dev-option:
 	 * skips the id-comparison */
-	skipIncomingQuestionnaireCheck: true,
+	skipIncomingQuestionnaireCheck: __DEV__ && false,
 
 	// login
 	/*-----------------------------------------------------------------------------------*/
@@ -149,13 +149,32 @@ const conf = {
 
 	/** local storage identifier:
 	 * persists all relevant information about the notification-service */
-	notificationState: '@COMPASS_STORE:notification_state',
+	FCMToken: '@COMPASS_STORE:fcm_token',
+
+	// push notification
+	/*-----------------------------------------------------------------------------------*/
+
+	/** push:
+	 * if set to true the app tries to connect to a FCM instance that in turn will be able 
+	 * to send out push notifications reminding the participants to open the app. 
+	 * 
+	 * To establish the connections three other files must be updated:
+	 * - AppDelegate.m // comment-in line 25
+	 * - google-services.json // replace with your FCM credentials
+	 * - GoogleService-Info.plist replace with your FCM credentials
+	 * 
+	 * WARNING: The app will NOT build if those files are not updated accordingly.
+	 * */
+	connectToFCM: false,
+
+	// updates the locally generated device token with the backend on each user update
+	reconnectOnEachUserUpdate: false,
 
 	// rest endpoints
 	/*-----------------------------------------------------------------------------------*/
 
 	// these are the various endpoints the app communicates with.
-	// the base-uri is dependend on the current environment (dev || prod)
+	// the base-uri is dependent on the current environment (dev || prod)
 
 	endpoints: {
 
@@ -173,11 +192,15 @@ const conf = {
 
 		/** rest:
 		 * endpoint to post the questionnaire to */
-		sendQuestionnare: (__DEV__ ? baseUriDevelopment : baseUriProductive) + 'queue/',
+		sendQuestionnaire: (__DEV__ ? baseUriDevelopment : baseUriProductive) + 'queue/',
 		
 		/** rest:
 		 * endpoint to receive the questionnaire */
 		getQuestionnaire: (__DEV__ ? baseUriDevelopment : baseUriProductive) + 'questionnaire/',
+		
+		/** rest:
+		 * endpoint to receive the questionnaire */
+		updateToken: (__DEV__ ? baseUriDevelopment : baseUriProductive) + 'participant/update-device-token/',
 	},
 	
 	// ui
@@ -212,7 +235,7 @@ const conf = {
 		let scaleFonts = true
 
 		// the base parameter for the font-scaling
-		// (devicewidth / guidelineBaseWidthFontScaling * fontsize)
+		// (device width / guidelineBaseWidthFontScaling * fontsize)
 		let guidelineBaseWidthFontScaling = 400
 
 		// returns the new size
@@ -235,7 +258,7 @@ const conf = {
 		let scaleUi = true
 
 		// the base parameter for the ui-scaling
-		// (devicewidth / guidelineBaseWidthUiScaling * size)
+		// (device width / guidelineBaseWidthUiScaling * size)
 		let guidelineBaseWidthUiScaling = 430 / rescaleValue
 
 		// returns the new size
@@ -245,7 +268,7 @@ const conf = {
 	// rules
 	/*-----------------------------------------------------------------------------------*/
 
-	/** defaultvalues, should there be no ruleset coming from the server with the user-update.
+	/** default values, should there be no ruleset coming from the server with the user-update.
 	* each entry contains definitions of questions (from the questionnaire)
 	* and their corresponding answers that would trigger that particular rule.
 	* of the return object of the function createResponseJSON() located in src/services/export

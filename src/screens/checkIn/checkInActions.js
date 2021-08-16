@@ -1,5 +1,5 @@
 
-// (C) Copyright IBM Deutschland GmbH 2020.  All rights reserved.
+// (C) Copyright IBM Deutschland GmbH 2021.  All rights reserved.
 
 /***********************************************************************************************
 imports
@@ -37,7 +37,7 @@ export const hideDatePicker = () => async dispatch => {
  */
 export const showQuestionnaireModal = currentCategoryIndex => async dispatch => {
 	dispatch({
-		type: 'SHOW_QUESTIONNARE_MODAL',
+		type: 'SHOW_QUESTIONNAIRE_MODAL',
 		values: { currentCategoryIndex, currentPageIndex: 1 }
 	})
 }
@@ -47,7 +47,7 @@ export const showQuestionnaireModal = currentCategoryIndex => async dispatch => 
  */
 export const hideQuestionnaireModal = () => async dispatch => {
 	dispatch({
-		type: 'HIDE_QUESTIONNARE_MODAL'
+		type: 'HIDE_QUESTIONNAIRE_MODAL'
 	})
 }
 
@@ -66,10 +66,10 @@ export const switchContent = (forward, numberOfPages, currentPageIndex) => async
 		numberOfPages === currentPageIndex
 	) {
 		dispatch({
-			type: 'HIDE_QUESTIONNARE_MODAL'
+			type: 'HIDE_QUESTIONNAIRE_MODAL'
 		})
 	}
-	// if its not the last page, siwtches the content
+	// if its not the last page, switches the content
 	else {
 		dispatch({
 			type: 'SWITCH_CONTENT',
@@ -102,7 +102,7 @@ export const setQuestionnaireItemMap = questionnaireItemMap => async dispatch =>
 /**
  * loads a locally persisted questionnaireItemMap and categories-array
  * @param  {QuestionnaireItemMap} map locally persisted questionnaireItemMap
- * @param  {QuestionnaireItem[]} list locally persistet categories array
+ * @param  {QuestionnaireItem[]} list locally persisted categories array
  */
 export const loadLocalQuestionnaire = (map, list) => async dispatch => {
 	dispatch({
@@ -178,7 +178,7 @@ export const getQuestionnaireSuccess = questionnaire => async dispatch => {
 
 /**
  * fail of the questionnaire procuring
- * @param  {any} error http error to be persistet
+ * @param  {any} error http error to be persisted
  */
 export const getQuestionnaireFail = error => async dispatch => {
 	dispatch({
@@ -310,17 +310,30 @@ export const setupPushServiceStart = () => dispatch => {
 /**
  * success of setting up the push service
  */
-export const setupPushServiceSuccess= () => dispatch => {
+export const setupPushServiceSuccess = (response, token) => dispatch => {
 	dispatch({
-		type: 'SETUP_PUSH_SERVICE_SUCCESS'
+		type: 'SETUP_PUSH_SERVICE_SUCCESS',
+		response,
+		token
 	})
 }
 
 /**
  * failure of setting up the push service
  */
-export const setupPushServiceFail = () => dispatch => {
+export const setupPushServiceFail = error => dispatch => {
 	dispatch({
-		type: 'SETUP_PUSH_SERVICE_FAIL'
+		type: 'SETUP_PUSH_SERVICE_FAIL',
+		error
+	})
+}
+
+/**
+ * failure of setting up the push service
+ */
+ export const setupPushServiceNoUpdate = token => dispatch => {
+	dispatch({
+		type: 'FCM_DID_NOT_CHANGE_SO_NO_UPDATE',
+		token
 	})
 }

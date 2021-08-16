@@ -1,7 +1,7 @@
 
-// (C) Copyright IBM Deutschland GmbH 2020.  All rights reserved.
+// (C) Copyright IBM Deutschland GmbH 2021.  All rights reserved.
 
-// this file contains functions that inteact with the AsysStorage
+// this file contains functions that interact with the AsyncStorage
 
 /***********************************************************************************************
 imports
@@ -21,15 +21,15 @@ operations
  * persists the notification object that is returned after the push-registration
  * went through (per user)
  * @param  {string} [subjectId] subjectId of the user
- * @param  {any} notificationState notification object
+ * @param  {any} FCMToken notification object
  */
-const persistNotificationState = async (notificationState, subjectId) => {
+const persistFCMToken = async (FCMToken, subjectId) => {
     
     if(!subjectId) subjectId = await loadLastSubjectId()
     if(!subjectId) return
 
     try {
-        await AsyncStorage.setItem(config.appConfig.notificationState + '_' +  subjectId, notificationState)
+        await AsyncStorage.setItem(config.appConfig.FCMToken + '_' +  subjectId, FCMToken)
     } 
     catch (error) {
         console.error(error)
@@ -41,13 +41,13 @@ const persistNotificationState = async (notificationState, subjectId) => {
  * @param  {string} [subjectId] subjectId of the user
  * @returns {Promise<{deviceId:string}>}
  */
-const loadNotificationState = async subjectId => {
+const loadFCMToken = async subjectId => {
 
     if(!subjectId) subjectId = await loadLastSubjectId()
     if(!subjectId) return
 
     try {
-        return result = await AsyncStorage.getItem(config.appConfig.notificationState + '_' +  subjectId)
+        return result = await AsyncStorage.getItem(config.appConfig.FCMToken + '_' +  subjectId)
     } 
     catch (error) {
         console.error(error)
@@ -59,13 +59,13 @@ const loadNotificationState = async subjectId => {
  * deletes the notification state of a user from the AsyncStorage
  * @param  {string} [subjectId] subjectId of the user
  */
-const removeNotificationState = async subjectId => {
+const removeFCMToken = async subjectId => {
     
     if(!subjectId) subjectId = await loadLastSubjectId()
     if(!subjectId) return
 
     try {
-        await AsyncStorage.removeItem(config.appConfig.notificationState + '_' +  subjectId)
+        await AsyncStorage.removeItem(config.appConfig.FCMToken + '_' +  subjectId)
     } 
     catch (error) {
         console.error(error)
@@ -94,7 +94,7 @@ const persistLastSubjectId = async subjectId => {
 }
 
 /**
- * loads the last used subjectId from the AsynStorage
+ * loads the last used subjectId from the AsyncStorage
  * @returns string | null
  */
 const loadLastSubjectId = async () => {
@@ -109,7 +109,7 @@ const loadLastSubjectId = async () => {
 }
 
 /**
- * deletes the last used subjectId from the AsynStorage
+ * deletes the last used subjectId from the AsyncStorage
  */
 const removeLastSubjectId = async () => {
 
@@ -245,7 +245,7 @@ const removeCategories = async subjectId => {
 
 /**
  * persists the current questionnaireItemMap object of the user
- * @param  {QuestionnaireItemMap} map qestionnaireItemMap object of the user
+ * @param  {QuestionnaireItemMap} map questionnaireItemMap object of the user
  * @param  {string} [subjectId] if of the user
  */
 const persistQuestionnaireItemMap = async (map, subjectId) => {
@@ -330,9 +330,9 @@ export default {
     loadLastQuestionnaireId,
     removeLastSubjectId,
 
-    persistNotificationState,
-    loadNotificationState,
-    removeNotificationState,
+    persistFCMToken,
+    loadFCMToken,
+    removeFCMToken,
 
     clearAll
 }

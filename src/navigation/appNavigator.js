@@ -1,5 +1,5 @@
 
-// (C) Copyright IBM Deutschland GmbH 2020.  All rights reserved.
+// (C) Copyright IBM Deutschland GmbH 2021.  All rights reserved.
 
 /***********************************************************************************************
 imports
@@ -81,7 +81,7 @@ const SignedInView = createStackNavigator(
 )
 
 /**
- * creates the app-constainer based on the two stack-navigators
+ * creates the app container based on the two stack-navigators
  */
 const createAppNavigator = () => {
 

@@ -1,14 +1,13 @@
-// (C) Copyright IBM Deutschland GmbH 2020.  All rights reserved.
+// (C) Copyright IBM Deutschland GmbH 2021.  All rights reserved.
 
 /***********************************************************************************************
 imports
 ***********************************************************************************************/
 
-import { Alert} from 'react-native'
+import { Alert } from 'react-native'
 import { connect } from 'react-redux'
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
-import { Push } from 'bmd-push-react-native'
 
 import store from '../../store'
 
@@ -20,6 +19,8 @@ import SurveyScreen from './surveyScreen'
 import * as actions from './checkInActions'
 import CheckInScreen from './checkInScreen'
 import config from '../../config/configProvider'
+
+import messaging from '@react-native-firebase/messaging'
 
 /***********************************************************************************************
 component:
@@ -35,7 +36,7 @@ class CheckInContainer extends Component {
 	/*-----------------------------------------------------------------------------------*/
 	
 	/**
-	 * checks the current route name and renders the appropriate temmplate
+	 * checks the current route name and renders the appropriate template
 	 */
 	render() {
 		
@@ -46,6 +47,7 @@ class CheckInContainer extends Component {
 				{...this.props}
 				getQuestionnaire={this.getQuestionnaire}
 				exportAndUploadQuestionnaireResponse={this.exportAndUploadQuestionnaireResponse}
+				exportAndUploadQuestionnaireResponseStart={this.exportAndUploadQuestionnaireResponseStart}
 				sendReport={this.sendReport}
 				updateUser={this.updateUser}
 				formatDateString={this.formatDateString}
@@ -64,7 +66,7 @@ class CheckInContainer extends Component {
 	/*-----------------------------------------------------------------------------------*/
 	
 	/**
-	 * triggers the update of the user afer mounting the chekckin-template
+	 * triggers the update of the user after mounting the checkIn-template
 	 */
 	componentDidMount = () => {
 		if(this.props.navigation.state.routeName === 'CheckIn') {
@@ -75,8 +77,8 @@ class CheckInContainer extends Component {
 	}
 	
 	/**
-	 * reroutes to the checkin-screen should no questionnaire be available after the
-	 * component upated. When there is no questionnaire the survey-screen does not has
+	 * reroutes to the checkIn-screen should no questionnaire be available after the
+	 * component updated. When there is no questionnaire the survey-screen does not has
 	 * any content to render
 	 */
 	componentDidUpdate = () => {
@@ -85,58 +87,61 @@ class CheckInContainer extends Component {
 
 	// methods: push
 	/*-----------------------------------------------------------------------------------*/
-	
-	/**
-	 * registers the push notification service (if it hasnt happened before).
-	   should it contain no deviceId the push-registration will be triggered
-	 */
-	registerPush = async () => {
-		// creates the options-object for the push-registration and sends out the request
-		Push.register({
-			"subjectId": this.props.user.subjectId
-		})
-		.then(response => {
-			// redux output
-			this.props.actions.setupPushServiceSuccess()
-			// persists the response as new notificationState.
-			// this also contains the deviceId which prohibits the registration from
-			// being triggered the next time
-			localStorage.persistNotificationState(response)
-		})
-		.catch((err) => {
-			// redux output
-			this.props.actions.setupPushServiceFail()
-		})
-	}
 
 	/**
 	 * initializes the push-service-registration
+	 *
+	 * @param {string} subjectId
 	 */
-	initPush = async () => {
+	initPush = async subjectId => {
+
 		// gets the current user
 		const sessionData = store.getState().CheckIn.user
-		// gets the notificationState that was persisted last time - if there was no
+		
+		// gets the FCMToken that was persisted last time - if there was no
 		// last time then the initial value is FALSE
-		const notificationState = await localStorage.loadNotificationState()
+		const FCMToken = await localStorage.loadFCMToken()
 
-		// if there is a user
-		if(sessionData && (!notificationState || !notificationState.deviceId)) {
-			// redux output
-			this.props.actions.setupPushServiceStart()
-			// asks the user to allow push notifications
-			Push.init({
-				"appGUID": sessionData.pushAppGUID,
-				"clientSecret": sessionData.pushClientSecret,
-				"region": "eu-de"
-			})
-			.then(() =>  {
-				// triggers the execution
-				this.registerPush()
-			})
-			.catch(() => {
-				// redux output
-				this.props.actions.setupPushServiceFail()
-			})
+		// if there is a user and no FCMToken (or you just want to redo this over and over...)
+		if(config.appConfig.reconnectOnEachUserUpdate || (sessionData && (!FCMToken || !FCMToken.length))) {
+
+			// requests the permission and gets the token
+			const authStatus = await messaging().requestPermission()
+			let newlyGeneratedToken = await messaging().getToken()
+
+			// if the authStatus checks out...
+			if (authStatus === messaging.AuthorizationStatus.AUTHORIZED || authStatus === messaging.AuthorizationStatus.PROVISIONAL) {
+
+				// ... check if there is a new token
+				if(newlyGeneratedToken !== FCMToken) {
+
+					// redux output
+					this.props.actions.setupPushServiceStart()
+					
+					// ...updates the device token
+					await loggedInClient.updateDeviceToken(subjectId, newlyGeneratedToken)
+					.then(response => {
+						
+						// persists the response as new FCMToken.
+						// this also contains the deviceId which prohibits the registration from
+						// being triggered the next time
+						localStorage.persistFCMToken(newlyGeneratedToken)	
+
+						// redux output
+						this.props.actions.setupPushServiceSuccess(response, newlyGeneratedToken)
+					})
+					.catch(error => {
+						
+						// logs out the error
+						this.props.actions.setupPushServiceFail(error)
+					})
+
+					return true
+				}
+
+				// in case there is nothing to update
+				this.props.actions.setupPushServiceNoUpdate(FCMToken)
+			}
 		}
 	}
 
@@ -147,32 +152,42 @@ class CheckInContainer extends Component {
 	 * tries to procure the current questionnaire
 	 */
 	getQuestionnaire = async () => {
+
+		let response
+
 		// redux output
 		this.props.actions.getQuestionnaireStart()
-		
+
 		// gets the questionnaire with the correct id
 		await loggedInClient.getBaseQuestionnaire(this.props.user.current_questionnaire_id)
-			// success
-			.then(response => {
-				setTimeout(async() => {
-					// persists the questionnaire
-					this.props.actions.getQuestionnaireSuccess(response.data || {})
-				}, 0)
-			})
-			// fail: displays an alert window with an error output and updates the state on button-click
-			.catch(error => {
-				Alert.alert(
-					config.text.generic.errorTitle,
-					config.text.generic.sendError,
-					[{
-						text: config.text.generic.ok,
-						onPress: () => {
-							this.props.actions.getQuestionnaireFail(error || 'n/a')
-						}
-					}],
-					{ cancelable: false }
-				)
-			})
+		// success
+		.then(resp => {
+			setTimeout(async() => {
+				// persists the questionnaire
+				this.props.actions.getQuestionnaireSuccess(resp.data || {})
+			}, 0)
+
+			response = resp.data
+		})
+		// fail: displays an alert window with an error output and updates the state on button-click
+		.catch(error => {
+
+			Alert.alert(
+				config.text.generic.errorTitle,
+				config.text.generic.sendError,
+				[{
+					text: config.text.generic.ok,
+					onPress: () => {
+						this.props.actions.getQuestionnaireFail(error || 'n/a')
+					}
+				}],
+				{ cancelable: false }
+			)
+
+			response = error
+		})
+
+		return response
 	}
 
 	// methods: updating user
@@ -208,7 +223,7 @@ class CheckInContainer extends Component {
 		// TODO: remove workaround
 		data.subjectId = data.study_id || data.subjectId || null
 
-		// procures the id of the quationnaire used by the last active user
+		// procures the id of the questionnaire used by the last active user
 		let lastQuestionnaireId = await localStorage.loadLastQuestionnaireId()
 
 		// checks if the current due date is still not reached
@@ -219,17 +234,17 @@ class CheckInContainer extends Component {
 
 		// persists the new data
 		this.props.actions.updateUserSuccess(data)
-
+		
 		// tries to init the push service
-		setTimeout(() => this.initPush(), 0)
+		if(config.appConfig.connectToFCM) setTimeout(() => this.initPush(data.subjectId), 0)
 
 		setTimeout(() => {
 			// if we have locally persisted questionnaire
 			if(lastQuestionnaireId && !this.props.noNewQuestionnaireAvailableYet) {
-				// checks if the id of the persisted questionaiire matches the one of the
+				// checks if the id of the persisted questionnaire matches the one of the
 				// questionnaire the user is supposed to look at now
-				if( config.appConfig.skipIncomingQuestionnaireCheck || lastQuestionnaireId === data.current_questionnaire_id) {
-					// loads the persistet questionnaire
+				if(config.appConfig.skipIncomingQuestionnaireCheck || lastQuestionnaireId === data.current_questionnaire_id) {
+					// loads the persisted questionnaire
 					this.checkForCachedData()
 				}
 				else {
@@ -368,7 +383,7 @@ class CheckInContainer extends Component {
 	/**
 	 * creates the questionnaire-response and sends it out
 	 */
-	exportAndUploadQuestionnaireResponseStart = () => {
+	exportAndUploadQuestionnaireResponseStart = async () => {
 		// redux output
 		this.props.actions.sendQuestionnaireResponseStart()
 
@@ -378,7 +393,7 @@ class CheckInContainer extends Component {
 		let exportData = documentCreator.createResponseJSON()
 		
 		// sends the questionnaire
-		loggedInClient
+		await loggedInClient
 			.sendQuestionnaire(
 				exportData.body,
 				exportData.triggerMap,
@@ -396,12 +411,13 @@ class CheckInContainer extends Component {
 	 * checks if the questionnaire was completed and if true triggers the export
 	 */
 	exportAndUploadQuestionnaireResponse = () => {
+
 		// if the questionnaire was NOT completed
 		if(this.props.questionnaireItemMap && !this.props.questionnaireItemMap.done) {
 			// shows a message remembering the user to complete the questionnaire
 			Alert.alert(
 				config.text.generic.info,
-				config.text.survery.sendUnfinishedMessageDenied,
+				config.text.survey.sendUnfinishedMessageDenied,
 				[{
 					text: config.text.generic.ok
 				}],
@@ -413,9 +429,9 @@ class CheckInContainer extends Component {
 		else {
 			Alert.alert(
 				config.text.generic.info,
-				config.text.survery.sendFinishedMessage,
+				config.text.survey.sendFinishedMessage,
 				[{
-						text: config.text.survery.sendFinished,
+						text: config.text.survey.sendFinished,
 						onPress: this.exportAndUploadQuestionnaireResponseStart
 				},
 				{
@@ -431,7 +447,7 @@ class CheckInContainer extends Component {
 	/*-----------------------------------------------------------------------------------*/
 
 	/**
-	 * handles the failur after sending a report
+	 * handles the failure after sending a report
 	 * @param  {object} error http error
 	 */
 	sendReportFail = error => {
@@ -493,8 +509,8 @@ class CheckInContainer extends Component {
 	}
 	
 	/**
-	 * shows the user an alert window to confirm the action, then sneds the report.
-	 * is only availabe if there is no current questionnaire available and if the user is not 
+	 * shows the user an alert window to confirm the action, then sends the report.
+	 * is only available if there is no current questionnaire available and if the user is not 
 	 * already on a special iteration
 	 */
 	sendReport = () => {
@@ -533,7 +549,7 @@ class CheckInContainer extends Component {
 					{
 					text: config.text.reporting.symptoms_yes,
 						onPress: () => {
-							//sennds out the report
+							//sends out the report
 							this.sendReportStart()
 						}
 					},
@@ -551,7 +567,7 @@ class CheckInContainer extends Component {
 	/*-----------------------------------------------------------------------------------*/
 	
 	/**
-	 * generates a datestring from Date Object (dd.mm.yyyy)
+	 * generates a date string from Date Object (dd.mm.yyyy)
 	 * @param  {Date}    inputDate the input date
 	 * @param  {boolean} includeTime if true: the exported string will also contain the time
 	 */
@@ -597,4 +613,4 @@ const ConnectedCheckIn = connect(mapStateToProps, mapDispatchToProps)(CheckInCon
 export
 ***********************************************************************************************/
 
-export { ConnectedCheckIn as CheckIn }
+export { ConnectedCheckIn as CheckIn, CheckInContainer }
