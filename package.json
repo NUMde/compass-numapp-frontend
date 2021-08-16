@@ -55,5 +55,9 @@
     "patch-package": "^6.4.7",
     "react-test-renderer": "17.0.2"
   },
-  "private": true
+  "private": true,
+  "engines": {
+    "node": "^14.0.0",
+    "npm": "^7.0.0"
+  }
 }
