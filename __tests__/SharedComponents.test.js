@@ -23,7 +23,7 @@ tests
 describe('SHARED COMPONENTS:', () => {
     
     // simple render test
-    test ('<Banner /> can be rendered', async () => {
+    test ('<Banner /> can be rendered', () => {
     
          // renders the component
         let tree = renderWithRedux(<Banner />)
@@ -33,7 +33,7 @@ describe('SHARED COMPONENTS:', () => {
     })
 
     // simple render test
-    test ('<Progressbar /> can be rendered', async () => {
+    test ('<Progressbar /> can be rendered', () => {
     
          // renders the component
         let tree = renderWithRedux(<ProgressBar />)
@@ -43,7 +43,7 @@ describe('SHARED COMPONENTS:', () => {
     })
 
     // simple render test
-    test ('<RedirectModal /> can be rendered', async () => {
+    test ('<RedirectModal /> can be rendered', () => {
 
         // fake props
         let props = {
@@ -63,7 +63,7 @@ describe('SHARED COMPONENTS:', () => {
     })
 
     // simple render test
-    test ('<QuestionnaireModal /> can be rendered', async () => {
+    test ('<QuestionnaireModal /> can be rendered', () => {
 
          // renders the component
         let tree = renderWithRedux(<QuestionnaireModal/>)
@@ -73,7 +73,7 @@ describe('SHARED COMPONENTS:', () => {
     })
 
     // simple render test
-    test ('<ScrollIndicatorWrapper /> can be rendered', async () => {
+    test ('<ScrollIndicatorWrapper /> can be rendered', () => {
 
          // renders the component
         let tree = renderWithRedux(<ScrollIndicatorWrapper/>)
@@ -83,7 +83,7 @@ describe('SHARED COMPONENTS:', () => {
     })
 
     // simple render test
-    test ('<Spinner /> can be rendered', async () => {
+    test ('<Spinner /> can be rendered', () => {
 
          // renders the component
         let tree = renderWithRedux(<Spinner/>)

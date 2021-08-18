@@ -7,10 +7,11 @@ imports
 
 import React, { Component } from 'react'
 import { Icon } from 'react-native-elements'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import { AccessibilityInfo, StyleSheet, TouchableOpacity, View, Platform, Dimensions } from 'react-native'
+import { KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view'
+import { AccessibilityInfo, StyleSheet, TouchableOpacity, View, Platform, Dimensions, ScrollView} from 'react-native'
 
 import config from '../../config/configProvider'
+import { KeyboardAvoidingView } from 'react-native'
 
 /***********************************************************************************************
 component
@@ -69,12 +70,11 @@ export default class ScrollIndicatorWrapper extends Component {
 
 	render() {
 		return (
-			<View style={localStyle.wrapper}>
+			<KeyboardAvoidingView style={localStyle.wrapper}>
 				{/* the regular ScrollView & content */}
-				<KeyboardAwareScrollView
+				<ScrollView
 					{...this.props}
 					enableOnAndroid={true}
-					extraScrollHeight={100}
 					ref={this.scrollViewRef}
 					style={localStyle.wrapper}
 					innerRef={ref => this.scroll = ref}
@@ -96,7 +96,7 @@ export default class ScrollIndicatorWrapper extends Component {
 				>
 					{/* the content */}
 					{this.props.contentData}
-				</KeyboardAwareScrollView>
+				</ScrollView>
 
 				{/* if "allowScrollIndicators" is true and the situation calls for a scroll indicator ("showIndicator") and
 				we are not in accessibility-mode */}
@@ -106,7 +106,9 @@ export default class ScrollIndicatorWrapper extends Component {
 					(<TouchableOpacity
 						accessibilityRole={config.text.accessibility.types.button}
 						style={localStyle.indicator}
-						onPress={()=>this.scroll.scrollTo({x: 0, y: this.nextScrollValue, animated: true})}
+						onPress={()=>{
+							this.scrollViewRef.current.scrollTo({x: 0, y: this.nextScrollValue, animated: true})
+						}}
 					>
 						<Icon
 							name='chevron-down'
@@ -116,7 +118,7 @@ export default class ScrollIndicatorWrapper extends Component {
 						/>
 					</TouchableOpacity>)
 				}
-			</View>
+			</KeyboardAvoidingView>
 		)
 	}
 
@@ -139,7 +141,7 @@ export default class ScrollIndicatorWrapper extends Component {
 		window.requestAnimationFrame(() => {
 			let node = this.scrollViewRef
 			if (node !== undefined) {
-				if (node.current) node.current.scrollToPosition(0,1)
+				if (node.current) node.current.scrollTo({x: 0, y: 1, animated: true})
 			}
 		})
 	}

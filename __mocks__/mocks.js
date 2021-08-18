@@ -5,7 +5,7 @@
 imports
 ***********************************************************************************************/
 
-import mockReactNativePermissions from 'react-native-permissions/mock'
+import mockPermissions from 'react-native-permissions/mock'
 import mockAsyncStorage from '@react-native-community/async-storage/jest/async-storage-mock'
 
 /***********************************************************************************************
@@ -22,7 +22,7 @@ jest.mock('@react-native-picker/picker', () => jest.fn())
 
 // mocks the NativeAnimatedHelper module
 /*-----------------------------------------------------------------------------------*/
-jest.mock('react-native/Libraries/Animated/src/NativeAnimatedHelper')
+jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper')
 
 // mocks the async storage
 /*-----------------------------------------------------------------------------------*/
@@ -30,7 +30,14 @@ jest.mock('@react-native-community/async-storage', () => mockAsyncStorage)
 
 // react native permissions
 /*-----------------------------------------------------------------------------------*/
-jest.mock('react-native-permissions', () => mockReactNativePermissions)
+jest.mock('react-native', () =>  {
+    const rn = jest.requireActual('react-native')
+    rn.NativeModules.RNPermissions = {
+        ...mockPermissions
+    }
+    return rn
+}
+)
 
 // the fcm messaging
 /*-----------------------------------------------------------------------------------*/

@@ -292,6 +292,7 @@ exports[`SHARED COMPONENTS: <RedirectModal /> can be rendered 1`] = `
   scrollOffset={0}
   scrollOffsetMax={50}
   scrollTo={[Function]}
+  statusBarTranslucent={false}
   supportedOrientations={
     Array [
       "portrait",
@@ -380,6 +381,7 @@ exports[`SHARED COMPONENTS: <RedirectModal /> can be rendered 1`] = `
       scrollOffset={0}
       scrollOffsetMax={50}
       scrollTo={[Function]}
+      statusBarTranslucent={false}
       style={
         Object {
           "borderColor": "#F8F9FA",
@@ -622,6 +624,7 @@ exports[`SHARED COMPONENTS: <RedirectModal /> can be rendered 1`] = `
 
 exports[`SHARED COMPONENTS: <ScrollIndicatorWrapper /> can be rendered 1`] = `
 <View
+  onLayout={[Function]}
   style={
     Object {
       "flex": 1,
@@ -631,37 +634,14 @@ exports[`SHARED COMPONENTS: <ScrollIndicatorWrapper /> can be rendered 1`] = `
   }
 >
   <RCTScrollView
-    automaticallyAdjustContentInsets={false}
     contentContainerStyle={
       Object {
         "flexGrow": 1,
       }
     }
-    contentInset={
-      Object {
-        "bottom": 0,
-      }
-    }
-    enableAutomaticScroll={true}
     enableOnAndroid={true}
-    enableResetScrollToCoords={true}
-    extraHeight={75}
-    extraScrollHeight={100}
-    getScrollResponder={[Function]}
-    handleOnScroll={[Function]}
     innerRef={[Function]}
-    keyboardDismissMode="interactive"
-    keyboardOpeningTime={250}
-    keyboardSpace={0}
     onScroll={[Function]}
-    resetKeyboardSpace={[Function]}
-    scrollEventThrottle={1}
-    scrollForExtraHeightOnAndroid={[Function]}
-    scrollIntoView={[Function]}
-    scrollToEnd={[Function]}
-    scrollToFocusedInput={[Function]}
-    scrollToPosition={[Function]}
-    showsVerticalScrollIndicator={true}
     style={
       Object {
         "flex": 1,
@@ -669,8 +649,6 @@ exports[`SHARED COMPONENTS: <ScrollIndicatorWrapper /> can be rendered 1`] = `
         "width": "100%",
       }
     }
-    update={[Function]}
-    viewIsInsideTabBar={false}
   >
     <View />
   </RCTScrollView>

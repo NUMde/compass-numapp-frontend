@@ -179,6 +179,7 @@ exports[`LOGIN RENDERING: <LandingScreen /> can be rendered 1`] = `
     }
   >
     <View
+      onLayout={[Function]}
       style={
         Object {
           "flex": 1,
@@ -188,7 +189,6 @@ exports[`LOGIN RENDERING: <LandingScreen /> can be rendered 1`] = `
       }
     >
       <RCTScrollView
-        automaticallyAdjustContentInsets={false}
         contentContainerStyle={
           Object {
             "flexGrow": 1,
@@ -303,31 +303,9 @@ The logo file (as well as the logoBackground) can be updated by updating the 'CU
             </View>
           </View>
         }
-        contentInset={
-          Object {
-            "bottom": 0,
-          }
-        }
-        enableAutomaticScroll={true}
         enableOnAndroid={true}
-        enableResetScrollToCoords={true}
-        extraHeight={75}
-        extraScrollHeight={100}
-        getScrollResponder={[Function]}
-        handleOnScroll={[Function]}
         innerRef={[Function]}
-        keyboardDismissMode="interactive"
-        keyboardOpeningTime={250}
-        keyboardSpace={0}
         onScroll={[Function]}
-        resetKeyboardSpace={[Function]}
-        scrollEventThrottle={1}
-        scrollForExtraHeightOnAndroid={[Function]}
-        scrollIntoView={[Function]}
-        scrollToEnd={[Function]}
-        scrollToFocusedInput={[Function]}
-        scrollToPosition={[Function]}
-        showsVerticalScrollIndicator={true}
         style={
           Object {
             "flex": 1,
@@ -335,8 +313,6 @@ The logo file (as well as the logoBackground) can be updated by updating the 'CU
             "width": "100%",
           }
         }
-        update={[Function]}
-        viewIsInsideTabBar={false}
       >
         <View>
           <View
@@ -709,6 +685,7 @@ exports[`LOGIN RENDERING: <LoginContainer /> can be rendered 1`] = `
     }
   >
     <View
+      onLayout={[Function]}
       style={
         Object {
           "flex": 1,
@@ -718,7 +695,6 @@ exports[`LOGIN RENDERING: <LoginContainer /> can be rendered 1`] = `
       }
     >
       <RCTScrollView
-        automaticallyAdjustContentInsets={false}
         contentContainerStyle={
           Object {
             "flexGrow": 1,
@@ -867,31 +843,9 @@ exports[`LOGIN RENDERING: <LoginContainer /> can be rendered 1`] = `
             </View>
           </View>
         }
-        contentInset={
-          Object {
-            "bottom": 0,
-          }
-        }
-        enableAutomaticScroll={true}
         enableOnAndroid={true}
-        enableResetScrollToCoords={true}
-        extraHeight={75}
-        extraScrollHeight={100}
-        getScrollResponder={[Function]}
-        handleOnScroll={[Function]}
         innerRef={[Function]}
-        keyboardDismissMode="interactive"
-        keyboardOpeningTime={250}
-        keyboardSpace={0}
         onScroll={[Function]}
-        resetKeyboardSpace={[Function]}
-        scrollEventThrottle={1}
-        scrollForExtraHeightOnAndroid={[Function]}
-        scrollIntoView={[Function]}
-        scrollToEnd={[Function]}
-        scrollToFocusedInput={[Function]}
-        scrollToPosition={[Function]}
-        showsVerticalScrollIndicator={true}
         style={
           Object {
             "flex": 1,
@@ -899,8 +853,6 @@ exports[`LOGIN RENDERING: <LoginContainer /> can be rendered 1`] = `
             "width": "100%",
           }
         }
-        update={[Function]}
-        viewIsInsideTabBar={false}
       >
         <View>
           <View
@@ -1266,6 +1218,7 @@ exports[`LOGIN RENDERING: <LoginScreen /> can be rendered 1`] = `
     }
   >
     <View
+      onLayout={[Function]}
       style={
         Object {
           "flex": 1,
@@ -1275,7 +1228,6 @@ exports[`LOGIN RENDERING: <LoginScreen /> can be rendered 1`] = `
       }
     >
       <RCTScrollView
-        automaticallyAdjustContentInsets={false}
         contentContainerStyle={
           Object {
             "flexGrow": 1,
@@ -1424,31 +1376,9 @@ exports[`LOGIN RENDERING: <LoginScreen /> can be rendered 1`] = `
             </View>
           </View>
         }
-        contentInset={
-          Object {
-            "bottom": 0,
-          }
-        }
-        enableAutomaticScroll={true}
         enableOnAndroid={true}
-        enableResetScrollToCoords={true}
-        extraHeight={75}
-        extraScrollHeight={100}
-        getScrollResponder={[Function]}
-        handleOnScroll={[Function]}
         innerRef={[Function]}
-        keyboardDismissMode="interactive"
-        keyboardOpeningTime={250}
-        keyboardSpace={0}
         onScroll={[Function]}
-        resetKeyboardSpace={[Function]}
-        scrollEventThrottle={1}
-        scrollForExtraHeightOnAndroid={[Function]}
-        scrollIntoView={[Function]}
-        scrollToEnd={[Function]}
-        scrollToFocusedInput={[Function]}
-        scrollToPosition={[Function]}
-        showsVerticalScrollIndicator={true}
         style={
           Object {
             "flex": 1,
@@ -1456,8 +1386,6 @@ exports[`LOGIN RENDERING: <LoginScreen /> can be rendered 1`] = `
             "width": "100%",
           }
         }
-        update={[Function]}
-        viewIsInsideTabBar={false}
       >
         <View>
           <View

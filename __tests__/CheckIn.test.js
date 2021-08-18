@@ -187,7 +187,7 @@ tests
 describe('CHECKIN RENDERING:', () => {
 
     // simple render test
-    test('<CheckInContainer /> can be rendered', async () => {
+    test('<CheckInContainer /> can be rendered', () => {
 
         // renders the component
         let tree = renderWithRedux(<CheckInContainer {...props} />)
@@ -217,7 +217,7 @@ describe('CHECKIN RENDERING:', () => {
     })
 
     // simple render test
-    test ('<CheckInListView /> can be rendered', async () => {
+    test ('<CheckInListView /> can be rendered', () => {
         
         // renders the component
         let tree = renderWithRedux(<CheckInListView />)
@@ -227,7 +227,7 @@ describe('CHECKIN RENDERING:', () => {
     })
 
     // simple render test
-    test ('<CheckInWelcomeText /> can be rendered', async () => {
+    test ('<CheckInWelcomeText /> can be rendered', () => {
         
         // renders the component
         let tree = renderWithRedux(<WelcomeText />)
@@ -237,7 +237,7 @@ describe('CHECKIN RENDERING:', () => {
     })
 
     // simple render test
-    test ('<CheckInTiles /> can be rendered', async () => {
+    test ('<CheckInTiles /> can be rendered', () => {
         
         // renders the component
         let tree = renderWithRedux(<CheckInTiles />)
@@ -250,7 +250,7 @@ describe('CHECKIN RENDERING:', () => {
 describe('QUESTIONNAIRE HANDLING:', () => {
     
     // checks if the checkinScreen is rendered after the checkinContainer loaded
-    test ('<CheckInContainer /> triggers the questionnaire download after login', async () => {
+    test ('<CheckInContainer /> triggers the questionnaire download after login', () => {
         
         // initiates a global mock-redux-store 
         let _mockStore = initRenderModule(initialState)
@@ -264,11 +264,11 @@ describe('QUESTIONNAIRE HANDLING:', () => {
         let instance = tree.UNSAFE_getByType(CheckInScreen).instance
 
         // checks if getQuestionnaire() is executed - if yes, a mock services returns "mocked"
-        await expect(instance.props.getQuestionnaire()).resolves.toBeTruthy()
+        expect(instance.props.getQuestionnaire()).resolves.toBeTruthy()
     })
 
     // checks if a response is generated
-    test ('Questionnaire Response can be generated', async () => {
+    test ('Questionnaire Response can be generated', () => {
 
         // updates the initial state with a questionnaireItemMap
         let _initialState = {...initialState}
@@ -287,7 +287,7 @@ describe('QUESTIONNAIRE HANDLING:', () => {
     })
 
     // checks if the function sendQuestionnaire() is available
-    test ('LoggedInClient provides sendQuestionnaire()', async () => {
+    test ('LoggedInClient provides sendQuestionnaire()', () => {
 
         // updates the initial state woith a questionnaireItemMap
         let _initialState = {...initialState}
@@ -302,7 +302,7 @@ describe('QUESTIONNAIRE HANDLING:', () => {
         let exportData = questionnaireAnalyzer.createResponseJSON()
 
         // sends the questionnaire
-		await loggedInClient
+		return loggedInClient
         .sendQuestionnaire(
             exportData.body,
             exportData.triggerMap,
@@ -317,7 +317,7 @@ describe('QUESTIONNAIRE HANDLING:', () => {
     })
 
     // checks if a completed questionnaire can be sent out
-    test ('Questionnaire Response can be sent out', async () => {
+    test ('Questionnaire Response can be sent out', () => {
 
         // spies on the alert function
         jest.spyOn(Alert, 'alert');
@@ -343,6 +343,6 @@ describe('QUESTIONNAIRE HANDLING:', () => {
         Alert.alert.mock.calls[0][2][0].onPress()
             
         // checks if getQuestionnaire() is executed
-        await expect(loggedInClient.sendQuestionnaire()).resolves.toStrictEqual({ data: "sent-out-questionnaire" })
+        expect(loggedInClient.sendQuestionnaire()).resolves.toStrictEqual({ data: "sent-out-questionnaire" })
     })
 })

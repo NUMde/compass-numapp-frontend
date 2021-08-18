@@ -25,7 +25,7 @@ tests
 describe('LOGIN RENDERING:', () => {
 
     // renders the LoginContainer and matches it to its snapshot
-    it('<LoginContainer /> can be rendered', async () => {
+    it('<LoginContainer /> can be rendered', () => {
     
         // just a fake navigation object
         let fakeNavigation = { navigate: jest.fn(), state: { routeName: 'Login' } }
@@ -64,7 +64,7 @@ describe('LOGIN RENDERING:', () => {
         expect(fakeNavigation.navigate).toBeCalledWith('Login')
     })
     
-    // tests if the LoginScreen can be rendered - again, with a fals navigation object
+    // tests if the LoginScreen can be rendered - again, with a false navigation object
     it(`<LoginScreen /> can be rendered`, () => {
     
         // navigation dummy - used to check if the navigate event occurs
@@ -112,7 +112,7 @@ describe('LOGIN Handling:', () => {
         // if the automateQrLogin-option is set
         if(config.appConfig.automateQrLogin) {
             // checks if the checkin screen was already loaded
-            waitFor(() => instance = tree.UNSAFE_getByType(CheckInScreen).instance)
+            await waitFor(() => instance = tree.UNSAFE_getByType(CheckInScreen).instance)
                 // waits for the loading screen to turn invisible 
                 .then(() => waitFor(() => expect(tree.UNSAFE_getByType(Spinner).instance.props.visible === false).toBeTruthy())
                     // checks if categoriesLoaded was set to true (as this is only possible after a successful login an the download of the questionnaire)
@@ -124,7 +124,7 @@ describe('LOGIN Handling:', () => {
         // if the automateQrLogin-option is not set
         if(!config.appConfig.automateQrLogin) {
             // checks if the login screen was already loaded
-            waitFor(() => instance = tree.UNSAFE_getByType(LoginScreen).instance)
+            await waitFor(() => instance = tree.UNSAFE_getByType(LoginScreen).instance)
                 // then triggers the successCallback of the QR-Code-Scanner (with a scanresult as parameter)
                 .then(() => waitFor(() => instance.props.scanSuccess({data: '{\"AppIdentifier\":\"COMPASS\",\"SubjectId\":\"7bfc3b07-a97d-4e11-8ac6-b970c1745476\"}'}))
                     // waits till the user was navigated to the checkin screen
@@ -137,6 +137,8 @@ describe('LOGIN Handling:', () => {
                     )  
                 )
             )
+            // expect(instance.props.categories.length).toBeGreaterThan(0);
+            // console.log(instance.props)
         }
     })
 })
