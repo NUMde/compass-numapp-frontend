@@ -1,5 +1,5 @@
 
-// (C) Copyright IBM Deutschland GmbH 2020.  All rights reserved.
+// (C) Copyright IBM Deutschland GmbH 2021.  All rights reserved.
 
 // the code contained in this file is meant to gather information about the
 // current state of the questionnaire as well as to create the responseJson that is
@@ -18,8 +18,8 @@
 // be considered a page
 
 /***********************************************************************************************
- imports
- ***********************************************************************************************/
+imports
+***********************************************************************************************/
 
 import '../../typedef'
 import store from '../../store'
@@ -392,33 +392,35 @@ const checkCompletionStateOfMultipleItems = (items, props) => {
 }
 
 /**
+ * Compares to Codings for equality - assuming display is always set and always unique (as it should in all real cases)
+ * @param coding1 the first coding to compare
+ * @param coding2 the second coding to compare
+ * @return {boolean} true if both display's are equal - false otherwise
+ */
+const codingEquals = (coding1, coding2) => {
+	return coding1.display === coding2.display;
+}
+
+/**
  * checks the dependencies of a single item (presented through its "enableWhen" property).
  * this basically tells us if the items needs to be rendered or if its answer should have
  * an impact on the completion state of the whole questionnaire
  * @param  {QuestionnaireItem} [item] questionnaire item
  */
 const checkDependenciesOfSingleItem = item => {
-	/** return value of the function, true if all dependencies are met */
-	let returnValue = false //TODO: Why not directly use "return false;" or "return true;" ????
-
 	let props = store.getState().CheckIn
 
 	//if item is supposed to be hidden
 	let hiddenExtension = item.extension?.find(it => it.url === "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden");
 	if (hiddenExtension && hiddenExtension.valueBoolean === true) {
-		returnValue = false;
+		return false;
 	} else if (item && item.enableWhen) { // if the item has a set of conditions
 		// checks if the items mentioned in the conditions are even answered...
 		if (!checkIfAnswersToConditionsAreAvailable(item)) {
-			console.log("Answers to condition are not available!!!", item.linkId)
 			// ...if not, the returnValue is set to FALSE - game over
-			returnValue = false
+			return false;
 		} else {
 			if (item.enableWhen.length !== 0) {
-				let codingEquals = (coding1, coding2) => {
-					return coding1.display === coding2.display; //assuming display is always unique TODO: Fallback to code comparison in other cases
-				}
-
 				let elementTestCallback = condition => {
 					let answerType = getEnableWhenAnswerType(condition);
 					let expected = condition[answerType];
@@ -431,25 +433,20 @@ const checkDependenciesOfSingleItem = item => {
 					}
 
 				};
-
-				returnValue = (!item.enableBehavior || item.enableBehavior === 'all') ? item.enableWhen.every(elementTestCallback) : item.enableWhen.some(elementTestCallback);
-
+				return (!item.enableBehavior || item.enableBehavior === 'all') ? item.enableWhen.every(elementTestCallback) : item.enableWhen.some(elementTestCallback);
 			}
-
 		}
 	}
 	// if there is no condition (but at least something)...
 	else if (item) {
 		// ... then it technically meets its conditions
-		returnValue = true
+		return true;
 	}
 	// just in case
 	else {
 		// no
-		returnValue = false
+		return false;
 	}
-
-	return returnValue
 }
 
 /**
