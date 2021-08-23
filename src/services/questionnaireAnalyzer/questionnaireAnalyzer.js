@@ -392,7 +392,7 @@ const checkCompletionStateOfMultipleItems = (items, props) => {
 }
 
 /**
- * Compares to Codings for equality - assuming display is always set and always unique (as it should in all real cases)
+ * Compares two Codings for equality - assuming display is always set and always unique (as it should in all real cases)
  * @param coding1 the first coding to compare
  * @param coding2 the second coding to compare
  * @return {boolean} true if both display's are equal - false otherwise
