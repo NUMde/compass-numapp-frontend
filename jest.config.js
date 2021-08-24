@@ -23,6 +23,6 @@ module.exports = {
 	},
 
     transformIgnorePatterns: [ 
-        "node_modules/(?!((jest-)?@react-native|react-native|react-navigation|react-native-gesture-handler|react-native-firebase|react-native-keyboard-aware-scroll-view/.*))"
+        "node_modules/(?!((jest-)?@react-native|react-native|react-navigation|react-native-gesture-handler|react-native-firebase/.*))"
     ]
 };

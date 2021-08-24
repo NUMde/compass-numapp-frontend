@@ -7,8 +7,7 @@ imports
 
 import React, { Component } from 'react'
 import { Icon } from 'react-native-elements'
-import { KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view'
-import { AccessibilityInfo, StyleSheet, TouchableOpacity, View, Platform, Dimensions, ScrollView} from 'react-native'
+import { AccessibilityInfo, StyleSheet, TouchableOpacity, Platform, Dimensions, ScrollView} from 'react-native'
 
 import config from '../../config/configProvider'
 import { KeyboardAvoidingView } from 'react-native'
