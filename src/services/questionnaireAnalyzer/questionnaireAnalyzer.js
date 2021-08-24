@@ -232,9 +232,15 @@ const checkCompletionStateOfMultipleItems = (items, props) => {
 					item.enableWhen.forEach(condition => {
 						if (
 							// if the condition provides an array of answers and the needed answer is among then OR there is only one answer and it matches
-							((Array.isArray(questionnaireItemMap[condition.question].answer) && questionnaireItemMap[condition.question].answer.includes(condition[getEnableWhenAnswerType(condition)])) 
+							((Array.isArray(questionnaireItemMap[condition.question].answer) && 
+							(questionnaireItemMap[condition.question].answer.includes(condition[getEnableWhenAnswerType(condition)])
 							||
-							getCorrectlyFormattedAnswer(questionnaireItemMap[condition.question]) === condition[getEnableWhenAnswerType(condition)]) 
+							questionnaireItemMap[condition.question].answer.code.includes(condition[getEnableWhenAnswerType(condition)].code)
+							)) 
+							||
+							getCorrectlyFormattedAnswer(questionnaireItemMap[condition.question]) === condition[getEnableWhenAnswerType(condition)]
+							|| 
+							getCorrectlyFormattedAnswer(questionnaireItemMap[condition.question]).code === condition[getEnableWhenAnswerType(condition)].code) 
 							// and the item is not valid
 							&&
 							!checkItem(item)
@@ -260,10 +266,15 @@ const checkCompletionStateOfMultipleItems = (items, props) => {
 					item.enableWhen.forEach( condition => {
 						if (
 							// if the condition provides an array of answers and the current answer is among then
-							(Array.isArray(questionnaireItemMap[condition.question].answer) && questionnaireItemMap[condition.question].answer.includes(condition[getEnableWhenAnswerType(condition)])) 
+							(Array.isArray(questionnaireItemMap[condition.question].answer) && 
+							(questionnaireItemMap[condition.question].answer.includes(condition[getEnableWhenAnswerType(condition)])
+							||
+							 questionnaireItemMap[condition.question].answer.code.includes(condition[getEnableWhenAnswerType(condition)].code))) 
 							|| 
 							// OR: there is only one answer and it matches
 							getCorrectlyFormattedAnswer(questionnaireItemMap[condition.question]) === condition[getEnableWhenAnswerType(condition)]
+							|| 
+							getCorrectlyFormattedAnswer(questionnaireItemMap[condition.question]).code === condition[getEnableWhenAnswerType(condition)].code
 						) {
 							// if the condition is met
 							aChangeOccurred = true
@@ -428,10 +439,16 @@ const checkDependenciesOfSingleItem = item => {
 					// triggers if NO MATCH is found 
 					if (!(
 							// if the condition provides an array of answers and the current answer is among then
-							(Array.isArray(props.questionnaireItemMap[condition.question].answer) && props.questionnaireItemMap[condition.question].answer.includes( condition[getEnableWhenAnswerType(condition)])) 
+							(Array.isArray(props.questionnaireItemMap[condition.question].answer) && 
+							(props.questionnaireItemMap[condition.question].answer.includes( condition[getEnableWhenAnswerType(condition)])
+							||
+							 props.questionnaireItemMap[condition.question].answer.code.includes( condition[getEnableWhenAnswerType(condition)].code)
+							)) 
 							||
 							// OR: there is only one answer and it matches
 							(getCorrectlyFormattedAnswer(props.questionnaireItemMap[condition.question]) === condition[getEnableWhenAnswerType(condition)])
+							||
+							(getCorrectlyFormattedAnswer(props.questionnaireItemMap[condition.question]).code === condition[getEnableWhenAnswerType(condition)].code)
 						)
 					){
 						// in case a not-matching condition is found
@@ -445,10 +462,16 @@ const checkDependenciesOfSingleItem = item => {
 				item.enableWhen.forEach(condition => {
 					if (
 						// if the condition provides an array of answers and the current answer is among then
-						(Array.isArray(props.questionnaireItemMap[condition.question].answer) && props.questionnaireItemMap[condition.question].answer.includes( condition[getEnableWhenAnswerType(condition)]))
+						(Array.isArray(props.questionnaireItemMap[condition.question].answer) && 
+						(props.questionnaireItemMap[condition.question].answer.includes( condition[getEnableWhenAnswerType(condition)])
+						||
+						 props.questionnaireItemMap[condition.question].answer.code.includes( condition[getEnableWhenAnswerType(condition)].code)
+						))
 						||
 						// OR: there is only one answer and it matches
 						(getCorrectlyFormattedAnswer(props.questionnaireItemMap[condition.question]) === condition[getEnableWhenAnswerType(condition)])
+						||
+						(getCorrectlyFormattedAnswer(props.questionnaireItemMap[condition.question]).code === condition[getEnableWhenAnswerType(condition)].code)
 					) {
 						// in case a matching condition is found
 						returnValue = true
