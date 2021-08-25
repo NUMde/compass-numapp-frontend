@@ -234,7 +234,7 @@ const checkCompletionStateOfMultipleItems = (items, props) => {
 							// if the condition provides an array of answers and the needed answer is among then OR there is only one answer and it matches
 							((Array.isArray(questionnaireItemMap[condition.question].answer) && questionnaireItemMap[condition.question].answer.includes(condition[getEnableWhenAnswerType(condition)])) 
 							||
-							getCorrectlyFormattedAnswer(questionnaireItemMap[condition.question]) === condition[getEnableWhenAnswerType(condition)]) 
+							getCorrectlyFormattedAnswer(questionnaireItemMap[condition.question]) === condition[getEnableWhenAnswerType(condition)])
 							// and the item is not valid
 							&&
 							!checkItem(item)
@@ -260,7 +260,7 @@ const checkCompletionStateOfMultipleItems = (items, props) => {
 					item.enableWhen.forEach( condition => {
 						if (
 							// if the condition provides an array of answers and the current answer is among then
-							(Array.isArray(questionnaireItemMap[condition.question].answer) && questionnaireItemMap[condition.question].answer.includes(condition[getEnableWhenAnswerType(condition)])) 
+							(Array.isArray(questionnaireItemMap[condition.question].answer) && questionnaireItemMap[condition.question].answer.includes(condition[getEnableWhenAnswerType(condition)]))
 							|| 
 							// OR: there is only one answer and it matches
 							getCorrectlyFormattedAnswer(questionnaireItemMap[condition.question]) === condition[getEnableWhenAnswerType(condition)]

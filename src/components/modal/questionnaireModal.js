@@ -86,6 +86,12 @@ class QuestionnaireModal extends Component {
 	lastPageNavigationWasForwards
 
 	/**
+	 * Keeps the linkId of a parent-Item when this item should be hidden in order to hide the subItems
+	 * @type {string}
+	 */
+	level
+
+	/**
 	* @constructor
 	* @param  {object}  props
 	* @param  {object}  props.actions the redux actions of the parents state of this (checkInActions)
@@ -115,6 +121,7 @@ class QuestionnaireModal extends Component {
 		this.scrollOffset = 0
 		this.currentPageNeedsRendering = false
 		this.lastPageNavigationWasForwards = true
+		this.level = null
 
 		// check if accessibility-features are enabled
 		AccessibilityInfo.isScreenReaderEnabled().then(
@@ -316,8 +323,30 @@ class QuestionnaireModal extends Component {
 	getRenderStatusOfItem = item => {
 		// uses the checkDependenciesOfSingleItem-function from the export service
 		let returnValue = exportService.checkDependenciesOfSingleItem(item)
-		// if an item meets its dependencies it needs to be displayed
-		if (returnValue) this.currentPageNeedsRendering = true
+		//If the item is supposed to be hidden, remember the linjkId to make the subItems invisible in case there are subItems.
+		if(!returnValue){
+			this.level = item.linkId
+		}
+		//If the item has be shown
+		else if(returnValue){
+			//check if the Item has parent which is invisible to the user
+			if(this.level != null){
+				if(item.linkId.startsWith(this.level, 0)){
+					//This is a child-Element of an invisible Element and has not to be rendered
+					returnValue = false;
+				}
+				//When the item isn't a subItem of the hidden item
+				else{
+					this.level = null
+					// if an item meets its dependencies it needs to be displayed
+					this.currentPageNeedsRendering = true
+				}
+			}
+			else{
+				// if an item meets its dependencies it needs to be displayed
+				this.currentPageNeedsRendering = true
+			}
+		}
 
 		return returnValue
 	}
