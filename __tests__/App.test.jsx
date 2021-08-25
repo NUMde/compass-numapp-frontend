@@ -5,7 +5,6 @@ imports
 ***********************************************************************************************/
 
 import React from 'react'
-import { expect } from '@jest/globals'
 import { renderWithRedux } from '../__utils__/render'
 import createAppNavigator from '../src/navigation/appNavigator'
 
@@ -20,10 +19,10 @@ describe('APP START AND RENDERING:', () => {
     /**
      * creates an instance of the app with working navigational properties
      */
-    let createAppTree = () => {
+    const createAppTree = () => {
     
         // creates the regular appNavigator
-        let Navigator = createAppNavigator()
+        const Navigator = createAppNavigator()
             
         return renderWithRedux(<Navigator><App /></Navigator>);   
     }
@@ -32,7 +31,7 @@ describe('APP START AND RENDERING:', () => {
     test ('<App /> can be created and rendered', () => {
 
          // renders the component
-        let tree = createAppTree()
+        const tree = createAppTree()
 
         // checks if the screen matches the snapshot
         expect(tree).toMatchSnapshot()
@@ -48,7 +47,7 @@ describe('APP START AND RENDERING:', () => {
     test ('User is navigated to <LandingScreen /> after app start', () => {
     
         // checks if right now the login-button is rendered
-        let loginButton = createAppTree().getByText('Navigate to Login Screen')
+        const loginButton = createAppTree().getByText('Navigate to Login Screen')
         
         expect(loginButton).toBeTruthy()
     })
