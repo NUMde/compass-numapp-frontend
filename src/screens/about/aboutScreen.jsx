@@ -8,7 +8,7 @@ imports
 import  React, { Component } from 'react'
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native'
 
-import RedirectModal from '../../components/modal/redirectModal.js'
+import RedirectModal from '../../components/modal/redirectModal'
 import Banner from '../../components/banner/banner'
 import { ListItem } from 'react-native-elements'
 import AboutListItem from '../../components/about/aboutListItem'
