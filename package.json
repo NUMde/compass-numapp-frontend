@@ -12,7 +12,9 @@
     "postinstall": "patch-package && jetify",
     "debug": "open 'rndebugger://set-debugger-loc?host=localhost&port=19001'",
     "clean_install_macos": "watchman watch-del-all && rm -rf node_modules && npm i --legacy-peer-deps && cd ios && rm -rf Pods && rm -rf Podfile.lock && pod install && cd ..",
-    "clean_install_windows": "npm i rimraf --no-save && npx rimraf node_modules && npm i --legacy-peer-deps"
+    "clean_install_windows": "npm i rimraf --no-save && npx rimraf node_modules && npm i --legacy-peer-deps",
+    "lint": "eslint  . --ext .js,.jsx",
+    "lint:fix": "eslint  . --ext .js,.jsx --fix"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.11.0",
@@ -51,6 +53,15 @@
     "@react-native-community/eslint-config": "^3.0.0",
     "@testing-library/react-native": "^7.2.0",
     "babel-jest": "26.6.3",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.24.1",
+    "eslint-plugin-jest": "^24.4.0",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-react-native": "^3.11.0",
     "jest": "^26.6.3",
     "jetifier": "^2.0.0",
     "jsdom": "16.6.0",
