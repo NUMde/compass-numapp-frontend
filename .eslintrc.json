@@ -15,7 +15,8 @@
   },
   "plugins": ["react", "react-native", "jest"],
   "rules": {
-    "spaced-comment": ["error", "always", { "exceptions": ["**", "-"] }]
+    "spaced-comment": ["error", "always", { "exceptions": ["**", "-"] }],
+    "no-return-assign": ["error", "except-parens"]
   },
   "parser": "babel-eslint"
 }
