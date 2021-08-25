@@ -1,7 +1,9 @@
 {
   "env": {
     "browser": true,
-    "es2021": true
+    "es2021": true,
+    "jest/globals": true,
+    "react-native/react-native": true
   },
   "extends": ["plugin:react/recommended", "airbnb", "eslint-config-prettier"],
   "parserOptions": {
@@ -13,10 +15,7 @@
   },
   "plugins": ["react", "react-native", "jest"],
   "rules": {
-    "spaced-comment": ["error", "always", { "exceptions": ["**", "*--"] }]
+    "spaced-comment": ["error", "always", { "exceptions": ["**", "-"] }]
   },
-  "parser": "babel-eslint",
-  "globals": {
-    "__DEV__": true
-  }
+  "parser": "babel-eslint"
 }
