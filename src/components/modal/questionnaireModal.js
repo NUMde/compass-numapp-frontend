@@ -328,7 +328,7 @@ class QuestionnaireModal extends Component {
 			this.level = item.linkId
 		}
 		//If the item has be shown
-		if(returnValue){
+		else if(returnValue){
 			//check if the Item has parent which is invisible to the user
 			if(this.level != null){
 				if(item.linkId.startsWith(this.level, 0)){
@@ -338,11 +338,15 @@ class QuestionnaireModal extends Component {
 				//When the item isn't a subItem of the hidden item
 				else{
 					this.level = null
+					// if an item meets its dependencies it needs to be displayed
+					this.currentPageNeedsRendering = true
 				}
 			}
+			else{
+				// if an item meets its dependencies it needs to be displayed
+				this.currentPageNeedsRendering = true
+			}
 		}
-		// if an item meets its dependencies it needs to be displayed
-		if (returnValue) this.currentPageNeedsRendering = true
 
 		return returnValue
 	}

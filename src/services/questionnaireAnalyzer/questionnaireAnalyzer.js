@@ -7,12 +7,12 @@
 
 // there are a few terms that are used throughout the documentation:
 
-// categories: 
-// an array holding all first level questionnaire-items (QuestionnaireItem) with linkIds 
+// categories:
+// an array holding all first level questionnaire-items (QuestionnaireItem) with linkIds
 // that do no contain separators (like "1" or "6" or "15")
 
-// page: 
-// a page is composed of all sub-items of a category that have 
+// page:
+// a page is composed of all sub-items of a category that have
 // the identical value as the second position of their linkId. for example:
 // all linkIds starting with "1.2" (such as "1.2.1" and "1.2.1.1" and so on) will
 // be considered a page
@@ -64,7 +64,7 @@ const checkRegExExtension = linkId => {
  * @param {Condition} condition enableWhen condition
  */
 const getEnableWhenAnswerType = condition => {
-	return condition.answerString ? 'answerString' : 
+	return condition.answerString ? 'answerString' :
 		condition.answerDate ? 'answerDate' :
 			condition.answerTime ? 'answerTime' :
 				condition.answerCoding ? 'answerCoding' : 
@@ -232,15 +232,9 @@ const checkCompletionStateOfMultipleItems = (items, props) => {
 					item.enableWhen.forEach(condition => {
 						if (
 							// if the condition provides an array of answers and the needed answer is among then OR there is only one answer and it matches
-							((Array.isArray(questionnaireItemMap[condition.question].answer) && 
-							(questionnaireItemMap[condition.question].answer.includes(condition[getEnableWhenAnswerType(condition)])
+							((Array.isArray(questionnaireItemMap[condition.question].answer) && questionnaireItemMap[condition.question].answer.includes(condition[getEnableWhenAnswerType(condition)])) 
 							||
-							questionnaireItemMap[condition.question].answer.code.includes(condition[getEnableWhenAnswerType(condition)].code)
-							)) 
-							||
-							getCorrectlyFormattedAnswer(questionnaireItemMap[condition.question]) === condition[getEnableWhenAnswerType(condition)]
-							|| 
-							getCorrectlyFormattedAnswer(questionnaireItemMap[condition.question]).code === condition[getEnableWhenAnswerType(condition)].code) 
+							getCorrectlyFormattedAnswer(questionnaireItemMap[condition.question]) === condition[getEnableWhenAnswerType(condition)])
 							// and the item is not valid
 							&&
 							!checkItem(item)
@@ -266,15 +260,10 @@ const checkCompletionStateOfMultipleItems = (items, props) => {
 					item.enableWhen.forEach( condition => {
 						if (
 							// if the condition provides an array of answers and the current answer is among then
-							(Array.isArray(questionnaireItemMap[condition.question].answer) && 
-							(questionnaireItemMap[condition.question].answer.includes(condition[getEnableWhenAnswerType(condition)])
-							||
-							 questionnaireItemMap[condition.question].answer.code.includes(condition[getEnableWhenAnswerType(condition)].code))) 
+							(Array.isArray(questionnaireItemMap[condition.question].answer) && questionnaireItemMap[condition.question].answer.includes(condition[getEnableWhenAnswerType(condition)]))
 							|| 
 							// OR: there is only one answer and it matches
 							getCorrectlyFormattedAnswer(questionnaireItemMap[condition.question]) === condition[getEnableWhenAnswerType(condition)]
-							|| 
-							getCorrectlyFormattedAnswer(questionnaireItemMap[condition.question]).code === condition[getEnableWhenAnswerType(condition)].code
 						) {
 							// if the condition is met
 							aChangeOccurred = true
@@ -310,7 +299,7 @@ const checkCompletionStateOfMultipleItems = (items, props) => {
 		/** return value of the function, speaks about the validity of an item */
 		let returnValue = false
 
-		// if this item needs to be ignored 
+		// if this item needs to be ignored
 		if (item.type === 'ignore' || !item.required  || item.type === 'display' || !checkDependenciesOfSingleItem(item)) {
 			returnValue = true
 		} 
@@ -358,7 +347,7 @@ const checkCompletionStateOfMultipleItems = (items, props) => {
 				}
 				// if multiple answers are allowed
 				else {
-					// make sure there is something							
+					// make sure there is something
 					let isArray = (Array.isArray(questionnaireItemMap[item.linkId].answer) && questionnaireItemMap[item.linkId].answer.length )
 					let hasAdditionalAnswer = item.type === 'open-choice' && questionnaireItemMap[item.linkId].answerOption.filter(e => e.isOpenQuestionAnswer)[0].answer
 					returnValue = isArray || hasAdditionalAnswer
@@ -403,95 +392,61 @@ const checkCompletionStateOfMultipleItems = (items, props) => {
 }
 
 /**
+ * Compares two Codings for equality - assuming display is always set and always unique (as it should in all real cases)
+ * @param coding1 the first coding to compare
+ * @param coding2 the second coding to compare
+ * @return {boolean} true if both display's are equal - false otherwise
+ */
+const codingEquals = (coding1, coding2) => {
+	return coding1.display === coding2.display;
+}
+
+/**
  * checks the dependencies of a single item (presented through its "enableWhen" property).
  * this basically tells us if the items needs to be rendered or if its answer should have
  * an impact on the completion state of the whole questionnaire
  * @param  {QuestionnaireItem} [item] questionnaire item
  */
 const checkDependenciesOfSingleItem = item => {
-
-	/** return value of the function, true if all dependencies are met */
-	let returnValue = false
-
 	let props = store.getState().CheckIn
-	
-	//if item is supposed to be hidden
-	if(item.extension && item.extension[0].valueBoolean && item.extension[0].valueBoolean === true){
-		returnValue = false
-	}
-	// if the item has a set of conditions
-	else if (item && item.enableWhen) {
 
+	//if item is supposed to be hidden
+	let hiddenExtension = item.extension?.find(it => it.url === "http://hl7.org/fhir/StructureDefinition/questionnaire-hidden");
+	if (hiddenExtension && hiddenExtension.valueBoolean === true) {
+		return false;
+	} else if (item && item.enableWhen) { // if the item has a set of conditions
 		// checks if the items mentioned in the conditions are even answered...
-		if (!checkIfAnswersToConditionsAreAvailable (item )) {
+		if (!checkIfAnswersToConditionsAreAvailable(item)) {
 			// ...if not, the returnValue is set to FALSE - game over
-			returnValue = false
-		}
-		else {
-			// if no enableBehavior is set (or it is set to "all")
-			if(!item.enableBehavior || item.enableWhen.length === 0 || (item.enableBehavior && item.enableBehavior === 'all')) {
-				
-				// sets the default to TRUE, as one non-matching condition is enough to turn the result FALSE
-				returnValue = true
-				
-				// iterates over all conditions
-				item.enableWhen.forEach(condition => {
-					// triggers if NO MATCH is found 
-					if (!(
-							// if the condition provides an array of answers and the current answer is among then
-							(Array.isArray(props.questionnaireItemMap[condition.question].answer) && 
-							(props.questionnaireItemMap[condition.question].answer.includes( condition[getEnableWhenAnswerType(condition)])
-							||
-							 props.questionnaireItemMap[condition.question].answer.code.includes( condition[getEnableWhenAnswerType(condition)].code)
-							)) 
-							||
-							// OR: there is only one answer and it matches
-							(getCorrectlyFormattedAnswer(props.questionnaireItemMap[condition.question]) === condition[getEnableWhenAnswerType(condition)])
-							||
-							(getCorrectlyFormattedAnswer(props.questionnaireItemMap[condition.question]).code === condition[getEnableWhenAnswerType(condition)].code)
-						)
-					){
-						// in case a not-matching condition is found
-						returnValue = false
+			return false;
+		} else {
+			if (item.enableWhen.length !== 0) {
+				let elementTestCallback = condition => {
+					let answerType = getEnableWhenAnswerType(condition);
+					let expected = condition[answerType];
+					let question = props.questionnaireItemMap[condition.question];
+
+					if (answerType === "answerCoding") {
+						return (Array.isArray(question.answer) && question.answer.some(it => codingEquals(it, expected))) || (codingEquals(getCorrectlyFormattedAnswer(question),expected));
+					} else {
+						return (Array.isArray(question.answer) && question.answer.includes(expected)) || (getCorrectlyFormattedAnswer(question) === expected);
 					}
-				})
-			}
-			// if enableBehavior is set to 'any'
-			else {
-				// iterates over all conditions
-				item.enableWhen.forEach(condition => {
-					if (
-						// if the condition provides an array of answers and the current answer is among then
-						(Array.isArray(props.questionnaireItemMap[condition.question].answer) && 
-						(props.questionnaireItemMap[condition.question].answer.includes( condition[getEnableWhenAnswerType(condition)])
-						||
-						 props.questionnaireItemMap[condition.question].answer.code.includes( condition[getEnableWhenAnswerType(condition)].code)
-						))
-						||
-						// OR: there is only one answer and it matches
-						(getCorrectlyFormattedAnswer(props.questionnaireItemMap[condition.question]) === condition[getEnableWhenAnswerType(condition)])
-						||
-						(getCorrectlyFormattedAnswer(props.questionnaireItemMap[condition.question]).code === condition[getEnableWhenAnswerType(condition)].code)
-					) {
-						// in case a matching condition is found
-						returnValue = true
-					}
-				})	
+
+				};
+				return (!item.enableBehavior || item.enableBehavior === 'all') ? item.enableWhen.every(elementTestCallback) : item.enableWhen.some(elementTestCallback);
 			}
 		}
 	}
 	// if there is no condition (but at least something)...
 	else if (item) {
 		// ... then it technically meets its conditions
-		returnValue = true
+		return true;
 	}
 	// just in case
 	else {
 		// no
-		returnValue = false
+		return false;
 	}
-
-	return returnValue
 }
 
 /**
@@ -688,7 +643,7 @@ const createResponseJSON = () => {
 								trigger.rules[key].forEach(potentialAnswer => {
 									if(itemDetails.answer === potentialAnswer) {
 										triggerMap[trigger.type] = true
-									}		
+									}
 								})
 							}
 						})
