@@ -16,7 +16,8 @@
   "plugins": ["react", "react-native", "jest"],
   "rules": {
     "spaced-comment": ["error", "always", { "exceptions": ["**", "-"] }],
-    "no-return-assign": ["error", "except-parens"]
+    "no-return-assign": ["error", "except-parens"],
+    "react/prop-types": [1]
   },
   "parser": "babel-eslint"
 }
