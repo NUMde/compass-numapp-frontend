@@ -26,7 +26,6 @@ class WelcomeText extends PureComponent {
 	* @param  {object}      props.navigation the navigation object provided by 'react-navigation'
 	* @param  {object}      props.questionnaireError the return object should the sendQuestionnaire 
 		function produce an error
-	* @param  {boolean}     props.firstTime true if the user never sent out the first questionnaire
 	* @param  {boolean}     props.error401 true if the user was rejected by the backend
 	* @param  {boolean}     props.noNewQuestionnaireAvailableYet true if there is currently no 
 		questionnaire available
@@ -40,7 +39,6 @@ class WelcomeText extends PureComponent {
     const {
       error401,
       questionnaireError,
-      firstTime,
       noNewQuestionnaireAvailableYet,
       formatDateString,
       user,
@@ -53,7 +51,8 @@ class WelcomeText extends PureComponent {
             {/* title text: depends on the params 'firstTime' & 'noNewQuestionnaireAvailableYet'*/}
             <Text style={localStyle.welcomeText}>
               {(() => {
-                if (firstTime) return config.text.survey.welcomeTitleFirstTime;
+                if (user.firstTime)
+                  return config.text.survey.welcomeTitleFirstTime;
                 if (noNewQuestionnaireAvailableYet)
                   return config.text.survey.noNewQuestionnaireAvailableYet;
                 return config.text.survey.welcomeTitle;
@@ -61,7 +60,7 @@ class WelcomeText extends PureComponent {
             </Text>
 
             {/* if this is a new user */}
-            {firstTime && user && (
+            {user.firstTime && user && (
               <Text style={localStyle.infoText}>
                 {config.text.survey.welcomeTextFirstTimeUser1}
                 <Text style={{ ...localStyle.timeTextSmall }}>
@@ -72,14 +71,14 @@ class WelcomeText extends PureComponent {
             )}
 
             {/* if this is not a first-time-user and NO new questionnaire is currently available */}
-            {!firstTime && noNewQuestionnaireAvailableYet && (
+            {!user.firstTime && noNewQuestionnaireAvailableYet && (
               <Text style={localStyle.infoText}>
                 {config.text.survey.noNewQuestionnaireAvailableYet}
               </Text>
             )}
 
             {/* if this is not a first-time-user and A questionnaire is currently available */}
-            {!firstTime && !noNewQuestionnaireAvailableYet && (
+            {!user.firstTime && !noNewQuestionnaireAvailableYet && (
               <View>
                 <Text style={localStyle.infoText}>
                   {config.text.survey.welcomeTextUser}
@@ -91,7 +90,7 @@ class WelcomeText extends PureComponent {
             )}
 
             {/* if this is not a first-time-user and NO new questionnaire is currently available */}
-            {!firstTime && noNewQuestionnaireAvailableYet && (
+            {!user.firstTime && noNewQuestionnaireAvailableYet && (
               <View>
                 <Text style={localStyle.timeText}>
                   {config.text.survey.nextOne}
@@ -108,7 +107,7 @@ class WelcomeText extends PureComponent {
             )}
 
             {/* if this is a first-time-user and A questionnaire is currently available */}
-            {firstTime && noNewQuestionnaireAvailableYet && (
+            {user.firstTime && noNewQuestionnaireAvailableYet && (
               <View>
                 <Text style={localStyle.timeText}>
                   {config.text.survey.nextOneNew}
