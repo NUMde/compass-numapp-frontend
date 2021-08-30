@@ -17,7 +17,8 @@
   "rules": {
     "spaced-comment": ["error", "always", { "exceptions": ["**", "-"] }],
     "no-return-assign": ["error", "except-parens"],
-    "react/prop-types": [1]
+    "react/prop-types": [1],
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
   },
   "parser": "babel-eslint"
 }
