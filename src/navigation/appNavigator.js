@@ -11,7 +11,7 @@ import {
 } from "react-navigation-stack";
 
 import About from "../screens/about/aboutContainer";
-import { Login } from "../screens/login/loginContainer";
+import Login from "../screens/login/loginContainer";
 import { CheckIn } from "../screens/checkIn/checkInContainer";
 
 /***********************************************************************************************

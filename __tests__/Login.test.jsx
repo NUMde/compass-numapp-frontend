@@ -14,7 +14,7 @@ import LoginScreen from "../src/screens/login/loginScreen";
 import LandingScreen from "../src/screens/login/landingScreen";
 import createAppNavigator from "../src/navigation/appNavigator";
 import CheckInScreen from "../src/screens/checkIn/checkInScreen";
-import { Login as LoginContainer } from "../src/screens/login/loginContainer";
+import LoginContainer from "../src/screens/login/loginContainer";
 
 import config from "../src/config/configProvider";
 
