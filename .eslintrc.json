@@ -18,7 +18,8 @@
     "spaced-comment": ["error", "always", { "exceptions": ["**", "-"] }],
     "no-return-assign": ["error", "except-parens"],
     "react/prop-types": [1],
-    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "no-use-before-define": ["error", { "variables": false }]
   },
   "parser": "babel-eslint"
 }
