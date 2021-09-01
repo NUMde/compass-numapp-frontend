@@ -7,7 +7,7 @@ on:
   pull_request:
     branches: [ main ]
 jobs:
-  build:
+  run-tests:
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 24
@@ -17,10 +17,23 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
-    # install and run tests
-    - run: npm install -g npm@latest
-    - run: npm ci
-    - run: npm test
+    - name: cache node_modules
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
+        restore-keys:
+          ${{ runner.OS }}-build-${{ env.cache-name }}-
+          ${{ runner.OS }}-build-
+          ${{ runner.OS }}-
+    - name: install npm
+      run: npm install -g npm@latest
+    - name: install node dependencies
+      run: npm ci
+      env:
+        CI: true
+    - name: run all tests
+      run: npm test
