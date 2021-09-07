@@ -181,8 +181,8 @@ class QuestionnaireModal extends Component {
         categories[currentCategoryIndex].item.length,
         currentPageIndex
       );
-      this.handleScrollTo({ y: 0, animated: false });
     }
+    this.handleScrollTo({ y: 0, animated: false });
   };
 
   // modal events
