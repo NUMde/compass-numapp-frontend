@@ -14,7 +14,8 @@
     "clean_install_macos": "watchman watch-del-all && rm -rf node_modules && npm i --legacy-peer-deps && cd ios && rm -rf Pods && rm -rf Podfile.lock && pod install && cd ..",
     "clean_install_windows": "npm i rimraf --no-save && npx rimraf node_modules && npm i --legacy-peer-deps",
     "lint": "eslint  . --ext .js,.jsx",
-    "lint:fix": "eslint  . --ext .js,.jsx --fix"
+    "lint:fix": "eslint  . --ext .js,.jsx --fix",
+    "lint:report": "eslint . --ext .js,.jsx --output-file eslint_report.json --format json ."
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.11.0",
