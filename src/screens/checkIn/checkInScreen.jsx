@@ -65,7 +65,7 @@ class CheckInScreen extends PureComponent {
           updateUser={updateUser}
           isCheckIn
           noWayBack
-          noRefresh={user?.subjectParticipation==='off-study'}
+          noRefresh={user?.subject_participation==='off-study'}
           categoriesLoaded={categoriesLoaded}
         />
 

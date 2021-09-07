@@ -59,7 +59,7 @@ class CheckInTiles extends PureComponent {
           {/* if there is a completed questionnaire render the button to transmit the it*/}
           {!noNewQuestionnaireAvailableYet &&
             categoriesLoaded &&
-            user?.subjectParticipation != 'off-study' &&
+            user?.subject_participation != 'off-study' &&
             !loading &&
             questionnaireItemMap.done && (
               <View>
@@ -89,7 +89,7 @@ class CheckInTiles extends PureComponent {
             )}
 
           {/* the 'send report' button */}
-          {user?.subjectParticipation != 'off-study' && (
+          {user?.subject_participation != 'off-study' && (
             <TouchableOpacity
               onPress={sendReport}
               // renders the button in grey if there is no questionnaire available
@@ -116,7 +116,7 @@ class CheckInTiles extends PureComponent {
           )}
 
           {/* the 'send report' button */}
-          {user?.subjectParticipation === 'off-study' && config.appConfig.allowRemovalOfDataAtEndOfStudy && (
+          {user?.subject_participation === 'off-study' && config.appConfig.allowRemovalOfDataAtEndOfStudy && (
             <TouchableOpacity
               onPress={deleteLocalDataAndLogout}
               style={{...localStyle.tile, ...localStyle.deleteAndLogoutTile}}
