@@ -129,7 +129,7 @@ class WelcomeText extends PureComponent {
           </View>
         )}
 
-        {user.subjectParticipation === 'off-study' && (
+        {user?.subjectParticipation === 'off-study' && (
           <View>
             <Text style={localStyle.welcomeText}>
               {config.text.survey.endedStudyTitle}
