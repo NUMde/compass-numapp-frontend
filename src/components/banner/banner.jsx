@@ -108,7 +108,7 @@ class Banner extends PureComponent {
             )}
 
             {/* Renders an empty icon if none of the other options came back positiv. */}
-            {!(isCheckIn || (isCheckIn && noRefresh) || (!noWayBack && nav)) && (
+            {!(isCheckIn || (!noWayBack && nav)) || (isCheckIn && noRefresh) && (
               <View style={localStyle.bannerIcon} />
             )}
 
