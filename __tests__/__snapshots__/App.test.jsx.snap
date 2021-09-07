@@ -282,14 +282,6 @@ exports[`APP START AND RENDERING: <App /> can be created and rendered 1`] = `
                                 }
                               }
                             />
-                            <View
-                              style={
-                                Object {
-                                  "height": 44,
-                                  "width": 104.65116279069767,
-                                }
-                              }
-                            />
                           </View>
                         </View>
                         <View
