@@ -1,0 +1,79 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+name: Run all tests with jest and run eslint on pull requests
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  Run_tests:
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 24
+      matrix:
+        node-version: [14.x]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: cache node_modules
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
+        restore-keys:
+          ${{ runner.OS }}-build-${{ env.cache-name }}-
+          ${{ runner.OS }}-build-
+          ${{ runner.OS }}-
+    - name: install npm
+      run: npm install -g npm@latest
+    - name: install node dependencies
+      run: npm ci
+      env:
+        CI: true
+    - name: run all tests
+      run: npm test
+  Run_eslint:
+    if: ${{ github.event_name == 'pull_request' }}
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 24
+      matrix:
+        node-version: [14.x]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: cache node_modules
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
+        restore-keys:
+          ${{ runner.OS }}-build-${{ env.cache-name }}-
+          ${{ runner.OS }}-build-
+          ${{ runner.OS }}-
+    - name: install npm
+      run: npm install -g npm@latest
+    - name: install node dependencies
+      run: npm ci
+      env:
+        CI: true
+    - name: save code linting report
+      run: npm run lint:report
+      continue-on-error: true
+    - name: annotate code linting results
+      uses: ataylorme/eslint-annotate-action@1.2.0
+      with:
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"
+        report-json: "eslint_report.json"
+    - name: upload ESLint report
+      uses: actions/upload-artifact@v2
+      with:
+        name: eslint_report.json
+        path: eslint_report.json
