@@ -231,6 +231,15 @@ export const logout = () => async (dispatch) => {
 };
 
 /**
+ * deletes all local data (is executed in src/store.js, not in the AboutReducer)
+ */
+export const deleteLocalData = () => async dispatch => {
+	dispatch({
+		type: 'DELETE_ALL_LOCAL_DATA'
+	})
+}
+
+/**
  * shows/hides the menu
  * @param  {boolean} value if true, displays the menu
  */

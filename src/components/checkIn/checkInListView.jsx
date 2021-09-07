@@ -121,8 +121,11 @@ class CheckInListView extends PureComponent {
     } = this.props;
     return (
       <View style={localStyle.wrapper}>
-        {/* if all categories are loaded AND there is a current questionnaire available render a single ListLink*/}
-        {categoriesLoaded && !noNewQuestionnaireAvailableYet && (
+        {/* if all categories are loaded AND there is a current questionnaire available render a single ListLink AND if the user ist still part of the study*/}
+        {categoriesLoaded && 
+        !noNewQuestionnaireAvailableYet && 
+        user?.subjectParticipation != 'off-study' && 
+        (
           <ListItem
             containerStyle={{
               ...localStyle.containerStyle,

@@ -39,6 +39,7 @@ class Banner extends PureComponent {
    * @param  {boolean}   props.noMenu if true no menu-button will be rendered in the top right corner
    * @param  {boolean}   props.isCheckIn true if the banner is used on the checkIn-screen
    * @param  {boolean}   props.noWayBack if true no 'back'-button will be rendered
+   * @param  {boolean}   props.noRefresh if true no 'refesh'-button will be rendered
    * @param  {function}  props.updateUser triggers a user update
    * @param  {object}    props.nav the navigation object provided by 'react-navigation'
    */
@@ -47,7 +48,7 @@ class Banner extends PureComponent {
   /*-----------------------------------------------------------------------------------*/
 
   render() {
-    const { title, subTitle, isCheckIn, noMenu, updateUser, noWayBack, nav } =
+    const { title, subTitle, isCheckIn, noMenu, updateUser, noWayBack, nav, noRefresh } =
       this.props;
 
     /** holds the correct logo file */
@@ -65,8 +66,8 @@ class Banner extends PureComponent {
       <View style={localStyle.banner}>
         <View style={localStyle.bannerUpperHalf}>
           <View style={localStyle.bannerTitleWrapper}>
-            {/* If this is the checkIn-screen and reloads are allowed shows a reload button in the top left corner. */}
-            {isCheckIn && (
+            {/* If this is the checkIn-screen and reloads are not forbitten shows a reload button in the top left corner. */}
+            {isCheckIn && !noRefresh && (
               <Button
                 type="clear"
                 style={localStyle.bannerIcon}
@@ -107,7 +108,7 @@ class Banner extends PureComponent {
             )}
 
             {/* Renders an empty icon if none of the other options came back positiv. */}
-            {!(isCheckIn || (!noWayBack && nav)) && (
+            {!(isCheckIn || (isCheckIn && noRefresh) || (!noWayBack && nav)) && (
               <View style={localStyle.bannerIcon} />
             )}
 
