@@ -768,29 +768,30 @@ class QuestionnaireModal extends Component {
             config.text.accessibility.questionnaire.textFieldHint
           }
           onChangeText={(text) => {
+            let retVal = text;
             // filters anything that is not a number
             if (item.type === "integer") {
-              text = text
+              retVal = text
                 .split("")
                 .filter((a) => Number(a) || a === "0")
                 .join("");
             }
             // only allows decimals
             if (item.type === "decimal") {
-              text = text
+              retVal = text
                 .split("")
                 .filter((a) => Number(a) || a === "0" || a === "." || a === ",")
                 .join("")
                 .replace(",", ".");
 
-              const split = text.split(".");
-              if (split.length - 1 > 1) text = `${split[0]}.${split[1]}`;
-              if (text === "." || !text.length) text = '';
+              const split = retVal.split(".");
+              if (split.length - 1 > 1) retVal = `${split[0]}.${split[1]}`;
+              if (retVal === ".") retVal = "";
             }
             // sets the answer
             actions.setAnswer({
               linkId: item.linkId,
-              answer: text,
+              answer: retVal,
             });
           }}
         />
