@@ -63,7 +63,7 @@ const conf = {
 
   /** dev-option:
    * skips the QR login after 500ms */
-  automateQrLogin: __DEV__ && true,
+  automateQrLogin: __DEV__ && false,
 
   /** dev-option:
    * subject-id for automated login */
@@ -95,7 +95,7 @@ const conf = {
 
   /** dev-option:
    * used the locally available questionnaire.js instead of the procured one from the backend */
-  useLocalQuestionnaireInsteadOftheReceivedOne: __DEV__ && true,
+  useLocalQuestionnaireInsteadOftheReceivedOne: __DEV__ && false,
 
   /** dev-option:
    * skips the id-comparison */
@@ -211,7 +211,7 @@ const conf = {
   /*-----------------------------------------------------------------------------------*/
 
   /** ui:
-   * adds another Tile to the CheckIn-Screen, which only appears if the participant is
+   * adds another Tile to the CheckIn-Screen, which would only appears if the participant is
    * no longer part of the study (meaning the user property 'subject_participation' must hold 
    * the value 'off-study'). a press on that button would remove all local data and log the
    * user out
