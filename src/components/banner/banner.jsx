@@ -66,7 +66,7 @@ class Banner extends PureComponent {
       <View style={localStyle.banner}>
         <View style={localStyle.bannerUpperHalf}>
           <View style={localStyle.bannerTitleWrapper}>
-            {/* If this is the checkIn-screen and reloads are not forbitten shows a reload button in the top left corner. */}
+            {/* if this is the checkIn-screen and reloads are not forbidden shows a reload button in the top left corner */}
             {isCheckIn && !noRefresh && (
               <Button
                 type="clear"

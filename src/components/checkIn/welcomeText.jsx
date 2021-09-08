@@ -45,7 +45,7 @@ class WelcomeText extends PureComponent {
     } = this.props;
     return (
       <View style={localStyle.wrapper}>
-        {/* if there is no authentication errorm, no sending error and the participant ist still part of tzhe study */}
+        {/* if there is no authentication error, no sending error and the participant ist still part of the study */}
         {!error401 && questionnaireError === null && user?.subject_participation !== 'off-study' && (
           <View>
             {/* title text: depends on the params 'firstTime' & 'noNewQuestionnaireAvailableYet'*/}

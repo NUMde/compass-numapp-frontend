@@ -211,7 +211,7 @@ const conf = {
   /*-----------------------------------------------------------------------------------*/
 
   /** ui:
-   * adds another Tile to the CheckIn-Screen, which would only appears if the participant is
+   * adds another Tile to the CheckIn-Screen, which only appears if the participant is
    * no longer part of the study (meaning the user property 'subject_participation' must hold 
    * the value 'off-study'). a press on that button would remove all local data and log the
    * user out
