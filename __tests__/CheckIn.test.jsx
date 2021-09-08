@@ -33,7 +33,7 @@ const user = {
   current_interval: 7,
   current_questionnaire_id: "final",
   due_date: "9999-12-30T23:00:00.000Z",
-  subject_participation: 'on-study',
+  status: 'on-study',
   firstTime: false,
   pushAppGUID: "f98fc829-1d4d-418b-b05b-a147fdb9c0f3",
   pushClientSecret: "ab4b7d62-1fde-4a46-a566-2d1ada678df3",

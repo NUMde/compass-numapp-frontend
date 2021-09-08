@@ -124,7 +124,7 @@ class CheckInListView extends PureComponent {
         {/* if all categories are loaded AND there is a current questionnaire available render a single ListLink AND if the user ist still part of the study*/}
         {categoriesLoaded && 
         !noNewQuestionnaireAvailableYet && 
-        user?.subject_participation !== 'off-study' && 
+        user?.status !== 'off-study' && 
         (
           <ListItem
             containerStyle={{

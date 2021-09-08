@@ -46,7 +46,7 @@ class WelcomeText extends PureComponent {
     return (
       <View style={localStyle.wrapper}>
         {/* if there is no authentication error, no sending error and the participant ist still part of the study */}
-        {!error401 && questionnaireError === null && user?.subject_participation !== 'off-study' && (
+        {!error401 && questionnaireError === null && user?.status !== 'off-study' && (
           <View>
             {/* title text: depends on the params 'firstTime' & 'noNewQuestionnaireAvailableYet'*/}
             <Text style={localStyle.welcomeText}>
@@ -129,7 +129,7 @@ class WelcomeText extends PureComponent {
           </View>
         )}
 
-        {user?.subject_participation === 'off-study' && (
+        {user?.status === 'off-study' && (
           <View>
             <Text style={localStyle.welcomeText}>
               {config.text.survey.endedStudyTitle}
