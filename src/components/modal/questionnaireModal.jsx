@@ -757,11 +757,10 @@ class QuestionnaireModal extends Component {
       <View style={localStyle.modalInput}>
         {/* title */}
         <Text style={{ ...localStyle.contentTitle }}>{item.text}</Text>
-
         {/* input */}
         <Input
           placeholder={config.text.login.inputPlaceholder}
-          value={questionnaireItemMap[item.linkId].answer}
+          value={questionnaireItemMap[item.linkId].answer || ''}
           keyboardType={this.getKeyboardType(item)}
           maxLength={item.maxLength || null}
           // accessibilityLabel={ }
@@ -769,30 +768,29 @@ class QuestionnaireModal extends Component {
             config.text.accessibility.questionnaire.textFieldHint
           }
           onChangeText={(text) => {
-            let retVal;
             // filters anything that is not a number
             if (item.type === "integer") {
-              retVal = text
+              text = text
                 .split("")
                 .filter((a) => Number(a) || a === "0")
                 .join("");
             }
             // only allows decimals
             if (item.type === "decimal") {
-              retVal = text
+              text = text
                 .split("")
                 .filter((a) => Number(a) || a === "0" || a === "." || a === ",")
                 .join("")
                 .replace(",", ".");
 
-              const split = retVal.split(".");
-              if (split.length - 1 > 1) retVal = `${split[0]}.${split[1]}`;
-              if (retVal === ".") retVal = "";
+              const split = text.split(".");
+              if (split.length - 1 > 1) text = `${split[0]}.${split[1]}`;
+              if (text === "." || !text.length) text = '';
             }
             // sets the answer
             actions.setAnswer({
               linkId: item.linkId,
-              answer: retVal,
+              answer: text,
             });
           }}
         />
