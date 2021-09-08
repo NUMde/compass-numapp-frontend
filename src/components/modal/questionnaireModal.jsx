@@ -760,7 +760,7 @@ class QuestionnaireModal extends Component {
         {/* input */}
         <Input
           placeholder={config.text.login.inputPlaceholder}
-          value={questionnaireItemMap[item.linkId].answer || ''}
+          value={questionnaireItemMap[item.linkId].answer || ''} // displays an empty string when a 'falsy' answer needs to be rendered
           keyboardType={this.getKeyboardType(item)}
           maxLength={item.maxLength || null}
           // accessibilityLabel={ }
@@ -768,6 +768,7 @@ class QuestionnaireModal extends Component {
             config.text.accessibility.questionnaire.textFieldHint
           }
           onChangeText={(text) => {
+            // holds the initial, unedited text - in case that no manipulation is needed
             let retVal = text;
             // filters anything that is not a number
             if (item.type === "integer") {
@@ -786,7 +787,7 @@ class QuestionnaireModal extends Component {
 
               const split = retVal.split(".");
               if (split.length - 1 > 1) retVal = `${split[0]}.${split[1]}`;
-              if (retVal === ".") retVal = "";
+              if (retVal === ".") retVal = null;
             }
             // sets the answer
             actions.setAnswer({
