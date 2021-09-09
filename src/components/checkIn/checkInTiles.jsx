@@ -35,6 +35,7 @@ class CheckInTiles extends PureComponent {
    * @param  {object}      props.questionnaireItemMap object holding every item from the questionnaire (the linkId of the item is the key)
    * @param  {boolean}     props.noNewQuestionnaireAvailableYet true if there is currently no questionnaire available
    * @param  {Function}    props.exportAndUploadQuestionnaireResponse generates the response questionnaire, encrypts it and sends it to the server
+   * @param  {Function}    props.deleteLocalDataAndLogout deletes the local data and logs the user out
    */
   // rendering
   /*-----------------------------------------------------------------------------------*/
@@ -48,13 +49,17 @@ class CheckInTiles extends PureComponent {
       user,
       exportAndUploadQuestionnaireResponse,
       sendReport,
+      deleteLocalDataAndLogout
     } = this.props;
     return (
+
       <View style={localStyle.tileWrapper}>
-        <View style={localStyle.tileContainer}>
+        {/* checks if the user is still on the study */}
+        {<View style={localStyle.tileContainer}>
           {/* if there is a completed questionnaire render the button to transmit the it*/}
           {!noNewQuestionnaireAvailableYet &&
             categoriesLoaded &&
+            user?.status !== 'off-study' &&
             !loading &&
             questionnaireItemMap.done && (
               <View>
@@ -84,30 +89,52 @@ class CheckInTiles extends PureComponent {
             )}
 
           {/* the 'send report' button */}
-          <TouchableOpacity
-            onPress={sendReport}
-            // renders the button in grey if there is no questionnaire available
-            // or if the user already send out a report and is still on a special interval (additional_iterations_left will be greater than 0 if thats the case)
-            style={
-              noNewQuestionnaireAvailableYet ||
-              (user && user.additional_iterations_left > 0)
-                ? localStyle.tile
-                : localStyle.disabledTile
-            }
-            accessibilityRole={config.text.accessibility.types.button}
-          >
-            <View style={localStyle.buttonWrapper}>
-              <Icon
-                name="error"
-                color={config.theme.colors.white}
-                iconStyle={localStyle.buttonIcon}
-              />
-              <Text style={localStyle.tileText}>
-                {config.text.reporting.symptoms_header}
-              </Text>
-            </View>
-          </TouchableOpacity>
-        </View>
+          {user?.status !== 'off-study' && (
+            <TouchableOpacity
+              onPress={sendReport}
+              // renders the button in grey if there is no questionnaire available
+              // or if the user already send out a report and is still on a special interval (additional_iterations_left will be greater than 0 if thats the case)
+              style={
+                noNewQuestionnaireAvailableYet ||
+                (user && user.additional_iterations_left > 0)
+                  ? localStyle.tile
+                  : localStyle.disabledTile
+              }
+              accessibilityRole={config.text.accessibility.types.button}
+            >
+              <View style={localStyle.buttonWrapper}>
+                <Icon
+                  name="error"
+                  color={config.theme.colors.white}
+                  iconStyle={localStyle.buttonIcon}
+                />
+                <Text style={localStyle.tileText}>
+                  {config.text.reporting.symptoms_header}
+                </Text>
+              </View>
+            </TouchableOpacity>
+          )}
+
+          {/* the 'send report' button */}
+          {user?.status === 'off-study' && config.appConfig.allowRemovalOfDataAtEndOfStudy && (
+            <TouchableOpacity
+              onPress={deleteLocalDataAndLogout}
+              style={{...localStyle.tile, ...localStyle.deleteAndLogoutTile}}
+              accessibilityRole={config.text.accessibility.types.button}
+            >
+              <View style={localStyle.buttonWrapper}>
+                <Icon
+                  name="warning"
+                  color={config.theme.colors.white}
+                  iconStyle={localStyle.buttonIcon}
+                />
+                <Text style={localStyle.tileText}>
+                  {config.text.generic.eraseLocalDataAtEndOfStudyTitle}
+                </Text>
+              </View>
+            </TouchableOpacity>
+          )}
+        </View>}
       </View>
     );
   }
@@ -146,6 +173,10 @@ localStyle = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 10,
+  },
+
+  deleteAndLogoutTile: {
+    backgroundColor: config.theme.colors.alert
   },
 
   disabledTile: {

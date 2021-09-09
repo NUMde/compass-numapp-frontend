@@ -1033,14 +1033,6 @@ exports[`CHECKIN RENDERING: <SurveyScreen /> can be rendered 1`] = `
           }
         }
       >
-        <View
-          style={
-            Object {
-              "height": 44,
-              "width": 104.65116279069767,
-            }
-          }
-        />
         <Text
           accessibilityRole="header"
           numberOfLines={1}

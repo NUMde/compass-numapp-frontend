@@ -564,6 +564,37 @@ class CheckInContainer extends Component {
   // support
   /*-----------------------------------------------------------------------------------*/
 
+    /**
+   * shows a confirmation-dialog. if confirmed, it deletes the local data, logs the user
+   * out and navigates back to the landing-screen.
+   */
+  deleteLocalDataAndLogout = () => {
+
+    const { actions, navigation } = this.props;
+    Alert.alert(
+      config.text.generic.warning,
+      config.text.generic.eraseLocalDataAtEndOfStudyText,
+      [
+        {
+          text: config.text.generic.delete,
+          onPress: () => {
+            actions.deleteLocalData();
+
+            setTimeout(() => {
+              actions.logout();
+              navigation.navigate("Landing");
+            }, 0);
+          },
+        },
+        {
+          text: config.text.generic.abort,
+          style: "cancel",
+        },
+      ],
+      { cancelable: false }
+    );
+  };
+
   /**
    * generates a date string from Date Object (dd.mm.yyyy)
    * @param  {Date}    inputDate the input date
@@ -625,6 +656,7 @@ class CheckInContainer extends Component {
         noNewQuestionnaireAvailableYet={noNewQuestionnaireAvailableYet}
         questionnaireItemMap={questionnaireItemMap}
         getQuestionnaire={this.getQuestionnaire}
+        deleteLocalDataAndLogout={this.deleteLocalDataAndLogout}
         exportAndUploadQuestionnaireResponse={
           this.exportAndUploadQuestionnaireResponse
         }

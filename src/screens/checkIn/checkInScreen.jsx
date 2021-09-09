@@ -31,6 +31,7 @@ class CheckInScreen extends PureComponent {
    * @param  {Function} props.updateUser function to update the user
    * @param  {boolean}  props.categoriesLoaded is set to true as soon as the questionnaire was completely loaded
    * @param  {object}   props.questionnaireError holds the las error object
+   * @param  {Function} props.deleteLocalDataAndLogout deletes the local data and logs the user out
    */
   // rendering
   /*-----------------------------------------------------------------------------------*/
@@ -48,7 +49,9 @@ class CheckInScreen extends PureComponent {
       sendReport,
       noNewQuestionnaireAvailableYet,
       formatDateString,
+      deleteLocalDataAndLogout
     } = this.props;
+
     return (
       <View style={localStyle.wrapper}>
         {/* loading spinner */}
@@ -62,6 +65,7 @@ class CheckInScreen extends PureComponent {
           updateUser={updateUser}
           isCheckIn
           noWayBack
+          noRefresh={user?.status==='off-study'}
           categoriesLoaded={categoriesLoaded}
         />
 
@@ -103,6 +107,7 @@ class CheckInScreen extends PureComponent {
                       loading={loading}
                       categoriesLoaded={categoriesLoaded}
                       sendReport={sendReport}
+                      deleteLocalDataAndLogout={deleteLocalDataAndLogout}
                       questionnaireItemMap={questionnaireItemMap}
                       noNewQuestionnaireAvailableYet={
                         noNewQuestionnaireAvailableYet
