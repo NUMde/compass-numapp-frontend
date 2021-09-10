@@ -48,8 +48,7 @@ class CheckInScreen extends PureComponent {
       user,
       sendReport,
       noNewQuestionnaireAvailableYet,
-      formatDateString,
-      deleteLocalDataAndLogout
+      deleteLocalDataAndLogout,
     } = this.props;
 
     return (
@@ -65,7 +64,7 @@ class CheckInScreen extends PureComponent {
           updateUser={updateUser}
           isCheckIn
           noWayBack
-          noRefresh={user?.status==='off-study'}
+          noRefresh={user?.status === "off-study"}
           categoriesLoaded={categoriesLoaded}
         />
 
@@ -84,7 +83,6 @@ class CheckInScreen extends PureComponent {
                       user={user}
                       navigation={navigation}
                       categoriesLoaded={categoriesLoaded}
-                      formatDateString={formatDateString}
                       questionnaireItemMap={questionnaireItemMap}
                       noNewQuestionnaireAvailableYet={
                         noNewQuestionnaireAvailableYet
@@ -98,7 +96,6 @@ class CheckInScreen extends PureComponent {
                       noNewQuestionnaireAvailableYet={
                         noNewQuestionnaireAvailableYet
                       }
-                      formatDateString={formatDateString}
                       user={user}
                     />
                     {/* renders the button at the bottom */}
@@ -129,7 +126,6 @@ class CheckInScreen extends PureComponent {
                       noNewQuestionnaireAvailableYet={
                         noNewQuestionnaireAvailableYet
                       }
-                      formatDateString={formatDateString}
                     />
                   </View>
                 )}
