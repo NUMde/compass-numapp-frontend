@@ -8,6 +8,7 @@ import React, { PureComponent } from "react";
 import { Text, View, StyleSheet } from "react-native";
 
 import config from "../../config/configProvider";
+import { formatDateString } from "../../services/utils";
 
 let localStyle;
 
@@ -29,7 +30,6 @@ class WelcomeText extends PureComponent {
 	* @param  {boolean}     props.error401 true if the user was rejected by the backend
 	* @param  {boolean}     props.noNewQuestionnaireAvailableYet true if there is currently no 
 		questionnaire available
-	* @param  {Function}    props.formatDateString formats a date string
 	*/
 
   // rendering
@@ -40,96 +40,97 @@ class WelcomeText extends PureComponent {
       error401,
       questionnaireError,
       noNewQuestionnaireAvailableYet,
-      formatDateString,
       user,
     } = this.props;
     return (
       <View style={localStyle.wrapper}>
         {/* if there is no authentication error, no sending error and the participant ist still part of the study */}
-        {!error401 && questionnaireError === null && user?.status !== 'off-study' && (
-          <View>
-            {/* title text: depends on the params 'firstTime' & 'noNewQuestionnaireAvailableYet'*/}
-            <Text style={localStyle.welcomeText}>
-              {(() => {
-                if (user.firstTime)
-                  return config.text.survey.welcomeTitleFirstTime;
-                if (noNewQuestionnaireAvailableYet)
-                  return config.text.survey.noNewQuestionnaireAvailableYet;
-                return config.text.survey.welcomeTitle;
-              })()}
-            </Text>
-
-            {/* if this is a new user */}
-            {user.firstTime && user && (
-              <Text style={localStyle.infoText}>
-                {config.text.survey.welcomeTextFirstTimeUser1}
-                <Text style={{ ...localStyle.timeTextSmall }}>
-                  {formatDateString(user.due_date, true)}.
-                </Text>
-                {config.text.survey.welcomeTextFirstTimeUser2}
+        {!error401 &&
+          questionnaireError === null &&
+          user?.status !== "off-study" && (
+            <View>
+              {/* title text: depends on the params 'firstTime' & 'noNewQuestionnaireAvailableYet'*/}
+              <Text style={localStyle.welcomeText}>
+                {(() => {
+                  if (user.firstTime)
+                    return config.text.survey.welcomeTitleFirstTime;
+                  if (noNewQuestionnaireAvailableYet)
+                    return config.text.survey.noNewQuestionnaireAvailableYet;
+                  return config.text.survey.welcomeTitle;
+                })()}
               </Text>
-            )}
 
-            {/* if this is not a first-time-user and NO new questionnaire is currently available */}
-            {!user.firstTime && noNewQuestionnaireAvailableYet && (
-              <Text style={localStyle.infoText}>
-                {config.text.survey.noNewQuestionnaireAvailableYet}
-              </Text>
-            )}
-
-            {/* if this is not a first-time-user and A questionnaire is currently available */}
-            {!user.firstTime && !noNewQuestionnaireAvailableYet && (
-              <View>
+              {/* if this is a new user */}
+              {user.firstTime && user && (
                 <Text style={localStyle.infoText}>
-                  {config.text.survey.welcomeTextUser}
+                  {config.text.survey.welcomeTextFirstTimeUser1}
+                  <Text style={{ ...localStyle.timeTextSmall }}>
+                    {formatDateString(user.due_date, true)}.
+                  </Text>
+                  {config.text.survey.welcomeTextFirstTimeUser2}
                 </Text>
-                <Text style={{ ...localStyle.timeText }}>
-                  {formatDateString(user.due_date, true)}.
-                </Text>
-              </View>
-            )}
+              )}
 
-            {/* if this is not a first-time-user and NO new questionnaire is currently available */}
-            {!user.firstTime && noNewQuestionnaireAvailableYet && (
-              <View>
-                <Text style={localStyle.timeText}>
-                  {config.text.survey.nextOne}
+              {/* if this is not a first-time-user and NO new questionnaire is currently available */}
+              {!user.firstTime && noNewQuestionnaireAvailableYet && (
+                <Text style={localStyle.infoText}>
+                  {config.text.survey.noNewQuestionnaireAvailableYet}
                 </Text>
-                <Text
-                  style={{
-                    ...localStyle.timeText,
-                    ...localStyle.timeTextGreen,
-                  }}
-                >
-                  {formatDateString(user.start_date, true)}.
-                </Text>
-              </View>
-            )}
+              )}
 
-            {/* if this is a first-time-user and A questionnaire is currently available */}
-            {user.firstTime && noNewQuestionnaireAvailableYet && (
-              <View>
-                <Text style={localStyle.timeText}>
-                  {config.text.survey.nextOneNew}
-                </Text>
-                <Text
-                  style={{
-                    ...localStyle.timeText,
-                    ...localStyle.timeTextGreen,
-                  }}
-                >
-                  {formatDateString(user.start_date, true)}.
-                </Text>
-              </View>
-            )}
+              {/* if this is not a first-time-user and A questionnaire is currently available */}
+              {!user.firstTime && !noNewQuestionnaireAvailableYet && (
+                <View>
+                  <Text style={localStyle.infoText}>
+                    {config.text.survey.welcomeTextUser}
+                  </Text>
+                  <Text style={{ ...localStyle.timeText }}>
+                    {formatDateString(user.due_date, true)}.
+                  </Text>
+                </View>
+              )}
 
-            <Text style={localStyle.infoText}>
-              {config.text.survey.furtherInfo}
-            </Text>
-          </View>
-        )}
+              {/* if this is not a first-time-user and NO new questionnaire is currently available */}
+              {!user.firstTime && noNewQuestionnaireAvailableYet && (
+                <View>
+                  <Text style={localStyle.timeText}>
+                    {config.text.survey.nextOne}
+                  </Text>
+                  <Text
+                    style={{
+                      ...localStyle.timeText,
+                      ...localStyle.timeTextGreen,
+                    }}
+                  >
+                    {formatDateString(user.start_date, true)}.
+                  </Text>
+                </View>
+              )}
 
-        {user?.status === 'off-study' && (
+              {/* if this is a first-time-user and A questionnaire is currently available */}
+              {user.firstTime && noNewQuestionnaireAvailableYet && (
+                <View>
+                  <Text style={localStyle.timeText}>
+                    {config.text.survey.nextOneNew}
+                  </Text>
+                  <Text
+                    style={{
+                      ...localStyle.timeText,
+                      ...localStyle.timeTextGreen,
+                    }}
+                  >
+                    {formatDateString(user.start_date, true)}.
+                  </Text>
+                </View>
+              )}
+
+              <Text style={localStyle.infoText}>
+                {config.text.survey.furtherInfo}
+              </Text>
+            </View>
+          )}
+
+        {user?.status === "off-study" && (
           <View>
             <Text style={localStyle.welcomeText}>
               {config.text.survey.endedStudyTitle}

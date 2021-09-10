@@ -9,6 +9,7 @@ import { View, StyleSheet } from "react-native";
 import { ListItem } from "react-native-elements";
 
 import config from "../../config/configProvider";
+import { formatDateString } from "../../services/utils";
 
 let localStyle;
 
@@ -31,7 +32,6 @@ class CheckInListView extends PureComponent {
     * @param  {boolean}     props.firstTime true if the user never sent out the first 
     * @param  {boolean}     props.noNewQuestionnaireAvailableYet true if there is currently no questionnaire available
     * @param  {boolean}     props.categoriesLoaded true if the questionnaire is ready to be rendered
-    * @param  {Function}    props.formatDateString formats a date string
     */
 
   /**
@@ -116,59 +116,57 @@ class CheckInListView extends PureComponent {
       categoriesLoaded,
       noNewQuestionnaireAvailableYet,
       navigation,
-      formatDateString,
       user,
     } = this.props;
     return (
       <View style={localStyle.wrapper}>
         {/* if all categories are loaded AND there is a current questionnaire available render a single ListLink AND if the user ist still part of the study*/}
-        {categoriesLoaded && 
-        !noNewQuestionnaireAvailableYet && 
-        user?.status !== 'off-study' && 
-        (
-          <ListItem
-            containerStyle={{
-              ...localStyle.containerStyle,
-              // get additional styling depending on the state of the questionnaire
-              ...this.getListItemStyle(),
-            }}
-            onPress={() => navigation.navigate("Survey")}
-            accessibilityLabel={`${
-              user.firstTime
-                ? config.text.survey.surveyTitleFirstTime
-                : config.text.survey.surveyTitle
-            }. ${
-              config.text.survey.surveySubTitle +
-              formatDateString(new Date(user.due_date))
-            }`}
-            accessibilityRole={config.text.accessibility.types.button}
-            accessibilityHint={this.getAccessibilityHint()}
-          >
-            <ListItem.Content>
-              {/* shows a special title for first-time-users or the regular title for all other users */}
-              <ListItem.Title style={localStyle.title}>
-                {user.firstTime
+        {categoriesLoaded &&
+          !noNewQuestionnaireAvailableYet &&
+          user?.status !== "off-study" && (
+            <ListItem
+              containerStyle={{
+                ...localStyle.containerStyle,
+                // get additional styling depending on the state of the questionnaire
+                ...this.getListItemStyle(),
+              }}
+              onPress={() => navigation.navigate("Survey")}
+              accessibilityLabel={`${
+                user.firstTime
                   ? config.text.survey.surveyTitleFirstTime
-                  : config.text.survey.surveyTitle}
-              </ListItem.Title>
+                  : config.text.survey.surveyTitle
+              }. ${
+                config.text.survey.surveySubTitle +
+                formatDateString(new Date(user.due_date))
+              }`}
+              accessibilityRole={config.text.accessibility.types.button}
+              accessibilityHint={this.getAccessibilityHint()}
+            >
+              <ListItem.Content>
+                {/* shows a special title for first-time-users or the regular title for all other users */}
+                <ListItem.Title style={localStyle.title}>
+                  {user.firstTime
+                    ? config.text.survey.surveyTitleFirstTime
+                    : config.text.survey.surveyTitle}
+                </ListItem.Title>
 
-              {/* subtitle with formatted due date of the questionnaire */}
-              <ListItem.Subtitle style={localStyle.subTitle}>
-                {config.text.survey.surveySubTitle +
-                  formatDateString(new Date(user.due_date))}
-              </ListItem.Subtitle>
-            </ListItem.Content>
-            {/* renders icon */}
-            <ListItem.Chevron
-              type="material-community"
-              size={12}
-              raised
-              containerStyle={{ backgroundColor: config.theme.colors.white }}
-              // get additional properties based on the state of the questionnaire
-              iconProps={this.getChevronProps()}
-            />
-          </ListItem>
-        )}
+                {/* subtitle with formatted due date of the questionnaire */}
+                <ListItem.Subtitle style={localStyle.subTitle}>
+                  {config.text.survey.surveySubTitle +
+                    formatDateString(new Date(user.due_date))}
+                </ListItem.Subtitle>
+              </ListItem.Content>
+              {/* renders icon */}
+              <ListItem.Chevron
+                type="material-community"
+                size={12}
+                raised
+                containerStyle={{ backgroundColor: config.theme.colors.white }}
+                // get additional properties based on the state of the questionnaire
+                iconProps={this.getChevronProps()}
+              />
+            </ListItem>
+          )}
       </View>
     );
   }
