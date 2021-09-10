@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 // (C) Copyright IBM Deutschland GmbH 2021.  All rights reserved.
 
 /***********************************************************************************************
