@@ -22,10 +22,6 @@ jest.mock("@react-native-picker/picker", () => jest.fn());
 /*-----------------------------------------------------------------------------------*/
 jest.mock("react-native/Libraries/Animated/NativeAnimatedHelper");
 
-// mocks the async storage
-/*-----------------------------------------------------------------------------------*/
-// jest.mock("@react-native-community/async-storage", () => mockAsyncStorage);
-
 // react native permissions
 /*-----------------------------------------------------------------------------------*/
 jest.mock("react-native", () => {

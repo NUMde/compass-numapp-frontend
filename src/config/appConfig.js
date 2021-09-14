@@ -63,7 +63,7 @@ const conf = {
 
   /** dev-option:
    * skips the QR login after 500ms */
-  automateQrLogin: __DEV__ && true,
+  automateQrLogin: __DEV__ && false,
 
   /** dev-option:
    * subject-id for automated login */
@@ -126,7 +126,7 @@ const conf = {
   // local storage identifiers
   /*-----------------------------------------------------------------------------------*/
 
-  // these are identifiers for the items created in AsyncStorage. AsyncStorage will persist
+  // these are identifiers for the items created in LocalStorage. LocalStorage will persist
   // those data points until it is manually deleted, updated or the app was removed by the user.
   // ATTENTION: These are not encrypted!
 

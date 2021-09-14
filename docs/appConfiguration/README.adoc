@@ -79,7 +79,7 @@ The Login Options contains the attribute-names necessary to check the appIdentif
 ** The name of the attribute in the qr-code holding the subject-id
 
 == Local Storage Identifiers
-In order for the app to function properly it must persist various values. It uses AsyncStorage: https://github.com/react-native-async-storage/async-storage[AsyncStorage@GitHub]
+In order for the app to function properly it must persist various values. For that purpose https://github.com/emeraldsanto/react-native-encrypted-storage[React Native Encrypted Storage] is being utilized. This module provides a wrapper around Android's https://developer.android.com/reference/androidx/security/crypto/EncryptedSharedPreferences[EncryptedSharedPreferences] and https://developer.apple.com/documentation/security/keychain_services[iOS' Keychain]. This ensures the encryption of the locally persisted data.
 
 The following values carry the strings used to generate the names of the values belonging to the compass-application. Another part of that name is the SubjectId of the current user (in case multiple user want to use the same device) - the names are generated here: **`link:../../../../tree/main/src/services/localStorage/localStorage.js[src/services/localStorage/localStorage.js]`**
 
