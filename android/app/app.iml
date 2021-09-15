@@ -204,7 +204,6 @@
     <orderEntry type="module" module-name="unimodules-task-manager-interface" />
     <orderEntry type="module" module-name="unimodules-camera-interface" />
     <orderEntry type="module" module-name="react-native-permissions" />
-    <orderEntry type="module" module-name="react-native-community_async-storage" />
     <orderEntry type="module" module-name="unimodules-file-system-interface" />
     <orderEntry type="module" module-name="unimodules-face-detector-interface" />
     <orderEntry type="module" module-name="unimodules-core" />

@@ -70,7 +70,7 @@ export const sendCredentials =
               res.data.recipient_certificate_pem_string ||
               config.appConfig.default_recipient_certificate_pem_string,
           };
-          // the id of the user will be persisted in the AsyncStorage (for the auto-login next time)
+          // the id of the user will be persisted in the LocalStorage (for the auto-login next time)
           localStorage.persistLastSubjectId(cleanedScanResult);
           // updates the state
           setTimeout(

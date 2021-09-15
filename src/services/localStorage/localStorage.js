@@ -1,12 +1,12 @@
 // (C) Copyright IBM Deutschland GmbH 2021.  All rights reserved.
 
-// this file contains functions that interact with the AsyncStorage
+// this file contains functions that interact with the EncryptedStorage
 
 /***********************************************************************************************
 imports
 ***********************************************************************************************/
 
-import AsyncStorage from "@react-native-community/async-storage";
+import EncryptedStorage from "react-native-encrypted-storage";
 import config from "../../config/configProvider";
 
 /***********************************************************************************************
@@ -16,12 +16,12 @@ operations
 // last subject-id
 /*-----------------------------------------------------------------------------------*/
 /**
- * loads the last used subjectId from the AsyncStorage
+ * loads the last used subjectId from the EncryptedStorage
  * @returns string | null
  */
 const loadLastSubjectId = async () => {
   try {
-    return await AsyncStorage.getItem(config.appConfig.lastSubjectId);
+    return await EncryptedStorage.getItem(config.appConfig.lastSubjectId);
   } catch (error) {
     console.error(error);
     return null;
@@ -37,18 +37,18 @@ const persistLastSubjectId = async (subjectId) => {
   if (!id) return;
 
   try {
-    await AsyncStorage.setItem(config.appConfig.lastSubjectId, id);
+    await EncryptedStorage.setItem(config.appConfig.lastSubjectId, id);
   } catch (error) {
     console.error(error);
   }
 };
 
 /**
- * deletes the last used subjectId from the AsyncStorage
+ * deletes the last used subjectId from the EncryptedStorage
  */
 const removeLastSubjectId = async () => {
   try {
-    await AsyncStorage.removeItem(config.appConfig.lastSubjectId);
+    await EncryptedStorage.removeItem(config.appConfig.lastSubjectId);
   } catch (error) {
     console.error(error);
   }
@@ -68,14 +68,17 @@ const persistFCMToken = async (FCMToken, subjectId) => {
   if (!id) return;
 
   try {
-    await AsyncStorage.setItem(`${config.appConfig.FCMToken}_${id}`, FCMToken);
+    await EncryptedStorage.setItem(
+      `${config.appConfig.FCMToken}_${id}`,
+      FCMToken
+    );
   } catch (error) {
     console.error(error);
   }
 };
 
 /**
- * loads the notification state of a user from the AsyncStorage
+ * loads the notification state of a user from the EncryptedStorage
  * @param  {string} [subjectId] subjectId of the user
  * @returns {Promise<{deviceId:string}>}
  */
@@ -84,7 +87,7 @@ const loadFCMToken = async (subjectId) => {
   if (!id) return null;
 
   try {
-    return await AsyncStorage.getItem(`${config.appConfig.FCMToken}_${id}`);
+    return await EncryptedStorage.getItem(`${config.appConfig.FCMToken}_${id}`);
   } catch (error) {
     console.error(error);
     return null;
@@ -92,7 +95,7 @@ const loadFCMToken = async (subjectId) => {
 };
 
 /**
- * deletes the notification state of a user from the AsyncStorage
+ * deletes the notification state of a user from the EncryptedStorage
  * @param  {string} [subjectId] subjectId of the user
  */
 const removeFCMToken = async (subjectId) => {
@@ -100,7 +103,7 @@ const removeFCMToken = async (subjectId) => {
   if (!id) return;
 
   try {
-    await AsyncStorage.removeItem(`${config.appConfig.FCMToken}_${id}`);
+    await EncryptedStorage.removeItem(`${config.appConfig.FCMToken}_${id}`);
   } catch (error) {
     console.error(error);
   }
@@ -123,7 +126,7 @@ const persistLastQuestionnaireId = async (questionnaireId, subjectId) => {
   if (!(questionnaireId && id)) return;
 
   try {
-    await AsyncStorage.setItem(
+    await EncryptedStorage.setItem(
       `${config.appConfig.lastQuestionnaireId}_${id}`,
       questionnaireId
     );
@@ -133,7 +136,7 @@ const persistLastQuestionnaireId = async (questionnaireId, subjectId) => {
 };
 
 /**
- * loads the last persisted questionnaire id (of a user) from the AsyncStorage
+ * loads the last persisted questionnaire id (of a user) from the EncryptedStorage
  * @param  {string} [subjectId] subject-id
  * @returns string | null
  */
@@ -142,7 +145,7 @@ const loadLastQuestionnaireId = async (subjectId) => {
   if (!id) return null;
 
   try {
-    return await AsyncStorage.getItem(
+    return await EncryptedStorage.getItem(
       `${config.appConfig.lastQuestionnaireId}_${id}`
     );
   } catch (error) {
@@ -152,7 +155,7 @@ const loadLastQuestionnaireId = async (subjectId) => {
 };
 
 /**
- * deletes the last persisted questionnaire id (of a user) from the AsyncStorage
+ * deletes the last persisted questionnaire id (of a user) from the EncryptedStorage
  * @param  {string} [subjectId] subject-id
  */
 const removeLastQuestionnaireId = async (subjectId) => {
@@ -160,7 +163,7 @@ const removeLastQuestionnaireId = async (subjectId) => {
   if (!id) return;
 
   try {
-    await AsyncStorage.removeItem(
+    await EncryptedStorage.removeItem(
       `${config.appConfig.lastQuestionnaireId}_${id}`
     );
   } catch (error) {
@@ -184,7 +187,7 @@ const persistCategories = async (categories, subjectId) => {
     categories instanceof String ? categories : JSON.stringify(categories);
 
   try {
-    await AsyncStorage.setItem(
+    await EncryptedStorage.setItem(
       `${config.appConfig.localStorageList}_${id}`,
       stringToBePersisted.toString()
     );
@@ -194,7 +197,7 @@ const persistCategories = async (categories, subjectId) => {
 };
 
 /**
- * loads the last persisted category-object of the user from the AsyncStorage
+ * loads the last persisted category-object of the user from the EncryptedStorage
  * @param  {string} [subjectId] subject-id
  * @returns string | null
  */
@@ -204,7 +207,9 @@ const loadCategories = async (subjectId) => {
 
   try {
     return JSON.parse(
-      await AsyncStorage.getItem(`${config.appConfig.localStorageList}_${id}`)
+      await EncryptedStorage.getItem(
+        `${config.appConfig.localStorageList}_${id}`
+      )
     );
   } catch (error) {
     console.error(error);
@@ -213,7 +218,7 @@ const loadCategories = async (subjectId) => {
 };
 
 /**
- * deletes the last persisted category-object of the user from the AsyncStorage
+ * deletes the last persisted category-object of the user from the EncryptedStorage
  * @param  {string} [subjectId] subject-id
  */
 const removeCategories = async (subjectId) => {
@@ -221,7 +226,9 @@ const removeCategories = async (subjectId) => {
   if (!id) return;
 
   try {
-    await AsyncStorage.removeItem(`${config.appConfig.localStorageList}_${id}`);
+    await EncryptedStorage.removeItem(
+      `${config.appConfig.localStorageList}_${id}`
+    );
   } catch (error) {
     console.error(error);
   }
@@ -242,7 +249,7 @@ const persistQuestionnaireItemMap = async (map, subjectId) => {
   const stringToBePersisted = map instanceof String ? map : JSON.stringify(map);
 
   try {
-    await AsyncStorage.setItem(
+    await EncryptedStorage.setItem(
       `${config.appConfig.localStorageMap}_${id}`,
       stringToBePersisted.toString()
     );
@@ -252,7 +259,7 @@ const persistQuestionnaireItemMap = async (map, subjectId) => {
 };
 
 /**
- * loads the last persisted questionnaireItemMap-object of the user from the AsyncStorage
+ * loads the last persisted questionnaireItemMap-object of the user from the EncryptedStorage
  * @param  {string} [subjectId] subject-id
  * @returns string | null
  */
@@ -262,7 +269,9 @@ const loadQuestionnaireItemMap = async (subjectId) => {
 
   try {
     return JSON.parse(
-      await AsyncStorage.getItem(`${config.appConfig.localStorageMap}_${id}`)
+      await EncryptedStorage.getItem(
+        `${config.appConfig.localStorageMap}_${id}`
+      )
     );
   } catch (error) {
     console.error(error);
@@ -271,7 +280,7 @@ const loadQuestionnaireItemMap = async (subjectId) => {
 };
 
 /**
- * deletes the last persisted questionnaireItemMap-object of the user from the AsyncStorage
+ * deletes the last persisted questionnaireItemMap-object of the user from the EncryptedStorage
  * @param  {string} [subjectId] subject-id
  */
 const removeQuestionnaireItemMap = async (subjectId) => {
@@ -279,7 +288,9 @@ const removeQuestionnaireItemMap = async (subjectId) => {
   if (!id) return;
 
   try {
-    await AsyncStorage.removeItem(`${config.appConfig.localStorageMap}_${id}`);
+    await EncryptedStorage.removeItem(
+      `${config.appConfig.localStorageMap}_${id}`
+    );
   } catch (error) {
     console.error(error);
   }
@@ -292,7 +303,7 @@ const removeQuestionnaireItemMap = async (subjectId) => {
  * just clears all
  */
 const clearAll = async () => {
-  await AsyncStorage.clear();
+  await EncryptedStorage.clear();
 };
 
 /***********************************************************************************************

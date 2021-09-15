@@ -5,7 +5,6 @@ imports
 ***********************************************************************************************/
 
 import mockPermissions from "react-native-permissions/mock";
-import mockAsyncStorage from "@react-native-community/async-storage/jest/async-storage-mock";
 
 /***********************************************************************************************
 mocks
@@ -22,10 +21,6 @@ jest.mock("@react-native-picker/picker", () => jest.fn());
 // mocks the NativeAnimatedHelper module
 /*-----------------------------------------------------------------------------------*/
 jest.mock("react-native/Libraries/Animated/NativeAnimatedHelper");
-
-// mocks the async storage
-/*-----------------------------------------------------------------------------------*/
-jest.mock("@react-native-community/async-storage", () => mockAsyncStorage);
 
 // react native permissions
 /*-----------------------------------------------------------------------------------*/

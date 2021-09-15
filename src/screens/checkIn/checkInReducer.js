@@ -77,7 +77,7 @@ const generateQuestionnaireItemMap = (questionnaire, subjectId) => {
   // used to build the questionnaire-response
   questionnaireItemMap.identifier = questionnaire.identifier;
 
-  // persists the last known questionnaireId in the AsyncStorage
+  // persists the last known questionnaireId in the LocalStorage
   setTimeout(async () => {
     localStorage.persistLastQuestionnaireId(
       questionnaireItemMap.constructedId,
@@ -193,7 +193,7 @@ const valuesHandlers = {
     // generates local copy of questionnaireItemMap
     const questionnaireItemMap = { ...state.questionnaireItemMap };
 
-    // persists the new questionnaireItemMap in AsyncStorage
+    // persists the new questionnaireItemMap in LocalStorage
     setTimeout(() => {
       localStorage.persistQuestionnaireItemMap(
         questionnaireItemMap,
@@ -269,7 +269,7 @@ const valuesHandlers = {
   },
 
   /**
-   * persists the questionnaireItemMap ins state and AsyncStorage
+   * persists the questionnaireItemMap ins state and LocalStorage
    * @param  {any} state redux state
    * @param  {any} values values to be set
    */
@@ -289,7 +289,7 @@ const valuesHandlers = {
 
   /**
    * generates the questionnaireItemMap and the categories after receiving the questionnaire.
-   * also persists them in state and AsyncStorage
+   * also persists them in state and LocalStorage
    * @param  {any} state redux state
    * @param  {any} values values to be set
    */
@@ -304,7 +304,7 @@ const valuesHandlers = {
     const categories = [];
     values.questionnaire.item.forEach((item) => categories.push(item));
 
-    // persists them in AsyncStorage
+    // persists them in LocalStorage
     setTimeout(() => {
       localStorage.persistCategories(categories, state.user.subjectId);
       localStorage.persistQuestionnaireItemMap(
