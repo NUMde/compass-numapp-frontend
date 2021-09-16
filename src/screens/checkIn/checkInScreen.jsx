@@ -48,6 +48,7 @@ class CheckInScreen extends PureComponent {
       user,
       sendReport,
       noNewQuestionnaireAvailableYet,
+      exportAndUploadQuestionnaireResponse,
       deleteLocalDataAndLogout,
     } = this.props;
 
@@ -105,6 +106,9 @@ class CheckInScreen extends PureComponent {
                       categoriesLoaded={categoriesLoaded}
                       sendReport={sendReport}
                       deleteLocalDataAndLogout={deleteLocalDataAndLogout}
+                      exportAndUploadQuestionnaireResponse={
+                        exportAndUploadQuestionnaireResponse
+                      }
                       questionnaireItemMap={questionnaireItemMap}
                       noNewQuestionnaireAvailableYet={
                         noNewQuestionnaireAvailableYet
