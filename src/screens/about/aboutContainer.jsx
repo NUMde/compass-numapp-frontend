@@ -45,12 +45,9 @@ class AboutContainer extends Component {
         {
           text: text.generic.delete,
           onPress: () => {
+            actions.logout();
             actions.deleteLocalData();
-
-            setTimeout(() => {
-              actions.logout();
-              navigation.navigate("Landing");
-            }, 0);
+            navigation.navigate("Landing");
           },
         },
         {
