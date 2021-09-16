@@ -166,7 +166,8 @@ const conf = {
    * */
   connectToFCM: false,
 
-  // updates the locally generated device token with the backend on each user update
+  /** push:
+   * updates the locally generated device token with the backend on each user update */
   reconnectOnEachUserUpdate: false,
 
   // rest endpoints

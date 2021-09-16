@@ -100,6 +100,9 @@ Contains options concerning the push notification service
 * *connectToFCM*
 ** if set to true the app tries to connect to a FCM instance that in turn will be able to send out push notifications reminding the participants to open the app. 
 
+* *reconnectOnEachUserUpdate*
+** if set to true the app tries to establish the connection with each user update  
+
 == REST Endpoints
 These are the endpoints used to communicate with the backend.
 
