@@ -33,7 +33,6 @@ describe("ENCRYPTION:", () => {
   test("EncryptionModule produces a valid encrypted string", () => {
     // encrypts a message
     let encryptedMessage = encryption.encrypt("test message");
-
     // crates an ASN1 message from the encrypted message
     encryptedMessage = forge.util.decode64(encryptedMessage);
 

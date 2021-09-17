@@ -48,13 +48,14 @@ const encrypt = (messageToBeEncrypted) => {
 
   // converts the DER output into Base64 and returns it
 
-  return btoa(
+  return Buffer.from(
     forge.util
       .bytesToHex(result.data)
       .match(/\w{2}/g)
       .map((a) => String.fromCharCode(parseInt(a, 16)))
-      .join("")
-  );
+      .join(""),
+    "binary"
+  ).toString("base64");
 };
 
 /***********************************************************************************************
