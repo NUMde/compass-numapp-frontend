@@ -182,7 +182,6 @@ class QuestionnaireModal extends Component {
         currentPageIndex
       );
     }
-    this.handleScrollTo({ y: 0, animated: false });
   };
 
   // modal events
@@ -760,7 +759,7 @@ class QuestionnaireModal extends Component {
         {/* input */}
         <Input
           placeholder={config.text.login.inputPlaceholder}
-          value={questionnaireItemMap[item.linkId].answer || ''} // displays an empty string when a 'falsy' answer needs to be rendered
+          value={questionnaireItemMap[item.linkId].answer || ""} // displays an empty string when a 'falsy' answer needs to be rendered
           keyboardType={this.getKeyboardType(item)}
           maxLength={item.maxLength || null}
           // accessibilityLabel={ }
@@ -1116,8 +1115,8 @@ class QuestionnaireModal extends Component {
               onPress={() => {
                 setAccessibilityResponder(this.modalTitleRef);
                 this.lastPageNavigationWasForwards = false;
-                this.alreadyScrolledUpAfterReloading = false;
                 actions.switchContent(false);
+                this.handleScrollTo({ y: 0, animated: false });
               }}
               style={localStyle.modalPaginationButton}
               icon={
@@ -1155,12 +1154,12 @@ class QuestionnaireModal extends Component {
             onPress={() => {
               setAccessibilityResponder(this.modalTitleRef);
               this.lastPageNavigationWasForwards = true;
-              this.alreadyScrolledUpAfterReloading = false;
               actions.switchContent(
                 true,
                 categories[currentCategoryIndex].item.length,
                 currentPageIndex
               );
+              this.handleScrollTo({ y: 0, animated: false });
             }}
             icon={
               <Icon
@@ -1190,9 +1189,9 @@ class QuestionnaireModal extends Component {
               onPress={() => {
                 if (!this.isAccessibilityOn) {
                   setAccessibilityResponder(this.modalTitleRef);
-                  this.alreadyScrolledUpAfterReloading = false;
                   this.lastPageNavigationWasForwards = true;
                   actions.switchContent(true);
+                  this.handleScrollTo({ y: 0, animated: false });
                 } else {
                   // when accessibility features are enabled, user should be able to close modal with this button
                   actions.hideQuestionnaireModal();
