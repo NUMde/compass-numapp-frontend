@@ -340,23 +340,21 @@ class QuestionnaireModal extends Component {
       this.level = item.linkId;
     }
     // If the item has be shown
-    else if (returnValue) {
-      // check if the Item has parent which is invisible to the user
-      if (this.level != null) {
-        if (item.linkId.startsWith(this.level, 0)) {
-          // This is a child-Element of an invisible Element and has not to be rendered
-          returnValue = false;
-        }
-        // When the item isn't a subItem of the hidden item
-        else {
-          this.level = null;
-          // if an item meets its dependencies it needs to be displayed
-          this.currentPageNeedsRendering = true;
-        }
-      } else {
+    // check if the Item has parent which is invisible to the user
+    else if (this.level != null) {
+      if (item.linkId.startsWith(this.level, 0)) {
+        // This is a child-Element of an invisible Element and has not to be rendered
+        returnValue = false;
+      }
+      // When the item isn't a subItem of the hidden item
+      else {
+        this.level = null;
         // if an item meets its dependencies it needs to be displayed
         this.currentPageNeedsRendering = true;
       }
+    } else {
+      // if an item meets its dependencies it needs to be displayed
+      this.currentPageNeedsRendering = true;
     }
 
     return returnValue;
