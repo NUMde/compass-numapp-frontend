@@ -26,6 +26,8 @@ const actionHandlers = {
     ...state,
     loading: true,
     loggedIn: false,
+    loginError: null,
+    loginUnauthorized: false
   }),
 
   /**
