@@ -100,10 +100,14 @@ class LoginScreen extends Component {
 
                       {/* if anything other than a 401: outputs the returned error message (or a generic error message instead) */}
                       {!loginUnauthorized && (
-                        <Text style={{...localStyle.infoText, ...localStyle.loginErrorText}}>
-                          {(loginError?.message || config.text.login.errorUserGeneric) + '\n'}
-                          {config.text.login.nextStepAfterError}
-                        </Text>
+                        <View>
+                          <Text style={{...localStyle.infoText, ...localStyle.loginErrorText}}>
+                            {(loginError?.message || config.text.login.errorUserGeneric)}
+                          </Text>
+                          <Text style={{...localStyle.infoText, ...localStyle.loginErrorText}}>
+                            {config.text.login.nextStepAfterError}
+                          </Text>
+                        </View>
                       )}
                     </View>
                   )}
