@@ -33,6 +33,8 @@ class LoginScreen extends Component {
    * @param  {object}    props.actions holds the actions for this state
    * @param  {object}    props.navigation the navigation object provided by 'react-navigation'
    * @param  {Function}  props.scanSuccess function that is triggered when the qr-scanner picks something up
+   * @param  {boolean}   props.loginUnauthorized if true: the last authentication attempt returned a 401
+   * @param  {object}    props.loginError the persisted error of the last authentication attempt
    */
   constructor(props) {
     super(props);
@@ -43,7 +45,7 @@ class LoginScreen extends Component {
   /*-----------------------------------------------------------------------------------*/
 
   render() {
-    const { navigation, actions, scanSuccess } = this.props;
+    const { navigation, actions, scanSuccess, loginError, loginUnauthorized } = this.props;
     return (
       <View style={localStyle.wrapper}>
         {/* banner */}
@@ -85,6 +87,29 @@ class LoginScreen extends Component {
                   <Text style={localStyle.infoText}>
                     {config.text.login.qrInfo}
                   </Text>
+
+                  {/* login error text */}
+                  {loginError && (
+                    <View>
+                      {/* displays an error message in case of 401 */}
+                      {loginUnauthorized && (
+                        <Text style={{...localStyle.infoText, ...localStyle.loginErrorText}}>
+                          {config.text.login.errorUserUnauthorized}
+                        </Text>
+                      )}
+
+                      {/* if anything other than a 401: outputs the returned error message (or a generic error message instead) followed by another instructional string*/}
+                      {!loginUnauthorized && (
+                        <View>
+                          <Text style={{...localStyle.infoText, ...localStyle.loginErrorText}}>
+                            {loginError?.message ?? config.text.login.errorUserGeneric}
+                            {'\n'}
+                            {config.text.login.nextStepAfterError}
+                          </Text>
+                        </View>
+                      )}
+                    </View>
+                  )}
                 </View>
               </View>
             }
@@ -123,6 +148,10 @@ localStyle = StyleSheet.create({
     marginLeft: config.appConfig.scaleUiFkt(70),
     marginRight: config.appConfig.scaleUiFkt(70),
     ...config.theme.fonts.subHeader1,
+  },
+
+  loginErrorText: {
+    color: config.theme.colors.alert
   },
 
   qrScannerContainer: {
