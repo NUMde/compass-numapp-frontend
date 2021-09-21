@@ -1,3 +1,4 @@
+
 // (C) Copyright IBM Deutschland GmbH 2021.  All rights reserved.
 
 /***********************************************************************************************
@@ -51,15 +52,14 @@ const actionHandlers = {
    * @param  {object} state redux state
    * @param  {object} values values to be set
    */
-  SEND_CREDENTIALS_FAIL: (state, values) => ({
-    ...state,
-    loginError: values.error,
-    loading: false,
-    loginUnauthorized:
-      values.error.response &&
-      values.error.response.status &&
-      values.error.response.status === 401,
-  }),
+  SEND_CREDENTIALS_FAIL: (state, values) => (
+    {
+      ...state,
+      ...values,
+      subjectId: null,
+      loading: false
+    }
+  ),
 
   /**
    * just updates the subjectId
@@ -93,7 +93,7 @@ const actionHandlers = {
    */
   LOGOUT: (state) => ({
     ...state,
-    subjectId: "",
+    subjectId: null,
     session: null,
     loginError: null,
     loggedIn: false,
