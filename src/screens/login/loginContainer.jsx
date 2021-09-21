@@ -28,8 +28,8 @@ class LoginContainer extends Component {
    * @param  {object}    props.actions holds actions for the component (./loginActions.js)
    * @param  {boolean}   props.loggedIn if true: user is logged in
    * @param  {object}    props.navigation the navigation object provided by 'react-navigation'
-   * @param  {boolean}   props.loginUnauthorized the navigation object provided by 'react-navigation'
-   * @param  {object}    props.loginError the navigation object provided by 'react-navigation'
+   * @param  {boolean}   props.loginUnauthorized if true: the last authentication attempt returned a 401
+   * @param  {object}    props.loginError the persisted error of the last authentication attempt
    */
 
   // events
