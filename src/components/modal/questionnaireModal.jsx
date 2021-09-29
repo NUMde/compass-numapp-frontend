@@ -360,16 +360,6 @@ class QuestionnaireModal extends Component {
     return returnValue;
   };
 
-  /**
-   * compares two different valueCoding Objects
-   */
-  compareCoding = (val1, val2) => {
-    if (val1 && val2)
-      return val1.system === val2.system && val1.code === val2.code;
-
-    return false;
-  };
-
   // creating questionnaire items
   /*-----------------------------------------------------------------------------------*/
 
@@ -473,7 +463,7 @@ class QuestionnaireModal extends Component {
                           this.removeOpenAnswer(item);
                         }}
                         checked={
-                          this.compareCoding(
+                          exportService.codingEquals(
                             exportService.getCorrectlyFormattedAnswer(
                               questionnaireItemMap[item.linkId]
                             ),

@@ -414,10 +414,23 @@ const checkCompletionStateOfMultipleItems = (items, props) => {
  * Compares two Codings for equality - assuming display is always set and always unique (as it should in all real cases)
  * @param coding1 the first coding to compare
  * @param coding2 the second coding to compare
- * @return {boolean} true if both display's are equal - false otherwise
+ * @return {boolean} true if _either_:
+ *    a) coding1 and coding2 have both a valid system *and* a valid coding which both are equal _or_
+ *    b) coding1 and coding 2 only have display values which are equal
  */
-const codingEquals = (coding1, coding2) => coding1.display === coding2.display;
-
+const codingEquals = (coding1, coding2) => {
+  if (coding1 && coding2)
+    return (
+      (coding1.system &&
+        coding1.code &&
+        coding2.system &&
+        coding2.code &&
+        coding1.system === coding2.system &&
+        coding1.code === coding2.code) ||
+      coding1.display === coding2.display
+    );
+  return false;
+};
 /**
  * checks the dependencies of a single item (presented through its "enableWhen" property).
  * this basically tells us if the items needs to be rendered or if its answer should have
@@ -785,6 +798,7 @@ export
 ***********************************************************************************************/
 
 export default {
+  codingEquals,
   getFormattedDate,
   createResponseJSON,
   calculatePageProgress,
