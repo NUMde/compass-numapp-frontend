@@ -301,12 +301,12 @@ class CheckInContainer extends Component {
   /**
    * displays an alert and triggers the deletion of the local questionnaire
    */
-  deleteLocalQuestionnaireData = async () => {
+  deleteLocalQuestionnaireData = async (message) => {
     const { actions } = this.props;
     setTimeout(() => {
       Alert.alert(
         config.text.generic.info,
-        config.text.generic.infoRemoval,
+        message ? message + config.text.generic.infoRemoval : config.text.generic.infoRemoval,
         [
           {
             text: config.text.generic.ok,
@@ -336,14 +336,22 @@ class CheckInContainer extends Component {
     const { actions } = this.props;
 
     actions.sendQuestionnaireResponseFail(error);
-
-    setTimeout(() => {
-      Alert.alert(
-        config.text.generic.errorTitle,
-        config.text.generic.sendError
-      );
-    }, 0);
-  };
+    if(error.response.status === 406){
+      // deletes the locally persisted questionnaire, as it does not matches
+          // the one the user is supposed to look at
+          setTimeout(() => {
+            this.deleteLocalQuestionnaireData(config.text.generic.sendErrorTwoDevices);
+          }, 0);
+    }
+    else{
+      setTimeout(() => {
+        Alert.alert(
+          config.text.generic.errorTitle,
+          config.text.generic.sendError
+        );
+      }, 0);
+    };
+    }
 
   /**
    * handles the export success, deletes the local questionnaire and then updates the user

@@ -132,6 +132,7 @@ export default {
 		"logoutWarning":"Logout Warning",
 		"sendSuccess":"Data sent successfully",
 		"sendError":"There was an error transmitting the data. Please try again.",
+		"sendErrorTwoDevices":"You have already sent this questionnaire through another App. ",
 		"eraseAllWarning":"This will delete all local data and logs you out. Do you want to procede?",
 		"eraseLocalDataAtEndOfStudyText":"This will again emphasize the end of the study. As soon as the user confirms the local data will be removed and the participant is logged out. Do you want to precede?",
 		"eraseLocalDataAtEndOfStudyTitle":"Delete local data and logout",
