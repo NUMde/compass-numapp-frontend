@@ -336,7 +336,7 @@ class CheckInContainer extends Component {
     const { actions } = this.props;
 
     actions.sendQuestionnaireResponseFail(error);
-    if(error.response.status === 406){
+    if(error.response.status === 409){
       // deletes the locally persisted questionnaire, as it does not matches
           // the one the user is supposed to look at
           setTimeout(() => {
