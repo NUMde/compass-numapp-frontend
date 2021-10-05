@@ -71,7 +71,8 @@ middleware
 const middleware = [];
 middleware.push(thunk);
 
-if (__DEV__) middleware.push(createLogger({ collapsed: true }));
+if (__DEV__ && !process.NODE_ENV === "test")
+  middleware.push(createLogger({ collapsed: true }));
 
 /***********************************************************************************************
 export

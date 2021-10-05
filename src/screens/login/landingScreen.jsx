@@ -32,7 +32,7 @@ class LandingScreen extends PureComponent {
     return (
       <View style={localStyle.wrapper}>
         {/* loading spinner */}
-        <Spinner visible={loading} />
+        <Spinner visible={loading} testID="landingSpinner" />
 
         {/* banner */}
         <Banner

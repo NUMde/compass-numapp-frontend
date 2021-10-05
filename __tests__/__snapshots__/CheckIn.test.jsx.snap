@@ -12,6 +12,7 @@ exports[`CHECKIN RENDERING: <CheckInContainer /> can be rendered 1`] = `
 >
   <Modal
     hardwareAccelerated={false}
+    testID="checkInSpinner"
     visible={true}
   >
     <View
@@ -336,7 +337,7 @@ exports[`CHECKIN RENDERING: <CheckInContainer /> can be rendered 1`] = `
         resizeMode="cover"
         source={
           Object {
-            "testUri": "../../../src/assets/images/defaultLogoBackground.png",
+            "process": [Function],
           }
         }
         style={
@@ -360,7 +361,7 @@ exports[`CHECKIN RENDERING: <CheckInContainer /> can be rendered 1`] = `
         resizeMode="contain"
         source={
           Object {
-            "testUri": "../../../src/assets/images/defaultLogo.png",
+            "process": [Function],
           }
         }
         style={
@@ -444,6 +445,7 @@ exports[`CHECKIN RENDERING: <CheckInScreen /> can be rendered 1`] = `
 >
   <Modal
     hardwareAccelerated={false}
+    testID="checkInSpinner"
     visible={true}
   >
     <View
@@ -768,7 +770,7 @@ exports[`CHECKIN RENDERING: <CheckInScreen /> can be rendered 1`] = `
         resizeMode="cover"
         source={
           Object {
-            "testUri": "../../../src/assets/images/defaultLogoBackground.png",
+            "process": [Function],
           }
         }
         style={
@@ -792,7 +794,7 @@ exports[`CHECKIN RENDERING: <CheckInScreen /> can be rendered 1`] = `
         resizeMode="contain"
         source={
           Object {
-            "testUri": "../../../src/assets/images/defaultLogo.png",
+            "process": [Function],
           }
         }
         style={
@@ -1190,7 +1192,7 @@ exports[`CHECKIN RENDERING: <SurveyScreen /> can be rendered 1`] = `
         resizeMode="cover"
         source={
           Object {
-            "testUri": "../../../src/assets/images/defaultLogoBackground.png",
+            "process": [Function],
           }
         }
         style={
@@ -1214,7 +1216,7 @@ exports[`CHECKIN RENDERING: <SurveyScreen /> can be rendered 1`] = `
         resizeMode="contain"
         source={
           Object {
-            "testUri": "../../../src/assets/images/defaultLogo.png",
+            "process": [Function],
           }
         }
         style={

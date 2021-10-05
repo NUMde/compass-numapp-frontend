@@ -38,7 +38,6 @@ class CheckInContainer extends Component {
   componentDidMount = () => {
     const { route } = this.props;
     if (route.name === "CheckIn") {
-      console.log(route);
       setTimeout(() => {
         this.updateUser();
       }, 0);
