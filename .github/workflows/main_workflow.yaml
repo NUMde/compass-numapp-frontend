@@ -4,7 +4,7 @@ name: Run all tests with jest and run eslint on pull requests
 on:
   push:
     branches: [ main ]
-  pull_request:
+  pull_request_target:
     branches: [ main ]
 jobs:
   Run_tests:
