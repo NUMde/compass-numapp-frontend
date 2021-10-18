@@ -4,10 +4,10 @@
 imports
 ***********************************************************************************************/
 
-import config from "../../config/configProvider";
-import hardcodedTestQuestionnaire from "../../assets/files/questionnaire";
+import config from '../../config/configProvider';
+import hardcodedTestQuestionnaire from '../../assets/files/questionnaire';
 
-import "../../typedef";
+import '../../typedef';
 
 /***********************************************************************************************
 action handlers
@@ -18,7 +18,7 @@ action handlers
  */
 export const showDatePicker = () => async (dispatch) => {
   dispatch({
-    type: "SHOW_DATEPICKER",
+    type: 'SHOW_DATEPICKER',
   });
 };
 
@@ -27,7 +27,7 @@ export const showDatePicker = () => async (dispatch) => {
  */
 export const hideDatePicker = () => async (dispatch) => {
   dispatch({
-    type: "HIDE_DATEPICKER",
+    type: 'HIDE_DATEPICKER',
   });
 };
 
@@ -37,7 +37,7 @@ export const hideDatePicker = () => async (dispatch) => {
 export const showQuestionnaireModal =
   (currentCategoryIndex) => async (dispatch) => {
     dispatch({
-      type: "SHOW_QUESTIONNAIRE_MODAL",
+      type: 'SHOW_QUESTIONNAIRE_MODAL',
       values: { currentCategoryIndex, currentPageIndex: 1 },
     });
   };
@@ -47,7 +47,7 @@ export const showQuestionnaireModal =
  */
 export const hideQuestionnaireModal = () => async (dispatch) => {
   dispatch({
-    type: "HIDE_QUESTIONNAIRE_MODAL",
+    type: 'HIDE_QUESTIONNAIRE_MODAL',
   });
 };
 
@@ -68,13 +68,13 @@ export const switchContent =
       numberOfPages === currentPageIndex
     ) {
       dispatch({
-        type: "HIDE_QUESTIONNAIRE_MODAL",
+        type: 'HIDE_QUESTIONNAIRE_MODAL',
       });
     }
     // if its not the last page, switches the content
     else {
       dispatch({
-        type: "SWITCH_CONTENT",
+        type: 'SWITCH_CONTENT',
         forward,
       });
     }
@@ -85,7 +85,7 @@ export const switchContent =
  */
 export const setAnswer = (answer) => async (dispatch) => {
   dispatch({
-    type: "SET_ANSWER",
+    type: 'SET_ANSWER',
     answer,
   });
 };
@@ -97,7 +97,7 @@ export const setAnswer = (answer) => async (dispatch) => {
 export const setQuestionnaireItemMap =
   (questionnaireItemMap) => async (dispatch) => {
     dispatch({
-      type: "SET_QUESTIONNAIRE_ITEM_MAP",
+      type: 'SET_QUESTIONNAIRE_ITEM_MAP',
       questionnaireItemMap,
     });
   };
@@ -109,11 +109,11 @@ export const setQuestionnaireItemMap =
  */
 export const loadLocalQuestionnaire = (map, list) => async (dispatch) => {
   dispatch({
-    type: "LOAD_LOCAL_QUESTIONNAIRE_START",
+    type: 'LOAD_LOCAL_QUESTIONNAIRE_START',
   });
 
   dispatch({
-    type: "LOAD_LOCAL_QUESTIONNAIRE_SUCCESS",
+    type: 'LOAD_LOCAL_QUESTIONNAIRE_SUCCESS',
     value: {
       map,
       list,
@@ -126,7 +126,7 @@ export const loadLocalQuestionnaire = (map, list) => async (dispatch) => {
  */
 export const deleteLocalQuestionnaire = () => async (dispatch) => {
   dispatch({
-    type: "DELETE_LOCAL_QUESTIONNAIRE",
+    type: 'DELETE_LOCAL_QUESTIONNAIRE',
   });
 };
 
@@ -135,7 +135,7 @@ export const deleteLocalQuestionnaire = () => async (dispatch) => {
  */
 export const deleteAllLocalData = () => async (dispatch) => {
   dispatch({
-    type: "DELETE_ALL_LOCAL_DATA",
+    type: 'DELETE_ALL_LOCAL_DATA',
   });
 };
 
@@ -144,7 +144,7 @@ export const deleteAllLocalData = () => async (dispatch) => {
  */
 export const deleteLocalQuestionnaireStart = () => async (dispatch) => {
   dispatch({
-    type: "DELETE_LOCAL_QUESTIONNAIRE_START",
+    type: 'DELETE_LOCAL_QUESTIONNAIRE_START',
   });
 };
 
@@ -153,7 +153,7 @@ export const deleteLocalQuestionnaireStart = () => async (dispatch) => {
  */
 export const deleteLocalQuestionnaireSuccess = () => async (dispatch) => {
   dispatch({
-    type: "DELETE_LOCAL_QUESTIONNAIRE_SUCCESS",
+    type: 'DELETE_LOCAL_QUESTIONNAIRE_SUCCESS',
   });
 };
 
@@ -162,7 +162,7 @@ export const deleteLocalQuestionnaireSuccess = () => async (dispatch) => {
  */
 export const getQuestionnaireStart = () => async (dispatch) => {
   dispatch({
-    type: "GET_QUESTIONNAIRE_START",
+    type: 'GET_QUESTIONNAIRE_START',
   });
 };
 
@@ -174,7 +174,7 @@ export const getQuestionnaireStart = () => async (dispatch) => {
  */
 export const getQuestionnaireSuccess = (questionnaire) => async (dispatch) => {
   dispatch({
-    type: "GET_QUESTIONNAIRE_SUCCESS",
+    type: 'GET_QUESTIONNAIRE_SUCCESS',
     questionnaire: config.appConfig.useLocalQuestionnaireInsteadOftheReceivedOne
       ? hardcodedTestQuestionnaire
       : questionnaire,
@@ -187,7 +187,7 @@ export const getQuestionnaireSuccess = (questionnaire) => async (dispatch) => {
  */
 export const getQuestionnaireFail = (error) => async (dispatch) => {
   dispatch({
-    type: "GET_QUESTIONNAIRE_FAIL",
+    type: 'GET_QUESTIONNAIRE_FAIL',
     value: error,
   });
 };
@@ -197,7 +197,7 @@ export const getQuestionnaireFail = (error) => async (dispatch) => {
  */
 export const sendQuestionnaireResponseStart = () => async (dispatch) => {
   dispatch({
-    type: "SEND_QUESTIONNAIRE_RESPONSE_START",
+    type: 'SEND_QUESTIONNAIRE_RESPONSE_START',
   });
 };
 
@@ -206,7 +206,7 @@ export const sendQuestionnaireResponseStart = () => async (dispatch) => {
  */
 export const sendQuestionnaireResponseSuccess = (value) => async (dispatch) => {
   dispatch({
-    type: "SEND_QUESTIONNAIRE_RESPONSE_SUCCESS",
+    type: 'SEND_QUESTIONNAIRE_RESPONSE_SUCCESS',
     value,
   });
 };
@@ -216,7 +216,7 @@ export const sendQuestionnaireResponseSuccess = (value) => async (dispatch) => {
  */
 export const sendQuestionnaireResponseFail = (value) => async (dispatch) => {
   dispatch({
-    type: "SEND_QUESTIONNAIRE_RESPONSE_FAIL",
+    type: 'SEND_QUESTIONNAIRE_RESPONSE_FAIL',
     value,
   });
 };
@@ -226,7 +226,7 @@ export const sendQuestionnaireResponseFail = (value) => async (dispatch) => {
  */
 export const logout = () => async (dispatch) => {
   dispatch({
-    type: "USER_LOGOUT",
+    type: 'USER_LOGOUT',
   });
 };
 
@@ -235,7 +235,7 @@ export const logout = () => async (dispatch) => {
  */
 export const deleteLocalData = () => async (dispatch) => {
   dispatch({
-    type: "DELETE_ALL_LOCAL_DATA",
+    type: 'DELETE_ALL_LOCAL_DATA',
   });
 };
 
@@ -245,7 +245,7 @@ export const deleteLocalData = () => async (dispatch) => {
  */
 export const showMenu = (value) => async (dispatch) => {
   dispatch({
-    type: "SHOW_MENU",
+    type: 'SHOW_MENU',
     value,
   });
 };
@@ -255,7 +255,7 @@ export const showMenu = (value) => async (dispatch) => {
  */
 export const updateUserStart = () => (dispatch) => {
   dispatch({
-    type: "UPDATE_USER_START",
+    type: 'UPDATE_USER_START',
   });
 };
 
@@ -265,7 +265,7 @@ export const updateUserStart = () => (dispatch) => {
  */
 export const updateUserSuccess = (user) => (dispatch) => {
   dispatch({
-    type: "UPDATE_USER_SUCCESS",
+    type: 'UPDATE_USER_SUCCESS',
     user,
   });
 };
@@ -276,7 +276,7 @@ export const updateUserSuccess = (user) => (dispatch) => {
  */
 export const updateUserFail = (value) => (dispatch) => {
   dispatch({
-    type: "UPDATE_USER_FAIL",
+    type: 'UPDATE_USER_FAIL',
     value,
   });
 };
@@ -286,7 +286,7 @@ export const updateUserFail = (value) => (dispatch) => {
  */
 export const sendReportStart = () => (dispatch) => {
   dispatch({
-    type: "SEND_REPORT_START",
+    type: 'SEND_REPORT_START',
   });
 };
 
@@ -296,7 +296,7 @@ export const sendReportStart = () => (dispatch) => {
  */
 export const sendReportSuccess = (value) => (dispatch) => {
   dispatch({
-    type: "SEND_REPORT_SUCCESS",
+    type: 'SEND_REPORT_SUCCESS',
     value,
   });
 };
@@ -307,7 +307,7 @@ export const sendReportSuccess = (value) => (dispatch) => {
  */
 export const sendReportFail = (value) => (dispatch) => {
   dispatch({
-    type: "SEND_REPORT_FAIL",
+    type: 'SEND_REPORT_FAIL',
     value,
   });
 };
@@ -317,7 +317,7 @@ export const sendReportFail = (value) => (dispatch) => {
  */
 export const setupPushServiceStart = () => (dispatch) => {
   dispatch({
-    type: "SETUP_PUSH_SERVICE_START",
+    type: 'SETUP_PUSH_SERVICE_START',
   });
 };
 
@@ -326,7 +326,7 @@ export const setupPushServiceStart = () => (dispatch) => {
  */
 export const setupPushServiceSuccess = (response, token) => (dispatch) => {
   dispatch({
-    type: "SETUP_PUSH_SERVICE_SUCCESS",
+    type: 'SETUP_PUSH_SERVICE_SUCCESS',
     response,
     token,
   });
@@ -337,7 +337,7 @@ export const setupPushServiceSuccess = (response, token) => (dispatch) => {
  */
 export const setupPushServiceFail = (error) => (dispatch) => {
   dispatch({
-    type: "SETUP_PUSH_SERVICE_FAIL",
+    type: 'SETUP_PUSH_SERVICE_FAIL',
     error,
   });
 };
@@ -347,7 +347,7 @@ export const setupPushServiceFail = (error) => (dispatch) => {
  */
 export const setupPushServiceNoUpdate = (token) => (dispatch) => {
   dispatch({
-    type: "FCM_DID_NOT_CHANGE_SO_NO_UPDATE",
+    type: 'FCM_DID_NOT_CHANGE_SO_NO_UPDATE',
     token,
   });
 };

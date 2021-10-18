@@ -9,7 +9,7 @@ import {
   findNodeHandle,
   Platform,
   UIManager,
-} from "react-native";
+} from 'react-native';
 
 /***********************************************************************************************
 export
@@ -20,7 +20,7 @@ export default function setAccessibilityResponder(object) {
     const temp = findNodeHandle(object.current);
     if (temp) {
       // eslint-disable-next-line no-unused-expressions
-      Platform.OS === "android"
+      Platform.OS === 'android'
         ? UIManager.sendAccessibilityEvent(temp, 8)
         : AccessibilityInfo.setAccessibilityFocus(temp);
       return true;

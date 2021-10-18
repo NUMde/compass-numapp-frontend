@@ -8,9 +8,9 @@
 
 // necessary imports
 // eslint-disable-next-line no-unused-vars
-import { StyleSheet } from "react-native"; // lgtm [js/unused-local-variable]
-import customAppConfig from "./customAppConfig";
-import originalAppConfig from "../config/appConfig";
+import { StyleSheet } from 'react-native'; // lgtm [js/unused-local-variable]
+import customAppConfig from './customAppConfig';
+import originalAppConfig from '../config/appConfig';
 
 // this adds a needed function to your customAppConfig.js should you not have added it.
 if (!customAppConfig.scaleFontsFkt || !customAppConfig.scaleUiFkt) {

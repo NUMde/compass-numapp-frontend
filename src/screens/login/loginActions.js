@@ -4,10 +4,10 @@
 imports
 ***********************************************************************************************/
 
-import textConf from "../../config/textConfig";
-import config from "../../config/configProvider";
-import guestClient from "../../services/rest/guestClient";
-import localStorage from "../../services/localStorage/localStorage";
+import textConf from '../../config/textConfig';
+import config from '../../config/configProvider';
+import guestClient from '../../services/rest/guestClient';
+import localStorage from '../../services/localStorage/localStorage';
 
 /***********************************************************************************************
 actions
@@ -17,7 +17,7 @@ actions
  * just a redux message
  */
 export const sendCredentialsStart = () => ({
-  type: "SEND_CREDENTIALS_START",
+  type: 'SEND_CREDENTIALS_START',
 });
 
 /**
@@ -26,7 +26,7 @@ export const sendCredentialsStart = () => ({
  * @param  {object} session session object
  */
 export const sendCredentialsSuccess = (subjectId, session) => ({
-  type: "SEND_CREDENTIALS_SUCCESS",
+  type: 'SEND_CREDENTIALS_SUCCESS',
   subjectId,
   session: session || null,
 });
@@ -36,7 +36,7 @@ export const sendCredentialsSuccess = (subjectId, session) => ({
  * @param  {object | string} error
  */
 export const sendCredentialsFail = (error) => ({
-  type: "SEND_CREDENTIALS_FAIL",
+  type: 'SEND_CREDENTIALS_FAIL',
   error,
 });
 
@@ -75,26 +75,30 @@ export const sendCredentials =
           // updates the state
           setTimeout(
             () => dispatch(sendCredentialsSuccess(cleanedScanResult, data)),
-            0
+            0,
           );
         })
         .catch((err) => {
           // reactivates the camera
           if (camera) camera.reactivate();
           // persists the error
-          dispatch(sendCredentialsFail({
-            loginError: err.error ?? textConf.login.errorUserGeneric,
-            loginUnauthorized: err.error?.response?.status === 401
-          }));
+          dispatch(
+            sendCredentialsFail({
+              loginError: err.error ?? textConf.login.errorUserGeneric,
+              loginUnauthorized: err.error?.response?.status === 401,
+            }),
+          );
         });
     } else {
       // reactivates the camera
       if (camera) camera.reactivate();
       // persists a generic error
-      dispatch(sendCredentialsFail({
-        loginError: textConf.login.noSubjectId,
-        loginUnauthorized: false
-      }));
+      dispatch(
+        sendCredentialsFail({
+          loginError: textConf.login.noSubjectId,
+          loginUnauthorized: false,
+        }),
+      );
     }
   };
 
@@ -104,7 +108,7 @@ export const sendCredentials =
  */
 export const updateSubjectId = (subjectId) => async (dispatch) => {
   dispatch({
-    type: "UPDATE_SUBJECT_ID",
+    type: 'UPDATE_SUBJECT_ID',
     subjectId,
   });
 };
@@ -114,7 +118,7 @@ export const updateSubjectId = (subjectId) => async (dispatch) => {
  */
 export const autoLoginLastUser = () => async (dispatch) => {
   dispatch({
-    type: "AUTO_LOGIN_LAST_KNOWN_USER",
+    type: 'AUTO_LOGIN_LAST_KNOWN_USER',
   });
 };
 
@@ -123,6 +127,6 @@ export const autoLoginLastUser = () => async (dispatch) => {
  */
 export const logout = () => async (dispatch) => {
   dispatch({
-    type: "USER_LOGOUT",
+    type: 'USER_LOGOUT',
   });
 };

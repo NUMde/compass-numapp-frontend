@@ -4,11 +4,11 @@
 imports
 ***********************************************************************************************/
 
-import React, { PureComponent } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import React, { PureComponent } from 'react';
+import { Text, View, StyleSheet } from 'react-native';
 
-import config from "../../config/configProvider";
-import { formatDateString } from "../../services/utils";
+import config from '../../config/configProvider';
+import { formatDateString } from '../../services/utils';
 
 let localStyle;
 
@@ -19,16 +19,16 @@ component
 class WelcomeText extends PureComponent {
   /**
 	* renders a welcome text composed of multiple strings (originating from 'src/config/textConfig.js)
-	* and a formatted Date-string (representing the due date of the current questionnaire or the 
+	* and a formatted Date-string (representing the due date of the current questionnaire or the
 	* start date of the next one)
 	* @constructor
 	* @param  {object}      props
 	* @param  {object}      props.user holds the userdata
 	* @param  {object}      props.navigation the navigation object provided by 'react-navigation'
-	* @param  {object}      props.questionnaireError the return object should the sendQuestionnaire 
+	* @param  {object}      props.questionnaireError the return object should the sendQuestionnaire
 		function produce an error
 	* @param  {boolean}     props.error401 true if the user was rejected by the backend
-	* @param  {boolean}     props.noNewQuestionnaireAvailableYet true if there is currently no 
+	* @param  {boolean}     props.noNewQuestionnaireAvailableYet true if there is currently no
 		questionnaire available
 	*/
 
@@ -47,15 +47,17 @@ class WelcomeText extends PureComponent {
         {/* if there is no authentication error, no sending error and the participant ist still part of the study */}
         {!error401 &&
           questionnaireError === null &&
-          user?.status !== "off-study" && (
+          user?.status !== 'off-study' && (
             <View>
               {/* title text: depends on the params 'firstTime' & 'noNewQuestionnaireAvailableYet'*/}
               <Text style={localStyle.welcomeText}>
                 {(() => {
-                  if (user.firstTime)
+                  if (user.firstTime) {
                     return config.text.survey.welcomeTitleFirstTime;
-                  if (noNewQuestionnaireAvailableYet)
+                  }
+                  if (noNewQuestionnaireAvailableYet) {
                     return config.text.survey.noNewQuestionnaireAvailableYet;
+                  }
                   return config.text.survey.welcomeTitle;
                 })()}
               </Text>
@@ -130,7 +132,7 @@ class WelcomeText extends PureComponent {
             </View>
           )}
 
-        {user?.status === "off-study" && (
+        {user?.status === 'off-study' && (
           <View>
             <Text style={localStyle.welcomeText}>
               {config.text.survey.endedStudyTitle}
@@ -195,8 +197,8 @@ localStyle = StyleSheet.create({
 
   welcomeText: {
     ...config.theme.fonts.title,
-    textAlign: "center",
-    alignSelf: "center",
+    textAlign: 'center',
+    alignSelf: 'center',
     color: config.theme.values.defaultTitleTextColor,
   },
 
@@ -206,17 +208,17 @@ localStyle = StyleSheet.create({
 
   infoText: {
     marginTop: config.appConfig.scaleUiFkt(20),
-    textAlign: "center",
+    textAlign: 'center',
     color: config.theme.values.defaultParagraphTextColor,
-    alignSelf: "center",
+    alignSelf: 'center',
     ...config.theme.fonts.body,
   },
 
   timeText: {
     marginTop: config.appConfig.scaleUiFkt(20),
-    textAlign: "center",
+    textAlign: 'center',
     color: config.theme.colors.accent4,
-    alignSelf: "center",
+    alignSelf: 'center',
     ...config.theme.fonts.bold,
   },
 

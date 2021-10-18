@@ -7,8 +7,8 @@
 imports
 ***********************************************************************************************/
 
-import axios from "axios";
-import config from "../../config/configProvider";
+import axios from 'axios';
+import config from '../../config/configProvider';
 
 /***********************************************************************************************
 client

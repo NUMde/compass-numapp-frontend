@@ -4,17 +4,17 @@
 imports
 ***********************************************************************************************/
 
-import { Alert } from "react-native";
-import { connect } from "react-redux";
-import React, { Component } from "react";
-import { bindActionCreators } from "redux";
+import { Alert } from 'react-native';
+import { connect } from 'react-redux';
+import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 
-import text from "../../config/textConfig";
+import text from '../../config/textConfig';
 
-import AboutScreen from "./aboutScreen";
-import WebViewScreen from "./webViewScreen";
-import LegalInformationScreen from "./legalInformationScreen";
-import * as aboutActions from "./aboutActions";
+import AboutScreen from './aboutScreen';
+import WebViewScreen from './webViewScreen';
+import LegalInformationScreen from './legalInformationScreen';
+import * as aboutActions from './aboutActions';
 
 /***********************************************************************************************
 component:
@@ -47,15 +47,15 @@ class AboutContainer extends Component {
           onPress: () => {
             actions.logout();
             actions.deleteLocalData();
-            navigation.navigate("SignedOut", { screen: "Landing" });
+            navigation.navigate('SignedOut', { screen: 'Landing' });
           },
         },
         {
           text: text.generic.abort,
-          style: "cancel",
+          style: 'cancel',
         },
       ],
-      { cancelable: false }
+      { cancelable: false },
     );
   };
 
@@ -74,16 +74,16 @@ class AboutContainer extends Component {
           onPress: () => {
             actions.logout();
             setTimeout(() => {
-              navigation.navigate("SignedOut", { screen: "Landing" });
+              navigation.navigate('SignedOut', { screen: 'Landing' });
             }, 0);
           },
         },
         {
           text: text.generic.abort,
-          style: "cancel",
+          style: 'cancel',
         },
       ],
-      { cancelable: false }
+      { cancelable: false },
     );
   };
 
@@ -93,7 +93,7 @@ class AboutContainer extends Component {
   render() {
     const { navigation, showModal, modalLink, actions, route } = this.props;
     // checks if the currently selected route equals 'About'
-    if (route.name === "About") {
+    if (route.name === 'About') {
       // then renders the About Screen
       return (
         <AboutScreen
@@ -107,7 +107,7 @@ class AboutContainer extends Component {
       );
     }
     // checks if the currently selected route equals 'LegalInformation'
-    if (route.name === "LegalInformation") {
+    if (route.name === 'LegalInformation') {
       // then renders the LegalInformation Screen
       return <LegalInformationScreen navigation={navigation} />;
     }

@@ -4,14 +4,14 @@
 imports
 ***********************************************************************************************/
 
-import React, { Component } from "react";
-import { Text } from "react-native-elements";
-import { StyleSheet, View, Dimensions } from "react-native";
-import QRCodeScanner from "react-native-qrcode-scanner";
+import React, { Component } from 'react';
+import { Text } from 'react-native-elements';
+import { StyleSheet, View, Dimensions } from 'react-native';
+import QRCodeScanner from 'react-native-qrcode-scanner';
 
-import config from "../../config/configProvider";
-import Banner from "../../components/banner/banner";
-import ScrollIndicatorWrapper from "../../components/scrollIndicatorWrapper/scrollIndicatorWrapper";
+import config from '../../config/configProvider';
+import Banner from '../../components/banner/banner';
+import ScrollIndicatorWrapper from '../../components/scrollIndicatorWrapper/scrollIndicatorWrapper';
 
 let localStyle;
 
@@ -45,7 +45,8 @@ class LoginScreen extends Component {
   /*-----------------------------------------------------------------------------------*/
 
   render() {
-    const { navigation, actions, scanSuccess, loginError, loginUnauthorized } = this.props;
+    const { navigation, actions, scanSuccess, loginError, loginUnauthorized } =
+      this.props;
     return (
       <View style={localStyle.wrapper}>
         {/* banner */}
@@ -93,7 +94,12 @@ class LoginScreen extends Component {
                     <View>
                       {/* displays an error message in case of 401 */}
                       {loginUnauthorized && (
-                        <Text style={{...localStyle.infoText, ...localStyle.loginErrorText}}>
+                        <Text
+                          style={{
+                            ...localStyle.infoText,
+                            ...localStyle.loginErrorText,
+                          }}
+                        >
                           {config.text.login.errorUserUnauthorized}
                         </Text>
                       )}
@@ -101,8 +107,14 @@ class LoginScreen extends Component {
                       {/* if anything other than a 401: outputs the returned error message (or a generic error message instead) followed by another instructional string*/}
                       {!loginUnauthorized && (
                         <View>
-                          <Text style={{...localStyle.infoText, ...localStyle.loginErrorText}}>
-                            {loginError?.message ?? config.text.login.errorUserGeneric}
+                          <Text
+                            style={{
+                              ...localStyle.infoText,
+                              ...localStyle.loginErrorText,
+                            }}
+                          >
+                            {loginError?.message ??
+                              config.text.login.errorUserGeneric}
                             {'\n'}
                             {config.text.login.nextStepAfterError}
                           </Text>
@@ -127,11 +139,11 @@ localStyle
 // scaleUiFkt() (located in src/config/appConfig.js)
 // will dynamically alter some sized based on the physical device-measurements.
 
-const { width } = Dimensions.get("window");
+const { width } = Dimensions.get('window');
 
 localStyle = StyleSheet.create({
   wrapper: {
-    height: "100%",
+    height: '100%',
     backgroundColor: config.theme.values.defaultBackgroundColor,
   },
 
@@ -141,8 +153,8 @@ localStyle = StyleSheet.create({
 
   infoText: {
     marginBottom: 0,
-    textAlign: "center",
-    alignSelf: "center",
+    textAlign: 'center',
+    alignSelf: 'center',
     color: config.theme.colors.accent4,
     marginTop: config.appConfig.scaleUiFkt(30),
     marginLeft: config.appConfig.scaleUiFkt(70),
@@ -151,19 +163,19 @@ localStyle = StyleSheet.create({
   },
 
   loginErrorText: {
-    color: config.theme.colors.alert
+    color: config.theme.colors.alert,
   },
 
   qrScannerContainer: {
     marginTop: 0,
-    width: "100%",
+    width: '100%',
     height: width,
   },
 
   qrScanner: {
-    width: "100%",
-    height: "100%",
-    overflow: "hidden",
+    width: '100%',
+    height: '100%',
+    overflow: 'hidden',
   },
 
   qrScannerMarker: {
