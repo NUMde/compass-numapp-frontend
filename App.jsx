@@ -29,9 +29,6 @@ class App extends PureComponent {
     // hides the splash screen
     SplashScreen.hide();
 
-    // creates the navigator
-    const Navigator = createAppNavigator();
-
     // and returns the basic view that contains the navigator
     return (
       <View style={localStyle.container}>
@@ -48,9 +45,7 @@ class App extends PureComponent {
           />
         )}
 
-        <Provider store={reduxStore}>
-          <Navigator style={localStyle.container} />
-        </Provider>
+        <Provider store={reduxStore}>{createAppNavigator()}</Provider>
       </View>
     );
   }

@@ -21,4 +21,8 @@ module.exports = {
   transformIgnorePatterns: [
     "node_modules/(?!((jest-)?@react-native|react-native|react-navigation|react-native-gesture-handler|react-native-firebase/.*))",
   ],
+  moduleNameMapper: {
+    "^.+.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$":
+      "jest-transform-stub",
+  },
 };

@@ -47,7 +47,7 @@ class AboutContainer extends Component {
           onPress: () => {
             actions.logout();
             actions.deleteLocalData();
-            navigation.navigate("Landing");
+            navigation.navigate("SignedOut", { screen: "Landing" });
           },
         },
         {
@@ -74,7 +74,7 @@ class AboutContainer extends Component {
           onPress: () => {
             actions.logout();
             setTimeout(() => {
-              navigation.navigate("Landing");
+              navigation.navigate("SignedOut", { screen: "Landing" });
             }, 0);
           },
         },
@@ -91,9 +91,9 @@ class AboutContainer extends Component {
   /*-----------------------------------------------------------------------------------*/
 
   render() {
-    const { navigation, showModal, modalLink, actions } = this.props;
+    const { navigation, showModal, modalLink, actions, route } = this.props;
     // checks if the currently selected route equals 'About'
-    if (navigation.state.routeName === "About") {
+    if (route.name === "About") {
       // then renders the About Screen
       return (
         <AboutScreen
@@ -107,7 +107,7 @@ class AboutContainer extends Component {
       );
     }
     // checks if the currently selected route equals 'LegalInformation'
-    if (navigation.state.routeName === "LegalInformation") {
+    if (route.name === "LegalInformation") {
       // then renders the LegalInformation Screen
       return <LegalInformationScreen navigation={navigation} />;
     }

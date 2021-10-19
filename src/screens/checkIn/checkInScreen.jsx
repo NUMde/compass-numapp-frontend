@@ -55,7 +55,7 @@ class CheckInScreen extends PureComponent {
     return (
       <View style={localStyle.wrapper}>
         {/* loading spinner */}
-        <Spinner visible={loading} />
+        <Spinner visible={loading} testID="checkInSpinner" />
 
         {/* banner at the top */}
         <Banner

@@ -41,15 +41,12 @@ class LoginContainer extends Component {
    * configured in appConfig.js
    */
   componentDidMount = () => {
-    const { subjectId, actions, navigation } = this.props;
+    const { subjectId, actions, route } = this.props;
     // logout of an existing user
     if (subjectId) actions.logout();
 
     // triggers the auto-login when on the login-screen (only on DEV)
-    if (
-      config.appConfig.automateQrLogin &&
-      navigation.state.routeName === "Login"
-    ) {
+    if (config.appConfig.automateQrLogin && route.name === "Login") {
       // parses the input string to determine the subjectId (from the qr-code)
       const scannedId = this.checkQrCodeForUsername(
         config.appConfig.automateQrLoginSubjectId || ""
@@ -68,7 +65,7 @@ class LoginContainer extends Component {
    */
   componentDidUpdate = () => {
     const { loggedIn, navigation } = this.props;
-    if (loggedIn) navigation.navigate("CheckIn");
+    if (loggedIn) navigation.navigate("SignedIn", { screen: "CheckIn" });
   };
 
   // class methods
@@ -132,9 +129,16 @@ class LoginContainer extends Component {
   /*-----------------------------------------------------------------------------------*/
 
   render() {
-    const { loading, actions, navigation, loginUnauthorized, loginError } = this.props;
+    const {
+      loading,
+      actions,
+      navigation,
+      loginUnauthorized,
+      loginError,
+      route,
+    } = this.props;
     // checks the currently selected route
-    return navigation.state.routeName === "Login" ? (
+    return route.name === "Login" ? (
       // if on Login route
       <LoginScreen
         actions={actions}

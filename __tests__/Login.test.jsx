@@ -9,10 +9,8 @@ import { fireEvent, waitFor } from "@testing-library/react-native";
 import { renderWithRedux } from "../__utils__/render";
 
 import App from "../App";
-import Spinner from "../src/components/spinner/spinner";
 import LoginScreen from "../src/screens/login/loginScreen";
 import LandingScreen from "../src/screens/login/landingScreen";
-import createAppNavigator from "../src/navigation/appNavigator";
 import CheckInScreen from "../src/screens/checkIn/checkInScreen";
 import LoginContainer from "../src/screens/login/loginContainer";
 
@@ -28,12 +26,11 @@ describe("LOGIN RENDERING:", () => {
     // just a fake navigation object
     const fakeNavigation = {
       navigate: jest.fn(),
-      state: { routeName: "Login" },
     };
 
     // renders the LoginContainer
     const tree = renderWithRedux(
-      <LoginContainer navigation={fakeNavigation} />
+      <LoginContainer navigation={fakeNavigation} route={{ name: "Login" }} />
     );
 
     expect(tree).toMatchSnapshot();
@@ -55,7 +52,9 @@ describe("LOGIN RENDERING:", () => {
     const fakeNavigation = { navigate: jest.fn() };
 
     // renders the landing page
-    const tree = renderWithRedux(<LandingScreen navigation={fakeNavigation} />);
+    const tree = renderWithRedux(
+      <LandingScreen navigation={fakeNavigation} route={{ name: "Landing" }} />
+    );
 
     // hits the button "Navigate to Login Screen"
     fireEvent.press(tree.getByText("Navigate to Login Screen"));
@@ -75,7 +74,11 @@ describe("LOGIN RENDERING:", () => {
 
     // renders the landing page
     const tree = renderWithRedux(
-      <LoginScreen navigation={fakeNavigation} actions={actions} />
+      <LoginScreen
+        navigation={fakeNavigation}
+        actions={actions}
+        route={{ name: "Login" }}
+      />
     );
 
     // checks if the screen matches the snapshot
@@ -88,23 +91,14 @@ describe("LOGIN Handling:", () => {
   // the test can use the login-automation defined in "config.appConfig.automateQrLogin".
   // if that is not possible the function "scanSuccess" will be executed directly.
   it(`User can load the app, login and then trigger the automatic questionnaire download`, async () => {
-    // creates an actual navigator
-    const Navigator = createAppNavigator();
-
     // renders the app
-    const tree = renderWithRedux(
-      <Navigator>
-        <App />
-      </Navigator>
-    );
+    const tree = renderWithRedux(<App />);
 
     // as we start with an empty state, the app will navigate the user to the LandingScreen...
     let { instance } = tree.UNSAFE_getByType(LandingScreen);
 
     // ...which should be noted in the navigation-object:
-    expect(
-      instance.props.navigation.state.routeName === "Landing"
-    ).toBeTruthy();
+    expect(instance).toBeTruthy();
 
     // also, there is a button on that screen that should take us to the login screen
     const loginButton = tree.getByText("Navigate to Login Screen");
@@ -121,24 +115,23 @@ describe("LOGIN Handling:", () => {
       await waitFor(
         () => (instance = tree.UNSAFE_getByType(CheckInScreen).instance)
       )
-        // waits for the loading screen to turn invisible
-        .then(() =>
-          waitFor(() =>
-            expect(
-              tree.UNSAFE_getByType(Spinner).instance.props.visible === false
-            ).toBeTruthy()
-          )
+        // waits for the loading process to finish
+        .then(() => {
+          expect(tree.getByTestId("checkInSpinner").props.visible).toBeFalsy();
+          waitFor(() => expect(instance.props.loading).toBeFalsy())
             // checks if categoriesLoaded was set to true (as this is only possible after a successful login an the download of the questionnaire)
-            .then(() =>
+            .then(() => {
               waitFor(() =>
                 expect(instance.props.categoriesLoaded).toBeTruthy()
-              )
-            )
-        );
+              ).then(() => {
+                expect(instance.props.questionnaireItemMap).toBeTruthy();
+              });
+            });
+        });
     }
 
     // if the automateQrLogin-option is not set
-    if (!config.appConfig.automateQrLogin) {
+    else {
       // checks if the login screen was already loaded
       await waitFor(
         () => (instance = tree.UNSAFE_getByType(LoginScreen).instance)
@@ -157,12 +150,7 @@ describe("LOGIN Handling:", () => {
               )
                 // waits for the loading screen to turn invisible
                 .then(() =>
-                  waitFor(() =>
-                    expect(
-                      tree.UNSAFE_getByType(Spinner).instance.props.visible ===
-                        false
-                    ).toBeTruthy()
-                  )
+                  waitFor(() => expect(instance.props.loading).toBeFalsy())
                     // checks if categoriesLoaded was set to true (as this is only possible after a successful login an the download of the questionnaire)
                     .then(() =>
                       waitFor(() =>

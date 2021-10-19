@@ -33,7 +33,7 @@ const user = {
   current_interval: 7,
   current_questionnaire_id: "final",
   due_date: "9999-12-30T23:00:00.000Z",
-  status: 'on-study',
+  status: "on-study",
   firstTime: false,
   pushAppGUID: "f98fc829-1d4d-418b-b05b-a147fdb9c0f3",
   pushClientSecret: "ab4b7d62-1fde-4a46-a566-2d1ada678df3",
@@ -47,9 +47,7 @@ const user = {
 const props = {
   navigation: {
     navigate: jest.fn(),
-    state: {
-      routeName: "CheckIn",
-    },
+    route: { name: "CheckIn" },
   },
   user,
   actions,
@@ -195,10 +193,8 @@ describe("CHECKIN RENDERING:", () => {
       <CheckInContainer
         navigation={{
           navigate: jest.fn(),
-          state: {
-            routeName: "CheckIn",
-          },
         }}
+        route={{ name: "CheckIn" }}
         actions={actions}
         user={user}
       />
@@ -267,10 +263,8 @@ describe("QUESTIONNAIRE HANDLING:", () => {
       <CheckInContainer
         navigation={{
           navigate: jest.fn(),
-          state: {
-            routeName: "CheckIn",
-          },
         }}
+        route={{ name: "CheckIn" }}
         actions={actions}
         user={user}
       />
@@ -350,10 +344,8 @@ describe("QUESTIONNAIRE HANDLING:", () => {
       <CheckInContainer
         navigation={{
           navigate: jest.fn(),
-          state: {
-            routeName: "CheckIn",
-          },
         }}
+        route={{ name: "CheckIn" }}
         actions={actions}
         user={user}
       />

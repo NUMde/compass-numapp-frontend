@@ -36,8 +36,8 @@ class CheckInContainer extends Component {
    * triggers the update of the user after mounting the checkIn-template
    */
   componentDidMount = () => {
-    const { navigation } = this.props;
-    if (navigation.state.routeName === "CheckIn") {
+    const { route } = this.props;
+    if (route.name === "CheckIn") {
       setTimeout(() => {
         this.updateUser();
       }, 0);
@@ -624,8 +624,9 @@ class CheckInContainer extends Component {
       questionnaireError,
       showQuestionnaireModal,
       noNewQuestionnaireAvailableYet,
+      route,
     } = this.props;
-    return navigation.state.routeName === "CheckIn" ? (
+    return route.name === "CheckIn" ? (
       // if on CheckIn route
       <CheckInScreen
         navigation={navigation}
