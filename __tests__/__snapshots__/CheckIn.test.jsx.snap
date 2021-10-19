@@ -12,7 +12,6 @@ exports[`CHECKIN RENDERING: <CheckInContainer /> can be rendered 1`] = `
 >
   <Modal
     hardwareAccelerated={false}
-    testID="checkInSpinner"
     visible={true}
   >
     <View
@@ -445,7 +444,6 @@ exports[`CHECKIN RENDERING: <CheckInScreen /> can be rendered 1`] = `
 >
   <Modal
     hardwareAccelerated={false}
-    testID="checkInSpinner"
     visible={true}
   >
     <View

@@ -12,7 +12,6 @@ exports[`LOGIN RENDERING: <LandingScreen /> can be rendered 1`] = `
 >
   <Modal
     hardwareAccelerated={false}
-    testID="landingSpinner"
     visible={true}
   >
     <View

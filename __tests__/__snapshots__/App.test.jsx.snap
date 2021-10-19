@@ -365,7 +365,6 @@ exports[`APP START AND RENDERING: <App /> can be created and rendered 1`] = `
                                               >
                                                 <Modal
                                                   hardwareAccelerated={false}
-                                                  testID="landingSpinner"
                                                   visible={false}
                                                 >
                                                   <View

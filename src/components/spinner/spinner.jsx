@@ -25,9 +25,9 @@ class Spinner extends PureComponent {
   /*-----------------------------------------------------------------------------------*/
 
   render() {
-    const { visible, testID } = this.props;
+    const { visible } = this.props;
     return (
-      <Modal visible={visible} testID={testID}>
+      <Modal visible={visible}>
         <View style={localStyle.container}>
           <View style={localStyle.background}>
             <ActivityIndicator
