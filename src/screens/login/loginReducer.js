@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 
 // (C) Copyright IBM Deutschland GmbH 2021.  All rights reserved.
 
@@ -28,7 +29,7 @@ const actionHandlers = {
     loading: true,
     loggedIn: false,
     loginError: null,
-    loginUnauthorized: false
+    loginUnauthorized: false,
   }),
 
   /**
@@ -52,14 +53,13 @@ const actionHandlers = {
    * @param  {object} state redux state
    * @param  {object} values values to be set
    */
-  SEND_CREDENTIALS_FAIL: (state, values) => (
-    {
-      ...state,
-      ...values,
-      subjectId: null,
-      loading: false
-    }
-  ),
+  SEND_CREDENTIALS_FAIL: (state, values) => ({
+    ...state,
+    loginError: values.error.loginError,
+    loginUnauthorized: values.error.loginUnauthorized,
+    subjectId: null,
+    loading: false,
+  }),
 
   /**
    * just updates the subjectId
