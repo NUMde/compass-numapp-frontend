@@ -42,6 +42,7 @@ class LoginContainer extends Component {
    */
   componentDidMount = () => {
     const { subjectId, actions, route } = this.props;
+
     // logout of an existing user
     if (subjectId) actions.logout();
 
@@ -150,7 +151,12 @@ class LoginContainer extends Component {
       />
     ) : (
       // if on Landing route
-      <LandingScreen loading={loading} navigation={navigation} />
+      <LandingScreen
+        loading={loading}
+        loginError={loginError}
+        navigation={navigation}
+        autoLoginLastUser={this.autoLoginLastUser}
+      />
     );
   }
 }

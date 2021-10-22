@@ -45,7 +45,8 @@ class LoginScreen extends Component {
   /*-----------------------------------------------------------------------------------*/
 
   render() {
-    const { navigation, actions, scanSuccess, loginError, loginUnauthorized } = this.props;
+    const { navigation, actions, scanSuccess, loginError, loginUnauthorized } =
+      this.props;
     return (
       <View style={localStyle.wrapper}>
         {/* banner */}
@@ -93,7 +94,12 @@ class LoginScreen extends Component {
                     <View>
                       {/* displays an error message in case of 401 */}
                       {loginUnauthorized && (
-                        <Text style={{...localStyle.infoText, ...localStyle.loginErrorText}}>
+                        <Text
+                          style={{
+                            ...localStyle.infoText,
+                            ...localStyle.loginErrorText,
+                          }}
+                        >
                           {config.text.login.errorUserUnauthorized}
                         </Text>
                       )}
@@ -101,9 +107,15 @@ class LoginScreen extends Component {
                       {/* if anything other than a 401: outputs the returned error message (or a generic error message instead) followed by another instructional string*/}
                       {!loginUnauthorized && (
                         <View>
-                          <Text style={{...localStyle.infoText, ...localStyle.loginErrorText}}>
-                            {loginError?.message ?? config.text.login.errorUserGeneric}
-                            {'\n'}
+                          <Text
+                            style={{
+                              ...localStyle.infoText,
+                              ...localStyle.loginErrorText,
+                            }}
+                          >
+                            {loginError?.message ??
+                              config.text.login.errorUserGeneric}
+                            {"\n"}
                             {config.text.login.nextStepAfterError}
                           </Text>
                         </View>
@@ -151,7 +163,7 @@ localStyle = StyleSheet.create({
   },
 
   loginErrorText: {
-    color: config.theme.colors.alert
+    color: config.theme.colors.alert,
   },
 
   qrScannerContainer: {
