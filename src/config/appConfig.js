@@ -56,6 +56,10 @@ configuration
  * development environment.
  */
 const conf = {
+
+  // this triggers a demonstration-mode. no backend communication will occur.
+  kioskMode: true,
+
   // DEVELOPMENT OPTIONS
   /*-----------------------------------------------------------------------------------*/
 
@@ -63,7 +67,7 @@ const conf = {
 
   /** dev-option:
    * skips the QR login after 500ms */
-  automateQrLogin: __DEV__ && false,
+  automateQrLogin: __DEV__ && true,
 
   /** dev-option:
    * subject-id for automated login */

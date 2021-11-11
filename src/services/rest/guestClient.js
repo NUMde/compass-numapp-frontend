@@ -17,7 +17,9 @@ client
 /**
  * @param  {string} subjectId the id used to identify the user
  */
-const login = async (subjectId) =>
+const login = async (subjectId) => 
+  config.appConfig.kioskMode ?
+  config.kiosMode.login() :
   axios.get(config.appConfig.endpoints.login + subjectId);
 
 /***********************************************************************************************

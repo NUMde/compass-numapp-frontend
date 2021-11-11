@@ -33,6 +33,12 @@ image:./images/copyingConfig.gif[auto, auto]
 ==========================
 IMPORTANT: Please make sure to copy the whole content below the marked point, and not just parts of it.
 
+== Kiosk Mode
+The following option activates a demonstration mode. While in this mode, no communication with the/a Compass Backend will occur. All features are working as designed, jsut with mock data.
+
+* *kioskMode:*
+** sets the app up to be a demo client.
+
 == Development Options
 These options are only meant for the development mode und will not carry over into production mode.
 

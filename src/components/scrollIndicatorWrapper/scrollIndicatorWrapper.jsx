@@ -109,6 +109,7 @@ export default class ScrollIndicatorWrapper extends Component {
           style={localStyle.wrapper}
           innerRef={(ref) => (this.scroll = ref)}
           contentContainerStyle={localStyle.contentContainerStyle}
+          scrollEventThrottle={16}
           onScroll={(event) => {
             // calculating the next scroll-position
             const bannerHeight =

@@ -1,25 +1,32 @@
 export default {
     "resourceType": "Questionnaire",
-    "url": "http://compass.testing",
+    "url": "http://hl7.org/fhir/Questionnaire/Fragebogen_COMPASS_Beispiel",
     "identifier": [{
         "use": "official",
-        "system": "urn:UMOID:",
-        "value": "COMPASS DEBUGGING QUESTIONNAIRE"
+        "system": "urn:EXAMPLEOID:",
+        "value": "Generic COMPASS Questionnaire"
     }],
-    "version": "0.1",
-    "title": "COMPASS DEBUGGING QUESTIONNAIRE",
-    "purpose": "Used for local testing- and debugging purposes",
+    "version": "1.0",
+    "title": "Generischer COMPASS FHIR Questionnaire",
+    "status": "draft",
+    "subjectType": [
+        "Patient"
+    ],
+    "date": "2021-01-25",
+    "publisher": "IBM",
+    "purpose": "Abbildung der aktuell durch COMPASS unterstützte FHIR Funktionalitäten",
     "item": [{
             "linkId": "1",
-            "text": "Group 1",
+            "text": "Fragegruppe 1",
             "type": "group",
             "required": true,
             "item": [{
                     "linkId": "1.1",
-                    "text": "Question 1",
-                    "type": "",
+                    "text": "Das ist eine Freitextabfrage",
+                    "type": "string",
                     "required": true
-            }]
+                }
+            ]
         }
     ]
 }

@@ -10,8 +10,8 @@ imports
 import axios from "axios";
 
 import store from "../../store";
-import config from "../../config/configProvider";
 import security from "../encryption/encryption";
+import config from "../../config/configProvider";
 import localStorage from "../localStorage/localStorage";
 
 /***********************************************************************************************
@@ -69,7 +69,9 @@ clients
 const getUserUpdate = async () => {
   let { subjectId } = store.getState().Login;
   if (!subjectId) subjectId = await localStorage.loadLastSubjectId();
-  return axios.get(config.appConfig.endpoints.getUser + subjectId);
+  return config.appConfig.kioskMode ?
+  config.kiosMode.getUserUpdate():
+  axios.get(config.appConfig.endpoints.getUser + subjectId);
 };
 
 // push
@@ -81,6 +83,8 @@ const getUserUpdate = async () => {
  * @param  {string} token the token
  */
 const updateDeviceToken = async (subjectId, token) =>
+  config.appConfig.kioskMode ?
+  config.kiosMode.updateDeviceToken() :
   axios.post(
     config.appConfig.endpoints.updateToken + subjectId,
     {
@@ -102,6 +106,8 @@ const updateDeviceToken = async (subjectId, token) =>
  * @param  {string} subjectId string identifying the user
  */
 const sendReport = async (subjectId) =>
+  config.appConfig.kioskMode ?
+  config.kiosMode.sendReport() :
   axios.post(
     config.appConfig.endpoints.report,
     generateEncapsuledMessage(subjectId, "report"),
@@ -138,6 +144,8 @@ const sendQuestionnaire = async (
   surveyId,
   instanceId
 ) =>
+  config.appConfig.kioskMode ?
+  config.kiosMode.sendQuestionnaire() :
   axios.post(
     config.appConfig.endpoints.sendQuestionnaire,
     generateEncapsuledMessage(subjectId, "questionnaire_response", body),
@@ -156,20 +164,20 @@ const sendQuestionnaire = async (
           ...triggerMap,
         },
       },
-    }
-  );
+    })
 
 /**
  * procures the questionnaire from the backend
  * @param  {string} questionnaireId id of the questionnaire that the user is supposed to fill out
  */
 const getBaseQuestionnaire = async (questionnaireId) =>
+  config.appConfig.kioskMode ?
+  config.kiosMode.getBaseQuestionnaire() :
   axios.get(config.appConfig.endpoints.getQuestionnaire + questionnaireId, {
     headers: {
       Authorization: createAuthorizationToken(),
       Accept: "application/json",
-    },
-  });
+    }});
 
 /***********************************************************************************************
 export

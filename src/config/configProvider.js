@@ -2,6 +2,7 @@
 import defaultThemeValues from '../theme/theme'
 import defaultTextValues from './textConfig'
 import defaultAppConfigValues from './appConfig'
+import kiosMode from './kioskApiConfig'
 
 import customThemeValues from '../CUSTOMIZATION/customTheme'
 import customTextValues from '../CUSTOMIZATION/customTextConfig'
@@ -26,5 +27,8 @@ export default {
     appConfig: {
         ...defaultAppConfigValues,
         ...customAppConfigValues
-    }
+    },
+
+    /** provides mock functions for the kiosk mode */
+    kiosMode
 }
