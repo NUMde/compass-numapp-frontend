@@ -47,6 +47,7 @@ const persistLastSubjectId = async (subjectId) => {
  * deletes the last used subjectId from the EncryptedStorage
  */
 const removeLastSubjectId = async () => {
+  console.log("1")
   try {
     await EncryptedStorage.removeItem(config.appConfig.lastSubjectId);
   } catch (error) {
@@ -99,6 +100,7 @@ const loadFCMToken = async (subjectId) => {
  * @param  {string} [subjectId] subjectId of the user
  */
 const removeFCMToken = async (subjectId) => {
+  console.log("2")
   const id = subjectId || (await loadLastSubjectId());
   if (!id) return;
 
@@ -159,6 +161,7 @@ const loadLastQuestionnaireId = async (subjectId) => {
  * @param  {string} [subjectId] subject-id
  */
 const removeLastQuestionnaireId = async (subjectId) => {
+  console.log("3")
   const id = subjectId || (await loadLastSubjectId());
   if (!id) return;
 
@@ -222,6 +225,7 @@ const loadCategories = async (subjectId) => {
  * @param  {string} [subjectId] subject-id
  */
 const removeCategories = async (subjectId) => {
+  console.log("4")
   const id = subjectId || (await loadLastSubjectId());
   if (!id) return;
 
@@ -284,6 +288,7 @@ const loadQuestionnaireItemMap = async (subjectId) => {
  * @param  {string} [subjectId] subject-id
  */
 const removeQuestionnaireItemMap = async (subjectId) => {
+  console.log("5")
   const id = subjectId || (await loadLastSubjectId());
   if (!id) return;
 

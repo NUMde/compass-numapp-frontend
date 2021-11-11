@@ -120,7 +120,7 @@ class AboutScreen extends PureComponent {
                 {/* optional buttons on the bottom of the screen - JUST FOR DEVELOPMENT*/}
                 <View style={localStyle.bottom}>
                   {/* logout button */}
-                  {config.appConfig.showLogout && (
+                  {(config.appConfig.showLogout || config.appConfig.kioskMode) && (
                     <TouchableOpacity
                       style={localStyle.button}
                       onPress={logout}
@@ -129,13 +129,13 @@ class AboutScreen extends PureComponent {
                       accessibilityHint={config.text.accessibility.logoutHint}
                     >
                       <Text style={localStyle.buttonLabel}>
-                        {config.text.about.logout}
+                        {config.appConfig.kioskMode ? config.text.about.demoLogout : config.text.about.logout}
                       </Text>
                     </TouchableOpacity>
                   )}
 
                   {/* delete-all-data button */}
-                  {config.appConfig.showEraseAll && (
+                  {(config.appConfig.showEraseAll || config.appConfig.kioskMode) && (
                     <TouchableOpacity
                       style={localStyle.buttonAlert}
                       onPress={clearAll}
@@ -144,7 +144,7 @@ class AboutScreen extends PureComponent {
                       accessibilityHint={config.text.accessibility.logoutHint}
                     >
                       <Text style={localStyle.buttonLabel}>
-                        {config.text.about.delete}
+                        {config.appConfig.kioskMode ? config.text.about.demoDelete : config.text.about.delete}
                       </Text>
                     </TouchableOpacity>
                   )}
