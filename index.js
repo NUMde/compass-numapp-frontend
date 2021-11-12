@@ -3,7 +3,7 @@
 import { AppRegistry } from 'react-native';
 import messaging from '@react-native-firebase/messaging';
 import App from './App';
-import * as config from './src/config/appConfig'
+import config from './src/config/appConfig'
 
 // Register background handler
 if(config.connectToFCM) {

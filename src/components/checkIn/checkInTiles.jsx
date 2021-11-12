@@ -14,7 +14,7 @@ import {
   Dimensions,
 } from "react-native";
 
-import * as config from "../../config/configProvider";
+import config from "../../config/configProvider";
 
 let localStyle;
 

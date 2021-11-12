@@ -9,7 +9,7 @@ import { WebView } from "react-native-webview";
 import { View, StyleSheet } from "react-native";
 
 import store from "../../store";
-import * as config from "../../config/configProvider";
+import config from "../../config/configProvider";
 import Banner from "../../components/banner/banner";
 
 let localStyle;

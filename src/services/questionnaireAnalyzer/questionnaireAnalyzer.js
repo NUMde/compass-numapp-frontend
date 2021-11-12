@@ -22,7 +22,7 @@ imports
 
 import "../../typedef";
 import store from "../../store";
-import * as config from "../../config/configProvider";
+import config from "../../config/configProvider";
 
 /***********************************************************************************************
 service methods

@@ -14,7 +14,7 @@ import LandingScreen from "../src/screens/login/landingScreen";
 import CheckInScreen from "../src/screens/checkIn/checkInScreen";
 import LoginContainer from "../src/screens/login/loginContainer";
 
-import * as config from "../src/config/configProvider";
+import config from "../src/config/configProvider";
 
 /***********************************************************************************************
 tests

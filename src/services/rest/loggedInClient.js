@@ -11,7 +11,7 @@ import axios from "axios";
 
 import store from "../../store";
 import security from "../encryption/encryption";
-import * as config from "../../config/configProvider";
+import config from "../../config/configProvider";
 import kioskMode from '../../config/kioskApiConfig'
 import localStorage from "../localStorage/localStorage";
 

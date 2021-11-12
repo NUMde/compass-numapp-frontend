@@ -5,7 +5,7 @@ imports
 ***********************************************************************************************/
 
 import textConf from "../../config/textConfig";
-import * as config from "../../config/configProvider";
+import config from "../../config/configProvider";
 import guestClient from "../../services/rest/guestClient";
 import localStorage from "../../services/localStorage/localStorage";
 

@@ -8,7 +8,7 @@ imports
 ***********************************************************************************************/
 
 import axios from "axios";
-import * as config from "../../config/configProvider";
+import config from "../../config/configProvider";
 import kioskMode from '../../config/kioskApiConfig'
 
 /***********************************************************************************************

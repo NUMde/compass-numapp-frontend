@@ -8,7 +8,7 @@ imports
 
 import * as forge from "node-forge";
 import store from "../../store";
-import * as config from "../../config/configProvider";
+import config from "../../config/configProvider";
 
 /***********************************************************************************************
 encryption

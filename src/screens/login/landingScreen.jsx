@@ -8,7 +8,7 @@ import React, { PureComponent } from "react";
 import { Text } from "react-native-elements";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 
-import * as config from "../../config/configProvider";
+import config from "../../config/configProvider";
 import Banner from "../../components/banner/banner";
 import Spinner from "../../components/spinner/spinner";
 import ScrollIndicatorWrapper from "../../components/scrollIndicatorWrapper/scrollIndicatorWrapper";

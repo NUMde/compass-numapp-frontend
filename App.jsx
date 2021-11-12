@@ -10,7 +10,7 @@ import SplashScreen from "react-native-splash-screen";
 import { StyleSheet, View, StatusBar, LogBox, Platform } from "react-native";
 import { initKioskMode } from './src/config/kioskApiConfig'
 
-import * as config from "./src/config/configProvider";
+import config from "./src/config/configProvider";
 
 import reduxStore from "./src/store";
 import createAppNavigator from "./src/navigation/appNavigator";

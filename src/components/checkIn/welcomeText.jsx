@@ -7,7 +7,7 @@ imports
 import React, { PureComponent } from "react";
 import { Text, View, StyleSheet } from "react-native";
 
-import * as config from "../../config/configProvider";
+import config from "../../config/configProvider";
 import { formatDateString } from "../../services/utils";
 
 let localStyle;

@@ -7,7 +7,7 @@ imports
 import React, { PureComponent } from "react";
 import { View, StyleSheet, Text } from "react-native";
 
-import * as config from "../../config/configProvider";
+import config from "../../config/configProvider";
 import Banner from "../../components/banner/banner";
 import ScrollIndicatorWrapper from "../../components/scrollIndicatorWrapper/scrollIndicatorWrapper";
 

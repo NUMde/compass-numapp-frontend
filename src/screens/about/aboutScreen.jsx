@@ -14,7 +14,7 @@ import AboutListItem from "../../components/about/aboutListItem";
 import AboutListLink from "../../components/about/aboutListLink";
 import ScrollIndicatorWrapper from "../../components/scrollIndicatorWrapper/scrollIndicatorWrapper";
 
-import * as config from "../../config/configProvider";
+import config from "../../config/configProvider";
 
 let localStyle;
 
