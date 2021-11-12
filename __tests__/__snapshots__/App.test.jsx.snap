@@ -123,6 +123,8 @@ exports[`APP START AND RENDERING: <App /> can be created and rendered 1`] = `
               }
             >
               <View
+                collapsable={false}
+                nativeID="animatedComponent"
                 pointerEvents="box-none"
                 style={
                   Object {
@@ -295,6 +297,8 @@ exports[`APP START AND RENDERING: <App /> can be created and rendered 1`] = `
                                     }
                                   >
                                     <View
+                                      collapsable={false}
+                                      nativeID="animatedComponent"
                                       pointerEvents="box-none"
                                       style={
                                         Object {
@@ -394,9 +398,7 @@ exports[`APP START AND RENDERING: <App /> can be created and rendered 1`] = `
                                                       }
                                                     >
                                                       <ActivityIndicator
-                                                        animating={true}
                                                         color="#EB576A"
-                                                        hidesWhenStopped={true}
                                                         size="large"
                                                         style={
                                                           Object {
@@ -608,7 +610,7 @@ The logo file (as well as the logoBackground) can be updated by updating the 'CU
                                                               }
                                                             }
                                                           >
-                                                            <ForwardRef
+                                                            <TouchableOpacity
                                                               accessibilityHint="Starts login process and redirects to QRCode scanner."
                                                               accessibilityLabel="Navigate to Login Screen"
                                                               accessibilityRole="button"
@@ -644,7 +646,7 @@ The logo file (as well as the logoBackground) can be updated by updating the 'CU
                                                               >
                                                                 Navigate to Login Screen
                                                               </Themed.Text>
-                                                            </ForwardRef>
+                                                            </TouchableOpacity>
                                                           </View>
                                                         </View>
                                                       }
@@ -734,7 +736,9 @@ The logo file (as well as the logoBackground) can be updated by updating the 'CU
                                                               accessibilityLabel="Navigate to Login Screen"
                                                               accessibilityRole="button"
                                                               accessible={true}
+                                                              collapsable={false}
                                                               focusable={true}
+                                                              nativeID="animatedComponent"
                                                               onClick={[Function]}
                                                               onResponderGrant={[Function]}
                                                               onResponderMove={[Function]}
