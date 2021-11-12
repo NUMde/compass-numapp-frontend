@@ -232,7 +232,7 @@ export default {
           noQuestionnaireText:
             "There occurred an error while loading the questionnaire - Please try again.",
           noNewQuestionnaireAvailableYet:
-            "This text will be displayed if no questionnaire is available right now.",
+            "This text will be displayed if no questionnaire is available right now.)",
           nextOneNew:
             "This text will be shown to communicate TO A NEW USER when the next questionnaire is available: ",
           furtherInfo:

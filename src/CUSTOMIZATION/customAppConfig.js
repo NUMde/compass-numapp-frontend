@@ -55,9 +55,6 @@ configuration
  */
 const conf = {
 
-  // this triggers the demo-mode. no backend communication will occur.
-  kioskMode: true,
-
   // DEVELOPMENT OPTIONS
   /*-----------------------------------------------------------------------------------*/
 

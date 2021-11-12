@@ -13,8 +13,8 @@ import Banner from "../../components/banner/banner";
 import AboutListItem from "../../components/about/aboutListItem";
 import AboutListLink from "../../components/about/aboutListLink";
 import ScrollIndicatorWrapper from "../../components/scrollIndicatorWrapper/scrollIndicatorWrapper";
-
 import config from "../../config/configProvider";
+import kioskMode from "../../config/kioskApiConfig"
 
 let localStyle;
 
@@ -120,7 +120,7 @@ class AboutScreen extends PureComponent {
                 {/* optional buttons on the bottom of the screen - JUST FOR DEVELOPMENT*/}
                 <View style={localStyle.bottom}>
                   {/* logout button */}
-                  {(config.appConfig.showLogout && !config.appConfig.kioskMode) && (
+                  {(config.appConfig.showLogout && !kioskMode.active) && (
                     <TouchableOpacity
                       style={localStyle.button}
                       onPress={logout}
@@ -135,7 +135,7 @@ class AboutScreen extends PureComponent {
                   )}
 
                   {/* delete-all-data button */}
-                  {(config.appConfig.showEraseAll || config.appConfig.kioskMode) && (
+                  {(config.appConfig.showEraseAll || kioskMode.active) && (
                     <TouchableOpacity
                       style={localStyle.buttonAlert}
                       onPress={clearAll}
@@ -144,7 +144,7 @@ class AboutScreen extends PureComponent {
                       accessibilityHint={config.text.accessibility.logoutHint}
                     >
                       <Text style={localStyle.buttonLabel}>
-                        {config.appConfig.kioskMode ? config.text.about.demoDelete : config.text.about.delete}
+                        {kioskMode.active ? config.text.about.demoDelete : config.text.about.delete}
                       </Text>
                     </TouchableOpacity>
                   )}

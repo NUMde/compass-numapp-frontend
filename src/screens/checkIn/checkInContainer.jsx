@@ -255,7 +255,6 @@ class CheckInContainer extends Component {
    */
   updateUser = (userdata) => {
     const { actions } = this.props;
-
     // redux output
     actions.updateUserStart();
 
@@ -358,6 +357,7 @@ class CheckInContainer extends Component {
    * @param  {object} response http response
    */
   exportAndUploadQuestionnaireResponseSuccess = async (response) => {
+
     const { actions } = this.props;
     actions.sendQuestionnaireResponseSuccess(response);
     actions.deleteLocalQuestionnaire();

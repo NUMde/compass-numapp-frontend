@@ -16,7 +16,7 @@ const defaultMockUserData = {
     firstTime: false,
     current_interval: 7,
     additional_iterations_left: 0,
-    current_questionnaire_id: "final",
+    current_questionnaire_id: "http://hl7.org/fhir/Questionnaire/Fragebogen_COMPASS_Beispiel|1.0",
     due_date: "9999-12-30T23:00:00.000Z",
     start_date: "2021-07-15T04:00:00.000Z",
     subjectId: "7bfc3b07-a97d-4e11-8ac6-b970c1745476",
@@ -37,17 +37,16 @@ methods
  * initializes the kiosk mode data
  */
 export const initKioskMode = async () => {
-    kioskModeData = await localStorage.loadKioskModeData();
-    if(!kioskModeData) {
-        kioskModeData = {
-            // is used to keep track of the completed transmissions (faked ones)
-            playthrough: 1,
-            // is used to determine if a report was just sent out
-            sentOutReport: false,
-            // is used to keep track if the first response was already sent out
-            sentOutTheFirstOne: false,
-        };
-    }
+
+    let kioskModeDataJson =  await localStorage.loadKioskModeData()
+    kioskModeData = kioskModeDataJson ? JSON.parse(kioskModeDataJson) : {
+        // is used to keep track of the completed transmissions (faked ones)
+        playthrough: 1,
+        // is used to determine if a report was just sent out
+        sentOutReport: false,
+        // is used to keep track if the first response was already sent out
+        sentOutTheFirstOne: false,
+    };;
 };
 
 /**
@@ -55,9 +54,10 @@ export const initKioskMode = async () => {
  * @param  {boolean} laterOn tells us if we need to up the date
  */
 const getStartDate = (laterOn) => {
-    const now = new Date;
+    let now = new Date();
+    now.setHours(6, 0, 0);
     now.setDate(now.getDate() + (laterOn ? 3 * kioskModeData.playthrough : 0));
-    return now.toISOString()
+    return now.toISOString();
 };
 
 /**
@@ -65,9 +65,10 @@ const getStartDate = (laterOn) => {
  * @param  {boolean} laterOn tells us if we need to up the date
  */
 const getDueDate = (laterOn) => {
-    const then = new Date
+    let then = new Date();
+    then.setHours(21, 0, 0);
     then.setDate(then.getDate() + (laterOn ? 10 * kioskModeData.playthrough : 7));
-    return then.toISOString()
+    return then.toISOString();
 };
 
 /**
@@ -117,7 +118,9 @@ const sendQuestionnaire = async () => {
 const sendReport = async () => {
     kioskModeData.sentOutReport = true;
     await localStorage.persistKioskModeData(JSON.stringify(kioskModeData));
-    return Promise.resolve(generateMockUserData());
+    setTimeout(() => {
+        return Promise.resolve(generateMockUserData());
+    }, 0);
 };
 
 /***********************************************************************************************

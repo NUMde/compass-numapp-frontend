@@ -202,6 +202,7 @@ const persistCategories = async (categories, subjectId) => {
  * @returns string | null
  */
 const loadCategories = async (subjectId) => {
+  
   const id = subjectId || (await loadLastSubjectId());
   if (!id) return null;
 
