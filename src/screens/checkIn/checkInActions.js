@@ -4,7 +4,7 @@
 imports
 ***********************************************************************************************/
 
-import config from "../../config/configProvider";
+import * as config from "../../config/configProvider";
 import hardcodedTestQuestionnaire from "../../assets/files/questionnaire";
 
 import "../../typedef";

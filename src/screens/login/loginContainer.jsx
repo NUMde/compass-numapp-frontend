@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 
-import config from "../../config/configProvider";
+import * as config from "../../config/configProvider";
 import localStorage from "../../services/localStorage/localStorage";
 
 import LoginScreen from "./loginScreen";

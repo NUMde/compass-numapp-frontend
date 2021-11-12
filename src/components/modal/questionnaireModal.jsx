@@ -43,7 +43,7 @@ import "../../typedef";
 import { Picker } from "@react-native-picker/picker";
 import exportService from "../../services/questionnaireAnalyzer/questionnaireAnalyzer";
 import setAccessibilityResponder from "../../services/accessibility/setAccessbilityResponder";
-import config from "../../config/configProvider";
+import * as config from "../../config/configProvider";
 import ProgressBar from "./progressbar";
 
 let localStyle;

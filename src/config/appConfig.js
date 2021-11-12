@@ -58,7 +58,7 @@ configuration
 const conf = {
 
   // this triggers a demonstration-mode. no backend communication will occur.
-  kioskMode: true,
+  kioskMode: false,
 
   // DEVELOPMENT OPTIONS
   /*-----------------------------------------------------------------------------------*/

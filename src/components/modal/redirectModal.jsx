@@ -16,7 +16,7 @@ import {
   ScrollView,
 } from "react-native";
 
-import config from "../../config/configProvider";
+import * as config from "../../config/configProvider";
 
 let localStyle;
 

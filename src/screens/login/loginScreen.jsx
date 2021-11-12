@@ -9,7 +9,7 @@ import { Text } from "react-native-elements";
 import { StyleSheet, View, Dimensions } from "react-native";
 import QRCodeScanner from "react-native-qrcode-scanner";
 
-import config from "../../config/configProvider";
+import * as config from "../../config/configProvider";
 import Banner from "../../components/banner/banner";
 import ScrollIndicatorWrapper from "../../components/scrollIndicatorWrapper/scrollIndicatorWrapper";
 

@@ -15,7 +15,7 @@ import {
   Dimensions,
 } from "react-native";
 
-import config from "../../config/configProvider";
+import * as config from "../../config/configProvider";
 
 // import logo and background image
 const customLogo = require("../../CUSTOMIZATION/images/logo.png");

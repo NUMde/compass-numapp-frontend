@@ -19,7 +19,7 @@ import documentCreator from "../../services/questionnaireAnalyzer/questionnaireA
 import SurveyScreen from "./surveyScreen";
 import * as checkInActions from "./checkInActions";
 import CheckInScreen from "./checkInScreen";
-import config from "../../config/configProvider";
+import * as config from "../../config/configProvider";
 
 /***********************************************************************************************
 component:

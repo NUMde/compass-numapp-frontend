@@ -14,7 +14,7 @@ import AboutListItem from "../../components/about/aboutListItem";
 import AboutListLink from "../../components/about/aboutListLink";
 import ScrollIndicatorWrapper from "../../components/scrollIndicatorWrapper/scrollIndicatorWrapper";
 
-import config from "../../config/configProvider";
+import * as config from "../../config/configProvider";
 
 let localStyle;
 
@@ -120,7 +120,7 @@ class AboutScreen extends PureComponent {
                 {/* optional buttons on the bottom of the screen - JUST FOR DEVELOPMENT*/}
                 <View style={localStyle.bottom}>
                   {/* logout button */}
-                  {(config.appConfig.showLogout) && (
+                  {(config.appConfig.showLogout && !config.appConfig.kioskMode) && (
                     <TouchableOpacity
                       style={localStyle.button}
                       onPress={logout}

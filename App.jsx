@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import React, { PureComponent } from "react";
 import SplashScreen from "react-native-splash-screen";
 import { StyleSheet, View, StatusBar, LogBox, Platform } from "react-native";
+import { initKioskMode } from './src/config/kioskApiConfig'
 
 import * as config from "./src/config/configProvider";
 
@@ -28,6 +29,9 @@ class App extends PureComponent {
   render() {
     // hides the splash screen
     SplashScreen.hide();
+
+    // should this be a demo
+    if(config.appConfig.kioskMode) initKioskMode();
 
     // and returns the basic view that contains the navigator
     return (
