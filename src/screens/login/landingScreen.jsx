@@ -28,7 +28,7 @@ class LandingScreen extends PureComponent {
    */
 
   render() {
-    const { loading, navigation } = this.props;
+    const { loading, navigation, loginError, autoLoginLastUser } = this.props;
     return (
       <View style={localStyle.wrapper}>
         {/* loading spinner */}
@@ -47,34 +47,60 @@ class LandingScreen extends PureComponent {
         <View style={{ ...localStyle.flexi, ...localStyle.wrapper }}>
           <ScrollIndicatorWrapper
             contentData={
-              <View style={localStyle.wrapper}>
-                {/* top elements title & text */}
-                <View style={localStyle.top}>
-                  <Text style={localStyle.titleText}>
-                    {config.text.login.landing.welcomeTitle}
-                  </Text>
-                  <Text style={localStyle.infoText}>
-                    {config.text.login.landing.text}
-                  </Text>
-                </View>
-
-                {/* bottom login button */}
-                <View style={localStyle.bottom}>
-                  <TouchableOpacity
-                    style={localStyle.button}
-                    onPress={() => {
-                      navigation.navigate('Login');
-                    }}
-                    accessibilityLabel={config.text.login.landing.buttonText}
-                    accessibilityRole={config.text.accessibility.types.button}
-                    accessibilityHint={config.text.accessibility.loginHint}
-                  >
-                    <Text style={localStyle.buttonLabel}>
-                      {config.text.login.landing.buttonText}
+              loginError ? (
+                <View style={localStyle.wrapper}>
+                  <View style={localStyle.top}>
+                    <Text style={localStyle.titleText}>
+                      {config.text.login.landing.autoLoginErrorTitle}
                     </Text>
-                  </TouchableOpacity>
+                    <Text style={localStyle.infoText}>
+                      {config.text.login.landing.autoLoginError}
+                    </Text>
+                  </View>
+                  <View style={localStyle.bottom}>
+                    <TouchableOpacity
+                      style={localStyle.button}
+                      onPress={() => autoLoginLastUser()}
+                      accessibilityLabel={config.text.login.landing.retry}
+                      accessibilityRole={config.text.accessibility.types.Button}
+                      accessibilityHint={config.text.accessibility.retryHint}
+                    >
+                      <Text style={localStyle.buttonLabel}>
+                        {config.text.login.landing.retry}
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
                 </View>
-              </View>
+              ) : (
+                <View style={localStyle.wrapper}>
+                  {/* top elements title & text */}
+                  <View style={localStyle.top}>
+                    <Text style={localStyle.titleText}>
+                      {config.text.login.landing.welcomeTitle}
+                    </Text>
+                    <Text style={localStyle.infoText}>
+                      {config.text.login.landing.text}
+                    </Text>
+                  </View>
+
+                  {/* bottom login button */}
+                  <View style={localStyle.bottom}>
+                    <TouchableOpacity
+                      style={localStyle.button}
+                      onPress={() => {
+                        navigation.navigate('Login');
+                      }}
+                      accessibilityLabel={config.text.login.landing.buttonText}
+                      accessibilityRole={config.text.accessibility.types.button}
+                      accessibilityHint={config.text.accessibility.loginHint}
+                    >
+                      <Text style={localStyle.buttonLabel}>
+                        {config.text.login.landing.buttonText}
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              )
             }
           />
         </View>

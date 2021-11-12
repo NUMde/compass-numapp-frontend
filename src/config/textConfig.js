@@ -119,6 +119,10 @@ export default {
       subTitle: '',
       welcomeTitle: 'Welcome to COMPASS\n(React Native Client)',
       text: "This is the Landing Screen.\n\nIt can be used to display a welcome message, detailing the following login-process, explaining the handling of personal information, etc.\n\nThe logo file (as well as the logoBackground) can be updated by updating the 'CUSTOMIZATION' folder.",
+      autoLoginErrorTitle: 'Auto Login Failed',
+      autoLoginError:
+        'An Error occurred while trying to automatically login. Please check your network and try again',
+      retry: 'retry',
     },
   },
 
