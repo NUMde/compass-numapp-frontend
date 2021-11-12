@@ -6,8 +6,8 @@
 imports
 ***********************************************************************************************/
 
-import EncryptedStorage from "react-native-encrypted-storage";
-import config from "../../config/configProvider";
+import EncryptedStorage from 'react-native-encrypted-storage';
+import config from '../../config/configProvider';
 
 /***********************************************************************************************
 operations
@@ -70,7 +70,7 @@ const persistFCMToken = async (FCMToken, subjectId) => {
   try {
     await EncryptedStorage.setItem(
       `${config.appConfig.FCMToken}_${id}`,
-      FCMToken
+      FCMToken,
     );
   } catch (error) {
     console.error(error);
@@ -128,7 +128,7 @@ const persistLastQuestionnaireId = async (questionnaireId, subjectId) => {
   try {
     await EncryptedStorage.setItem(
       `${config.appConfig.lastQuestionnaireId}_${id}`,
-      questionnaireId
+      questionnaireId,
     );
   } catch (error) {
     console.error(error);
@@ -146,7 +146,7 @@ const loadLastQuestionnaireId = async (subjectId) => {
 
   try {
     return await EncryptedStorage.getItem(
-      `${config.appConfig.lastQuestionnaireId}_${id}`
+      `${config.appConfig.lastQuestionnaireId}_${id}`,
     );
   } catch (error) {
     console.error(error);
@@ -164,7 +164,7 @@ const removeLastQuestionnaireId = async (subjectId) => {
 
   try {
     await EncryptedStorage.removeItem(
-      `${config.appConfig.lastQuestionnaireId}_${id}`
+      `${config.appConfig.lastQuestionnaireId}_${id}`,
     );
   } catch (error) {
     console.error(error);
@@ -189,7 +189,7 @@ const persistCategories = async (categories, subjectId) => {
   try {
     await EncryptedStorage.setItem(
       `${config.appConfig.localStorageList}_${id}`,
-      stringToBePersisted.toString()
+      stringToBePersisted.toString(),
     );
   } catch (error) {
     console.error(error);
@@ -208,8 +208,8 @@ const loadCategories = async (subjectId) => {
   try {
     return JSON.parse(
       await EncryptedStorage.getItem(
-        `${config.appConfig.localStorageList}_${id}`
-      )
+        `${config.appConfig.localStorageList}_${id}`,
+      ),
     );
   } catch (error) {
     console.error(error);
@@ -227,7 +227,7 @@ const removeCategories = async (subjectId) => {
 
   try {
     await EncryptedStorage.removeItem(
-      `${config.appConfig.localStorageList}_${id}`
+      `${config.appConfig.localStorageList}_${id}`,
     );
   } catch (error) {
     console.error(error);
@@ -251,7 +251,7 @@ const persistQuestionnaireItemMap = async (map, subjectId) => {
   try {
     await EncryptedStorage.setItem(
       `${config.appConfig.localStorageMap}_${id}`,
-      stringToBePersisted.toString()
+      stringToBePersisted.toString(),
     );
   } catch (error) {
     console.error(error);
@@ -270,8 +270,8 @@ const loadQuestionnaireItemMap = async (subjectId) => {
   try {
     return JSON.parse(
       await EncryptedStorage.getItem(
-        `${config.appConfig.localStorageMap}_${id}`
-      )
+        `${config.appConfig.localStorageMap}_${id}`,
+      ),
     );
   } catch (error) {
     console.error(error);
@@ -289,7 +289,7 @@ const removeQuestionnaireItemMap = async (subjectId) => {
 
   try {
     await EncryptedStorage.removeItem(
-      `${config.appConfig.localStorageMap}_${id}`
+      `${config.appConfig.localStorageMap}_${id}`,
     );
   } catch (error) {
     console.error(error);

@@ -4,16 +4,16 @@
 imports
 ***********************************************************************************************/
 
-import { connect } from "react-redux";
-import React, { Component } from "react";
-import { bindActionCreators } from "redux";
+import { connect } from 'react-redux';
+import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 
-import config from "../../config/configProvider";
-import localStorage from "../../services/localStorage/localStorage";
+import config from '../../config/configProvider';
+import localStorage from '../../services/localStorage/localStorage';
 
-import LoginScreen from "./loginScreen";
-import LandingScreen from "./landingScreen";
-import * as loginActions from "./loginActions";
+import LoginScreen from './loginScreen';
+import LandingScreen from './landingScreen';
+import * as loginActions from './loginActions';
 
 /***********************************************************************************************
 component:
@@ -47,10 +47,10 @@ class LoginContainer extends Component {
     if (subjectId) actions.logout();
 
     // triggers the auto-login when on the login-screen (only on DEV)
-    if (config.appConfig.automateQrLogin && route.name === "Login") {
+    if (config.appConfig.automateQrLogin && route.name === 'Login') {
       // parses the input string to determine the subjectId (from the qr-code)
       const scannedId = this.checkQrCodeForUsername(
-        config.appConfig.automateQrLoginSubjectId || ""
+        config.appConfig.automateQrLoginSubjectId || '',
       );
       // sets the subjectId defined in appConfig.js
       actions.updateSubjectId(scannedId);
@@ -66,7 +66,7 @@ class LoginContainer extends Component {
    */
   componentDidUpdate = () => {
     const { loggedIn, navigation } = this.props;
-    if (loggedIn) navigation.navigate("SignedIn", { screen: "CheckIn" });
+    if (loggedIn) navigation.navigate('SignedIn', { screen: 'CheckIn' });
   };
 
   // class methods
@@ -99,13 +99,14 @@ class LoginContainer extends Component {
       if (
         qrCode[config.appConfig.qrCodeAttributeHoldingTheAppIdentifier] ===
         config.appConfig.appIdentifier
-      )
+      ) {
         subjectId = qrCode[config.appConfig.qrCodeAttributeHoldingTheSubjectId];
+      }
     } catch (e) {
-      return "";
+      return '';
     }
     // returns the id or an e
-    return subjectId || "";
+    return subjectId || '';
   };
 
   /**
@@ -139,7 +140,7 @@ class LoginContainer extends Component {
       route,
     } = this.props;
     // checks the currently selected route
-    return route.name === "Login" ? (
+    return route.name === 'Login' ? (
       // if on Login route
       <LoginScreen
         actions={actions}

@@ -41,9 +41,7 @@ exports[`LOGIN RENDERING: <LandingScreen /> can be rendered 1`] = `
         }
       >
         <ActivityIndicator
-          animating={true}
           color="#EB576A"
-          hidesWhenStopped={true}
           size="large"
           style={
             Object {
@@ -255,7 +253,7 @@ The logo file (as well as the logoBackground) can be updated by updating the 'CU
                 }
               }
             >
-              <ForwardRef
+              <TouchableOpacity
                 accessibilityHint="Starts login process and redirects to QRCode scanner."
                 accessibilityLabel="Navigate to Login Screen"
                 accessibilityRole="button"
@@ -291,7 +289,7 @@ The logo file (as well as the logoBackground) can be updated by updating the 'CU
                 >
                   Navigate to Login Screen
                 </Themed.Text>
-              </ForwardRef>
+              </TouchableOpacity>
             </View>
           </View>
         }
@@ -381,7 +379,9 @@ The logo file (as well as the logoBackground) can be updated by updating the 'CU
                 accessibilityLabel="Navigate to Login Screen"
                 accessibilityRole="button"
                 accessible={true}
+                collapsable={false}
                 focusable={true}
+                nativeID="animatedComponent"
                 onClick={[Function]}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
@@ -507,7 +507,9 @@ exports[`LOGIN RENDERING: <LoginContainer /> can be rendered 1`] = `
               }
             }
             accessible={true}
+            collapsable={false}
             focusable={true}
+            nativeID="animatedComponent"
             onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
@@ -1040,7 +1042,9 @@ exports[`LOGIN RENDERING: <LoginScreen /> can be rendered 1`] = `
               }
             }
             accessible={true}
+            collapsable={false}
             focusable={true}
+            nativeID="animatedComponent"
             onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}

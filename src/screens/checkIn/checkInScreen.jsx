@@ -4,16 +4,16 @@
 imports
 ***********************************************************************************************/
 
-import React, { PureComponent } from "react";
-import { View, StyleSheet } from "react-native";
+import React, { PureComponent } from 'react';
+import { View, StyleSheet } from 'react-native';
 
-import config from "../../config/configProvider";
-import Banner from "../../components/banner/banner";
-import Spinner from "../../components/spinner/spinner";
-import CheckInTiles from "../../components/checkIn/checkInTiles";
-import CheckInWelcomeText from "../../components/checkIn/welcomeText";
-import CheckInListView from "../../components/checkIn/checkInListView";
-import ScrollIndicatorWrapper from "../../components/scrollIndicatorWrapper/scrollIndicatorWrapper";
+import config from '../../config/configProvider';
+import Banner from '../../components/banner/banner';
+import Spinner from '../../components/spinner/spinner';
+import CheckInTiles from '../../components/checkIn/checkInTiles';
+import CheckInWelcomeText from '../../components/checkIn/welcomeText';
+import CheckInListView from '../../components/checkIn/checkInListView';
+import ScrollIndicatorWrapper from '../../components/scrollIndicatorWrapper/scrollIndicatorWrapper';
 
 let localStyle;
 
@@ -65,7 +65,7 @@ class CheckInScreen extends PureComponent {
           updateUser={updateUser}
           isCheckIn
           noWayBack
-          noRefresh={user?.status === "off-study"}
+          noRefresh={user?.status === 'off-study'}
           categoriesLoaded={categoriesLoaded}
         />
 
@@ -148,8 +148,8 @@ localStyle
 
 localStyle = StyleSheet.create({
   wrapper: {
-    height: "100%",
-    flexDirection: "column",
+    height: '100%',
+    flexDirection: 'column',
     backgroundColor: config.theme.values.defaultBackgroundColor,
   },
 

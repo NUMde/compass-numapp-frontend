@@ -4,9 +4,9 @@
 imports
 ***********************************************************************************************/
 
-import RNModal from "react-native-modal";
-import React, { Component } from "react";
-import { Icon, Button } from "react-native-elements";
+import RNModal from 'react-native-modal';
+import React, { Component } from 'react';
+import { Icon, Button } from 'react-native-elements';
 import {
   AccessibilityInfo,
   Linking,
@@ -14,9 +14,9 @@ import {
   View,
   StyleSheet,
   ScrollView,
-} from "react-native";
+} from 'react-native';
 
-import config from "../../config/configProvider";
+import config from '../../config/configProvider';
 
 let localStyle;
 
@@ -175,8 +175,9 @@ class RedirectModal extends Component {
    * @param {HTMLElement} element UI element that RNModal will scroll to (for example if the software-keyboard is shown)
    */
   handleScrollTo = (element) => {
-    if (this.scrollViewRef.current)
+    if (this.scrollViewRef.current) {
       this.scrollViewRef.current.scrollTo({ ...element, animated: true });
+    }
   };
 }
 
@@ -186,7 +187,7 @@ local styling
 
 localStyle = StyleSheet.create({
   modal: {
-    justifyContent: "flex-end",
+    justifyContent: 'flex-end',
     marginLeft: 0,
     marginRight: 0,
     marginBottom: 0,
@@ -199,8 +200,8 @@ localStyle = StyleSheet.create({
     backgroundColor: config.theme.values.defaultModalContentBackgroundColor,
     paddingLeft: 20,
     paddingRight: 20,
-    height: "auto",
-    maxHeight: "90%",
+    height: 'auto',
+    maxHeight: '90%',
     borderTopLeftRadius: config.theme.values.defaultModalBorderRadius,
     borderTopRightRadius: config.theme.values.defaultModalBorderRadius,
     borderColor: config.theme.colors.white,
@@ -212,10 +213,10 @@ localStyle = StyleSheet.create({
   },
 
   bottomBarWrapper: {
-    flexWrap: "nowrap",
-    alignItems: "center",
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexWrap: 'nowrap',
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     backgroundColor: config.theme.values.defaultModalBottomBarBackgroundColor,
   },
 
@@ -234,7 +235,7 @@ localStyle = StyleSheet.create({
 
   modalPaginationButton: {
     width: 44,
-    height: "auto",
+    height: 'auto',
     margin: 10,
   },
 

@@ -4,18 +4,18 @@
 imports
 ***********************************************************************************************/
 
-import React, { PureComponent } from "react";
-import { StyleSheet } from "react-native";
-import { ListItem } from "react-native-elements";
+import React, { PureComponent } from 'react';
+import { StyleSheet } from 'react-native';
+import { ListItem } from 'react-native-elements';
 
-import "../../typedef";
-import config from "../../config/configProvider";
+import '../../typedef';
+import config from '../../config/configProvider';
 
 let localStyle;
 
 /***********************************************************************************************
 component:
-renders a ListItem which will open the Modal (src/components/modal/redirectModal.js) when clicked on 
+renders a ListItem which will open the Modal (src/components/modal/redirectModal.js) when clicked on
 ***********************************************************************************************/
 class AboutListItem extends PureComponent {
   /**
@@ -23,7 +23,7 @@ class AboutListItem extends PureComponent {
 	* @param  {object}    props
 	* @param  {object}  props.actions redux-actions of the 'about'-component
 	* @param  {object}    props.navigation the navigation object provided by 'react-navigation'
-	* @param  {object[]}  props.modalLink holds the current content information (defined by 
+	* @param  {object[]}  props.modalLink holds the current content information (defined by
 	  src/config/textConfig.js)
 	* @param  {{
 		title: string,
@@ -79,7 +79,7 @@ local styling
 
 localStyle = StyleSheet.create({
   containerStyle: {
-    width: "100%",
+    width: '100%',
     borderBottomColor: config.theme.colors.accent3,
     borderBottomWidth: 1,
     backgroundColor: config.theme.values.defaultListItemBackgroundColor,

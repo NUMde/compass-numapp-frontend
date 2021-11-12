@@ -4,12 +4,12 @@
 imports
 ***********************************************************************************************/
 
-import React, { PureComponent } from "react";
-import { View, StyleSheet } from "react-native";
-import { ListItem } from "react-native-elements";
+import React, { PureComponent } from 'react';
+import { View, StyleSheet } from 'react-native';
+import { ListItem } from 'react-native-elements';
 
-import config from "../../config/configProvider";
-import { formatDateString } from "../../services/utils";
+import config from '../../config/configProvider';
+import { formatDateString } from '../../services/utils';
 
 let localStyle;
 
@@ -19,7 +19,7 @@ component
 
 class CheckInListView extends PureComponent {
   /**
-    * renders a single ListItem which represents the current state of a loaded questionnaire. 
+    * renders a single ListItem which represents the current state of a loaded questionnaire.
     * red for untouched, yellow for incomplete and green for completed questionnaires.
     * the state of the questionnaire also impacts wich icon will be rendered on the right-hand-side.
     * a click on the ListItem will navigate the user to the WebView-screen
@@ -29,7 +29,7 @@ class CheckInListView extends PureComponent {
     * @param  {object}      props.navigation the navigation object provided by 'react-navigation'
     * @param  {object}      props.questionnaireItemMap object holding every item from the questionnaire
         (the linkId of the item is the key)
-    * @param  {boolean}     props.firstTime true if the user never sent out the first 
+    * @param  {boolean}     props.firstTime true if the user never sent out the first
     * @param  {boolean}     props.noNewQuestionnaireAvailableYet true if there is currently no questionnaire available
     * @param  {boolean}     props.categoriesLoaded true if the questionnaire is ready to be rendered
     */
@@ -89,22 +89,25 @@ class CheckInListView extends PureComponent {
       questionnaireItemMap &&
       !questionnaireItemMap.done &&
       !questionnaireItemMap.started
-    )
+    ) {
       return {
-        name: "dots-horizontal",
+        name: 'dots-horizontal',
         color: config.theme.colors.secondary,
       };
+    }
 
-    if (questionnaireItemMap.started && !questionnaireItemMap.done)
+    if (questionnaireItemMap.started && !questionnaireItemMap.done) {
       return {
-        name: "pencil-outline",
+        name: 'pencil-outline',
         color: config.theme.colors.alert,
       };
-    if (questionnaireItemMap.done)
+    }
+    if (questionnaireItemMap.done) {
       return {
-        name: "check",
+        name: 'check',
         color: config.theme.colors.success,
       };
+    }
     return {};
   };
 
@@ -123,14 +126,14 @@ class CheckInListView extends PureComponent {
         {/* if all categories are loaded AND there is a current questionnaire available render a single ListLink AND if the user ist still part of the study*/}
         {categoriesLoaded &&
           !noNewQuestionnaireAvailableYet &&
-          user?.status !== "off-study" && (
+          user?.status !== 'off-study' && (
             <ListItem
               containerStyle={{
                 ...localStyle.containerStyle,
                 // get additional styling depending on the state of the questionnaire
                 ...this.getListItemStyle(),
               }}
-              onPress={() => navigation.navigate("Survey")}
+              onPress={() => navigation.navigate('Survey')}
               accessibilityLabel={`${
                 user.firstTime
                   ? config.text.survey.surveyTitleFirstTime
@@ -185,7 +188,7 @@ localStyle = StyleSheet.create({
   },
 
   containerStyle: {
-    width: "100%",
+    width: '100%',
     borderBottomWidth: 1,
     borderTopWidth: 1,
     padding: config.appConfig.scaleUiFkt(30),

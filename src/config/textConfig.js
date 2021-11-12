@@ -35,150 +35,150 @@ export default {
   /** strings for accessibility features (i.e. VoiceOver) */
   accessibility: {
     types: {
-      button: "button",
-      header: "header",
+      button: 'button',
+      header: 'header',
     },
 
-    refresh: "refresh",
+    refresh: 'refresh',
     refreshHint:
-      "Re-fetches the questionnaire and status. The current page will be updated.",
+      'Re-fetches the questionnaire and status. The current page will be updated.',
 
-    back: "back",
-    backHint: "Jumps to previous page.",
+    back: 'back',
+    backHint: 'Jumps to previous page.',
 
-    close: "close",
-    closeHint: "Closes current page or modal.",
+    close: 'close',
+    closeHint: 'Closes current page or modal.',
 
-    accept: "accept",
-    cancel: "cancel",
+    accept: 'accept',
+    cancel: 'cancel',
     acceptHint:
-      "Switches to default browser application, and opens link there.",
+      'Switches to default browser application, and opens link there.',
 
-    menu: "Additional Information",
-    menuHint: "Opens new page with additional informations and links.",
+    menu: 'Additional Information',
+    menuHint: 'Opens new page with additional informations and links.',
 
-    logoutHint: "Starts logout process and redirects to login page.",
-    loginHint: "Starts login process and redirects to QRCode scanner.",
+    logoutHint: 'Starts logout process and redirects to login page.',
+    loginHint: 'Starts login process and redirects to QRCode scanner.',
 
     questionnaire: {
-      middleButtonFinished: "Next question. question is answered.",
+      middleButtonFinished: 'Next question. question is answered.',
       middleButtonUnfinished:
-        "Next question, even though question is not yet answered.",
+        'Next question, even though question is not yet answered.',
       middleButtonHint:
-        "Jumps to the next questions, or closes the modal if this was the last question.",
+        'Jumps to the next questions, or closes the modal if this was the last question.',
 
-      rightButtonHint: "Closes the modal.",
-      leftButtonHint: "Jumps to previous question.",
-      alertButtonHint: "Closes the alert.",
+      rightButtonHint: 'Closes the modal.',
+      leftButtonHint: 'Jumps to previous question.',
+      alertButtonHint: 'Closes the alert.',
 
       questionnaireCellHint:
         "Opens new page to see the questionnaire's categories.",
-      categoryCellHint: "Opens modal to fill out this questionnaire entry.",
-      category: "This Category ",
-      questionnaire: "This questionnaire ",
-      notStarted: "has not been answered yet.",
+      categoryCellHint: 'Opens modal to fill out this questionnaire entry.',
+      category: 'This Category ',
+      questionnaire: 'This questionnaire ',
+      notStarted: 'has not been answered yet.',
       notFinished:
         "has already been started, but isn't completely filled in yet.",
-      finished: "is fully complete.",
+      finished: 'is fully complete.',
 
-      sendHint: "Sends the questionnaire to evaluation.",
+      sendHint: 'Sends the questionnaire to evaluation.',
 
       multipleChoice:
-        "Multiple Choice - more than one answer option can be selected.",
-      singleChoice: "Single Choice - only one answer option can be selected.",
-      textFieldHint: "Please fill in the requested information here.",
-      dateFieldHint: "Opens a new modal to pick a date.",
-      sliderFieldEquals: " equals ",
-      sliderFieldAnd: ", and ",
+        'Multiple Choice - more than one answer option can be selected.',
+      singleChoice: 'Single Choice - only one answer option can be selected.',
+      textFieldHint: 'Please fill in the requested information here.',
+      dateFieldHint: 'Opens a new modal to pick a date.',
+      sliderFieldEquals: ' equals ',
+      sliderFieldAnd: ', and ',
 
       triggerHint:
-        "If this element is selected, another additional question will be shown that is connected to this element. Please fill out the additional question as well.",
+        'If this element is selected, another additional question will be shown that is connected to this element. Please fill out the additional question as well.',
     },
   },
 
   /** contains all string rendered on the login-screen, as well as the ones for the landing-screen */
   login: {
-    title: "Login",
-    subTitle: "",
-    submit: "Login",
-    user: "subject-id",
-    pass: "password",
-    waiting: "Logging in...",
-    errorPass: "Please try again.",
-    noSubjectId: "no valid subjectId found",
-    errorUserUnauthorized: "Invalid user data.",
-    qrInfo: "Please point the camera onto the qr-code.",
-    errorUserGeneric: "There occurred a problem during login.",
-    permissionDialog: "Please allow the app to access your camera.",
-    nextStepAfterError: "Please try to login again later.",
+    title: 'Login',
+    subTitle: '',
+    submit: 'Login',
+    user: 'subject-id',
+    pass: 'password',
+    waiting: 'Logging in...',
+    errorPass: 'Please try again.',
+    noSubjectId: 'no valid subjectId found',
+    errorUserUnauthorized: 'Invalid user data.',
+    qrInfo: 'Please point the camera onto the qr-code.',
+    errorUserGeneric: 'There occurred a problem during login.',
+    permissionDialog: 'Please allow the app to access your camera.',
+    nextStepAfterError: 'Please try to login again later.',
 
     /** contains all strings of the landing-screen */
     landing: {
-      buttonText: "Navigate to Login Screen",
-      title: "",
-      subTitle: "",
-      welcomeTitle: "Welcome to COMPASS\n(React Native Client)",
+      buttonText: 'Navigate to Login Screen',
+      title: '',
+      subTitle: '',
+      welcomeTitle: 'Welcome to COMPASS\n(React Native Client)',
       text: "This is the Landing Screen.\n\nIt can be used to display a welcome message, detailing the following login-process, explaining the handling of personal information, etc.\n\nThe logo file (as well as the logoBackground) can be updated by updating the 'CUSTOMIZATION' folder.",
-      autoLoginErrorTitle: "Auto Login Failed",
+      autoLoginErrorTitle: 'Auto Login Failed',
       autoLoginError:
-        "An Error occurred while trying to automatically login. Please check your network and try again",
-      retry: "retry",
+        'An Error occurred while trying to automatically login. Please check your network and try again',
+      retry: 'retry',
     },
   },
 
   /** strings with generic purpose that can be used throughout the application */
   generic: {
-    ok: "OK",
-    error: "Error",
-    abort: "Cancel",
-    warning: "Warning",
-    info: "Information",
-    errorTitle: "Error",
-    successTitle: "Success",
-    delete: "Yes, delete data",
-    goBack: "Yes, please logout",
-    logoutWarning: "Logout Warning",
-    sendSuccess: "Data sent successfully",
-    sendError: "There was an error transmitting the data. Please try again.",
+    ok: 'OK',
+    error: 'Error',
+    abort: 'Cancel',
+    warning: 'Warning',
+    info: 'Information',
+    errorTitle: 'Error',
+    successTitle: 'Success',
+    delete: 'Yes, delete data',
+    goBack: 'Yes, please logout',
+    logoutWarning: 'Logout Warning',
+    sendSuccess: 'Data sent successfully',
+    sendError: 'There was an error transmitting the data. Please try again.',
     sendErrorTwoDevices:
-      "You have already sent this questionnaire through another App. ",
+      'You have already sent this questionnaire through another App. ',
     eraseAllWarning:
-      "This will delete all local data and logs you out. Do you want to procede?",
+      'This will delete all local data and logs you out. Do you want to procede?',
     eraseLocalDataAtEndOfStudyText:
-      "This will again emphasize the end of the study. As soon as the user confirms the local data will be removed and the participant is logged out. Do you want to precede?",
-    eraseLocalDataAtEndOfStudyTitle: "Delete local data and logout",
+      'This will again emphasize the end of the study. As soon as the user confirms the local data will be removed and the participant is logged out. Do you want to precede?',
+    eraseLocalDataAtEndOfStudyTitle: 'Delete local data and logout',
     updateError:
-      "An error ocurred while getting the requested data - please try again.",
+      'An error ocurred while getting the requested data - please try again.',
     infoRemoval:
-      "The currently persisted questionnaire is obsolete and will now be removed.",
+      'The currently persisted questionnaire is obsolete and will now be removed.',
     reportWhileInIteratedMode:
-      "Dialog to tell the user that he already sent in a special report and that he is right now on a special interval.",
+      'Dialog to tell the user that he already sent in a special report and that he is right now on a special interval.',
     reportWhileQuestionnaire:
-      "Dialog to tell the user that currently a questionnaire is available and that he might use that one to report about his condition.",
+      'Dialog to tell the user that currently a questionnaire is available and that he might use that one to report about his condition.',
   },
 
   /** strings of the about-screen */
   about: {
-    title: "About",
-    subTitle: "Subtitle of the about-screen",
-    logout: "Logout (just on DEV)",
-    delete: "Delete all & logout (just on DEV)",
+    title: 'About',
+    subTitle: 'Subtitle of the about-screen',
+    logout: 'Logout (just on DEV)',
+    delete: 'Delete all & logout (just on DEV)',
 
     /** contains the strings for the optional LegalInformation Screen */
     legal: {
-      title: "Link to the LegalInformation-Screen",
+      title: 'Link to the LegalInformation-Screen',
       subTitle:
-        "This Links is optionally rendered (can be activated through the development-config). The text-content of that screen can be updated through the text-config",
-      iconType: "entypo",
-      iconTitle: "archive",
+        'This Links is optionally rendered (can be activated through the development-config). The text-content of that screen can be updated through the text-config',
+      iconType: 'entypo',
+      iconTitle: 'archive',
     },
   },
 
   /** contains the strings for the legal information screen */
   legalInformation: {
-    title: "Legal Information Screen",
-    subTitle: "Legal subtitle",
-    headline: "Example Legal Text",
+    title: 'Legal Information Screen',
+    subTitle: 'Legal subtitle',
+    headline: 'Example Legal Text',
 
     content: `DEFINITIONS In this license apply to the interfaces of, the Work is not the case where Apple is the primary copyright notice of copyright, i.e., "Copyright (c) 2001, 2002, 2003, 2004, 2005, 2006 Python Software Foundation; either version 1.3 or later is part of a file documenting the additions, changes or deletions from the Work. If this search is successful, then enquire whether the Work by You alone, not by any Contributor under this Agreement shall terminate as of the following: a) Accompany it with a work which combines Covered Code may contain in whole or in any resulting litigation. Definitions. 1.0.1. "Commercial Use" means distribution or otherwise redistribute the Licensed Product, or for any liability incurred by or claims asserted against, such Contributor as a consequence you may do only in order to apply it to your customers.
 					You cannot charge for the Work is distributed to all recipients of Covered Code and executable versions of the Modified Version, and of promoting the sharing and reuse of software distributed under this License. Code" means the original Licensed Product. If you wish while maintaining the availability, integrity, and reliability of that Derived Work under any applicable law.		
@@ -192,66 +192,66 @@ export default {
 
   /** strings of the survey-screen */
   survey: {
-    subTitle: "",
-    logout: "logout",
-    subTitleCheckIn: "",
-    title: "Questionnaire",
-    isLoading: "loading...",
-    yourAnswer: "your answer",
-    titleCheckIn: "Check-In",
-    welcomeTitle: "CheckIn-Title",
-    noUserTitle: "User not found",
-    sendFinished: "send questionnaire",
-    send: "Send Questionnaire Button Title",
-    additionalAnswer: "zusätzliche Antwort",
-    alternativeAnswer: "alternative Antwort",
-    surveySubTitle: "To be completed till:  ",
-    surveyTitle: "Your current questionnaire",
-    inputPlaceholder: "please enter your answer",
-    endedStudyTitle: "End of Participation Title",
-    noQuestionnaireTitle: "Questionnaire not found",
-    loadingQuestionnaire: "requesting\nquestionnaire",
-    inputPlaceholderTime: "please enter the date here",
-    sessionTimeout: "Your user could not re recognized",
-    reloadingQuestionnaire: "re-loading\nquestionnaire",
-    welcomeTitleFirstTime: "CheckIn-Title for new Users",
-    surveyTitleFirstTime: "Your Entry-Questionnaire Title",
-    noUserText: "Your ID could not be verified. Please try again.",
+    subTitle: '',
+    logout: 'logout',
+    subTitleCheckIn: '',
+    title: 'Questionnaire',
+    isLoading: 'loading...',
+    yourAnswer: 'your answer',
+    titleCheckIn: 'Check-In',
+    welcomeTitle: 'CheckIn-Title',
+    noUserTitle: 'User not found',
+    sendFinished: 'send questionnaire',
+    send: 'Send Questionnaire Button Title',
+    additionalAnswer: 'zusätzliche Antwort',
+    alternativeAnswer: 'alternative Antwort',
+    surveySubTitle: 'To be completed till:  ',
+    surveyTitle: 'Your current questionnaire',
+    inputPlaceholder: 'please enter your answer',
+    endedStudyTitle: 'End of Participation Title',
+    noQuestionnaireTitle: 'Questionnaire not found',
+    loadingQuestionnaire: 'requesting\nquestionnaire',
+    inputPlaceholderTime: 'please enter the date here',
+    sessionTimeout: 'Your user could not re recognized',
+    reloadingQuestionnaire: 're-loading\nquestionnaire',
+    welcomeTitleFirstTime: 'CheckIn-Title for new Users',
+    surveyTitleFirstTime: 'Your Entry-Questionnaire Title',
+    noUserText: 'Your ID could not be verified. Please try again.',
     welcomeTextFirstTimeUser2:
-      " - See? This is the second part of that message.",
+      ' - See? This is the second part of that message.',
     sendFinishedMessage:
-      "confirmation dialog for sending the completed questionnaire?",
+      'confirmation dialog for sending the completed questionnaire?',
     noNewQuestionnaireAvailableYetTitle:
-      "Title, in case no Questionnaire is available",
+      'Title, in case no Questionnaire is available',
     sendUnfinishedMessageDenied:
-      "The current questionnaire is not yet completed. Please do so.",
+      'The current questionnaire is not yet completed. Please do so.',
     endedStudyText:
-      "This string will hold information about the end of the study for the user.",
+      'This string will hold information about the end of the study for the user.',
     nextOne:
-      "This text will be shown to communicate when the next questionnaire is available: ",
+      'This text will be shown to communicate when the next questionnaire is available: ',
     noQuestionnaireText:
-      "There occurred an error while loading the questionnaire - Please try again.",
+      'There occurred an error while loading the questionnaire - Please try again.',
     noNewQuestionnaireAvailableYet:
-      "This text will be displayed if no questionnaire is available right now.",
+      'This text will be displayed if no questionnaire is available right now.',
     nextOneNew:
-      "This text will be shown to communicate TO A NEW USER when the next questionnaire is available: ",
+      'This text will be shown to communicate TO A NEW USER when the next questionnaire is available: ',
     furtherInfo:
-      "This is the bottom snippet of the welcomeText. You may place something useful here... like a limerick.",
+      'This is the bottom snippet of the welcomeText. You may place something useful here... like a limerick.',
     welcomeTextUser:
-      "This is the regular welcome message. It will be shown if a questionnaire is available and the user a recurring one. Below this, the due date should be displayed.",
+      'This is the regular welcome message. It will be shown if a questionnaire is available and the user a recurring one. Below this, the due date should be displayed.',
     welcomeTextFirstTimeUser1:
-      "This is text that is presented to first-time-users. It tells them when the first questionnaire is due: ",
+      'This is text that is presented to first-time-users. It tells them when the first questionnaire is due: ',
   },
 
   /** strings for the special-report-flow */
   reporting: {
-    symptoms_no: "NO",
-    symptoms_yes: "YES",
-    symptoms_success_ok: "Success-Confirmation",
-    symptoms_success_header: "Success-Message-Header",
-    symptoms_header: "Button: Send out Special Report",
-    symptoms_success_message: "Success-Message-Content",
-    symptoms_question: "Insert confirmation question here",
+    symptoms_no: 'NO',
+    symptoms_yes: 'YES',
+    symptoms_success_ok: 'Success-Confirmation',
+    symptoms_success_header: 'Success-Message-Header',
+    symptoms_header: 'Button: Send out Special Report',
+    symptoms_success_message: 'Success-Message-Content',
+    symptoms_question: 'Insert confirmation question here',
   },
 
   /** each entry in this array will generate a new listItem on the about-screen. When clicked on such an item, a webView will open that
@@ -261,22 +261,22 @@ export default {
    */
   webViews: [
     {
-      title: "A WebView",
+      title: 'A WebView',
       subTitle:
-        "This is a listItem Element.\n\nIf clicked on, this ListItem will open the WebView-screen, which in turn will render a website right in the app.",
-      screenSubTitle: "Subtitle of this screen",
-      uri: "https://github.blog/",
-      iconTitle: "light-bulb",
-      iconType: "entypo",
+        'This is a listItem Element.\n\nIf clicked on, this ListItem will open the WebView-screen, which in turn will render a website right in the app.',
+      screenSubTitle: 'Subtitle of this screen',
+      uri: 'https://github.blog/',
+      iconTitle: 'light-bulb',
+      iconType: 'entypo',
     },
     {
-      title: "Another WebView",
+      title: 'Another WebView',
       subTitle:
         "For each item you add to the 'webView' property of textConfig.js another entry in this list is generated. That way you can add more content by just hosting a website and add it to textConfig.js",
-      screenSubTitle: "Subtitle of this screen",
-      uri: "https://dmw.hih-2025.de/livestream/",
-      iconTitle: "light-bulb",
-      iconType: "entypo",
+      screenSubTitle: 'Subtitle of this screen',
+      uri: 'https://dmw.hih-2025.de/livestream/',
+      iconTitle: 'light-bulb',
+      iconType: 'entypo',
     },
   ],
 
@@ -287,22 +287,22 @@ export default {
    */
   modalLinks: [
     {
-      title: "First Link",
+      title: 'First Link',
       subTitle:
-        "This is a regular link. It will open a modal before redirecting the user to his/her own browser.",
-      text: "your are now being redirected.",
-      uri: "https://github.blog/",
-      iconTitle: "link",
-      iconType: "entypo",
+        'This is a regular link. It will open a modal before redirecting the user to his/her own browser.',
+      text: 'your are now being redirected.',
+      uri: 'https://github.blog/',
+      iconTitle: 'link',
+      iconType: 'entypo',
     },
     {
-      title: "Second Link",
+      title: 'Second Link',
       subTitle:
         "For each item you add to the 'modalLinks' property of textConfig.js another entry in this list is generated.",
-      text: "your are now being redirected.",
-      uri: "https://ibm.com/",
-      iconTitle: "link",
-      iconType: "entypo",
+      text: 'your are now being redirected.',
+      uri: 'https://ibm.com/',
+      iconTitle: 'link',
+      iconType: 'entypo',
     },
   ],
 };

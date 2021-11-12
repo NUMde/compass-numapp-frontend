@@ -7,20 +7,20 @@ imports
 // redux
 /*-----------------------------------------------------------------------------------*/
 
-import thunk from "redux-thunk";
-import { combineReducers, createStore, applyMiddleware } from "redux";
+import thunk from 'redux-thunk';
+import { combineReducers, createStore, applyMiddleware } from 'redux';
 
 // reducers
 /*-----------------------------------------------------------------------------------*/
 
-import LoginReducer from "../src/screens/login/loginReducer";
-import AboutReducer from "../src/screens/about/aboutReducer";
-import CheckInReducer from "../src/screens/checkIn/checkInReducer";
+import LoginReducer from '../src/screens/login/loginReducer';
+import AboutReducer from '../src/screens/about/aboutReducer';
+import CheckInReducer from '../src/screens/checkIn/checkInReducer';
 
 // services
 /*-----------------------------------------------------------------------------------*/
 
-import localStorage from "../src/services/localStorage/localStorage";
+import localStorage from '../src/services/localStorage/localStorage';
 
 /***********************************************************************************************
 reducer
@@ -39,16 +39,16 @@ const rootReducer = (state, action) => {
   // will be filtered out and executed by the rootReducer
   // (before the actual reducer is)
 
-  if (action.type === "USER_LOGOUT") {
+  if (action.type === 'USER_LOGOUT') {
     localState = undefined;
     localStorage.removeLastSubjectId();
   }
 
-  if (action.type === "DELETE_ALL_LOCAL_DATA") {
+  if (action.type === 'DELETE_ALL_LOCAL_DATA') {
     localStorage.clearAll();
   }
 
-  if (action.type === "DELETE_LOCAL_QUESTIONNAIRE") {
+  if (action.type === 'DELETE_LOCAL_QUESTIONNAIRE') {
     localState.CheckIn.currentCategoryIndex = null;
     localState.CheckIn.questionnaireItemMap = null;
     localState.CheckIn.categories = null;
@@ -80,14 +80,16 @@ export
 let globalMockStore;
 
 export function buildStore(state) {
-  if (state)
+  if (state) {
     globalMockStore = createStore(
       rootReducer,
       state,
-      applyMiddleware(...middleware)
+      applyMiddleware(...middleware),
     );
-  if (!state)
+  }
+  if (!state) {
     globalMockStore = createStore(rootReducer, applyMiddleware(...middleware));
+  }
 
   return globalMockStore;
 }

@@ -4,10 +4,10 @@
 import
 ***********************************************************************************************/
 
-import React, { PureComponent } from "react";
-import { StyleSheet, View, Modal, ActivityIndicator } from "react-native";
+import React, { PureComponent } from 'react';
+import { StyleSheet, View, Modal, ActivityIndicator } from 'react-native';
 
-import config from "../../config/configProvider";
+import config from '../../config/configProvider';
 
 /***********************************************************************************************
 component:
@@ -56,9 +56,9 @@ const localStyle = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    position: "absolute",
-    alignItems: "center",
-    justifyContent: "center",
+    position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
   container: {
@@ -67,7 +67,7 @@ const localStyle = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    position: "absolute",
+    position: 'absolute',
     backgroundColor: config.theme.values.defaultSpinnerBackgroundColor,
   },
 });
