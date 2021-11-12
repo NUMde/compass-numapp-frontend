@@ -7,11 +7,13 @@ imports
 ***********************************************************************************************/
 
 import EncryptedStorage from "react-native-encrypted-storage";
-import config from "../../config/configProvider";
+import {appConfig} from "../../config/configProvider";
 
 /***********************************************************************************************
 operations
 ***********************************************************************************************/
+
+console.log(111, appConfig)
 
 // last subject-id
 /*-----------------------------------------------------------------------------------*/
@@ -21,7 +23,7 @@ operations
  */
 const loadLastSubjectId = async () => {
   try {
-    return await EncryptedStorage.getItem(config.appConfig.lastSubjectId);
+    return await EncryptedStorage.getItem(appConfig.lastSubjectId);
   } catch (error) {
     console.error(error);
     return null;
@@ -37,7 +39,7 @@ const persistLastSubjectId = async (subjectId) => {
   if (!id) return;
 
   try {
-    await EncryptedStorage.setItem(config.appConfig.lastSubjectId, id);
+    await EncryptedStorage.setItem(appConfig.lastSubjectId, id);
   } catch (error) {
     console.error(error);
   }
@@ -47,9 +49,8 @@ const persistLastSubjectId = async (subjectId) => {
  * deletes the last used subjectId from the EncryptedStorage
  */
 const removeLastSubjectId = async () => {
-  console.log("1")
   try {
-    await EncryptedStorage.removeItem(config.appConfig.lastSubjectId);
+    await EncryptedStorage.removeItem(appConfig.lastSubjectId);
   } catch (error) {
     console.error(error);
   }
@@ -70,7 +71,7 @@ const persistFCMToken = async (FCMToken, subjectId) => {
 
   try {
     await EncryptedStorage.setItem(
-      `${config.appConfig.FCMToken}_${id}`,
+      `${appConfig.FCMToken}_${id}`,
       FCMToken
     );
   } catch (error) {
@@ -88,7 +89,7 @@ const loadFCMToken = async (subjectId) => {
   if (!id) return null;
 
   try {
-    return await EncryptedStorage.getItem(`${config.appConfig.FCMToken}_${id}`);
+    return await EncryptedStorage.getItem(`${appConfig.FCMToken}_${id}`);
   } catch (error) {
     console.error(error);
     return null;
@@ -105,7 +106,7 @@ const removeFCMToken = async (subjectId) => {
   if (!id) return;
 
   try {
-    await EncryptedStorage.removeItem(`${config.appConfig.FCMToken}_${id}`);
+    await EncryptedStorage.removeItem(`${appConfig.FCMToken}_${id}`);
   } catch (error) {
     console.error(error);
   }
@@ -129,7 +130,7 @@ const persistLastQuestionnaireId = async (questionnaireId, subjectId) => {
 
   try {
     await EncryptedStorage.setItem(
-      `${config.appConfig.lastQuestionnaireId}_${id}`,
+      `${appConfig.lastQuestionnaireId}_${id}`,
       questionnaireId
     );
   } catch (error) {
@@ -148,7 +149,7 @@ const loadLastQuestionnaireId = async (subjectId) => {
 
   try {
     return await EncryptedStorage.getItem(
-      `${config.appConfig.lastQuestionnaireId}_${id}`
+      `${appConfig.lastQuestionnaireId}_${id}`
     );
   } catch (error) {
     console.error(error);
@@ -167,7 +168,7 @@ const removeLastQuestionnaireId = async (subjectId) => {
 
   try {
     await EncryptedStorage.removeItem(
-      `${config.appConfig.lastQuestionnaireId}_${id}`
+      `${appConfig.lastQuestionnaireId}_${id}`
     );
   } catch (error) {
     console.error(error);
@@ -191,7 +192,7 @@ const persistCategories = async (categories, subjectId) => {
 
   try {
     await EncryptedStorage.setItem(
-      `${config.appConfig.localStorageList}_${id}`,
+      `${appConfig.localStorageList}_${id}`,
       stringToBePersisted.toString()
     );
   } catch (error) {
@@ -211,7 +212,7 @@ const loadCategories = async (subjectId) => {
   try {
     return JSON.parse(
       await EncryptedStorage.getItem(
-        `${config.appConfig.localStorageList}_${id}`
+        `${appConfig.localStorageList}_${id}`
       )
     );
   } catch (error) {
@@ -231,7 +232,7 @@ const removeCategories = async (subjectId) => {
 
   try {
     await EncryptedStorage.removeItem(
-      `${config.appConfig.localStorageList}_${id}`
+      `${appConfig.localStorageList}_${id}`
     );
   } catch (error) {
     console.error(error);
@@ -254,7 +255,7 @@ const persistQuestionnaireItemMap = async (map, subjectId) => {
 
   try {
     await EncryptedStorage.setItem(
-      `${config.appConfig.localStorageMap}_${id}`,
+      `${appConfig.localStorageMap}_${id}`,
       stringToBePersisted.toString()
     );
   } catch (error) {
@@ -274,7 +275,7 @@ const loadQuestionnaireItemMap = async (subjectId) => {
   try {
     return JSON.parse(
       await EncryptedStorage.getItem(
-        `${config.appConfig.localStorageMap}_${id}`
+        `${appConfig.localStorageMap}_${id}`
       )
     );
   } catch (error) {
@@ -294,8 +295,49 @@ const removeQuestionnaireItemMap = async (subjectId) => {
 
   try {
     await EncryptedStorage.removeItem(
-      `${config.appConfig.localStorageMap}_${id}`
+      `${appConfig.localStorageMap}_${id}`
     );
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+// kiosk mode
+/*-----------------------------------------------------------------------------------*/
+
+/**
+ * loads the kiosk mode data from the EncryptedStorage
+ * @returns string | null
+ */
+ const loadKioskModeData = async () => {
+  try {
+    return await EncryptedStorage.getItem("compass_demo_data");
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+/**
+ * persists the current kiosk mode data
+ * @param  {string} [subjectId] subjectId of the user
+ */
+const persistKioskModeData = async (subjectId) => {
+  const id = subjectId || (await loadKioskModeData());
+  if (!id) return;
+
+  try {
+    await EncryptedStorage.setItem("compass_demo_data", id);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+/**
+ * deletes the kiosk mode data from the EncryptedStorage
+ */
+const removeKioskModeData = async () => {
+  try {
+    await EncryptedStorage.removeItem("compass_demo_data");
   } catch (error) {
     console.error(error);
   }
@@ -335,6 +377,10 @@ export default {
   persistFCMToken,
   loadFCMToken,
   removeFCMToken,
+
+  loadKioskModeData,
+  persistKioskModeData,
+  removeKioskModeData,
 
   clearAll,
 };

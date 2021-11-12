@@ -163,7 +163,6 @@ export default {
     subTitle: "Subtitle of the about-screen",
     logout: "Logout (just on DEV)",
     delete: "Delete all & logout (just on DEV)",
-    demoLogout: "Logout (just for this Demonstration)",
     demoDelete: "Delete all & logout (just for this Demonstration)",
 
     /** contains the strings for the optional LegalInformation Screen */

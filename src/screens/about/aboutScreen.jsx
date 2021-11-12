@@ -120,7 +120,7 @@ class AboutScreen extends PureComponent {
                 {/* optional buttons on the bottom of the screen - JUST FOR DEVELOPMENT*/}
                 <View style={localStyle.bottom}>
                   {/* logout button */}
-                  {(config.appConfig.showLogout || config.appConfig.kioskMode) && (
+                  {(config.appConfig.showLogout) && (
                     <TouchableOpacity
                       style={localStyle.button}
                       onPress={logout}
@@ -129,7 +129,7 @@ class AboutScreen extends PureComponent {
                       accessibilityHint={config.text.accessibility.logoutHint}
                     >
                       <Text style={localStyle.buttonLabel}>
-                        {config.appConfig.kioskMode ? config.text.about.demoLogout : config.text.about.logout}
+                        {config.text.about.logout}
                       </Text>
                     </TouchableOpacity>
                   )}

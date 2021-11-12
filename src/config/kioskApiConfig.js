@@ -2,21 +2,14 @@
 imports
 ***********************************************************************************************/
 
-// the predefined questionnaire the demo is gonna use
-import hardcodedTestQuestionnaire from "../assets/files/questionnaire";
+import localStorage from "../services/localStorage/localStorage";
+import hardcodedTestQuestionnaire from "../assets/files/questionnaire"; // the predefined questionnaire the demo is gonna use
 
 /***********************************************************************************************
  constants
  ***********************************************************************************************/
 
- // is used to keep track of the completed transmissions (faked ones)
-let playthrough = 1;
-
-// is used to determine if a report was just sent out
-let sentOutReport = false;
-
-// is used to keep track if the first response was already sent out
-let sentOutTheFirstOne = false;
+let kioskModeData = {};
 
 // default user data
 const defaultMockUserData = {
@@ -39,12 +32,30 @@ methods
 ***********************************************************************************************/
 
 /**
+ * initializes the kiosk mode data
+ */
+const _initKioskMode = async () => {
+    kioskModeData = await localStorage.loadKioskModeData();
+    if(!kioskModeData) {
+        kioskModeData = {
+            // is used to keep track of the completed transmissions (faked ones)
+            playthrough: 1,
+            // is used to determine if a report was just sent out
+            sentOutReport: false,
+            // is used to keep track if the first response was already sent out
+            sentOutTheFirstOne: false,
+        };
+    }
+}
+_initKioskMode();
+
+/**
  * calculates the next start date
  * @param  {boolean} laterOn tells us if we need to up the date
  */
 const getStartDate = (laterOn) => {
     const now = new Date;
-    now.setDate(now.getDate() + (laterOn ? 3 * playthrough : 0));
+    now.setDate(now.getDate() + (laterOn ? 3 * kioskModeData.playthrough : 0));
     return now.toISOString()
 };
 
@@ -54,7 +65,7 @@ const getStartDate = (laterOn) => {
  */
 const getDueDate = (laterOn) => {
     const then = new Date
-    then.setDate(then.getDate() + (laterOn ? 10 * playthrough : 7));
+    then.setDate(then.getDate() + (laterOn ? 10 * kioskModeData.playthrough : 7));
     return then.toISOString()
 };
 
@@ -63,17 +74,17 @@ const getDueDate = (laterOn) => {
  */
 const generateMockUserData = () => {
     // first time user
-    if(!sentOutTheFirstOne) return {
+    if(!kioskModeData.sentOutTheFirstOne) return {
         ...defaultMockUserData,
-        current_interval: playthrough,
+        current_interval: kioskModeData.playthrough,
         start_date: getStartDate(),
         due_date: getDueDate(),
         firstTime: true,
     };
     // after sending out a regular questionnaire
-    if(!sentOutReport) return {
+    if(!kioskModeData.sentOutReport) return {
         ...defaultMockUserData,
-        current_interval: playthrough,
+        current_interval: kioskModeData.playthrough,
         start_date: getStartDate(true),
         due_date: getDueDate(true),
         firstTime: false,
@@ -81,7 +92,7 @@ const generateMockUserData = () => {
     // after sending out a report
     return {
         ...defaultMockUserData,
-        current_interval: playthrough,
+        current_interval: kioskModeData.playthrough,
         start_date: getStartDate(),
         due_date: getDueDate(),
         firstTime: false,
@@ -91,18 +102,20 @@ const generateMockUserData = () => {
 /**
  * triggers the mock for the sendQuestionnaire call and updates the status variables
  */
-const sendQuestionnaire = () => {
-    sentOutTheFirstOne = true;
-    sentOutReport = false;
-    playthrough += 1;
+const sendQuestionnaire = async () => {
+    kioskModeData.sentOutTheFirstOne = true;
+    kioskModeData.sentOutReport = false;
+    kioskModeData.playthrough += 1;
+    await localStorage.persistKioskModeData(JSON.stringify(kioskModeData));
     return Promise.resolve(generateMockUserData());
 };
 
 /**
  * triggers the mock for the sendReport call and updates a status variable
  */
-const sendReport = () => {
-    sentOutReport = true;
+const sendReport = async () => {
+    kioskModeData.sentOutReport = true;
+    await localStorage.persistKioskModeData(JSON.stringify(kioskModeData));
     return Promise.resolve(generateMockUserData());
 };
 
@@ -113,8 +126,8 @@ export
 export default {
     sendReport,
     sendQuestionnaire,
-    updateDeviceToken: () => Promise.resolve({ data: "something something" }),
     login: () => Promise.resolve({ data: generateMockUserData() }),
     getUserUpdate: () => Promise.resolve({ data: generateMockUserData() }),
-    getBaseQuestionnaire: () => Promise.resolve({ data: hardcodedTestQuestionnaire })
+    updateDeviceToken: () => Promise.resolve({ data: "something something" }),
+    getBaseQuestionnaire: () => Promise.resolve({ data: hardcodedTestQuestionnaire }),
 };

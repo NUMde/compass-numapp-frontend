@@ -9,7 +9,7 @@ import React, { PureComponent } from "react";
 import SplashScreen from "react-native-splash-screen";
 import { StyleSheet, View, StatusBar, LogBox, Platform } from "react-native";
 
-import config from "./src/config/configProvider";
+import * as config from "./src/config/configProvider";
 
 import reduxStore from "./src/store";
 import createAppNavigator from "./src/navigation/appNavigator";
