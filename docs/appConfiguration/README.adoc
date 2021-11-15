@@ -177,3 +177,11 @@ Before a questionnaire-response can be sent to the backend it must be encrypted.
 IMPORTANT: There must always be a code available. The application will try to access it when sending out a questionnaire-response
 
 TIP: A RSA-Key-Size of at least **2048B** is recommended
+
+== Kiosk mode
+The frontend client comes with a build-in kiosk mode. This means that the app can be set up in a way that it basically provides it own mock-backend to simulate a basic workflow within the app. The purpose is to demonstrate the capabilites of the NUM-App to new audiences.
+
+To activate the kiosk mode, open up the file **`link:../../../../tree/main/src/config/kioskApiConfig.js[kioskApiConfig.js]`** and set the value `kioskModeIsActive` to `true`.
+The app will then accept the credentials of the predefined user (also found in **`link:../../../../tree/main/src/config/kioskApiConfig.js[kioskApiConfig.js]`**).
+
+A working APK (incl. a matching qr-code) can be found under **`link:../../../../tree/main/DEMO%20APK[DEMO APK]`**.

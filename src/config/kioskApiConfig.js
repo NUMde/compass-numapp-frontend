@@ -9,7 +9,8 @@ import hardcodedTestQuestionnaire from "../assets/files/questionnaire"; // the p
  constants
 ***********************************************************************************************/
 
-const kioskModeIsActive = true;
+// this triggers the kiosk mode.
+const kioskModeIsActive = false;
 
 // default user data
 const defaultMockUserData = {
@@ -37,7 +38,7 @@ methods
 ***********************************************************************************************/
 
 /**
- * initializes the kiosk mode data
+ * initializes the kiosk mode data - this happens in App.jsx.
  */
 const initKioskMode = async () => {
     
