@@ -151,7 +151,7 @@ To update name and identifier proceed as follows:
 === Android
 The default *Package Name* for the Android Build is:
 ....
-de.num.compass.android
+de.num.compass.demo.android
 ....
 
 The default *App Name* for the Android Build is:
@@ -171,7 +171,7 @@ To change those values follow these instructions:
 </resources>
 ....
 --
-.. Find and replace any occurrence of the string `de.num.compass.android` with your new preferred package name. Include every file of the Compass project in this query - the string will occur a few times.
+.. Find and replace any occurrence of the string `de.num.compass.demo.android` with your new preferred package name. Include every file of the Compass project in this query - the string will occur a few times.
 
 === iOS
 The default *Bundle Identifier* for the iOS Build is:

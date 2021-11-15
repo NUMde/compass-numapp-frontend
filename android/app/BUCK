@@ -45,12 +45,12 @@ android_library(
 
 android_build_config(
     name = "build_config",
-    package = "de.num.compass.android",
+    package = "de.num.compass.demo.android",
 )
 
 android_resource(
     name = "res",
-    package = "de.num.compass.android",
+    package = "de.num.compass.demo.android",
     res = "src/main/res",
 )
 

@@ -7,14 +7,14 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "de.num.compass.android",
+        "mobilesdk_app_id": "de.num.compass.demo.android",
         "android_client_info": {
-          "package_name": "de.num.compass.android"
+          "package_name": "de.num.compass.demo.android"
         }
       },
       "oauth_client": [
         {
-          "client_id": "de.num.compass.android",
+          "client_id": "de.num.compass.demo.android",
           "client_type": 3
         }
       ],

@@ -131,23 +131,23 @@ const conf = {
 
   /** local storage identifier:
    * persist the questionnaireItemMap */
-  localStorageMap: "@COMPASS_STORE:persisted_survey",
+  localStorageMap: "@COMPASS_DEMO_STORE:persisted_survey",
 
   /** local storage identifier:
    * persists the questionnaireItemMap */
-  localStorageList: "@COMPASS_STORE:persisted_survey_list",
+  localStorageList: "@COMPASS_DEMO_STORE:persisted_survey_list",
 
   /** local storage identifier:
    * the subject-id of the user last logged in */
-  lastSubjectId: "@COMPASS_STORE:last_active_user",
+  lastSubjectId: "@COMPASS_DEMO_STORE:last_active_user",
 
   /** local storage identifier:
    * the id of the last active questionnaire of the last active user */
-  lastQuestionnaireId: "@COMPASS_STORE:last_questionnaire_id",
+  lastQuestionnaireId: "@COMPASS_DEMO_STORE:last_questionnaire_id",
 
   /** local storage identifier:
    * persists all relevant information about the notification-service */
-  FCMToken: "@COMPASS_STORE:fcm_token",
+  FCMToken: "@COMPASS_DEMO_STORE:fcm_token",
 
   // push notification
   /*-----------------------------------------------------------------------------------*/

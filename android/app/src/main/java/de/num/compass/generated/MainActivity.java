@@ -1,4 +1,4 @@
-package de.num.compass.android;
+package de.num.compass.demo.android;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

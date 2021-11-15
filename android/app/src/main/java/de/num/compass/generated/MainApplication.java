@@ -1,4 +1,4 @@
-package de.num.compass.android;
+package de.num.compass.demo.android;
 
 import android.app.Application;
 

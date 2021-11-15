@@ -456,7 +456,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = de.num.compass.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = de.num.compass.demo.ios;
 				PRODUCT_NAME = Compass;
 				PROVISIONING_PROFILE_SPECIFIER = "Compass Development";
 				SWIFT_OBJC_BRIDGING_HEADER = "Compass-Bridging-Header.h";
@@ -485,7 +485,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = de.num.compass.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = de.num.compass.demo.ios;
 				PRODUCT_NAME = Compass;
 				PROVISIONING_PROFILE_SPECIFIER = Compass;
 				SWIFT_OBJC_BRIDGING_HEADER = "Compass-Bridging-Header.h";
