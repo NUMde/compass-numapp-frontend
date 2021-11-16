@@ -31,11 +31,13 @@ jobs:
     - name: install npm
       run: npm install -g npm@latest
     - name: install node dependencies
-      run: npm ci
+      run: cd compass-numapp-template && npm ci
       env:
         CI: true
+    - name: create config files
+      run: cd compass-numapp-template/src/config && cp appConfig.sample.js appConfig.js && cp textConfig.sample.js textConfig.js && cp theme.sample.js theme.js
     - name: run all tests
-      run: npm test
+      run: cd compass-numapp-template && npm test
   Run_eslint:
     if: ${{ github.event_name == 'pull_request' }}
     runs-on: ubuntu-latest
@@ -61,11 +63,13 @@ jobs:
     - name: install npm
       run: npm install -g npm@latest
     - name: install node dependencies
-      run: npm ci
+      run: cd compass-numapp-template && npm ci
       env:
         CI: true
+    - name: create config files
+      run: cd compass-numapp-template/src/config && cp appConfig.sample.js appConfig.js && cp textConfig.sample.js textConfig.js && cp theme.sample.js theme.js
     - name: save code linting report
-      run: npm run lint:report
+      run: cd compass-numapp-template && npm run lint:report
       continue-on-error: true
     - name: annotate code linting results
       uses: ataylorme/eslint-annotate-action@1.2.0
