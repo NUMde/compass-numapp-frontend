@@ -6,7 +6,6 @@ imports
 
 import React from 'react';
 import { renderWithRedux } from '../__utils__/render';
-import createAppNavigator from '../src/navigation/appNavigator';
 
 import App from '../App';
 
@@ -18,12 +17,7 @@ describe('APP START AND RENDERING:', () => {
   /**
    * creates an instance of the app with working navigational properties
    */
-  const createAppTree = () => {
-    // creates the regular appNavigator
-    const Navigator = createAppNavigator();
-
-    return renderWithRedux(<App />);
-  };
+  const createAppTree = () => renderWithRedux(<App />);
 
   // simple render test
   test('<App /> can be created and rendered', () => {

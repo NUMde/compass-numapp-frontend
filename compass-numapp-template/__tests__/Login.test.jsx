@@ -9,14 +9,13 @@ import { fireEvent, waitFor } from '@testing-library/react-native';
 import { renderWithRedux } from '../__utils__/render';
 
 import App from '../App';
-import Spinner from '../src/components/spinner/spinner';
 import LoginScreen from '../src/screens/login/loginScreen';
 import LandingScreen from '../src/screens/login/landingScreen';
-import createAppNavigator from '../src/navigation/appNavigator';
 import CheckInScreen from '../src/screens/checkIn/checkInScreen';
 import LoginContainer from '../src/screens/login/loginContainer';
 
-import config from '../src/config';
+import { appConfig } from '../src/config';
+import { name as appName } from '../appName.json';
 
 /***********************************************************************************************
 tests
@@ -112,7 +111,7 @@ describe('LOGIN Handling:', () => {
     fireEvent.press(loginButton);
 
     // if the automateQrLogin-option is set
-    if (config.appConfig.automateQrLogin) {
+    if (appConfig.automateQrLogin) {
       // checks if the checkin screen was already loaded
       await waitFor(
         () => (instance = tree.UNSAFE_getByType(CheckInScreen).instance),
@@ -142,7 +141,7 @@ describe('LOGIN Handling:', () => {
         .then(() =>
           waitFor(() =>
             instance.props.scanSuccess({
-              data: '{"AppIdentifier":"COMPASS","SubjectId":"7bfc3b07-a97d-4e11-8ac6-b970c1745476"}',
+              data: `{"AppIdentifier":"${appName}","SubjectId":"7bfc3b07-a97d-4e11-8ac6-b970c1745476"}`,
             }),
           )
             // waits till the user was navigated to the checkin screen

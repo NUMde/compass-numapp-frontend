@@ -2,9 +2,9 @@
 
 import { AppRegistry } from 'react-native';
 import messaging from '@react-native-firebase/messaging';
+import { name as appName } from './appName.json';
 import App from './App';
 import { appConfig } from './src/config';
-import { name as appName } from './app.json';
 
 // Register background handler
 if (appConfig.connectToFCM) {

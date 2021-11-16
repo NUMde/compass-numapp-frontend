@@ -5,7 +5,7 @@ imports
 ***********************************************************************************************/
 
 import * as forge from 'node-forge';
-import config from '../src/config/';
+import { appConfig } from '../src/config';
 
 import encryption from '../src/services/encryption/encryption';
 
@@ -15,7 +15,7 @@ tests
 
 describe('ENCRYPTION:', () => {
   // retrieves the test-pem-string from the appConfig
-  const pemString = config.appConfig.defaultRecipientCertificatePemString;
+  const pemString = appConfig.defaultRecipientCertificatePemString;
 
   // tests if the string is set in the appConfig (as we need that one)
   test('Test PEM-String is available through configProvider', () => {

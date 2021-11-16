@@ -7,7 +7,7 @@
 // TO CUSTOMIZE THE APPLICATION ADJUST THE VALUES BELOW
 
 import { Dimensions } from 'react-native';
-import { name as appName } from '../../app.json';
+import { name as appName } from '../../appName.json';
 
 /***********************************************************************************************
 constants
