@@ -30,7 +30,7 @@ const defaultMockUserData = {
 // module values
 /*-----------------------------------------------------------------------------------*/
 
-// will hold the current values for the ki
+// will hold the current values for the kiosk mode
 let kioskModeData = {};
 
 /***********************************************************************************************
