@@ -156,7 +156,7 @@ de.num.compass.demo.android
 
 The default *App Name* for the Android Build is:
 ....
-Compass (Android)
+Compass DEMO (Android)
 ....
 
 To change those values follow these instructions:
@@ -180,7 +180,7 @@ de.num.compass.ios
 ....
 The default *App Name* for the iOS Build is:
 ....
-Compass (iOS)
+Compass DEMO (iOS)
 ....
 
 You can update the iOS App Name and Bundle Identifier by simply open the *`link:../../../../tree/main/ios/Compass.xcworkspace[.xcworkspace]`* file in XCode. The _General_ tab will provide inputs for both values: +

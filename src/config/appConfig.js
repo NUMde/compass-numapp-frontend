@@ -64,7 +64,7 @@ const conf = {
 
   /** dev-option:
    * skips the QR login after 500ms */
-  automateQrLogin: __DEV__ && true,
+  automateQrLogin: __DEV__ && false,
 
   /** dev-option:
    * subject-id for automated login */
