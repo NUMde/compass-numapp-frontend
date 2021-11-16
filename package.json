@@ -1,74 +1,26 @@
 {
-  "scripts": {
-    "start": "react-native start",
-    "android": "react-native run-android",
-    "android:clean": "cd android && ./gradlew clean && cd ..",
-    "ios": "react-native run-ios",
-    "build_apk": "cd android && ./gradlew assembleRelease && cd ..",
-    "build_aab": "cd android && ./gradlew bundleRelease && cd ..",
-    "test:watch": "jest --watchAll --verbose",
-    "test": "jest --verbose",
-    "coverage": "jest --collectCoverage",
-    "postinstall": "patch-package",
-    "debug": "open 'rndebugger://set-debugger-loc?host=localhost&port=19001'",
-    "clean_install_macos": "watchman watch-del-all && rm -rf node_modules && npm i --legacy-peer-deps && cd ios && rm -rf Pods && rm -rf Podfile.lock && pod install && cd ..",
-    "clean_install_windows": "npm i rimraf --no-save && npx rimraf node_modules && npm i --legacy-peer-deps",
-    "lint": "eslint  . --ext .js,.jsx",
-    "lint:fix": "eslint  . --ext .js,.jsx --fix",
-    "lint:report": "eslint . --ext .js,.jsx --output-file eslint_report.json --format json ."
-  },
-  "dependencies": {
-    "@react-native-community/datetimepicker": "^3.5.2",
-    "@react-native-community/slider": "^4.1.9",
-    "@react-native-firebase/app": "^12.9.2",
-    "@react-native-firebase/messaging": "^12.9.2",
-    "@react-native-picker/picker": "^2.1.0",
-    "@react-navigation/native": "^6.0.4",
-    "@react-navigation/stack": "^6.0.9",
-    "axios": ">=0.23.0",
-    "buffer": "^6.0.3",
-    "node-forge": "^0.10.0",
-    "react": "^17.0.2",
-    "react-native": "0.66.0",
-    "react-native-camera": "^4.2.1",
-    "react-native-elements": "^3.4.2",
-    "react-native-encrypted-storage": "^4.0.2",
-    "react-native-gesture-handler": "^1.10.3",
-    "react-native-modal": "^13.0.0",
-    "react-native-permissions": "^3.1.0",
-    "react-native-qrcode-scanner": "^1.5.4",
-    "react-native-safe-area-context": "^3.3.2",
-    "react-native-screens": "^3.8.0",
-    "react-native-splash-screen": "^3.2.0",
-    "react-native-vector-icons": "^8.1.0",
-    "react-native-webview": ">=11.14.1",
-    "react-redux": "^7.2.5",
-    "redux": "^4.1.1",
-    "redux-devtools-extension": "^2.13.9",
-    "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.15.8",
-    "@react-native-community/eslint-config": "^3.0.1",
-    "@testing-library/react-native": "^8.0.0",
-    "babel-jest": "26.6.3",
-    "eslint": "^7.32.0",
-    "eslint-config-airbnb": "^18.2.1",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-import": "^2.25.2",
-    "eslint-plugin-jest": "^25.2.2",
-    "eslint-plugin-jsx-a11y": "^6.4.1",
-    "jest": "^26.6.3",
-    "jest-transform-stub": "^2.0.0",
-    "jsdom": "18.0.0",
-    "metro-react-native-babel-preset": "^0.66.2",
-    "patch-package": "^6.4.7",
-    "react-test-renderer": "17.0.2"
-  },
-  "private": true,
-  "engines": {
-    "node": ">=14.0.0",
-    "npm": ">=7.0.0"
-  }
+    "name": "compass-numapp-template",
+    "version": "1.0.0",
+    "description": "React Native Template for the NUM-COMPASS native app",
+    "keywords": [
+        "react native",
+        "NUM",
+        "NUM-COMPASS",
+        "FHIR"
+    ],
+    "homepage": "https://num-compass.science",
+    "repository": "git@github.com:NUMde/compass-numapp-frontend.git",
+    "contributors": [
+        {
+            "name": "Marcel Bastian",
+            "email": "marcel.bastian@unimedizin-mainz.de"
+        },
+        {
+            "name": "Alexander Gottschall"
+        },
+        {
+            "name": "Mahsa Vaezieraghi"
+        }
+    ],
+    "license": "Apache-2.0"
 }
