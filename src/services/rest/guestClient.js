@@ -20,7 +20,7 @@ client
  */
 const login = async (subjectId) => 
   kioskMode.active ?
-  kioskMode.login() :
+  await kioskMode.login() :
   axios.get(config.appConfig.endpoints.login + subjectId);
 
 /***********************************************************************************************

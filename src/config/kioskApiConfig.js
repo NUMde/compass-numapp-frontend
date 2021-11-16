@@ -10,7 +10,7 @@ import hardcodedTestQuestionnaire from "../assets/files/questionnaire"; // the p
 ***********************************************************************************************/
 
 // this triggers the kiosk mode.
-const kioskModeIsActive = false;
+const kioskModeIsActive = true;
 
 // default user data
 const defaultMockUserData = {
@@ -130,14 +130,13 @@ const sendReport = async () => {
 /***********************************************************************************************
 export
 ***********************************************************************************************/
-
 export default {
     sendReport,
     initKioskMode,
     sendQuestionnaire,
     active: kioskModeIsActive,
-    login: () => Promise.resolve({ data: generateMockUserData() }),
-    getUserUpdate: () => Promise.resolve({ data: generateMockUserData() }),
-    updateDeviceToken: () => Promise.resolve({ data: "something something" }),
-    getBaseQuestionnaire: () => Promise.resolve({ data: hardcodedTestQuestionnaire }),
+    login: () => new Promise((res) => setTimeout(() => res({ data: generateMockUserData() }), 500)),
+    getUserUpdate: () => new Promise((res) => setTimeout(() => res({ data: generateMockUserData() }), 900)),
+    updateDeviceToken: () => new Promise((res) => setTimeout(() => res({ data: hardcodedTestQuestionnaire }), 400)),
+    getBaseQuestionnaire: () => new Promise((res) => setTimeout(() => res({ data: hardcodedTestQuestionnaire }), 900)),
 };
