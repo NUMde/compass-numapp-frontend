@@ -169,7 +169,7 @@ localStyle = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     height: '100%',
-    backgroundColor: theme.values.defaultBackgroundColor,
+    backgroundColor: theme.values.BackgroundColor,
   },
 
   bottom: {
@@ -201,7 +201,7 @@ localStyle = StyleSheet.create({
     width: '100%',
     borderBottomColor: theme.colors.accent3,
     borderBottomWidth: 1,
-    backgroundColor: theme.values.defaultListLinkBackgroundColor,
+    backgroundColor: theme.values.ListLinkBackgroundColor,
   },
 
   subTitle: {

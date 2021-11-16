@@ -142,7 +142,7 @@ const { width } = Dimensions.get('window');
 localStyle = StyleSheet.create({
   wrapper: {
     height: '100%',
-    backgroundColor: theme.values.defaultBackgroundColor,
+    backgroundColor: theme.values.BackgroundColor,
   },
 
   flexi: {

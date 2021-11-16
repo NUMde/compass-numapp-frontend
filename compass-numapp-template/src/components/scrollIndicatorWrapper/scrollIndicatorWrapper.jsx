@@ -160,7 +160,7 @@ export default class ScrollIndicatorWrapper extends Component {
               <Icon
                 name="chevron-down"
                 type="font-awesome"
-                color={theme.values.defaultScrollIndicatorIconColor}
+                color={theme.values.ScrollIndicatorIconColor}
                 size={15}
               />
             </TouchableOpacity>
@@ -195,7 +195,7 @@ localStyle = StyleSheet.create({
   },
 
   indicator: {
-    backgroundColor: theme.values.defaultScrollIndicatorBackgroundColor,
+    backgroundColor: theme.values.ScrollIndicatorBackgroundColor,
     width: appConfig.scaleUiFkt(75),
     height: appConfig.scaleUiFkt(75),
     position: 'absolute',

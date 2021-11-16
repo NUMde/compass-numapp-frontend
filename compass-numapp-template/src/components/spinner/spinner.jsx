@@ -31,7 +31,7 @@ class Spinner extends PureComponent {
         <View style={localStyle.container}>
           <View style={localStyle.background}>
             <ActivityIndicator
-              color={theme.values.defaultSpinnerColor}
+              color={theme.values.SpinnerColor}
               size="large"
               style={localStyle.activityIndicator}
             />

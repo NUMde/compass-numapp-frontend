@@ -197,7 +197,7 @@ localStyle = StyleSheet.create({
     ...theme.fonts.title,
     textAlign: 'center',
     alignSelf: 'center',
-    color: theme.values.defaultTitleTextColor,
+    color: theme.values.TitleTextColor,
   },
 
   welcomeTextRed: {
@@ -207,7 +207,7 @@ localStyle = StyleSheet.create({
   infoText: {
     marginTop: appConfig.scaleUiFkt(20),
     textAlign: 'center',
-    color: theme.values.defaultParagraphTextColor,
+    color: theme.values.ParagraphTextColor,
     alignSelf: 'center',
     ...theme.fonts.body,
   },

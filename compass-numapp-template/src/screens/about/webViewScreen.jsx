@@ -62,7 +62,7 @@ localStyle = StyleSheet.create({
   wrapper: {
     height: '100%',
     flexDirection: 'column',
-    backgroundColor: theme.values.defaultBackgroundColor,
+    backgroundColor: theme.values.BackgroundColor,
   },
 
   flexi: {

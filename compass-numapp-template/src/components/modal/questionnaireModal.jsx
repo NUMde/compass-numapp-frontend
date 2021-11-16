@@ -1262,7 +1262,7 @@ localStyle = StyleSheet.create({
   },
 
   content: {
-    backgroundColor: theme.values.defaultModalContentBackgroundColor,
+    backgroundColor: theme.values.ModalContentBackgroundColor,
     paddingLeft: 20,
     paddingRight: 20,
     height: 'auto',
@@ -1275,7 +1275,7 @@ localStyle = StyleSheet.create({
     marginTop: 5,
     marginBottom: 5,
     ...theme.fonts.header2,
-    color: theme.values.defaultModalTitleColor,
+    color: theme.values.ModalTitleColor,
   },
 
   modalViewWrapper: {
@@ -1295,15 +1295,15 @@ localStyle = StyleSheet.create({
     margin: 0,
     padding: 0,
     ...theme.fonts.label,
-    color: theme.values.defaultModalContentTextColor,
+    color: theme.values.ModalContentTextColor,
   },
 
   bottomBarWrapper: {
-    backgroundColor: theme.values.defaultModalBottomBarBackgroundColor,
+    backgroundColor: theme.values.ModalBottomBarBackgroundColor,
   },
 
   bottomBarWrapperWithShadow: {
-    backgroundColor: theme.values.defaultModalBottomBarBackgroundColor,
+    backgroundColor: theme.values.ModalBottomBarBackgroundColor,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.8,
@@ -1322,7 +1322,7 @@ localStyle = StyleSheet.create({
     fontSize: 24,
     marginBottom: 5,
     ...theme.fonts.title,
-    color: theme.values.defaultModalTitleColor,
+    color: theme.values.ModalTitleColor,
   },
 
   modalInput: {
@@ -1344,7 +1344,7 @@ localStyle = StyleSheet.create({
 
   separator: {
     height: 1,
-    backgroundColor: theme.values.defaultSeparatorColor,
+    backgroundColor: theme.values.SeparatorColor,
   },
 
   sliderTextMax: {

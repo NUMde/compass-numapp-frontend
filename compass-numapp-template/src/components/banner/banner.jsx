@@ -75,7 +75,7 @@ class Banner extends PureComponent {
                     size={appConfig.scaleUiFkt(28)}
                     name="refresh"
                     type="material-community"
-                    color={theme.values.defaultBannerButtonColor}
+                    color={theme.values.BannerButtonColor}
                   />
                 }
                 accessibilityLabel={strings.accessibility.refresh}
@@ -96,7 +96,7 @@ class Banner extends PureComponent {
                     size={appConfig.scaleUiFkt(28)}
                     name="arrow-left"
                     type="material-community"
-                    color={theme.values.defaultBannerButtonColor}
+                    color={theme.values.BannerButtonColor}
                   />
                 }
                 accessibilityLabel={strings.accessibility.back}
@@ -133,7 +133,7 @@ class Banner extends PureComponent {
                     size={appConfig.scaleUiFkt(28)}
                     name="menu"
                     type="material-community"
-                    color={theme.values.defaultBannerButtonColor}
+                    color={theme.values.BannerButtonColor}
                   />
                 }
                 accessibilityLabel={strings.accessibility.menu}

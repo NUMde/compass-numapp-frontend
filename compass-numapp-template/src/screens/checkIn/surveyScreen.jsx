@@ -68,18 +68,18 @@ class SurveyScreen extends Component {
     if (categoryState.done) {
       return {
         name: 'check',
-        color: theme.values.defaultSurveyIconCompletedColor,
+        color: theme.values.SurveyIconCompletedColor,
       };
     }
     if (categoryState.started) {
       return {
         name: 'dots-horizontal',
-        color: theme.values.defaultSurveyIconTouchedColor,
+        color: theme.values.SurveyIconTouchedColor,
       };
     }
     return {
       name: 'pencil-outline',
-      color: theme.values.defaultSurveyIconUntouchedColor,
+      color: theme.values.SurveyIconUntouchedColor,
     };
   };
 

@@ -196,30 +196,30 @@ localStyle = StyleSheet.create({
 
   title: {
     ...theme.fonts.title2,
-    color: theme.values.defaultCheckInListViewTitleColor,
+    color: theme.values.CheckInListViewTitleColor,
   },
 
   subTitle: {
-    color: theme.values.defaultCheckInListViewSubTitleColor,
+    color: theme.values.CheckInListViewSubTitleColor,
     ...theme.fonts.body,
   },
 
   containerUntouched: {
-    borderBottomColor: theme.values.defaultContainerUntouchedBorderColor,
-    borderTopColor: theme.values.defaultContainerUntouchedBorderColor,
-    backgroundColor: theme.values.defaultContainerUntouchedBackgroundColor,
+    borderBottomColor: theme.values.ContainerUntouchedBorderColor,
+    borderTopColor: theme.values.ContainerUntouchedBorderColor,
+    backgroundColor: theme.values.ContainerUntouchedBackgroundColor,
   },
 
   containerTouched: {
-    borderBottomColor: theme.values.defaultContainerTouchedBorderColor,
-    borderTopColor: theme.values.defaultContainerTouchedBorderColor,
-    backgroundColor: theme.values.defaultContainerTouchedBackgroundColor,
+    borderBottomColor: theme.values.ContainerTouchedBorderColor,
+    borderTopColor: theme.values.ContainerTouchedBorderColor,
+    backgroundColor: theme.values.ContainerTouchedBackgroundColor,
   },
 
   containerCompleted: {
-    borderBottomColor: theme.values.defaultContainerCompletedBorderColor,
-    borderTopColor: theme.values.defaultContainerCompletedBorderColor,
-    backgroundColor: theme.values.defaultContainerCompletedBackgroundColor,
+    borderBottomColor: theme.values.ContainerCompletedBorderColor,
+    borderTopColor: theme.values.ContainerCompletedBorderColor,
+    backgroundColor: theme.values.ContainerCompletedBackgroundColor,
   },
 });
 

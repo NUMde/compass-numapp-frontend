@@ -59,7 +59,7 @@ class AboutListLink extends PureComponent {
           {...{
             type: webView.iconType,
             name: webView.iconTitle,
-            color: theme.values.defaultListLinkIconColor,
+            color: theme.values.ListLinkIconColor,
             reverse: true,
             size: 12,
           }}
@@ -78,7 +78,7 @@ localStyle = StyleSheet.create({
     width: '100%',
     borderBottomColor: theme.colors.accent3,
     borderBottomWidth: 1,
-    backgroundColor: theme.values.defaultListLinkBackgroundColor,
+    backgroundColor: theme.values.ListLinkBackgroundColor,
   },
 
   subTitle: {

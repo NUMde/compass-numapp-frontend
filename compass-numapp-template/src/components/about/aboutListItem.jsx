@@ -63,7 +63,7 @@ class AboutListItem extends PureComponent {
           {...{
             type: modalLink.iconType,
             name: modalLink.iconTitle,
-            color: theme.values.defaultListItemIconColor,
+            color: theme.values.ListItemIconColor,
             reverse: true,
             size: 12,
           }}
@@ -82,7 +82,7 @@ localStyle = StyleSheet.create({
     width: '100%',
     borderBottomColor: theme.colors.accent3,
     borderBottomWidth: 1,
-    backgroundColor: theme.values.defaultListItemBackgroundColor,
+    backgroundColor: theme.values.ListItemBackgroundColor,
   },
 
   title: {

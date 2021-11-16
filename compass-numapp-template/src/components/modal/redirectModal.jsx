@@ -16,7 +16,7 @@ import {
   ScrollView,
 } from 'react-native';
 
-import { appConfig, theme, strings } from '../../config';
+import { theme, strings } from '../../config';
 
 let localStyle;
 
@@ -191,19 +191,19 @@ localStyle = StyleSheet.create({
     marginLeft: 0,
     marginRight: 0,
     marginBottom: 0,
-    borderRadius: theme.values.defaultModalBorderRadius,
+    borderRadius: theme.values.ModalBorderRadius,
     borderColor: theme.colors.white,
     marginTop: 80,
   },
 
   content: {
-    backgroundColor: theme.values.defaultModalContentBackgroundColor,
+    backgroundColor: theme.values.ModalContentBackgroundColor,
     paddingLeft: 20,
     paddingRight: 20,
     height: 'auto',
     maxHeight: '90%',
-    borderTopLeftRadius: theme.values.defaultModalBorderRadius,
-    borderTopRightRadius: theme.values.defaultModalBorderRadius,
+    borderTopLeftRadius: theme.values.ModalBorderRadius,
+    borderTopRightRadius: theme.values.ModalBorderRadius,
     borderColor: theme.colors.white,
   },
 
@@ -217,14 +217,14 @@ localStyle = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: theme.values.defaultModalBottomBarBackgroundColor,
+    backgroundColor: theme.values.ModalBottomBarBackgroundColor,
   },
 
   modalTitle: {
     fontSize: 24,
     marginBottom: 5,
     ...theme.fonts.title,
-    color: theme.values.defaultModalTitleColor,
+    color: theme.values.ModalTitleColor,
   },
 
   modalTitleWrapper: {
@@ -241,12 +241,12 @@ localStyle = StyleSheet.create({
 
   welcomeText: {
     ...theme.fonts.body,
-    color: theme.values.defaultModalContentTextColor,
+    color: theme.values.ModalContentTextColor,
   },
 
   separator: {
     height: 1,
-    backgroundColor: theme.values.defaultModalSeparatorBackgroundColor,
+    backgroundColor: theme.values.ModalSeparatorBackgroundColor,
   },
 });
 

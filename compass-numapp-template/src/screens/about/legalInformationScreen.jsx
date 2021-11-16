@@ -70,7 +70,7 @@ localStyle = StyleSheet.create({
   wrapper: {
     height: '100%',
     flexDirection: 'column',
-    backgroundColor: theme.values.defaultBackgroundColor,
+    backgroundColor: theme.values.BackgroundColor,
   },
 
   flexi: {
@@ -81,7 +81,7 @@ localStyle = StyleSheet.create({
     ...theme.fonts.title,
     textAlign: 'center',
     alignSelf: 'center',
-    color: theme.values.defaultTitleTextColor,
+    color: theme.values.TitleTextColor,
   },
 
   top: {
