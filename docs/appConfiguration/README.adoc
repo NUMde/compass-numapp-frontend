@@ -22,16 +22,9 @@ More on these later. Lets set up the custom configuration first.
 
 == Setting up the Custom Configuration File
 
-The options provided by this file, as well as other aspects of the react-native client can be adjusted to your needs. The project comes with a set of configuration files that allow for quick and individual changes. The file responsible for the currently used default values is **`link:../../../../tree/main/src/config/appConfig.js[src/config/appConfig.js]`**
+Copy the file **`link:../../compass-numapp-template/src/config/appConfig.sample.js[src/config/appConfig.sample.js]`** and rename it to 'appConfig.js'.
 
-WARNING: However, it is not recommended to alter this file directly, as it will aggravate the process of merging future updates into your own forked project. To ensure the updatability of your repository, another file is provided: **`link:../../../../tree/main/src/CUSTOMIZATION/customAppConfig.js[src/CUSTOMIZATION/customAppConfig.js]`**. You can copy the content of the file **`link:../../../../tree/main/src/config/appConfig.js[appConfig.js]`** into **`link:../../../../tree/main/src/CUSTOMIZATION/customAppConfig.js[customAppConfig.js]`**. There you can make any change you may see fit. Both files contain explanations on how and where to copy the values.
-
-.Copying the default configuration to generate a custom app configuration
-[caption="Example: "]
-==========================
-image:./images/copyingConfig.gif[auto, auto]
-==========================
-IMPORTANT: Please make sure to copy the whole content below the marked point, and not just parts of it.
+The options provided by this file, as well as other aspects of the react-native client can be adjusted to your needs. 
 
 == Development Options
 These options are only meant for the development mode und will not carry over into production mode.

@@ -4,11 +4,12 @@
 :caution-caption: :fire:
 :warning-caption: :warning:
 
+= NUM-App (React Native Client - iOS & Android)
+
 image:https://img.shields.io/badge/license-Apache2-green?style=flat-square[license: Apache2.0,link=https://opensource.org/licenses/Apache-2.0]
 image:https://img.shields.io/lgtm/grade/javascript/g/NUMde/compass-numapp-frontend.svg?logo=lgtm&logoWidth=18&style=flat-square[Language Grade: JavaScript,link=https://lgtm.com/projects/g/NUMde/compass-numapp-frontend/context:javascript]
 image:https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square[PRs Welcome,link=https://makeapullrequest.com]
 
-= NUM-App (React Native Client - iOS & Android)
 
 https://github.com/NUMde/compass-numapp[Main Repository] | link:./docs[Frontend Documentation]
 

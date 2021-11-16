@@ -31,7 +31,6 @@ compass
 │   ├── navigation
 │   ├── screens
 │   ├── services
-│   ├── theme
 │   ├── typedef.js
 |   └── store.js
 └── App.js
@@ -73,13 +72,8 @@ This contains all react components that are not screens. Each component has a di
 Holds various configurations files. For more information see: + 
 *`link:..//appConfiguration[-> App Configuration]`* + 
 *`link:..//content[-> Content Configuration]`* + 
-
-** */CUSTOMIZATION* + 
-This contains the customization files that can be used to alter the style, content and some app options. 
-For more information see: + 
-*`link:..//appConfiguration[-> App Configuration]`* + 
-*`link:..//content[-> Content Configuration]`* + 
 *`link:..//theming[-> Theme Customization]`* + 
+
 
 ** */navigation* + 
 Provides the App-Navigator, basically the definition of which screen is provided under specific circumstances.
@@ -119,9 +113,6 @@ The module handling the internal storing of session data
 Used to handle the creation of a questionnaire response and to check the completion of a filled out questionnaire
 *** */rest* + 
 Handles all outgoing calls
-
-** */theme* + 
-Holds the theme for the application, including spacing, colors, and typography. To updated it follow the steps provided by the *`link:..//theming[Theming Documentation]`*.
 
 ** *store.js*
 Defines the appReducer by combining all state reducers.
