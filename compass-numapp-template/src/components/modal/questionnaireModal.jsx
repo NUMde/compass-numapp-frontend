@@ -1012,7 +1012,7 @@ class QuestionnaireModal extends Component {
   createItemView = (items) => {
     // filters the items so that only the ones with an actual title are displayed
     const filteredItems = items.filter(
-      (cat) => cat.text && cat.strings.length !== 0,
+      (cat) => cat.text && cat.text.length !== 0,
     );
 
     // iterates over all filtered questionnaire items
