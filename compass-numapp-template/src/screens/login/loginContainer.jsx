@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 
-import { appConfig, theme, strings } from '../../config';
+import { appConfig } from '../../config';
 import localStorage from '../../services/localStorage/localStorage';
 
 import LoginScreen from './loginScreen';

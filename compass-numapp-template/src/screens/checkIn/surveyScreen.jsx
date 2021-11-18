@@ -8,7 +8,7 @@ import React, { Component } from 'react';
 import { ListItem } from 'react-native-elements';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
-import { appConfig, theme, strings } from '../../config';
+import { theme, strings } from '../../config';
 import Banner from '../../components/banner/banner';
 import QuestionnaireModal from '../../components/modal/questionnaireModal';
 import ScrollIndicatorWrapper from '../../components/scrollIndicatorWrapper/scrollIndicatorWrapper';
