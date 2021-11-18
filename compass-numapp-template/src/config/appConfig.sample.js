@@ -42,7 +42,7 @@ const conf = {
 
   /** dev-option:
    * subject-id for automated login */
-  automateQrLoginSubjectId: `{"AppIdentifier":${appName},"SubjectId":"7bfc3b07-a97d-4e11-8ac6-b970c1745476"}`,
+  automateQrLoginSubjectId: `{"AppIdentifier":"${appName}","SubjectId":"7bfc3b07-a97d-4e11-8ac6-b970c1745476"}`,
 
   /** dev-option:
    * shows a button to erase all data (in the about-menu) - dev-only */
