@@ -79,7 +79,6 @@ class LoginContainer extends Component {
     const { actions } = this.props;
     // gets the last user from the AsyncStore
     const lastSubjectId = await localStorage.loadLastSubjectId();
-
     // logs the user in
     if (lastSubjectId) {
       actions.autoLoginLastUser();

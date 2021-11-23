@@ -124,7 +124,7 @@ const sendReport = async () => {
     await localStorage.persistKioskModeData(JSON.stringify(kioskModeData));
     setTimeout(() => {
         return Promise.resolve(generateMockUserData());
-    }, 0);
+    }, 600);
 };
 
 /***********************************************************************************************

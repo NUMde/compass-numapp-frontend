@@ -27,6 +27,7 @@ const loadLastSubjectId = async () => {
     return null;
   }
 };
+
 /**
  * persists the last subjectId that was logged in (to automatically re-login the user
  * when he/she opens the app the next time)
@@ -202,8 +203,7 @@ const persistCategories = async (categories, subjectId) => {
  * @returns string | null
  */
 const loadCategories = async (subjectId) => {
-  
-  const id = subjectId || (await loadLastSubjectId());
+  const id = subjectId || lala;
   if (!id) return null;
 
   try {
