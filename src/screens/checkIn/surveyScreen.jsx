@@ -10,6 +10,7 @@ import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 
 import config from "../../config/configProvider";
 import Banner from "../../components/banner/banner";
+import localization from "../../services/localization/localization";
 import QuestionnaireModal from "../../components/modal/questionnaireModal";
 import ScrollIndicatorWrapper from "../../components/scrollIndicatorWrapper/scrollIndicatorWrapper";
 
@@ -37,27 +38,27 @@ class SurveyScreen extends Component {
    */
   getAccessibilityHint = (category) => {
     const { questionnaireItemMap } = this.props;
-    let hint = config.text.accessibility.questionnaire.categoryCellHint;
+    let hint = localization.translate('accessibility').questionnaire.categoryCellHint;
     if (
       !questionnaireItemMap[category.linkId].done &&
       questionnaireItemMap[category.linkId].started
     ) {
       return (hint +=
-        config.text.accessibility.questionnaire.category +
-        config.text.accessibility.questionnaire.notFinished);
+        localization.translate('accessibility').questionnaire.category +
+        localization.translate('accessibility').questionnaire.notFinished);
     }
     if (
       !questionnaireItemMap[category.linkId].done &&
       questionnaireItemMap[category.linkId].started
     ) {
       return (hint +=
-        config.text.accessibility.questionnaire.category +
-        config.text.accessibility.questionnaire.notStarted);
+        localization.translate('accessibility').questionnaire.category +
+        localization.translate('accessibility').questionnaire.notStarted);
     }
     if (questionnaireItemMap[category.linkId].done) {
       return (hint +=
-        config.text.accessibility.questionnaire.category +
-        config.text.accessibility.questionnaire.finished);
+        localization.translate('accessibility').questionnaire.category +
+        localization.translate('accessibility').questionnaire.finished);
     }
     return (hint += "");
   };
@@ -102,7 +103,7 @@ class SurveyScreen extends Component {
                 containerStyle={localStyle.listItemContainer}
                 onPress={() => actions.showQuestionnaireModal(index)}
                 accessibilityLabel={category.text}
-                accessibilityRole={config.text.accessibility.types.button}
+                accessibilityRole={localization.translate('accessibility').types.button}
                 accessibilityHint={this.getAccessibilityHint(category)}
               >
                 {/* title */}
@@ -144,7 +145,7 @@ class SurveyScreen extends Component {
     return (
       <View style={{ ...localStyle.flexi, ...localStyle.wrapper }}>
         {/* render the top banner */}
-        <Banner nav={navigation} title={config.text.survey.title} />
+        <Banner nav={navigation} title={localization.translate('survey').title} />
 
         {/* the questionnaire modal */}
         <QuestionnaireModal
@@ -167,10 +168,10 @@ class SurveyScreen extends Component {
               <View style={localStyle.bottom}>
                 {questionnaireItemMap && questionnaireItemMap.done && (
                   <TouchableOpacity
-                    accessibilityLabel={config.text.survey.send}
-                    accessibilityRole={config.text.accessibility.types.button}
+                    accessibilityLabel={localization.translate('survey').send}
+                    accessibilityRole={localization.translate('accessibility').types.button}
                     accessibilityHint={
-                      config.text.accessibility.questionnaire.sendHint
+                      localization.translate('accessibility').questionnaire.sendHint
                     }
                     onPress={() => exportAndUploadQuestionnaireResponse()}
                     style={{
@@ -179,7 +180,7 @@ class SurveyScreen extends Component {
                     }}
                   >
                     <Text style={localStyle.buttonLabel}>
-                      {config.text.survey.send}
+                      {localization.translate('survey').send}
                     </Text>
                   </TouchableOpacity>
                 )}

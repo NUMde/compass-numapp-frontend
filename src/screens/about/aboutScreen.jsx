@@ -7,14 +7,15 @@ imports
 import React, { PureComponent } from "react";
 import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
 
+import config from "../../config/configProvider";
 import { ListItem } from "react-native-elements";
-import RedirectModal from "../../components/modal/redirectModal";
 import Banner from "../../components/banner/banner";
+import kioskMode from "../../config/kioskApiConfig";
+import RedirectModal from "../../components/modal/redirectModal";
 import AboutListItem from "../../components/about/aboutListItem";
 import AboutListLink from "../../components/about/aboutListLink";
+import localization from "../../services/localization/localization";
 import ScrollIndicatorWrapper from "../../components/scrollIndicatorWrapper/scrollIndicatorWrapper";
-import config from "../../config/configProvider";
-import kioskMode from "../../config/kioskApiConfig"
 
 let localStyle;
 
@@ -43,8 +44,8 @@ class AboutScreen extends PureComponent {
         {/* top banner */}
         <Banner
           nav={navigation}
-          title={config.text.about.title}
-          subTitle={config.text.about.subTitle}
+          title={localization.translate('about').title}
+          subTitle={localization.translate('about').subTitle}
           noMenu
         />
 
@@ -71,19 +72,19 @@ class AboutScreen extends PureComponent {
                       {/* title & subtitle of the listItem - the strings a identified by the webView*/}
                       <ListItem.Content>
                         <ListItem.Title style={localStyle.title}>
-                          {config.text.about.legal.title}
+                          {localization.translate('about').legal.title}
                         </ListItem.Title>
 
                         <ListItem.Subtitle style={localStyle.subTitle}>
-                          {config.text.about.legal.subTitle}
+                          {localization.translate('about').legal.subTitle}
                         </ListItem.Subtitle>
                       </ListItem.Content>
 
                       {/* the icon on the right-hand-side */}
                       <ListItem.Chevron
                         {...{
-                          type: config.text.about.legal.iconType,
-                          name: config.text.about.legal.iconTitle,
+                          type: localization.translate('about').legal.iconType,
+                          name: localization.translate('about').legal.iconTitle,
                           color: config.theme.values.legalListLinkIconColor,
                           reverse: true,
                           size: 12,
@@ -94,8 +95,8 @@ class AboutScreen extends PureComponent {
                     </ListItem>
                   )}
 
-                  {/* iterates over all items in config.text.wevViews */}
-                  {config.text.webViews.map((webView) => (
+                  {/* iterates over all items in localization.translate('wevViews') */}
+                  {localization.translate('webViews').map((webView) => (
                     // navigates to the webview screen
                     <AboutListLink
                       key={webView.title}
@@ -106,8 +107,8 @@ class AboutScreen extends PureComponent {
                     />
                   ))}
 
-                  {/* iterates over all items in config.text.modalLinks */}
-                  {config.text.modalLinks.map((_modalLink) => (
+                  {/* iterates over all items in localization.translate('modalLinks') */}
+                  {localization.translate('modalLinks').map((_modalLink) => (
                     // navigates to the webview screen
                     <AboutListItem
                       actions={actions}
@@ -124,12 +125,12 @@ class AboutScreen extends PureComponent {
                     <TouchableOpacity
                       style={localStyle.button}
                       onPress={logout}
-                      accessibilityLabel={config.text.about.logout}
-                      accessibilityRole={config.text.accessibility.types.button}
-                      accessibilityHint={config.text.accessibility.logoutHint}
+                      accessibilityLabel={localization.translate('about').logout}
+                      accessibilityRole={localization.translate('accessibility').types.button}
+                      accessibilityHint={localization.translate('accessibility').logoutHint}
                     >
                       <Text style={localStyle.buttonLabel}>
-                        {config.text.about.logout}
+                        {localization.translate('about').logout}
                       </Text>
                     </TouchableOpacity>
                   )}
@@ -139,12 +140,12 @@ class AboutScreen extends PureComponent {
                     <TouchableOpacity
                       style={localStyle.buttonAlert}
                       onPress={clearAll}
-                      accessibilityLabel={config.text.about.delete}
-                      accessibilityRole={config.text.accessibility.types.button}
-                      accessibilityHint={config.text.accessibility.logoutHint}
+                      accessibilityLabel={localization.translate('about').delete}
+                      accessibilityRole={localization.translate('accessibility').types.button}
+                      accessibilityHint={localization.translate('accessibility').logoutHint}
                     >
                       <Text style={localStyle.buttonLabel}>
-                        {kioskMode.active ? config.text.about.demoDelete : config.text.about.delete}
+                        {kioskMode.active ? localization.translate('about').demoDelete : localization.translate('about').delete}
                       </Text>
                     </TouchableOpacity>
                   )}

@@ -9,11 +9,10 @@ import { connect } from "react-redux";
 import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 
-import text from "../../config/textConfig";
-
 import AboutScreen from "./aboutScreen";
 import WebViewScreen from "./webViewScreen";
 import LegalInformationScreen from "./legalInformationScreen";
+import localization from "../../services/localization/localization";
 import * as aboutActions from "./aboutActions";
 
 /***********************************************************************************************
@@ -39,11 +38,11 @@ class AboutContainer extends Component {
   clearAll = () => {
     const { actions, navigation } = this.props;
     Alert.alert(
-      text.generic.warning,
-      text.generic.eraseAllWarning,
+      localization.translate('generic').warning,
+      localization.translate('generic').eraseAllWarning,
       [
         {
-          text: text.generic.delete,
+          text: localization.translate('generic').delete,
           onPress: () => {
             actions.logout();
             actions.deleteLocalData();
@@ -51,7 +50,7 @@ class AboutContainer extends Component {
           },
         },
         {
-          text: text.generic.abort,
+          text: localization.translate('generic').abort,
           style: "cancel",
         },
       ],
@@ -66,11 +65,11 @@ class AboutContainer extends Component {
   logout = () => {
     const { navigation, actions } = this.props;
     Alert.alert(
-      text.generic.warning,
-      text.generic.logoutWarning,
+      localization.translate('generic').warning,
+      localization.translate('generic').logoutWarning,
       [
         {
-          text: text.generic.goBack,
+          text: localization.translate('generic').goBack,
           onPress: () => {
             actions.logout();
             setTimeout(() => {
@@ -79,7 +78,7 @@ class AboutContainer extends Component {
           },
         },
         {
-          text: text.generic.abort,
+          text: localization.translate('generic').abort,
           style: "cancel",
         },
       ],

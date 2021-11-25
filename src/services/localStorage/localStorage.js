@@ -203,7 +203,7 @@ const persistCategories = async (categories, subjectId) => {
  * @returns string | null
  */
 const loadCategories = async (subjectId) => {
-  const id = subjectId || lala;
+  const id = subjectId || (await loadLastSubjectId());
   if (!id) return null;
 
   try {
@@ -306,22 +306,23 @@ const removeQuestionnaireItemMap = async (subjectId) => {
  */
  const loadKioskModeData = async () => {
   try {
-    return await EncryptedStorage.getItem("compass_demo_data");
+    return await EncryptedStorage.getItem(config.appConfig.kioskModeData);
   } catch (error) {
     console.error(error);
     return null;
   }
 };
+
 /**
  * persists the current kiosk mode data
- * @param  {string} [subjectId] subjectId of the user
+ * @param  {string} [kioskModeData] kioskModeData of the user
  */
-const persistKioskModeData = async (subjectId) => {
-  const id = subjectId || (await loadKioskModeData());
+const persistKioskModeData = async (kioskModeData) => {
+  const id = kioskModeData || (await loadKioskModeData());
   if (!id) return;
 
   try {
-    await EncryptedStorage.setItem("compass_demo_data", id);
+    await EncryptedStorage.setItem(config.appConfig.kioskModeData, id);
   } catch (error) {
     console.error(error);
   }
@@ -332,7 +333,55 @@ const persistKioskModeData = async (subjectId) => {
  */
 const removeKioskModeData = async () => {
   try {
-    await EncryptedStorage.removeItem("compass_demo_data");
+    await EncryptedStorage.removeItem(config.appConfig.kioskModeData);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+// localization settings
+/*-----------------------------------------------------------------------------------*/
+
+/**
+ * loads the localization settings from the EncryptedStorage.
+ * @returns string | null
+ */
+ const loadLocalizationSettings = async (subjectId) => {
+  let itemString = `${config.appConfig.localeData}`;
+  if(subjectId) itemString += `_${subjectId}`;
+
+  try {
+    return await EncryptedStorage.getItem(itemString);
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
+/**
+ * persists the current localization settings
+ * @param  {string} [localizationSettings] localizationSettings of the user
+ */
+const persistLocalizationSettings = async (localizationSettings, subjectId) => {
+  let itemString = `${config.appConfig.localeData}`;
+  if(subjectId) itemString += `_${subjectId}`;
+
+  try {
+    await EncryptedStorage.setItem(itemString, localizationSettings);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+/**
+ * deletes the localization settings from the EncryptedStorage
+ */
+const removeLocalizationSettings = async (subjectId) => {
+  let itemString = `${config.appConfig.localeData}`;
+  if(subjectId) itemString += `_${subjectId}`;
+
+  try {
+    await EncryptedStorage.removeItem(itemString);
   } catch (error) {
     console.error(error);
   }
@@ -376,6 +425,10 @@ export default {
   loadKioskModeData,
   persistKioskModeData,
   removeKioskModeData,
+
+  loadLocalizationSettings,
+  persistLocalizationSettings,
+  removeLocalizationSettings,
 
   clearAll,
 };

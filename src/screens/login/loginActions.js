@@ -4,10 +4,10 @@
 imports
 ***********************************************************************************************/
 
-import textConf from "../../config/textConfig";
 import config from "../../config/configProvider";
 import guestClient from "../../services/rest/guestClient";
 import localStorage from "../../services/localStorage/localStorage";
+import localization from "../../services/localization/localization";
 
 /***********************************************************************************************
 actions
@@ -68,7 +68,7 @@ export const sendCredentials =
             // the certificate to encrypt outgoing messages
             recipientCertificatePemString:
               res.data.recipient_certificate_pem_string ||
-              config.appConfig.default_recipient_certificate_pem_string,
+              config.appConfig.defaultRecipientCertificatePemString,
           };
           // the id of the user will be persisted in the LocalStorage (for the auto-login next time)
           localStorage.persistLastSubjectId(cleanedScanResult);
@@ -83,7 +83,7 @@ export const sendCredentials =
           if (camera) camera.reactivate();
           // persists the error
           dispatch(sendCredentialsFail({
-            loginError: err.error ?? textConf.login.errorUserGeneric,
+            loginError: err.error ?? localization.translate('login').errorUserGeneric,
             loginUnauthorized: err.error?.response?.status === 401
           }));
         });
@@ -92,7 +92,7 @@ export const sendCredentials =
       if (camera) camera.reactivate();
       // persists a generic error
       dispatch(sendCredentialsFail({
-        loginError: textConf.login.noSubjectId,
+        loginError: localization.translate('login').noSubjectId,
         loginUnauthorized: false
       }));
     }

@@ -151,6 +151,14 @@ const conf = {
    * persists all relevant information about the notification-service */
   FCMToken: "@COMPASS_STORE:fcm_token",
 
+  /** local storage identifier:
+   * persists all necessary data for the kiosk mode */
+  kioskModeData: "@COMPASS_STORE:kiosk_mode_data",
+
+  /** local storage identifier:
+   * persists all necessary localization data */
+  localeData: "@COMPASS_STORE:locale_data",
+
   // push notification
   /*-----------------------------------------------------------------------------------*/
 

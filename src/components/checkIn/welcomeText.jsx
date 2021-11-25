@@ -9,6 +9,7 @@ import { Text, View, StyleSheet } from "react-native";
 
 import config from "../../config/configProvider";
 import { formatDateString } from "../../services/utils";
+import localization from "../../services/localization/localization";
 
 let localStyle;
 
@@ -53,28 +54,28 @@ class WelcomeText extends PureComponent {
               <Text style={localStyle.welcomeText}>
                 {(() => {
                   if (user.firstTime)
-                    return config.text.survey.welcomeTitleFirstTime;
+                    return localization.translate('survey').welcomeTitleFirstTime;
                   if (noNewQuestionnaireAvailableYet)
-                    return config.text.survey.noNewQuestionnaireAvailableYet;
-                  return config.text.survey.welcomeTitle;
+                    return localization.translate('survey').noNewQuestionnaireAvailableYet;
+                  return localization.translate('survey').welcomeTitle;
                 })()}
               </Text>
 
               {/* if this is a new user */}
               {user.firstTime && user && (
                 <Text style={localStyle.infoText}>
-                  {config.text.survey.welcomeTextFirstTimeUser1}
+                  {localization.translate('survey').welcomeTextFirstTimeUser1}
                   <Text style={{ ...localStyle.timeTextSmall }}>
                     {formatDateString(user.due_date, true)}.
                   </Text>
-                  {config.text.survey.welcomeTextFirstTimeUser2}
+                  {localization.translate('survey').welcomeTextFirstTimeUser2}
                 </Text>
               )}
 
               {/* if this is not a first-time-user and NO new questionnaire is currently available */}
               {!user.firstTime && noNewQuestionnaireAvailableYet && (
                 <Text style={localStyle.infoText}>
-                  {config.text.survey.noNewQuestionnaireAvailableYet}
+                  {localization.translate('survey').noNewQuestionnaireAvailableYet}
                 </Text>
               )}
 
@@ -82,7 +83,7 @@ class WelcomeText extends PureComponent {
               {!user.firstTime && !noNewQuestionnaireAvailableYet && (
                 <View>
                   <Text style={localStyle.infoText}>
-                    {config.text.survey.welcomeTextUser}
+                    {localization.translate('survey').welcomeTextUser}
                   </Text>
                   <Text style={{ ...localStyle.timeText }}>
                     {formatDateString(user.due_date, true)}.
@@ -94,7 +95,7 @@ class WelcomeText extends PureComponent {
               {!user.firstTime && noNewQuestionnaireAvailableYet && (
                 <View>
                   <Text style={localStyle.timeText}>
-                    {config.text.survey.nextOne}
+                    {localization.translate('survey').nextOne}
                   </Text>
                   <Text
                     style={{
@@ -111,7 +112,7 @@ class WelcomeText extends PureComponent {
               {user.firstTime && noNewQuestionnaireAvailableYet && (
                 <View>
                   <Text style={localStyle.timeText}>
-                    {config.text.survey.nextOneNew}
+                    {localization.translate('survey').nextOneNew}
                   </Text>
                   <Text
                     style={{
@@ -125,7 +126,7 @@ class WelcomeText extends PureComponent {
               )}
 
               <Text style={localStyle.infoText}>
-                {config.text.survey.furtherInfo}
+                {localization.translate('survey').furtherInfo}
               </Text>
             </View>
           )}
@@ -133,11 +134,11 @@ class WelcomeText extends PureComponent {
         {user?.status === "off-study" && (
           <View>
             <Text style={localStyle.welcomeText}>
-              {config.text.survey.endedStudyTitle}
+              {localization.translate('survey').endedStudyTitle}
             </Text>
 
             <Text style={localStyle.infoText}>
-              {config.text.survey.endedStudyText}
+              {localization.translate('survey').endedStudyText}
             </Text>
           </View>
         )}
@@ -151,11 +152,11 @@ class WelcomeText extends PureComponent {
                 ...localStyle.welcomeTextRed,
               }}
             >
-              {config.text.survey.noUserTitle}
+              {localization.translate('survey').noUserTitle}
             </Text>
 
             <Text style={localStyle.infoText}>
-              {config.text.survey.noUserText}
+              {localization.translate('survey').noUserText}
             </Text>
           </View>
         )}
@@ -169,11 +170,11 @@ class WelcomeText extends PureComponent {
                 ...localStyle.welcomeTextRed,
               }}
             >
-              {config.text.survey.noQuestionnaireTitle}
+              {localization.translate('survey').noQuestionnaireTitle}
             </Text>
 
             <Text style={localStyle.infoText}>
-              {config.text.survey.noQuestionnaireText}
+              {localization.translate('survey').noQuestionnaireText}
             </Text>
           </View>
         )}

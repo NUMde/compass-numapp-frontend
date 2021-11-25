@@ -6,14 +6,16 @@ imports
 
 import { Provider } from "react-redux";
 import React, { PureComponent } from "react";
+import * as RNLocalize from "react-native-localize";
 import SplashScreen from "react-native-splash-screen";
-import { StyleSheet, View, StatusBar, LogBox, Platform } from "react-native";
-import kioskMode from './src/config/kioskApiConfig'
-
-import config from "./src/config/configProvider";
+import { StyleSheet, View, StatusBar, LogBox, Platform, Text } from "react-native";
+import localization from './src/services/localization/localization'
 
 import reduxStore from "./src/store";
+import config from "./src/config/configProvider";
+import kioskMode from './src/config/kioskApiConfig'
 import createAppNavigator from "./src/navigation/appNavigator";
+
 
 /***********************************************************************************************
 Component
@@ -25,6 +27,23 @@ class App extends PureComponent {
    * @constructor
    * @param  {object} props
    */
+   constructor(props) {
+    super(props);
+    localization.setI18nConfig(); // set initial config
+  }
+
+  handleLocalizationChange = () => {
+    localization.setI18nConfig();
+    this.forceUpdate();
+  };
+
+  componentDidMount() {
+    RNLocalize.addEventListener("change", this.handleLocalizationChange);
+  }
+
+  componentWillUnmount() {
+    RNLocalize.removeEventListener("change", this.handleLocalizationChange);
+  }
 
   render() {
     // hides the splash screen
@@ -54,6 +73,7 @@ class App extends PureComponent {
     );
   }
 }
+
 
 /***********************************************************************************************
 local styling

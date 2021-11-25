@@ -1,14 +1,11 @@
 
-import defaultThemeValues from '../theme/theme'
-import defaultTextValues from './textConfig'
-import defaultAppConfigValues from './appConfig'
+import defaultThemeValues from '../theme/theme';
+import defaultAppConfigValues from './appConfig';
 
-import customThemeValues from '../CUSTOMIZATION/customTheme'
-import customTextValues from '../CUSTOMIZATION/customTextConfig'
-import customAppConfigValues from '../CUSTOMIZATION/customAppConfig'
+import customThemeValues from '../CUSTOMIZATION/customTheme';
+import customAppConfigValues from '../CUSTOMIZATION/customAppConfig';
 
-/** combine the default values with the custom values */
-export default {
+let exportValues  = {
 
     /** provides variables controlling the style of the application */
     theme: {
@@ -16,15 +13,12 @@ export default {
         ...customThemeValues
     },
 
-    /** provides the text-strings visible the application */
-    text: {
-        ...defaultTextValues,
-        ...customTextValues
-    },
-
     /** provides options to alter the behaviour of the app */
     appConfig: {
         ...defaultAppConfigValues,
         ...customAppConfigValues
     },
-}
+};
+
+/** combine the default values with the custom values */
+export default exportValues
