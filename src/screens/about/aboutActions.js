@@ -49,3 +49,14 @@ export const setCurrentWebView = (newWebView) => async dispatch => {
 		newWebView
 	})
 }
+
+/**
+ * updates the language
+ * @param {string} languageTag the chosen langugae
+ */
+ export const updateLangugae = (languageTag) => async dispatch => {
+	dispatch({
+		type: 'UPDATE_LANGUAGE',
+		languageTag
+	})
+}

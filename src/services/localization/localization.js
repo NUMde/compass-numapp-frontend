@@ -20,7 +20,9 @@ import ar from '../../CUSTOMIZATION/translations/ar'
 constants
 ***********************************************************************************************/
 
-const defaultLanguage = 'en';
+let lala;
+
+const defaultLanguage = 'de';
 
 const availableLanguageFiles = { de, en, fr, ar };  
 
@@ -29,13 +31,16 @@ const translate = memoize(
     (key, config) => (config ? key + JSON.stringify(config) : key)
 );
 
-const setI18nConfig = (forcedLanguageTag, isFinalRTL=false) => {
+const generateDefaultI18nConfigValues = () => {
+    const fallback = { languageTag: defaultLanguage, isRTL: false };
+    return RNLocalize.findBestAvailableLanguage(Object.keys(availableLanguageFiles)) || fallback;
+};
 
+const setI18nConfig = (forcedLanguageTag, isFinalRTL=false) => {
     let finalLanguageTag;
 
     if(!forcedLanguageTag) {
-        const fallback = { languageTag: defaultLanguage, isRTL: false };
-        const { languageTag, isRTL } = RNLocalize.findBestAvailableLanguage(Object.keys(availableLanguageFiles)) || fallback;
+        const { languageTag, isRTL } = generateDefaultI18nConfigValues();
         finalLanguageTag = languageTag;
         isFinalRTL = isRTL;
     }
@@ -51,12 +56,18 @@ const setI18nConfig = (forcedLanguageTag, isFinalRTL=false) => {
     i18n.translations = { [finalLanguageTag]: availableLanguageFiles[finalLanguageTag] };
     // finally setting the locale
     i18n.locale = finalLanguageTag;
+    console.log(lala)
+};
 
-    
+const init = (reset, forcedLanguageTag, isFinalRTL=false) => {
+    setI18nConfig(forcedLanguageTag, isFinalRTL);
+    setTimeout(() => {
+        reset.forceUpdate();
+    }, 0);
 };
 
 /***********************************************************************************************
 export
 ***********************************************************************************************/
 
-export default { translate, setI18nConfig };
+export default { translate, setI18nConfig, generateDefaultI18nConfigValues, defaultLanguage, init };

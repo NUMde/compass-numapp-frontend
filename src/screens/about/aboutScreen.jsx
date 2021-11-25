@@ -16,6 +16,7 @@ import AboutListItem from "../../components/about/aboutListItem";
 import AboutListLink from "../../components/about/aboutListLink";
 import localization from "../../services/localization/localization";
 import ScrollIndicatorWrapper from "../../components/scrollIndicatorWrapper/scrollIndicatorWrapper";
+import {Picker} from '@react-native-picker/picker';
 
 let localStyle;
 
@@ -24,6 +25,9 @@ Component
 ***********************************************************************************************/
 
 class AboutScreen extends PureComponent {
+
+  selectedLanguage = '';
+
   /**
    * renders the About-Screen
    * @constructor
@@ -31,13 +35,14 @@ class AboutScreen extends PureComponent {
    * @param  {object}    props.navigation the navigation object provided by 'react-navigation'
    * @param  {function}  props.logout logs out the user
    * @param  {function}  props.clearAll deletes all local data
+   * @param  {function}  props.setLanguage updated the currentlyChosenLangugage
    */
 
   // rendering
   /*-----------------------------------------------------------------------------------*/
 
   render() {
-    const { navigation, actions, clearAll, logout, showModal, modalLink } =
+    const { navigation, actions, clearAll, logout, showModal, modalLink, setLanguage } =
       this.props;
     return (
       <View style={localStyle.wrapper}>
@@ -120,6 +125,20 @@ class AboutScreen extends PureComponent {
 
                 {/* optional buttons on the bottom of the screen - JUST FOR DEVELOPMENT*/}
                 <View style={localStyle.bottom}>
+                  
+                  {/* language picker */}
+                  <Picker
+                    selectedValue={this.props.currentlyChosenLanguage}
+                    onValueChange={(itemValue, itemIndex) =>
+                      {setLanguage(itemValue);
+                      this.forceUpdate()}
+                    }>
+                    <Picker.Item label="English" value="en" />
+                    <Picker.Item label="Deutsch" value="de" />
+                    <Picker.Item label="Français" value="fr" />
+                    <Picker.Item label="عربي" value="ar" />
+                  </Picker>
+
                   {/* logout button */}
                   {(config.appConfig.showLogout && !kioskMode.active) && (
                     <TouchableOpacity

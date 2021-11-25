@@ -86,6 +86,11 @@ class AboutContainer extends Component {
     );
   };
 
+  setLanguage = (languageTag) => {
+    localization.setI18nConfig(languageTag);
+    this.props.actions.updateLangugae(languageTag);
+  };
+
   // rendering
   /*-----------------------------------------------------------------------------------*/
 
@@ -102,6 +107,7 @@ class AboutContainer extends Component {
           showModal={showModal}
           modalLink={modalLink}
           actions={actions}
+          setLanguage={this.setLanguage}
         />
       );
     }

@@ -29,7 +29,7 @@ class App extends PureComponent {
    */
    constructor(props) {
     super(props);
-    localization.setI18nConfig(); // set initial config
+    localization.init(this);
   }
 
   handleLocalizationChange = () => {
