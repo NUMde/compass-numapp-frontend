@@ -72,11 +72,12 @@ export const sendCredentials =
           };
           // the id of the user will be persisted in the LocalStorage (for the auto-login next time)
           localStorage.persistLastSubjectId(cleanedScanResult);
-          // updates the state
-          setTimeout(
-            () => dispatch(sendCredentialsSuccess(cleanedScanResult, data)),
-            0
-          );
+
+          setTimeout(async () => {
+            let lang = await localStorage.loadLocalizationSettings(cleanedScanResult)
+            if(lang) localization.setI18nConfig(lang)
+            dispatch(sendCredentialsSuccess(cleanedScanResult, data));
+          }, 0);
         })
         .catch((err) => {
           // reactivates the camera

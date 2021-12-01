@@ -35,6 +35,7 @@ class AboutScreen extends PureComponent {
    * @param  {object}    props.navigation the navigation object provided by 'react-navigation'
    * @param  {function}  props.logout logs out the user
    * @param  {function}  props.clearAll deletes all local data
+   * @param  {string}    props.currentlyChosenLanguage the currently chosen language
    * @param  {function}  props.setLanguage updated the currentlyChosenLangugage
    */
 
@@ -42,7 +43,7 @@ class AboutScreen extends PureComponent {
   /*-----------------------------------------------------------------------------------*/
 
   render() {
-    const { navigation, actions, clearAll, logout, showModal, modalLink, setLanguage } =
+    const { navigation, actions, clearAll, logout, showModal, modalLink, setLanguage, currentlyChosenLanguage } =
       this.props;
     return (
       <View style={localStyle.wrapper}>
@@ -128,9 +129,11 @@ class AboutScreen extends PureComponent {
                   
                   {/* language picker */}
                   <Picker
-                    selectedValue={this.props.currentlyChosenLanguage}
+                    selectedValue={currentlyChosenLanguage}
                     onValueChange={(itemValue, itemIndex) =>
-                      {setLanguage(itemValue);
+                      {
+                        console.log("!!!!!" + currentlyChosenLanguage)
+                        setLanguage(itemValue);
                       this.forceUpdate()}
                     }>
                     <Picker.Item label="English" value="en" />

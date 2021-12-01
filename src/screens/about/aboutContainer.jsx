@@ -89,8 +89,10 @@ class AboutContainer extends Component {
   };
 
   setLanguage = (languageTag) => {
+    console.log("set-and-persist-locale")
+    console.log("---> " + store.getState().Login.subjectId)
     localization.setI18nConfig(languageTag);
-    localStorage.persistLocalizationSettings(languageTag, store.getState().Login.session.subjectId);
+    localStorage.persistLocalizationSettings(languageTag, store.getState().Login.subjectId);
     localStorage.persistLocalizationSettings(languageTag);
     this.props.actions.updateLangugae(languageTag);
   };
@@ -98,9 +100,23 @@ class AboutContainer extends Component {
   // rendering
   /*-----------------------------------------------------------------------------------*/
 
+   /**
+   * triggers the update of the user after mounting the checkIn-template
+   */
+    componentDidMount = () => {
+
+    };
+
+    componentDidUpdate = () => {
+
+    };
+  
+
   render() {
-    const { navigation, showModal, modalLink, actions, route } = this.props;
+    const { navigation, showModal, modalLink, actions, route, currentlyChosenLanguage } = this.props;
     // checks if the currently selected route equals 'About'
+
+    console.log(currentlyChosenLanguage)
     if (route.name === "About") {
       // then renders the About Screen
       return (
@@ -112,6 +128,7 @@ class AboutContainer extends Component {
           modalLink={modalLink}
           actions={actions}
           setLanguage={this.setLanguage}
+          currentlyChosenLanguage={currentlyChosenLanguage}
         />
       );
     }

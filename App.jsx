@@ -29,7 +29,8 @@ class App extends PureComponent {
    */
    constructor(props) {
     super(props);
-    localization.init(this);
+    console.log("\n\nlocal-init")
+    localization.init();
   }
 
   handleLocalizationChange = () => {

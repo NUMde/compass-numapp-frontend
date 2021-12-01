@@ -54,13 +54,12 @@ const setI18nConfig = (forcedLanguageTag, isFinalRTL=false) => {
     i18n.translations = { [finalLanguageTag]: availableLanguageFiles[finalLanguageTag] };
     // finally setting the locale
     i18n.locale = finalLanguageTag;
+
+    console.log('---> ' + finalLanguageTag)
 };
 
-const init = (reset, forcedLanguageTag, isFinalRTL=false) => {
+const init = (forcedLanguageTag, isFinalRTL=false) => {
     setI18nConfig(forcedLanguageTag, isFinalRTL);
-    setTimeout(() => {
-        reset.forceUpdate();
-    }, 0);
 };
 
 /***********************************************************************************************
