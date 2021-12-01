@@ -20,33 +20,38 @@ import ar from '../../CUSTOMIZATION/translations/ar'
 constants
 ***********************************************************************************************/
 
+// the fallback
 const defaultLanguage = 'en';
 
+// the available files / languages
 const availableLanguageFiles = { de, en, fr, ar };  
 
+// function that memoizes the results of i18n.t. Also determines the cache key for storing the result
 const translate = memoize(
     (key, config) => i18n.t(key, config),
     (key, config) => (config ? key + JSON.stringify(config) : key)
 );
 
+// generates default values 
 const generateDefaultI18nConfigValues = () => {
     const fallback = { languageTag: defaultLanguage, isRTL: false };
+    // returns the language settings best matching the users device
     return RNLocalize.findBestAvailableLanguage(Object.keys(availableLanguageFiles)) || fallback;
 };
 
+// sets the config
 const setI18nConfig = (forcedLanguageTag, isFinalRTL=false) => {
-    let finalLanguageTag;
-
+    let finalLanguageTag = defaultLanguage;
+    // generates the final config
     if(!forcedLanguageTag) {
         const { languageTag, isRTL } = generateDefaultI18nConfigValues();
         finalLanguageTag = languageTag;
         isFinalRTL = isRTL;
     }
     else {
-        finalLanguageTag = (availableLanguageFiles[forcedLanguageTag]) ? forcedLanguageTag : defaultLanguage;
+        if(availableLanguageFiles[forcedLanguageTag]) finalLanguageTag = forcedLanguageTag;
         isFinalRTL = finalLanguageTag === 'ar';
     }
-
     // clear translation cache
     translate.cache.clear();
     // update layout direction
@@ -55,9 +60,10 @@ const setI18nConfig = (forcedLanguageTag, isFinalRTL=false) => {
     i18n.translations = { [finalLanguageTag]: availableLanguageFiles[finalLanguageTag] };
     // finally setting the locale
     i18n.locale = finalLanguageTag;
-
-    console.log('---> ' + finalLanguageTag)
 };
+
+// just returns the language tag
+const getLanguageTag = () => i18n.locale;
 
 const init = (forcedLanguageTag, isFinalRTL=false) => {
     setI18nConfig(forcedLanguageTag, isFinalRTL);
@@ -67,4 +73,11 @@ const init = (forcedLanguageTag, isFinalRTL=false) => {
 export
 ***********************************************************************************************/
 
-export default { translate, setI18nConfig, generateDefaultI18nConfigValues, defaultLanguage, init };
+export default { 
+    translate, 
+    setI18nConfig, 
+    generateDefaultI18nConfigValues, 
+    defaultLanguage, 
+    init,
+    getLanguageTag
+};

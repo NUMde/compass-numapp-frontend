@@ -29,19 +29,21 @@ class App extends PureComponent {
    */
    constructor(props) {
     super(props);
-    console.log("\n\nlocal-init")
     localization.init();
   }
 
+  // fires after the device language was changed while the app is running
   handleLocalizationChange = () => {
     localization.setI18nConfig();
     this.forceUpdate();
   };
 
+  // just in case the device language is changed while the app is running
   componentDidMount() {
     RNLocalize.addEventListener("change", this.handleLocalizationChange);
   }
 
+  // just in case the device language is changed while the app is running
   componentWillUnmount() {
     RNLocalize.removeEventListener("change", this.handleLocalizationChange);
   }

@@ -89,28 +89,14 @@ class AboutContainer extends Component {
   };
 
   setLanguage = (languageTag) => {
-    console.log("set-and-persist-locale")
-    console.log("---> " + store.getState().Login.subjectId)
+    const { actions } = this.props;
     localization.setI18nConfig(languageTag);
     localStorage.persistLocalizationSettings(languageTag, store.getState().Login.subjectId);
-    localStorage.persistLocalizationSettings(languageTag);
-    this.props.actions.updateLangugae(languageTag);
+    actions.updateLangugae(languageTag);
   };
 
-  // rendering
+  // events
   /*-----------------------------------------------------------------------------------*/
-
-   /**
-   * triggers the update of the user after mounting the checkIn-template
-   */
-    componentDidMount = () => {
-
-    };
-
-    componentDidUpdate = () => {
-
-    };
-  
 
   render() {
     const { navigation, showModal, modalLink, actions, route, currentlyChosenLanguage } = this.props;
@@ -138,6 +124,12 @@ class AboutContainer extends Component {
     // if on WebView route
     return <WebViewScreen navigation={navigation} />;
   }
+
+  componentDidMount = () => {
+    const { actions } = this.props;
+    //just sets the right value for the language dropdown
+    actions.updateLangugae(localization.getLanguageTag());
+  };
 }
 
 /***********************************************************************************************

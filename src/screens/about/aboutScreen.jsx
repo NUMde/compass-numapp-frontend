@@ -17,6 +17,7 @@ import AboutListLink from "../../components/about/aboutListLink";
 import localization from "../../services/localization/localization";
 import ScrollIndicatorWrapper from "../../components/scrollIndicatorWrapper/scrollIndicatorWrapper";
 import {Picker} from '@react-native-picker/picker';
+import RNRestart from 'react-native-restart';
 
 let localStyle;
 
@@ -35,8 +36,8 @@ class AboutScreen extends PureComponent {
    * @param  {object}    props.navigation the navigation object provided by 'react-navigation'
    * @param  {function}  props.logout logs out the user
    * @param  {function}  props.clearAll deletes all local data
-   * @param  {string}    props.currentlyChosenLanguage the currently chosen language
    * @param  {function}  props.setLanguage updated the currentlyChosenLangugage
+   * @param  {string}    props.currentlyChosenLanguage the currently chosen language
    */
 
   // rendering
@@ -134,7 +135,7 @@ class AboutScreen extends PureComponent {
                       {
                         if(currentlyChosenLanguage !== itemValue) {
                           setLanguage(itemValue);
-                          alert("START")
+                          RNRestart.Restart();
                         }
                       }
                     }>
