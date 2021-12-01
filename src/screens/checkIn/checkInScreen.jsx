@@ -94,6 +94,7 @@ class CheckInScreen extends PureComponent {
                     <CheckInWelcomeText
                       error={error401}
                       questionnaireError={questionnaireError}
+                      categoriesLoaded={categoriesLoaded}
                       firstTime={user.firstTime}
                       noNewQuestionnaireAvailableYet={
                         noNewQuestionnaireAvailableYet

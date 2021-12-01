@@ -20,9 +20,7 @@ import ar from '../../CUSTOMIZATION/translations/ar'
 constants
 ***********************************************************************************************/
 
-let lala;
-
-const defaultLanguage = 'de';
+const defaultLanguage = 'en';
 
 const availableLanguageFiles = { de, en, fr, ar };  
 
@@ -56,7 +54,6 @@ const setI18nConfig = (forcedLanguageTag, isFinalRTL=false) => {
     i18n.translations = { [finalLanguageTag]: availableLanguageFiles[finalLanguageTag] };
     // finally setting the locale
     i18n.locale = finalLanguageTag;
-    console.log(lala)
 };
 
 const init = (reset, forcedLanguageTag, isFinalRTL=false) => {

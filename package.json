@@ -42,6 +42,7 @@
     "react-native-permissions": "^3.0.5",
     "react-native-picker-select": "^8.0.4",
     "react-native-qrcode-scanner": "^1.5.4",
+    "react-native-restart": "0.0.22",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "^3.8.0",
     "react-native-splash-screen": "^3.2.0",

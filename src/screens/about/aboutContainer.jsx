@@ -13,7 +13,9 @@ import AboutScreen from "./aboutScreen";
 import WebViewScreen from "./webViewScreen";
 import LegalInformationScreen from "./legalInformationScreen";
 import localization from "../../services/localization/localization";
+import localStorage from "../../services/localStorage/localStorage";
 import * as aboutActions from "./aboutActions";
+import store from "../../store";
 
 /***********************************************************************************************
 component:
@@ -88,6 +90,8 @@ class AboutContainer extends Component {
 
   setLanguage = (languageTag) => {
     localization.setI18nConfig(languageTag);
+    localStorage.persistLocalizationSettings(languageTag, store.getState().Login.session.subjectId);
+    localStorage.persistLocalizationSettings(languageTag);
     this.props.actions.updateLangugae(languageTag);
   };
 
