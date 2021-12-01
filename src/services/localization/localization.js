@@ -44,6 +44,7 @@ const setI18nConfig = (forcedLanguageTag, isFinalRTL=false) => {
     }
     else {
         finalLanguageTag = (availableLanguageFiles[forcedLanguageTag]) ? forcedLanguageTag : defaultLanguage;
+        isFinalRTL = finalLanguageTag === 'ar';
     }
 
     // clear translation cache

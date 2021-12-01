@@ -130,11 +130,13 @@ class AboutScreen extends PureComponent {
                   {/* language picker */}
                   <Picker
                     selectedValue={currentlyChosenLanguage}
-                    onValueChange={(itemValue, itemIndex) =>
+                    onValueChange={(itemValue) =>
                       {
-                        console.log("!!!!!" + currentlyChosenLanguage)
-                        setLanguage(itemValue);
-                      this.forceUpdate()}
+                        if(currentlyChosenLanguage !== itemValue) {
+                          setLanguage(itemValue);
+                          alert("START")
+                        }
+                      }
                     }>
                     <Picker.Item label="English" value="en" />
                     <Picker.Item label="Deutsch" value="de" />

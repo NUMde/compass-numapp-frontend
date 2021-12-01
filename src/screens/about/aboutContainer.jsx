@@ -115,8 +115,6 @@ class AboutContainer extends Component {
   render() {
     const { navigation, showModal, modalLink, actions, route, currentlyChosenLanguage } = this.props;
     // checks if the currently selected route equals 'About'
-
-    console.log(currentlyChosenLanguage)
     if (route.name === "About") {
       // then renders the About Screen
       return (
