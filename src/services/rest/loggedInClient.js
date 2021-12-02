@@ -8,7 +8,6 @@ imports
 ***********************************************************************************************/
 
 import axios from "axios";
-
 import store from "../../store";
 import security from "../encryption/encryption";
 import config from "../../config/configProvider";
@@ -75,7 +74,43 @@ const getUserUpdate = async () => {
   axios.get(config.appConfig.endpoints.getUser + subjectId);
 };
 
-// push
+// language
+/*-----------------------------------------------------------------------------------*/
+
+/**
+ * procures the list of languages
+ */
+ const getLanguages = async () =>
+ kioskMode.active ?
+ kioskMode.getBaseQuestionnaire() :
+ axios.get(config.appConfig.endpoints.getLanguages , {
+   headers: {
+     Authorization: createAuthorizationToken(),
+     Accept: "application/json",
+   }});
+
+/**
+ * updates the backend with the chosen language
+ * @param  {string} subjectId string identifying the user
+ * @param  {string} languageCode the language code
+ */
+const updateLanguageCode = async (subjectId, languageCode) =>
+  kioskMode.active ?
+  kioskMode.updateDeviceToken() :
+  axios.post(
+    config.appConfig.endpoints.updateLanguage + subjectId,
+    {
+      "language": languageCode,
+    },
+    {
+      headers: {
+        Authorization: createAuthorizationToken(),
+        Accept: "application/json",
+      },
+    }
+  );
+
+  // push
 /*-----------------------------------------------------------------------------------*/
 
 /**
@@ -174,7 +209,7 @@ const sendQuestionnaire = async (
 const getBaseQuestionnaire = async (questionnaireId) =>
   kioskMode.active ?
   kioskMode.getBaseQuestionnaire() :
-  axios.get(config.appConfig.endpoints.getQuestionnaire + questionnaireId, {
+  axios.get(config.appConfig.endpoints.getQuestionnaire + questionnaireId , {
     headers: {
       Authorization: createAuthorizationToken(),
       Accept: "application/json",
@@ -190,4 +225,6 @@ export default {
   sendQuestionnaire,
   getUserUpdate,
   updateDeviceToken,
+  updateLanguageCode,
+  getLanguages
 };

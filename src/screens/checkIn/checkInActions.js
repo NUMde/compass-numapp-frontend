@@ -14,6 +14,36 @@ action handlers
 ***********************************************************************************************/
 
 /**
+ * update language start
+ */
+ export const updateLanguageStart = (value) => async (dispatch) => {
+  dispatch({
+    type: "UPDATE_LANGUAGE_START",
+    value
+  });
+};
+
+/**
+ * languae update success
+ */
+export const updateLanguageSuccess = () => async (dispatch) => {
+  dispatch({
+    type: "UPDATE_LANGUAGE_SUCCESS",
+  });
+};
+
+/**
+ * fail 
+ * @param  {any} error http error to be persisted
+ */
+ export const updateLanguageFail = (error) => async (dispatch) => {
+  dispatch({
+    type: "UPDATE_LANGUAGE_FAIL",
+    value: error,
+  });
+};
+
+/**
  * just shows the datepicker
  */
 export const showDatePicker = () => async (dispatch) => {

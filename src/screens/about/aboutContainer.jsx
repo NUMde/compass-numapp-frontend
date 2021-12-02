@@ -66,7 +66,7 @@ class AboutContainer extends Component {
    * out and navigates back to the landing-screen.
    */
   logout = () => {
-    const { navigation, actions } = this.props;
+    const { actions } = this.props;
     Alert.alert(
       localization.translate('generic').warning,
       localization.translate('generic').logoutWarning,
@@ -90,7 +90,8 @@ class AboutContainer extends Component {
   };
 
   changeLanguage = (languageTag) => {
-    if(store.getState().CheckIn.questionnaireItemMap.started) {
+    const { actions } = this.props;
+    if(store.getState().CheckIn.questionnaireItemMap && store.getState().CheckIn.questionnaireItemMap.started) {
       Alert.alert(
         localization.translate('generic').warning,
         localization.translate('about').languageWarning + localization.translate('about').languageWarningAddition,
@@ -98,8 +99,8 @@ class AboutContainer extends Component {
           {
             text: localization.translate('generic').delete,
             onPress: () => {
+              // deletes the local questionnaire - which will trigger the app to download a new one in the correct language
               this.setLanguage(languageTag);
-              RNRestart.Restart();
             },
           },
           {
@@ -117,8 +118,12 @@ class AboutContainer extends Component {
 
   setLanguage = (languageTag) => {
     const { actions } = this.props;
-    localization.setI18nConfig(languageTag);
-    localStorage.persistLocalizationSettings(languageTag, store.getState().Login.subjectId);
+    if(store.getState().CheckIn.questionnaireItemMap) actions.deleteLocalQuestionnaire();
+    setTimeout(async () => {
+      localization.setI18nConfig(languageTag);
+      await localStorage.persistLocalizationSettings(languageTag, store.getState().Login.subjectId);
+      RNRestart.Restart();
+    }, 0);
   };
 
   // events

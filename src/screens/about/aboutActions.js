@@ -20,6 +20,15 @@ export const deleteLocalData = () => async dispatch => {
 }
 
 /**
+ * deletes all local questionnaire data (is executed in src/store.js, not in the AboutReducer)
+ */
+export const deleteLocalQuestionnaire = () => async dispatch => {
+	dispatch({
+		type: 'DELETE_LOCAL_QUESTIONNAIRE'
+	})
+}
+
+/**
  * shows the modal and sets its content
  * @param  {{title:string,subTitle: string,uri: string}} modalLink determines what content will be rendered (needed for the render function of src/component/modal/redirectModal.js)
  */

@@ -84,6 +84,7 @@ export const sendCredentials =
           if (camera) camera.reactivate();
           // persists the error
           dispatch(sendCredentialsFail({
+            err,
             loginError: err.error ?? localization.translate('login').errorUserGeneric,
             loginUnauthorized: err.error?.response?.status === 401
           }));

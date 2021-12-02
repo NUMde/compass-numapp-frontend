@@ -56,7 +56,7 @@ const traverseItem = (item, questionnaireItemMap) => {
  * @param  {any} questionnaire a FHIR questionnaire
  * @param  {any} subjectId subjectId of the user
  */
-const generateQuestionnaireItemMap = (questionnaire, subjectId) => {
+const generateQuestionnaireItemMap = (questionnaire, subjectId, backendId) => {
   const questionnaireItemMap = {};
 
   // triggers the item-generation
@@ -70,8 +70,6 @@ const generateQuestionnaireItemMap = (questionnaire, subjectId) => {
   questionnaireItemMap.done = false;
   // used to determine if the questionnaire was even opened
   questionnaireItemMap.started = false;
-  // used to identify the questionnaire
-  questionnaireItemMap.constructedId = `${questionnaire.url}|${questionnaire.version}`;
   questionnaireItemMap.url = questionnaire.url;
   questionnaireItemMap.version = questionnaire.version;
   // used to build the questionnaire-response
@@ -80,7 +78,7 @@ const generateQuestionnaireItemMap = (questionnaire, subjectId) => {
   // persists the last known questionnaireId in the LocalStorage
   setTimeout(async () => {
     localStorage.persistLastQuestionnaireId(
-      questionnaireItemMap.constructedId,
+      backendId,
       subjectId
     );
   }, 0);
@@ -103,6 +101,7 @@ const initialState = {
   currentCategoryIndex: null,
   showQuestionnaireModal: false,
   questionnaireResponseError: null,
+  noNewQuestionnaireAvailableYet: true,
 };
 
 /***********************************************************************************************
@@ -297,7 +296,8 @@ const valuesHandlers = {
     // generates the questionnaireItemMap
     const questionnaireItemMap = generateQuestionnaireItemMap(
       values.questionnaire,
-      state.user.subjectId
+      state.user.subjectId,
+      state.user.current_questionnaire_id
     );
 
     // generates the categories

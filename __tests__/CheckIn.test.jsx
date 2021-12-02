@@ -178,7 +178,6 @@ const exampleQuestionnaireItemMap = {
   },
   done: true,
   started: true,
-  constructedId: "undefined|undefined",
 };
 
 /***********************************************************************************************

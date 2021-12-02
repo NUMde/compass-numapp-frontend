@@ -30,21 +30,25 @@ const availableLanguageFiles = {
     "de" : {
         file: de,
         isRTL: false,
+        title: "Deutsch"
     },
     
     "en" : {
         file: en,
         isRTL: false,
+        title: "English"
     },
     
     "fr" : {
         file: fr,
         isRTL: false,
+        title: "Français"
     },
     
     "ar" : {
         file: ar,
         isRTL: true,
+        title: "عربي"
     }
 };
 
@@ -62,7 +66,7 @@ const generateDefaultI18nConfigValues = () => {
 };
 
 // sets the config
-const setI18nConfig = (forcedLanguageTag, isFinalRTL=false) => {
+const setI18nConfig = async (forcedLanguageTag, isFinalRTL=false) => {
     let finalLanguageTag = defaultLanguage;
     // generates the final config
     if(!forcedLanguageTag) {
@@ -100,6 +104,7 @@ export default {
     translate, 
     setI18nConfig, 
     getLanguageTag,
-    defaultLanguage, 
+    defaultLanguage,
+    availableLanguageFiles,
     generateDefaultI18nConfigValues, 
 };

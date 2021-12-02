@@ -45,7 +45,7 @@ const { width } = Dimensions.get("window");
 const baseUriProductive = "";
 
 // development-base-backend-uri
-const baseUriDevelopment = "http://127.0.0.1:8080/api/";
+const baseUriDevelopment = "https://mobile-backend-compass.umopenshift01-27c74fb079246a1ac53f0d02625326eb-0000.eu-de.containers.appdomain.cloud/api/";
 
 /***********************************************************************************************
 configuration
@@ -211,10 +211,22 @@ const conf = {
     }questionnaire/`,
 
     /** rest:
-     * endpoint to receive the questionnaire */
+     * endpoint to update the push token */
     updateToken: `${
       __DEV__ ? baseUriDevelopment : baseUriProductive
     }participant/update-device-token/`,
+
+    /** rest:
+     * endpoint to update the chosen language*/
+    updateLanguage: `${
+      __DEV__ ? baseUriDevelopment : baseUriProductive
+    }participant/update-language-code/`,
+
+    /** rest:
+     * endpoint to get the list languages*/
+    getLanguages: `${
+      __DEV__ ? baseUriDevelopment : baseUriProductive
+    }/questionnaire/get-languages/`,
   },
 
   // ui

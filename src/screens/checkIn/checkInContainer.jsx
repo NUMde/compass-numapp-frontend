@@ -41,7 +41,7 @@ class CheckInContainer extends Component {
     if (route.name === "CheckIn") {
       setTimeout(() => {
         this.updateUser();
-      }, 0);
+      }, 500);
     }
   };
 
@@ -196,9 +196,7 @@ class CheckInContainer extends Component {
    */
   updateUserSuccess = async (data) => {
     const { user, actions, noNewQuestionnaireAvailableYet } = this.props;
-    // TODO: remove workaround
-    // eslint-disable-next-line no-param-reassign
-    data.subjectId = data.study_id || data.subjectId || null;
+    data.subjectId = data.subjectId || null;
 
     // procures the id of the questionnaire used by the last active user
     const lastQuestionnaireId = await localStorage.loadLastQuestionnaireId();
@@ -215,6 +213,14 @@ class CheckInContainer extends Component {
     // tries to init the push service
     if (config.appConfig.connectToFCM)
       setTimeout(() => this.initPush(data.subjectId), 0);
+
+    // updates the chosen langugae backend-side
+    actions.updateLanguageStart(localization.getLanguageTag())
+    loggedInClient.updateLanguageCode(data.subjectId, localization.getLanguageTag())
+    .then(
+      res => actions.updateLanguageSuccess(),
+      err => actions.updateLanguageFail(err)
+    );
 
     setTimeout(() => {
       // if we have locally persisted questionnaire
@@ -464,7 +470,7 @@ class CheckInContainer extends Component {
           {
             text: localization.translate('generic').ok,
             onPress: () => {
-              setTimeout(() => navigation.navigate("Home"), 0);
+              setTimeout(() => navigation.navigate("CheckIn"), 0);
             },
           },
         ],
@@ -489,7 +495,7 @@ class CheckInContainer extends Component {
           {
             text: localization.translate('reporting').symptoms_success_ok,
             onPress: () => {
-              setTimeout(() => navigation.navigate("Home"), 0);
+              setTimeout(() => navigation.navigate("CheckIn"), 0);
               this.updateUser();
             },
           },

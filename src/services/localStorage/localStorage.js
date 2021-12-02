@@ -39,8 +39,10 @@ const persistLastSubjectId = async (subjectId) => {
 
   try {
     await EncryptedStorage.setItem(config.appConfig.lastSubjectId, id);
+    return true
   } catch (error) {
     console.error(error);
+    return false
   }
 };
 
@@ -182,7 +184,7 @@ const removeLastQuestionnaireId = async (subjectId) => {
  */
 const persistCategories = async (categories, subjectId) => {
   const id = subjectId || (await loadLastSubjectId());
-  if (!(categories && IDBFactory)) return;
+  if (!(categories && subjectId)) return;
 
   const stringToBePersisted =
     categories instanceof String ? categories : JSON.stringify(categories);

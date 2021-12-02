@@ -132,7 +132,7 @@ class AboutScreen extends PureComponent {
                       {localization.translate('about').languageSelection}
                     </Text>
 
-                    {store.getState().CheckIn.questionnaireItemMap.started && (<Text style={localStyle.warningSubTitle}>
+                    {store.getState().CheckIn.questionnaireItemMap && store.getState().CheckIn.questionnaireItemMap.started && (<Text style={localStyle.warningSubTitle}>
                       {localization.translate('about').languageWarning}
                     </Text>)}
 
@@ -147,10 +147,9 @@ class AboutScreen extends PureComponent {
                           }
                         }
                       }>
-                      <Picker.Item label="English" value="en" />
-                      <Picker.Item label="Deutsch" value="de" />
-                      <Picker.Item label="Français" value="fr" />
-                      <Picker.Item label="عربي" value="ar" />
+                        {Object.keys(localization.availableLanguageFiles).map((key) => (
+                          <Picker.Item key={key} label={localization.availableLanguageFiles[key].title} value={key} />  
+                        ))}
                     </Picker>
                   </View>
 
