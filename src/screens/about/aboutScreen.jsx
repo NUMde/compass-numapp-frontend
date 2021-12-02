@@ -147,8 +147,8 @@ class AboutScreen extends PureComponent {
                           }
                         }
                       }>
-                        {Object.keys(localization.availableLanguageFiles).map((key) => (
-                          <Picker.Item key={key} label={localization.availableLanguageFiles[key].title} value={key} />  
+                        {Object.keys(localization.availableLanguages).map((key) => (
+                          <Picker.Item key={key} label={localization.availableLanguages[key].title} value={key} />  
                         ))}
                     </Picker>
                   </View>

@@ -82,7 +82,7 @@ const getUserUpdate = async () => {
  */
  const getLanguages = async () =>
  kioskMode.active ?
- kioskMode.getBaseQuestionnaire() :
+ kioskMode.getLanguages() :
  axios.get(config.appConfig.endpoints.getLanguages , {
    headers: {
      Authorization: createAuthorizationToken(),

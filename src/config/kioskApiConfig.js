@@ -76,6 +76,18 @@ const getDueDate = (laterOn) => {
 };
 
 /**
+ * gets list of languages
+ */
+const getLanguages = () => {
+    return [
+        "de",
+        "en",
+        "ar",
+        "fr"
+      ]
+};
+
+/**
  * generates a fitting set of userdata
  */
 const generateMockUserData = () => {
@@ -132,6 +144,7 @@ export
 ***********************************************************************************************/
 export default {
     sendReport,
+    getLanguages,
     initKioskMode,
     sendQuestionnaire,
     active: kioskModeIsActive,

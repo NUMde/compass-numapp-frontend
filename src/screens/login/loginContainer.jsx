@@ -14,6 +14,7 @@ import localStorage from "../../services/localStorage/localStorage";
 import LoginScreen from "./loginScreen";
 import LandingScreen from "./landingScreen";
 import * as loginActions from "./loginActions";
+import guestClient from "../../services/rest/guestClient";
 
 /***********************************************************************************************
 component:

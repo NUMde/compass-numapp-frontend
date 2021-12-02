@@ -10,11 +10,13 @@ import * as RNLocalize from "react-native-localize";
 import SplashScreen from "react-native-splash-screen";
 import { StyleSheet, View, StatusBar, LogBox, Platform, Text } from "react-native";
 import localization from './src/services/localization/localization'
+import RNRestart from 'react-native-restart';
 
 import reduxStore from "./src/store";
 import config from "./src/config/configProvider";
 import kioskMode from './src/config/kioskApiConfig'
 import createAppNavigator from "./src/navigation/appNavigator";
+import store from "./src/store";
 
 
 /***********************************************************************************************
@@ -35,7 +37,7 @@ class App extends PureComponent {
   // fires after the device language was changed while the app is running
   handleLocalizationChange = () => {
     localization.setI18nConfig();
-    this.forceUpdate();
+    RNRestart.Restart();
   };
 
   // just in case the device language is changed while the app is running

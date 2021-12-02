@@ -60,6 +60,7 @@ const rootReducer = (state, action) => {
     localStorage.removeLastQuestionnaireId(subjectId);
     localStorage.removeCategories(subjectId);
     localStorage.removeQuestionnaireItemMap(subjectId);
+    localStorage.removeLastQuestionnaireLanguage(subjectId);
   }
   return appReducer(state, action);
 };

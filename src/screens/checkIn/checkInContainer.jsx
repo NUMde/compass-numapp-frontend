@@ -52,7 +52,9 @@ class CheckInContainer extends Component {
    */
   componentDidUpdate = () => {
     const { questionnaireItemMap, navigation } = this.props;
-    if (!questionnaireItemMap) navigation.navigate("CheckIn");
+    setTimeout(() => {
+      if (!questionnaireItemMap) navigation.navigate("CheckIn");
+    }, 0);
   };
 
   // methods: push
@@ -222,14 +224,15 @@ class CheckInContainer extends Component {
       err => actions.updateLanguageFail(err)
     );
 
-    setTimeout(() => {
+    setTimeout(async () => {
       // if we have locally persisted questionnaire
       if (lastQuestionnaireId && !noNewQuestionnaireAvailableYet) {
         // checks if the id of the persisted questionnaire matches the one of the
         // questionnaire the user is supposed to look at now
+        let lastLang = await localStorage.loadLastQuestionnaireLanguage()
         if (
           config.appConfig.skipIncomingQuestionnaireCheck ||
-          lastQuestionnaireId === data.current_questionnaire_id
+          (lastQuestionnaireId === data.current_questionnaire_id && lastLang === localization.getLanguageTag())
         ) {
           // loads the persisted questionnaire
           this.checkForCachedData();

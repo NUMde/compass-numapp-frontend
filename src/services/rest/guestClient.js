@@ -23,8 +23,19 @@ const login = async (subjectId) =>
   await kioskMode.login() :
   axios.get(config.appConfig.endpoints.login + subjectId);
 
+/**
+ * procures the list of languages
+ */
+ const getLanguages = async () =>
+ kioskMode.active ?
+ kioskMode.getLanguages() :
+ axios.get(config.appConfig.endpoints.getLanguages , {
+   headers: {
+     Accept: "application/json",
+   }});
+
 /***********************************************************************************************
 export
 ***********************************************************************************************/
 
-export default { login };
+export default { login, getLanguages };

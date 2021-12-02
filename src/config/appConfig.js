@@ -69,7 +69,7 @@ const conf = {
   /** dev-option:
    * subject-id for automated login */
   automateQrLoginSubjectId:
-    '{"AppIdentifier":"COMPASS","SubjectId":"7bfc3b07-a97d-4e11-8ac6-b970c1745476"}',
+    '{"AppIdentifier":"COMPASS","SubjectId":"dd06747c-03df-4adb-9dbb-90b38dccab16"}',
 
   /** dev-option:
    * shows a button to erase all data (in the about-menu) - dev-only */
@@ -146,6 +146,10 @@ const conf = {
   /** local storage identifier:
    * the id of the last active questionnaire of the last active user */
   lastQuestionnaireId: "@COMPASS_STORE:last_questionnaire_id",
+
+  /** local storage identifier:
+   * the language of the last active questionnaire of the last active user */
+   lastQuestionnaireLang: "@COMPASS_STORE:last_questionnaire_lang",
 
   /** local storage identifier:
    * persists all relevant information about the notification-service */

@@ -117,6 +117,67 @@ const removeFCMToken = async (subjectId) => {
 
 /**
  * when the user receives a questionnaire from the server, the frontend persists its
+ * language.
+ * if not, the questionnaire will be deleted and a user update executed.
+ * @param  {string} questionnaireId id of the questionnaire
+ * @param  {string} [subjectId] id of the user
+ */
+ const persistLastQuestionnaireLanguage = async (questionnaireId, subjectId) => {
+  const id = subjectId || (await loadLastSubjectId());
+  if (!id) return;
+  if (!(questionnaireId && id)) return;
+
+  try {
+    await EncryptedStorage.setItem(
+      `${config.appConfig.lastQuestionnaireLang}_${id}`,
+      questionnaireId
+    );
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+/**
+ * loads the last persisted questionnaire language (of a user) from the EncryptedStorage
+ * @param  {string} [subjectId] subject-id
+ * @returns string | null
+ */
+const loadLastQuestionnaireLanguage = async (subjectId) => {
+  const id = subjectId || (await loadLastSubjectId());
+  if (!id) return null;
+
+  try {
+    return await EncryptedStorage.getItem(
+      `${config.appConfig.lastQuestionnaireLang}_${id}`
+    );
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
+/**
+ * deletes the last persisted questionnaire language (of a user) from the EncryptedStorage
+ * @param  {string} [subjectId] subject-id
+ */
+const removeLastQuestionnaireLanguage = async (subjectId) => {
+  const id = subjectId || (await loadLastSubjectId());
+  if (!id) return;
+
+  try {
+    await EncryptedStorage.removeItem(
+      `${config.appConfig.lastQuestionnaireLang}_${id}`
+    );
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+// last questionnaire id
+/*-----------------------------------------------------------------------------------*/
+
+/**
+ * when the user receives a questionnaire from the server, the frontend persists its
  * id. the next time a partially completed questionnaire is locally loaded, its id will be
  * checked against the just persisted one. if it matches the questionnaire will be loaded.
  * if not, the questionnaire will be deleted and a user update executed.
@@ -431,6 +492,10 @@ export default {
   loadLocalizationSettings,
   persistLocalizationSettings,
   removeLocalizationSettings,
+
+  persistLastQuestionnaireLanguage,
+  loadLastQuestionnaireLanguage,
+  removeLastQuestionnaireLanguage,
 
   clearAll,
 };

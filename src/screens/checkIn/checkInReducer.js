@@ -5,6 +5,7 @@
 import
 ***********************************************************************************************/
 
+import localization from "../../services/localization/localization";
 import localStorage from "../../services/localStorage/localStorage";
 
 /***********************************************************************************************
@@ -83,6 +84,14 @@ const generateQuestionnaireItemMap = (questionnaire, subjectId, backendId) => {
     );
   }, 0);
 
+  // persists the langugage of the last questionnaire in the LocalStorage
+  setTimeout(async () => {
+    localStorage.persistLastQuestionnaireLanguage(
+      localization.getLanguageTag(),
+      subjectId
+    );
+  }, 0);
+
   return questionnaireItemMap;
 };
 
@@ -101,7 +110,7 @@ const initialState = {
   currentCategoryIndex: null,
   showQuestionnaireModal: false,
   questionnaireResponseError: null,
-  noNewQuestionnaireAvailableYet: true,
+  noNewQuestionnaireAvailableYet: false,
 };
 
 /***********************************************************************************************
