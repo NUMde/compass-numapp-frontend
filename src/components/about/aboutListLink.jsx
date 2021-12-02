@@ -81,6 +81,7 @@ localStyle = StyleSheet.create({
     borderBottomColor: config.theme.colors.accent3,
     borderBottomWidth: 1,
     backgroundColor: config.theme.values.defaultListLinkBackgroundColor,
+    padding: 15,
   },
 
   subTitle: {

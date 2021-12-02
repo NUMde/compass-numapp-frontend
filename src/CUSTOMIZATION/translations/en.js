@@ -131,6 +131,9 @@ export default {
     logout: "Logout (just on DEV)",
     delete: "Delete all & logout (just on DEV)",
     demoDelete: "Delete all & logout (just for this DEMO)",
+    languageSelection: "Language Selection",
+    languageWarning: "If you change the language while having a persisted save state of your current answers, said save sgate will be removed.",
+    languageWarningAddition: "\nDo you want to proceed?",
 
     /** contains the strings for the optional LegalInformation Screen */
     legal: {

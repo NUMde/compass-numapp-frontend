@@ -24,7 +24,29 @@ constants
 const defaultLanguage = 'en';
 
 // the available files / languages
-const availableLanguageFiles = { de, en, fr, ar };  
+// for each file available in in app/src/CUSTOMIZATION/translations an entry must be created here.
+// the attribute name shall be the language code the file represents.
+const availableLanguageFiles = { 
+    "de" : {
+        file: de,
+        isRTL: false,
+    },
+    
+    "en" : {
+        file: en,
+        isRTL: false,
+    },
+    
+    "fr" : {
+        file: fr,
+        isRTL: false,
+    },
+    
+    "ar" : {
+        file: ar,
+        isRTL: true,
+    }
+};
 
 // function that memoizes the results of i18n.t. Also determines the cache key for storing the result
 const translate = memoize(
@@ -46,18 +68,18 @@ const setI18nConfig = (forcedLanguageTag, isFinalRTL=false) => {
     if(!forcedLanguageTag) {
         const { languageTag, isRTL } = generateDefaultI18nConfigValues();
         finalLanguageTag = languageTag;
-        isFinalRTL = isRTL;
+        isFinalRTL = availableLanguageFiles[languageTag] ? availableLanguageFiles[languageTag].isRTL : isRTL;
     }
     else {
         if(availableLanguageFiles[forcedLanguageTag]) finalLanguageTag = forcedLanguageTag;
-        isFinalRTL = finalLanguageTag === 'ar';
+        isFinalRTL = availableLanguageFiles[forcedLanguageTag].isRTL;
     }
     // clear translation cache
     translate.cache.clear();
     // update layout direction
     I18nManager.forceRTL(isFinalRTL);
     // set i18n-js config
-    i18n.translations = { [finalLanguageTag]: availableLanguageFiles[finalLanguageTag] };
+    i18n.translations = { [finalLanguageTag]: availableLanguageFiles[finalLanguageTag].file };
     // finally setting the locale
     i18n.locale = finalLanguageTag;
 };
@@ -74,10 +96,10 @@ export
 ***********************************************************************************************/
 
 export default { 
+    init,
     translate, 
     setI18nConfig, 
-    generateDefaultI18nConfigValues, 
+    getLanguageTag,
     defaultLanguage, 
-    init,
-    getLanguageTag
+    generateDefaultI18nConfigValues, 
 };

@@ -8,6 +8,7 @@ import { Alert } from "react-native";
 import { connect } from "react-redux";
 import React, { Component } from "react";
 import { bindActionCreators } from "redux";
+import RNRestart from 'react-native-restart';
 
 import AboutScreen from "./aboutScreen";
 import WebViewScreen from "./webViewScreen";
@@ -48,7 +49,7 @@ class AboutContainer extends Component {
           onPress: () => {
             actions.logout();
             actions.deleteLocalData();
-            navigation.navigate("SignedOut", { screen: "Landing" });
+            RNRestart.Restart();
           },
         },
         {
@@ -75,7 +76,7 @@ class AboutContainer extends Component {
           onPress: () => {
             actions.logout();
             setTimeout(() => {
-              navigation.navigate("SignedOut", { screen: "Landing" });
+              RNRestart.Restart();
             }, 0);
           },
         },
@@ -88,11 +89,36 @@ class AboutContainer extends Component {
     );
   };
 
+  changeLanguage = (languageTag) => {
+    if(store.getState().CheckIn.questionnaireItemMap.started) {
+      Alert.alert(
+        localization.translate('generic').warning,
+        localization.translate('about').languageWarning + localization.translate('about').languageWarningAddition,
+        [
+          {
+            text: localization.translate('generic').delete,
+            onPress: () => {
+              this.setLanguage(languageTag);
+              RNRestart.Restart();
+            },
+          },
+          {
+            text: localization.translate('generic').abort,
+            style: "cancel",
+          },
+        ],
+        { cancelable: false }
+      );
+    }
+    else {
+      this.setLanguage(languageTag);
+    }    
+  };
+
   setLanguage = (languageTag) => {
     const { actions } = this.props;
     localization.setI18nConfig(languageTag);
     localStorage.persistLocalizationSettings(languageTag, store.getState().Login.subjectId);
-    actions.updateLangugae(languageTag);
   };
 
   // events
@@ -111,8 +137,7 @@ class AboutContainer extends Component {
           showModal={showModal}
           modalLink={modalLink}
           actions={actions}
-          setLanguage={this.setLanguage}
-          currentlyChosenLanguage={currentlyChosenLanguage}
+          changeLanguage={this.changeLanguage}
         />
       );
     }
@@ -127,8 +152,6 @@ class AboutContainer extends Component {
 
   componentDidMount = () => {
     const { actions } = this.props;
-    //just sets the right value for the language dropdown
-    actions.updateLangugae(localization.getLanguageTag());
   };
 }
 

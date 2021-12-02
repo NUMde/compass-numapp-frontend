@@ -7,6 +7,7 @@ imports
 import React, { PureComponent } from "react";
 import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
 
+import store from '../../store'
 import config from "../../config/configProvider";
 import { ListItem } from "react-native-elements";
 import Banner from "../../components/banner/banner";
@@ -36,15 +37,14 @@ class AboutScreen extends PureComponent {
    * @param  {object}    props.navigation the navigation object provided by 'react-navigation'
    * @param  {function}  props.logout logs out the user
    * @param  {function}  props.clearAll deletes all local data
-   * @param  {function}  props.setLanguage updated the currentlyChosenLangugage
-   * @param  {string}    props.currentlyChosenLanguage the currently chosen language
+   * @param  {function}  props.changeLanguage updates the currentlyChosenLangugage
    */
 
   // rendering
   /*-----------------------------------------------------------------------------------*/
 
   render() {
-    const { navigation, actions, clearAll, logout, showModal, modalLink, setLanguage, currentlyChosenLanguage } =
+    const { navigation, actions, clearAll, logout, showModal, modalLink, changeLanguage } =
       this.props;
     return (
       <View style={localStyle.wrapper}>
@@ -97,8 +97,6 @@ class AboutScreen extends PureComponent {
                           size: 12,
                         }}
                       />
-
-                      {/* the icon on the right-hand-side */}
                     </ListItem>
                   )}
 
@@ -129,21 +127,32 @@ class AboutScreen extends PureComponent {
                 <View style={localStyle.bottom}>
                   
                   {/* language picker */}
-                  <Picker
-                    selectedValue={currentlyChosenLanguage}
-                    onValueChange={(itemValue) =>
-                      {
-                        if(currentlyChosenLanguage !== itemValue) {
-                          setLanguage(itemValue);
-                          RNRestart.Restart();
+                  <View style={localStyle.languagePickerWrapper}>
+                    <Text style={localStyle.title}>
+                      {localization.translate('about').languageSelection}
+                    </Text>
+
+                    {store.getState().CheckIn.questionnaireItemMap.started && (<Text style={localStyle.warningSubTitle}>
+                      {localization.translate('about').languageWarning}
+                    </Text>)}
+
+                    <Picker
+                      style={localStyle.picker}
+                      mode="dropdown"
+                      selectedValue={localization.getLanguageTag()}
+                      onValueChange={(itemValue) =>
+                        {
+                          if(localization.getLanguageTag() !== itemValue) {
+                            changeLanguage(itemValue);
+                          }
                         }
-                      }
-                    }>
-                    <Picker.Item label="English" value="en" />
-                    <Picker.Item label="Deutsch" value="de" />
-                    <Picker.Item label="Français" value="fr" />
-                    <Picker.Item label="عربي" value="ar" />
-                  </Picker>
+                      }>
+                      <Picker.Item label="English" value="en" />
+                      <Picker.Item label="Deutsch" value="de" />
+                      <Picker.Item label="Français" value="fr" />
+                      <Picker.Item label="عربي" value="ar" />
+                    </Picker>
+                  </View>
 
                   {/* logout button */}
                   {(config.appConfig.showLogout && !kioskMode.active) && (
@@ -195,7 +204,7 @@ localStyle = StyleSheet.create({
     alignItems: "center",
     width: "100%",
     height: "100%",
-    backgroundColor: config.theme.values.defaultBackgroundColor,
+    backgroundColor: config.theme.colors.accent0,
   },
 
   bottom: {
@@ -203,8 +212,9 @@ localStyle = StyleSheet.create({
     justifyContent: "flex-end",
     marginBottom: 36,
     height: "100%",
-    marginTop: 20,
-    width: "80%",
+    marginTop: 5,
+    width: "100%",
+    padding: 15
   },
 
   button: {
@@ -216,7 +226,7 @@ localStyle = StyleSheet.create({
   buttonAlert: {
     ...config.theme.classes.buttonAlert,
     bottom: 0,
-    marginTop: 10,
+    marginTop: 20,
   },
 
   buttonLabel: {
@@ -228,6 +238,7 @@ localStyle = StyleSheet.create({
     borderBottomColor: config.theme.colors.accent3,
     borderBottomWidth: 1,
     backgroundColor: config.theme.values.defaultListLinkBackgroundColor,
+    padding: 15,
   },
 
   subTitle: {
@@ -235,9 +246,28 @@ localStyle = StyleSheet.create({
     ...config.theme.fonts.body,
   },
 
+  warningSubTitle: {
+    color: config.theme.colors.alert,
+    ...config.theme.fonts.body,
+  },
+
   title: {
     ...config.theme.fonts.title2,
   },
+
+  titleText: {
+    width: "80%",
+    textAlign: "center",
+    alignSelf: "center",
+    ...config.theme.fonts.header2,
+  },
+
+  languagePickerWrapper: {
+    borderWidth: 3,
+    borderColor: config.theme.colors.white,
+    borderRadius: 4,
+    padding: 10
+  }
 });
 
 export default AboutScreen;
