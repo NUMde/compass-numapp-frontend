@@ -181,7 +181,7 @@ const removeLastQuestionnaireId = async (subjectId) => {
  */
 const persistCategories = async (categories, subjectId) => {
   const id = subjectId || (await loadLastSubjectId());
-  if (!(categories && IDBFactory)) return;
+  if (!(categories && id)) return;
 
   const stringToBePersisted =
     categories instanceof String ? categories : JSON.stringify(categories);
