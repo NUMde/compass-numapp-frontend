@@ -41,7 +41,7 @@ class CheckInContainer extends Component {
     if (route.name === "CheckIn") {
       setTimeout(() => {
         this.updateUser();
-      }, 500);
+      }, 500)
     }
   };
 
@@ -135,7 +135,7 @@ class CheckInContainer extends Component {
 
     // gets the questionnaire with the correct id
     await loggedInClient
-      .getBaseQuestionnaire(user.current_questionnaire_id)
+      .getBaseQuestionnaire(user.current_questionnaire_id, localization.getLanguageTag())
       // success
       .then((resp) => {
         setTimeout(async () => {
@@ -197,7 +197,7 @@ class CheckInContainer extends Component {
    * @param {any} data
    */
   updateUserSuccess = async (data) => {
-    const { user, actions, noNewQuestionnaireAvailableYet } = this.props;
+    let { user, actions, noNewQuestionnaireAvailableYet } = this.props;
     data.subjectId = data.subjectId || null;
 
     // procures the id of the questionnaire used by the last active user
@@ -208,7 +208,6 @@ class CheckInContainer extends Component {
       // deletes the questionnaire if it is reached
       await actions.deleteLocalQuestionnaire();
     }
-
     // persists the new data
     actions.updateUserSuccess(data);
 
@@ -226,7 +225,7 @@ class CheckInContainer extends Component {
 
     setTimeout(async () => {
       // if we have locally persisted questionnaire
-      if (lastQuestionnaireId && !noNewQuestionnaireAvailableYet) {
+      if (lastQuestionnaireId && !this.props.noNewQuestionnaireAvailableYet) {
         // checks if the id of the persisted questionnaire matches the one of the
         // questionnaire the user is supposed to look at now
         let lastLang = await localStorage.loadLastQuestionnaireLanguage()
@@ -240,7 +239,8 @@ class CheckInContainer extends Component {
           // deletes the locally persisted questionnaire, as it does not matches
           // the one the user is supposed to look at
           setTimeout(() => {
-            this.deleteLocalQuestionnaireData();
+            this.deleteLocalQuestionnaireData( );
+            this.deleteLocalQuestionnaireData(lastLang !== localization.getLanguageTag() ?? localization.translate('generic').wrongLangugageVersionDetected);
           }, 0);
         }
       } else {
@@ -250,7 +250,7 @@ class CheckInContainer extends Component {
           this.deleteLocalQuestionnaireData();
         }
         // tries to procure a new questionnaire if possible
-        if (!noNewQuestionnaireAvailableYet) {
+        if (!this.props.noNewQuestionnaireAvailableYet) {
           setTimeout(async () => {
             await this.getQuestionnaire();
           }, 0);
@@ -347,10 +347,10 @@ class CheckInContainer extends Component {
     actions.sendQuestionnaireResponseFail(error);
     if(error.response.status === 409){
       // deletes the locally persisted questionnaire, as it does not matches
-          // the one the user is supposed to look at
-          setTimeout(() => {
-            this.deleteLocalQuestionnaireData(localization.translate('generic').sendErrorTwoDevices);
-          }, 0);
+        // the one the user is supposed to look at
+        setTimeout(() => {
+          this.deleteLocalQuestionnaireData(localization.translate('generic').sendErrorTwoDevices);
+        }, 0);
     }
     else{
       setTimeout(() => {

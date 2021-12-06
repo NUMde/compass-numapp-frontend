@@ -41,6 +41,15 @@ export const sendCredentialsFail = (error) => ({
 });
 
 /**
+ * deletes all local data (is executed in src/store.js, not in the AboutReducer)
+ */
+ export const deleteLocalData = () => async dispatch => {
+	dispatch({
+		type: 'DELETE_ALL_LOCAL_DATA'
+	})
+}
+
+/**
  * logs the user in, using the result of the qr-scan
  * @param  {string} cleanedScanResult result of the scan cleaned up (getting the id out of the json)
  * @param  {object} [camera] camera reference
@@ -55,7 +64,7 @@ export const sendCredentials =
       // rest call
       await guestClient
         .login(cleanedScanResult)
-        .then((res) => {
+        .then(async (res) => {
           // this data will be persisted locally.
           // should the response not contain any certificate then the one defined in
           // appConfig.js will be used
@@ -71,13 +80,13 @@ export const sendCredentials =
               config.appConfig.defaultRecipientCertificatePemString,
           };
           // the id of the user will be persisted in the LocalStorage (for the auto-login next time)
-          localStorage.persistLastSubjectId(cleanedScanResult);
+          await localStorage.persistLastSubjectId(cleanedScanResult);
 
-          setTimeout(async () => {
-            let lang = await localStorage.loadLocalizationSettings(cleanedScanResult)
-            if(lang) localization.setI18nConfig(lang)
-            dispatch(sendCredentialsSuccess(cleanedScanResult, data));
-          }, 0);
+          let lang = await localStorage.loadLocalizationSettings(cleanedScanResult)
+
+          if(lang) localization.setI18nConfig(lang)
+
+          dispatch(sendCredentialsSuccess(cleanedScanResult, data));
         })
         .catch((err) => {
           // reactivates the camera

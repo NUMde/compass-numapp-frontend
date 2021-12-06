@@ -81,11 +81,13 @@ export default {
         autoLoginErrorTitle: "Auto Login fehlgeschlagen",
         autoLoginError: "Beim Versuch, sich automatisch anzumelden, ist ein Fehler aufgetreten.Bitte überprüfen Sie Ihr Netzwerk und versuchen Sie es erneut",
         retry: "wiederholen",
+        deleteAll: "Alle lokalen Daten löschen"
       },
     },
   
     /** strings with generic purpose that can be used throughout the application */
     generic: {
+      questionnaire: "Fragebogen",
       ok: "okay",
       error: "Fehler",
       abort: "Abbrechen",
@@ -93,7 +95,7 @@ export default {
       info: "information",
       errorTitle: "Fehler",
       successTitle: "Erfolg",
-      delete: "Ja, dienen Daten",
+      delete: "Ja, Daten löschen",
       goBack: "Ja, bitte melden Sie sich an",
       logoutWarning: "Logout Warnung",
       sendSuccess: "Erfolgreich gesendete Daten",
@@ -102,6 +104,8 @@ export default {
       eraseAllWarning: "Dadurch werden alle lokalen Daten gelöscht und loggt Sie an.Möchten Sie ein Verfahren?",
       eraseLocalDataAtEndOfStudyText: "Dies wird erneut das Ende der Studie betonen.Sobald der Benutzer die lokalen Daten bestätigt, wird der Teilnehmer abgemeldet.Möchten Sie vorausgehen?",
       eraseLocalDataAtEndOfStudyTitle: "Löschen Sie lokale Daten und logout",
+      wrongLangugageVersionDetected:
+      "Der anhaltende Fragebogen stimmt nicht mit der aktuell ausgewählten Sprache auf Ihrem Gerät überein.Dieser Fragebogen wird nun durch eine passende Version ersetzt.Ihre Antworten gehen verloren.",
       updateError: "Beim Erhalten der angeforderten Daten ist ein Fehler aufgetreten - bitte versuchen Sie es erneut.",
       infoRemoval: "Der derzeit anhaltende Fragebogen ist veraltet und wird nun entfernt.",
       reportWhileInIteratedMode: "Dialog, um dem Benutzer mitzuteilen, dass er bereits in einem speziellen Bericht gesendet wurde und dass er gerade in einem speziellen Intervall ist.",

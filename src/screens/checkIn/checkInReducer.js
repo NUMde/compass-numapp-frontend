@@ -428,11 +428,10 @@ const valuesHandlers = {
   UPDATE_USER_SUCCESS: (state, values) => ({
     ...state,
     error401: false,
-    loading: false,
     user: values.user,
     questionnaireError: null,
     noNewQuestionnaireAvailableYet:
-      new Date() < new Date(values.user.start_date),
+      new Date() < new Date(values.user.start_date) || !values.user.current_questionnaire_id,
   }),
 
   /**

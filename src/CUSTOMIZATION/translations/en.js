@@ -90,6 +90,7 @@ export default {
       autoLoginError:
         "An Error occurred while trying to automatically login. Please check your network and try again",
       retry: "retry",
+      deleteAll: "Delete all data"
     },
   },
 
@@ -102,6 +103,7 @@ export default {
     info: "Information",
     errorTitle: "Error",
     successTitle: "Success",
+    questionnaire: "Questionnaire",
     delete: "Yes, delete data",
     goBack: "Yes, please logout",
     logoutWarning: "Logout Warning",
@@ -109,6 +111,8 @@ export default {
     sendError: "There was an error transmitting the data. Please try again.",
     sendErrorTwoDevices:
       "You have already sent this questionnaire through another App. ",
+    wrongLangugageVersionDetected:
+      "The persisted questionnaire doies not match the currently selected language on your device. This questionnaire will now be replaced by a matching version. Your answers will be lost.",
     eraseAllWarning:
       "This will delete all local data and logs you out. Do you want to procede?",
     eraseLocalDataAtEndOfStudyText:

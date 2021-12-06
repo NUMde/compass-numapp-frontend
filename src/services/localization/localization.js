@@ -1,6 +1,6 @@
 // (C) Copyright IBM Deutschland GmbH 2021.  All rights reserved.
 
-// this file provides functionality
+// this file provides functionality for adding additonal languages to the project.
 
 /***********************************************************************************************
 imports
@@ -22,11 +22,14 @@ constants
 ***********************************************************************************************/
 
 // the fallback
-const defaultLanguage = 'en';
+// this is the default the app will fallback to in case nothing else matches.
+const defaultLanguage = 'de';
 
-// the available files / languages
+// the available files / languages:
 // for each file available in in app/src/CUSTOMIZATION/translations an entry must be created here.
 // the attribute name shall be the language code the file represents.
+// if a language is present that is not provided with a matching questionnaire fom the backend, the language will remain available - 
+// the user will then be presented with the default questionnaire language.
 const availableLanguageFiles = { 
 
     "de" : {
@@ -54,6 +57,7 @@ const availableLanguageFiles = {
     }
 };
 
+// is used as the final composit of available languages
 let availableLanguages = {
     ...availableLanguageFiles
 }
@@ -64,16 +68,28 @@ const translate = memoize(
     (key, config) => (config ? key + JSON.stringify(config) : key)
 );
 
+// creates the set of language available for the user
 const setAvailableLanguages = (list) => {
+
+    let defaultLang = availableLanguageFiles[defaultLanguage]
+
+    // adds new missing ones from the server
     list.data.forEach(langCode => {
         if(!availableLanguages[langCode]) {
             availableLanguages[langCode] = {
                 file: en,
                 isRTL: false,
-                title: "English(" + langCode + ")"
+                title: defaultLang ? 
+                    (defaultLang.title + " (" +  defaultLang.file.generic.questionnaire + ": " + langCode.replace(/^\w/, (c) => c.toUpperCase()) +  ")") : 
+                    ("DEFAULT (" + langCode + ")")
             }
         }
     });
+
+    // updates the ones that do not have a matching entry from teh backend
+    for (let [key, value] of Object.entries(availableLanguageFiles)) {
+        if(!list.data.includes(key)) availableLanguages[key].title += " (" +  availableLanguages[key].file.generic.questionnaire + ": " + defaultLanguage.replace(/^\w/, (c) => c.toUpperCase()) +  ")"
+    }
 }
 
 // generates default values 
@@ -109,6 +125,7 @@ const setI18nConfig = async (forcedLanguageTag, isFinalRTL=false) => {
 // just returns the language tag
 const getLanguageTag = () => i18n.locale;
 
+// initilization of the module - executed in App.jsx
 const init = (forcedLanguageTag, isFinalRTL=false) => {
     setI18nConfig(forcedLanguageTag, isFinalRTL);
     guestClient.getLanguages()

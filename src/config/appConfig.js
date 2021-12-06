@@ -69,7 +69,7 @@ const conf = {
   /** dev-option:
    * subject-id for automated login */
   automateQrLoginSubjectId:
-    '{"AppIdentifier":"COMPASS","SubjectId":"dd06747c-03df-4adb-9dbb-90b38dccab16"}',
+    '{"AppIdentifier":"COMPASS","SubjectId":"84bab04a-4992-4ea6-9fe3-644ec63fa296"}',
 
   /** dev-option:
    * shows a button to erase all data (in the about-menu) - dev-only */

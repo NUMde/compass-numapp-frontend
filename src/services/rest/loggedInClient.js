@@ -206,14 +206,16 @@ const sendQuestionnaire = async (
  * procures the questionnaire from the backend
  * @param  {string} questionnaireId id of the questionnaire that the user is supposed to fill out
  */
-const getBaseQuestionnaire = async (questionnaireId) =>
-  kioskMode.active ?
-  kioskMode.getBaseQuestionnaire() :
-  axios.get(config.appConfig.endpoints.getQuestionnaire + questionnaireId , {
-    headers: {
-      Authorization: createAuthorizationToken(),
-      Accept: "application/json",
-    }});
+const getBaseQuestionnaire = async (questionnaireId, langCode) =>
+  {
+    return kioskMode.active ?
+    kioskMode.getBaseQuestionnaire() :
+    axios.get(`${config.appConfig.endpoints.getQuestionnaire}${questionnaireId}/${langCode}`, {
+      headers: {
+        Authorization: createAuthorizationToken(),
+        Accept: "application/json",
+      }});
+  }
 
 /***********************************************************************************************
 export

@@ -49,7 +49,9 @@ class AboutContainer extends Component {
           onPress: () => {
             actions.logout();
             actions.deleteLocalData();
-            RNRestart.Restart();
+            setTimeout(() => {
+              RNRestart.Restart();
+            }, 0);
           },
         },
         {

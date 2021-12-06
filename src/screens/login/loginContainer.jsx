@@ -56,9 +56,11 @@ class LoginContainer extends Component {
       // sets the subjectId defined in appConfig.js
       actions.updateSubjectId(scannedId);
       // triggers the login
-      setTimeout(async () => actions.sendCredentials(scannedId), 1000);
+      setTimeout(async () => actions.sendCredentials(scannedId), 0);
     } else {
-      this.autoLoginLastUser();
+      setTimeout(() => {
+        this.autoLoginLastUser();
+      }, 0);
     }
   };
 
@@ -67,11 +69,22 @@ class LoginContainer extends Component {
    */
   componentDidUpdate = () => {
     const { loggedIn, navigation } = this.props;
-    if (loggedIn) navigation.navigate("SignedIn", { screen: "CheckIn" });
+    if (loggedIn) setTimeout(() => {
+      navigation.navigate("SignedIn", { screen: "CheckIn" });
+    }, 0);
   };
 
   // class methods
   /*-----------------------------------------------------------------------------------*/
+
+  /**
+   * deletes all local data
+   */
+   deleteLocalData = async () => {
+    const { actions } = this.props;
+    // deletes all local data
+    actions.deleteLocalData();
+  };
 
   /**
    * tries to log in the last persisted user, is triggered by componentDidMount()
@@ -156,6 +169,7 @@ class LoginContainer extends Component {
         loginError={loginError}
         navigation={navigation}
         autoLoginLastUser={this.autoLoginLastUser}
+        deleteLocalData={this.deleteLocalData}
       />
     );
   }

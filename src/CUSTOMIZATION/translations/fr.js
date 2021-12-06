@@ -81,6 +81,7 @@ export default {
         autoLoginErrorTitle: "La connexion automatique a échoué",
         autoLoginError: "Lorsque vous essayez de vous connecter automatiquement, une erreur s'est produite. Veuillez vérifier votre réseau et réessayer.",
         retry: "répéter",
+        deleteAll: "Supprimer toutes les données"
       },
     },
   
@@ -93,6 +94,7 @@ export default {
       info: "informations",
       errorTitle: "échec",
       successTitle: "Succès",
+      questionnaire: "Questionnaire",
       delete: "Oui, servez les données",
       goBack: "Oui, veuillez vous connecter",
       logoutWarning: "Déconnexion avertissement",
@@ -104,6 +106,8 @@ export default {
       eraseLocalDataAtEndOfStudyTitle: "Supprimer des données locales et des déconnages",
       updateError: "Une erreur s'est produite lors de l'obtention des données demandées - veuillez réessayer.",
       infoRemoval: "Le questionnaire actuellement durable est obsolète et sera maintenant enlevé.",
+      wrongLangugageVersionDetected:
+      "Le questionnaire persisté ne correspond pas à la langue actuellement sélectionnée sur votre appareil.Ce questionnaire sera maintenant remplacé par une version correspondante.Vos réponses seront perdues.",
       reportWhileInIteratedMode: "Dialogue Pour dire à l'utilisateur qu'il a déjà été envoyé dans un rapport spécial et qu'il s'agit simplement d'un intervalle spécial.",
       reportWhileQuestionnaire: "Dialogue Pour dire à l'utilisateur qu'un questionnaire est actuellement disponible et qu'il pourrait l'utiliser pour faire rapport sur son état.",
     },

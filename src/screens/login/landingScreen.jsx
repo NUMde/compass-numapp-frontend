@@ -29,11 +29,12 @@ class LandingScreen extends PureComponent {
    */
 
   render() {
-    const { loading, navigation, loginError, autoLoginLastUser } = this.props;
+    const { loading, navigation, loginError, autoLoginLastUser, deleteLocalData } = this.props;
     return (
       <View style={localStyle.wrapper}>
         {/* loading spinner */}
         <Spinner visible={loading} testID="landingSpinner" />
+        
         {/* banner */}
         <Banner
           nav={navigation}
@@ -67,6 +68,18 @@ class LandingScreen extends PureComponent {
                     >
                       <Text style={localStyle.buttonLabel}>
                         {localization.translate("login").landing.retry}
+                      </Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                      style={{...localStyle.button, ...localStyle.buttonAlert}}
+                      onPress={() => deleteLocalData()}
+                      accessibilityLabel={localization.translate("login").landing.deleteAll}
+                      accessibilityRole={localization.translate('accessibility').types.Button}
+                      accessibilityHint={localization.translate('accessibility').retryHint}
+                    >
+                      <Text style={localStyle.buttonLabel}>
+                        {localization.translate("login").landing.deleteAll}
                       </Text>
                     </TouchableOpacity>
                   </View>
@@ -165,6 +178,12 @@ localStyle = StyleSheet.create({
     paddingLeft: config.appConfig.scaleUiFkt(15),
     paddingRight: config.appConfig.scaleUiFkt(15),
     width: "80%",
+  },
+
+  buttonAlert: {
+    ...config.theme.classes.buttonAlert,
+    bottom: 0,
+    marginTop: 20,
   },
 
   buttonLabel: {

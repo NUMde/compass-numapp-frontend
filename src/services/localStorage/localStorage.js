@@ -13,6 +13,8 @@ import config from "../../config/configProvider";
 operations
 ***********************************************************************************************/
 
+let lastSubjectId = undefined;
+
 // last subject-id
 /*-----------------------------------------------------------------------------------*/
 /**
@@ -20,8 +22,10 @@ operations
  * @returns string | null
  */
 const loadLastSubjectId = async () => {
+  
   try {
-    return await EncryptedStorage.getItem(config.appConfig.lastSubjectId);
+    lastSubjectId = await EncryptedStorage.getItem(config.appConfig.lastSubjectId)
+    return lastSubjectId;
   } catch (error) {
     console.error(error);
     return null;
@@ -34,7 +38,8 @@ const loadLastSubjectId = async () => {
  * @param  {string} [subjectId] subjectId of the user
  */
 const persistLastSubjectId = async (subjectId) => {
-  const id = subjectId || (await loadLastSubjectId());
+  
+  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
   if (!id) return;
 
   try {
@@ -50,6 +55,7 @@ const persistLastSubjectId = async (subjectId) => {
  * deletes the last used subjectId from the EncryptedStorage
  */
 const removeLastSubjectId = async () => {
+  
   try {
     await EncryptedStorage.removeItem(config.appConfig.lastSubjectId);
   } catch (error) {
@@ -67,7 +73,8 @@ const removeLastSubjectId = async () => {
  * @param  {any} FCMToken notification object
  */
 const persistFCMToken = async (FCMToken, subjectId) => {
-  const id = subjectId || (await loadLastSubjectId());
+  
+  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
   if (!id) return;
 
   try {
@@ -86,7 +93,8 @@ const persistFCMToken = async (FCMToken, subjectId) => {
  * @returns {Promise<{deviceId:string}>}
  */
 const loadFCMToken = async (subjectId) => {
-  const id = subjectId || (await loadLastSubjectId());
+  
+  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
   if (!id) return null;
 
   try {
@@ -102,7 +110,8 @@ const loadFCMToken = async (subjectId) => {
  * @param  {string} [subjectId] subjectId of the user
  */
 const removeFCMToken = async (subjectId) => {
-  const id = subjectId || (await loadLastSubjectId());
+  
+  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
   if (!id) return;
 
   try {
@@ -123,7 +132,8 @@ const removeFCMToken = async (subjectId) => {
  * @param  {string} [subjectId] id of the user
  */
  const persistLastQuestionnaireLanguage = async (questionnaireId, subjectId) => {
-  const id = subjectId || (await loadLastSubjectId());
+   
+  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
   if (!id) return;
   if (!(questionnaireId && id)) return;
 
@@ -143,7 +153,8 @@ const removeFCMToken = async (subjectId) => {
  * @returns string | null
  */
 const loadLastQuestionnaireLanguage = async (subjectId) => {
-  const id = subjectId || (await loadLastSubjectId());
+  
+  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
   if (!id) return null;
 
   try {
@@ -161,7 +172,8 @@ const loadLastQuestionnaireLanguage = async (subjectId) => {
  * @param  {string} [subjectId] subject-id
  */
 const removeLastQuestionnaireLanguage = async (subjectId) => {
-  const id = subjectId || (await loadLastSubjectId());
+  
+  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
   if (!id) return;
 
   try {
@@ -185,7 +197,8 @@ const removeLastQuestionnaireLanguage = async (subjectId) => {
  * @param  {string} [subjectId] id of the user
  */
 const persistLastQuestionnaireId = async (questionnaireId, subjectId) => {
-  const id = subjectId || (await loadLastSubjectId());
+  
+  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
   if (!id) return;
   if (!(questionnaireId && id)) return;
 
@@ -205,7 +218,8 @@ const persistLastQuestionnaireId = async (questionnaireId, subjectId) => {
  * @returns string | null
  */
 const loadLastQuestionnaireId = async (subjectId) => {
-  const id = subjectId || (await loadLastSubjectId());
+  
+  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
   if (!id) return null;
 
   try {
@@ -223,7 +237,8 @@ const loadLastQuestionnaireId = async (subjectId) => {
  * @param  {string} [subjectId] subject-id
  */
 const removeLastQuestionnaireId = async (subjectId) => {
-  const id = subjectId || (await loadLastSubjectId());
+  
+  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
   if (!id) return;
 
   try {
@@ -244,7 +259,8 @@ const removeLastQuestionnaireId = async (subjectId) => {
  * @param  {string} [subjectId] if of the user
  */
 const persistCategories = async (categories, subjectId) => {
-  const id = subjectId || (await loadLastSubjectId());
+  
+  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
   if (!(categories && subjectId)) return;
 
   const stringToBePersisted =
@@ -266,11 +282,12 @@ const persistCategories = async (categories, subjectId) => {
  * @returns string | null
  */
 const loadCategories = async (subjectId) => {
-  const id = subjectId || (await loadLastSubjectId());
+  
+  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
   if (!id) return null;
-
   try {
     return JSON.parse(
+      
       await EncryptedStorage.getItem(
         `${config.appConfig.localStorageList}_${id}`
       )
@@ -286,7 +303,8 @@ const loadCategories = async (subjectId) => {
  * @param  {string} [subjectId] subject-id
  */
 const removeCategories = async (subjectId) => {
-  const id = subjectId || (await loadLastSubjectId());
+  
+  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
   if (!id) return;
 
   try {
@@ -307,7 +325,8 @@ const removeCategories = async (subjectId) => {
  * @param  {string} [subjectId] if of the user
  */
 const persistQuestionnaireItemMap = async (map, subjectId) => {
-  const id = subjectId || (await loadLastSubjectId());
+  
+  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
   if (!id) return;
 
   const stringToBePersisted = map instanceof String ? map : JSON.stringify(map);
@@ -328,11 +347,12 @@ const persistQuestionnaireItemMap = async (map, subjectId) => {
  * @returns string | null
  */
 const loadQuestionnaireItemMap = async (subjectId) => {
-  const id = subjectId || (await loadLastSubjectId());
+  
+  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
   if (!id) return null;
-
   try {
     return JSON.parse(
+      
       await EncryptedStorage.getItem(
         `${config.appConfig.localStorageMap}_${id}`
       )
@@ -348,7 +368,8 @@ const loadQuestionnaireItemMap = async (subjectId) => {
  * @param  {string} [subjectId] subject-id
  */
 const removeQuestionnaireItemMap = async (subjectId) => {
-  const id = subjectId || (await loadLastSubjectId());
+  
+  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
   if (!id) return;
 
   try {
@@ -368,6 +389,7 @@ const removeQuestionnaireItemMap = async (subjectId) => {
  * @returns string | null
  */
  const loadKioskModeData = async () => {
+   
   try {
     return await EncryptedStorage.getItem(config.appConfig.kioskModeData);
   } catch (error) {
@@ -381,6 +403,7 @@ const removeQuestionnaireItemMap = async (subjectId) => {
  * @param  {string} [kioskModeData] kioskModeData of the user
  */
 const persistKioskModeData = async (kioskModeData) => {
+  
   const id = kioskModeData || (await loadKioskModeData());
   if (!id) return;
 
@@ -395,6 +418,7 @@ const persistKioskModeData = async (kioskModeData) => {
  * deletes the kiosk mode data from the EncryptedStorage
  */
 const removeKioskModeData = async () => {
+  
   try {
     await EncryptedStorage.removeItem(config.appConfig.kioskModeData);
   } catch (error) {
@@ -410,6 +434,7 @@ const removeKioskModeData = async () => {
  * @returns string | null
  */
  const loadLocalizationSettings = async (subjectId) => {
+   
   let itemString = `${config.appConfig.localeData}`;
   if(subjectId) itemString += `_${subjectId}`;
 
@@ -426,6 +451,7 @@ const removeKioskModeData = async () => {
  * @param  {string} [localizationSettings] localizationSettings of the user
  */
 const persistLocalizationSettings = async (localizationSettings, subjectId) => {
+  
   let itemString = `${config.appConfig.localeData}`;
   if(subjectId) itemString += `_${subjectId}`;
 
@@ -440,6 +466,7 @@ const persistLocalizationSettings = async (localizationSettings, subjectId) => {
  * deletes the localization settings from the EncryptedStorage
  */
 const removeLocalizationSettings = async (subjectId) => {
+  
   let itemString = `${config.appConfig.localeData}`;
   if(subjectId) itemString += `_${subjectId}`;
 
@@ -457,6 +484,7 @@ const removeLocalizationSettings = async (subjectId) => {
  * just clears all
  */
 const clearAll = async () => {
+  
   await EncryptedStorage.clear();
 };
 

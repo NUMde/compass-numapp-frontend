@@ -1,21 +1,11 @@
-= Updating the Content of the React Native Client
+= Updating Available Languages and the Content of the React Native Client
 
 https://github.com/NUMde/compass-numapp[Main Repository] | link:../[List of Content]
 
-== Setting up the Custom Configuration File
-The strings utilized in the app, as well as other aspects of the react-native client can be adjusted to your needs. The project comes with a set of configuration files that allow for quick and individual changes. The file responsible for the currently used strings is *`link:../../../../tree/main/src/config/textConfig.js[src/config/textConfig.js]`*
+== Setting up the individual Languages
+The strings utilized in the app, as well as other aspects of the react-native client can be adjusted to your needs. The project comes with a set of configuration files that allow for quick and individual changes. The files responsible for the currently used strings are located under *`link:../../../../tree/main/src/CUSTOMIZATION/translations[src/CUSTOMIZATION/translations]`*. Each file represents an available set of strings for a given language. If you want to add a language you need to add another file named like the language-code it represents and then add a matching entry in the `availableLanguageFiles` object in then file *`link:../../../../tree/main/src/services/localization/localization.js[src/services/localization/localization.js]`*.
 
-WARNING: However, it is not recommended to alter this file directly, as it will aggravate the process of merging future updates into your own forked project. To ensure the updatability of your repository, another file is provided: *`link:../../../../tree/main/src/CUSTOMIZATION/customTextConfig.js[src/CUSTOMIZATION/customTextConfig.js]`* You can copy the content of the file *`link:../../../../tree/main/src/config/textConfig.js[textConfig.js]`* into *`link:../../../../tree/main/src/CUSTOMIZATION/customTextConfig.js[customTextConfig.js]`*. There you can change any string as you see fit. Both files contain explanations on how and where to copy the values.
-
-.Copying the config to generate a set of custom strings
-[caption="Example: "]
-==========================
-image:./images/copyingStrings.gif[auto, auto]
-==========================
-IMPORTANT: Please make sure to copy the whole content below the marked point, and not just parts of it.
-
-== Updating the App Strings
-As soon as you have copied the content of *`link:../../../../tree/main/src/config/textConfig.js[textConfig.js]`* into *`link:../../../../tree/main/src/CUSTOMIZATION/customTextConfig.js[customTextConfig.js]`*, you can change the strings to customize your app.
+TIP: Likewise, If you want to remove a language, just remove the according entry in that object.
 
 TIP: These are Javascript strings. That means you can use escape characters and sequences like "*\n*" (would produce a line break). 
 
@@ -30,7 +20,7 @@ The About Screen (can be reached by clicking on the burger menu in top right cor
 [cols=>1d;2d,width=100%, frame="none", grid="none"]
 |===
 |image:./images/legal.gif[auto, 300]
-|This will take the user to a screen dedicated to the legal content that the app must contain in certain areas. The content of that page is dependent on the value that of the property *'legalInformation'* of your text-configuration:
+|This will take the user to a screen dedicated to the legal content that the app must contain in certain areas. The content of that page is dependent on the value that of the property *'legalInformation'* of your language file:
 
 
 image:./images/literals.png[auto, 650]
@@ -47,9 +37,9 @@ TIP: If you do not want to use the Legal-Information-Screen you can just deactiv
 [cols=>1d;2d,width=100%, frame="none", grid="none"]
 |===
 |image:./images/webview.gif[auto, 300]
-|This will take the user to the *WebView-Screen*. That screen will open up a URI provided by your text-configuration and then renders it below the banner. The content appears to be part of the app, but is indeed loaded from an external source. You can set that up to be anything you need. 
+|This will take the user to the *WebView-Screen*. That screen will open up a URI provided by your language file and then renders it below the banner. The content appears to be part of the app, but is indeed loaded from an external source. You can set that up to be anything you need. 
 
-To add another WebView-Link to the About-Screen, all you have to do is add another object (like the ones already there) to the WebViews-Array provided by your text-configuration. Of course, you can also just edit or remove the existing ones:
+To add another WebView-Link to the About-Screen, all you have to do is add another object (like the ones already there) to the WebViews-Array provided by your language file. Of course, you can also just edit or remove the existing ones:
 
 image:./images/webview.png[auto, 650]
 |=== 
@@ -59,9 +49,9 @@ image:./images/webview.png[auto, 650]
 [cols=>1d;2d,width=100%, frame="none", grid="none"]
 |===
 |image:./images/redirect.gif[auto, 300]
-|This last type of link will also open an URI defined by your text-configuration. But it will open it in the local web-browser of the user. Before that, a modal will tell the user that he is now being redirected.
+|This last type of link will also open an URI defined by your language file. But it will open it in the local web-browser of the user. Before that, a modal will tell the user that he is now being redirected.
 
-To add another Browser-Link to the About-Screen, all you have to do is add another object (like the ones already there) to the ModalLink-Array provided by your text-configuration. Of course, you can also just edit or remove the existing ones:
+To add another Browser-Link to the About-Screen, all you have to do is add another object (like the ones already there) to the ModalLink-Array provided by your language file. Of course, you can also just edit or remove the existing ones:
 
 image:./images/redirect.png[auto, 650]
 |=== 
