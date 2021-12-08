@@ -4,13 +4,13 @@
 imports
 ***********************************************************************************************/
 
-import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-import About from "../screens/about/aboutContainer";
-import Login from "../screens/login/loginContainer";
-import { CheckIn } from "../screens/checkIn/checkInContainer";
+import About from '../screens/about/aboutContainer';
+import Login from '../screens/login/loginContainer';
+import { CheckIn } from '../screens/checkIn/checkInContainer';
 
 /***********************************************************************************************
 export and AppContainer-creation

@@ -4,8 +4,8 @@
 imports
 ***********************************************************************************************/
 
-import React, { PureComponent } from "react";
-import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
+import React, { PureComponent } from 'react';
+import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 
 import store from '../../store'
 import config from "../../config/configProvider";
@@ -74,7 +74,7 @@ class AboutScreen extends PureComponent {
                   {config.appConfig.allowAccessToLegalInformationScreen && (
                     <ListItem
                       containerStyle={localStyle.containerStyle}
-                      onPress={() => navigation.navigate("LegalInformation")}
+                      onPress={() => navigation.navigate('LegalInformation')}
                     >
                       {/* title & subtitle of the listItem - the strings a identified by the webView*/}
                       <ListItem.Content>
@@ -208,7 +208,7 @@ localStyle = StyleSheet.create({
 
   bottom: {
     flex: 1,
-    justifyContent: "flex-end",
+    justifyContent: 'flex-end',
     marginBottom: 36,
     height: "100%",
     marginTop: 5,
@@ -233,7 +233,7 @@ localStyle = StyleSheet.create({
   },
 
   containerStyle: {
-    width: "100%",
+    width: '100%',
     borderBottomColor: config.theme.colors.accent3,
     borderBottomWidth: 1,
     backgroundColor: config.theme.values.defaultListLinkBackgroundColor,

@@ -4,9 +4,9 @@
 imports
 ***********************************************************************************************/
 
-import React, { Component } from "react";
-import { ListItem } from "react-native-elements";
-import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
+import React, { Component } from 'react';
+import { ListItem } from 'react-native-elements';
+import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 import config from "../../config/configProvider";
 import Banner from "../../components/banner/banner";
@@ -60,7 +60,7 @@ class SurveyScreen extends Component {
         localization.translate('accessibility').questionnaire.category +
         localization.translate('accessibility').questionnaire.finished);
     }
-    return (hint += "");
+    return (hint += '');
   };
 
   getCategoryChevronProps = (category) => {
@@ -68,18 +68,18 @@ class SurveyScreen extends Component {
     const categoryState = questionnaireItemMap[category.linkId];
     if (categoryState.done) {
       return {
-        name: "check",
+        name: 'check',
         color: config.theme.values.defaultSurveyIconCompletedColor,
       };
     }
     if (categoryState.started) {
       return {
-        name: "dots-horizontal",
+        name: 'dots-horizontal',
         color: config.theme.values.defaultSurveyIconTouchedColor,
       };
     }
     return {
-      name: "pencil-outline",
+      name: 'pencil-outline',
       color: config.theme.values.defaultSurveyIconUntouchedColor,
     };
   };
@@ -90,7 +90,7 @@ class SurveyScreen extends Component {
    */
   createListView = () => {
     const { actions, categories } = this.props;
-    if (categories)
+    if (categories) {
       return (
         <View style={localStyle.wrapper}>
           {/* maps a listItem onto each category */}
@@ -124,6 +124,7 @@ class SurveyScreen extends Component {
           })}
         </View>
       );
+    }
     return <View />;
   };
 
@@ -199,7 +200,7 @@ localStyle
 
 localStyle = StyleSheet.create({
   wrapper: {
-    flexDirection: "column",
+    flexDirection: 'column',
     backgroundColor: config.theme.values.defaultBackgroundColor,
   },
 
@@ -209,9 +210,9 @@ localStyle = StyleSheet.create({
 
   bottom: {
     flex: 1,
-    justifyContent: "flex-end",
+    justifyContent: 'flex-end',
     marginBottom: 36,
-    height: "100%",
+    height: '100%',
     marginTop: 20,
   },
 
@@ -219,8 +220,8 @@ localStyle = StyleSheet.create({
     ...config.theme.classes.buttonPrimary,
     bottom: 0,
     marginTop: 10,
-    width: "80%",
-    textAlign: "center",
+    width: '80%',
+    textAlign: 'center',
   },
 
   buttonComplete: {
@@ -233,7 +234,7 @@ localStyle = StyleSheet.create({
   },
 
   listItemContainer: {
-    width: "100%",
+    width: '100%',
     borderBottomColor: config.theme.colors.accent3,
     borderBottomWidth: 1,
     backgroundColor: config.theme.values.defaultSurveyItemBackgroundColor,

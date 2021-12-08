@@ -32,17 +32,17 @@
 // ================================================================================================
 // ================================================================================================
 
-import { Dimensions } from "react-native";
+import { Dimensions } from 'react-native';
 
 /***********************************************************************************************
 constants
 ***********************************************************************************************/
 
 // current device width
-const { width } = Dimensions.get("window");
+const { width } = Dimensions.get('window');
 
 // production-base-backend-uri
-const baseUriProductive = "";
+const baseUriProductive = '';
 
 // development-base-backend-uri
 const baseUriDevelopment = "https://mobile-backend-compass.umopenshift01-27c74fb079246a1ac53f0d02625326eb-0000.eu-de.containers.appdomain.cloud/api/";
@@ -114,15 +114,15 @@ const conf = {
 
   /** login-option:
    * the name of the attribute in the qr-code holding the app-identifier*/
-  qrCodeAttributeHoldingTheAppIdentifier: "AppIdentifier",
+  qrCodeAttributeHoldingTheAppIdentifier: 'AppIdentifier',
 
   /** login-option:
    * the app-identifier */
-  appIdentifier: "COMPASS",
+  appIdentifier: 'COMPASS',
 
   /** login-option:
    * the name of the attribute in the qr-code holding the subject-id*/
-  qrCodeAttributeHoldingTheSubjectId: "SubjectId",
+  qrCodeAttributeHoldingTheSubjectId: 'SubjectId',
 
   // local storage identifiers
   /*-----------------------------------------------------------------------------------*/
@@ -133,19 +133,19 @@ const conf = {
 
   /** local storage identifier:
    * persist the questionnaireItemMap */
-  localStorageMap: "@COMPASS_STORE:persisted_survey",
+  localStorageMap: '@COMPASS_STORE:persisted_survey',
 
   /** local storage identifier:
    * persists the questionnaireItemMap */
-  localStorageList: "@COMPASS_STORE:persisted_survey_list",
+  localStorageList: '@COMPASS_STORE:persisted_survey_list',
 
   /** local storage identifier:
    * the subject-id of the user last logged in */
-  lastSubjectId: "@COMPASS_STORE:last_active_user",
+  lastSubjectId: '@COMPASS_STORE:last_active_user',
 
   /** local storage identifier:
    * the id of the last active questionnaire of the last active user */
-  lastQuestionnaireId: "@COMPASS_STORE:last_questionnaire_id",
+  lastQuestionnaireId: '@COMPASS_STORE:last_questionnaire_id',
 
   /** local storage identifier:
    * the language of the last active questionnaire of the last active user */
@@ -153,7 +153,7 @@ const conf = {
 
   /** local storage identifier:
    * persists all relevant information about the notification-service */
-  FCMToken: "@COMPASS_STORE:fcm_token",
+  FCMToken: '@COMPASS_STORE:fcm_token',
 
   /** local storage identifier:
    * persists all necessary data for the kiosk mode */
@@ -308,22 +308,22 @@ const conf = {
    */
   defaultRulesConfig: [
     {
-      type: "basicTrigger",
+      type: 'basicTrigger',
       rules: {
-        "compass-0-04": ["01# Ja"],
+        'compass-0-04': ['01# Ja'],
       },
     },
 
     {
-      type: "specialTrigger",
+      type: 'specialTrigger',
       rules: {
-        "compass-0-03-02": ["02# positives Ergebnis"],
+        'compass-0-03-02': ['02# positives Ergebnis'],
       },
     },
   ],
 
   /** the name of the attribute used to signal a special report */
-  defaultReportAttribute: "basicTrigger",
+  defaultReportAttribute: 'basicTrigger',
 
   // encryption
   /*-----------------------------------------------------------------------------------*/
@@ -356,7 +356,7 @@ const conf = {
 		  hqHSzFGp8HN2Ui5QWVSu7DgLIvkW
 		  -----END CERTIFICATE-----`
     : // the prod-certificate
-      `...`,
+      '...',
 };
 
 /***********************************************************************************************

@@ -4,23 +4,23 @@
 imports
 ***********************************************************************************************/
 
-import { Alert } from "react-native";
-import { connect } from "react-redux";
-import React, { Component } from "react";
-import { bindActionCreators } from "redux";
+import { Alert } from 'react-native';
+import { connect } from 'react-redux';
+import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 
-import messaging from "@react-native-firebase/messaging";
-import store from "../../store";
+import messaging from '@react-native-firebase/messaging';
+import store from '../../store';
 
 import loggedInClient from "../../services/rest/loggedInClient";
 import localStorage from "../../services/localStorage/localStorage";
 import localization from "../../services/localization/localization";
 import documentCreator from "../../services/questionnaireAnalyzer/questionnaireAnalyzer";
 
-import SurveyScreen from "./surveyScreen";
-import * as checkInActions from "./checkInActions";
-import CheckInScreen from "./checkInScreen";
-import config from "../../config/configProvider";
+import SurveyScreen from './surveyScreen';
+import * as checkInActions from './checkInActions';
+import CheckInScreen from './checkInScreen';
+import config from '../../config/configProvider';
 
 /***********************************************************************************************
 component:
@@ -38,7 +38,7 @@ class CheckInContainer extends Component {
    */
   componentDidMount = () => {
     const { route } = this.props;
-    if (route.name === "CheckIn") {
+    if (route.name === 'CheckIn') {
       setTimeout(() => {
         this.updateUser();
       }, 500)
@@ -154,11 +154,11 @@ class CheckInContainer extends Component {
             {
               text: localization.translate('generic').ok,
               onPress: () => {
-                actions.getQuestionnaireFail(error || "n/a");
+                actions.getQuestionnaireFail(error || 'n/a');
               },
             },
           ],
-          { cancelable: false }
+          { cancelable: false },
         );
 
         response = error;
@@ -187,7 +187,7 @@ class CheckInContainer extends Component {
           },
         },
       ],
-      { cancelable: false }
+      { cancelable: false },
     );
   };
 
@@ -212,8 +212,9 @@ class CheckInContainer extends Component {
     actions.updateUserSuccess(data);
 
     // tries to init the push service
-    if (config.appConfig.connectToFCM)
+    if (config.appConfig.connectToFCM) {
       setTimeout(() => this.initPush(data.subjectId), 0);
+    }
 
     // updates the chosen langugae backend-side
     actions.updateLanguageStart(localization.getLanguageTag())
@@ -275,7 +276,7 @@ class CheckInContainer extends Component {
       // gets the user from the server
       loggedInClient.getUserUpdate().then(
         (res) => this.updateUserSuccess(res.data),
-        (error) => this.updateUserFail(error)
+        (error) => this.updateUserFail(error),
       );
     }
   };
@@ -328,7 +329,7 @@ class CheckInContainer extends Component {
             },
           },
         ],
-        { cancelable: false }
+        { cancelable: false },
       );
     }, 0);
   };
@@ -345,7 +346,7 @@ class CheckInContainer extends Component {
     const { actions } = this.props;
 
     actions.sendQuestionnaireResponseFail(error);
-    if(error.response.status === 409){
+    if (error.response.status === 409) {
       // deletes the locally persisted questionnaire, as it does not matches
         // the one the user is supposed to look at
         setTimeout(() => {
@@ -359,8 +360,8 @@ class CheckInContainer extends Component {
           localization.translate('generic').sendError
         );
       }, 0);
-    };
     }
+  };
 
   /**
    * handles the export success, deletes the local questionnaire and then updates the user
@@ -404,12 +405,12 @@ class CheckInContainer extends Component {
         exportData.triggerMap,
         user.subjectId,
         user.current_questionnaire_id,
-        user.current_instance_id
+        user.current_instance_id,
       )
       .then(
         (response) =>
           this.exportAndUploadQuestionnaireResponseSuccess(response),
-        (error) => this.exportAndUploadQuestionnaireResponseFail(error)
+        (error) => this.exportAndUploadQuestionnaireResponseFail(error),
       );
   };
 
@@ -430,7 +431,7 @@ class CheckInContainer extends Component {
             text: localization.translate('generic').ok,
           },
         ],
-        { cancelable: false }
+        { cancelable: false },
       );
     }
     // shows a confirmation dialog if the questionnaire is completed.
@@ -449,7 +450,7 @@ class CheckInContainer extends Component {
             style: "cancel",
           },
         ],
-        { cancelable: false }
+        { cancelable: false },
       );
     }
   };
@@ -477,7 +478,7 @@ class CheckInContainer extends Component {
             },
           },
         ],
-        { cancelable: false }
+        { cancelable: false },
       );
     }, 0);
   };
@@ -503,7 +504,7 @@ class CheckInContainer extends Component {
             },
           },
         ],
-        { cancelable: false }
+        { cancelable: false },
       );
     }, 0);
   };
@@ -517,7 +518,7 @@ class CheckInContainer extends Component {
 
     loggedInClient.sendReport(user.subjectId).then(
       (response) => this.sendReportSuccess(response),
-      (error) => this.sendReportFail(error)
+      (error) => this.sendReportFail(error),
     );
   };
 
@@ -539,7 +540,7 @@ class CheckInContainer extends Component {
             text: localization.translate('generic').ok,
           },
         ],
-        { cancelable: false }
+        { cancelable: false },
       );
     }
     // if there is a questionnaire available right now
@@ -553,7 +554,7 @@ class CheckInContainer extends Component {
             text: localization.translate('generic').ok,
           },
         ],
-        { cancelable: false }
+        { cancelable: false },
       );
     }
     // shows an alert and sends out the report
@@ -574,7 +575,7 @@ class CheckInContainer extends Component {
             style: "cancel",
           },
         ],
-        { cancelable: false }
+        { cancelable: false },
       );
     }
   };
@@ -599,7 +600,7 @@ class CheckInContainer extends Component {
 
             setTimeout(() => {
               actions.logout();
-              navigation.navigate("Landing");
+              navigation.navigate('Landing');
             }, 0);
           },
         },
@@ -608,7 +609,7 @@ class CheckInContainer extends Component {
           style: "cancel",
         },
       ],
-      { cancelable: false }
+      { cancelable: false },
     );
   };
 
@@ -636,7 +637,7 @@ class CheckInContainer extends Component {
       noNewQuestionnaireAvailableYet,
       route,
     } = this.props;
-    return route.name === "CheckIn" ? (
+    return route.name === 'CheckIn' ? (
       // if on CheckIn route
       <CheckInScreen
         navigation={navigation}
@@ -690,7 +691,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 const ConnectedCheckIn = connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(CheckInContainer);
 
 /***********************************************************************************************

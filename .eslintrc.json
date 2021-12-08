@@ -5,7 +5,7 @@
     "jest/globals": true,
     "react-native/react-native": true
   },
-  "extends": ["plugin:react/recommended", "airbnb", "eslint-config-prettier"],
+  "extends": ["plugin:react/recommended", "airbnb", "@react-native-community"],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true

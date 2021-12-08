@@ -24,11 +24,11 @@
 imports
 ***********************************************************************************************/
 
-import React, { Component } from "react";
-import RNModal from "react-native-modal";
-import Slider from "@react-native-community/slider";
-import DateTimePicker from "@react-native-community/datetimepicker";
-import { CheckBox, Input, Icon, Button } from "react-native-elements";
+import React, { Component } from 'react';
+import RNModal from 'react-native-modal';
+import Slider from '@react-native-community/slider';
+import DateTimePicker from '@react-native-community/datetimepicker';
+import { CheckBox, Input, Icon, Button } from 'react-native-elements';
 import {
   AccessibilityInfo,
   Text,
@@ -37,7 +37,7 @@ import {
   ScrollView,
   Platform,
   TouchableOpacity,
-} from "react-native";
+} from 'react-native';
 
 import "../../typedef";
 import { Picker } from "@react-native-picker/picker";
@@ -81,8 +81,8 @@ class QuestionnaireModal extends Component {
 
   /**
 	* is used to preserve the information if the current page holds
-	any item that needs to be displayed. if not, the next page of the 
-	current category will be transitioned to (or the 
+	any item that needs to be displayed. if not, the next page of the
+	current category will be transitioned to (or the
 	modal will be closed if it is the last page.)
 	* @type {boolean}
 	*/
@@ -99,16 +99,16 @@ class QuestionnaireModal extends Component {
 	* @param  {object}  props
 	* @param  {object}  props.actions the redux actions of the parents state of this (checkInActions)
 	* @param  {boolean} props.showDatePicker if true: shows the DatePicker
-	* @param  {number}  props.currentPageIndex the index of the page of the current category that is 
-	* @param  {QuestionnaireItem[]}	props.categories array with an entry for each category 
-		displayed. a page is composed of all sub-items of a category that have the identical value as the 
-		second position of their linkId. for example: all linkIds starting with "1.2" (and "1.2.1" and 
-		"1.2.1.1" and so on) will be considered a page 
-	* @param  {QuestionnaireItemMap} props.questionnaireItemMap holds a property for every item of the questionnaire 
-		as well  as their current answer and rendering-state. also contains properties to indicate the state 
-		of the whole questionnaire (like started, or done). if the properties of this object are updated 
+	* @param  {number}  props.currentPageIndex the index of the page of the current category that is
+	* @param  {QuestionnaireItem[]}	props.categories array with an entry for each category
+		displayed. a page is composed of all sub-items of a category that have the identical value as the
+		second position of their linkId. for example: all linkIds starting with "1.2" (and "1.2.1" and
+		"1.2.1.1" and so on) will be considered a page
+	* @param  {QuestionnaireItemMap} props.questionnaireItemMap holds a property for every item of the questionnaire
+		as well  as their current answer and rendering-state. also contains properties to indicate the state
+		of the whole questionnaire (like started, or done). if the properties of this object are updated
 		through an action then the ui will be refreshed directly afterwards
-	* @param  {number}  props.currentCategoryIndex the index of the currently active category (that means 
+	* @param  {number}  props.currentCategoryIndex the index of the currently active category (that means
 		all first level items with linkIds like "1" or "6") also: categories must be of type "group"
 	* @param  {boolean} props.showQuestionnaireModal if true: displays the QuestionnaireModal
 	*/
@@ -144,7 +144,7 @@ class QuestionnaireModal extends Component {
   render = () => {
     // if there is something to render
     // eslint-disable-next-line react/destructuring-assignment
-    if (typeof this.props.currentCategoryIndex === "number") {
+    if (typeof this.props.currentCategoryIndex === 'number') {
       return this.createFormContent();
     }
     // if not
@@ -180,7 +180,7 @@ class QuestionnaireModal extends Component {
       actions.switchContent(
         this.lastPageNavigationWasForwards,
         categories[currentCategoryIndex].item.length,
-        currentPageIndex
+        currentPageIndex,
       );
     }
   };
@@ -202,8 +202,9 @@ class QuestionnaireModal extends Component {
    */
   handleScrollTo = (element) => {
     // scrolls to the given element if the scrollView is currently active
-    if (this.scrollViewRef.current)
+    if (this.scrollViewRef.current) {
       this.scrollViewRef.current.scrollTo({ ...element, animated: true });
+    }
   };
 
   // "getter"
@@ -220,11 +221,12 @@ class QuestionnaireModal extends Component {
    */
   getItemTitle = (item) => {
     // default value
-    let title = "NO NAME FOUND";
+    let title = 'NO NAME FOUND';
 
     // sets the title in case of a valueCoding attribute
-    if (item.valueCoding)
+    if (item.valueCoding) {
       title = item.valueCoding.display ?? item.valueCoding.code;
+    }
 
     // get the string
     title =
@@ -232,7 +234,7 @@ class QuestionnaireModal extends Component {
       (item.valueInteger ? item.valueInteger.toString() : title);
 
     // splits it
-    return title.split("#")[title.includes("# ") ? 1 : 0].trim();
+    return title.split('#')[title.includes('# ') ? 1 : 0].trim();
   };
 
   /**
@@ -242,14 +244,14 @@ class QuestionnaireModal extends Component {
   getKeyboardType = (item) => {
     switch (item.type) {
       // numpad for integers
-      case "integer":
-        return "number-pad";
+      case 'integer':
+        return 'number-pad';
       // decimalPad for decimals
-      case "decimal":
-        return "decimal-pad";
+      case 'decimal':
+        return 'decimal-pad';
       // and the rest
       default:
-        return "default";
+        return 'default';
     }
   };
 
@@ -264,7 +266,7 @@ class QuestionnaireModal extends Component {
      * @param  {number} occurrence the occurrence of the char "."
      */
     const getPosition = (occurrence) =>
-      linkId.split(".", occurrence).join(".").length;
+      linkId.split('.', occurrence).join('.').length;
     // returns the middle index - the one between the two dots
     // (like the "15" in 308.15.33)
     return linkId.substring(getPosition(1) + 1, getPosition(2));
@@ -280,7 +282,7 @@ class QuestionnaireModal extends Component {
    */
   calculateIndent = (linkId) => {
     // the values and formula are empirical ones - they felt right
-    const margin = Math.round(linkId.split(".").length / 2) - 2;
+    const margin = Math.round(linkId.split('.').length / 2) - 2;
     return margin >= 1 ? margin * 38 : 0;
   };
 
@@ -292,7 +294,7 @@ class QuestionnaireModal extends Component {
   calculateFontSize = (linkId) =>
     // the values and formula are empirical ones - they felt right
     config.appConfig.scaleFontsFkt(
-      18 - (Math.round(linkId.split(".").length / 2) - 1 + 0.5)
+      18 - (Math.round(linkId.split('.').length / 2) - 1 + 0.5),
     );
 
   /**
@@ -303,7 +305,7 @@ class QuestionnaireModal extends Component {
   calculateLineHeight = (linkId) =>
     // the values and formula are empirical ones - they felt right
     config.appConfig.scaleFontsFkt(
-      18 - (Math.round(linkId.split(".").length / 2) - 1 + 0.5) + 5
+      18 - (Math.round(linkId.split('.').length / 2) - 1 + 0.5) + 5,
     );
 
   // checking the state of the questionnaire / page
@@ -322,7 +324,7 @@ class QuestionnaireModal extends Component {
           currentPageIndex - 1
         ],
       ],
-      this.props
+      this.props,
     );
   };
 
@@ -397,7 +399,7 @@ class QuestionnaireModal extends Component {
         item.extension[0].valueCodeableConcept &&
         item.extension[0].valueCodeableConcept.coding &&
         item.extension[0].valueCodeableConcept.coding[0].code ===
-          "drop-down" ? (
+          'drop-down' ? (
           <View>
             {/* renders the drop-down */}
             <Picker
@@ -466,19 +468,19 @@ class QuestionnaireModal extends Component {
                         checked={
                           exportService.codingEquals(
                             exportService.getCorrectlyFormattedAnswer(
-                              questionnaireItemMap[item.linkId]
+                              questionnaireItemMap[item.linkId],
                             ),
-                            answerOption.valueCoding
+                            answerOption.valueCoding,
                           ) ||
                           exportService.getCorrectlyFormattedAnswer(
-                            questionnaireItemMap[item.linkId]
+                            questionnaireItemMap[item.linkId],
                           ) === answerOption.valueString ||
                           exportService.getCorrectlyFormattedAnswer(
-                            questionnaireItemMap[item.linkId]
+                            questionnaireItemMap[item.linkId],
                           ) === answerOption.valueInteger
                         }
                       />
-                    )
+                    ),
                 )}
               </View>
             )}
@@ -519,15 +521,15 @@ class QuestionnaireModal extends Component {
                             questionnaireItemMap[item.linkId].answer.some(
                               (c) =>
                                 c.code === answerOption.valueCoding.code &&
-                                c.system === answerOption.valueCoding.system
+                                c.system === answerOption.valueCoding.system,
                             )) ||
                           (questionnaireItemMap[item.linkId].answer &&
                             questionnaireItemMap[item.linkId].answer.includes(
-                              answerOption.valueString
+                              answerOption.valueString,
                             )) ||
                           (questionnaireItemMap[item.linkId].answer &&
                             questionnaireItemMap[item.linkId].answer.includes(
-                              answerOption.valueInteger
+                              answerOption.valueInteger,
                             ))
                         }
                         // eslint-disable-next-line react/no-array-index-key
@@ -538,13 +540,13 @@ class QuestionnaireModal extends Component {
                         }}
                         textStyle={localStyle.choiceText}
                       />
-                    )
+                    ),
                 )}
               </View>
             )}
 
             {/* if type: 'open-choice' */}
-            {item.type === "open-choice" && (
+            {item.type === 'open-choice' && (
               <Input
                 placeholder={
                   item.repeats
@@ -573,19 +575,19 @@ class QuestionnaireModal extends Component {
   };
 
   removeOpenAnswer = (item) => {
-    if (item.type !== "open-choice") return;
+    if (item.type !== 'open-choice') return;
     // eslint-disable-next-line react/destructuring-assignment
     const a = this.props.questionnaireItemMap[item.linkId].answerOption.filter(
-      (e) => e.isOpenQuestionAnswer
+      (e) => e.isOpenQuestionAnswer,
     )[0];
     a.answer = null;
   };
 
   procureOpenAnswer = (item) => {
-    if (item.type !== "open-choice") return null;
+    if (item.type !== 'open-choice') return null;
     // eslint-disable-next-line react/destructuring-assignment
     return this.props.questionnaireItemMap[item.linkId].answerOption.filter(
-      (e) => e.isOpenQuestionAnswer
+      (e) => e.isOpenQuestionAnswer,
     )[0].answer;
   };
 
@@ -598,7 +600,7 @@ class QuestionnaireModal extends Component {
         e.valueString === answer ||
         e.valueInteger === answer ||
         e.valueDecimal === answer ||
-        e.valueDate === answer
+        e.valueDate === answer,
     );
   };
 
@@ -660,15 +662,15 @@ class QuestionnaireModal extends Component {
                   questionnaireItemMap[item.linkId].answer.some(
                     (c) =>
                       c.code === answerOption.valueCoding.code &&
-                      c.system === answerOption.valueCoding.system
+                      c.system === answerOption.valueCoding.system,
                   )) ||
                 (questionnaireItemMap[item.linkId].answer &&
                   questionnaireItemMap[item.linkId].answer.includes(
-                    answerOption.valueString
+                    answerOption.valueString,
                   )) ||
                 (questionnaireItemMap[item.linkId].answer &&
                   questionnaireItemMap[item.linkId].answer.includes(
-                    answerOption.valueInteger
+                    answerOption.valueInteger,
                   ))
               }
               // eslint-disable-next-line react/no-array-index-key
@@ -704,7 +706,7 @@ class QuestionnaireModal extends Component {
               linkId: item.linkId,
               answer:
                 exportService.getCorrectlyFormattedAnswer(
-                  questionnaireItemMap[item.linkId]
+                  questionnaireItemMap[item.linkId],
                 ) === null
                   ? true
                   : !questionnaireItemMap[item.linkId].answer,
@@ -715,7 +717,7 @@ class QuestionnaireModal extends Component {
               linkId: item.linkId,
               answer:
                 exportService.getCorrectlyFormattedAnswer(
-                  questionnaireItemMap[item.linkId]
+                  questionnaireItemMap[item.linkId],
                 ) === null
                   ? true
                   : !questionnaireItemMap[item.linkId].answer,
@@ -759,23 +761,23 @@ class QuestionnaireModal extends Component {
             // holds the initial, unedited text - in case that no manipulation is needed
             let retVal = text;
             // filters anything that is not a number
-            if (item.type === "integer") {
+            if (item.type === 'integer') {
               retVal = text
-                .split("")
-                .filter((a) => Number(a) || a === "0")
-                .join("");
+                .split('')
+                .filter((a) => Number(a) || a === '0')
+                .join('');
             }
             // only allows decimals
-            if (item.type === "decimal") {
+            if (item.type === 'decimal') {
               retVal = text
-                .split("")
-                .filter((a) => Number(a) || a === "0" || a === "." || a === ",")
-                .join("")
-                .replace(",", ".");
+                .split('')
+                .filter((a) => Number(a) || a === '0' || a === '.' || a === ',')
+                .join('')
+                .replace(',', '.');
 
-              const split = retVal.split(".");
+              const split = retVal.split('.');
               if (split.length - 1 > 1) retVal = `${split[0]}.${split[1]}`;
-              if (retVal === ".") retVal = null;
+              if (retVal === '.') retVal = null;
             }
             // sets the answer
             actions.setAnswer({
@@ -814,12 +816,12 @@ class QuestionnaireModal extends Component {
                 questionnaireItemMap[item.linkId].answer
                   ? exportService.getFormattedDate(
                       questionnaireItemMap[item.linkId].answer.toString(),
-                      true
+                      true,
                     )
                   : null
               }
               editable={false}
-              leftIcon={{ type: "font-awesome", name: "calendar" }}
+              leftIcon={{ type: 'font-awesome', name: 'calendar' }}
               pointerEvents="none"
             />
           </TouchableOpacity>
@@ -835,20 +837,20 @@ class QuestionnaireModal extends Component {
               actions.setAnswer({
                 linkId: item.linkId,
                 answer: date,
-                showDatePicker: Platform.OS === "ios",
+                showDatePicker: Platform.OS === 'ios',
               });
             }}
           />
         )}
         {/* ios datepicker- Buttons*/}
-        {Platform.OS === "ios" && showDatePicker && (
+        {Platform.OS === 'ios' && showDatePicker && (
           <View style={localStyle.dateTimePickerButtonBar}>
             <Button
               title={localization.translate('generic').abort}
               onPress={() => {
                 actions.setAnswer({
                   linkId: item.linkId,
-                  answer: "",
+                  answer: '',
                   showDatePicker: false,
                 });
               }}
@@ -885,19 +887,19 @@ class QuestionnaireModal extends Component {
     const { actions, questionnaireItemMap } = this.props;
     // creates the default slider-object
     const sliderProperties = Object.create({
-      "questionnaire-sliderStepVal": 1,
+      'questionnaire-sliderStepVal': 1,
       minValue: 2,
       maxValue: 300,
-      HighRangeLabel: "",
-      LowRangeLabel: "",
+      HighRangeLabel: '',
+      LowRangeLabel: '',
     });
 
     // gets the slider properties from the extension-attribute and feeds it to the
     // sliderProperties Object
     item.extension.forEach((extension) => {
       const propertyName = extension.url.slice(
-        extension.url.lastIndexOf("/") + 1,
-        extension.url.length
+        extension.url.lastIndexOf('/') + 1,
+        extension.url.length,
       );
       sliderProperties[propertyName] =
         extension.valueString || extension.valueInteger;
@@ -908,7 +910,7 @@ class QuestionnaireModal extends Component {
       <View style={localStyle.modalInput}>
         <Text style={{ ...localStyle.contentTitle }}>{item.text}</Text>
         <Slider
-          step={sliderProperties["questionnaire-sliderStepValue"]}
+          step={sliderProperties['questionnaire-sliderStepValue']}
           minimumValue={sliderProperties.minValue}
           maximumValue={sliderProperties.maxValue}
           minimumTrackTintColor={config.theme.colors.primary}
@@ -929,7 +931,7 @@ class QuestionnaireModal extends Component {
             });
           }}
           value={
-            typeof questionnaireItemMap[item.linkId].answer === "number"
+            typeof questionnaireItemMap[item.linkId].answer === 'number'
               ? questionnaireItemMap[item.linkId].answer
               : (sliderProperties.minValue + sliderProperties.maxValue) / 2
           }
@@ -955,20 +957,20 @@ class QuestionnaireModal extends Component {
     let isSlider;
     switch (item.type) {
       // creates regular inputs for strings
-      case "string":
+      case 'string':
         return this.createInput(item);
 
       // creates a radio-item
-      case "choice":
-      case "open-choice":
+      case 'choice':
+      case 'open-choice':
         return this.createChoices(item);
 
       // creates a checkbox
-      case "boolean":
+      case 'boolean':
         return this.createBoolean(item);
 
       // creates a date input
-      case "date":
+      case 'date':
         return this.createDatePicker(item);
 
       // creates a group of checkboxes, at least one must be checked
@@ -977,17 +979,17 @@ class QuestionnaireModal extends Component {
 
       // creates the inputs for decimals and integers (and numerical sliders)
       // this also utilizes the decimal-pad or the num-pad
-      case "integer":
-      case "decimal":
+      case 'integer':
+      case 'decimal':
         itemControlExtension = item?.extension?.find(
           (e) =>
             e.url ===
-            "http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl"
+            'http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl',
         );
         isSlider = itemControlExtension?.valueCodeableConcept?.coding?.find(
           (c) =>
-            c.system === "http://hl7.org/fhir/questionnaire-item-control" &&
-            c.code === "slider"
+            c.system === 'http://hl7.org/fhir/questionnaire-item-control' &&
+            c.code === 'slider',
         );
         return isSlider ? this.createSlider(item) : this.createInput(item);
 
@@ -1017,7 +1019,7 @@ class QuestionnaireModal extends Component {
   createItemView = (items) => {
     // filters the items so that only the ones with an actual title are displayed
     const filteredItems = items.filter(
-      (cat) => cat.text && cat.text.length !== 0
+      (cat) => cat.text && cat.text.length !== 0,
     );
 
     // iterates over all filtered questionnaire items
@@ -1032,7 +1034,7 @@ class QuestionnaireModal extends Component {
             {this.createUIElement(item)}
             {item.item && this.createItemView(item.item)}
           </View>
-        )
+        ),
     );
   };
 
@@ -1146,7 +1148,7 @@ class QuestionnaireModal extends Component {
               actions.switchContent(
                 true,
                 categories[currentCategoryIndex].item.length,
-                currentPageIndex
+                currentPageIndex,
               );
               this.handleScrollTo({ y: 0, animated: false });
             }}
@@ -1164,7 +1166,7 @@ class QuestionnaireModal extends Component {
             }
           />
 
-          {/* navigational button on the right side - if we're not the last page 
+          {/* navigational button on the right side - if we're not the last page
 					accessibility: if VoiceOver/TalkBalk is on, we use this button for the closing mechanism,
 					as the middle button can be used to go to the next page. */}
           {currentPageIndex < categories[currentCategoryIndex].item.length && (
@@ -1189,7 +1191,7 @@ class QuestionnaireModal extends Component {
               style={localStyle.modalPaginationButton}
               icon={
                 <Icon
-                  name={this.isAccessibilityOn ? "close" : "arrow-right"}
+                  name={this.isAccessibilityOn ? 'close' : 'arrow-right'}
                   type="material-community"
                   color={config.theme.colors.accent4}
                 />
@@ -1226,7 +1228,7 @@ class QuestionnaireModal extends Component {
             propagateSwipe
             backdropOpacity={0.9}
             style={localStyle.modal}
-            swipeDirection={["down"]}
+            swipeDirection={['down']}
             scrollTo={this.handleScrollTo}
             scrollOffset={this.scrollOffset}
             isVisible={showQuestionnaireModal}
@@ -1236,7 +1238,7 @@ class QuestionnaireModal extends Component {
             onModalWillHide={() =>
               exportService.checkCompletionStateOfMultipleItems(
                 null,
-                this.props
+                this.props,
               )
             }
           >
@@ -1258,7 +1260,7 @@ styles
 
 localStyle = StyleSheet.create({
   modal: {
-    justifyContent: "flex-end",
+    justifyContent: 'flex-end',
     marginLeft: 0,
     marginRight: 0,
     marginBottom: 0,
@@ -1270,8 +1272,8 @@ localStyle = StyleSheet.create({
     backgroundColor: config.theme.values.defaultModalContentBackgroundColor,
     paddingLeft: 20,
     paddingRight: 20,
-    height: "auto",
-    maxHeight: "90%",
+    height: 'auto',
+    maxHeight: '90%',
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
   },
@@ -1289,8 +1291,8 @@ localStyle = StyleSheet.create({
   },
 
   choice: {
-    backgroundColor: "transparent",
-    borderColor: "transparent",
+    backgroundColor: 'transparent',
+    borderColor: 'transparent',
     paddingLeft: 0,
     paddingRight: 0,
     margin: 0,
@@ -1309,18 +1311,18 @@ localStyle = StyleSheet.create({
 
   bottomBarWrapperWithShadow: {
     backgroundColor: config.theme.values.defaultModalBottomBarBackgroundColor,
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.8,
     shadowRadius: 2,
   },
 
   bottomBarButtons: {
-    flexWrap: "nowrap",
-    alignItems: "center",
-    textAlign: "center",
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexWrap: 'nowrap',
+    alignItems: 'center',
+    textAlign: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 
   modalTitle: {
@@ -1340,11 +1342,11 @@ localStyle = StyleSheet.create({
   },
 
   modalPaginationButtonLeft: {
-    position: "relative",
+    position: 'relative',
   },
 
   modalPaginationButtonRight: {
-    position: "relative",
+    position: 'relative',
   },
 
   separator: {
@@ -1353,26 +1355,26 @@ localStyle = StyleSheet.create({
   },
 
   sliderTextMax: {
-    width: "33%",
-    textAlign: "right",
+    width: '33%',
+    textAlign: 'right',
   },
 
   sliderTextMin: {
-    width: "33%",
-    textAlign: "left",
+    width: '33%',
+    textAlign: 'left',
   },
 
   sliderLabel: {
     flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   dateTimePickerButtonBar: {
-    flexWrap: "nowrap",
-    textAlign: "center",
-    flexDirection: "row",
-    justifyContent: "flex-end",
-    backgroundColor: "transparent",
+    flexWrap: 'nowrap',
+    textAlign: 'center',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    backgroundColor: 'transparent',
     paddingRight: 20,
   },
   dateTimePickerButton: {

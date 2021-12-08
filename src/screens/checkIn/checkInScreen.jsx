@@ -4,8 +4,8 @@
 imports
 ***********************************************************************************************/
 
-import React, { PureComponent } from "react";
-import { View, StyleSheet } from "react-native";
+import React, { PureComponent } from 'react';
+import { View, StyleSheet } from 'react-native';
 
 import config from "../../config/configProvider";
 import Banner from "../../components/banner/banner";
@@ -66,7 +66,7 @@ class CheckInScreen extends PureComponent {
           updateUser={updateUser}
           isCheckIn
           noWayBack
-          noRefresh={user?.status === "off-study"}
+          noRefresh={user?.status === 'off-study'}
           categoriesLoaded={categoriesLoaded}
         />
 
@@ -150,8 +150,8 @@ localStyle
 
 localStyle = StyleSheet.create({
   wrapper: {
-    height: "100%",
-    flexDirection: "column",
+    height: '100%',
+    flexDirection: 'column',
     backgroundColor: config.theme.values.defaultBackgroundColor,
   },
 

@@ -4,17 +4,17 @@
 imports
 ***********************************************************************************************/
 
-import React, { PureComponent } from "react";
-import { StyleSheet } from "react-native";
-import { ListItem } from "react-native-elements";
+import React, { PureComponent } from 'react';
+import { StyleSheet } from 'react-native';
+import { ListItem } from 'react-native-elements';
 
-import config from "../../config/configProvider";
+import config from '../../config/configProvider';
 
 let localStyle;
 
 /***********************************************************************************************
 component:
-Renders a ListItem which will navigate to another screen when clicked on 
+Renders a ListItem which will navigate to another screen when clicked on
 ***********************************************************************************************/
 class AboutListLink extends PureComponent {
   /**
@@ -77,7 +77,7 @@ local styling
 
 localStyle = StyleSheet.create({
   containerStyle: {
-    width: "100%",
+    width: '100%',
     borderBottomColor: config.theme.colors.accent3,
     borderBottomWidth: 1,
     backgroundColor: config.theme.values.defaultListLinkBackgroundColor,

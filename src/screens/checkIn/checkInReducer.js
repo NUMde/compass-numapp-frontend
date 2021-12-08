@@ -24,15 +24,15 @@ const traverseItem = (item, questionnaireItemMap) => {
     ...item,
     done: false,
     answer: null,
-    type: item.type || "ignore",
+    type: item.type || 'ignore',
     required: item.required || false,
   };
 
   // adds another answer object in case  we have an open-choice
   if (
-    item.type === "open-choice" &&
+    item.type === 'open-choice' &&
     !questionnaireItemMap[item.linkId].answerOption.some(
-      (e) => e.isOpenQuestionAnswer
+      (e) => e.isOpenQuestionAnswer,
     )
   ) {
     questionnaireItemMap[item.linkId].answerOption.push({
@@ -63,7 +63,7 @@ const generateQuestionnaireItemMap = (questionnaire, subjectId, backendId) => {
   // triggers the item-generation
   if (questionnaire.item) {
     questionnaire.item.forEach((subItem) =>
-      traverseItem(subItem, questionnaireItemMap)
+      traverseItem(subItem, questionnaireItemMap),
     );
   }
 
@@ -205,7 +205,7 @@ const valuesHandlers = {
     setTimeout(() => {
       localStorage.persistQuestionnaireItemMap(
         questionnaireItemMap,
-        state.user.subjectId
+        state.user.subjectId,
       );
     }, 0);
 
@@ -215,8 +215,9 @@ const valuesHandlers = {
 
       // updates the answer-attribut in questionnaireItemMap to an array so that
       // it can hold multiple answers
-      if (!Array.isArray(questionnaireItemMap[values.answer.linkId].answer))
+      if (!Array.isArray(questionnaireItemMap[values.answer.linkId].answer)) {
         questionnaireItemMap[values.answer.linkId].answer = [];
+      }
 
       const answers = questionnaireItemMap[localValues.answer.linkId].answer;
 
@@ -242,10 +243,11 @@ const valuesHandlers = {
     else {
       // nulls an empty string
       if (
-        typeof localValues.answer.answer === "string" &&
+        typeof localValues.answer.answer === 'string' &&
         !localValues.answer.answer
-      )
+      ) {
         localValues.answer.answer = null;
+      }
 
       // writes the open-answer value in a separate variable
       if (localValues.answer.isOpenAnswer) {
@@ -265,7 +267,7 @@ const valuesHandlers = {
     // updates the questionnaireItemMap to reflect the state of the questionnaire
     questionnaireItemMap[localValues.answer.linkId].done = true;
     questionnaireItemMap[
-      localValues.answer.linkId.split(".")[0]
+      localValues.answer.linkId.split('.')[0]
     ].started = true;
     questionnaireItemMap.started = true;
 
@@ -285,7 +287,7 @@ const valuesHandlers = {
     setTimeout(() => {
       localStorage.persistQuestionnaireItemMap(
         values.questionnaireItemMap,
-        state.user.subjectId
+        state.user.subjectId,
       );
     }, 0);
 
@@ -318,7 +320,7 @@ const valuesHandlers = {
       localStorage.persistCategories(categories, state.user.subjectId);
       localStorage.persistQuestionnaireItemMap(
         questionnaireItemMap,
-        state.user.subjectId
+        state.user.subjectId,
       );
     }, 0);
 

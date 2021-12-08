@@ -4,10 +4,10 @@
 imports
 ***********************************************************************************************/
 
-import React, { Component } from "react";
-import { Text } from "react-native-elements";
-import { StyleSheet, View, Dimensions } from "react-native";
-import QRCodeScanner from "react-native-qrcode-scanner";
+import React, { Component } from 'react';
+import { Text } from 'react-native-elements';
+import { StyleSheet, View, Dimensions } from 'react-native';
+import QRCodeScanner from 'react-native-qrcode-scanner';
 
 import config from "../../config/configProvider";
 import Banner from "../../components/banner/banner";
@@ -140,11 +140,11 @@ localStyle
 // scaleUiFkt() (located in src/config/appConfig.js)
 // will dynamically alter some sized based on the physical device-measurements.
 
-const { width } = Dimensions.get("window");
+const { width } = Dimensions.get('window');
 
 localStyle = StyleSheet.create({
   wrapper: {
-    height: "100%",
+    height: '100%',
     backgroundColor: config.theme.values.defaultBackgroundColor,
   },
 
@@ -154,8 +154,8 @@ localStyle = StyleSheet.create({
 
   infoText: {
     marginBottom: 0,
-    textAlign: "center",
-    alignSelf: "center",
+    textAlign: 'center',
+    alignSelf: 'center',
     color: config.theme.colors.accent4,
     marginTop: config.appConfig.scaleUiFkt(30),
     marginLeft: config.appConfig.scaleUiFkt(70),
@@ -169,14 +169,14 @@ localStyle = StyleSheet.create({
 
   qrScannerContainer: {
     marginTop: 0,
-    width: "100%",
+    width: '100%',
     height: width,
   },
 
   qrScanner: {
-    width: "100%",
-    height: "100%",
-    overflow: "hidden",
+    width: '100%',
+    height: '100%',
+    overflow: 'hidden',
   },
 
   qrScannerMarker: {

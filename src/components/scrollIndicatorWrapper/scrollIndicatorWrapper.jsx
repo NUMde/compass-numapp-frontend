@@ -4,8 +4,8 @@
 imports
 ***********************************************************************************************/
 
-import React, { Component } from "react";
-import { Icon } from "react-native-elements";
+import React, { Component } from 'react';
+import { Icon } from 'react-native-elements';
 import {
   AccessibilityInfo,
   StyleSheet,
@@ -14,7 +14,7 @@ import {
   Dimensions,
   ScrollView,
   KeyboardAvoidingView,
-} from "react-native";
+} from 'react-native';
 
 import config from "../../config/configProvider";
 import localization from "../../services/localization/localization";
@@ -114,11 +114,11 @@ export default class ScrollIndicatorWrapper extends Component {
           onScroll={(event) => {
             // calculating the next scroll-position
             const bannerHeight =
-              Platform.OS === "ios"
+              Platform.OS === 'ios'
                 ? config.appConfig.scaleUiFkt(290, 0.7)
                 : config.appConfig.scaleUiFkt(290, 0.6);
             const contentHeight =
-              Dimensions.get("window").height - bannerHeight;
+              Dimensions.get('window').height - bannerHeight;
             this.nextScrollValue =
               event.nativeEvent.contentOffset.y +
               contentHeight -
@@ -182,31 +182,31 @@ localStyle = StyleSheet.create({
   },
 
   container: {
-    width: "100%",
-    height: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "blue",
-    overflow: "hidden",
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'blue',
+    overflow: 'hidden',
   },
 
   wrapper: {
     flex: 1,
-    flexDirection: "column",
-    width: "100%",
+    flexDirection: 'column',
+    width: '100%',
   },
 
   indicator: {
     backgroundColor: config.theme.values.defaultScrollIndicatorBackgroundColor,
     width: config.appConfig.scaleUiFkt(75),
     height: config.appConfig.scaleUiFkt(75),
-    position: "absolute",
+    position: 'absolute',
     borderRadius: 100,
     left:
-      Dimensions.get("window").width / 2 - config.appConfig.scaleUiFkt(75) / 2,
+      Dimensions.get('window').width / 2 - config.appConfig.scaleUiFkt(75) / 2,
     bottom: 20,
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

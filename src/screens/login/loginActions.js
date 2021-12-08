@@ -17,7 +17,7 @@ actions
  * just a redux message
  */
 export const sendCredentialsStart = () => ({
-  type: "SEND_CREDENTIALS_START",
+  type: 'SEND_CREDENTIALS_START',
 });
 
 /**
@@ -26,7 +26,7 @@ export const sendCredentialsStart = () => ({
  * @param  {object} session session object
  */
 export const sendCredentialsSuccess = (subjectId, session) => ({
-  type: "SEND_CREDENTIALS_SUCCESS",
+  type: 'SEND_CREDENTIALS_SUCCESS',
   subjectId,
   session: session || null,
 });
@@ -36,7 +36,7 @@ export const sendCredentialsSuccess = (subjectId, session) => ({
  * @param  {object | string} error
  */
 export const sendCredentialsFail = (error) => ({
-  type: "SEND_CREDENTIALS_FAIL",
+  type: 'SEND_CREDENTIALS_FAIL',
   error,
 });
 
@@ -115,7 +115,7 @@ export const sendCredentials =
  */
 export const updateSubjectId = (subjectId) => async (dispatch) => {
   dispatch({
-    type: "UPDATE_SUBJECT_ID",
+    type: 'UPDATE_SUBJECT_ID',
     subjectId,
   });
 };
@@ -125,7 +125,7 @@ export const updateSubjectId = (subjectId) => async (dispatch) => {
  */
 export const autoLoginLastUser = () => async (dispatch) => {
   dispatch({
-    type: "AUTO_LOGIN_LAST_KNOWN_USER",
+    type: 'AUTO_LOGIN_LAST_KNOWN_USER',
   });
 };
 
@@ -134,6 +134,6 @@ export const autoLoginLastUser = () => async (dispatch) => {
  */
 export const logout = () => async (dispatch) => {
   dispatch({
-    type: "USER_LOGOUT",
+    type: 'USER_LOGOUT',
   });
 };

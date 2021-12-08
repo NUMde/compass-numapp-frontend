@@ -4,13 +4,13 @@
 imports
 ***********************************************************************************************/
 
-import React, { PureComponent } from "react";
-import { WebView } from "react-native-webview";
-import { View, StyleSheet } from "react-native";
+import React, { PureComponent } from 'react';
+import { WebView } from 'react-native-webview';
+import { View, StyleSheet } from 'react-native';
 
-import store from "../../store";
-import config from "../../config/configProvider";
-import Banner from "../../components/banner/banner";
+import store from '../../store';
+import config from '../../config/configProvider';
+import Banner from '../../components/banner/banner';
 
 let localStyle;
 
@@ -44,7 +44,7 @@ class WebViewScreen extends PureComponent {
           {/* content */}
           <View style={{ ...localStyle.flexi, ...localStyle.wrapper }}>
             <WebView
-              originWhitelist={["*"]}
+              originWhitelist={['*']}
               source={{ uri: store.getState().About.currentWebView.uri }}
             />
           </View>
@@ -60,8 +60,8 @@ localStyle
 
 localStyle = StyleSheet.create({
   wrapper: {
-    height: "100%",
-    flexDirection: "column",
+    height: '100%',
+    flexDirection: 'column',
     backgroundColor: config.theme.values.defaultBackgroundColor,
   },
 

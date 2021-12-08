@@ -1,3 +1,6 @@
+import defaultThemeValues from '../theme/theme';
+import defaultTextValues from './textConfig';
+import defaultAppConfigValues from './appConfig';
 
 import defaultThemeValues from '../theme/theme';
 import defaultAppConfigValues from './appConfig';

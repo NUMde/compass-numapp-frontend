@@ -59,7 +59,7 @@ class AboutContainer extends Component {
           style: "cancel",
         },
       ],
-      { cancelable: false }
+      { cancelable: false },
     );
   };
 
@@ -87,7 +87,7 @@ class AboutContainer extends Component {
           style: "cancel",
         },
       ],
-      { cancelable: false }
+      { cancelable: false },
     );
   };
 
@@ -134,7 +134,7 @@ class AboutContainer extends Component {
   render() {
     const { navigation, showModal, modalLink, actions, route, currentlyChosenLanguage } = this.props;
     // checks if the currently selected route equals 'About'
-    if (route.name === "About") {
+    if (route.name === 'About') {
       // then renders the About Screen
       return (
         <AboutScreen
@@ -149,7 +149,7 @@ class AboutContainer extends Component {
       );
     }
     // checks if the currently selected route equals 'LegalInformation'
-    if (route.name === "LegalInformation") {
+    if (route.name === 'LegalInformation') {
       // then renders the LegalInformation Screen
       return <LegalInformationScreen navigation={navigation} />;
     }

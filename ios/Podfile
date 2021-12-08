@@ -1,4 +1,4 @@
-platform :ios, '10.0'
+platform :ios, '11.0'
 
 permissions_path = '../node_modules/react-native-permissions/ios'
 require_relative '../node_modules/react-native/scripts/react_native_pods'
@@ -28,13 +28,5 @@ use_react_native!(
   pod 'Permission-Camera', :path => "#{permissions_path}/Camera/Permission-Camera.podspec"
   pod 'Permission-Notifications', :path => "#{permissions_path}/Notifications/Permission-Notifications.podspec"
 
-post_install do |installer|
-  react_native_post_install(installer)
-    installer.pods_project.targets.each do |t|
-      t.build_configurations.each do |config|
-        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
-      end
-    end
-end
 
 end

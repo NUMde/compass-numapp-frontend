@@ -1,8 +1,8 @@
-import React from "react";
-import { Provider } from "react-redux";
+import React from 'react';
+import { Provider } from 'react-redux';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { render } from "@testing-library/react-native";
-import { buildStore } from "./mockStore";
+import { render } from '@testing-library/react-native';
+import { buildStore } from './mockStore';
 
 let store = null;
 

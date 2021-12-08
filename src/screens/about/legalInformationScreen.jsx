@@ -4,8 +4,8 @@
 imports
 ***********************************************************************************************/
 
-import React, { PureComponent } from "react";
-import { View, StyleSheet, Text } from "react-native";
+import React, { PureComponent } from 'react';
+import { View, StyleSheet, Text } from 'react-native';
 
 import config from "../../config/configProvider";
 import Banner from "../../components/banner/banner";
@@ -69,8 +69,8 @@ localStyle
 
 localStyle = StyleSheet.create({
   wrapper: {
-    height: "100%",
-    flexDirection: "column",
+    height: '100%',
+    flexDirection: 'column',
     backgroundColor: config.theme.values.defaultBackgroundColor,
   },
 
@@ -80,14 +80,14 @@ localStyle = StyleSheet.create({
 
   title: {
     ...config.theme.fonts.title,
-    textAlign: "center",
-    alignSelf: "center",
+    textAlign: 'center',
+    alignSelf: 'center',
     color: config.theme.values.defaultTitleTextColor,
   },
 
   top: {
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     paddingTop: config.appConfig.scaleUiFkt(15),
     marginBottom: config.appConfig.scaleUiFkt(35),
   },
@@ -97,16 +97,16 @@ localStyle = StyleSheet.create({
     marginBottom: config.appConfig.scaleUiFkt(20),
     marginLeft: config.appConfig.scaleUiFkt(40),
     marginRight: config.appConfig.scaleUiFkt(40),
-    textAlign: "justify",
-    alignSelf: "auto",
+    textAlign: 'justify',
+    alignSelf: 'auto',
     color: config.theme.colors.accent4,
     ...config.theme.fonts.body,
   },
 
   titleText: {
-    width: "80%",
-    textAlign: "center",
-    alignSelf: "center",
+    width: '80%',
+    textAlign: 'center',
+    alignSelf: 'center',
     ...config.theme.fonts.header2,
   },
 });
