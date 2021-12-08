@@ -45,7 +45,7 @@ const { width } = Dimensions.get('window');
 const baseUriProductive = '';
 
 // development-base-backend-uri
-const baseUriDevelopment = "https://mobile-backend-compass.umopenshift01-27c74fb079246a1ac53f0d02625326eb-0000.eu-de.containers.appdomain.cloud/api/";
+const baseUriDevelopment = "127.0.0.1/api/";
 
 /***********************************************************************************************
 configuration

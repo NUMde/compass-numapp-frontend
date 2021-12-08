@@ -1298,12 +1298,15 @@ localStyle = StyleSheet.create({
     marginBottom: 5,
     ...config.theme.fonts.header2,
     color: config.theme.values.defaultModalTitleColor,
+    // width: Dimensions.get('window').width - 40,
   },
 
   modalViewWrapper: {
     paddingTop: 20,
     paddingBottom: 20,
-    alignItems: "flex-start",
+    ...(I18nManager.isRTL && {
+      alignItems: "flex-start",
+    })
   },
 
   choice: {
@@ -1346,15 +1349,15 @@ localStyle = StyleSheet.create({
     marginBottom: 5,
     ...config.theme.fonts.title,
     color: config.theme.values.defaultModalTitleColor,
+    // width: Dimensions.get('window').width - 40,
   },
 
   modalInput: {
     marginBottom: 10,
-    width: 100,
   },
 
   modalContainer: {
-    width: Dimensions.get('window').width - 40,
+    // width: Dimensions.get('window').width - 40,
   },
 
   modalPaginationButton: {

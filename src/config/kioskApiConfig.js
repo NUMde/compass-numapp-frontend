@@ -147,7 +147,8 @@ const sendReport = async () => {
 const getBaseQuestionnaire = langCode => {
     let questionnaire = hardcodedTestQuestionnaire;
     // if(langCode !== "en" && langCode !== "de") langCode = "de";
-    questionnaire.item[0].text += " (" + langCode + ")";
+    if(questionnaire.item[0]) questionnaire.item[0].text += " (" + langCode + ")";
+    if(questionnaire.item[1]) questionnaire.item[1].text += " (" + langCode + ")";
     return new Promise((res) => setTimeout(() => res({ data: questionnaire }), 900));
 }
 
