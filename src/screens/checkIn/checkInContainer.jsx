@@ -47,7 +47,7 @@ class CheckInContainer extends Component {
 
   /**
    * reroutes to the checkIn-screen should no questionnaire be available after the
-   * component updated. When there is no questionnaire the survey-screen does not has
+   * component updated. When there is no questionnaire the survey-screen does not hasr
    * any content to render
    */
   componentDidUpdate = () => {
@@ -217,12 +217,12 @@ class CheckInContainer extends Component {
     }
 
     // updates the chosen langugae backend-side
-    actions.updateLanguageStart(localization.getLanguageTag())
-    loggedInClient.updateLanguageCode(data.subjectId, localization.getLanguageTag())
-    .then(
-      res => actions.updateLanguageSuccess(),
-      err => actions.updateLanguageFail(err)
-    );
+    // actions.updateLanguageStart(localization.getLanguageTag())
+    // loggedInClient.updateLanguageCode(data.subjectId, localization.getLanguageTag())
+    // .then(
+    //   res => actions.updateLanguageSuccess(),
+    //   err => actions.updateLanguageFail(err)
+    // );
 
     setTimeout(async () => {
       // if we have locally persisted questionnaire
@@ -255,6 +255,9 @@ class CheckInContainer extends Component {
           setTimeout(async () => {
             await this.getQuestionnaire();
           }, 0);
+        }
+        else {
+          actions.removeLoadingScreen();
         }
       }
     }, 0);

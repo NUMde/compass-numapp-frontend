@@ -119,6 +119,15 @@ value handlers
 
 const valuesHandlers = {
   /**
+   * hides the loading spinnner
+   * @param  {any} state redux state
+   */
+   REMOVE_LOADING_SCREEN: (state) => ({
+    ...state,
+    loading: false,
+  }),
+
+  /**
    * displays the datepicker component
    * @param  {any} state redux state
    */

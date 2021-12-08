@@ -55,91 +55,37 @@ class CheckInTiles extends PureComponent {
     return (
       <View style={localStyle.tileWrapper}>
         {/* checks if the user is still on the study */}
-        {
-          <View style={localStyle.tileContainer}>
-            {/* if there is a completed questionnaire render the button to transmit the it*/}
-            {!noNewQuestionnaireAvailableYet &&
-              categoriesLoaded &&
-              user?.status !== 'off-study' &&
-              !loading &&
-              questionnaireItemMap.done && (
-                <View>
-                  <TouchableOpacity
-                    style={{ ...localStyle.tile, ...localStyle.buttonGreen }}
-                    disabled={user && noNewQuestionnaireAvailableYet}
-                    onPress={exportAndUploadQuestionnaireResponse}
-                    accessibilityLabel={config.text.survey.send}
-                    accessibilityRole={config.text.accessibility.types.button}
-                    accessibilityHint={
-                      config.text.accessibility.questionnaire.sendHint
-                    }
-                  >
-                    <View style={localStyle.buttonWrapper}>
-                      <Icon
-                        name="school"
-                        color={config.theme.colors.white}
-                        iconStyle={localStyle.buttonIcon}
-                      />
-
-                      <Text style={localStyle.tileText}>
-                        {config.text.survey.send}
-                      </Text>
-                    </View>
-                  </TouchableOpacity>
-                </View>
-              )}
-
-            {/* the 'send report' button */}
-            {user?.status !== 'off-study' && (
-              <TouchableOpacity
-                onPress={sendReport}
-                // renders the button in grey if there is no questionnaire available
-                // or if the user already send out a report and is still on a special interval (additional_iterations_left will be greater than 0 if thats the case)
-                style={
-                  noNewQuestionnaireAvailableYet ||
-                  (user && user.additional_iterations_left > 0)
-                    ? localStyle.tile
-                    : localStyle.disabledTile
-                }
-                accessibilityRole={config.text.accessibility.types.button}
-              >
-                <View style={localStyle.buttonWrapper}>
-                  <Icon
-                    name="error"
-                    color={config.theme.colors.white}
-                    iconStyle={localStyle.buttonIcon}
-                  />
-                  <Text style={localStyle.tileText}>
-                    {config.text.reporting.symptoms_header}
-                  </Text>
-                </View>
-              </TouchableOpacity>
-            )}
-
-            {/* the 'send report' button */}
-            {user?.status === 'off-study' &&
-              config.appConfig.allowRemovalOfDataAtEndOfStudy && (
+        {<View style={localStyle.tileContainer}>
+          {/* if there is a completed questionnaire render the button to transmit the it*/}
+          {!noNewQuestionnaireAvailableYet &&
+            categoriesLoaded &&
+            user?.status !== 'off-study' &&
+            !loading &&
+            questionnaireItemMap.done && (
+              <View>
                 <TouchableOpacity
                   style={{ ...localStyle.tile, ...localStyle.buttonGreen }}
                   disabled={user && noNewQuestionnaireAvailableYet}
                   onPress={exportAndUploadQuestionnaireResponse}
-                  accessibilityLabel={localization.translate('survey').send}
-                  accessibilityRole={localization.translate('accessibility').types.button}
+                  accessibilityLabel={localization.translate("survey").send}
+                  accessibilityRole={localization.translate("accessibility").types.button}
                   accessibilityHint={
-                    localization.translate('accessibility').questionnaire.sendHint
+                    localization.translate("accessibility").questionnaire.sendHint
                   }
                 >
                   <View style={localStyle.buttonWrapper}>
                     <Icon
-                      name="warning"
+                      name="school"
                       color={config.theme.colors.white}
                       iconStyle={localStyle.buttonIcon}
                     />
+
                     <Text style={localStyle.tileText}>
-                      {localization.translate('survey').send}
+                      {localization.translate("survey").send}
                     </Text>
                   </View>
                 </TouchableOpacity>
+              </View>
             )}
 
           {/* the 'send report' button */}

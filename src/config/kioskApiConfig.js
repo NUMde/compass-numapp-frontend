@@ -10,7 +10,7 @@ import hardcodedTestQuestionnaire from "../assets/files/questionnaire"; // the p
 ***********************************************************************************************/
 
 // this triggers the kiosk mode.
-const kioskModeIsActive = false;
+const kioskModeIsActive = true;
 
 // default user data
 const defaultMockUserData = {
@@ -41,7 +41,6 @@ methods
  * initializes the kiosk mode data - this happens in App.jsx.
  */
 const initKioskMode = async () => {
-    
     let kioskModeDataJson =  await localStorage.loadKioskModeData();
     kioskModeData = kioskModeDataJson ? JSON.parse(kioskModeDataJson) : {
         // is used to keep track of the completed transmissions (faked ones)
@@ -84,8 +83,8 @@ const getLanguages = () => new Promise(
             data: [
                 "de",
                 "en",
+                "fr",
                 "ar",
-                "fr"
             ] 
     }), 500
 ))
@@ -142,6 +141,16 @@ const sendReport = async () => {
     }, 600);
 };
 
+/**
+ * triggers the mock for the sendReport call and updates a status variable
+ */
+const getBaseQuestionnaire = langCode => {
+    let questionnaire = hardcodedTestQuestionnaire;
+    // if(langCode !== "en" && langCode !== "de") langCode = "de";
+    questionnaire.item[0].text += " (" + langCode + ")";
+    return new Promise((res) => setTimeout(() => res({ data: questionnaire }), 900));
+}
+
 /***********************************************************************************************
 export
 ***********************************************************************************************/
@@ -154,5 +163,5 @@ export default {
     login: () => new Promise((res) => setTimeout(() => res({ data: generateMockUserData() }), 500)),
     getUserUpdate: () => new Promise((res) => setTimeout(() => res({ data: generateMockUserData() }), 900)),
     updateDeviceToken: () => new Promise((res) => setTimeout(() => res({ data: hardcodedTestQuestionnaire }), 400)),
-    getBaseQuestionnaire: () => new Promise((res) => setTimeout(() => res({ data: hardcodedTestQuestionnaire }), 900)),
+    getBaseQuestionnaire,
 };

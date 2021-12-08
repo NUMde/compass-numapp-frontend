@@ -9,8 +9,8 @@ imports
 import i18n from "i18n-js";
 import memoize from "lodash.memoize";
 import { I18nManager } from "react-native";
-import * as RNLocalize from "react-native-localize";
 import guestClient from '../rest/guestClient'
+import * as RNLocalize from "react-native-localize";
 
 import de from '../../CUSTOMIZATION/translations/de'
 import en from '../../CUSTOMIZATION/translations/en'
@@ -23,6 +23,7 @@ constants
 
 // the fallback
 // this is the default the app will fallback to in case nothing else matches.
+// (for example: the device language is hindi, but only "de", "en", "fr", "ar" are provided by the app. So the last resort fallback would be "de")
 const defaultLanguage = 'de';
 
 // the available files / languages:
@@ -70,6 +71,8 @@ const translate = memoize(
 
 // creates the set of language available for the user
 const setAvailableLanguages = (list) => {
+
+    // this function generates the union set of locally available languages and the languages the backend can provide the questionnaires in.
 
     let defaultLang = availableLanguageFiles[defaultLanguage]
 

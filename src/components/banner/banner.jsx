@@ -16,6 +16,7 @@ import {
 } from 'react-native';
 
 import config from '../../config/configProvider';
+import localization from "../../services/localization/localization";
 
 // import logo and background image
 const customLogo = require('../../CUSTOMIZATION/images/logo.png');

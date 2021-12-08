@@ -37,6 +37,8 @@ import {
   ScrollView,
   Platform,
   TouchableOpacity,
+  I18nManager,
+  Dimensions
 } from 'react-native';
 
 import "../../typedef";
@@ -548,11 +550,15 @@ class QuestionnaireModal extends Component {
             {/* if type: 'open-choice' */}
             {item.type === 'open-choice' && (
               <Input
+                containerStyle = {localStyle.modalContainer}
                 placeholder={
                   item.repeats
                     ? localization.translate('survey').additionalAnswer
                     : localization.translate('survey').alternativeAnswer
                 }
+                style={{
+                  textAlign : I18nManager.isRTL ? "right" : "left",
+                }}
                 value={this.procureOpenAnswer(item)}
                 accessibilityHint={
                   localization.translate('accessibility').questionnaire.textFieldHint
@@ -749,9 +755,13 @@ class QuestionnaireModal extends Component {
         <Text style={{ ...localStyle.contentTitle }}>{item.text}</Text>
         {/* input */}
         <Input
+          containerStyle = {localStyle.modalContainer}
           placeholder={localization.translate('login').inputPlaceholder}
           value={questionnaireItemMap[item.linkId].answer || ""} // displays an empty string when a 'falsy' answer needs to be rendered
           keyboardType={this.getKeyboardType(item)}
+          style={{
+            textAlign : I18nManager.isRTL ? "right" : "left",
+          }}
           maxLength={item.maxLength || null}
           // accessibilityLabel={ }
           accessibilityHint={
@@ -811,6 +821,7 @@ class QuestionnaireModal extends Component {
             // accessibilityHint={localization.translate('accessibility').questionnaire.dateFieldHint}
           >
             <Input
+              containerStyle = {localStyle.modalContainer}
               placeholder={localization.translate('login').inputPlaceholderTime}
               value={
                 questionnaireItemMap[item.linkId].answer
@@ -820,6 +831,9 @@ class QuestionnaireModal extends Component {
                     )
                   : null
               }
+              style={{
+                textAlign : I18nManager.isRTL ? "right" : "left",
+              }}
               editable={false}
               leftIcon={{ type: 'font-awesome', name: 'calendar' }}
               pointerEvents="none"
@@ -1052,7 +1066,7 @@ class QuestionnaireModal extends Component {
           scrollEventThrottle={16}
         >
           <View style={localStyle.modalViewWrapper}>
-            <View>
+            <View >
               <Text
                 style={localStyle.modalTitle}
                 ref={this.modalTitleRef}
@@ -1112,7 +1126,7 @@ class QuestionnaireModal extends Component {
               style={localStyle.modalPaginationButton}
               icon={
                 <Icon
-                  name="arrow-left"
+                  name={I18nManager.isRTL ? "arrow-right" : "arrow-left"}
                   type="material-community"
                   color={config.theme.colors.accent4}
                 />
@@ -1191,7 +1205,7 @@ class QuestionnaireModal extends Component {
               style={localStyle.modalPaginationButton}
               icon={
                 <Icon
-                  name={this.isAccessibilityOn ? 'close' : 'arrow-right'}
+                  name={this.isAccessibilityOn ? 'close' : I18nManager.isRTL ? "arrow-left" : "arrow-right"}
                   type="material-community"
                   color={config.theme.colors.accent4}
                 />
@@ -1276,6 +1290,7 @@ localStyle = StyleSheet.create({
     maxHeight: '90%',
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
+
   },
 
   contentTitle: {
@@ -1288,6 +1303,7 @@ localStyle = StyleSheet.create({
   modalViewWrapper: {
     paddingTop: 20,
     paddingBottom: 20,
+    alignItems: "flex-start",
   },
 
   choice: {
@@ -1334,6 +1350,11 @@ localStyle = StyleSheet.create({
 
   modalInput: {
     marginBottom: 10,
+    width: 100,
+  },
+
+  modalContainer: {
+    width: Dimensions.get('window').width - 40,
   },
 
   modalPaginationButton: {

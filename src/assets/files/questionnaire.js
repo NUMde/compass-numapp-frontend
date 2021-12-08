@@ -21,7 +21,13 @@ export default {
         {
           linkId: '1.1',
           text: 'Question 1',
-          type: '',
+          type: 'string',
+          required: true,
+        },
+        {
+          linkId: '1.2',
+          text: 'Question 2',
+          type: 'string',
           required: true,
         },
       ],

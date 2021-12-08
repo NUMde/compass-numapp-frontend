@@ -16,6 +16,15 @@ action handlers
 /**
  * update language start
  */
+ export const removeLoadingScreen = () => async (dispatch) => {
+  dispatch({
+    type: "REMOVE_LOADING_SCREEN",
+  });
+};
+
+/**
+ * update language start
+ */
  export const updateLanguageStart = (value) => async (dispatch) => {
   dispatch({
     type: "UPDATE_LANGUAGE_START",
