@@ -2,10 +2,10 @@
 import
 ***********************************************************************************************/
 
-import React, { PureComponent } from "react";
-import { View, StyleSheet } from "react-native";
+import React, { PureComponent } from 'react';
+import { View, StyleSheet } from 'react-native';
 
-import config from "../../config/configProvider";
+import config from '../../config/configProvider';
 
 let localStyle;
 
@@ -51,8 +51,8 @@ local styling
 
 localStyle = StyleSheet.create({
   container: {
-    width: "95%",
-    alignSelf: "center",
+    width: '95%',
+    alignSelf: 'center',
     height: 5,
     borderRadius: 2.5,
     marginHorizontal: 5,

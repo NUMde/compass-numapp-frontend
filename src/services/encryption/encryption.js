@@ -6,9 +6,9 @@
 imports
 ***********************************************************************************************/
 
-import * as forge from "node-forge";
-import store from "../../store";
-import config from "../../config/configProvider";
+import * as forge from 'node-forge';
+import store from '../../store';
+import config from '../../config/configProvider';
 
 /***********************************************************************************************
 encryption
@@ -23,7 +23,7 @@ const encrypt = (messageToBeEncrypted) => {
   let pemString =
     store?.getState().Login?.session?.recipientCertificatePemString;
   pemString =
-    pemString === "false" || !pemString
+    pemString === 'false' || !pemString
       ? config.appConfig.defaultRecipientCertificatePemString
       : pemString;
 
@@ -53,9 +53,9 @@ const encrypt = (messageToBeEncrypted) => {
       .bytesToHex(result.data)
       .match(/\w{2}/g)
       .map((a) => String.fromCharCode(parseInt(a, 16)))
-      .join(""),
-    "binary"
-  ).toString("base64");
+      .join(''),
+    'binary',
+  ).toString('base64');
 };
 
 /***********************************************************************************************

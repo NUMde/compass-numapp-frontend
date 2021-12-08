@@ -4,23 +4,29 @@
 imports
 ***********************************************************************************************/
 
-import React from "react";
-import { renderWithRedux } from "../__utils__/render";
+import React from 'react';
+import { renderWithRedux } from '../__utils__/render';
+import createAppNavigator from '../src/navigation/appNavigator';
 
-import App from "../App";
+import App from '../App';
 
 /***********************************************************************************************
 tests
 ***********************************************************************************************/
 
-describe("APP START AND RENDERING:", () => {
+describe('APP START AND RENDERING:', () => {
   /**
    * creates an instance of the app with working navigational properties
    */
-  const createAppTree = () => renderWithRedux(<App />);
+  const createAppTree = () => {
+    // creates the regular appNavigator
+    const Navigator = createAppNavigator();
+
+    return renderWithRedux(<App />);
+  };
 
   // simple render test
-  test("<App /> can be created and rendered", () => {
+  test('<App /> can be created and rendered', () => {
     // renders the component
     const tree = createAppTree();
 
@@ -29,14 +35,14 @@ describe("APP START AND RENDERING:", () => {
   });
 
   // checks if App produces exactly one child
-  test("<App /> has exactly one child", () => {
+  test('<App /> has exactly one child', () => {
     expect(createAppTree().toJSON().children.length).toBe(1);
   });
 
   // after the app start, the user should be automatically routed to the landing screen
-  test("User is navigated to <LandingScreen /> after app start", () => {
+  test('User is navigated to <LandingScreen /> after app start', () => {
     // checks if right now the login-button is rendered
-    const loginButton = createAppTree().getByText("Navigate to Login Screen");
+    const loginButton = createAppTree().getByText('Navigate to Login Screen');
 
     expect(loginButton).toBeTruthy();
   });

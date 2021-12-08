@@ -4,8 +4,8 @@
 imports
 ***********************************************************************************************/
 
-import React, { PureComponent } from "react";
-import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
+import React, { PureComponent } from 'react';
+import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 
 import { ListItem } from "react-native-elements";
 import RedirectModal from "../../components/modal/redirectModal";
@@ -66,7 +66,7 @@ class AboutScreen extends PureComponent {
                   {config.appConfig.allowAccessToLegalInformationScreen && (
                     <ListItem
                       containerStyle={localStyle.containerStyle}
-                      onPress={() => navigation.navigate("LegalInformation")}
+                      onPress={() => navigation.navigate('LegalInformation')}
                     >
                       {/* title & subtitle of the listItem - the strings a identified by the webView*/}
                       <ListItem.Content>
@@ -165,20 +165,20 @@ local styling
 localStyle = StyleSheet.create({
   wrapper: {
     flex: 1,
-    flexDirection: "column",
-    alignItems: "center",
-    width: "100%",
-    height: "100%",
+    flexDirection: 'column',
+    alignItems: 'center',
+    width: '100%',
+    height: '100%',
     backgroundColor: config.theme.values.defaultBackgroundColor,
   },
 
   bottom: {
     flex: 1,
-    justifyContent: "flex-end",
+    justifyContent: 'flex-end',
     marginBottom: 36,
-    height: "100%",
+    height: '100%',
     marginTop: 20,
-    width: "80%",
+    width: '80%',
   },
 
   button: {
@@ -198,7 +198,7 @@ localStyle = StyleSheet.create({
   },
 
   containerStyle: {
-    width: "100%",
+    width: '100%',
     borderBottomColor: config.theme.colors.accent3,
     borderBottomWidth: 1,
     backgroundColor: config.theme.values.defaultListLinkBackgroundColor,

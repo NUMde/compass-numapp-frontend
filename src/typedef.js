@@ -19,10 +19,10 @@
 /**
  * the questionnaireItemMap is an object that is held by the checkIn-state. it is created from the questionnaire-items
  * coming from the backend after a user-update. for each questionnaire-item that is found in the questionnaire,
- * a property is added to this object (with the property name being the linkId of the questionnaire-item) holding 
+ * a property is added to this object (with the property name being the linkId of the questionnaire-item) holding
  * the item itself. Additionally, it contains three further properties: "id", "started" and "done".
  * the questionnaireItemMap is used to preserve the current state of the questionnaire. meaning all given answers,
- * the completion-state of a single questionnaire-item or even the whole questionnaire. 
+ * the completion-state of a single questionnaire-item or even the whole questionnaire.
  * (found in the checkIn-state)
  * @typedef {Object} QuestionnaireItemMap
  * @property {string} 	id id of the questionnaire
@@ -31,7 +31,7 @@
  * @property {Object.<string, QuestionnaireItem>} [linkId] is set to true after a single answer was given
  */
 
- /**
+/**
  * an entry of the questionnaireItemMap. this holds all the data about the current state of a questionnaire-item
  * (and some redundant data from "QuestionnaireItem" - its just easier to access this way)
  * (found in the checkIn-state)
@@ -45,8 +45,8 @@
  * @property {Condition[]} 	enableWhen array of conditions necessary to render the item
  * @property {string | number | Date | boolean} answer answer given by the user
  */
- 
- /**
+
+/**
  * a condition used to define under what circumstances a questionnaire-item is rendered.
  * based on its type, the property holding the answer is named differently
  * (found in the checkIn-state)
@@ -63,7 +63,7 @@
  * @property {string}  [answerDateTime] the answer-date-time of this condition
  */
 
- /**
+/**
  * a predefined answer option
  * @typedef {Object} AnswerOption
  * @property {string}  [valueString] representing a predefined answer
@@ -76,14 +76,14 @@
  * @property {string}  [valueDateTime] representing a predefined answer
  */
 
- /**
+/**
  * the format used for the export
  * @typedef {Object} ExportData
  * @property {Object.<string, boolean>} triggerMap tells if a basicTrigger was set
  * @property {string} body the stringified questionnaire response
  */
 
- /**
+/**
  * the response-object that is part of the body that is sent to the backend
  * @typedef {Object} QuestionnaireResponse
  * @property {any[]}   item tells if a basicTrigger was set
@@ -93,10 +93,10 @@
  * @property {string}  identifier holds the subject-id
  * @property {string}  resourceType string specifying the resource-type
  * @property {string}  questionnaire reference link
- * 
+ *
  */
 
-  /**
+/**
  * an answer object found in the questionnaire-response
  * @typedef {Object} ResponseItem
  * @property {string} linkId
@@ -106,7 +106,7 @@
  * @property {ResponseItem[]} [item]
  */
 
-  /**
+/**
  * an answer object found in the questionnaire-response
  * @typedef {Object} ResponseAnswer
  * @property {string}  [valueString] representing a predefined answer
@@ -117,10 +117,10 @@
  * @property {QuestionnaireItem[]}  [item] representing a predefined answer
  */
 
-  /**
+/**
  * structure of an extension
  * @typedef {Object} Extension
  * @property {string}  valueString
- * @property {number}  valueInteger 
+ * @property {number}  valueInteger
  * @property {string}  url
  */

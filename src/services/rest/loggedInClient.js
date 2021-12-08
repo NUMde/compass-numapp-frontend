@@ -7,7 +7,7 @@
 imports
 ***********************************************************************************************/
 
-import axios from "axios";
+import axios from 'axios';
 
 import store from "../../store";
 import security from "../encryption/encryption";
@@ -51,7 +51,7 @@ const generateEncapsuledMessage = (subjectId, type, body = {}) => {
 
   // console output
   if (config.appConfig.logEncryptedResponse) {
-    console.log("THE ENCRYPTED QUESTIONNAIRE-RESPONSE:\n", encryptedMsg);
+    console.log('THE ENCRYPTED QUESTIONNAIRE-RESPONSE:\n', encryptedMsg);
   }
 
   return { payload: encryptedMsg };
@@ -94,9 +94,9 @@ const updateDeviceToken = async (subjectId, token) =>
     {
       headers: {
         Authorization: createAuthorizationToken(),
-        Accept: "application/json",
+        Accept: 'application/json',
       },
-    }
+    },
   );
 
 // reports
@@ -111,20 +111,20 @@ const sendReport = async (subjectId) =>
   kioskMode.sendReport() :
   axios.post(
     config.appConfig.endpoints.report,
-    generateEncapsuledMessage(subjectId, "report"),
+    generateEncapsuledMessage(subjectId, 'report'),
     {
       headers: {
         Authorization: createAuthorizationToken(),
-        Accept: "application/json",
+        Accept: 'application/json',
       },
       params: {
         subjectId,
-        type: "report",
+        type: 'report',
         updateValues: {
           [config.appConfig.defaultReportAttribute]: true,
         },
       },
-    }
+    },
   );
 
 // questionnaires
@@ -143,20 +143,20 @@ const sendQuestionnaire = async (
   triggerMap,
   subjectId,
   surveyId,
-  instanceId
+  instanceId,
 ) =>
   kioskMode.active ?
   kioskMode.sendQuestionnaire() :
   axios.post(
     config.appConfig.endpoints.sendQuestionnaire,
-    generateEncapsuledMessage(subjectId, "questionnaire_response", body),
+    generateEncapsuledMessage(subjectId, 'questionnaire_response', body),
     {
       headers: {
         Authorization: createAuthorizationToken(),
-        Accept: "application/json",
+        Accept: 'application/json',
       },
       params: {
-        type: "questionnaire_response",
+        type: 'questionnaire_response',
         id: subjectId,
         subjectId,
         surveyId,
@@ -165,7 +165,8 @@ const sendQuestionnaire = async (
           ...triggerMap,
         },
       },
-    })
+    },
+  );
 
 /**
  * procures the questionnaire from the backend
@@ -177,8 +178,9 @@ const getBaseQuestionnaire = async (questionnaireId) =>
   axios.get(config.appConfig.endpoints.getQuestionnaire + questionnaireId, {
     headers: {
       Authorization: createAuthorizationToken(),
-      Accept: "application/json",
-    }});
+      Accept: 'application/json',
+    },
+  });
 
 /***********************************************************************************************
 export

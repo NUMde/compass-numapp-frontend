@@ -10,10 +10,10 @@ import SplashScreen from "react-native-splash-screen";
 import { StyleSheet, View, StatusBar, LogBox, Platform } from "react-native";
 import kioskMode from './src/config/kioskApiConfig'
 
-import config from "./src/config/configProvider";
+import config from './src/config/configProvider';
 
-import reduxStore from "./src/store";
-import createAppNavigator from "./src/navigation/appNavigator";
+import reduxStore from './src/store';
+import createAppNavigator from './src/navigation/appNavigator';
 
 /***********************************************************************************************
 Component
@@ -36,11 +36,11 @@ class App extends PureComponent {
     // and returns the basic view that contains the navigator
     return (
       <View style={localStyle.container}>
-        {Platform.OS === "ios" && (
+        {Platform.OS === 'ios' && (
           <StatusBar barStyle={config.theme.values.defaultStatusBarStyleIos} />
         )}
 
-        {Platform.OS === "android" && (
+        {Platform.OS === 'android' && (
           <StatusBar
             barStyle={config.theme.values.defaultStatusBarStyleAndroid}
             backgroundColor={
@@ -62,7 +62,7 @@ local styling
 const localStyle = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
   },
 });
 
@@ -71,10 +71,10 @@ global variables / settings
 ***********************************************************************************************/
 
 // needed by node-forge for the encryption functionality
-global.Buffer = require("buffer").Buffer;
+global.Buffer = require('buffer').Buffer;
 
 // deactivates the logbox-warning about the debugger running in the background
-LogBox.ignoreLogs(["Remote debugger"]);
+LogBox.ignoreLogs(['Remote debugger']);
 
 /***********************************************************************************************
 export
