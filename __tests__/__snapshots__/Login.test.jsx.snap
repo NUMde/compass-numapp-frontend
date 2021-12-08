@@ -1,0 +1,1505 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LOGIN RENDERING: <LandingScreen /> can be rendered 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#F8F9FA",
+      "flexDirection": "column",
+      "height": "100%",
+    }
+  }
+>
+  <Modal
+    hardwareAccelerated={false}
+    visible={true}
+  >
+    <View
+      style={
+        Object {
+          "backgroundColor": "#1F2532",
+          "bottom": 0,
+          "flex": 1,
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "bottom": 0,
+            "justifyContent": "center",
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      >
+        <ActivityIndicator
+          color="#EB576A"
+          size="large"
+          style={
+            Object {
+              "flex": 1,
+            }
+          }
+        />
+      </View>
+    </View>
+  </Modal>
+  <View
+    style={
+      Object {
+        "alignContent": "stretch",
+        "alignItems": "stretch",
+        "backgroundColor": "#F8F9FA",
+        "flexDirection": "column",
+        "height": 354.06976744186045,
+        "justifyContent": "flex-start",
+        "overflow": "hidden",
+        "paddingTop": 30,
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "flex-start",
+          "flexDirection": "row",
+          "flexWrap": "wrap",
+          "justifyContent": "space-between",
+          "paddingTop": 10,
+          "width": "100%",
+          "zIndex": 2,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "flexWrap": "wrap",
+            "justifyContent": "flex-end",
+            "marginLeft": 15,
+            "marginRight": 15,
+            "textAlign": "center",
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "height": 44,
+              "width": 104.65116279069767,
+            }
+          }
+        />
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "flexDirection": "column",
+          "justifyContent": "flex-end",
+          "left": 0,
+          "position": "absolute",
+          "top": 0,
+        }
+      }
+    >
+      <Image
+        resizeMode="cover"
+        source={
+          Object {
+            "process": [Function],
+          }
+        }
+        style={
+          Object {
+            "height": 354.06976744186045,
+            "width": 750,
+          }
+        }
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "flexDirection": "column",
+          "justifyContent": "flex-end",
+        }
+      }
+    >
+      <Image
+        resizeMode="contain"
+        source={
+          Object {
+            "process": [Function],
+          }
+        }
+        style={
+          Object {
+            "alignSelf": "center",
+            "bottom": 18.313953488372093,
+            "maxHeight": 432.29448350459705,
+            "maxWidth": 650,
+            "position": "relative",
+          }
+        }
+      />
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#F8F9FA",
+        "flex": 1,
+        "flexDirection": "column",
+        "height": "100%",
+      }
+    }
+  >
+    <View
+      onLayout={[Function]}
+      style={
+        Object {
+          "flex": 1,
+          "flexDirection": "column",
+          "width": "100%",
+        }
+      }
+    >
+      <RCTScrollView
+        contentContainerStyle={
+          Object {
+            "flexGrow": 1,
+          }
+        }
+        contentData={
+          <View
+            style={
+              Object {
+                "backgroundColor": "#F8F9FA",
+                "flexDirection": "column",
+                "height": "100%",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "marginBottom": 61.04651162790697,
+                  "paddingTop": 61.04651162790697,
+                }
+              }
+            >
+              <Themed.Text
+                style={
+                  Object {
+                    "alignSelf": "center",
+                    "fontFamily": "IBMPlexSans-SemiBold",
+                    "fontSize": 33.75,
+                    "lineHeight": 43.125,
+                    "textAlign": "center",
+                    "width": "80%",
+                  }
+                }
+              >
+                Welcome to COMPASS
+(React Native Client)
+              </Themed.Text>
+              <Themed.Text
+                style={
+                  Object {
+                    "alignSelf": "center",
+                    "color": "#1F2532",
+                    "fontFamily": "IBMPlexSans",
+                    "fontSize": 28.125,
+                    "lineHeight": 37.5,
+                    "marginBottom": 34.883720930232556,
+                    "marginLeft": 69.76744186046511,
+                    "marginRight": 69.76744186046511,
+                    "marginTop": 34.883720930232556,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                This is the Landing Screen.
+
+It can be used to display a welcome message, detailing the following login-process, explaining the handling of personal information, etc.
+
+The logo file (as well as the logoBackground) can be updated by updating the 'CUSTOMIZATION' folder.
+              </Themed.Text>
+            </View>
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "height": "100%",
+                  "justifyContent": "flex-end",
+                  "marginBottom": 36,
+                  "marginTop": 20,
+                }
+              }
+            >
+              <TouchableOpacity
+                accessibilityHint="Starts login process and redirects to QRCode scanner."
+                accessibilityLabel="Navigate to Login Screen"
+                accessibilityRole="button"
+                onPress={[Function]}
+                style={
+                  Object {
+                    "alignSelf": "center",
+                    "backgroundColor": "#1F2532",
+                    "borderColor": "#1F2532",
+                    "borderRadius": 50,
+                    "borderWidth": 0,
+                    "bottom": 0,
+                    "padding": 15,
+                    "paddingBottom": 26.162790697674417,
+                    "paddingLeft": 26.162790697674417,
+                    "paddingRight": 26.162790697674417,
+                    "paddingTop": 26.162790697674417,
+                    "width": "80%",
+                  }
+                }
+              >
+                <Themed.Text
+                  style={
+                    Object {
+                      "alignSelf": "center",
+                      "color": "#F8F9FA",
+                      "fontFamily": "IBMPlexSans-SemiBold",
+                      "fontSize": 26.25,
+                      "lineHeight": 35.625,
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  Navigate to Login Screen
+                </Themed.Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        }
+        enableOnAndroid={true}
+        innerRef={[Function]}
+        onScroll={[Function]}
+        scrollEventThrottle={16}
+        style={
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+            "width": "100%",
+          }
+        }
+      >
+        <View>
+          <View
+            style={
+              Object {
+                "backgroundColor": "#F8F9FA",
+                "flexDirection": "column",
+                "height": "100%",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "justifyContent": "center",
+                  "marginBottom": 61.04651162790697,
+                  "paddingTop": 61.04651162790697,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "alignSelf": "center",
+                    "color": "#242424",
+                    "fontFamily": "IBMPlexSans-SemiBold",
+                    "fontSize": 33.75,
+                    "lineHeight": 43.125,
+                    "textAlign": "center",
+                    "width": "80%",
+                  }
+                }
+              >
+                Welcome to COMPASS
+(React Native Client)
+              </Text>
+              <Text
+                style={
+                  Object {
+                    "alignSelf": "center",
+                    "color": "#1F2532",
+                    "fontFamily": "IBMPlexSans",
+                    "fontSize": 28.125,
+                    "lineHeight": 37.5,
+                    "marginBottom": 34.883720930232556,
+                    "marginLeft": 69.76744186046511,
+                    "marginRight": 69.76744186046511,
+                    "marginTop": 34.883720930232556,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                This is the Landing Screen.
+
+It can be used to display a welcome message, detailing the following login-process, explaining the handling of personal information, etc.
+
+The logo file (as well as the logoBackground) can be updated by updating the 'CUSTOMIZATION' folder.
+              </Text>
+            </View>
+            <View
+              style={
+                Object {
+                  "flex": 1,
+                  "height": "100%",
+                  "justifyContent": "flex-end",
+                  "marginBottom": 36,
+                  "marginTop": 20,
+                }
+              }
+            >
+              <View
+                accessibilityHint="Starts login process and redirects to QRCode scanner."
+                accessibilityLabel="Navigate to Login Screen"
+                accessibilityRole="button"
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                nativeID="animatedComponent"
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  Object {
+                    "alignSelf": "center",
+                    "backgroundColor": "#1F2532",
+                    "borderColor": "#1F2532",
+                    "borderRadius": 50,
+                    "borderWidth": 0,
+                    "bottom": 0,
+                    "opacity": 1,
+                    "padding": 15,
+                    "paddingBottom": 26.162790697674417,
+                    "paddingLeft": 26.162790697674417,
+                    "paddingRight": 26.162790697674417,
+                    "paddingTop": 26.162790697674417,
+                    "width": "80%",
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Object {
+                      "alignSelf": "center",
+                      "color": "#F8F9FA",
+                      "fontFamily": "IBMPlexSans-SemiBold",
+                      "fontSize": 26.25,
+                      "lineHeight": 35.625,
+                      "textAlign": "center",
+                    }
+                  }
+                >
+                  Navigate to Login Screen
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+      </RCTScrollView>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`LOGIN RENDERING: <LoginContainer /> can be rendered 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#F8F9FA",
+      "height": "100%",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignContent": "stretch",
+        "alignItems": "stretch",
+        "backgroundColor": "#F8F9FA",
+        "flexDirection": "column",
+        "height": 354.06976744186045,
+        "justifyContent": "flex-start",
+        "overflow": "hidden",
+        "paddingTop": 30,
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "flex-start",
+          "flexDirection": "row",
+          "flexWrap": "wrap",
+          "justifyContent": "space-between",
+          "paddingTop": 10,
+          "width": "100%",
+          "zIndex": 2,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "flexWrap": "wrap",
+            "justifyContent": "flex-end",
+            "marginLeft": 15,
+            "marginRight": 15,
+            "textAlign": "center",
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "borderRadius": 3,
+                "overflow": "hidden",
+              },
+              Object {
+                "borderRadius": 3,
+              },
+              undefined,
+              false,
+            ]
+          }
+        >
+          <View
+            accessibilityHint="Jumps to previous page."
+            accessibilityLabel="back"
+            accessibilityRole="button"
+            accessibilityState={
+              Object {
+                "busy": false,
+                "disabled": false,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            nativeID="animatedComponent"
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "height": 44,
+                "opacity": 1,
+                "width": 104.65116279069767,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "transparent",
+                  "borderColor": "#2089dc",
+                  "borderRadius": 3,
+                  "borderWidth": 0,
+                  "flexDirection": "row",
+                  "justifyContent": "center",
+                  "padding": 8,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "overflow": "hidden",
+                  }
+                }
+              >
+                <View>
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "transparent",
+                        "justifyContent": "center",
+                      }
+                    }
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "color": "#EB576A",
+                            "fontSize": 48.83720930232558,
+                          },
+                          Object {
+                            "backgroundColor": "transparent",
+                          },
+                          Object {
+                            "fontFamily": "Material Design Icons",
+                            "fontStyle": "normal",
+                            "fontWeight": "normal",
+                          },
+                          Object {},
+                        ]
+                      }
+                      testID="iconIcon"
+                    >
+                      󰁍
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+        <Text
+          accessibilityRole="header"
+          numberOfLines={1}
+          style={
+            Object {
+              "alignContent": "center",
+              "alignSelf": "center",
+              "color": "#1F2532",
+              "flex": 1,
+              "fontFamily": "IBMPlexSans-SemiBold",
+              "fontSize": 33.75,
+              "lineHeight": 43.125,
+              "textAlign": "center",
+              "width": "100%",
+            }
+          }
+        >
+          Login
+        </Text>
+        <View
+          style={
+            Object {
+              "height": 44,
+              "width": 104.65116279069767,
+            }
+          }
+        />
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "flexDirection": "column",
+          "justifyContent": "flex-end",
+          "left": 0,
+          "position": "absolute",
+          "top": 0,
+        }
+      }
+    >
+      <Image
+        resizeMode="cover"
+        source={
+          Object {
+            "process": [Function],
+          }
+        }
+        style={
+          Object {
+            "height": 354.06976744186045,
+            "width": 750,
+          }
+        }
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "flexDirection": "column",
+          "justifyContent": "flex-end",
+        }
+      }
+    >
+      <Image
+        resizeMode="contain"
+        source={
+          Object {
+            "process": [Function],
+          }
+        }
+        style={
+          Object {
+            "alignSelf": "center",
+            "bottom": 13.081395348837209,
+            "maxHeight": 308.781773931855,
+            "maxWidth": 650,
+            "position": "relative",
+          }
+        }
+      />
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#F8F9FA",
+        "flex": 1,
+        "height": "100%",
+      }
+    }
+  >
+    <View
+      onLayout={[Function]}
+      style={
+        Object {
+          "flex": 1,
+          "flexDirection": "column",
+          "width": "100%",
+        }
+      }
+    >
+      <RCTScrollView
+        contentContainerStyle={
+          Object {
+            "flexGrow": 1,
+          }
+        }
+        contentData={
+          <View
+            style={
+              Object {
+                "backgroundColor": "#F8F9FA",
+                "height": "100%",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#F8F9FA",
+                  "flex": 1,
+                  "height": "100%",
+                }
+              }
+            >
+              <View>
+                <QRCodeScanner
+                  buttonPositive="OK"
+                  cameraProps={Object {}}
+                  cameraStyle={
+                    Object {
+                      "height": "100%",
+                      "overflow": "hidden",
+                      "width": "100%",
+                    }
+                  }
+                  cameraTimeout={0}
+                  cameraTimeoutView={
+                    <View
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "backgroundColor": "black",
+                          "flex": 0,
+                          "height": 1334,
+                          "justifyContent": "center",
+                          "width": 750,
+                        }
+                      }
+                    >
+                      <Text
+                        style={
+                          Object {
+                            "color": "white",
+                          }
+                        }
+                      >
+                        Tap to activate camera
+                      </Text>
+                    </View>
+                  }
+                  cameraType="back"
+                  checkAndroid6Permissions={false}
+                  containerStyle={
+                    Object {
+                      "height": 750,
+                      "marginTop": 0,
+                      "width": "100%",
+                    }
+                  }
+                  fadeIn={false}
+                  markerStyle={
+                    Object {
+                      "borderColor": "#1F2532",
+                    }
+                  }
+                  notAuthorizedView={
+                    <View
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "flex": 1,
+                          "justifyContent": "center",
+                        }
+                      }
+                    >
+                      <Text
+                        style={
+                          Object {
+                            "fontSize": 16,
+                            "textAlign": "center",
+                          }
+                        }
+                      >
+                        Camera not authorized
+                      </Text>
+                    </View>
+                  }
+                  onRead={[Function]}
+                  pendingAuthorizationView={
+                    <View
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "flex": 1,
+                          "justifyContent": "center",
+                        }
+                      }
+                    >
+                      <Text
+                        style={
+                          Object {
+                            "fontSize": 16,
+                            "textAlign": "center",
+                          }
+                        }
+                      >
+                        ...
+                      </Text>
+                    </View>
+                  }
+                  permissionDialogMessage="Please allow the app to access your camera."
+                  permissionDialogTitle="Info"
+                  reactivate={false}
+                  reactivateTimeout={0}
+                  showMarker={true}
+                  vibrate={true}
+                />
+              </View>
+              <Themed.Text
+                style={
+                  Object {
+                    "alignSelf": "center",
+                    "color": "#1F2532",
+                    "fontFamily": "IBMPlexSans",
+                    "fontSize": 30,
+                    "lineHeight": 39.375,
+                    "marginBottom": 0,
+                    "marginLeft": 122.09302325581395,
+                    "marginRight": 122.09302325581395,
+                    "marginTop": 52.325581395348834,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                Please point the camera onto the qr-code.
+              </Themed.Text>
+            </View>
+          </View>
+        }
+        enableOnAndroid={true}
+        innerRef={[Function]}
+        onScroll={[Function]}
+        scrollEventThrottle={16}
+        style={
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+            "width": "100%",
+          }
+        }
+      >
+        <View>
+          <View
+            style={
+              Object {
+                "backgroundColor": "#F8F9FA",
+                "height": "100%",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#F8F9FA",
+                  "flex": 1,
+                  "height": "100%",
+                }
+              }
+            >
+              <View>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "flex": 1,
+                      },
+                      Object {
+                        "height": 750,
+                        "marginTop": 0,
+                        "width": "100%",
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "flex": 2,
+                          "justifyContent": "center",
+                          "width": 750,
+                        },
+                        undefined,
+                      ]
+                    }
+                  />
+                  <View
+                    style={
+                      Object {
+                        "height": "100%",
+                        "overflow": "hidden",
+                        "width": "100%",
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "flex": 1,
+                          "justifyContent": "center",
+                        }
+                      }
+                    >
+                      <Text
+                        style={
+                          Object {
+                            "fontSize": 16,
+                            "textAlign": "center",
+                          }
+                        }
+                      >
+                        ...
+                      </Text>
+                    </View>
+                  </View>
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "flex": 2,
+                          "justifyContent": "center",
+                          "width": 750,
+                        },
+                        undefined,
+                      ]
+                    }
+                  />
+                </View>
+              </View>
+              <Text
+                style={
+                  Object {
+                    "alignSelf": "center",
+                    "color": "#1F2532",
+                    "fontFamily": "IBMPlexSans",
+                    "fontSize": 30,
+                    "lineHeight": 39.375,
+                    "marginBottom": 0,
+                    "marginLeft": 122.09302325581395,
+                    "marginRight": 122.09302325581395,
+                    "marginTop": 52.325581395348834,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                Please point the camera onto the qr-code.
+              </Text>
+            </View>
+          </View>
+        </View>
+      </RCTScrollView>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`LOGIN RENDERING: <LoginScreen /> can be rendered 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#F8F9FA",
+      "height": "100%",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignContent": "stretch",
+        "alignItems": "stretch",
+        "backgroundColor": "#F8F9FA",
+        "flexDirection": "column",
+        "height": 354.06976744186045,
+        "justifyContent": "flex-start",
+        "overflow": "hidden",
+        "paddingTop": 30,
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "flex-start",
+          "flexDirection": "row",
+          "flexWrap": "wrap",
+          "justifyContent": "space-between",
+          "paddingTop": 10,
+          "width": "100%",
+          "zIndex": 2,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "flexWrap": "wrap",
+            "justifyContent": "flex-end",
+            "marginLeft": 15,
+            "marginRight": 15,
+            "textAlign": "center",
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "borderRadius": 3,
+                "overflow": "hidden",
+              },
+              Object {
+                "borderRadius": 3,
+              },
+              undefined,
+              false,
+            ]
+          }
+        >
+          <View
+            accessibilityHint="Jumps to previous page."
+            accessibilityLabel="back"
+            accessibilityRole="button"
+            accessibilityState={
+              Object {
+                "busy": false,
+                "disabled": false,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            nativeID="animatedComponent"
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "height": 44,
+                "opacity": 1,
+                "width": 104.65116279069767,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "transparent",
+                  "borderColor": "#2089dc",
+                  "borderRadius": 3,
+                  "borderWidth": 0,
+                  "flexDirection": "row",
+                  "justifyContent": "center",
+                  "padding": 8,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "overflow": "hidden",
+                  }
+                }
+              >
+                <View>
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "transparent",
+                        "justifyContent": "center",
+                      }
+                    }
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      style={
+                        Array [
+                          Object {
+                            "color": "#EB576A",
+                            "fontSize": 48.83720930232558,
+                          },
+                          Object {
+                            "backgroundColor": "transparent",
+                          },
+                          Object {
+                            "fontFamily": "Material Design Icons",
+                            "fontStyle": "normal",
+                            "fontWeight": "normal",
+                          },
+                          Object {},
+                        ]
+                      }
+                      testID="iconIcon"
+                    >
+                      󰁍
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+        <Text
+          accessibilityRole="header"
+          numberOfLines={1}
+          style={
+            Object {
+              "alignContent": "center",
+              "alignSelf": "center",
+              "color": "#1F2532",
+              "flex": 1,
+              "fontFamily": "IBMPlexSans-SemiBold",
+              "fontSize": 33.75,
+              "lineHeight": 43.125,
+              "textAlign": "center",
+              "width": "100%",
+            }
+          }
+        >
+          Login
+        </Text>
+        <View
+          style={
+            Object {
+              "height": 44,
+              "width": 104.65116279069767,
+            }
+          }
+        />
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "flexDirection": "column",
+          "justifyContent": "flex-end",
+          "left": 0,
+          "position": "absolute",
+          "top": 0,
+        }
+      }
+    >
+      <Image
+        resizeMode="cover"
+        source={
+          Object {
+            "process": [Function],
+          }
+        }
+        style={
+          Object {
+            "height": 354.06976744186045,
+            "width": 750,
+          }
+        }
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "flexDirection": "column",
+          "justifyContent": "flex-end",
+        }
+      }
+    >
+      <Image
+        resizeMode="contain"
+        source={
+          Object {
+            "process": [Function],
+          }
+        }
+        style={
+          Object {
+            "alignSelf": "center",
+            "bottom": 13.081395348837209,
+            "maxHeight": 308.781773931855,
+            "maxWidth": 650,
+            "position": "relative",
+          }
+        }
+      />
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#F8F9FA",
+        "flex": 1,
+        "height": "100%",
+      }
+    }
+  >
+    <View
+      onLayout={[Function]}
+      style={
+        Object {
+          "flex": 1,
+          "flexDirection": "column",
+          "width": "100%",
+        }
+      }
+    >
+      <RCTScrollView
+        contentContainerStyle={
+          Object {
+            "flexGrow": 1,
+          }
+        }
+        contentData={
+          <View
+            style={
+              Object {
+                "backgroundColor": "#F8F9FA",
+                "height": "100%",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#F8F9FA",
+                  "flex": 1,
+                  "height": "100%",
+                }
+              }
+            >
+              <View>
+                <QRCodeScanner
+                  buttonPositive="OK"
+                  cameraProps={Object {}}
+                  cameraStyle={
+                    Object {
+                      "height": "100%",
+                      "overflow": "hidden",
+                      "width": "100%",
+                    }
+                  }
+                  cameraTimeout={0}
+                  cameraTimeoutView={
+                    <View
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "backgroundColor": "black",
+                          "flex": 0,
+                          "height": 1334,
+                          "justifyContent": "center",
+                          "width": 750,
+                        }
+                      }
+                    >
+                      <Text
+                        style={
+                          Object {
+                            "color": "white",
+                          }
+                        }
+                      >
+                        Tap to activate camera
+                      </Text>
+                    </View>
+                  }
+                  cameraType="back"
+                  checkAndroid6Permissions={false}
+                  containerStyle={
+                    Object {
+                      "height": 750,
+                      "marginTop": 0,
+                      "width": "100%",
+                    }
+                  }
+                  fadeIn={false}
+                  markerStyle={
+                    Object {
+                      "borderColor": "#1F2532",
+                    }
+                  }
+                  notAuthorizedView={
+                    <View
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "flex": 1,
+                          "justifyContent": "center",
+                        }
+                      }
+                    >
+                      <Text
+                        style={
+                          Object {
+                            "fontSize": 16,
+                            "textAlign": "center",
+                          }
+                        }
+                      >
+                        Camera not authorized
+                      </Text>
+                    </View>
+                  }
+                  onRead={[Function]}
+                  pendingAuthorizationView={
+                    <View
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "flex": 1,
+                          "justifyContent": "center",
+                        }
+                      }
+                    >
+                      <Text
+                        style={
+                          Object {
+                            "fontSize": 16,
+                            "textAlign": "center",
+                          }
+                        }
+                      >
+                        ...
+                      </Text>
+                    </View>
+                  }
+                  permissionDialogMessage="Please allow the app to access your camera."
+                  permissionDialogTitle="Info"
+                  reactivate={false}
+                  reactivateTimeout={0}
+                  showMarker={true}
+                  vibrate={true}
+                />
+              </View>
+              <Themed.Text
+                style={
+                  Object {
+                    "alignSelf": "center",
+                    "color": "#1F2532",
+                    "fontFamily": "IBMPlexSans",
+                    "fontSize": 30,
+                    "lineHeight": 39.375,
+                    "marginBottom": 0,
+                    "marginLeft": 122.09302325581395,
+                    "marginRight": 122.09302325581395,
+                    "marginTop": 52.325581395348834,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                Please point the camera onto the qr-code.
+              </Themed.Text>
+            </View>
+          </View>
+        }
+        enableOnAndroid={true}
+        innerRef={[Function]}
+        onScroll={[Function]}
+        scrollEventThrottle={16}
+        style={
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+            "width": "100%",
+          }
+        }
+      >
+        <View>
+          <View
+            style={
+              Object {
+                "backgroundColor": "#F8F9FA",
+                "height": "100%",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#F8F9FA",
+                  "flex": 1,
+                  "height": "100%",
+                }
+              }
+            >
+              <View>
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "flex": 1,
+                      },
+                      Object {
+                        "height": 750,
+                        "marginTop": 0,
+                        "width": "100%",
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "flex": 2,
+                          "justifyContent": "center",
+                          "width": 750,
+                        },
+                        undefined,
+                      ]
+                    }
+                  />
+                  <View
+                    style={
+                      Object {
+                        "height": "100%",
+                        "overflow": "hidden",
+                        "width": "100%",
+                      }
+                    }
+                  >
+                    <View
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "flex": 1,
+                          "justifyContent": "center",
+                        }
+                      }
+                    >
+                      <Text
+                        style={
+                          Object {
+                            "fontSize": 16,
+                            "textAlign": "center",
+                          }
+                        }
+                      >
+                        ...
+                      </Text>
+                    </View>
+                  </View>
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "flex": 2,
+                          "justifyContent": "center",
+                          "width": 750,
+                        },
+                        undefined,
+                      ]
+                    }
+                  />
+                </View>
+              </View>
+              <Text
+                style={
+                  Object {
+                    "alignSelf": "center",
+                    "color": "#1F2532",
+                    "fontFamily": "IBMPlexSans",
+                    "fontSize": 30,
+                    "lineHeight": 39.375,
+                    "marginBottom": 0,
+                    "marginLeft": 122.09302325581395,
+                    "marginRight": 122.09302325581395,
+                    "marginTop": 52.325581395348834,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                Please point the camera onto the qr-code.
+              </Text>
+            </View>
+          </View>
+        </View>
+      </RCTScrollView>
+    </View>
+  </View>
+</View>
+`;
