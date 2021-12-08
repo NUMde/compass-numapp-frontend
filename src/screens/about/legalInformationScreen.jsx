@@ -7,10 +7,10 @@ imports
 import React, { PureComponent } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 
-import config from "../../config/configProvider";
-import Banner from "../../components/banner/banner";
-import localization from "../../services/localization/localization";
-import ScrollIndicatorWrapper from "../../components/scrollIndicatorWrapper/scrollIndicatorWrapper";
+import config from '../../config/configProvider';
+import Banner from '../../components/banner/banner';
+import localization from '../../services/localization/localization';
+import ScrollIndicatorWrapper from '../../components/scrollIndicatorWrapper/scrollIndicatorWrapper';
 
 let localStyle;
 

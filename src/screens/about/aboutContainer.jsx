@@ -4,19 +4,19 @@
 imports
 ***********************************************************************************************/
 
-import { Alert } from "react-native";
-import { connect } from "react-redux";
-import React, { Component } from "react";
-import { bindActionCreators } from "redux";
+import { Alert } from 'react-native';
+import { connect } from 'react-redux';
+import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 import RNRestart from 'react-native-restart';
 
-import AboutScreen from "./aboutScreen";
-import WebViewScreen from "./webViewScreen";
-import LegalInformationScreen from "./legalInformationScreen";
-import localization from "../../services/localization/localization";
-import localStorage from "../../services/localStorage/localStorage";
-import * as aboutActions from "./aboutActions";
-import store from "../../store";
+import AboutScreen from './aboutScreen';
+import WebViewScreen from './webViewScreen';
+import LegalInformationScreen from './legalInformationScreen';
+import localization from '../../services/localization/localization';
+import localStorage from '../../services/localStorage/localStorage';
+import * as aboutActions from './aboutActions';
+import store from '../../store';
 
 /***********************************************************************************************
 component:
@@ -56,7 +56,7 @@ class AboutContainer extends Component {
         },
         {
           text: localization.translate('generic').abort,
-          style: "cancel",
+          style: 'cancel',
         },
       ],
       { cancelable: false },
@@ -84,7 +84,7 @@ class AboutContainer extends Component {
         },
         {
           text: localization.translate('generic').abort,
-          style: "cancel",
+          style: 'cancel',
         },
       ],
       { cancelable: false },
@@ -93,10 +93,14 @@ class AboutContainer extends Component {
 
   changeLanguage = (languageTag) => {
     const { actions } = this.props;
-    if(store.getState().CheckIn.questionnaireItemMap && store.getState().CheckIn.questionnaireItemMap.started) {
+    if (
+      store.getState().CheckIn.questionnaireItemMap &&
+      store.getState().CheckIn.questionnaireItemMap.started
+    ) {
       Alert.alert(
         localization.translate('generic').warning,
-        localization.translate('about').languageWarning + localization.translate('about').languageWarningAddition,
+        localization.translate('about').languageWarning +
+          localization.translate('about').languageWarningAddition,
         [
           {
             text: localization.translate('generic').delete,
@@ -107,23 +111,27 @@ class AboutContainer extends Component {
           },
           {
             text: localization.translate('generic').abort,
-            style: "cancel",
+            style: 'cancel',
           },
         ],
-        { cancelable: false }
+        { cancelable: false },
       );
-    }
-    else {
+    } else {
       this.setLanguage(languageTag);
-    }    
+    }
   };
 
   setLanguage = (languageTag) => {
     const { actions } = this.props;
-    if(store.getState().CheckIn.questionnaireItemMap) actions.deleteLocalQuestionnaire();
+    if (store.getState().CheckIn.questionnaireItemMap) {
+      actions.deleteLocalQuestionnaire();
+    }
     setTimeout(async () => {
       localization.setI18nConfig(languageTag);
-      await localStorage.persistLocalizationSettings(languageTag, store.getState().Login.subjectId);
+      await localStorage.persistLocalizationSettings(
+        languageTag,
+        store.getState().Login.subjectId,
+      );
       RNRestart.Restart();
     }, 0);
   };
@@ -132,7 +140,14 @@ class AboutContainer extends Component {
   /*-----------------------------------------------------------------------------------*/
 
   render() {
-    const { navigation, showModal, modalLink, actions, route, currentlyChosenLanguage } = this.props;
+    const {
+      navigation,
+      showModal,
+      modalLink,
+      actions,
+      route,
+      currentlyChosenLanguage,
+    } = this.props;
     // checks if the currently selected route equals 'About'
     if (route.name === 'About') {
       // then renders the About Screen
@@ -156,10 +171,6 @@ class AboutContainer extends Component {
     // if on WebView route
     return <WebViewScreen navigation={navigation} />;
   }
-
-  componentDidMount = () => {
-    const { actions } = this.props;
-  };
 }
 
 /***********************************************************************************************

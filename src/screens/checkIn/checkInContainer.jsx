@@ -12,10 +12,10 @@ import { bindActionCreators } from 'redux';
 import messaging from '@react-native-firebase/messaging';
 import store from '../../store';
 
-import loggedInClient from "../../services/rest/loggedInClient";
-import localStorage from "../../services/localStorage/localStorage";
-import localization from "../../services/localization/localization";
-import documentCreator from "../../services/questionnaireAnalyzer/questionnaireAnalyzer";
+import loggedInClient from '../../services/rest/loggedInClient';
+import localStorage from '../../services/localStorage/localStorage';
+import localization from '../../services/localization/localization';
+import documentCreator from '../../services/questionnaireAnalyzer/questionnaireAnalyzer';
 
 import SurveyScreen from './surveyScreen';
 import * as checkInActions from './checkInActions';
@@ -41,7 +41,7 @@ class CheckInContainer extends Component {
     if (route.name === 'CheckIn') {
       setTimeout(() => {
         this.updateUser();
-      }, 500)
+      }, 500);
     }
   };
 
@@ -53,7 +53,7 @@ class CheckInContainer extends Component {
   componentDidUpdate = () => {
     const { questionnaireItemMap, navigation } = this.props;
     setTimeout(() => {
-      if (!questionnaireItemMap) navigation.navigate("CheckIn");
+      if (!questionnaireItemMap) navigation.navigate('CheckIn');
     }, 0);
   };
 
@@ -135,7 +135,10 @@ class CheckInContainer extends Component {
 
     // gets the questionnaire with the correct id
     await loggedInClient
-      .getBaseQuestionnaire(user.current_questionnaire_id, localization.getLanguageTag())
+      .getBaseQuestionnaire(
+        user.current_questionnaire_id,
+        localization.getLanguageTag(),
+      )
       // success
       .then((resp) => {
         setTimeout(async () => {
@@ -197,8 +200,10 @@ class CheckInContainer extends Component {
    * @param {any} data
    */
   updateUserSuccess = async (data) => {
-    let { user, actions, noNewQuestionnaireAvailableYet } = this.props;
-    data.subjectId = data.subjectId || null;
+    const { user, actions } = this.props;
+    const newData = data;
+
+    newData.subjectId = data.subjectId || null;
 
     // procures the id of the questionnaire used by the last active user
     const lastQuestionnaireId = await localStorage.loadLastQuestionnaireId();
@@ -209,30 +214,24 @@ class CheckInContainer extends Component {
       await actions.deleteLocalQuestionnaire();
     }
     // persists the new data
-    actions.updateUserSuccess(data);
+    actions.updateUserSuccess(newData);
 
     // tries to init the push service
     if (config.appConfig.connectToFCM) {
-      setTimeout(() => this.initPush(data.subjectId), 0);
+      setTimeout(() => this.initPush(newData.subjectId), 0);
     }
 
-    // updates the chosen langugae backend-side
-    // actions.updateLanguageStart(localization.getLanguageTag())
-    // loggedInClient.updateLanguageCode(data.subjectId, localization.getLanguageTag())
-    // .then(
-    //   res => actions.updateLanguageSuccess(),
-    //   err => actions.updateLanguageFail(err)
-    // );
-
     setTimeout(async () => {
+      const { noNewQuestionnaireAvailableYet } = this.props;
       // if we have locally persisted questionnaire
-      if (lastQuestionnaireId && !this.props.noNewQuestionnaireAvailableYet) {
+      if (lastQuestionnaireId && !noNewQuestionnaireAvailableYet) {
         // checks if the id of the persisted questionnaire matches the one of the
         // questionnaire the user is supposed to look at now
-        let lastLang = await localStorage.loadLastQuestionnaireLanguage()
+        const lastLang = await localStorage.loadLastQuestionnaireLanguage();
         if (
           config.appConfig.skipIncomingQuestionnaireCheck ||
-          (lastQuestionnaireId === data.current_questionnaire_id && lastLang === localization.getLanguageTag())
+          (lastQuestionnaireId === newData.current_questionnaire_id &&
+            lastLang === localization.getLanguageTag())
         ) {
           // loads the persisted questionnaire
           this.checkForCachedData();
@@ -240,23 +239,25 @@ class CheckInContainer extends Component {
           // deletes the locally persisted questionnaire, as it does not matches
           // the one the user is supposed to look at
           setTimeout(() => {
-            this.deleteLocalQuestionnaireData( );
-            this.deleteLocalQuestionnaireData(lastLang !== localization.getLanguageTag() ?? localization.translate('generic').wrongLangugageVersionDetected);
+            this.deleteLocalQuestionnaireData();
+            this.deleteLocalQuestionnaireData(
+              lastLang !== localization.getLanguageTag() ??
+                localization.translate('generic').wrongLangugageVersionDetected,
+            );
           }, 0);
         }
       } else {
         // deletes the local questionnaire data if the data from the server shows
         // a due date that lies behind the current data
-        if (data.due_date && data.due_date < new Date()) {
+        if (newData.due_date && newData.due_date < new Date()) {
           this.deleteLocalQuestionnaireData();
         }
         // tries to procure a new questionnaire if possible
-        if (!this.props.noNewQuestionnaireAvailableYet) {
+        if (!noNewQuestionnaireAvailableYet) {
           setTimeout(async () => {
             await this.getQuestionnaire();
           }, 0);
-        }
-        else {
+        } else {
           actions.removeLoadingScreen();
         }
       }
@@ -319,7 +320,9 @@ class CheckInContainer extends Component {
     setTimeout(() => {
       Alert.alert(
         localization.translate('generic').info,
-        message ? message + localization.translate('generic').infoRemoval : localization.translate('generic').infoRemoval,
+        message
+          ? message + localization.translate('generic').infoRemoval
+          : localization.translate('generic').infoRemoval,
         [
           {
             text: localization.translate('generic').ok,
@@ -351,16 +354,17 @@ class CheckInContainer extends Component {
     actions.sendQuestionnaireResponseFail(error);
     if (error.response.status === 409) {
       // deletes the locally persisted questionnaire, as it does not matches
-        // the one the user is supposed to look at
-        setTimeout(() => {
-          this.deleteLocalQuestionnaireData(localization.translate('generic').sendErrorTwoDevices);
-        }, 0);
-    }
-    else{
+      // the one the user is supposed to look at
+      setTimeout(() => {
+        this.deleteLocalQuestionnaireData(
+          localization.translate('generic').sendErrorTwoDevices,
+        );
+      }, 0);
+    } else {
       setTimeout(() => {
         Alert.alert(
           localization.translate('generic').errorTitle,
-          localization.translate('generic').sendError
+          localization.translate('generic').sendError,
         );
       }, 0);
     }
@@ -371,7 +375,6 @@ class CheckInContainer extends Component {
    * @param  {object} response http response
    */
   exportAndUploadQuestionnaireResponseSuccess = async (response) => {
-
     const { actions } = this.props;
     actions.sendQuestionnaireResponseSuccess(response);
     actions.deleteLocalQuestionnaire();
@@ -383,7 +386,7 @@ class CheckInContainer extends Component {
     setTimeout(() => {
       Alert.alert(
         localization.translate('generic').successTitle,
-        localization.translate('generic').sendSuccess
+        localization.translate('generic').sendSuccess,
       );
     }, 0);
   };
@@ -450,7 +453,7 @@ class CheckInContainer extends Component {
           },
           {
             text: localization.translate('generic').abort,
-            style: "cancel",
+            style: 'cancel',
           },
         ],
         { cancelable: false },
@@ -477,7 +480,7 @@ class CheckInContainer extends Component {
           {
             text: localization.translate('generic').ok,
             onPress: () => {
-              setTimeout(() => navigation.navigate("CheckIn"), 0);
+              setTimeout(() => navigation.navigate('CheckIn'), 0);
             },
           },
         ],
@@ -502,7 +505,7 @@ class CheckInContainer extends Component {
           {
             text: localization.translate('reporting').symptoms_success_ok,
             onPress: () => {
-              setTimeout(() => navigation.navigate("CheckIn"), 0);
+              setTimeout(() => navigation.navigate('CheckIn'), 0);
               this.updateUser();
             },
           },
@@ -575,7 +578,7 @@ class CheckInContainer extends Component {
           },
           {
             text: localization.translate('reporting').symptoms_no,
-            style: "cancel",
+            style: 'cancel',
           },
         ],
         { cancelable: false },
@@ -609,7 +612,7 @@ class CheckInContainer extends Component {
         },
         {
           text: localization.translate('generic').abort,
-          style: "cancel",
+          style: 'cancel',
         },
       ],
       { cancelable: false },

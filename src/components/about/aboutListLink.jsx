@@ -39,7 +39,7 @@ class AboutListLink extends PureComponent {
         onPress={() => {
           actions.setCurrentWebView(webView);
           setTimeout(() => {
-            navigation.navigate("WebView");
+            navigation.navigate('WebView');
           }, 0);
         }}
       >

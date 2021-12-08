@@ -8,9 +8,9 @@ import React, { PureComponent } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { ListItem } from 'react-native-elements';
 
-import config from "../../config/configProvider";
-import { formatDateString } from "../../services/utils";
-import localization from "../../services/localization/localization";
+import config from '../../config/configProvider';
+import { formatDateString } from '../../services/utils';
+import localization from '../../services/localization/localization';
 
 let localStyle;
 
@@ -62,7 +62,8 @@ class CheckInListView extends PureComponent {
   getAccessibilityHint = () => {
     const { questionnaireItemMap } = this.props;
     let hint =
-      localization.translate('accessibility').questionnaire.questionnaireCellHint +
+      localization.translate('accessibility').questionnaire
+        .questionnaireCellHint +
       localization.translate('accessibility').questionnaire.questionnaire;
     if (
       questionnaireItemMap &&
@@ -143,7 +144,9 @@ class CheckInListView extends PureComponent {
                 localization.translate('survey').surveySubTitle +
                 formatDateString(new Date(user.due_date))
               }`}
-              accessibilityRole={localization.translate('accessibility').types.button}
+              accessibilityRole={
+                localization.translate('accessibility').types.button
+              }
               accessibilityHint={this.getAccessibilityHint()}
             >
               <ListItem.Content>

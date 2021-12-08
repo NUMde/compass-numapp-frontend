@@ -11,10 +11,10 @@ import { bindActionCreators } from 'redux';
 import config from '../../config/configProvider';
 import localStorage from '../../services/localStorage/localStorage';
 
-import LoginScreen from "./loginScreen";
-import LandingScreen from "./landingScreen";
-import * as loginActions from "./loginActions";
-import guestClient from "../../services/rest/guestClient";
+import LoginScreen from './loginScreen';
+import LandingScreen from './landingScreen';
+import * as loginActions from './loginActions';
+import guestClient from '../../services/rest/guestClient';
 
 /***********************************************************************************************
 component:
@@ -69,9 +69,11 @@ class LoginContainer extends Component {
    */
   componentDidUpdate = () => {
     const { loggedIn, navigation } = this.props;
-    if (loggedIn) setTimeout(() => {
-      navigation.navigate("SignedIn", { screen: "CheckIn" });
-    }, 0);
+    if (loggedIn) {
+      setTimeout(() => {
+        navigation.navigate('SignedIn', { screen: 'CheckIn' });
+      }, 0);
+    }
   };
 
   // class methods
@@ -80,7 +82,7 @@ class LoginContainer extends Component {
   /**
    * deletes all local data
    */
-   deleteLocalData = async () => {
+  deleteLocalData = async () => {
     const { actions } = this.props;
     // deletes all local data
     actions.deleteLocalData();

@@ -8,11 +8,11 @@ import React, { Component } from 'react';
 import { ListItem } from 'react-native-elements';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
-import config from "../../config/configProvider";
-import Banner from "../../components/banner/banner";
-import localization from "../../services/localization/localization";
-import QuestionnaireModal from "../../components/modal/questionnaireModal";
-import ScrollIndicatorWrapper from "../../components/scrollIndicatorWrapper/scrollIndicatorWrapper";
+import config from '../../config/configProvider';
+import Banner from '../../components/banner/banner';
+import localization from '../../services/localization/localization';
+import QuestionnaireModal from '../../components/modal/questionnaireModal';
+import ScrollIndicatorWrapper from '../../components/scrollIndicatorWrapper/scrollIndicatorWrapper';
 
 let localStyle;
 
@@ -38,7 +38,8 @@ class SurveyScreen extends Component {
    */
   getAccessibilityHint = (category) => {
     const { questionnaireItemMap } = this.props;
-    let hint = localization.translate('accessibility').questionnaire.categoryCellHint;
+    let hint =
+      localization.translate('accessibility').questionnaire.categoryCellHint;
     if (
       !questionnaireItemMap[category.linkId].done &&
       questionnaireItemMap[category.linkId].started
@@ -103,7 +104,9 @@ class SurveyScreen extends Component {
                 containerStyle={localStyle.listItemContainer}
                 onPress={() => actions.showQuestionnaireModal(index)}
                 accessibilityLabel={category.text}
-                accessibilityRole={localization.translate('accessibility').types.button}
+                accessibilityRole={
+                  localization.translate('accessibility').types.button
+                }
                 accessibilityHint={this.getAccessibilityHint(category)}
               >
                 {/* title */}
@@ -146,7 +149,10 @@ class SurveyScreen extends Component {
     return (
       <View style={{ ...localStyle.flexi, ...localStyle.wrapper }}>
         {/* render the top banner */}
-        <Banner nav={navigation} title={localization.translate('survey').title} />
+        <Banner
+          nav={navigation}
+          title={localization.translate('survey').title}
+        />
 
         {/* the questionnaire modal */}
         <QuestionnaireModal
@@ -170,9 +176,12 @@ class SurveyScreen extends Component {
                 {questionnaireItemMap && questionnaireItemMap.done && (
                   <TouchableOpacity
                     accessibilityLabel={localization.translate('survey').send}
-                    accessibilityRole={localization.translate('accessibility').types.button}
+                    accessibilityRole={
+                      localization.translate('accessibility').types.button
+                    }
                     accessibilityHint={
-                      localization.translate('accessibility').questionnaire.sendHint
+                      localization.translate('accessibility').questionnaire
+                        .sendHint
                     }
                     onPress={() => exportAndUploadQuestionnaireResponse()}
                     style={{

@@ -7,14 +7,14 @@ imports
 import React, { PureComponent } from 'react';
 import { View, StyleSheet } from 'react-native';
 
-import config from "../../config/configProvider";
-import Banner from "../../components/banner/banner";
-import Spinner from "../../components/spinner/spinner";
-import CheckInTiles from "../../components/checkIn/checkInTiles";
-import localization from "../../services/localization/localization";
-import CheckInWelcomeText from "../../components/checkIn/welcomeText";
-import CheckInListView from "../../components/checkIn/checkInListView";
-import ScrollIndicatorWrapper from "../../components/scrollIndicatorWrapper/scrollIndicatorWrapper";
+import config from '../../config/configProvider';
+import Banner from '../../components/banner/banner';
+import Spinner from '../../components/spinner/spinner';
+import CheckInTiles from '../../components/checkIn/checkInTiles';
+import localization from '../../services/localization/localization';
+import CheckInWelcomeText from '../../components/checkIn/welcomeText';
+import CheckInListView from '../../components/checkIn/checkInListView';
+import ScrollIndicatorWrapper from '../../components/scrollIndicatorWrapper/scrollIndicatorWrapper';
 
 let localStyle;
 
@@ -36,7 +36,7 @@ class CheckInScreen extends PureComponent {
    */
   // rendering
   /*-----------------------------------------------------------------------------------*/
-  
+
   render() {
     const {
       navigation,

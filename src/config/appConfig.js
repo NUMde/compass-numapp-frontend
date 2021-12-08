@@ -45,7 +45,8 @@ const { width } = Dimensions.get('window');
 const baseUriProductive = '';
 
 // development-base-backend-uri
-const baseUriDevelopment = "127.0.0.1/api/";
+const baseUriDevelopment =
+  'https://mobile-backend-compass.umopenshift01-27c74fb079246a1ac53f0d02625326eb-0000.eu-de.containers.appdomain.cloud/api/';
 
 /***********************************************************************************************
 configuration
@@ -56,7 +57,6 @@ configuration
  * development environment.
  */
 const conf = {
-
   // DEVELOPMENT OPTIONS
   /*-----------------------------------------------------------------------------------*/
 
@@ -149,7 +149,7 @@ const conf = {
 
   /** local storage identifier:
    * the language of the last active questionnaire of the last active user */
-   lastQuestionnaireLang: "@COMPASS_STORE:last_questionnaire_lang",
+  lastQuestionnaireLang: '@COMPASS_STORE:last_questionnaire_lang',
 
   /** local storage identifier:
    * persists all relevant information about the notification-service */
@@ -157,11 +157,11 @@ const conf = {
 
   /** local storage identifier:
    * persists all necessary data for the kiosk mode */
-  kioskModeData: "@COMPASS_STORE:kiosk_mode_data",
+  kioskModeData: '@COMPASS_STORE:kiosk_mode_data',
 
   /** local storage identifier:
    * persists all necessary localization data */
-  localeData: "@COMPASS_STORE:locale_data",
+  localeData: '@COMPASS_STORE:locale_data',
 
   // push notification
   /*-----------------------------------------------------------------------------------*/

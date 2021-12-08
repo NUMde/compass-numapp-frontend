@@ -7,12 +7,12 @@
 imports
 ***********************************************************************************************/
 
-import axios from "axios";
-import store from "../../store";
-import security from "../encryption/encryption";
-import config from "../../config/configProvider";
-import kioskMode from '../../config/kioskApiConfig'
-import localStorage from "../localStorage/localStorage";
+import axios from 'axios';
+import store from '../../store';
+import security from '../encryption/encryption';
+import config from '../../config/configProvider';
+import kioskMode from '../../config/kioskApiConfig';
+import localStorage from '../localStorage/localStorage';
 
 /***********************************************************************************************
 support functions
@@ -69,9 +69,9 @@ clients
 const getUserUpdate = async () => {
   let { subjectId } = store.getState().Login;
   if (!subjectId) subjectId = await localStorage.loadLastSubjectId();
-  return kioskMode.active ?
-  kioskMode.getUserUpdate():
-  axios.get(config.appConfig.endpoints.getUser + subjectId);
+  return kioskMode.active
+    ? kioskMode.getUserUpdate()
+    : axios.get(config.appConfig.endpoints.getUser + subjectId);
 };
 
 // language
@@ -80,14 +80,15 @@ const getUserUpdate = async () => {
 /**
  * procures the list of languages
  */
- const getLanguages = async () =>
- kioskMode.active ?
- kioskMode.getLanguages() :
- axios.get(config.appConfig.endpoints.getLanguages , {
-   headers: {
-     Authorization: createAuthorizationToken(),
-     Accept: "application/json",
-   }});
+const getLanguages = async () =>
+  kioskMode.active
+    ? kioskMode.getLanguages()
+    : axios.get(config.appConfig.endpoints.getLanguages, {
+        headers: {
+          Authorization: createAuthorizationToken(),
+          Accept: 'application/json',
+        },
+      });
 
 /**
  * updates the backend with the chosen language
@@ -95,22 +96,22 @@ const getUserUpdate = async () => {
  * @param  {string} languageCode the language code
  */
 const updateLanguageCode = async (subjectId, languageCode) =>
-  kioskMode.active ?
-  kioskMode.updateDeviceToken() :
-  axios.post(
-    config.appConfig.endpoints.updateLanguage + subjectId,
-    {
-      "language": languageCode,
-    },
-    {
-      headers: {
-        Authorization: createAuthorizationToken(),
-        Accept: "application/json",
-      },
-    }
-  );
+  kioskMode.active
+    ? kioskMode.updateDeviceToken()
+    : axios.post(
+        config.appConfig.endpoints.updateLanguage + subjectId,
+        {
+          language: languageCode,
+        },
+        {
+          headers: {
+            Authorization: createAuthorizationToken(),
+            Accept: 'application/json',
+          },
+        },
+      );
 
-  // push
+// push
 /*-----------------------------------------------------------------------------------*/
 
 /**
@@ -119,20 +120,20 @@ const updateLanguageCode = async (subjectId, languageCode) =>
  * @param  {string} token the token
  */
 const updateDeviceToken = async (subjectId, token) =>
-  kioskMode.active ?
-  kioskMode.updateDeviceToken() :
-  axios.post(
-    config.appConfig.endpoints.updateToken + subjectId,
-    {
-      token,
-    },
-    {
-      headers: {
-        Authorization: createAuthorizationToken(),
-        Accept: 'application/json',
-      },
-    },
-  );
+  kioskMode.active
+    ? kioskMode.updateDeviceToken()
+    : axios.post(
+        config.appConfig.endpoints.updateToken + subjectId,
+        {
+          token,
+        },
+        {
+          headers: {
+            Authorization: createAuthorizationToken(),
+            Accept: 'application/json',
+          },
+        },
+      );
 
 // reports
 /*-----------------------------------------------------------------------------------*/
@@ -142,25 +143,25 @@ const updateDeviceToken = async (subjectId, token) =>
  * @param  {string} subjectId string identifying the user
  */
 const sendReport = async (subjectId) =>
-  kioskMode.active ?
-  kioskMode.sendReport() :
-  axios.post(
-    config.appConfig.endpoints.report,
-    generateEncapsuledMessage(subjectId, 'report'),
-    {
-      headers: {
-        Authorization: createAuthorizationToken(),
-        Accept: 'application/json',
-      },
-      params: {
-        subjectId,
-        type: 'report',
-        updateValues: {
-          [config.appConfig.defaultReportAttribute]: true,
+  kioskMode.active
+    ? kioskMode.sendReport()
+    : axios.post(
+        config.appConfig.endpoints.report,
+        generateEncapsuledMessage(subjectId, 'report'),
+        {
+          headers: {
+            Authorization: createAuthorizationToken(),
+            Accept: 'application/json',
+          },
+          params: {
+            subjectId,
+            type: 'report',
+            updateValues: {
+              [config.appConfig.defaultReportAttribute]: true,
+            },
+          },
         },
-      },
-    },
-  );
+      );
 
 // questionnaires
 /*-----------------------------------------------------------------------------------*/
@@ -180,43 +181,45 @@ const sendQuestionnaire = async (
   surveyId,
   instanceId,
 ) =>
-  kioskMode.active ?
-  kioskMode.sendQuestionnaire() :
-  axios.post(
-    config.appConfig.endpoints.sendQuestionnaire,
-    generateEncapsuledMessage(subjectId, 'questionnaire_response', body),
-    {
-      headers: {
-        Authorization: createAuthorizationToken(),
-        Accept: 'application/json',
-      },
-      params: {
-        type: 'questionnaire_response',
-        id: subjectId,
-        subjectId,
-        surveyId,
-        instanceId,
-        updateValues: {
-          ...triggerMap,
+  kioskMode.active
+    ? kioskMode.sendQuestionnaire()
+    : axios.post(
+        config.appConfig.endpoints.sendQuestionnaire,
+        generateEncapsuledMessage(subjectId, 'questionnaire_response', body),
+        {
+          headers: {
+            Authorization: createAuthorizationToken(),
+            Accept: 'application/json',
+          },
+          params: {
+            type: 'questionnaire_response',
+            id: subjectId,
+            subjectId,
+            surveyId,
+            instanceId,
+            updateValues: {
+              ...triggerMap,
+            },
+          },
         },
-      },
-    },
-  );
+      );
 
 /**
  * procures the questionnaire from the backend
  * @param  {string} questionnaireId id of the questionnaire that the user is supposed to fill out
  */
 const getBaseQuestionnaire = async (questionnaireId, langCode) =>
-  {
-    return kioskMode.active ?
-    kioskMode.getBaseQuestionnaire(langCode) :
-    axios.get(`${config.appConfig.endpoints.getQuestionnaire}${questionnaireId}/${langCode}`, {
-      headers: {
-        Authorization: createAuthorizationToken(),
-        Accept: "application/json",
-      }});
-  }
+  kioskMode.active
+    ? kioskMode.getBaseQuestionnaire(langCode)
+    : axios.get(
+        `${config.appConfig.endpoints.getQuestionnaire}${questionnaireId}/${langCode}`,
+        {
+          headers: {
+            Authorization: createAuthorizationToken(),
+            Accept: 'application/json',
+          },
+        },
+      );
 
 /***********************************************************************************************
 export
@@ -229,5 +232,5 @@ export default {
   getUserUpdate,
   updateDeviceToken,
   updateLanguageCode,
-  getLanguages
+  getLanguages,
 };

@@ -16,8 +16,8 @@ import {
   ScrollView,
 } from 'react-native';
 
-import config from "../../config/configProvider";
-import localization from "../../services/localization/localization";
+import config from '../../config/configProvider';
+import localization from '../../services/localization/localization';
 
 let localStyle;
 
@@ -122,8 +122,12 @@ class RedirectModal extends Component {
           <Button
             type="clear"
             accessibilityLabel={localization.translate('accessibility').accept}
-            accessibilityRole={localization.translate('accessibility').types.button}
-            accessibilityHint={localization.translate('accessibility').acceptHint}
+            accessibilityRole={
+              localization.translate('accessibility').types.button
+            }
+            accessibilityHint={
+              localization.translate('accessibility').acceptHint
+            }
             onPress={() => {
               Linking.openURL(modalLink.uri);
               actions.hideModal();
@@ -141,9 +145,15 @@ class RedirectModal extends Component {
           {this.isAccessibilityOn && (
             <Button
               type="clear"
-              accessibilityLabel={localization.translate('accessibility').cancel}
-              accessibilityRole={localization.translate('accessibility').types.button}
-              accessibilityHint={localization.translate('accessibility').closeHint}
+              accessibilityLabel={
+                localization.translate('accessibility').cancel
+              }
+              accessibilityRole={
+                localization.translate('accessibility').types.button
+              }
+              accessibilityHint={
+                localization.translate('accessibility').closeHint
+              }
               onPress={() => {
                 actions.hideModal();
               }}

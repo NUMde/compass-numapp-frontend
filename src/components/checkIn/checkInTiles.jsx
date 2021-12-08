@@ -14,8 +14,8 @@ import {
   Dimensions,
 } from 'react-native';
 
-import config from "../../config/configProvider";
-import localization from "../../services/localization/localization";
+import config from '../../config/configProvider';
+import localization from '../../services/localization/localization';
 
 let localStyle;
 
@@ -55,86 +55,102 @@ class CheckInTiles extends PureComponent {
     return (
       <View style={localStyle.tileWrapper}>
         {/* checks if the user is still on the study */}
-        {<View style={localStyle.tileContainer}>
-          {/* if there is a completed questionnaire render the button to transmit the it*/}
-          {!noNewQuestionnaireAvailableYet &&
-            categoriesLoaded &&
-            user?.status !== 'off-study' &&
-            !loading &&
-            questionnaireItemMap.done && (
-              <View>
+        {
+          <View style={localStyle.tileContainer}>
+            {/* if there is a completed questionnaire render the button to transmit the it*/}
+            {!noNewQuestionnaireAvailableYet &&
+              categoriesLoaded &&
+              user?.status !== 'off-study' &&
+              !loading &&
+              questionnaireItemMap.done && (
+                <View>
+                  <TouchableOpacity
+                    style={{ ...localStyle.tile, ...localStyle.buttonGreen }}
+                    disabled={user && noNewQuestionnaireAvailableYet}
+                    onPress={exportAndUploadQuestionnaireResponse}
+                    accessibilityLabel={localization.translate('survey').send}
+                    accessibilityRole={
+                      localization.translate('accessibility').types.button
+                    }
+                    accessibilityHint={
+                      localization.translate('accessibility').questionnaire
+                        .sendHint
+                    }
+                  >
+                    <View style={localStyle.buttonWrapper}>
+                      <Icon
+                        name="school"
+                        color={config.theme.colors.white}
+                        iconStyle={localStyle.buttonIcon}
+                      />
+
+                      <Text style={localStyle.tileText}>
+                        {localization.translate('survey').send}
+                      </Text>
+                    </View>
+                  </TouchableOpacity>
+                </View>
+              )}
+
+            {/* the 'send report' button */}
+            {user?.status !== 'off-study' && (
+              <TouchableOpacity
+                onPress={sendReport}
+                // renders the button in grey if there is no questionnaire available
+                // or if the user already send out a report and is still on a special interval (additional_iterations_left will be greater than 0 if thats the case)
+                style={
+                  noNewQuestionnaireAvailableYet ||
+                  (user && user.additional_iterations_left > 0)
+                    ? localStyle.tile
+                    : localStyle.disabledTile
+                }
+                accessibilityRole={
+                  localization.translate('accessibility').types.button
+                }
+              >
+                <View style={localStyle.buttonWrapper}>
+                  <Icon
+                    name="error"
+                    color={config.theme.colors.white}
+                    iconStyle={localStyle.buttonIcon}
+                  />
+                  <Text style={localStyle.tileText}>
+                    {localization.translate('reporting').symptoms_header}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            )}
+
+            {/* the 'send report' button */}
+            {user?.status === 'off-study' &&
+              config.appConfig.allowRemovalOfDataAtEndOfStudy && (
                 <TouchableOpacity
-                  style={{ ...localStyle.tile, ...localStyle.buttonGreen }}
-                  disabled={user && noNewQuestionnaireAvailableYet}
-                  onPress={exportAndUploadQuestionnaireResponse}
-                  accessibilityLabel={localization.translate("survey").send}
-                  accessibilityRole={localization.translate("accessibility").types.button}
-                  accessibilityHint={
-                    localization.translate("accessibility").questionnaire.sendHint
+                  onPress={deleteLocalDataAndLogout}
+                  style={{
+                    ...localStyle.tile,
+                    ...localStyle.deleteAndLogoutTile,
+                  }}
+                  accessibilityRole={
+                    localization.translate('accessibility').types.button
                   }
                 >
                   <View style={localStyle.buttonWrapper}>
                     <Icon
-                      name="school"
+                      name="warning"
                       color={config.theme.colors.white}
                       iconStyle={localStyle.buttonIcon}
                     />
-
                     <Text style={localStyle.tileText}>
-                      {localization.translate("survey").send}
+                      {
+                        localization.translate('generic')
+                          .eraseLocalDataAtEndOfStudyTitle
+                      }
                     </Text>
                   </View>
                 </TouchableOpacity>
-              </View>
-            )}
-
-          {/* the 'send report' button */}
-          {user?.status !== 'off-study' && (
-            <TouchableOpacity
-              onPress={sendReport}
-              // renders the button in grey if there is no questionnaire available
-              // or if the user already send out a report and is still on a special interval (additional_iterations_left will be greater than 0 if thats the case)
-              style={
-                noNewQuestionnaireAvailableYet ||
-                (user && user.additional_iterations_left > 0)
-                  ? localStyle.tile
-                  : localStyle.disabledTile
-              }
-              accessibilityRole={localization.translate('accessibility').types.button}
-            >
-              <View style={localStyle.buttonWrapper}>
-                <Icon
-                  name="error"
-                  color={config.theme.colors.white}
-                  iconStyle={localStyle.buttonIcon}
-                />
-                <Text style={localStyle.tileText}>
-                  {localization.translate('reporting').symptoms_header}
-                </Text>
-              </View>
-            </TouchableOpacity>
-          )}
-
-          {/* the 'send report' button */}
-          {user?.status === 'off-study' && config.appConfig.allowRemovalOfDataAtEndOfStudy && (
-            <TouchableOpacity
-              onPress={deleteLocalDataAndLogout}
-              style={{...localStyle.tile, ...localStyle.deleteAndLogoutTile}}
-              accessibilityRole={localization.translate('accessibility').types.button}
-            >
-              <View style={localStyle.buttonWrapper}>
-                <Icon
-                  name="warning"
-                  color={config.theme.colors.white}
-                  iconStyle={localStyle.buttonIcon}
-                />
-                <Text style={localStyle.tileText}>
-                  {localization.translate('generic').eraseLocalDataAtEndOfStudyTitle}
-                </Text>
-              </View>
-            </TouchableOpacity>
-          )}
-        </View>}
+              )}
+          </View>
+        }
       </View>
     );
   }

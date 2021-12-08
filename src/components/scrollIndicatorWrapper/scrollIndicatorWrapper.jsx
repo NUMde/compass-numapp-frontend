@@ -16,8 +16,8 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 
-import config from "../../config/configProvider";
-import localization from "../../services/localization/localization";
+import config from '../../config/configProvider';
+import localization from '../../services/localization/localization';
 
 let localStyle;
 
@@ -149,7 +149,9 @@ export default class ScrollIndicatorWrapper extends Component {
           this.showIndicator &&
           !this.isAccessibilityOn && (
             <TouchableOpacity
-              accessibilityRole={localization.translate('accessibility').types.button}
+              accessibilityRole={
+                localization.translate('accessibility').types.button
+              }
               style={localStyle.indicator}
               onPress={() => {
                 this.scrollViewRef.current.scrollTo({

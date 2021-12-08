@@ -5,8 +5,8 @@
 import
 ***********************************************************************************************/
 
-import localization from "../../services/localization/localization";
-import localStorage from "../../services/localStorage/localStorage";
+import localization from '../../services/localization/localization';
+import localStorage from '../../services/localStorage/localStorage';
 
 /***********************************************************************************************
 support
@@ -78,17 +78,14 @@ const generateQuestionnaireItemMap = (questionnaire, subjectId, backendId) => {
 
   // persists the last known questionnaireId in the LocalStorage
   setTimeout(async () => {
-    localStorage.persistLastQuestionnaireId(
-      backendId,
-      subjectId
-    );
+    localStorage.persistLastQuestionnaireId(backendId, subjectId);
   }, 0);
 
   // persists the langugage of the last questionnaire in the LocalStorage
   setTimeout(async () => {
     localStorage.persistLastQuestionnaireLanguage(
       localization.getLanguageTag(),
-      subjectId
+      subjectId,
     );
   }, 0);
 
@@ -122,7 +119,7 @@ const valuesHandlers = {
    * hides the loading spinnner
    * @param  {any} state redux state
    */
-   REMOVE_LOADING_SCREEN: (state) => ({
+  REMOVE_LOADING_SCREEN: (state) => ({
     ...state,
     loading: false,
   }),
@@ -317,7 +314,7 @@ const valuesHandlers = {
     const questionnaireItemMap = generateQuestionnaireItemMap(
       values.questionnaire,
       state.user.subjectId,
-      state.user.current_questionnaire_id
+      state.user.current_questionnaire_id,
     );
 
     // generates the categories
@@ -442,7 +439,8 @@ const valuesHandlers = {
     user: values.user,
     questionnaireError: null,
     noNewQuestionnaireAvailableYet:
-      new Date() < new Date(values.user.start_date) || !values.user.current_questionnaire_id,
+      new Date() < new Date(values.user.start_date) ||
+      !values.user.current_questionnaire_id,
   }),
 
   /**

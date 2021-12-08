@@ -16,19 +16,19 @@ action handlers
 /**
  * update language start
  */
- export const removeLoadingScreen = () => async (dispatch) => {
+export const removeLoadingScreen = () => async (dispatch) => {
   dispatch({
-    type: "REMOVE_LOADING_SCREEN",
+    type: 'REMOVE_LOADING_SCREEN',
   });
 };
 
 /**
  * update language start
  */
- export const updateLanguageStart = (value) => async (dispatch) => {
+export const updateLanguageStart = (value) => async (dispatch) => {
   dispatch({
-    type: "UPDATE_LANGUAGE_START",
-    value
+    type: 'UPDATE_LANGUAGE_START',
+    value,
   });
 };
 
@@ -37,17 +37,17 @@ action handlers
  */
 export const updateLanguageSuccess = () => async (dispatch) => {
   dispatch({
-    type: "UPDATE_LANGUAGE_SUCCESS",
+    type: 'UPDATE_LANGUAGE_SUCCESS',
   });
 };
 
 /**
- * fail 
+ * fail
  * @param  {any} error http error to be persisted
  */
- export const updateLanguageFail = (error) => async (dispatch) => {
+export const updateLanguageFail = (error) => async (dispatch) => {
   dispatch({
-    type: "UPDATE_LANGUAGE_FAIL",
+    type: 'UPDATE_LANGUAGE_FAIL',
     value: error,
   });
 };

@@ -7,9 +7,9 @@ imports
 import React, { PureComponent } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 
-import config from "../../config/configProvider";
-import { formatDateString } from "../../services/utils";
-import localization from "../../services/localization/localization";
+import config from '../../config/configProvider';
+import { formatDateString } from '../../services/utils';
+import localization from '../../services/localization/localization';
 
 let localStyle;
 
@@ -53,10 +53,14 @@ class WelcomeText extends PureComponent {
               {/* title text: depends on the params 'firstTime' & 'noNewQuestionnaireAvailableYet'*/}
               <Text style={localStyle.welcomeText}>
                 {(() => {
-                  if (user.firstTime)
-                    return localization.translate('survey').welcomeTitleFirstTime;
-                  if (noNewQuestionnaireAvailableYet)
-                    return localization.translate('survey').noNewQuestionnaireAvailableYet;
+                  if (user.firstTime) {
+                    return localization.translate('survey')
+                      .welcomeTitleFirstTime;
+                  }
+                  if (noNewQuestionnaireAvailableYet) {
+                    return localization.translate('survey')
+                      .noNewQuestionnaireAvailableYet;
+                  }
                   return localization.translate('survey').welcomeTitle;
                 })()}
               </Text>
@@ -75,7 +79,10 @@ class WelcomeText extends PureComponent {
               {/* if this is not a first-time-user and NO new questionnaire is currently available */}
               {!user.firstTime && noNewQuestionnaireAvailableYet && (
                 <Text style={localStyle.infoText}>
-                  {localization.translate('survey').noNewQuestionnaireAvailableYet}
+                  {
+                    localization.translate('survey')
+                      .noNewQuestionnaireAvailableYet
+                  }
                 </Text>
               )}
 

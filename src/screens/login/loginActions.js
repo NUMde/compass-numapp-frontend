@@ -4,10 +4,10 @@
 imports
 ***********************************************************************************************/
 
-import config from "../../config/configProvider";
-import guestClient from "../../services/rest/guestClient";
-import localStorage from "../../services/localStorage/localStorage";
-import localization from "../../services/localization/localization";
+import config from '../../config/configProvider';
+import guestClient from '../../services/rest/guestClient';
+import localStorage from '../../services/localStorage/localStorage';
+import localization from '../../services/localization/localization';
 
 /***********************************************************************************************
 actions
@@ -43,11 +43,11 @@ export const sendCredentialsFail = (error) => ({
 /**
  * deletes all local data (is executed in src/store.js, not in the AboutReducer)
  */
- export const deleteLocalData = () => async dispatch => {
-	dispatch({
-		type: 'DELETE_ALL_LOCAL_DATA'
-	})
-}
+export const deleteLocalData = () => async (dispatch) => {
+  dispatch({
+    type: 'DELETE_ALL_LOCAL_DATA',
+  });
+};
 
 /**
  * logs the user in, using the result of the qr-scan
@@ -82,9 +82,11 @@ export const sendCredentials =
           // the id of the user will be persisted in the LocalStorage (for the auto-login next time)
           await localStorage.persistLastSubjectId(cleanedScanResult);
 
-          let lang = await localStorage.loadLocalizationSettings(cleanedScanResult)
+          const lang = await localStorage.loadLocalizationSettings(
+            cleanedScanResult,
+          );
 
-          if(lang) localization.setI18nConfig(lang)
+          if (lang) localization.setI18nConfig(lang);
 
           dispatch(sendCredentialsSuccess(cleanedScanResult, data));
         })
@@ -92,20 +94,25 @@ export const sendCredentials =
           // reactivates the camera
           if (camera) camera.reactivate();
           // persists the error
-          dispatch(sendCredentialsFail({
-            err,
-            loginError: err.error ?? localization.translate('login').errorUserGeneric,
-            loginUnauthorized: err.error?.response?.status === 401
-          }));
+          dispatch(
+            sendCredentialsFail({
+              err,
+              loginError:
+                err.error ?? localization.translate('login').errorUserGeneric,
+              loginUnauthorized: err.error?.response?.status === 401,
+            }),
+          );
         });
     } else {
       // reactivates the camera
       if (camera) camera.reactivate();
       // persists a generic error
-      dispatch(sendCredentialsFail({
-        loginError: localization.translate('login').noSubjectId,
-        loginUnauthorized: false
-      }));
+      dispatch(
+        sendCredentialsFail({
+          loginError: localization.translate('login').noSubjectId,
+          loginUnauthorized: false,
+        }),
+      );
     }
   };
 

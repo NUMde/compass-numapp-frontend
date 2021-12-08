@@ -88,31 +88,31 @@ export default {
       text: "This is the Landing Screen.\n\nIt can be used to display a welcome message, detailing the following login-process, explaining the handling of personal information, etc.\n\nThe logo file (as well as the logoBackground) can be updated by updating the 'CUSTOMIZATION' folder.",
       autoLoginErrorTitle: 'Auto Login Failed',
       autoLoginError:
-        "An Error occurred while trying to automatically login. Please check your network and try again",
-      retry: "retry",
-      deleteAll: "Delete all data"
+        'An Error occurred while trying to automatically login. Please check your network and try again',
+      retry: 'retry',
+      deleteAll: 'Delete all data',
     },
   },
 
   /** strings with generic purpose that can be used throughout the application */
   generic: {
-    ok: "OK",
-    error: "Error",
-    abort: "Cancel",
-    warning: "Warning",
-    info: "Information",
-    errorTitle: "Error",
-    successTitle: "Success",
-    questionnaire: "Questionnaire",
-    delete: "Yes, delete data",
-    goBack: "Yes, please logout",
-    logoutWarning: "Logout Warning",
-    sendSuccess: "Data sent successfully",
-    sendError: "There was an error transmitting the data. Please try again.",
+    ok: 'OK',
+    error: 'Error',
+    abort: 'Cancel',
+    warning: 'Warning',
+    info: 'Information',
+    errorTitle: 'Error',
+    successTitle: 'Success',
+    questionnaire: 'Questionnaire',
+    delete: 'Yes, delete data',
+    goBack: 'Yes, please logout',
+    logoutWarning: 'Logout Warning',
+    sendSuccess: 'Data sent successfully',
+    sendError: 'There was an error transmitting the data. Please try again.',
     sendErrorTwoDevices:
-      "You have already sent this questionnaire through another App. ",
+      'You have already sent this questionnaire through another App. ',
     wrongLangugageVersionDetected:
-      "The persisted questionnaire doies not match the currently selected language on your device. This questionnaire will now be replaced by a matching version. Your answers will be lost.",
+      'The persisted questionnaire doies not match the currently selected language on your device. This questionnaire will now be replaced by a matching version. Your answers will be lost.',
     eraseAllWarning:
       'This will delete all local data and logs you out. Do you want to procede?',
     eraseLocalDataAtEndOfStudyText:
@@ -130,14 +130,15 @@ export default {
 
   /** strings of the about-screen */
   about: {
-    title: "About",
-    subTitle: "Subtitle of the about-screen",
-    logout: "Logout (just on DEV)",
-    delete: "Delete all & logout (just on DEV)",
-    demoDelete: "Delete all & logout (just for this DEMO)",
-    languageSelection: "Language Selection",
-    languageWarning: "If you change the language while having a persisted save state of your current answers, said save sgate will be removed.",
-    languageWarningAddition: "\nDo you want to proceed?",
+    title: 'About',
+    subTitle: 'Subtitle of the about-screen',
+    logout: 'Logout (just on DEV)',
+    delete: 'Delete all & logout (just on DEV)',
+    demoDelete: 'Delete all & logout (just for this DEMO)',
+    languageSelection: 'Language Selection',
+    languageWarning:
+      'If you change the language while having a persisted save state of your current answers, said save sgate will be removed.',
+    languageWarningAddition: '\nDo you want to proceed?',
 
     /** contains the strings for the optional LegalInformation Screen */
     legal: {

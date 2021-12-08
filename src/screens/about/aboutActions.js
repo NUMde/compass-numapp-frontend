@@ -21,11 +21,11 @@ export const deleteLocalData = () => async (dispatch) => {
 /**
  * deletes all local questionnaire data (is executed in src/store.js, not in the AboutReducer)
  */
-export const deleteLocalQuestionnaire = () => async dispatch => {
-	dispatch({
-		type: 'DELETE_LOCAL_QUESTIONNAIRE'
-	})
-}
+export const deleteLocalQuestionnaire = () => async (dispatch) => {
+  dispatch({
+    type: 'DELETE_LOCAL_QUESTIONNAIRE',
+  });
+};
 
 /**
  * shows the modal and sets its content

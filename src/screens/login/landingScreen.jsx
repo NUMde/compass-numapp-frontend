@@ -8,11 +8,11 @@ import React, { PureComponent } from 'react';
 import { Text } from 'react-native-elements';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 
-import config from "../../config/configProvider";
-import Banner from "../../components/banner/banner";
-import Spinner from "../../components/spinner/spinner";
-import localization from "../../services/localization/localization";
-import ScrollIndicatorWrapper from "../../components/scrollIndicatorWrapper/scrollIndicatorWrapper";
+import config from '../../config/configProvider';
+import Banner from '../../components/banner/banner';
+import Spinner from '../../components/spinner/spinner';
+import localization from '../../services/localization/localization';
+import ScrollIndicatorWrapper from '../../components/scrollIndicatorWrapper/scrollIndicatorWrapper';
 
 let localStyle;
 
@@ -29,17 +29,23 @@ class LandingScreen extends PureComponent {
    */
 
   render() {
-    const { loading, navigation, loginError, autoLoginLastUser, deleteLocalData } = this.props;
+    const {
+      loading,
+      navigation,
+      loginError,
+      autoLoginLastUser,
+      deleteLocalData,
+    } = this.props;
     return (
       <View style={localStyle.wrapper}>
         {/* loading spinner */}
         <Spinner visible={loading} testID="landingSpinner" />
-        
+
         {/* banner */}
         <Banner
           nav={navigation}
-          title={localization.translate("login").landing.title}
-          subTitle={localization.translate("login").landing.subTitle}
+          title={localization.translate('login').landing.title}
+          subTitle={localization.translate('login').landing.subTitle}
           noWayBack
           noMenu
         />
@@ -52,34 +58,52 @@ class LandingScreen extends PureComponent {
                 <View style={localStyle.wrapper}>
                   <View style={localStyle.top}>
                     <Text style={localStyle.titleText}>
-                      {localization.translate("login").landing.autoLoginErrorTitle}
+                      {
+                        localization.translate('login').landing
+                          .autoLoginErrorTitle
+                      }
                     </Text>
                     <Text style={localStyle.infoText}>
-                      {localization.translate("login").landing.autoLoginError}
+                      {localization.translate('login').landing.autoLoginError}
                     </Text>
                   </View>
                   <View style={localStyle.bottom}>
                     <TouchableOpacity
                       style={localStyle.button}
                       onPress={() => autoLoginLastUser()}
-                      accessibilityLabel={localization.translate("login").landing.retry}
-                      accessibilityRole={localization.translate('accessibility').types.Button}
-                      accessibilityHint={localization.translate('accessibility').retryHint}
+                      accessibilityLabel={
+                        localization.translate('login').landing.retry
+                      }
+                      accessibilityRole={
+                        localization.translate('accessibility').types.Button
+                      }
+                      accessibilityHint={
+                        localization.translate('accessibility').retryHint
+                      }
                     >
                       <Text style={localStyle.buttonLabel}>
-                        {localization.translate("login").landing.retry}
+                        {localization.translate('login').landing.retry}
                       </Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                      style={{...localStyle.button, ...localStyle.buttonAlert}}
+                      style={{
+                        ...localStyle.button,
+                        ...localStyle.buttonAlert,
+                      }}
                       onPress={() => deleteLocalData()}
-                      accessibilityLabel={localization.translate("login").landing.deleteAll}
-                      accessibilityRole={localization.translate('accessibility').types.Button}
-                      accessibilityHint={localization.translate('accessibility').retryHint}
+                      accessibilityLabel={
+                        localization.translate('login').landing.deleteAll
+                      }
+                      accessibilityRole={
+                        localization.translate('accessibility').types.Button
+                      }
+                      accessibilityHint={
+                        localization.translate('accessibility').retryHint
+                      }
                     >
                       <Text style={localStyle.buttonLabel}>
-                        {localization.translate("login").landing.deleteAll}
+                        {localization.translate('login').landing.deleteAll}
                       </Text>
                     </TouchableOpacity>
                   </View>
@@ -89,10 +113,10 @@ class LandingScreen extends PureComponent {
                   {/* top elements title & text */}
                   <View style={localStyle.top}>
                     <Text style={localStyle.titleText}>
-                      {localization.translate("login").landing.welcomeTitle}
+                      {localization.translate('login').landing.welcomeTitle}
                     </Text>
                     <Text style={localStyle.infoText}>
-                      {localization.translate("login").landing.text}
+                      {localization.translate('login').landing.text}
                     </Text>
                   </View>
 
@@ -103,12 +127,18 @@ class LandingScreen extends PureComponent {
                       onPress={() => {
                         navigation.navigate('Login');
                       }}
-                      accessibilityLabel={localization.translate("login").landing.buttonText}
-                      accessibilityRole={localization.translate('accessibility').types.button}
-                      accessibilityHint={localization.translate('accessibility').loginHint}
+                      accessibilityLabel={
+                        localization.translate('login').landing.buttonText
+                      }
+                      accessibilityRole={
+                        localization.translate('accessibility').types.button
+                      }
+                      accessibilityHint={
+                        localization.translate('accessibility').loginHint
+                      }
                     >
                       <Text style={localStyle.buttonLabel}>
-                        {localization.translate("login").landing.buttonText}
+                        {localization.translate('login').landing.buttonText}
                       </Text>
                     </TouchableOpacity>
                   </View>
