@@ -416,5 +416,6 @@ const en = {
 jest.mock('../src/services/localization/localization', () => ({
   translate: (x) => en[x],
   init: jest.fn(),
+  getLanguageTag: jest.fn(() => 'en'),
   setI18nConfig: jest.fn(),
 }));
