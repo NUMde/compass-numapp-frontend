@@ -41,7 +41,7 @@ class CheckInContainer extends Component {
     if (route.name === 'CheckIn') {
       setTimeout(() => {
         this.updateUser();
-      }, 0);
+      }, 500);
     }
   };
 
