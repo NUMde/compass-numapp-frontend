@@ -26,6 +26,10 @@ constants
 // (for example: the device language is hindi, but only "de", "en", "fr", "ar" are provided by the app. So the last resort fallback would be "de")
 const defaultLanguage = 'de';
 
+// the fallback
+// this is the default reading direction the app will fallback to in case nothing else matches.
+const defaultRTL = false;
+
 // the available files / languages:
 // for each file available in in app/src/CUSTOMIZATION/translations an entry must be created here.
 // the attribute name shall be the language code the file represents.
@@ -79,7 +83,7 @@ const setAvailableLanguages = (list) => {
     if (!availableLanguages[langCode]) {
       availableLanguages[langCode] = {
         file: en,
-        isRTL: false,
+        isRTL: defaultRTL,
         title: defaultLang
           ? `${defaultLang.title} (${
               defaultLang.file.generic.questionnaire
@@ -101,7 +105,7 @@ const setAvailableLanguages = (list) => {
 
 // generates default values
 const generateDefaultI18nConfigValues = () => {
-  const fallback = { languageTag: defaultLanguage, isRTL: false };
+  const fallback = { languageTag: defaultLanguage, isRTL: defaultRTL };
   // returns the language settings best matching the users device
   return (
     RNLocalize.findBestAvailableLanguage(Object.keys(availableLanguages)) ||
@@ -110,7 +114,7 @@ const generateDefaultI18nConfigValues = () => {
 };
 
 // sets the config
-const setI18nConfig = async (forcedLanguageTag, isFinalRTL = false) => {
+const setI18nConfig = async (forcedLanguageTag, isFinalRTL = defaultRTL) => {
   let finalLanguageTag = defaultLanguage;
   let finalIsFinalRTL = isFinalRTL;
   // generates the final config
@@ -142,7 +146,7 @@ const setI18nConfig = async (forcedLanguageTag, isFinalRTL = false) => {
 const getLanguageTag = () => i18n.locale;
 
 // initilization of the module - executed in App.jsx
-const init = (forcedLanguageTag, isFinalRTL = false) => {
+const init = (forcedLanguageTag, isFinalRTL = defaultRTL) => {
   setI18nConfig(forcedLanguageTag, isFinalRTL);
   guestClient.getLanguages().then((res) => {
     setAvailableLanguages(res);

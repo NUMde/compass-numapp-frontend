@@ -46,7 +46,7 @@ const baseUriProductive = '';
 
 // development-base-backend-uri
 const baseUriDevelopment =
-  'http://127.0.0.1:4200/api/';
+  'http://127.0.0.1/api/';
 
 /***********************************************************************************************
 configuration

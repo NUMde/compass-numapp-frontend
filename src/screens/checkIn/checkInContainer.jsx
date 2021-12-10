@@ -37,10 +37,11 @@ class CheckInContainer extends Component {
    * triggers the update of the user after mounting the checkIn-template
    */
   componentDidMount = () => {
-    const { route } = this.props;
+    const { route, actions } = this.props;
     if (route.name === 'CheckIn') {
-      setTimeout(() => {
-        this.updateUser();
+      setTimeout(async() => {
+        await this.updateUser();
+        this.updateUserLanguage();
       }, 500);
     }
   };
@@ -173,6 +174,26 @@ class CheckInContainer extends Component {
   // methods: updating user
   /*-----------------------------------------------------------------------------------*/
 
+  /** transmits the currently chosen languages settings of the user to the backend. 
+   * @param  {object} [userdata]
+   */
+  updateUserLanguage = async () => {
+    const { actions, user } = this.props;
+    if(user) {
+      // redux output
+      actions.updateLanguageStart();
+      // sends the data
+      await loggedInClient.updateLanguageCode(user.subjectId, localization.getLanguageTag()).then(
+        () => actions.updateLanguageSuccess(),
+        (error) => this.updateLanguageFail(error),
+      );
+    }
+    
+  };
+
+  // methods: updating user
+  /*-----------------------------------------------------------------------------------*/
+
   /**
    * displays an alert-window after failing to update the user
    * @param  {object} error httperror
@@ -220,6 +241,8 @@ class CheckInContainer extends Component {
     if (config.appConfig.connectToFCM) {
       setTimeout(() => this.initPush(newData.subjectId), 0);
     }
+
+    this.updateUserLanguage();
 
     setTimeout(async () => {
       const { noNewQuestionnaireAvailableYet } = this.props;
