@@ -242,6 +242,7 @@ class CheckInContainer extends Component {
       setTimeout(() => this.initPush(newData.subjectId), 0);
     }
 
+    // updates the chosen language settings of the user (backend-side)
     this.updateUserLanguage();
 
     setTimeout(async () => {
