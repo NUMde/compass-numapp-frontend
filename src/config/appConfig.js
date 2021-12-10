@@ -46,7 +46,7 @@ const baseUriProductive = '';
 
 // development-base-backend-uri
 const baseUriDevelopment =
-  'https://mobile-backend-compass.umopenshift01-27c74fb079246a1ac53f0d02625326eb-0000.eu-de.containers.appdomain.cloud/api/';
+  'http://127.0.0.1:4200/api/';
 
 /***********************************************************************************************
 configuration
@@ -96,7 +96,7 @@ const conf = {
 
   /** dev-option:
    * used the locally available questionnaire.js instead of the procured one from the backend */
-  useLocalQuestionnaireInsteadOftheReceivedOne: __DEV__ && true,
+  useLocalQuestionnaireInsteadOftheReceivedOne: __DEV__ && false,
 
   /** dev-option:
    * skips the id-comparison */

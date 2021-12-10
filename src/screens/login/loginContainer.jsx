@@ -4,17 +4,19 @@
 imports
 ***********************************************************************************************/
 
+import { Alert } from 'react-native';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
+import RNRestart from 'react-native-restart';
 
 import config from '../../config/configProvider';
 import localStorage from '../../services/localStorage/localStorage';
+import localization from '../../services/localization/localization';
 
 import LoginScreen from './loginScreen';
 import LandingScreen from './landingScreen';
 import * as loginActions from './loginActions';
-import guestClient from '../../services/rest/guestClient';
 
 /***********************************************************************************************
 component:
@@ -82,10 +84,29 @@ class LoginContainer extends Component {
   /**
    * deletes all local data
    */
-  deleteLocalData = async () => {
+  deleteLocalData = () => {
     const { actions } = this.props;
-    // deletes all local data
-    actions.deleteLocalData();
+    Alert.alert(
+      localization.translate('generic').warning,
+      localization.translate('generic').eraseAllWarning,
+      [
+        {
+          text: localization.translate('generic').delete,
+          onPress: () => {
+            actions.logout();
+            actions.deleteLocalData();
+            setTimeout(() => {
+              RNRestart.Restart();
+            }, 0);
+          },
+        },
+        {
+          text: localization.translate('generic').abort,
+          style: 'cancel',
+        },
+      ],
+      { cancelable: false },
+    );
   };
 
   /**

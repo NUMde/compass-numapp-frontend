@@ -214,6 +214,7 @@ localStyle = StyleSheet.create({
     ...config.theme.classes.buttonAlert,
     bottom: 0,
     marginTop: 20,
+    width: '80%',
   },
 
   buttonLabel: {
