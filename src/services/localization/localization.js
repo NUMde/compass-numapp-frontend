@@ -28,7 +28,7 @@ const defaultLanguage = 'de';
 
 // the fallback
 // this is the default reading direction the app will fallback to in case nothing else matches.
-const defaultRTL = false;
+const defaultIsRTL = false;
 
 // the available files / languages:
 // for each file available in in app/src/CUSTOMIZATION/translations an entry must be created here.
@@ -83,7 +83,7 @@ const setAvailableLanguages = (list) => {
     if (!availableLanguages[langCode]) {
       availableLanguages[langCode] = {
         file: en,
-        isRTL: defaultRTL,
+        isRTL: defaultIsRTL,
         title: defaultLang
           ? `${defaultLang.title} (${
               defaultLang.file.generic.questionnaire
@@ -105,7 +105,7 @@ const setAvailableLanguages = (list) => {
 
 // generates default values
 const generateDefaultI18nConfigValues = () => {
-  const fallback = { languageTag: defaultLanguage, isRTL: defaultRTL };
+  const fallback = { languageTag: defaultLanguage, isRTL: defaultIsRTL };
   // returns the language settings best matching the users device
   return (
     RNLocalize.findBestAvailableLanguage(Object.keys(availableLanguages)) ||
@@ -114,7 +114,7 @@ const generateDefaultI18nConfigValues = () => {
 };
 
 // sets the config
-const setI18nConfig = async (forcedLanguageTag, isFinalRTL = defaultRTL) => {
+const setI18nConfig = async (forcedLanguageTag, isFinalRTL = defaultIsRTL) => {
   let finalLanguageTag = defaultLanguage;
   let finalIsFinalRTL = isFinalRTL;
   // generates the final config
@@ -146,7 +146,7 @@ const setI18nConfig = async (forcedLanguageTag, isFinalRTL = defaultRTL) => {
 const getLanguageTag = () => i18n.locale;
 
 // initilization of the module - executed in App.jsx
-const init = (forcedLanguageTag, isFinalRTL = defaultRTL) => {
+const init = (forcedLanguageTag, isFinalRTL = defaultIsRTL) => {
   setI18nConfig(forcedLanguageTag, isFinalRTL);
   guestClient.getLanguages().then((res) => {
     setAvailableLanguages(res);
