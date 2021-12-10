@@ -556,9 +556,7 @@ class QuestionnaireModal extends Component {
                     ? localization.translate('survey').additionalAnswer
                     : localization.translate('survey').alternativeAnswer
                 }
-                style={{
-                  textAlign: I18nManager.isRTL ? 'right' : 'left',
-                }}
+                style={{...localStyle.alignmentWrapper}}
                 value={this.procureOpenAnswer(item)}
                 accessibilityHint={
                   localization.translate('accessibility').questionnaire
@@ -760,9 +758,7 @@ class QuestionnaireModal extends Component {
           placeholder={localization.translate('login').inputPlaceholder}
           value={questionnaireItemMap[item.linkId].answer || ''} // displays an empty string when a 'falsy' answer needs to be rendered
           keyboardType={this.getKeyboardType(item)}
-          style={{
-            textAlign: I18nManager.isRTL ? 'right' : 'left',
-          }}
+          style={{...localStyle.alignmentWrapper}}
           maxLength={item.maxLength || null}
           // accessibilityLabel={ }
           accessibilityHint={
@@ -832,9 +828,7 @@ class QuestionnaireModal extends Component {
                     )
                   : null
               }
-              style={{
-                textAlign: I18nManager.isRTL ? 'right' : 'left',
-              }}
+              style={{...localStyle.alignmentWrapper}}
               editable={false}
               leftIcon={{ type: 'font-awesome', name: 'calendar' }}
               pointerEvents="none"
@@ -846,6 +840,7 @@ class QuestionnaireModal extends Component {
           <DateTimePicker
             value={questionnaireItemMap[item.linkId].answer || new Date()}
             mode="date"
+            style={{width: modalWidth}}
             locale="de-de"
             display="spinner"
             onChange={(event, date) => {
@@ -925,6 +920,11 @@ class QuestionnaireModal extends Component {
       <View style={localStyle.modalInput}>
         <Text style={{ ...localStyle.contentTitle }}>{item.text}</Text>
         <Slider
+        style = {
+          {
+            width: Dimensions.get('window').width - 40,
+          }
+        }
           step={sliderProperties['questionnaire-sliderStepValue']}
           minimumValue={sliderProperties.minValue}
           maximumValue={sliderProperties.maxValue}
@@ -1295,6 +1295,10 @@ class QuestionnaireModal extends Component {
 styles
 ***********************************************************************************************/
 
+// calculates the current size of the modal. this is necessary to impose the correct values
+// when in RTL rendering.
+const modalWidth = Dimensions.get('window').width - 40;
+
 localStyle = StyleSheet.create({
   modal: {
     justifyContent: 'flex-end',
@@ -1317,10 +1321,14 @@ localStyle = StyleSheet.create({
 
   contentTitle: {
     marginTop: 5,
+
     marginBottom: 5,
     ...config.theme.fonts.header2,
     color: config.theme.values.defaultModalTitleColor,
-    // width: Dimensions.get('window').width - 40,
+    ...(I18nManager.isRTL && {
+      width: modalWidth,
+      textAlign: "left"
+    }),
   },
 
   modalViewWrapper: {
@@ -1330,6 +1338,11 @@ localStyle = StyleSheet.create({
       alignItems: 'flex-start',
     }),
   },
+
+
+  alignmentWrapper: {
+    textAlign: I18nManager.isRTL ? 'right' : 'left',
+  },  
 
   choice: {
     backgroundColor: 'transparent',
@@ -1371,15 +1384,20 @@ localStyle = StyleSheet.create({
     marginBottom: 5,
     ...config.theme.fonts.title,
     color: config.theme.values.defaultModalTitleColor,
-    // width: Dimensions.get('window').width - 40,
+    
   },
 
   modalInput: {
     marginBottom: 10,
+    ...(I18nManager.isRTL && {
+      alignItems: 'flex-start',
+    }),
   },
 
   modalContainer: {
-    // width: Dimensions.get('window').width - 40,
+    ...(I18nManager.isRTL && {
+      width: modalWidth,
+    }),
   },
 
   modalPaginationButton: {
@@ -1411,6 +1429,7 @@ localStyle = StyleSheet.create({
   },
 
   sliderLabel: {
+    width: modalWidth,
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
