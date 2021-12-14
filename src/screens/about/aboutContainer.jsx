@@ -28,7 +28,6 @@ class AboutContainer extends Component {
    * @constructor
    * @param  {object}    props
    * @param  {object}    props.actions holds actions for the component (./aboutActions.js)
-   * @param  {object}    props.navigation the navigation object provided by 'react-navigation'
    */
 
   // class methods
@@ -39,7 +38,7 @@ class AboutContainer extends Component {
    * out and navigates back to the landing-screen.
    */
   clearAll = () => {
-    const { actions, navigation } = this.props;
+    const { actions } = this.props;
     Alert.alert(
       localization.translate('generic').warning,
       localization.translate('generic').eraseAllWarning,
@@ -92,7 +91,6 @@ class AboutContainer extends Component {
   };
 
   changeLanguage = (languageTag) => {
-    const { actions } = this.props;
     if (
       store.getState().CheckIn.questionnaireItemMap &&
       store.getState().CheckIn.questionnaireItemMap.started
@@ -140,14 +138,7 @@ class AboutContainer extends Component {
   /*-----------------------------------------------------------------------------------*/
 
   render() {
-    const {
-      navigation,
-      showModal,
-      modalLink,
-      actions,
-      route,
-      currentlyChosenLanguage,
-    } = this.props;
+    const { navigation, showModal, modalLink, actions, route } = this.props;
     // checks if the currently selected route equals 'About'
     if (route.name === 'About') {
       // then renders the About Screen

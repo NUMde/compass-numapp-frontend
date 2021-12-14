@@ -114,9 +114,9 @@ const generateDefaultI18nConfigValues = () => {
 };
 
 // sets the config
-const setI18nConfig = async (forcedLanguageTag, isFinalRTL = defaultIsRTL) => {
+const setI18nConfig = async (forcedLanguageTag) => {
   let finalLanguageTag = defaultLanguage;
-  let finalIsFinalRTL = isFinalRTL;
+  let finalIsFinalRTL;
   // generates the final config
   if (!forcedLanguageTag) {
     const { languageTag, isRTL } = generateDefaultI18nConfigValues();
@@ -146,8 +146,8 @@ const setI18nConfig = async (forcedLanguageTag, isFinalRTL = defaultIsRTL) => {
 const getLanguageTag = () => i18n.locale;
 
 // initilization of the module - executed in App.jsx
-const init = (forcedLanguageTag, isFinalRTL = defaultIsRTL) => {
-  setI18nConfig(forcedLanguageTag, isFinalRTL);
+const init = (forcedLanguageTag) => {
+  setI18nConfig(forcedLanguageTag);
   guestClient.getLanguages().then((res) => {
     setAvailableLanguages(res);
   });

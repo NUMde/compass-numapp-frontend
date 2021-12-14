@@ -556,7 +556,7 @@ class QuestionnaireModal extends Component {
                     ? localization.translate('survey').additionalAnswer
                     : localization.translate('survey').alternativeAnswer
                 }
-                style={{...localStyle.alignmentWrapper}}
+                style={{ ...localStyle.alignmentWrapper }}
                 value={this.procureOpenAnswer(item)}
                 accessibilityHint={
                   localization.translate('accessibility').questionnaire
@@ -758,7 +758,7 @@ class QuestionnaireModal extends Component {
           placeholder={localization.translate('login').inputPlaceholder}
           value={questionnaireItemMap[item.linkId].answer || ''} // displays an empty string when a 'falsy' answer needs to be rendered
           keyboardType={this.getKeyboardType(item)}
-          style={{...localStyle.alignmentWrapper}}
+          style={{ ...localStyle.alignmentWrapper }}
           maxLength={item.maxLength || null}
           // accessibilityLabel={ }
           accessibilityHint={
@@ -828,7 +828,7 @@ class QuestionnaireModal extends Component {
                     )
                   : null
               }
-              style={{...localStyle.alignmentWrapper}}
+              style={{ ...localStyle.alignmentWrapper }}
               editable={false}
               leftIcon={{ type: 'font-awesome', name: 'calendar' }}
               pointerEvents="none"
@@ -840,7 +840,7 @@ class QuestionnaireModal extends Component {
           <DateTimePicker
             value={questionnaireItemMap[item.linkId].answer || new Date()}
             mode="date"
-            style={{width: modalWidth}}
+            style={{ width: modalWidth }}
             locale="de-de"
             display="spinner"
             onChange={(event, date) => {
@@ -920,11 +920,9 @@ class QuestionnaireModal extends Component {
       <View style={localStyle.modalInput}>
         <Text style={{ ...localStyle.contentTitle }}>{item.text}</Text>
         <Slider
-        style = {
-          {
+          style={{
             width: Dimensions.get('window').width - 40,
-          }
-        }
+          }}
           step={sliderProperties['questionnaire-sliderStepValue']}
           minimumValue={sliderProperties.minValue}
           maximumValue={sliderProperties.maxValue}
@@ -1327,7 +1325,7 @@ localStyle = StyleSheet.create({
     color: config.theme.values.defaultModalTitleColor,
     ...(I18nManager.isRTL && {
       width: modalWidth,
-      textAlign: "left"
+      textAlign: 'left',
     }),
   },
 
@@ -1339,10 +1337,9 @@ localStyle = StyleSheet.create({
     }),
   },
 
-
   alignmentWrapper: {
     textAlign: I18nManager.isRTL ? 'right' : 'left',
-  },  
+  },
 
   choice: {
     backgroundColor: 'transparent',
@@ -1384,7 +1381,6 @@ localStyle = StyleSheet.create({
     marginBottom: 5,
     ...config.theme.fonts.title,
     color: config.theme.values.defaultModalTitleColor,
-    
   },
 
   modalInput: {

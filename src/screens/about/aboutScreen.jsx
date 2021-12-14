@@ -9,7 +9,6 @@ import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 
 import { ListItem } from 'react-native-elements';
 import { Picker } from '@react-native-picker/picker';
-import RNRestart from 'react-native-restart';
 import store from '../../store';
 import config from '../../config/configProvider';
 import Banner from '../../components/banner/banner';

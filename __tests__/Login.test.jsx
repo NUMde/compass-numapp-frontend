@@ -9,10 +9,8 @@ import { fireEvent, waitFor } from '@testing-library/react-native';
 import { renderWithRedux } from '../__utils__/render';
 
 import App from '../App';
-import Spinner from '../src/components/spinner/spinner';
 import LoginScreen from '../src/screens/login/loginScreen';
 import LandingScreen from '../src/screens/login/landingScreen';
-import createAppNavigator from '../src/navigation/appNavigator';
 import CheckInScreen from '../src/screens/checkIn/checkInScreen';
 import LoginContainer from '../src/screens/login/loginContainer';
 
@@ -117,19 +115,23 @@ describe('LOGIN Handling:', () => {
       await waitFor(
         () => (instance = tree.UNSAFE_getByType(CheckInScreen).instance),
       )
-      // waits for the loading process to finish
-      .then(() => {
-        waitFor(() => expect(tree.getByTestId('checkInSpinner').props.visible).toBeFalsy());
-        waitFor(() => expect(instance.props.loading).toBeFalsy())
-          // checks if categoriesLoaded was set to true (as this is only possible after a successful login and the download of the questionnaire)
-          .then(() => {
-            waitFor(() =>
-              expect(instance.props.categoriesLoaded).toBeTruthy(),
-            ).then(() => {
-              expect(instance.props.questionnaireItemMap).toBeTruthy();
+        // waits for the loading process to finish
+        .then(() => {
+          waitFor(() =>
+            expect(
+              tree.getByTestId('checkInSpinner').props.visible,
+            ).toBeFalsy(),
+          );
+          waitFor(() => expect(instance.props.loading).toBeFalsy())
+            // checks if categoriesLoaded was set to true (as this is only possible after a successful login and the download of the questionnaire)
+            .then(() => {
+              waitFor(() =>
+                expect(instance.props.categoriesLoaded).toBeTruthy(),
+              ).then(() => {
+                expect(instance.props.questionnaireItemMap).toBeTruthy();
+              });
             });
-          });
-      });
+        });
     }
 
     // if the automateQrLogin-option is not set

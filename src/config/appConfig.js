@@ -45,8 +45,7 @@ const { width } = Dimensions.get('window');
 const baseUriProductive = '';
 
 // development-base-backend-uri
-const baseUriDevelopment =
-  'http://127.0.0.1/api/';
+const baseUriDevelopment = 'http://127.0.0.1/api/';
 
 /***********************************************************************************************
 configuration
