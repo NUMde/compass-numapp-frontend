@@ -179,7 +179,7 @@ IMPORTANT: There must always be a code available. The application will try to ac
 TIP: A RSA-Key-Size of at least **2048B** is recommended
 
 == Kiosk mode
-The frontend client comes with a build-in kiosk mode. This means that the app can be set up in a way that it basically provides it own mock-backend to simulate a basic workflow within the app. The purpose is to demonstrate the capabilites of the NUM-App to new audiences.
+The frontend client comes with a build-in kiosk mode. This means that the app can be set up in a way that it basically provides its own mock-backend to simulate a basic workflow within the app. The purpose is to demonstrate the capabilites of the NUM-App to new audiences.
 
 To activate the kiosk mode, open up the file **`link:../../../../tree/main/src/config/kioskApiConfig.js[kioskApiConfig.js]`** and set the value `kioskModeIsActive` to `true`.
 The app will then accept the credentials of the predefined user (also found in **`link:../../../../tree/main/src/config/kioskApiConfig.js[kioskApiConfig.js]`**).

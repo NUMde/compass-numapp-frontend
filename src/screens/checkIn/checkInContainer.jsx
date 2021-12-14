@@ -47,8 +47,8 @@ class CheckInContainer extends Component {
   };
 
   /**
-   * reroutes to the checkIn-screen should no questionnaire be available after the
-   * component updated. When there is no questionnaire the survey-screen does not hasr
+   * re-routes to the checkIn-screen should no questionnaire be available after the
+   * component updated. When there is no questionnaire the survey-screen does not has
    * any content to render
    */
   componentDidUpdate = () => {
@@ -174,7 +174,7 @@ class CheckInContainer extends Component {
   // methods: updating user
   /*-----------------------------------------------------------------------------------*/
 
-  /** transmits the currently chosen languages settings of the user to the backend. 
+  /** transmits the currently chosen language settings of the user to the backend. 
    * @param  {object} [userdata]
    */
   updateUserLanguage = async () => {

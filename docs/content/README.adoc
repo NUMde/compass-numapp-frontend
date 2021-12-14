@@ -20,7 +20,7 @@ The About Screen (can be reached by clicking on the burger menu in top right cor
 [cols=>1d;2d,width=100%, frame="none", grid="none"]
 |===
 |image:./images/legal.gif[auto, 300]
-|This will take the user to a screen dedicated to the legal content that the app must contain in certain areas. The content of that page is dependent on the value that of the property *'legalInformation'* of your language file:
+|This will take the user to a screen dedicated to the legal content that the app must contain in certain areas. The content of that page is dependent on the value of the property *'legalInformation'* of your language file:
 
 
 image:./images/literals.png[auto, 650]
@@ -37,7 +37,7 @@ TIP: If you do not want to use the Legal-Information-Screen you can just deactiv
 [cols=>1d;2d,width=100%, frame="none", grid="none"]
 |===
 |image:./images/webview.gif[auto, 300]
-|This will take the user to the *WebView-Screen*. That screen will open up a URI provided by your language file and then renders it below the banner. The content appears to be part of the app, but is indeed loaded from an external source. You can set that up to be anything you need. 
+|This will take the user to the *WebView-Screen*. That screen will open up an URI provided by your language file and then renders it below the banner. The content appears to be part of the app, but is indeed loaded from an external source. You can set that up to be anything you need. 
 
 To add another WebView-Link to the About-Screen, all you have to do is add another object (like the ones already there) to the WebViews-Array provided by your language file. Of course, you can also just edit or remove the existing ones:
 

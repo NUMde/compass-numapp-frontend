@@ -31,7 +31,7 @@ const defaultLanguage = 'de';
 const defaultIsRTL = false;
 
 // the available files / languages:
-// for each file available in in app/src/CUSTOMIZATION/translations an entry must be created here.
+// for each file available in app/src/CUSTOMIZATION/translations an entry must be created here.
 // the attribute name shall be the language code the file represents.
 // if a language is present that is not provided with a matching questionnaire fom the backend, the language will remain available -
 // the user will then be presented with the default questionnaire language.
@@ -66,13 +66,13 @@ const availableLanguages = {
   ...availableLanguageFiles,
 };
 
-// function that memoizes the results of i18n.t. Also determines the cache key for storing the result
+// function that memorizes the results of i18n.t. Also determines the cache key for storing the result
 const translate = memoize(
   (key, config) => i18n.t(key, config),
   (key, config) => (config ? key + JSON.stringify(config) : key),
 );
 
-// creates the set of language available for the user
+// creates the set of languages available for the user
 const setAvailableLanguages = (list) => {
   // this function generates the union set of locally available languages and the languages the backend can provide the questionnaires in.
 

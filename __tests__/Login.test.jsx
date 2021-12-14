@@ -121,7 +121,7 @@ describe('LOGIN Handling:', () => {
       .then(() => {
         waitFor(() => expect(tree.getByTestId('checkInSpinner').props.visible).toBeFalsy());
         waitFor(() => expect(instance.props.loading).toBeFalsy())
-          // checks if categoriesLoaded was set to true (as this is only possible after a successful login an the download of the questionnaire)
+          // checks if categoriesLoaded was set to true (as this is only possible after a successful login and the download of the questionnaire)
           .then(() => {
             waitFor(() =>
               expect(instance.props.categoriesLoaded).toBeTruthy(),
