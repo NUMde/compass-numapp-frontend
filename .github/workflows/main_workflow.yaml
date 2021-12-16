@@ -4,7 +4,7 @@ name: Run all tests with jest and run eslint on pull requests
 on:
   push:
     branches: [ main ]
-  pull_request_target:
+  pull_request:
     branches: [ main ]
 jobs:
   Run_tests:
@@ -64,16 +64,5 @@ jobs:
       run: npm ci
       env:
         CI: true
-    - name: save code linting report
-      run: npm run lint:report
-      continue-on-error: true
-    - name: annotate code linting results
-      uses: ataylorme/eslint-annotate-action@1.2.0
-      with:
-        repo-token: "${{ secrets.GITHUB_TOKEN }}"
-        report-json: "eslint_report.json"
-    - name: upload ESLint report
-      uses: actions/upload-artifact@v2
-      with:
-        name: eslint_report.json
-        path: eslint_report.json
+    - name: run lint & generate annotations
+      run: npm run lint:annotate
