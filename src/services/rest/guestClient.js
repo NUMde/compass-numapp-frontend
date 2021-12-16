@@ -9,6 +9,7 @@ imports
 
 import axios from 'axios';
 import config from '../../config/configProvider';
+import kioskMode from '../../config/kioskApiConfig';
 
 /***********************************************************************************************
 client
@@ -17,11 +18,25 @@ client
 /**
  * @param  {string} subjectId the id used to identify the user
  */
-const login = async (subjectId) =>
-  axios.get(config.appConfig.endpoints.login + subjectId);
+const login = (subjectId) =>
+  kioskMode.active
+    ? kioskMode.login()
+    : axios.get(config.appConfig.endpoints.login + subjectId);
+
+/**
+ * procures the list of languages
+ */
+const getLanguages = async () =>
+  kioskMode.active
+    ? kioskMode.getLanguages()
+    : axios.get(config.appConfig.endpoints.getLanguages, {
+        headers: {
+          Accept: 'application/json',
+        },
+      });
 
 /***********************************************************************************************
 export
 ***********************************************************************************************/
 
-export default { login };
+export default { login, getLanguages };

@@ -6,12 +6,15 @@ imports
 
 import { Provider } from 'react-redux';
 import React, { PureComponent } from 'react';
+import * as RNLocalize from 'react-native-localize';
 import SplashScreen from 'react-native-splash-screen';
 import { StyleSheet, View, StatusBar, LogBox, Platform } from 'react-native';
-
-import config from './src/config/configProvider';
+import RNRestart from 'react-native-restart';
+import localization from './src/services/localization/localization';
 
 import reduxStore from './src/store';
+import config from './src/config/configProvider';
+import kioskMode from './src/config/kioskApiConfig';
 import createAppNavigator from './src/navigation/appNavigator';
 
 /***********************************************************************************************
@@ -24,10 +27,33 @@ class App extends PureComponent {
    * @constructor
    * @param  {object} props
    */
+  constructor(props) {
+    super(props);
+    localization.init();
+  }
+
+  // just in case the device language is changed while the app is running
+  componentDidMount() {
+    RNLocalize.addEventListener('change', this.handleLocalizationChange);
+  }
+
+  // just in case the device language is changed while the app is running
+  componentWillUnmount() {
+    RNLocalize.removeEventListener('change', this.handleLocalizationChange);
+  }
+
+  // fires after the device language was changed while the app is running
+  handleLocalizationChange = () => {
+    localization.setI18nConfig();
+    RNRestart.Restart();
+  };
 
   render() {
     // hides the splash screen
     SplashScreen.hide();
+
+    // should this be a demo
+    if (kioskMode.active) kioskMode.initKioskMode();
 
     // and returns the basic view that contains the navigator
     return (

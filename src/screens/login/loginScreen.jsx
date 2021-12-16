@@ -11,6 +11,7 @@ import QRCodeScanner from 'react-native-qrcode-scanner';
 
 import config from '../../config/configProvider';
 import Banner from '../../components/banner/banner';
+import localization from '../../services/localization/localization';
 import ScrollIndicatorWrapper from '../../components/scrollIndicatorWrapper/scrollIndicatorWrapper';
 
 let localStyle;
@@ -53,8 +54,8 @@ class LoginScreen extends Component {
         <Banner
           nav={navigation}
           logout={actions.logout}
-          title={config.text.login.title}
-          subTitle={config.text.login.subTitle}
+          title={localization.translate('login').title}
+          subTitle={localization.translate('login').subTitle}
           noMenu
         />
 
@@ -79,14 +80,14 @@ class LoginScreen extends Component {
                         scanSuccess(scanResult, this.camera)
                       }
                       permissionDialogMessage={
-                        config.text.login.permissionDialog
+                        localization.translate('login').permissionDialog
                       }
                     />
                   </View>
 
                   {/* information text */}
                   <Text style={localStyle.infoText}>
-                    {config.text.login.qrInfo}
+                    {localization.translate('login').qrInfo}
                   </Text>
 
                   {/* login error text */}
@@ -100,7 +101,10 @@ class LoginScreen extends Component {
                             ...localStyle.loginErrorText,
                           }}
                         >
-                          {config.text.login.errorUserUnauthorized}
+                          {
+                            localization.translate('login')
+                              .errorUserUnauthorized
+                          }
                         </Text>
                       )}
 
@@ -114,9 +118,9 @@ class LoginScreen extends Component {
                             }}
                           >
                             {loginError?.message ??
-                              config.text.login.errorUserGeneric}
+                              localization.translate('login').errorUserGeneric}
                             {'\n'}
-                            {config.text.login.nextStepAfterError}
+                            {localization.translate('login').nextStepAfterError}
                           </Text>
                         </View>
                       )}

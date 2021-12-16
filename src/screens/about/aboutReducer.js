@@ -5,6 +5,7 @@ import
 ***********************************************************************************************/
 
 import '../../typedef';
+import localization from '../../services/localization/localization';
 
 /***********************************************************************************************
 initial state
@@ -14,6 +15,7 @@ const initialState = {
   showModal: false,
   modalLink: {},
   currentWebView: null,
+  currentlyChosenLanguage: localization.defaultLanguage,
 };
 
 /***********************************************************************************************
@@ -40,6 +42,15 @@ const actionHandlers = {
   HIDE_GENERIC_MODAL: (state) => ({
     ...state,
     showModal: false,
+  }),
+
+  /**
+   * hides the regular modal
+   * @param  {object} state redux state
+   */
+  UPDATE_LANGUAGE: (state, value) => ({
+    ...state,
+    currentlyChosenLanguage: value.languageTag,
   }),
 
   /**

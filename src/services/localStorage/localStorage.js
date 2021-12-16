@@ -13,6 +13,8 @@ import config from '../../config/configProvider';
 operations
 ***********************************************************************************************/
 
+let lastSubjectId;
+
 // last subject-id
 /*-----------------------------------------------------------------------------------*/
 /**
@@ -21,25 +23,31 @@ operations
  */
 const loadLastSubjectId = async () => {
   try {
-    return await EncryptedStorage.getItem(config.appConfig.lastSubjectId);
+    lastSubjectId = await EncryptedStorage.getItem(
+      config.appConfig.lastSubjectId,
+    );
+    return lastSubjectId;
   } catch (error) {
     console.error(error);
     return null;
   }
 };
+
 /**
  * persists the last subjectId that was logged in (to automatically re-login the user
  * when he/she opens the app the next time)
  * @param  {string} [subjectId] subjectId of the user
  */
 const persistLastSubjectId = async (subjectId) => {
-  const id = subjectId || (await loadLastSubjectId());
+  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
   if (!id) return;
 
   try {
     await EncryptedStorage.setItem(config.appConfig.lastSubjectId, id);
+    return true;
   } catch (error) {
     console.error(error);
+    return false;
   }
 };
 
@@ -64,7 +72,7 @@ const removeLastSubjectId = async () => {
  * @param  {any} FCMToken notification object
  */
 const persistFCMToken = async (FCMToken, subjectId) => {
-  const id = subjectId || (await loadLastSubjectId());
+  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
   if (!id) return;
 
   try {
@@ -83,7 +91,7 @@ const persistFCMToken = async (FCMToken, subjectId) => {
  * @returns {Promise<{deviceId:string}>}
  */
 const loadFCMToken = async (subjectId) => {
-  const id = subjectId || (await loadLastSubjectId());
+  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
   if (!id) return null;
 
   try {
@@ -99,11 +107,72 @@ const loadFCMToken = async (subjectId) => {
  * @param  {string} [subjectId] subjectId of the user
  */
 const removeFCMToken = async (subjectId) => {
-  const id = subjectId || (await loadLastSubjectId());
+  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
   if (!id) return;
 
   try {
     await EncryptedStorage.removeItem(`${config.appConfig.FCMToken}_${id}`);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+// last questionnaire id
+/*-----------------------------------------------------------------------------------*/
+
+/**
+ * when the user receives a questionnaire from the server, the frontend persists its
+ * language.
+ * if not, the questionnaire will be deleted and a user update executed.
+ * @param  {string} questionnaireId id of the questionnaire
+ * @param  {string} [subjectId] id of the user
+ */
+const persistLastQuestionnaireLanguage = async (questionnaireId, subjectId) => {
+  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
+  if (!id) return;
+  if (!(questionnaireId && id)) return;
+
+  try {
+    await EncryptedStorage.setItem(
+      `${config.appConfig.lastQuestionnaireLang}_${id}`,
+      questionnaireId,
+    );
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+/**
+ * loads the last persisted questionnaire language (of a user) from the EncryptedStorage
+ * @param  {string} [subjectId] subject-id
+ * @returns string | null
+ */
+const loadLastQuestionnaireLanguage = async (subjectId) => {
+  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
+  if (!id) return null;
+
+  try {
+    return await EncryptedStorage.getItem(
+      `${config.appConfig.lastQuestionnaireLang}_${id}`,
+    );
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
+/**
+ * deletes the last persisted questionnaire language (of a user) from the EncryptedStorage
+ * @param  {string} [subjectId] subject-id
+ */
+const removeLastQuestionnaireLanguage = async (subjectId) => {
+  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
+  if (!id) return;
+
+  try {
+    await EncryptedStorage.removeItem(
+      `${config.appConfig.lastQuestionnaireLang}_${id}`,
+    );
   } catch (error) {
     console.error(error);
   }
@@ -121,7 +190,7 @@ const removeFCMToken = async (subjectId) => {
  * @param  {string} [subjectId] id of the user
  */
 const persistLastQuestionnaireId = async (questionnaireId, subjectId) => {
-  const id = subjectId || (await loadLastSubjectId());
+  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
   if (!id) return;
   if (!(questionnaireId && id)) return;
 
@@ -141,7 +210,7 @@ const persistLastQuestionnaireId = async (questionnaireId, subjectId) => {
  * @returns string | null
  */
 const loadLastQuestionnaireId = async (subjectId) => {
-  const id = subjectId || (await loadLastSubjectId());
+  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
   if (!id) return null;
 
   try {
@@ -159,7 +228,7 @@ const loadLastQuestionnaireId = async (subjectId) => {
  * @param  {string} [subjectId] subject-id
  */
 const removeLastQuestionnaireId = async (subjectId) => {
-  const id = subjectId || (await loadLastSubjectId());
+  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
   if (!id) return;
 
   try {
@@ -180,8 +249,8 @@ const removeLastQuestionnaireId = async (subjectId) => {
  * @param  {string} [subjectId] if of the user
  */
 const persistCategories = async (categories, subjectId) => {
-  const id = subjectId || (await loadLastSubjectId());
-  if (!(categories && id)) return;
+  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
+  if (!(categories && subjectId)) return;
 
   const stringToBePersisted =
     categories instanceof String ? categories : JSON.stringify(categories);
@@ -202,9 +271,8 @@ const persistCategories = async (categories, subjectId) => {
  * @returns string | null
  */
 const loadCategories = async (subjectId) => {
-  const id = subjectId || (await loadLastSubjectId());
+  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
   if (!id) return null;
-
   try {
     return JSON.parse(
       await EncryptedStorage.getItem(
@@ -222,7 +290,7 @@ const loadCategories = async (subjectId) => {
  * @param  {string} [subjectId] subject-id
  */
 const removeCategories = async (subjectId) => {
-  const id = subjectId || (await loadLastSubjectId());
+  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
   if (!id) return;
 
   try {
@@ -243,7 +311,7 @@ const removeCategories = async (subjectId) => {
  * @param  {string} [subjectId] if of the user
  */
 const persistQuestionnaireItemMap = async (map, subjectId) => {
-  const id = subjectId || (await loadLastSubjectId());
+  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
   if (!id) return;
 
   const stringToBePersisted = map instanceof String ? map : JSON.stringify(map);
@@ -264,9 +332,8 @@ const persistQuestionnaireItemMap = async (map, subjectId) => {
  * @returns string | null
  */
 const loadQuestionnaireItemMap = async (subjectId) => {
-  const id = subjectId || (await loadLastSubjectId());
+  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
   if (!id) return null;
-
   try {
     return JSON.parse(
       await EncryptedStorage.getItem(
@@ -284,13 +351,103 @@ const loadQuestionnaireItemMap = async (subjectId) => {
  * @param  {string} [subjectId] subject-id
  */
 const removeQuestionnaireItemMap = async (subjectId) => {
-  const id = subjectId || (await loadLastSubjectId());
+  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
   if (!id) return;
 
   try {
     await EncryptedStorage.removeItem(
       `${config.appConfig.localStorageMap}_${id}`,
     );
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+// kiosk mode
+/*-----------------------------------------------------------------------------------*/
+
+/**
+ * loads the kiosk mode data from the EncryptedStorage
+ * @returns string | null
+ */
+const loadKioskModeData = async () => {
+  try {
+    return await EncryptedStorage.getItem(config.appConfig.kioskModeData);
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
+/**
+ * persists the current kiosk mode data
+ * @param  {string} [kioskModeData] kioskModeData of the user
+ */
+const persistKioskModeData = async (kioskModeData) => {
+  const id = kioskModeData || (await loadKioskModeData());
+  if (!id) return;
+
+  try {
+    await EncryptedStorage.setItem(config.appConfig.kioskModeData, id);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+/**
+ * deletes the kiosk mode data from the EncryptedStorage
+ */
+const removeKioskModeData = async () => {
+  try {
+    await EncryptedStorage.removeItem(config.appConfig.kioskModeData);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+// localization settings
+/*-----------------------------------------------------------------------------------*/
+
+/**
+ * loads the localization settings from the EncryptedStorage.
+ * @returns string | null
+ */
+const loadLocalizationSettings = async (subjectId) => {
+  let itemString = `${config.appConfig.localeData}`;
+  if (subjectId) itemString += `_${subjectId}`;
+
+  try {
+    return await EncryptedStorage.getItem(itemString);
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
+/**
+ * persists the current localization settings
+ * @param  {string} [localizationSettings] localizationSettings of the user
+ */
+const persistLocalizationSettings = async (localizationSettings, subjectId) => {
+  let itemString = `${config.appConfig.localeData}`;
+  if (subjectId) itemString += `_${subjectId}`;
+
+  try {
+    await EncryptedStorage.setItem(itemString, localizationSettings);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+/**
+ * deletes the localization settings from the EncryptedStorage
+ */
+const removeLocalizationSettings = async (subjectId) => {
+  let itemString = `${config.appConfig.localeData}`;
+  if (subjectId) itemString += `_${subjectId}`;
+
+  try {
+    await EncryptedStorage.removeItem(itemString);
   } catch (error) {
     console.error(error);
   }
@@ -330,6 +487,18 @@ export default {
   persistFCMToken,
   loadFCMToken,
   removeFCMToken,
+
+  loadKioskModeData,
+  persistKioskModeData,
+  removeKioskModeData,
+
+  loadLocalizationSettings,
+  persistLocalizationSettings,
+  removeLocalizationSettings,
+
+  persistLastQuestionnaireLanguage,
+  loadLastQuestionnaireLanguage,
+  removeLastQuestionnaireLanguage,
 
   clearAll,
 };

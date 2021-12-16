@@ -37,12 +37,15 @@ import {
   ScrollView,
   Platform,
   TouchableOpacity,
+  I18nManager,
+  Dimensions,
 } from 'react-native';
 
 import '../../typedef';
 import { Picker } from '@react-native-picker/picker';
 import exportService from '../../services/questionnaireAnalyzer/questionnaireAnalyzer';
 import setAccessibilityResponder from '../../services/accessibility/setAccessbilityResponder';
+import localization from '../../services/localization/localization';
 import config from '../../config/configProvider';
 import ProgressBar from './progressbar';
 
@@ -379,7 +382,7 @@ class QuestionnaireModal extends Component {
         <Text
           accessibilityLabel={item.text}
           accessibilityHint={
-            config.text.accessibility.questionnaire.singleChoice
+            localization.translate('accessibility').questionnaire.singleChoice
           }
           style={{
             ...localStyle.contentTitle,
@@ -547,14 +550,17 @@ class QuestionnaireModal extends Component {
             {/* if type: 'open-choice' */}
             {item.type === 'open-choice' && (
               <Input
+                containerStyle={localStyle.modalContainer}
                 placeholder={
                   item.repeats
-                    ? config.text.survey.additionalAnswer
-                    : config.text.survey.alternativeAnswer
+                    ? localization.translate('survey').additionalAnswer
+                    : localization.translate('survey').alternativeAnswer
                 }
+                style={{ ...localStyle.alignmentWrapper }}
                 value={this.procureOpenAnswer(item)}
                 accessibilityHint={
-                  config.text.accessibility.questionnaire.textFieldHint
+                  localization.translate('accessibility').questionnaire
+                    .textFieldHint
                 }
                 onChangeText={(text) => {
                   // sets the answer
@@ -616,7 +622,7 @@ class QuestionnaireModal extends Component {
         <Text
           accessibilityLabel={item.text}
           accessibilityHint={
-            config.text.accessibility.questionnaire.multipleChoice
+            localization.translate('accessibility').questionnaire.multipleChoice
           }
           style={{
             ...localStyle.contentTitle,
@@ -748,13 +754,15 @@ class QuestionnaireModal extends Component {
         <Text style={{ ...localStyle.contentTitle }}>{item.text}</Text>
         {/* input */}
         <Input
-          placeholder={config.text.login.inputPlaceholder}
+          containerStyle={localStyle.modalContainer}
+          placeholder={localization.translate('login').inputPlaceholder}
           value={questionnaireItemMap[item.linkId].answer || ''} // displays an empty string when a 'falsy' answer needs to be rendered
           keyboardType={this.getKeyboardType(item)}
+          style={{ ...localStyle.alignmentWrapper }}
           maxLength={item.maxLength || null}
           // accessibilityLabel={ }
           accessibilityHint={
-            config.text.accessibility.questionnaire.textFieldHint
+            localization.translate('accessibility').questionnaire.textFieldHint
           }
           onChangeText={(text) => {
             // holds the initial, unedited text - in case that no manipulation is needed
@@ -806,11 +814,12 @@ class QuestionnaireModal extends Component {
           <TouchableOpacity
             onPress={actions.showDatePicker}
             // accessibilityLabel={ }
-            // accessibilityRole={config.text.accessibility.types.button}
-            // accessibilityHint={config.text.accessibility.questionnaire.dateFieldHint}
+            // accessibilityRole={localization.translate('accessibility').types.button}
+            // accessibilityHint={localization.translate('accessibility').questionnaire.dateFieldHint}
           >
             <Input
-              placeholder={config.text.login.inputPlaceholderTime}
+              containerStyle={localStyle.modalContainer}
+              placeholder={localization.translate('login').inputPlaceholderTime}
               value={
                 questionnaireItemMap[item.linkId].answer
                   ? exportService.getFormattedDate(
@@ -819,6 +828,7 @@ class QuestionnaireModal extends Component {
                     )
                   : null
               }
+              style={{ ...localStyle.alignmentWrapper }}
               editable={false}
               leftIcon={{ type: 'font-awesome', name: 'calendar' }}
               pointerEvents="none"
@@ -830,6 +840,7 @@ class QuestionnaireModal extends Component {
           <DateTimePicker
             value={questionnaireItemMap[item.linkId].answer || new Date()}
             mode="date"
+            style={{ width: modalWidth }}
             locale="de-de"
             display="spinner"
             onChange={(event, date) => {
@@ -845,7 +856,7 @@ class QuestionnaireModal extends Component {
         {Platform.OS === 'ios' && showDatePicker && (
           <View style={localStyle.dateTimePickerButtonBar}>
             <Button
-              title={config.text.generic.abort}
+              title={localization.translate('generic').abort}
               onPress={() => {
                 actions.setAnswer({
                   linkId: item.linkId,
@@ -858,7 +869,7 @@ class QuestionnaireModal extends Component {
               titleStyle={{ color: config.theme.colors.accent4 }}
             />
             <Button
-              title={config.text.generic.ok}
+              title={localization.translate('generic').ok}
               color={config.theme.colors.secondary}
               onPress={() => {
                 const selectedDate =
@@ -909,6 +920,9 @@ class QuestionnaireModal extends Component {
       <View style={localStyle.modalInput}>
         <Text style={{ ...localStyle.contentTitle }}>{item.text}</Text>
         <Slider
+          style={{
+            width: Dimensions.get('window').width - 40,
+          }}
           step={sliderProperties['questionnaire-sliderStepValue']}
           minimumValue={sliderProperties.minValue}
           maximumValue={sliderProperties.maxValue}
@@ -916,11 +930,14 @@ class QuestionnaireModal extends Component {
           maximumTrackTintColor={config.theme.colors.primary}
           accessibilityHint={
             sliderProperties.minValue +
-            config.text.accessibility.questionnaire.sliderFieldEquals +
+            localization.translate('accessibility').questionnaire
+              .sliderFieldEquals +
             sliderProperties.LowRangeLabel +
-            config.text.accessibility.questionnaire.sliderFieldAnd +
+            localization.translate('accessibility').questionnaire
+              .sliderFieldAnd +
             sliderProperties.maxValue +
-            config.text.accessibility.questionnaire.sliderFieldEquals +
+            localization.translate('accessibility').questionnaire
+              .sliderFieldEquals +
             sliderProperties.HighRangeLabel
           }
           onSlidingComplete={(value) => {
@@ -1055,7 +1072,9 @@ class QuestionnaireModal extends Component {
               <Text
                 style={localStyle.modalTitle}
                 ref={this.modalTitleRef}
-                accessibilityRole={config.text.accessibility.types.header}
+                accessibilityRole={
+                  localization.translate('accessibility').types.header
+                }
               >
                 {`${categories[currentCategoryIndex].text}`}
               </Text>
@@ -1097,10 +1116,13 @@ class QuestionnaireModal extends Component {
           {currentPageIndex > 1 && (
             <Button
               type="clear"
-              accessibilityLabel={config.text.accessibility.back}
-              accessibilityRole={config.text.accessibility.types.button}
+              accessibilityLabel={localization.translate('accessibility').back}
+              accessibilityRole={
+                localization.translate('accessibility').types.button
+              }
               accessibilityHint={
-                config.text.accessibility.questionnaire.leftButtonHint
+                localization.translate('accessibility').questionnaire
+                  .leftButtonHint
               }
               onPress={() => {
                 setAccessibilityResponder(this.modalTitleRef);
@@ -1111,7 +1133,7 @@ class QuestionnaireModal extends Component {
               style={localStyle.modalPaginationButton}
               icon={
                 <Icon
-                  name="arrow-left"
+                  name={I18nManager.isRTL ? 'arrow-right' : 'arrow-left'}
                   type="material-community"
                   color={config.theme.colors.accent4}
                 />
@@ -1134,12 +1156,17 @@ class QuestionnaireModal extends Component {
             type="clear"
             accessibilityLabel={
               this.checkCurrentPageState()
-                ? config.text.accessibility.questionnaire.middleButtonFinished
-                : config.text.accessibility.questionnaire.middleButtonUnfinished
+                ? localization.translate('accessibility').questionnaire
+                    .middleButtonFinished
+                : localization.translate('accessibility').questionnaire
+                    .middleButtonUnfinished
             }
-            accessibilityRole={config.text.accessibility.types.button}
+            accessibilityRole={
+              localization.translate('accessibility').types.button
+            }
             accessibilityHint={
-              config.text.accessibility.questionnaire.middleButtonHint
+              localization.translate('accessibility').questionnaire
+                .middleButtonHint
             }
             onPress={() => {
               setAccessibilityResponder(this.modalTitleRef);
@@ -1171,10 +1198,13 @@ class QuestionnaireModal extends Component {
           {currentPageIndex < categories[currentCategoryIndex].item.length && (
             <Button
               type="clear"
-              accessibilityLabel={config.text.accessibility.close}
-              accessibilityRole={config.text.accessibility.types.button}
+              accessibilityLabel={localization.translate('accessibility').close}
+              accessibilityRole={
+                localization.translate('accessibility').types.button
+              }
               accessibilityHint={
-                config.text.accessibility.questionnaire.rightButtonHint
+                localization.translate('accessibility').questionnaire
+                  .rightButtonHint
               }
               onPress={() => {
                 if (!this.isAccessibilityOn) {
@@ -1190,7 +1220,13 @@ class QuestionnaireModal extends Component {
               style={localStyle.modalPaginationButton}
               icon={
                 <Icon
-                  name={this.isAccessibilityOn ? 'close' : 'arrow-right'}
+                  name={
+                    this.isAccessibilityOn
+                      ? 'close'
+                      : I18nManager.isRTL
+                      ? 'arrow-left'
+                      : 'arrow-right'
+                  }
                   type="material-community"
                   color={config.theme.colors.accent4}
                 />
@@ -1257,6 +1293,10 @@ class QuestionnaireModal extends Component {
 styles
 ***********************************************************************************************/
 
+// calculates the current size of the modal. this is necessary to impose the correct values
+// when in RTL rendering.
+const modalWidth = Dimensions.get('window').width - 40;
+
 localStyle = StyleSheet.create({
   modal: {
     justifyContent: 'flex-end',
@@ -1279,14 +1319,26 @@ localStyle = StyleSheet.create({
 
   contentTitle: {
     marginTop: 5,
+
     marginBottom: 5,
     ...config.theme.fonts.header2,
     color: config.theme.values.defaultModalTitleColor,
+    ...(I18nManager.isRTL && {
+      width: modalWidth,
+      textAlign: 'left',
+    }),
   },
 
   modalViewWrapper: {
     paddingTop: 20,
     paddingBottom: 20,
+    ...(I18nManager.isRTL && {
+      alignItems: 'flex-start',
+    }),
+  },
+
+  alignmentWrapper: {
+    textAlign: I18nManager.isRTL ? 'right' : 'left',
   },
 
   choice: {
@@ -1333,6 +1385,15 @@ localStyle = StyleSheet.create({
 
   modalInput: {
     marginBottom: 10,
+    ...(I18nManager.isRTL && {
+      alignItems: 'flex-start',
+    }),
+  },
+
+  modalContainer: {
+    ...(I18nManager.isRTL && {
+      width: modalWidth,
+    }),
   },
 
   modalPaginationButton: {
@@ -1364,6 +1425,7 @@ localStyle = StyleSheet.create({
   },
 
   sliderLabel: {
+    width: modalWidth,
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',

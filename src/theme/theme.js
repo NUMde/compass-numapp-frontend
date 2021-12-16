@@ -83,6 +83,9 @@ const defaultColors = {
   /** mostly used for "abort"-buttons and error messages (red-ish by default) */
   alert: '#EB576A',
 
+  /** very faint */
+  accent0: '#f2f2f2',
+
   /** the color primarily used for disabled elements */
   accent1: '#919191',
 

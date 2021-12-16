@@ -407,6 +407,7 @@ exports[`CHECKIN RENDERING: <CheckInContainer /> can be rendered 1`] = `
         enableOnAndroid={true}
         innerRef={[Function]}
         onScroll={[Function]}
+        scrollEventThrottle={16}
         style={
           Object {
             "flex": 1,
@@ -841,6 +842,7 @@ exports[`CHECKIN RENDERING: <CheckInScreen /> can be rendered 1`] = `
         enableOnAndroid={true}
         innerRef={[Function]}
         onScroll={[Function]}
+        scrollEventThrottle={16}
         style={
           Object {
             "flex": 1,
@@ -1281,6 +1283,7 @@ exports[`CHECKIN RENDERING: <SurveyScreen /> can be rendered 1`] = `
       enableOnAndroid={true}
       innerRef={[Function]}
       onScroll={[Function]}
+      scrollEventThrottle={16}
       style={
         Object {
           "flex": 1,

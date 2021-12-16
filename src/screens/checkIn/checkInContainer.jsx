@@ -14,6 +14,7 @@ import store from '../../store';
 
 import loggedInClient from '../../services/rest/loggedInClient';
 import localStorage from '../../services/localStorage/localStorage';
+import localization from '../../services/localization/localization';
 import documentCreator from '../../services/questionnaireAnalyzer/questionnaireAnalyzer';
 
 import SurveyScreen from './surveyScreen';
@@ -38,20 +39,23 @@ class CheckInContainer extends Component {
   componentDidMount = () => {
     const { route } = this.props;
     if (route.name === 'CheckIn') {
-      setTimeout(() => {
-        this.updateUser();
-      }, 0);
+      setTimeout(async () => {
+        await this.updateUser();
+        this.updateUserLanguage();
+      }, 500);
     }
   };
 
   /**
-   * reroutes to the checkIn-screen should no questionnaire be available after the
+   * re-routes to the checkIn-screen should no questionnaire be available after the
    * component updated. When there is no questionnaire the survey-screen does not has
    * any content to render
    */
   componentDidUpdate = () => {
     const { questionnaireItemMap, navigation } = this.props;
-    if (!questionnaireItemMap) navigation.navigate('CheckIn');
+    setTimeout(() => {
+      if (!questionnaireItemMap) navigation.navigate('CheckIn');
+    }, 0);
   };
 
   // methods: push
@@ -132,7 +136,10 @@ class CheckInContainer extends Component {
 
     // gets the questionnaire with the correct id
     await loggedInClient
-      .getBaseQuestionnaire(user.current_questionnaire_id)
+      .getBaseQuestionnaire(
+        user.current_questionnaire_id,
+        localization.getLanguageTag(),
+      )
       // success
       .then((resp) => {
         setTimeout(async () => {
@@ -145,11 +152,11 @@ class CheckInContainer extends Component {
       // fail: displays an alert window with an error output and updates the state on button-click
       .catch((error) => {
         Alert.alert(
-          config.text.generic.errorTitle,
-          config.text.generic.sendError,
+          localization.translate('generic').errorTitle,
+          localization.translate('generic').sendError,
           [
             {
-              text: config.text.generic.ok,
+              text: localization.translate('generic').ok,
               onPress: () => {
                 actions.getQuestionnaireFail(error || 'n/a');
               },
@@ -167,6 +174,27 @@ class CheckInContainer extends Component {
   // methods: updating user
   /*-----------------------------------------------------------------------------------*/
 
+  /** transmits the currently chosen language settings of the user to the backend.
+   * @param  {object} [userdata]
+   */
+  updateUserLanguage = async () => {
+    const { actions, user } = this.props;
+    if (user) {
+      // redux output
+      actions.updateLanguageStart();
+      // sends the data
+      await loggedInClient
+        .updateLanguageCode(user.subjectId, localization.getLanguageTag())
+        .then(
+          () => actions.updateLanguageSuccess(),
+          (error) => this.updateLanguageFail(error),
+        );
+    }
+  };
+
+  // methods: updating user
+  /*-----------------------------------------------------------------------------------*/
+
   /**
    * displays an alert-window after failing to update the user
    * @param  {object} error httperror
@@ -174,11 +202,11 @@ class CheckInContainer extends Component {
   updateUserFail = (error) => {
     const { actions } = this.props;
     Alert.alert(
-      config.text.generic.info,
-      config.text.generic.updateError,
+      localization.translate('generic').info,
+      localization.translate('generic').updateError,
       [
         {
-          text: config.text.generic.ok,
+          text: localization.translate('generic').ok,
           onPress: () => {
             actions.updateUserFail(error);
           },
@@ -194,10 +222,10 @@ class CheckInContainer extends Component {
    * @param {any} data
    */
   updateUserSuccess = async (data) => {
-    const { user, actions, noNewQuestionnaireAvailableYet } = this.props;
-    // TODO: remove workaround
-    // eslint-disable-next-line no-param-reassign
-    data.subjectId = data.study_id || data.subjectId || null;
+    const { user, actions } = this.props;
+    const newData = data;
+
+    newData.subjectId = data.subjectId || null;
 
     // procures the id of the questionnaire used by the last active user
     const lastQuestionnaireId = await localStorage.loadLastQuestionnaireId();
@@ -207,23 +235,28 @@ class CheckInContainer extends Component {
       // deletes the questionnaire if it is reached
       await actions.deleteLocalQuestionnaire();
     }
-
     // persists the new data
-    actions.updateUserSuccess(data);
+    actions.updateUserSuccess(newData);
 
     // tries to init the push service
     if (config.appConfig.connectToFCM) {
-      setTimeout(() => this.initPush(data.subjectId), 0);
+      setTimeout(() => this.initPush(newData.subjectId), 0);
     }
 
-    setTimeout(() => {
+    // updates the chosen language settings of the user (backend-side)
+    this.updateUserLanguage();
+
+    setTimeout(async () => {
+      const { noNewQuestionnaireAvailableYet } = this.props;
       // if we have locally persisted questionnaire
       if (lastQuestionnaireId && !noNewQuestionnaireAvailableYet) {
         // checks if the id of the persisted questionnaire matches the one of the
         // questionnaire the user is supposed to look at now
+        const lastLang = await localStorage.loadLastQuestionnaireLanguage();
         if (
           config.appConfig.skipIncomingQuestionnaireCheck ||
-          lastQuestionnaireId === data.current_questionnaire_id
+          (lastQuestionnaireId === newData.current_questionnaire_id &&
+            lastLang === localization.getLanguageTag())
         ) {
           // loads the persisted questionnaire
           this.checkForCachedData();
@@ -232,12 +265,16 @@ class CheckInContainer extends Component {
           // the one the user is supposed to look at
           setTimeout(() => {
             this.deleteLocalQuestionnaireData();
+            this.deleteLocalQuestionnaireData(
+              lastLang !== localization.getLanguageTag() ??
+                localization.translate('generic').wrongLangugageVersionDetected,
+            );
           }, 0);
         }
       } else {
         // deletes the local questionnaire data if the data from the server shows
         // a due date that lies behind the current data
-        if (data.due_date && data.due_date < new Date()) {
+        if (newData.due_date && newData.due_date < new Date()) {
           this.deleteLocalQuestionnaireData();
         }
         // tries to procure a new questionnaire if possible
@@ -245,6 +282,8 @@ class CheckInContainer extends Component {
           setTimeout(async () => {
             await this.getQuestionnaire();
           }, 0);
+        } else {
+          actions.removeLoadingScreen();
         }
       }
     }, 0);
@@ -256,7 +295,6 @@ class CheckInContainer extends Component {
    */
   updateUser = (userdata) => {
     const { actions } = this.props;
-
     // redux output
     actions.updateUserStart();
 
@@ -306,13 +344,13 @@ class CheckInContainer extends Component {
     const { actions } = this.props;
     setTimeout(() => {
       Alert.alert(
-        config.text.generic.info,
+        localization.translate('generic').info,
         message
-          ? message + config.text.generic.infoRemoval
-          : config.text.generic.infoRemoval,
+          ? message + localization.translate('generic').infoRemoval
+          : localization.translate('generic').infoRemoval,
         [
           {
-            text: config.text.generic.ok,
+            text: localization.translate('generic').ok,
             onPress: async () => {
               await actions.deleteLocalQuestionnaire();
 
@@ -344,14 +382,14 @@ class CheckInContainer extends Component {
       // the one the user is supposed to look at
       setTimeout(() => {
         this.deleteLocalQuestionnaireData(
-          config.text.generic.sendErrorTwoDevices,
+          localization.translate('generic').sendErrorTwoDevices,
         );
       }, 0);
     } else {
       setTimeout(() => {
         Alert.alert(
-          config.text.generic.errorTitle,
-          config.text.generic.sendError,
+          localization.translate('generic').errorTitle,
+          localization.translate('generic').sendError,
         );
       }, 0);
     }
@@ -372,8 +410,8 @@ class CheckInContainer extends Component {
 
     setTimeout(() => {
       Alert.alert(
-        config.text.generic.successTitle,
-        config.text.generic.sendSuccess,
+        localization.translate('generic').successTitle,
+        localization.translate('generic').sendSuccess,
       );
     }, 0);
   };
@@ -417,11 +455,11 @@ class CheckInContainer extends Component {
     if (questionnaireItemMap && !questionnaireItemMap.done) {
       // shows a message remembering the user to complete the questionnaire
       Alert.alert(
-        config.text.generic.info,
-        config.text.survey.sendUnfinishedMessageDenied,
+        localization.translate('generic').info,
+        localization.translate('survey').sendUnfinishedMessageDenied,
         [
           {
-            text: config.text.generic.ok,
+            text: localization.translate('generic').ok,
           },
         ],
         { cancelable: false },
@@ -431,15 +469,15 @@ class CheckInContainer extends Component {
     // triggers the call if confirmed
     else {
       Alert.alert(
-        config.text.generic.info,
-        config.text.survey.sendFinishedMessage,
+        localization.translate('generic').info,
+        localization.translate('survey').sendFinishedMessage,
         [
           {
-            text: config.text.survey.sendFinished,
+            text: localization.translate('survey').sendFinished,
             onPress: this.exportAndUploadQuestionnaireResponseStart,
           },
           {
-            text: config.text.generic.abort,
+            text: localization.translate('generic').abort,
             style: 'cancel',
           },
         ],
@@ -461,13 +499,13 @@ class CheckInContainer extends Component {
 
     setTimeout(() => {
       Alert.alert(
-        config.text.generic.info,
-        config.text.generic.sendError,
+        localization.translate('generic').info,
+        localization.translate('generic').sendError,
         [
           {
-            text: config.text.generic.ok,
+            text: localization.translate('generic').ok,
             onPress: () => {
-              setTimeout(() => navigation.navigate('Home'), 0);
+              setTimeout(() => navigation.navigate('CheckIn'), 0);
             },
           },
         ],
@@ -486,13 +524,13 @@ class CheckInContainer extends Component {
 
     setTimeout(() => {
       Alert.alert(
-        config.text.reporting.symptoms_success_header,
-        config.text.reporting.symptoms_success_message,
+        localization.translate('reporting').symptoms_success_header,
+        localization.translate('reporting').symptoms_success_message,
         [
           {
-            text: config.text.reporting.symptoms_success_ok,
+            text: localization.translate('reporting').symptoms_success_ok,
             onPress: () => {
-              setTimeout(() => navigation.navigate('Home'), 0);
+              setTimeout(() => navigation.navigate('CheckIn'), 0);
               this.updateUser();
             },
           },
@@ -526,11 +564,11 @@ class CheckInContainer extends Component {
     if (user && user.additional_iterations_left) {
       // shows a dialog telling the user that he/she already send out a report
       Alert.alert(
-        config.text.generic.info,
-        config.text.generic.reportWhileInIteratedMode,
+        localization.translate('generic').info,
+        localization.translate('generic').reportWhileInIteratedMode,
         [
           {
-            text: config.text.generic.ok,
+            text: localization.translate('generic').ok,
           },
         ],
         { cancelable: false },
@@ -540,11 +578,11 @@ class CheckInContainer extends Component {
     else if (!noNewQuestionnaireAvailableYet) {
       // dialog telling the user to use the current questionnaire
       Alert.alert(
-        config.text.generic.info,
-        config.text.generic.reportWhileQuestionnaire,
+        localization.translate('generic').info,
+        localization.translate('generic').reportWhileQuestionnaire,
         [
           {
-            text: config.text.generic.ok,
+            text: localization.translate('generic').ok,
           },
         ],
         { cancelable: false },
@@ -553,18 +591,18 @@ class CheckInContainer extends Component {
     // shows an alert and sends out the report
     else {
       Alert.alert(
-        config.text.reporting.symptoms_header,
-        config.text.reporting.symptoms_question,
+        localization.translate('reporting').symptoms_header,
+        localization.translate('reporting').symptoms_question,
         [
           {
-            text: config.text.reporting.symptoms_yes,
+            text: localization.translate('reporting').symptoms_yes,
             onPress: () => {
               // sends out the report
               this.sendReportStart();
             },
           },
           {
-            text: config.text.reporting.symptoms_no,
+            text: localization.translate('reporting').symptoms_no,
             style: 'cancel',
           },
         ],
@@ -583,11 +621,11 @@ class CheckInContainer extends Component {
   deleteLocalDataAndLogout = () => {
     const { actions, navigation } = this.props;
     Alert.alert(
-      config.text.generic.warning,
-      config.text.generic.eraseLocalDataAtEndOfStudyText,
+      localization.translate('generic').warning,
+      localization.translate('generic').eraseLocalDataAtEndOfStudyText,
       [
         {
-          text: config.text.generic.delete,
+          text: localization.translate('generic').delete,
           onPress: () => {
             actions.deleteLocalData();
 
@@ -598,7 +636,7 @@ class CheckInContainer extends Component {
           },
         },
         {
-          text: config.text.generic.abort,
+          text: localization.translate('generic').abort,
           style: 'cancel',
         },
       ],

@@ -38,7 +38,9 @@ class AboutListLink extends PureComponent {
         containerStyle={localStyle.containerStyle}
         onPress={() => {
           actions.setCurrentWebView(webView);
-          navigation.navigate('WebView');
+          setTimeout(() => {
+            navigation.navigate('WebView');
+          }, 0);
         }}
       >
         {/* title & subtitle of the listItem - the strings a identified by the webView*/}
@@ -79,6 +81,7 @@ localStyle = StyleSheet.create({
     borderBottomColor: config.theme.colors.accent3,
     borderBottomWidth: 1,
     backgroundColor: config.theme.values.defaultListLinkBackgroundColor,
+    padding: 15,
   },
 
   subTitle: {

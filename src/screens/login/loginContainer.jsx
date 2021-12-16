@@ -4,12 +4,15 @@
 imports
 ***********************************************************************************************/
 
+import { Alert } from 'react-native';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
+import RNRestart from 'react-native-restart';
 
 import config from '../../config/configProvider';
 import localStorage from '../../services/localStorage/localStorage';
+import localization from '../../services/localization/localization';
 
 import LoginScreen from './loginScreen';
 import LandingScreen from './landingScreen';
@@ -55,9 +58,11 @@ class LoginContainer extends Component {
       // sets the subjectId defined in appConfig.js
       actions.updateSubjectId(scannedId);
       // triggers the login
-      setTimeout(async () => actions.sendCredentials(scannedId), 1000);
+      setTimeout(async () => actions.sendCredentials(scannedId), 0);
     } else {
-      this.autoLoginLastUser();
+      setTimeout(() => {
+        this.autoLoginLastUser();
+      }, 0);
     }
   };
 
@@ -66,11 +71,43 @@ class LoginContainer extends Component {
    */
   componentDidUpdate = () => {
     const { loggedIn, navigation } = this.props;
-    if (loggedIn) navigation.navigate('SignedIn', { screen: 'CheckIn' });
+    if (loggedIn) {
+      setTimeout(() => {
+        navigation.navigate('SignedIn', { screen: 'CheckIn' });
+      }, 0);
+    }
   };
 
   // class methods
   /*-----------------------------------------------------------------------------------*/
+
+  /**
+   * deletes all local data
+   */
+  deleteLocalData = () => {
+    const { actions } = this.props;
+    Alert.alert(
+      localization.translate('generic').warning,
+      localization.translate('generic').eraseAllWarning,
+      [
+        {
+          text: localization.translate('generic').delete,
+          onPress: () => {
+            actions.logout();
+            actions.deleteLocalData();
+            setTimeout(() => {
+              RNRestart.Restart();
+            }, 0);
+          },
+        },
+        {
+          text: localization.translate('generic').abort,
+          style: 'cancel',
+        },
+      ],
+      { cancelable: false },
+    );
+  };
 
   /**
    * tries to log in the last persisted user, is triggered by componentDidMount()
@@ -79,7 +116,6 @@ class LoginContainer extends Component {
     const { actions } = this.props;
     // gets the last user from the AsyncStore
     const lastSubjectId = await localStorage.loadLastSubjectId();
-
     // logs the user in
     if (lastSubjectId) {
       actions.autoLoginLastUser();
@@ -157,6 +193,7 @@ class LoginContainer extends Component {
         loginError={loginError}
         navigation={navigation}
         autoLoginLastUser={this.autoLoginLastUser}
+        deleteLocalData={this.deleteLocalData}
       />
     );
   }

@@ -45,7 +45,7 @@ const { width } = Dimensions.get('window');
 const baseUriProductive = '';
 
 // development-base-backend-uri
-const baseUriDevelopment = 'http://127.0.0.1:8080/api/';
+const baseUriDevelopment = 'http://127.0.0.1/api/';
 
 /***********************************************************************************************
 configuration
@@ -63,12 +63,12 @@ const conf = {
 
   /** dev-option:
    * skips the QR login after 500ms */
-  automateQrLogin: __DEV__ && false,
+  automateQrLogin: __DEV__ && true,
 
   /** dev-option:
    * subject-id for automated login */
   automateQrLoginSubjectId:
-    '{"AppIdentifier":"COMPASS","SubjectId":"7bfc3b07-a97d-4e11-8ac6-b970c1745476"}',
+    '{"AppIdentifier":"COMPASS","SubjectId":"84bab04a-4992-4ea6-9fe3-644ec63fa296"}',
 
   /** dev-option:
    * shows a button to erase all data (in the about-menu) - dev-only */
@@ -147,8 +147,20 @@ const conf = {
   lastQuestionnaireId: '@COMPASS_STORE:last_questionnaire_id',
 
   /** local storage identifier:
+   * the language of the last active questionnaire of the last active user */
+  lastQuestionnaireLang: '@COMPASS_STORE:last_questionnaire_lang',
+
+  /** local storage identifier:
    * persists all relevant information about the notification-service */
   FCMToken: '@COMPASS_STORE:fcm_token',
+
+  /** local storage identifier:
+   * persists all necessary data for the kiosk mode */
+  kioskModeData: '@COMPASS_STORE:kiosk_mode_data',
+
+  /** local storage identifier:
+   * persists all necessary localization data */
+  localeData: '@COMPASS_STORE:locale_data',
 
   // push notification
   /*-----------------------------------------------------------------------------------*/
@@ -202,10 +214,22 @@ const conf = {
     }questionnaire/`,
 
     /** rest:
-     * endpoint to receive the questionnaire */
+     * endpoint to update the push token */
     updateToken: `${
       __DEV__ ? baseUriDevelopment : baseUriProductive
     }participant/update-device-token/`,
+
+    /** rest:
+     * endpoint to update the chosen language*/
+    updateLanguage: `${
+      __DEV__ ? baseUriDevelopment : baseUriProductive
+    }participant/update-language-code/`,
+
+    /** rest:
+     * endpoint to get the list languages*/
+    getLanguages: `${
+      __DEV__ ? baseUriDevelopment : baseUriProductive
+    }/questionnaire/get-languages/`,
   },
 
   // ui

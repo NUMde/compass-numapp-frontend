@@ -11,6 +11,7 @@ import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import config from '../../config/configProvider';
 import Banner from '../../components/banner/banner';
 import Spinner from '../../components/spinner/spinner';
+import localization from '../../services/localization/localization';
 import ScrollIndicatorWrapper from '../../components/scrollIndicatorWrapper/scrollIndicatorWrapper';
 
 let localStyle;
@@ -28,7 +29,13 @@ class LandingScreen extends PureComponent {
    */
 
   render() {
-    const { loading, navigation, loginError, autoLoginLastUser } = this.props;
+    const {
+      loading,
+      navigation,
+      loginError,
+      autoLoginLastUser,
+      deleteLocalData,
+    } = this.props;
     return (
       <View style={localStyle.wrapper}>
         {/* loading spinner */}
@@ -37,8 +44,8 @@ class LandingScreen extends PureComponent {
         {/* banner */}
         <Banner
           nav={navigation}
-          title={config.text.login.landing.title}
-          subTitle={config.text.login.landing.subTitle}
+          title={localization.translate('login').landing.title}
+          subTitle={localization.translate('login').landing.subTitle}
           noWayBack
           noMenu
         />
@@ -51,22 +58,52 @@ class LandingScreen extends PureComponent {
                 <View style={localStyle.wrapper}>
                   <View style={localStyle.top}>
                     <Text style={localStyle.titleText}>
-                      {config.text.login.landing.autoLoginErrorTitle}
+                      {
+                        localization.translate('login').landing
+                          .autoLoginErrorTitle
+                      }
                     </Text>
                     <Text style={localStyle.infoText}>
-                      {config.text.login.landing.autoLoginError}
+                      {localization.translate('login').landing.autoLoginError}
                     </Text>
                   </View>
                   <View style={localStyle.bottom}>
                     <TouchableOpacity
                       style={localStyle.button}
                       onPress={() => autoLoginLastUser()}
-                      accessibilityLabel={config.text.login.landing.retry}
-                      accessibilityRole={config.text.accessibility.types.Button}
-                      accessibilityHint={config.text.accessibility.retryHint}
+                      accessibilityLabel={
+                        localization.translate('login').landing.retry
+                      }
+                      accessibilityRole={
+                        localization.translate('accessibility').types.Button
+                      }
+                      accessibilityHint={
+                        localization.translate('accessibility').retryHint
+                      }
                     >
                       <Text style={localStyle.buttonLabel}>
-                        {config.text.login.landing.retry}
+                        {localization.translate('login').landing.retry}
+                      </Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                      style={{
+                        ...localStyle.button,
+                        ...localStyle.buttonAlert,
+                      }}
+                      onPress={() => deleteLocalData()}
+                      accessibilityLabel={
+                        localization.translate('login').landing.deleteAll
+                      }
+                      accessibilityRole={
+                        localization.translate('accessibility').types.Button
+                      }
+                      accessibilityHint={
+                        localization.translate('accessibility').retryHint
+                      }
+                    >
+                      <Text style={localStyle.buttonLabel}>
+                        {localization.translate('login').landing.deleteAll}
                       </Text>
                     </TouchableOpacity>
                   </View>
@@ -76,10 +113,10 @@ class LandingScreen extends PureComponent {
                   {/* top elements title & text */}
                   <View style={localStyle.top}>
                     <Text style={localStyle.titleText}>
-                      {config.text.login.landing.welcomeTitle}
+                      {localization.translate('login').landing.welcomeTitle}
                     </Text>
                     <Text style={localStyle.infoText}>
-                      {config.text.login.landing.text}
+                      {localization.translate('login').landing.text}
                     </Text>
                   </View>
 
@@ -90,12 +127,18 @@ class LandingScreen extends PureComponent {
                       onPress={() => {
                         navigation.navigate('Login');
                       }}
-                      accessibilityLabel={config.text.login.landing.buttonText}
-                      accessibilityRole={config.text.accessibility.types.button}
-                      accessibilityHint={config.text.accessibility.loginHint}
+                      accessibilityLabel={
+                        localization.translate('login').landing.buttonText
+                      }
+                      accessibilityRole={
+                        localization.translate('accessibility').types.button
+                      }
+                      accessibilityHint={
+                        localization.translate('accessibility').loginHint
+                      }
                     >
                       <Text style={localStyle.buttonLabel}>
-                        {config.text.login.landing.buttonText}
+                        {localization.translate('login').landing.buttonText}
                       </Text>
                     </TouchableOpacity>
                   </View>
@@ -164,6 +207,13 @@ localStyle = StyleSheet.create({
     paddingBottom: config.appConfig.scaleUiFkt(15),
     paddingLeft: config.appConfig.scaleUiFkt(15),
     paddingRight: config.appConfig.scaleUiFkt(15),
+    width: '80%',
+  },
+
+  buttonAlert: {
+    ...config.theme.classes.buttonAlert,
+    bottom: 0,
+    marginTop: 20,
     width: '80%',
   },
 

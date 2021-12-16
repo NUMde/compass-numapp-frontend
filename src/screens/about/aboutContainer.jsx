@@ -8,13 +8,15 @@ import { Alert } from 'react-native';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
-
-import text from '../../config/textConfig';
+import RNRestart from 'react-native-restart';
 
 import AboutScreen from './aboutScreen';
 import WebViewScreen from './webViewScreen';
 import LegalInformationScreen from './legalInformationScreen';
+import localization from '../../services/localization/localization';
+import localStorage from '../../services/localStorage/localStorage';
 import * as aboutActions from './aboutActions';
+import store from '../../store';
 
 /***********************************************************************************************
 component:
@@ -26,7 +28,6 @@ class AboutContainer extends Component {
    * @constructor
    * @param  {object}    props
    * @param  {object}    props.actions holds actions for the component (./aboutActions.js)
-   * @param  {object}    props.navigation the navigation object provided by 'react-navigation'
    */
 
   // class methods
@@ -37,21 +38,23 @@ class AboutContainer extends Component {
    * out and navigates back to the landing-screen.
    */
   clearAll = () => {
-    const { actions, navigation } = this.props;
+    const { actions } = this.props;
     Alert.alert(
-      text.generic.warning,
-      text.generic.eraseAllWarning,
+      localization.translate('generic').warning,
+      localization.translate('generic').eraseAllWarning,
       [
         {
-          text: text.generic.delete,
+          text: localization.translate('generic').delete,
           onPress: () => {
             actions.logout();
             actions.deleteLocalData();
-            navigation.navigate('SignedOut', { screen: 'Landing' });
+            setTimeout(() => {
+              RNRestart.Restart();
+            }, 0);
           },
         },
         {
-          text: text.generic.abort,
+          text: localization.translate('generic').abort,
           style: 'cancel',
         },
       ],
@@ -64,22 +67,22 @@ class AboutContainer extends Component {
    * out and navigates back to the landing-screen.
    */
   logout = () => {
-    const { navigation, actions } = this.props;
+    const { actions } = this.props;
     Alert.alert(
-      text.generic.warning,
-      text.generic.logoutWarning,
+      localization.translate('generic').warning,
+      localization.translate('generic').logoutWarning,
       [
         {
-          text: text.generic.goBack,
+          text: localization.translate('generic').goBack,
           onPress: () => {
             actions.logout();
             setTimeout(() => {
-              navigation.navigate('SignedOut', { screen: 'Landing' });
+              RNRestart.Restart();
             }, 0);
           },
         },
         {
-          text: text.generic.abort,
+          text: localization.translate('generic').abort,
           style: 'cancel',
         },
       ],
@@ -87,7 +90,51 @@ class AboutContainer extends Component {
     );
   };
 
-  // rendering
+  changeLanguage = (languageTag) => {
+    if (
+      store.getState().CheckIn.questionnaireItemMap &&
+      store.getState().CheckIn.questionnaireItemMap.started
+    ) {
+      Alert.alert(
+        localization.translate('generic').warning,
+        localization.translate('about').languageWarning +
+          localization.translate('about').languageWarningAddition,
+        [
+          {
+            text: localization.translate('generic').delete,
+            onPress: () => {
+              // deletes the local questionnaire - which will trigger the app to download a new one in the correct language
+              this.setLanguage(languageTag);
+            },
+          },
+          {
+            text: localization.translate('generic').abort,
+            style: 'cancel',
+          },
+        ],
+        { cancelable: false },
+      );
+    } else {
+      this.setLanguage(languageTag);
+    }
+  };
+
+  setLanguage = (languageTag) => {
+    const { actions } = this.props;
+    if (store.getState().CheckIn.questionnaireItemMap) {
+      actions.deleteLocalQuestionnaire();
+    }
+    setTimeout(async () => {
+      localization.setI18nConfig(languageTag);
+      await localStorage.persistLocalizationSettings(
+        languageTag,
+        store.getState().Login.subjectId,
+      );
+      RNRestart.Restart();
+    }, 0);
+  };
+
+  // events
   /*-----------------------------------------------------------------------------------*/
 
   render() {
@@ -103,6 +150,7 @@ class AboutContainer extends Component {
           showModal={showModal}
           modalLink={modalLink}
           actions={actions}
+          changeLanguage={this.changeLanguage}
         />
       );
     }

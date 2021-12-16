@@ -4,10 +4,10 @@
 imports
 ***********************************************************************************************/
 
-import textConf from '../../config/textConfig';
 import config from '../../config/configProvider';
 import guestClient from '../../services/rest/guestClient';
 import localStorage from '../../services/localStorage/localStorage';
+import localization from '../../services/localization/localization';
 
 /***********************************************************************************************
 actions
@@ -41,6 +41,15 @@ export const sendCredentialsFail = (error) => ({
 });
 
 /**
+ * deletes all local data (is executed in src/store.js, not in the AboutReducer)
+ */
+export const deleteLocalData = () => async (dispatch) => {
+  dispatch({
+    type: 'DELETE_ALL_LOCAL_DATA',
+  });
+};
+
+/**
  * logs the user in, using the result of the qr-scan
  * @param  {string} cleanedScanResult result of the scan cleaned up (getting the id out of the json)
  * @param  {object} [camera] camera reference
@@ -55,7 +64,7 @@ export const sendCredentials =
       // rest call
       await guestClient
         .login(cleanedScanResult)
-        .then((res) => {
+        .then(async (res) => {
           // this data will be persisted locally.
           // should the response not contain any certificate then the one defined in
           // appConfig.js will be used
@@ -68,15 +77,18 @@ export const sendCredentials =
             // the certificate to encrypt outgoing messages
             recipientCertificatePemString:
               res.data.recipient_certificate_pem_string ||
-              config.appConfig.default_recipient_certificate_pem_string,
+              config.appConfig.defaultRecipientCertificatePemString,
           };
           // the id of the user will be persisted in the LocalStorage (for the auto-login next time)
-          localStorage.persistLastSubjectId(cleanedScanResult);
-          // updates the state
-          setTimeout(
-            () => dispatch(sendCredentialsSuccess(cleanedScanResult, data)),
-            0,
+          await localStorage.persistLastSubjectId(cleanedScanResult);
+
+          const lang = await localStorage.loadLocalizationSettings(
+            cleanedScanResult,
           );
+
+          if (lang) localization.setI18nConfig(lang);
+
+          dispatch(sendCredentialsSuccess(cleanedScanResult, data));
         })
         .catch((err) => {
           // reactivates the camera
@@ -84,7 +96,9 @@ export const sendCredentials =
           // persists the error
           dispatch(
             sendCredentialsFail({
-              loginError: err.error ?? textConf.login.errorUserGeneric,
+              err,
+              loginError:
+                err.error ?? localization.translate('login').errorUserGeneric,
               loginUnauthorized: err.error?.response?.status === 401,
             }),
           );
@@ -95,7 +109,7 @@ export const sendCredentials =
       // persists a generic error
       dispatch(
         sendCredentialsFail({
-          loginError: textConf.login.noSubjectId,
+          loginError: localization.translate('login').noSubjectId,
           loginUnauthorized: false,
         }),
       );

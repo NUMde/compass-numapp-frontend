@@ -83,6 +83,7 @@ localStyle = StyleSheet.create({
     borderBottomColor: config.theme.colors.accent3,
     borderBottomWidth: 1,
     backgroundColor: config.theme.values.defaultListItemBackgroundColor,
+    padding: 15,
   },
 
   title: {

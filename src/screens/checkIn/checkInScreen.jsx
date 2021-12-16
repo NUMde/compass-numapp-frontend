@@ -11,6 +11,7 @@ import config from '../../config/configProvider';
 import Banner from '../../components/banner/banner';
 import Spinner from '../../components/spinner/spinner';
 import CheckInTiles from '../../components/checkIn/checkInTiles';
+import localization from '../../services/localization/localization';
 import CheckInWelcomeText from '../../components/checkIn/welcomeText';
 import CheckInListView from '../../components/checkIn/checkInListView';
 import ScrollIndicatorWrapper from '../../components/scrollIndicatorWrapper/scrollIndicatorWrapper';
@@ -60,8 +61,8 @@ class CheckInScreen extends PureComponent {
         {/* banner at the top */}
         <Banner
           nav={navigation}
-          title={config.text.survey.titleCheckIn}
-          subTitle={config.text.survey.subTitleCheckIn}
+          title={localization.translate('survey').titleCheckIn}
+          subTitle={localization.translate('survey').subTitleCheckIn}
           updateUser={updateUser}
           isCheckIn
           noWayBack
@@ -93,6 +94,7 @@ class CheckInScreen extends PureComponent {
                     <CheckInWelcomeText
                       error={error401}
                       questionnaireError={questionnaireError}
+                      categoriesLoaded={categoriesLoaded}
                       firstTime={user.firstTime}
                       noNewQuestionnaireAvailableYet={
                         noNewQuestionnaireAvailableYet

@@ -19,6 +19,10 @@ This repository provides the source code for the React Native client of the link
 
 The NUM-App enables the display of link:https://www.hl7.org/fhir/questionnaire.html[FHIR Questionnaires] as well as the encrypted transmission and storage of corresponding link:https://www.hl7.org/fhir/questionnaireresponse.html[FHIR Questionnaire Responses].
 
+== Kiosk Mode
+
+The frontend client comes with a build-in kiosk mode. This means that the app can be set up in a way that it basically provides it own mock-backend to simulate a basic workflow with the app. The purpose is to demonstrate the capabilites of the NUM-App to new audiences.
+
 == Features
 
 The client provides these main functionalities:

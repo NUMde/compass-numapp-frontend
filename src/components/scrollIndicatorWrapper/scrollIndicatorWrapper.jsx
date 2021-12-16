@@ -17,6 +17,7 @@ import {
 } from 'react-native';
 
 import config from '../../config/configProvider';
+import localization from '../../services/localization/localization';
 
 let localStyle;
 
@@ -109,6 +110,7 @@ export default class ScrollIndicatorWrapper extends Component {
           style={localStyle.wrapper}
           innerRef={(ref) => (this.scroll = ref)}
           contentContainerStyle={localStyle.contentContainerStyle}
+          scrollEventThrottle={16}
           onScroll={(event) => {
             // calculating the next scroll-position
             const bannerHeight =
@@ -147,7 +149,9 @@ export default class ScrollIndicatorWrapper extends Component {
           this.showIndicator &&
           !this.isAccessibilityOn && (
             <TouchableOpacity
-              accessibilityRole={config.text.accessibility.types.button}
+              accessibilityRole={
+                localization.translate('accessibility').types.button
+              }
               style={localStyle.indicator}
               onPress={() => {
                 this.scrollViewRef.current.scrollTo({
