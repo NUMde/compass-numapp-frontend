@@ -1,13 +1,13 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
-name: Run all tests with jest and run eslint on pull requests
+name: main workflow
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
 jobs:
-  Run_tests:
+  run_tests:
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 24
@@ -36,8 +36,7 @@ jobs:
         CI: true
     - name: run all tests
       run: npm test
-  Run_eslint:
-    if: ${{ github.event_name == 'pull_request' }}
+  lint_annotations:
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 24
