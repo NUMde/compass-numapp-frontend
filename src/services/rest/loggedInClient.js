@@ -212,7 +212,9 @@ const getBaseQuestionnaire = async (questionnaireId, langCode) =>
   kioskMode.active
     ? kioskMode.getBaseQuestionnaire(langCode)
     : axios.get(
-        `${config.appConfig.endpoints.getQuestionnaire}${questionnaireId}/${langCode}`,
+        `${config.appConfig.endpoints.getQuestionnaire}${encodeURIComponent(
+          questionnaireId,
+        )}/${langCode}`,
         {
           headers: {
             Authorization: createAuthorizationToken(),
