@@ -45,7 +45,7 @@ const { width } = Dimensions.get('window');
 const baseUriProductive = '';
 
 // development-base-backend-uri
-const baseUriDevelopment = 'http://127.0.0.1/api/';
+const baseUriDevelopment = 'http://127.0.0.1:8080/api/';
 
 /***********************************************************************************************
 configuration
@@ -68,7 +68,7 @@ const conf = {
   /** dev-option:
    * subject-id for automated login */
   automateQrLoginSubjectId:
-    '{"AppIdentifier":"COMPASS","SubjectId":"84bab04a-4992-4ea6-9fe3-644ec63fa296"}',
+    '{"AppIdentifier":"COMPASS","SubjectId":"7bfc3b07-a97d-4e11-8ac6-b970c1745476"}',
 
   /** dev-option:
    * shows a button to erase all data (in the about-menu) - dev-only */
