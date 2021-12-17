@@ -45,7 +45,7 @@ class App extends PureComponent {
   // fires after the device language was changed while the app is running
   handleLocalizationChange = () => {
     localization.setI18nConfig();
-    // RNRestart.Restart();
+    RNRestart.Restart();
   };
 
   render() {
