@@ -114,7 +114,6 @@ As of now, the following item types are supported:
 * `choice`
 * `boolean`
 * `date`
-* `open-choice`
 * `integer`
 * `decimal`
 
