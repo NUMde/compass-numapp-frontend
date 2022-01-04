@@ -14,7 +14,6 @@
 		4BC0E6D1243DDFD200AC822E /* IBMPlexSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4BC0E6CD243DDFD200AC822E /* IBMPlexSans-SemiBold.ttf */; };
 		4BC0E6D2243DDFD200AC822E /* IBMPlexSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4BC0E6CE243DDFD200AC822E /* IBMPlexSans-Regular.ttf */; };
 		4BC0E6D3243DDFD200AC822E /* IBMPlexSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4BC0E6CF243DDFD200AC822E /* IBMPlexSans-LightItalic.ttf */; };
-		982B8A1C25123B840086FC0A /* empty_file.swift in Sources */ = {isa = PBXBuildFile; fileRef = 982B8A1B25123B840086FC0A /* empty_file.swift */; };
 		98D1B82F2689F6A700968FA0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 98D1B82E2689F6A700968FA0 /* GoogleService-Info.plist */; };
 		98EE55502601FEB8001299B7 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98EE554F2601FEB7001299B7 /* Launch Screen.storyboard */; };
 		D523506787DE3D0D6B328A16 /* libPods-Compass.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F61C0C8BDF3B9C019FA5368F /* libPods-Compass.a */; };
@@ -47,7 +46,6 @@
 		94019188C2496CA84DBB6795 /* Pods-Compass.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Compass.release.xcconfig"; path = "Target Support Files/Pods-Compass/Pods-Compass.release.xcconfig"; sourceTree = "<group>"; };
 		958D6C230D1745F28C9A5784 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		982B8A1A25123B830086FC0A /* Compass-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Compass-Bridging-Header.h"; sourceTree = "<group>"; };
-		982B8A1B25123B840086FC0A /* empty_file.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = empty_file.swift; sourceTree = "<group>"; };
 		982B8A1D25123C8D0086FC0A /* Compass.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Compass.entitlements; path = Compass/Compass.entitlements; sourceTree = "<group>"; };
 		98D1B82E2689F6A700968FA0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		98EE554F2601FEB7001299B7 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
@@ -170,7 +168,6 @@
 			isa = PBXGroup;
 			children = (
 				BA78BE392520D2640063C353 /* Fonts */,
-				982B8A1B25123B840086FC0A /* empty_file.swift */,
 				13B07FAE1A68108700A75B9A /* Compass */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
@@ -429,7 +426,6 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
-				982B8A1C25123B840086FC0A /* empty_file.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
