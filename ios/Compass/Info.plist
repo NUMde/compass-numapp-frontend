@@ -38,7 +38,7 @@
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>Wir müssen auf Ihre Kamera zugreifen um den QR-Code lesen zu können. Vielen Dank.</string>
+	<string>NSCameraUsageDescription</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>IBMPlexSans-Italic.ttf</string>

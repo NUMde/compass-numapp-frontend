@@ -17,6 +17,7 @@
 		98D1B82F2689F6A700968FA0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 98D1B82E2689F6A700968FA0 /* GoogleService-Info.plist */; };
 		98EE55502601FEB8001299B7 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98EE554F2601FEB7001299B7 /* Launch Screen.storyboard */; };
 		D523506787DE3D0D6B328A16 /* libPods-Compass.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F61C0C8BDF3B9C019FA5368F /* libPods-Compass.a */; };
+		DF563C1327859CC400FB3D5D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DF563C1527859CC400FB3D5D /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +74,9 @@
 		CBE30BC3B28348468C14E92F /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		D53E9692EDF7EA387C8AB99F /* Pods-Compass.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Compass.debug.xcconfig"; path = "Target Support Files/Pods-Compass/Pods-Compass.debug.xcconfig"; sourceTree = "<group>"; };
 		D6CFA33690C740EDB1C64FBA /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
+		DF563C1427859CC400FB3D5D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DF563C1627859CC600FB3D5D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DF563C1727859CC800FB3D5D /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		EEBE136C24274EE29764CFF4 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
@@ -131,6 +135,7 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				98EE554F2601FEB7001299B7 /* Launch Screen.storyboard */,
+				DF563C1527859CC400FB3D5D /* InfoPlist.strings */,
 			);
 			name = Compass;
 			sourceTree = "<group>";
@@ -270,6 +275,8 @@
 			knownRegions = (
 				de,
 				Base,
+				en,
+				fr,
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
@@ -287,6 +294,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4BC0E6D3243DDFD200AC822E /* IBMPlexSans-LightItalic.ttf in Resources */,
+				DF563C1327859CC400FB3D5D /* InfoPlist.strings in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				98EE55502601FEB8001299B7 /* Launch Screen.storyboard in Resources */,
 				4BC0E6D2243DDFD200AC822E /* IBMPlexSans-Regular.ttf in Resources */,
@@ -430,6 +438,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		DF563C1527859CC400FB3D5D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DF563C1427859CC400FB3D5D /* de */,
+				DF563C1627859CC600FB3D5D /* en */,
+				DF563C1727859CC800FB3D5D /* fr */,
+			);
+			name = InfoPlist.strings;
+			path = Compass;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
