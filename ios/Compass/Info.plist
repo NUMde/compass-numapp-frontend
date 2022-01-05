@@ -37,18 +37,8 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>NSCalendarsUsageDescription</key>
-	<string>Allow Compass to access your calendar</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Wir müssen auf Ihre Kamera zugreifen um den QR-Code lesen zu können. Vielen Dank.</string>
-	<key>NSContactsUsageDescription</key>
-	<string>Allow Compass experiences to access your contacts</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>Allow Compass to access your microphone</string>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Give Compass periences permission to save photos</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Give Compass periences permission to access your photos</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>IBMPlexSans-Italic.ttf</string>
