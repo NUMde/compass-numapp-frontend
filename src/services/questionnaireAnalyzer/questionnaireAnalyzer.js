@@ -513,10 +513,9 @@ const createResponseJSON = () => {
    * traverses a set of items and its children (and so on) and creates the structure
    * that will hold the answers of the questionnaire-response
    * @param  {QuestionnaireItem[]} items the questionnaire-items
-   * @param  {string} [necessaryAnswer] should the item be conditional to a specific answer of its child-items (for open-choice elements)
    * @returns {QuestionnaireItem[]}
    */
-  const createItems = (items, necessaryAnswer) => {
+  const createItems = (items) => {
     const newItems = [];
 
     if (items) {
@@ -539,15 +538,8 @@ const createResponseJSON = () => {
          */
         const itemDetails = props.questionnaireItemMap[item.linkId];
 
-        // if the conditions of the item are met or if one of the ChildItems provide the necessary answer
-        if (
-          checkDependenciesOfSingleItem(item) ||
-          (necessaryAnswer &&
-            itemDetails.enableWhen &&
-            itemDetails.enableWhen[0][
-              getEnableWhenAnswerType(itemDetails.enableWhen[0])
-            ] === necessaryAnswer)
-        ) {
+        // if the conditions of the item are met or if one of the ChildItems provides the necessary answer
+        if (checkDependenciesOfSingleItem(item)) {
           /**
            * creates a new item
            * @type {ResponseItem}
@@ -591,7 +583,7 @@ const createResponseJSON = () => {
                   answerObject = createAnswerObject(answer);
                   // and check if there are any child-items.
                   // if yes: traverse the child-items and add them to the answer
-                  childItems = item.item ? createItems(item.item, answer) : [];
+                  childItems = item.item ? createItems(item.item) : [];
                   if (childItems.length !== 0) answerObject.item = childItems;
                   newItem.answer.push(answerObject);
                 });
