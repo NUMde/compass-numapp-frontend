@@ -28,19 +28,6 @@ const traverseItem = (item, questionnaireItemMap) => {
     required: item.required || false,
   };
 
-  // adds another answer object in case  we have an open-choice
-  if (
-    item.type === 'open-choice' &&
-    !questionnaireItemMap[item.linkId].answerOption.some(
-      (e) => e.isOpenQuestionAnswer,
-    )
-  ) {
-    questionnaireItemMap[item.linkId].answerOption.push({
-      isOpenQuestionAnswer: true,
-      answer: null,
-    });
-  }
-
   // sets the started value to false if the item is category
   if (item.linkId.length === 1) {
     // eslint-disable-next-line no-param-reassign
@@ -216,7 +203,7 @@ const valuesHandlers = {
     }, 0);
 
     // if multiple answers are allowed
-    if (localValues.answer.openAnswer) {
+    if (localValues.answer.repeats) {
       let contained = false;
 
       // updates the answer-attribut in questionnaireItemMap to an array so that
@@ -253,14 +240,6 @@ const valuesHandlers = {
         !localValues.answer.answer
       ) {
         localValues.answer.answer = null;
-      }
-
-      // writes the open-answer value in a separate variable
-      if (localValues.answer.isOpenAnswer) {
-        const answer = questionnaireItemMap[
-          values.answer.linkId
-        ].answerOption.filter((e) => e.isOpenQuestionAnswer)[0];
-        answer.answer = values.answer.answer;
       }
 
       if (!localValues.answer.isAdditionalAnswer) {

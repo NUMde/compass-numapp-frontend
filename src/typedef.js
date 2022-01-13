@@ -5,7 +5,7 @@
  * @typedef {Object} QuestionnaireItem
  * @property {string} 		       text the text-item to be displayed
  * @property {boolen} 		       repeats decides if more than one answer is allowed
- * @property {string} 		       type type if the item ("ignore" || "display" || "boolean" || "date" || "string" || "integer" || "decimal" || "number" || "choice" || "open-choice")
+ * @property {string} 		       type type if the item ("ignore" || "display" || "boolean" || "date" || "string" || "integer" || "decimal" || "number" || "choice" )
  * @property {string} 		       linkId id of the item
  * @property {boolean} 		       [required] if true: item needs to be answered to complete the questionnaire
  * @property {number} 		       [maxLength] the allows number of chars for the response
@@ -38,7 +38,7 @@
  * @typedef {Object} ItemMapEntry
  * @property {boolean} 		done shows if the item was completed (this includes its sub-items)
  * @property {Object} 		text the text-item to be displayed
- * @property {string} 		type type if the item ("ignore" || "display" || "boolean" || "date" || "string" || "integer" || "decimal" || "number" || "choice" || "open-choice")
+ * @property {string} 		type type if the item ("ignore" || "display" || "boolean" || "date" || "string" || "integer" || "decimal" || "number" || "choice" )
  * @property {string} 		definition another id provided by the questionnaire - is not actively used
  * @property {string} 		linkId id of the item
  * @property {boolean} 		required if true: item needs to be answered to complete the questionnaire

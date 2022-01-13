@@ -213,7 +213,7 @@ class QuestionnaireModal extends Component {
   /*-----------------------------------------------------------------------------------*/
 
   /**
-   * when an item is of type choice or open-choice it has the attribute "answerOptions".
+   * when an item is of type choice it has the attribute "answerOptions".
    * the entries of that attribute contain the possible choices - and the titles of those
    * choices are either provided by the attribute valueString ot valueInteger.
    * this functions determines what is available an returns it.
@@ -429,265 +429,115 @@ class QuestionnaireModal extends Component {
             {!item.repeats && (
               <View>
                 {/* renders a list of answers */}
-                {item.answerOption.map(
-                  (answerOption, index) =>
-                    !answerOption.isOpenQuestionAnswer && (
-                      <CheckBox
-                        uncheckedIcon="circle-o"
-                        checkedIcon="dot-circle-o"
-                        // eslint-disable-next-line react/no-array-index-key
-                        key={`${item.linkId}.a_${index}`}
-                        textStyle={localStyle.choiceText}
-                        title={this.getItemTitle(answerOption)}
-                        checkedColor={config.theme.colors.primary}
-                        uncheckedColor={config.theme.colors.accent1}
-                        containerStyle={{
-                          ...localStyle.choice,
-                          marginLeft: this.calculateIndent(item.linkId),
-                        }}
-                        onPress={() => {
-                          actions.setAnswer({
-                            linkId: item.linkId,
-                            answer:
-                              answerOption.valueCoding ||
-                              answerOption.valueString ||
-                              answerOption.valueInteger,
-                          });
-
-                          this.removeOpenAnswer(item);
-                        }}
-                        onIconPress={() => {
-                          actions.setAnswer({
-                            linkId: item.linkId,
-                            answer:
-                              answerOption.valueCoding ||
-                              answerOption.valueString ||
-                              answerOption.valueInteger,
-                          });
-
-                          this.removeOpenAnswer(item);
-                        }}
-                        checked={
-                          exportService.codingEquals(
-                            exportService.getCorrectlyFormattedAnswer(
-                              questionnaireItemMap[item.linkId],
-                            ),
-                            answerOption.valueCoding,
-                          ) ||
-                          exportService.getCorrectlyFormattedAnswer(
-                            questionnaireItemMap[item.linkId],
-                          ) === answerOption.valueString ||
-                          exportService.getCorrectlyFormattedAnswer(
-                            questionnaireItemMap[item.linkId],
-                          ) === answerOption.valueInteger
-                        }
-                      />
-                    ),
-                )}
+                {item.answerOption.map((answerOption, index) => (
+                  <CheckBox
+                    uncheckedIcon="circle-o"
+                    checkedIcon="dot-circle-o"
+                    // eslint-disable-next-line react/no-array-index-key
+                    key={`${item.linkId}.a_${index}`}
+                    textStyle={localStyle.choiceText}
+                    title={this.getItemTitle(answerOption)}
+                    checkedColor={config.theme.colors.primary}
+                    uncheckedColor={config.theme.colors.accent1}
+                    containerStyle={{
+                      ...localStyle.choice,
+                      marginLeft: this.calculateIndent(item.linkId),
+                    }}
+                    onPress={() => {
+                      actions.setAnswer({
+                        linkId: item.linkId,
+                        answer:
+                          answerOption.valueCoding ||
+                          answerOption.valueString ||
+                          answerOption.valueInteger,
+                      });
+                    }}
+                    onIconPress={() => {
+                      actions.setAnswer({
+                        linkId: item.linkId,
+                        answer:
+                          answerOption.valueCoding ||
+                          answerOption.valueString ||
+                          answerOption.valueInteger,
+                      });
+                    }}
+                    checked={
+                      exportService.codingEquals(
+                        exportService.getCorrectlyFormattedAnswer(
+                          questionnaireItemMap[item.linkId],
+                        ),
+                        answerOption.valueCoding,
+                      ) ||
+                      exportService.getCorrectlyFormattedAnswer(
+                        questionnaireItemMap[item.linkId],
+                      ) === answerOption.valueString ||
+                      exportService.getCorrectlyFormattedAnswer(
+                        questionnaireItemMap[item.linkId],
+                      ) === answerOption.valueInteger
+                    }
+                  />
+                ))}
               </View>
             )}
 
             {/* repeat: true */}
             {item.repeats && (
               <View>
-                {item.answerOption.map(
-                  (answerOption, index) =>
-                    !answerOption.isOpenQuestionAnswer && (
-                      <CheckBox
-                        title={this.getItemTitle(answerOption)}
-                        checkedColor={config.theme.colors.primary}
-                        uncheckedColor={config.theme.colors.accent1}
-                        onPress={() => {
-                          actions.setAnswer({
-                            linkId: item.linkId,
-                            answer:
-                              answerOption.valueCoding ||
-                              answerOption.valueString ||
-                              answerOption.valueInteger,
-                            openAnswer: true,
-                          });
-                        }}
-                        onIconPress={() => {
-                          actions.setAnswer({
-                            linkId: item.linkId,
-                            answer:
-                              answerOption.valueCoding ||
-                              answerOption.valueString ||
-                              answerOption.valueInteger,
-                            openAnswer: true,
-                          });
-                        }}
-                        checked={
-                          (questionnaireItemMap[item.linkId].answer &&
-                            answerOption.valueCoding &&
-                            questionnaireItemMap[item.linkId].answer.some(
-                              (c) =>
-                                c.code === answerOption.valueCoding.code &&
-                                c.system === answerOption.valueCoding.system,
-                            )) ||
-                          (questionnaireItemMap[item.linkId].answer &&
-                            questionnaireItemMap[item.linkId].answer.includes(
-                              answerOption.valueString,
-                            )) ||
-                          (questionnaireItemMap[item.linkId].answer &&
-                            questionnaireItemMap[item.linkId].answer.includes(
-                              answerOption.valueInteger,
-                            ))
-                        }
-                        // eslint-disable-next-line react/no-array-index-key
-                        key={`${item.linkId}.a_${index}`}
-                        containerStyle={{
-                          ...localStyle.choice,
-                          marginLeft: this.calculateIndent(item.linkId),
-                        }}
-                        textStyle={localStyle.choiceText}
-                      />
-                    ),
-                )}
+                {item.answerOption.map((answerOption, index) => (
+                  <CheckBox
+                    title={this.getItemTitle(answerOption)}
+                    checkedColor={config.theme.colors.primary}
+                    uncheckedColor={config.theme.colors.accent1}
+                    onPress={() => {
+                      actions.setAnswer({
+                        linkId: item.linkId,
+                        answer:
+                          answerOption.valueCoding ||
+                          answerOption.valueString ||
+                          answerOption.valueInteger,
+                        repeats: true,
+                      });
+                    }}
+                    onIconPress={() => {
+                      actions.setAnswer({
+                        linkId: item.linkId,
+                        answer:
+                          answerOption.valueCoding ||
+                          answerOption.valueString ||
+                          answerOption.valueInteger,
+                        repeats: true,
+                      });
+                    }}
+                    checked={
+                      (questionnaireItemMap[item.linkId].answer &&
+                        answerOption.valueCoding &&
+                        questionnaireItemMap[item.linkId].answer.some(
+                          (c) =>
+                            c.code === answerOption.valueCoding.code &&
+                            c.system === answerOption.valueCoding.system,
+                        )) ||
+                      (questionnaireItemMap[item.linkId].answer &&
+                        questionnaireItemMap[item.linkId].answer.includes(
+                          answerOption.valueString,
+                        )) ||
+                      (questionnaireItemMap[item.linkId].answer &&
+                        questionnaireItemMap[item.linkId].answer.includes(
+                          answerOption.valueInteger,
+                        ))
+                    }
+                    // eslint-disable-next-line react/no-array-index-key
+                    key={`${item.linkId}.a_${index}`}
+                    containerStyle={{
+                      ...localStyle.choice,
+                      marginLeft: this.calculateIndent(item.linkId),
+                    }}
+                    textStyle={localStyle.choiceText}
+                  />
+                ))}
               </View>
-            )}
-
-            {/* if type: 'open-choice' */}
-            {item.type === 'open-choice' && (
-              <Input
-                containerStyle={localStyle.modalContainer}
-                placeholder={
-                  item.repeats
-                    ? localization.translate('survey').additionalAnswer
-                    : localization.translate('survey').alternativeAnswer
-                }
-                style={{ ...localStyle.alignmentWrapper }}
-                value={this.procureOpenAnswer(item)}
-                accessibilityHint={
-                  localization.translate('accessibility').questionnaire
-                    .textFieldHint
-                }
-                onChangeText={(text) => {
-                  // sets the answer
-                  actions.setAnswer({
-                    linkId: item.linkId,
-                    answer: text,
-                    isOpenAnswer: true,
-                    isAdditionalAnswer: item.repeats,
-                  });
-                }}
-              />
             )}
           </View>
         )}
-      </View>
-    ) : null;
-  };
-
-  removeOpenAnswer = (item) => {
-    if (item.type !== 'open-choice') return;
-    // eslint-disable-next-line react/destructuring-assignment
-    const a = this.props.questionnaireItemMap[item.linkId].answerOption.filter(
-      (e) => e.isOpenQuestionAnswer,
-    )[0];
-    a.answer = null;
-  };
-
-  procureOpenAnswer = (item) => {
-    if (item.type !== 'open-choice') return null;
-    // eslint-disable-next-line react/destructuring-assignment
-    return this.props.questionnaireItemMap[item.linkId].answerOption.filter(
-      (e) => e.isOpenQuestionAnswer,
-    )[0].answer;
-  };
-
-  checkIfOpenAnswerWasChosen = (item) => {
-    const { questionnaireItemMap } = this.props;
-    const { answer } = questionnaireItemMap[item.linkId];
-
-    questionnaireItemMap[item.linkId].answerOption.some(
-      (e) =>
-        e.valueString === answer ||
-        e.valueInteger === answer ||
-        e.valueDecimal === answer ||
-        e.valueDate === answer,
-    );
-  };
-
-  /**
-   * renders an open-choice-type ui-element (if its dependencies check out)
-   * @param  {QuestionnaireItem} item questionnaire item
-   */
-  createOpenChoices = (item) => {
-    const { actions, questionnaireItemMap } = this.props;
-    // checks the dependencies of the item and renders it (if the dependencies check out)
-    return this.getRenderStatusOfItem(item) ? (
-      <View>
-        {/* title */}
-        <Text
-          accessibilityLabel={item.text}
-          accessibilityHint={
-            localization.translate('accessibility').questionnaire.multipleChoice
-          }
-          style={{
-            ...localStyle.contentTitle,
-            fontSize: this.calculateFontSize(item.linkId),
-            marginLeft: this.calculateIndent(item.linkId),
-            lineHeight: this.calculateLineHeight(item.linkId),
-          }}
-        >
-          {item.text}
-        </Text>
-
-        {/* renders all answerOptions */}
-        <View>
-          {item.answerOption.map((answerOption, index) => (
-            <CheckBox
-              title={this.getItemTitle(answerOption)}
-              checkedColor={config.theme.colors.primary}
-              uncheckedColor={config.theme.colors.accent1}
-              onPress={() =>
-                actions.setAnswer({
-                  linkId: item.linkId,
-                  answer:
-                    answerOption.valueCoding ||
-                    answerOption.valueString ||
-                    answerOption.valueInteger,
-                  openAnswer: true,
-                })
-              }
-              onIconPress={() =>
-                actions.setAnswer({
-                  linkId: item.linkId,
-                  answer:
-                    answerOption.valueCoding ||
-                    answerOption.valueString ||
-                    answerOption.valueInteger,
-                  openAnswer: true,
-                })
-              }
-              checked={
-                (questionnaireItemMap[item.linkId].answer &&
-                  answerOption.valueCoding &&
-                  questionnaireItemMap[item.linkId].answer.some(
-                    (c) =>
-                      c.code === answerOption.valueCoding.code &&
-                      c.system === answerOption.valueCoding.system,
-                  )) ||
-                (questionnaireItemMap[item.linkId].answer &&
-                  questionnaireItemMap[item.linkId].answer.includes(
-                    answerOption.valueString,
-                  )) ||
-                (questionnaireItemMap[item.linkId].answer &&
-                  questionnaireItemMap[item.linkId].answer.includes(
-                    answerOption.valueInteger,
-                  ))
-              }
-              // eslint-disable-next-line react/no-array-index-key
-              key={`${item.linkId}.a_${index}`}
-              containerStyle={{
-                ...localStyle.choice,
-                marginLeft: this.calculateIndent(item.linkId),
-              }}
-              textStyle={localStyle.choiceText}
-            />
-          ))}
-        </View>
       </View>
     ) : null;
   };
@@ -978,7 +828,6 @@ class QuestionnaireModal extends Component {
 
       // creates a radio-item
       case 'choice':
-      case 'open-choice':
         return this.createChoices(item);
 
       // creates a checkbox
@@ -988,10 +837,6 @@ class QuestionnaireModal extends Component {
       // creates a date input
       case 'date':
         return this.createDatePicker(item);
-
-      // creates a group of checkboxes, at least one must be checked
-      // case 'open-choice':
-      // 	return this.createOpenChoices(item)
 
       // creates the inputs for decimals and integers (and numerical sliders)
       // this also utilizes the decimal-pad or the num-pad
