@@ -10,6 +10,7 @@ import * as RNLocalize from 'react-native-localize';
 import SplashScreen from 'react-native-splash-screen';
 import { StyleSheet, View, StatusBar, LogBox, Platform } from 'react-native';
 import RNRestart from 'react-native-restart';
+import { URL as nativeURL } from 'react-native-url-polyfill/auto';
 import localization from './src/services/localization/localization';
 
 import reduxStore from './src/store';
@@ -94,6 +95,9 @@ global variables / settings
 
 // needed by node-forge for the encryption functionality
 global.Buffer = require('buffer').Buffer;
+
+// polyfill for iOS
+global.URL = nativeURL;
 
 // deactivates the logbox-warning about the debugger running in the background
 LogBox.ignoreLogs(['Remote debugger']);
