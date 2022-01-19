@@ -18,7 +18,7 @@ export and AppContainer-creation
 
 // creates the stack-navigator for the navigation while NOT LOGGED IN
 
-const SignedOutView = () => {
+function SignedOutView() {
   const Stack = createStackNavigator();
   return (
     <Stack.Navigator
@@ -32,11 +32,11 @@ const SignedOutView = () => {
       <Stack.Screen name="Landing" component={Login} />
     </Stack.Navigator>
   );
-};
+}
 
 // creates the stack-navigator for the navigation while LOGGED IN
 
-const SignedInView = () => {
+function SignedInView() {
   const Stack = createStackNavigator();
   return (
     <Stack.Navigator
@@ -53,7 +53,7 @@ const SignedInView = () => {
       <Stack.Screen name="LegalInformation" component={About} />
     </Stack.Navigator>
   );
-};
+}
 
 /**
  * creates the app container based on the two stack-navigators
