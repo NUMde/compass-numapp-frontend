@@ -137,23 +137,6 @@ class QuestionnaireModal extends Component {
     setAccessibilityResponder(this.modalTitleRef);
   }
 
-  // rendering
-  /*-----------------------------------------------------------------------------------*/
-
-  /**
-   * renders the content based on the currently chose category
-   */
-  render = () => {
-    // if there is something to render
-    // eslint-disable-next-line react/destructuring-assignment
-    if (typeof this.props.currentCategoryIndex === 'number') {
-      return this.createFormContent();
-    }
-    // if not
-
-    return <View />;
-  };
-
   // class events
   /*-----------------------------------------------------------------------------------*/
 
@@ -161,16 +144,16 @@ class QuestionnaireModal extends Component {
    * is invoked before rendering when new props or state are being received.
    * basically it resets currentPageNeedsRendering
    */
-  shouldComponentUpdate = () => {
+  shouldComponentUpdate() {
     this.currentPageNeedsRendering = false;
     return true;
-  };
+  }
 
   /**
    * is invoked immediately after updating occurs. this method is not called for the initial render.
    * basically it resets currentPageNeedsRendering and scrolls back to the top.
    */
-  componentDidUpdate = () => {
+  componentDidUpdate() {
     const {
       actions,
       categories,
@@ -185,7 +168,7 @@ class QuestionnaireModal extends Component {
         currentPageIndex,
       );
     }
-  };
+  }
 
   // modal events
   /*-----------------------------------------------------------------------------------*/
@@ -1132,6 +1115,22 @@ class QuestionnaireModal extends Component {
       </View>
     );
   };
+  // rendering
+  /*-----------------------------------------------------------------------------------*/
+
+  /**
+   * renders the content based on the currently chose category
+   */
+  render() {
+    // if there is something to render
+    // eslint-disable-next-line react/destructuring-assignment
+    if (typeof this.props.currentCategoryIndex === 'number') {
+      return this.createFormContent();
+    }
+    // if not
+
+    return <View />;
+  }
 }
 
 /***********************************************************************************************
