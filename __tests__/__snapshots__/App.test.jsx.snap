@@ -651,7 +651,6 @@ The logo file (as well as the logoBackground) can be updated by updating the 'CU
                                                         </View>
                                                       }
                                                       enableOnAndroid={true}
-                                                      innerRef={[Function]}
                                                       onScroll={[Function]}
                                                       scrollEventThrottle={16}
                                                       style={

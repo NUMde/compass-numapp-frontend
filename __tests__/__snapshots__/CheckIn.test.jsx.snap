@@ -405,7 +405,6 @@ exports[`CHECKIN RENDERING: <CheckInContainer /> can be rendered 1`] = `
         }
         contentData={<View />}
         enableOnAndroid={true}
-        innerRef={[Function]}
         onScroll={[Function]}
         scrollEventThrottle={16}
         style={
@@ -840,7 +839,6 @@ exports[`CHECKIN RENDERING: <CheckInScreen /> can be rendered 1`] = `
         }
         contentData={<View />}
         enableOnAndroid={true}
-        innerRef={[Function]}
         onScroll={[Function]}
         scrollEventThrottle={16}
         style={
@@ -1281,7 +1279,6 @@ exports[`CHECKIN RENDERING: <SurveyScreen /> can be rendered 1`] = `
         </View>
       }
       enableOnAndroid={true}
-      innerRef={[Function]}
       onScroll={[Function]}
       scrollEventThrottle={16}
       style={

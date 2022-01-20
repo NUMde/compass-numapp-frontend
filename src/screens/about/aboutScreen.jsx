@@ -26,8 +26,6 @@ Component
 ***********************************************************************************************/
 
 class AboutScreen extends PureComponent {
-  selectedLanguage = '';
-
   /**
    * renders the About-Screen
    * @constructor

@@ -74,6 +74,24 @@ class RedirectModal extends Component {
     });
   }
 
+  // modal events
+  /*-----------------------------------------------------------------------------------*/
+
+  /**
+   * handles the scroll-event of the scrollView
+   * @param {object} event scroll event
+   */
+  handleOnScroll = (event) => event.nativeEvent.contentOffset.y;
+
+  /**
+   * @param {HTMLElement} element UI element that RNModal will scroll to (for example if the software-keyboard is shown)
+   */
+  handleScrollTo = (element) => {
+    if (this.scrollViewRef.current) {
+      this.scrollViewRef.current.scrollTo({ ...element, animated: true });
+    }
+  };
+
   // rendering
   /*-----------------------------------------------------------------------------------*/
 
@@ -81,7 +99,7 @@ class RedirectModal extends Component {
    * renders a modal that redirects the user to his/her webbrowser and opens a website
    * defined
    */
-  render = () => {
+  render() {
     const { actions, showModal, modalLink } = this.props;
     return (
       <RNModal
@@ -171,25 +189,7 @@ class RedirectModal extends Component {
         </View>
       </RNModal>
     );
-  };
-
-  // modal events
-  /*-----------------------------------------------------------------------------------*/
-
-  /**
-   * handles the scroll-event of the scrollView
-   * @param {object} event scroll event
-   */
-  handleOnScroll = (event) => event.nativeEvent.contentOffset.y;
-
-  /**
-   * @param {HTMLElement} element UI element that RNModal will scroll to (for example if the software-keyboard is shown)
-   */
-  handleScrollTo = (element) => {
-    if (this.scrollViewRef.current) {
-      this.scrollViewRef.current.scrollTo({ ...element, animated: true });
-    }
-  };
+  }
 }
 
 /***********************************************************************************************

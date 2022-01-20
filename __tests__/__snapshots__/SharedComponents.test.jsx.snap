@@ -640,7 +640,6 @@ exports[`SHARED COMPONENTS: <ScrollIndicatorWrapper /> can be rendered 1`] = `
       }
     }
     enableOnAndroid={true}
-    innerRef={[Function]}
     onScroll={[Function]}
     scrollEventThrottle={16}
     style={

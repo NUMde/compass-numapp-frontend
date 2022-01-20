@@ -43,7 +43,7 @@ class LoginContainer extends Component {
    * after the component mounted (to clean the state). also triggers the auto-login if
    * configured in appConfig.js
    */
-  componentDidMount = () => {
+  componentDidMount() {
     const { subjectId, actions, route } = this.props;
 
     // logout of an existing user
@@ -64,19 +64,19 @@ class LoginContainer extends Component {
         this.autoLoginLastUser();
       }, 0);
     }
-  };
+  }
 
   /**
    * checks after each update if the user is logged in and (if yes) navigates to the checkIn-screen
    */
-  componentDidUpdate = () => {
+  componentDidUpdate() {
     const { loggedIn, navigation } = this.props;
     if (loggedIn) {
       setTimeout(() => {
         navigation.navigate('SignedIn', { screen: 'CheckIn' });
       }, 0);
     }
-  };
+  }
 
   // class methods
   /*-----------------------------------------------------------------------------------*/

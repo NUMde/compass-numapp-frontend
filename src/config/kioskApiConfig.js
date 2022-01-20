@@ -82,15 +82,15 @@ const getDueDate = (laterOn) => {
  * gets list of languages
  */
 const getLanguages = () =>
-  new Promise((res) =>
+  new Promise((res) => {
     setTimeout(
       () =>
         res({
           data: ['de', 'en', 'fr', 'ar'],
         }),
       500,
-    ),
-  );
+    );
+  });
 
 /**
  * generates a fitting set of userdata
@@ -158,9 +158,9 @@ const getBaseQuestionnaire = (langCode) => {
   if (questionnaire.item[1]) {
     questionnaire.item[1].text += ` (${langCode})`;
   }
-  return new Promise((res) =>
-    setTimeout(() => res({ data: questionnaire }), 900),
-  );
+  return new Promise((res) => {
+    setTimeout(() => res({ data: questionnaire }), 900);
+  });
 };
 
 /***********************************************************************************************
@@ -173,16 +173,16 @@ export default {
   sendQuestionnaire,
   active: kioskModeIsActive,
   login: () =>
-    new Promise((res) =>
-      setTimeout(() => res({ data: generateMockUserData() }), 500),
-    ),
+    new Promise((res) => {
+      setTimeout(() => res({ data: generateMockUserData() }), 500);
+    }),
   getUserUpdate: () =>
-    new Promise((res) =>
-      setTimeout(() => res({ data: generateMockUserData() }), 900),
-    ),
+    new Promise((res) => {
+      setTimeout(() => res({ data: generateMockUserData() }), 900);
+    }),
   updateDeviceToken: () =>
-    new Promise((res) =>
-      setTimeout(() => res({ data: hardcodedTestQuestionnaire }), 400),
-    ),
+    new Promise((res) => {
+      setTimeout(() => res({ data: hardcodedTestQuestionnaire }), 400);
+    }),
   getBaseQuestionnaire,
 };

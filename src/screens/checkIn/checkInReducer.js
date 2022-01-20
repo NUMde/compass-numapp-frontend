@@ -470,6 +470,7 @@ const valuesHandlers = {
 export
 ***********************************************************************************************/
 
+// eslint-disable-next-line default-param-last
 export default (state = initialState, values) =>
   valuesHandlers[values.type]
     ? valuesHandlers[values.type](state, values)
