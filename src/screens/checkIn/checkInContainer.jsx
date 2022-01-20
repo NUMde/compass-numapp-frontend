@@ -264,7 +264,6 @@ class CheckInContainer extends Component {
           // deletes the locally persisted questionnaire, as it does not matches
           // the one the user is supposed to look at
           setTimeout(() => {
-            this.deleteLocalQuestionnaireData();
             this.deleteLocalQuestionnaireData(
               lastLang !== localization.getLanguageTag() ??
                 localization.translate('generic').wrongLangugageVersionDetected,
