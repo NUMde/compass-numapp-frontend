@@ -266,7 +266,7 @@ class CheckInContainer extends Component {
           setTimeout(() => {
             this.deleteLocalQuestionnaireData(
               lastLang !== localization.getLanguageTag() ??
-                localization.translate('generic').wrongLangugageVersionDetected,
+                localization.translate('generic').wrongLanguageVersionDetected,
             );
           }, 0);
         }

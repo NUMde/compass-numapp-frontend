@@ -121,7 +121,7 @@ export default {
     eraseLocalDataAtEndOfStudyText:
       'Dies wird erneut das Ende der Studie betonen.Sobald der Benutzer die lokalen Daten bestätigt, wird der Teilnehmer abgemeldet.Möchten Sie vorausgehen?',
     eraseLocalDataAtEndOfStudyTitle: 'Löschen Sie lokale Daten und logout',
-    wrongLangugageVersionDetected:
+    wrongLanguageVersionDetected:
       'Der anhaltende Fragebogen stimmt nicht mit der aktuell ausgewählten Sprache auf Ihrem Gerät überein.Dieser Fragebogen wird nun durch eine passende Version ersetzt.Ihre Antworten gehen verloren.',
     updateError:
       'Beim Erhalten der angeforderten Daten ist ein Fehler aufgetreten - bitte versuchen Sie es erneut.',

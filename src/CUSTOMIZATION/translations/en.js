@@ -111,10 +111,10 @@ export default {
     sendError: 'There was an error transmitting the data. Please try again.',
     sendErrorTwoDevices:
       'You have already sent this questionnaire through another App. ',
-    wrongLangugageVersionDetected:
-      'The persisted questionnaire doies not match the currently selected language on your device. This questionnaire will now be replaced by a matching version. Your answers will be lost.',
+    wrongLanguageVersionDetected:
+      'The persisted questionnaire does not match the currently selected language on your device. This questionnaire will now be replaced by a matching version. Your answers will be lost.',
     eraseAllWarning:
-      'This will delete all local data and logs you out. Do you want to procede?',
+      'This will delete all local data and logs you out. Do you want to proceed?',
     eraseLocalDataAtEndOfStudyText:
       'This will again emphasize the end of the study. As soon as the user confirms the local data will be removed and the participant is logged out. Do you want to precede?',
     eraseLocalDataAtEndOfStudyTitle: 'Delete local data and logout',
@@ -137,7 +137,7 @@ export default {
     demoDelete: 'Delete all & logout (just for this DEMO)',
     languageSelection: 'Language Selection',
     languageWarning:
-      'If you change the language while having a persisted save state of your current answers, said save sgate will be removed.',
+      'If you change the language while having a persisted save state of your current answers, said save state will be removed.',
     languageWarningAddition: '\nDo you want to proceed?',
 
     /** contains the strings for the optional LegalInformation Screen */

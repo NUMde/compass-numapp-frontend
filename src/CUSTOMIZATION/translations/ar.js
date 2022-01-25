@@ -113,7 +113,7 @@ export default {
     eraseLocalDataAtEndOfStudyTitle: 'حذف البيانات والخروج المحلية',
     updateError:
       'حدث خطأ أثناء الحصول على البيانات المطلوبة - يرجى المحاولة مرة أخرى.',
-    wrongLangugageVersionDetected:
+    wrongLanguageVersionDetected:
       'لا يتطابق الاستبيان المستمر إلى اللغة المحددة حاليا على جهازك.سيتم الآن استبدال هذا الاستبيان بإصدار مطابق.سيتم فقد إجاباتك.',
     infoRemoval: 'الاستبيان المستمر حاليا عفا عليه الزمن وسيتم إزالته الآن.',
     reportWhileInIteratedMode:

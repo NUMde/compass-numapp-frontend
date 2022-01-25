@@ -127,7 +127,7 @@ export default {
       "Une erreur s'est produite lors de l'obtention des données demandées - veuillez réessayer.",
     infoRemoval:
       'Le questionnaire actuellement durable est obsolète et sera maintenant enlevé.',
-    wrongLangugageVersionDetected:
+    wrongLanguageVersionDetected:
       'Le questionnaire persisté ne correspond pas à la langue actuellement sélectionnée sur votre appareil.Ce questionnaire sera maintenant remplacé par une version correspondante.Vos réponses seront perdues.',
     reportWhileInIteratedMode:
       "Dialogue Pour dire à l'utilisateur qu'il a déjà été envoyé dans un rapport spécial et qu'il s'agit simplement d'un intervalle spécial.",
