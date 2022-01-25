@@ -62,6 +62,8 @@ const generateQuestionnaireItemMap = (questionnaire, subjectId, backendId) => {
   questionnaireItemMap.version = questionnaire.version;
   // used to build the questionnaire-response
   questionnaireItemMap.identifier = questionnaire.identifier;
+  // save the language
+  questionnaireItemMap.language = questionnaire.language;
 
   // persists the last known questionnaireId in the LocalStorage
   setTimeout(async () => {

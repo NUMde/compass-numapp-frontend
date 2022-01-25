@@ -2,6 +2,7 @@
 imports
 ***********************************************************************************************/
 
+import cloneDeep from 'lodash.clonedeep';
 import localStorage from '../services/localStorage/localStorage';
 import hardcodedTestQuestionnaire from '../assets/files/questionnaire'; // the predefined questionnaire the demo is gonna use
 
@@ -150,14 +151,18 @@ const sendReport = async () => {
  * triggers the mock for the sendReport call and updates a status variable
  */
 const getBaseQuestionnaire = (langCode) => {
-  const questionnaire = hardcodedTestQuestionnaire;
-  // if(langCode !== "en" && langCode !== "de") langCode = "de";
-  if (questionnaire.item[0]) {
-    questionnaire.item[0].text += ` (${langCode})`;
-  }
-  if (questionnaire.item[1]) {
-    questionnaire.item[1].text += ` (${langCode})`;
-  }
+  // make deep copy of the demo questionnaire object
+  // so that the copy can be manipulated without changing the original
+  const questionnaire = cloneDeep(hardcodedTestQuestionnaire);
+  // in kiosk mode the exact same questionnaire is used;
+  // TODO: translate questionnaires
+  // therefore the language attribute is set manually here
+  questionnaire.language = langCode;
+  // only for kiosk mode: add languge code to each category
+  questionnaire.item.forEach((item) => {
+    // eslint-disable-next-line no-param-reassign
+    item.text += ` (${langCode})`;
+  });
   return new Promise((res) => {
     setTimeout(() => res({ data: questionnaire }), 900);
   });
