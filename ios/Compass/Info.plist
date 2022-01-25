@@ -26,6 +26,21 @@
 	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
+		<key>NSPinnedDomains</key>
+		<dict>
+			<key>secure.domain</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSPinnedLeafIdentities</key>
+				<array>
+					<dict>
+						<key>pin1</key>
+						<string>7HIpactkIAq2Y49orFOOQKurWxmmSFZhBCoQYcRhJ3Y</string>
+					</dict>
+				</array>
+			</dict>
+		</dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 		<key>NSExceptionDomains</key>
