@@ -4,8 +4,15 @@
         <!-- insert domains here which shall only be connected to via https
         Note: only relevant for Android <= 8.1 -->
         <domain includeSubdomains="true">
-            secure.example.com
+            secure.domain
         </domain>
+        <pin-set>
+            <!-- certificate pinning-->
+             <pin digest="SHA-256">7HIpactkIAq2Y49orFOOQKurWxmmSFZhBCoQYcRhJ3Y=</pin>
+            <!-- backup pin -->
+            <pin digest="SHA-256">7HIpactkIAq2Y49orFOOQKurWxmmSFZhBCoQYcRhJ3Y</pin>
+        </pin-set>
+
     </domain-config>
     <!-- enable cleartext traffic in debug -->
     <domain-config cleartextTrafficPermitted="true">
