@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="false">
+        <!-- insert domains here which shall only be connected to via https
+        Note: only relevant for Android <= 8.1 -->
+        <domain includeSubdomains="true">
+            secure.example.com
+        </domain>
+    </domain-config>
+    <!-- enable cleartext traffic in debug -->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">
+            <!-- localhost -->
+            localhost
+        </domain><domain includeSubdomains="true">
+            <!-- localhost -->
+            127.0.0.1
+        </domain>
+        <domain includeSubdomains="true">
+            <!-- metro bundler -->
+            10.0.2.2
+        </domain>
+    </domain-config>
+</network-security-config>
