@@ -13,8 +13,6 @@ import config from '../../config/configProvider';
 operations
 ***********************************************************************************************/
 
-let lastSubjectId;
-
 // last subject-id
 /*-----------------------------------------------------------------------------------*/
 /**
@@ -23,7 +21,7 @@ let lastSubjectId;
  */
 const loadLastSubjectId = async () => {
   try {
-    lastSubjectId = await EncryptedStorage.getItem(
+    const lastSubjectId = await EncryptedStorage.getItem(
       config.appConfig.lastSubjectId,
     );
     return lastSubjectId;
@@ -39,7 +37,7 @@ const loadLastSubjectId = async () => {
  * @param  {string} [subjectId] subjectId of the user
  */
 const persistLastSubjectId = async (subjectId) => {
-  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
+  const id = subjectId || (await loadLastSubjectId());
   if (!id) return;
 
   try {
@@ -72,7 +70,7 @@ const removeLastSubjectId = async () => {
  * @param  {any} FCMToken notification object
  */
 const persistFCMToken = async (FCMToken, subjectId) => {
-  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
+  const id = subjectId || (await loadLastSubjectId());
   if (!id) return;
 
   try {
@@ -91,7 +89,7 @@ const persistFCMToken = async (FCMToken, subjectId) => {
  * @returns {Promise<{deviceId:string}>}
  */
 const loadFCMToken = async (subjectId) => {
-  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
+  const id = subjectId || (await loadLastSubjectId());
   if (!id) return null;
 
   try {
@@ -107,7 +105,7 @@ const loadFCMToken = async (subjectId) => {
  * @param  {string} [subjectId] subjectId of the user
  */
 const removeFCMToken = async (subjectId) => {
-  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
+  const id = subjectId || (await loadLastSubjectId());
   if (!id) return;
 
   try {
@@ -124,18 +122,20 @@ const removeFCMToken = async (subjectId) => {
  * when the user receives a questionnaire from the server, the frontend persists its
  * language.
  * if not, the questionnaire will be deleted and a user update executed.
- * @param  {string} questionnaireId id of the questionnaire
+ * @param  {string} languageCode languageCode of the questionnaire
  * @param  {string} [subjectId] id of the user
  */
-const persistLastQuestionnaireLanguage = async (questionnaireId, subjectId) => {
-  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
-  if (!id) return;
-  if (!(questionnaireId && id)) return;
+const persistLastQuestionnaireLanguage = async (languageCode, subjectId) => {
+  const id = subjectId || (await loadLastSubjectId());
+  if (!id) {
+    return;
+  }
+  if (!(languageCode && id)) return;
 
   try {
     await EncryptedStorage.setItem(
       `${config.appConfig.lastQuestionnaireLang}_${id}`,
-      questionnaireId,
+      languageCode,
     );
   } catch (error) {
     console.error(error);
@@ -148,7 +148,7 @@ const persistLastQuestionnaireLanguage = async (questionnaireId, subjectId) => {
  * @returns string | null
  */
 const loadLastQuestionnaireLanguage = async (subjectId) => {
-  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
+  const id = subjectId || (await loadLastSubjectId());
   if (!id) return null;
 
   try {
@@ -166,7 +166,7 @@ const loadLastQuestionnaireLanguage = async (subjectId) => {
  * @param  {string} [subjectId] subject-id
  */
 const removeLastQuestionnaireLanguage = async (subjectId) => {
-  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
+  const id = subjectId || (await loadLastSubjectId());
   if (!id) return;
 
   try {
@@ -190,11 +190,12 @@ const removeLastQuestionnaireLanguage = async (subjectId) => {
  * @param  {string} [subjectId] id of the user
  */
 const persistLastQuestionnaireId = async (questionnaireId, subjectId) => {
-  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
+  const id = subjectId || (await loadLastSubjectId());
   if (!id) return;
   if (!(questionnaireId && id)) return;
 
   try {
+    console.log(`storing qid: ${questionnaireId} for user: ${id}`);
     await EncryptedStorage.setItem(
       `${config.appConfig.lastQuestionnaireId}_${id}`,
       questionnaireId,
@@ -210,7 +211,7 @@ const persistLastQuestionnaireId = async (questionnaireId, subjectId) => {
  * @returns string | null
  */
 const loadLastQuestionnaireId = async (subjectId) => {
-  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
+  const id = subjectId || (await loadLastSubjectId());
   if (!id) return null;
 
   try {
@@ -228,7 +229,7 @@ const loadLastQuestionnaireId = async (subjectId) => {
  * @param  {string} [subjectId] subject-id
  */
 const removeLastQuestionnaireId = async (subjectId) => {
-  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
+  const id = subjectId || (await loadLastSubjectId());
   if (!id) return;
 
   try {
@@ -249,7 +250,7 @@ const removeLastQuestionnaireId = async (subjectId) => {
  * @param  {string} [subjectId] if of the user
  */
 const persistCategories = async (categories, subjectId) => {
-  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
+  const id = subjectId || (await loadLastSubjectId());
   if (!(categories && subjectId)) return;
 
   const stringToBePersisted =
@@ -271,7 +272,7 @@ const persistCategories = async (categories, subjectId) => {
  * @returns string | null
  */
 const loadCategories = async (subjectId) => {
-  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
+  const id = subjectId || (await loadLastSubjectId());
   if (!id) return null;
   try {
     return JSON.parse(
@@ -290,7 +291,7 @@ const loadCategories = async (subjectId) => {
  * @param  {string} [subjectId] subject-id
  */
 const removeCategories = async (subjectId) => {
-  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
+  const id = subjectId || (await loadLastSubjectId());
   if (!id) return;
 
   try {
@@ -311,7 +312,7 @@ const removeCategories = async (subjectId) => {
  * @param  {string} [subjectId] if of the user
  */
 const persistQuestionnaireItemMap = async (map, subjectId) => {
-  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
+  const id = subjectId || (await loadLastSubjectId());
   if (!id) return;
 
   const stringToBePersisted = map instanceof String ? map : JSON.stringify(map);
@@ -332,7 +333,7 @@ const persistQuestionnaireItemMap = async (map, subjectId) => {
  * @returns string | null
  */
 const loadQuestionnaireItemMap = async (subjectId) => {
-  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
+  const id = subjectId || (await loadLastSubjectId());
   if (!id) return null;
   try {
     return JSON.parse(
@@ -351,7 +352,7 @@ const loadQuestionnaireItemMap = async (subjectId) => {
  * @param  {string} [subjectId] subject-id
  */
 const removeQuestionnaireItemMap = async (subjectId) => {
-  const id = subjectId || lastSubjectId || (await loadLastSubjectId());
+  const id = subjectId || (await loadLastSubjectId());
   if (!id) return;
 
   try {
