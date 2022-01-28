@@ -195,7 +195,6 @@ const persistLastQuestionnaireId = async (questionnaireId, subjectId) => {
   if (!(questionnaireId && id)) return;
 
   try {
-    console.log(`storing qid: ${questionnaireId} for user: ${id}`);
     await EncryptedStorage.setItem(
       `${config.appConfig.lastQuestionnaireId}_${id}`,
       questionnaireId,
