@@ -1,0 +1,23 @@
+= Security Considerations =
+
+As this app is intend to process sensitive health data, security plays a vital role.
+Hence, some security mechanisms are implemented in order to minimize the risk of attacks and data leaks.
+In the following sections, these security mechanisms are explained along with the necessary configurations
+which need to be madewhen creating an app based upon this project.
+ 
+== Secure Traffic ==
+Sensitive data must only be sent via encrypted network, i.e. using https.
+On Android, sending link:https://developer.android.com/training/articles/security-config#CleartextTrafficPermitted[cleartext is disabled by default] when using Android 9 or newer. On iOS, this in enforced by default since link:https://developer.apple.com/documentation/bundleresources/information_property_list/nsapptransportsecurity[iOS 9].
+ 
+However, in some cases or for some resources (e.g. during development with a local server), this might not be possible.
+Exceptions can be configured in the link:../../android/app/src/main/res/xml/network_security_config.xml[network configuration file] for Android and in the link:../../ios/Compass/Info.plist[Info.plist] file for iOS.
+For both platforms example configurations are given in the aforementioned files. 
+ 
+== Certificate Pinning ==
+link:https://www.ibm.com/docs/en/mpf/8.0.0?topic=application-certificate-pinning[Certificate Pinning] is a technique to verify the certificate of the domain with which the app communicates, preventing 'man-in-the middle' attacks.
+This works by saving the base64 encoded digest of X.509 certificate's _"Subject Public Key Info"_ field in the app and comparing it to the certificate of the domain each time a request is made.
+The Configration for 'Certificate Pinning' for is done in the same files as the configuration for link:README.adoc#secure-traffic[secure traffice].
+
+Again, for both Platforms examples are given in these files.
+For additional info see link:https://developer.android.com/training/articles/security-config#CertificatePinning[here (Android)] and link:https://developer.apple.com/news/?id=g9ejcf8y[here (iOS)]
+ 
