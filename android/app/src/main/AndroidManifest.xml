@@ -37,6 +37,5 @@
             android:windowSoftInputMode="adjustResize"
             tools:ignore="LockedOrientationActivity">
         </activity>
-        <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
     </application>
 </manifest>

@@ -14,18 +14,11 @@
         </pin-set>
 
     </domain-config>
-    <!-- enable cleartext traffic in debug -->
+    <!-- enable cleartext traffic -->
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">
-            <!-- localhost -->
-            localhost
-        </domain><domain includeSubdomains="true">
-            <!-- localhost -->
-            127.0.0.1
-        </domain>
-        <domain includeSubdomains="true">
-            <!-- metro bundler -->
-            10.0.2.2
+            <!-- domain with cleartext traffic-->
+            unsecure.domain
         </domain>
     </domain-config>
 </network-security-config>

@@ -10,7 +10,7 @@ Sensitive data must only be sent via encrypted network, i.e. using https.
 On Android, sending link:https://developer.android.com/training/articles/security-config#CleartextTrafficPermitted[cleartext is disabled by default] when using Android 9 or newer. On iOS, this in enforced by default since link:https://developer.apple.com/documentation/bundleresources/information_property_list/nsapptransportsecurity[iOS 9].
  
 However, in some cases or for some resources (e.g. during development with a local server), this might not be possible.
-Exceptions can be configured in the link:../../android/app/src/main/res/xml/network_security_config.xml[network configuration file] for Android and in the link:../../ios/Compass/Info.plist[Info.plist] file for iOS.
+Exceptions can be configured in the network configuration file link:../../android/app/src/main/res/xml/network_security_config.xml[for realese builds] and for link:../../android/app/src/debug/res/xml/network_security_config.xml[debug/local development builds] for Android and in the link:../../ios/Compass/Info.plist[Info.plist] file for iOS.
 For both platforms example configurations are given in the aforementioned files. 
  
 == Certificate Pinning ==
