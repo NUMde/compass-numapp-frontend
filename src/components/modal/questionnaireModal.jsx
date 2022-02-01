@@ -301,7 +301,13 @@ class QuestionnaireModal extends Component {
    * is used to determine the color of the button on the bottom of the modal.
    */
   checkCurrentPageState = () => {
-    const { categories, currentCategoryIndex, currentPageIndex } = this.props;
+    const {
+      categories,
+      questionnaireItemMap,
+      currentCategoryIndex,
+      currentPageIndex,
+      actions: { setQuestionnaireItemMap },
+    } = this.props;
     return exportService.checkCompletionStateOfMultipleItems(
       [
         categories[currentCategoryIndex].item[
@@ -309,7 +315,9 @@ class QuestionnaireModal extends Component {
           currentPageIndex - 1
         ],
       ],
-      this.props,
+      categories,
+      questionnaireItemMap,
+      setQuestionnaireItemMap,
     );
   };
 
@@ -321,8 +329,12 @@ class QuestionnaireModal extends Component {
    * @param  {QuestionnaireItem} item questionnaire-item
    */
   getRenderStatusOfItem = (item) => {
+    const { questionnaireItemMap } = this.props;
     // uses the checkDependenciesOfSingleItem-function from the export service
-    let returnValue = exportService.checkDependenciesOfSingleItem(item);
+    let returnValue = exportService.checkDependenciesOfSingleItem(
+      item,
+      questionnaireItemMap,
+    );
     // If the item is supposed to be hidden, remember the linjkId to make the subItems invisible in case there are subItems.
     if (!returnValue) {
       this.level = item.linkId;
@@ -932,7 +944,11 @@ class QuestionnaireModal extends Component {
           <ProgressBar
             progress={
               config.appConfig.useStrictModeProgressBar
-                ? exportService.calculatePageProgress(this.props)
+                ? exportService.calculatePageProgress(
+                    categories,
+                    currentCategoryIndex,
+                    currentPageIndex,
+                  )
                 : currentPageIndex /
                   categories[currentCategoryIndex].item.length
             }
@@ -1081,7 +1097,12 @@ class QuestionnaireModal extends Component {
    * creates the modal itself if categories are loaded
    */
   createFormContent = () => {
-    const { showQuestionnaireModal, actions, categories } = this.props;
+    const {
+      showQuestionnaireModal,
+      actions,
+      categories,
+      questionnaireItemMap,
+    } = this.props;
     return (
       <View>
         {categories && (
@@ -1101,7 +1122,9 @@ class QuestionnaireModal extends Component {
             onModalWillHide={() =>
               exportService.checkCompletionStateOfMultipleItems(
                 null,
-                this.props,
+                categories,
+                questionnaireItemMap,
+                actions.setQuestionnaireItemMap,
               )
             }
           >
