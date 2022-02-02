@@ -296,7 +296,10 @@ describe('QUESTIONNAIRE HANDLING:', () => {
     jest.mock('../src/store.js');
 
     // creates the response
-    const generatedResponse = questionnaireAnalyzer.createResponseJSON();
+    const generatedResponse = questionnaireAnalyzer.createResponseJSON(
+      initialStateCopy.CheckIn.questionnaireItemMap,
+      initialStateCopy.CheckIn.categories,
+    );
 
     // checks the properties of the response
     expect(
@@ -317,7 +320,10 @@ describe('QUESTIONNAIRE HANDLING:', () => {
     jest.mock('../src/store.js');
 
     // generates the response
-    const exportData = questionnaireAnalyzer.createResponseJSON();
+    const exportData = questionnaireAnalyzer.createResponseJSON(
+      initialStateCopy.CheckIn.questionnaireItemMap,
+      initialStateCopy.CheckIn.categories,
+    );
 
     // sends the questionnaire
     return loggedInClient
