@@ -29,7 +29,7 @@ export const deleteLocalQuestionnaire = () => async (dispatch) => {
 
 /**
  * shows the modal and sets its content
- * @param  {{title:string,subTitle: string,uri: string}} modalLink determines what content will be rendered (needed for the render function of src/component/modal/redirectModal.js)
+ * @param  {{title:string,subTitle: string,uri: string}} modalLink determines what content will be rendered (needed for the render function of src/component/about/redirectModal.js)
  */
 export const showModal = (modalLink) => async (dispatch) => {
   dispatch({

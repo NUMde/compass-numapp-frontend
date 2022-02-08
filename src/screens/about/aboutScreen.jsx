@@ -13,7 +13,7 @@ import store from '../../store';
 import config from '../../config/configProvider';
 import Banner from '../../components/banner/banner';
 import kioskMode from '../../config/kioskApiConfig';
-import RedirectModal from '../../components/modal/redirectModal';
+import RedirectModal from '../../components/about/redirectModal';
 import AboutListItem from '../../components/about/aboutListItem';
 import AboutListLink from '../../components/about/aboutListLink';
 import localization from '../../services/localization/localization';
