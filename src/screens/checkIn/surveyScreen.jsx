@@ -11,7 +11,7 @@ import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import config from '../../config/configProvider';
 import Banner from '../../components/banner/banner';
 import localization from '../../services/localization/localization';
-import QuestionnaireModal from '../../components/modal/questionnaireModal';
+import QuestionnaireModal from '../../components/questionnaireModal/questionnaireModal';
 import ScrollIndicatorWrapper from '../../components/scrollIndicatorWrapper/scrollIndicatorWrapper';
 
 let localStyle;
