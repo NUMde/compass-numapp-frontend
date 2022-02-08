@@ -82,15 +82,6 @@ class QuestionnaireModal extends Component {
   isAccessibilityOn = false;
 
   /**
-	* is used to preserve the information if the current page holds
-	any item that needs to be displayed. if not, the next page of the
-	current category will be transitioned to (or the
-	modal will be closed if it is the last page.)
-	* @type {boolean}
-	*/
-  currentPageNeedsRendering;
-
-  /**
    * tells us if the last page-navigation direction was forwards.
    * @type {boolean}
    */
@@ -123,7 +114,6 @@ class QuestionnaireModal extends Component {
 
     // setting defaults
     this.scrollOffset = 0;
-    this.currentPageNeedsRendering = false;
     this.lastPageNavigationWasForwards = true;
     this.level = null;
 
@@ -141,15 +131,6 @@ class QuestionnaireModal extends Component {
   /*-----------------------------------------------------------------------------------*/
 
   /**
-   * is invoked before rendering when new props or state are being received.
-   * basically it resets currentPageNeedsRendering
-   */
-  shouldComponentUpdate() {
-    this.currentPageNeedsRendering = false;
-    return true;
-  }
-
-  /**
    * is invoked immediately after updating occurs. this method is not called for the initial render.
    * basically it resets currentPageNeedsRendering and scrolls back to the top.
    */
@@ -161,7 +142,14 @@ class QuestionnaireModal extends Component {
       currentCategoryIndex,
       showQuestionnaireModal,
     } = this.props;
-    if (!this.currentPageNeedsRendering && showQuestionnaireModal) {
+    // when the requirements for the current question are not met,
+    // an update is triggered to skip to the next (or previous) question
+    if (
+      showQuestionnaireModal &&
+      !this.getRenderStatusOfItem(
+        categories[currentCategoryIndex].item[currentPageIndex - 1],
+      )
+    ) {
       actions.switchContent(
         this.lastPageNavigationWasForwards,
         categories[currentCategoryIndex].item.length,
@@ -364,12 +352,7 @@ class QuestionnaireModal extends Component {
       // When the item isn't a subItem of the hidden item
       else {
         this.level = null;
-        // if an item meets its dependencies it needs to be displayed
-        this.currentPageNeedsRendering = true;
       }
-    } else {
-      // if an item meets its dependencies it needs to be displayed
-      this.currentPageNeedsRendering = true;
     }
 
     return returnValue;
@@ -386,7 +369,7 @@ class QuestionnaireModal extends Component {
   createChoices = (item) => {
     const { actions, questionnaireItemMap } = this.props;
     // checks the dependencies of the item and renders it (if the dependencies check out)
-    return this.getRenderStatusOfItem(item) ? (
+    return (
       <View>
         {/* title */}
         <Text
@@ -549,7 +532,7 @@ class QuestionnaireModal extends Component {
           </View>
         )}
       </View>
-    ) : null;
+    );
   };
 
   /**
@@ -559,7 +542,7 @@ class QuestionnaireModal extends Component {
   createBoolean = (item) => {
     const { actions, questionnaireItemMap } = this.props;
     // checks the dependencies of the item and renders it (if the dependencies check out)
-    return this.getRenderStatusOfItem(item) ? (
+    return (
       <View>
         <CheckBox
           title={item.text}
@@ -596,8 +579,6 @@ class QuestionnaireModal extends Component {
           textStyle={localStyle.choiceText}
         />
       </View>
-    ) : (
-      true
     );
   };
 
@@ -608,7 +589,7 @@ class QuestionnaireModal extends Component {
   createInput = (item) => {
     const { actions, questionnaireItemMap } = this.props;
     // checks the dependencies of the item and renders it (if the dependencies check out)
-    return this.getRenderStatusOfItem(item) ? (
+    return (
       <View style={localStyle.modalInput}>
         {/* title */}
         <Text style={{ ...localStyle.contentTitle }}>{item.text}</Text>
@@ -654,7 +635,7 @@ class QuestionnaireModal extends Component {
           }}
         />
       </View>
-    ) : null;
+    );
   };
 
   /**
@@ -664,7 +645,7 @@ class QuestionnaireModal extends Component {
   createDatePicker = (item) => {
     const { actions, questionnaireItemMap, showDatePicker } = this.props;
     // checks the dependencies of the item and renders it (if the dependencies check out)
-    return this.getRenderStatusOfItem(item) ? (
+    return (
       <View style={localStyle.modalInput}>
         {/* title */}
         <Text style={{ ...localStyle.contentTitle }}>{item.text}</Text>
@@ -746,7 +727,7 @@ class QuestionnaireModal extends Component {
           </View>
         )}
       </View>
-    ) : null;
+    );
   };
 
   /**
@@ -776,7 +757,7 @@ class QuestionnaireModal extends Component {
     });
 
     // checks the dependencies of the item and renders it (if the dependencies check out)
-    return this.getRenderStatusOfItem(item) ? (
+    return (
       <View style={localStyle.modalInput}>
         <Text style={{ ...localStyle.contentTitle }}>{item.text}</Text>
         <Slider
@@ -821,7 +802,7 @@ class QuestionnaireModal extends Component {
           </Text>
         </View>
       </View>
-    ) : null;
+    );
   };
 
   /**
@@ -829,6 +810,7 @@ class QuestionnaireModal extends Component {
    * @param  {QuestionnaireItem} item questionnaire item
    */
   createUIElement = (item) => {
+    if (!this.getRenderStatusOfItem(item)) return null;
     let itemControlExtension;
     let isSlider;
     switch (item.type) {
@@ -867,7 +849,7 @@ class QuestionnaireModal extends Component {
       // if nothing else matches - display the title if at least the dependencies check out
       default:
         // checks the dependencies of the item and renders it (if the dependencies check out)
-        return this.getRenderStatusOfItem(item) ? (
+        return (
           <Text
             style={{
               ...localStyle.contentTitle,
@@ -878,7 +860,7 @@ class QuestionnaireModal extends Component {
           >
             {item.text}
           </Text>
-        ) : null;
+        );
     }
   };
 
