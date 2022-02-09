@@ -7,12 +7,14 @@ imports
 import React from 'react';
 import { renderWithRedux } from '../__utils__/render';
 
-import Banner from '../src/components/banner/banner';
+import { RedirectModal } from '../src/components/about';
+import QuestionnaireModal from '../src/components/questionnaireModal';
+import {
+  Banner,
+  Spinner,
+  ScrollIndicatorWrapper,
+} from '../src/components/shared';
 import ProgressBar from '../src/components/questionnaireModal/progressbar';
-import RedirectModal from '../src/components/about/redirectModal';
-import QuestionnaireModal from '../src/components/questionnaireModal/questionnaireModal';
-import ScrollIndicatorWrapper from '../src/components/scrollIndicatorWrapper/scrollIndicatorWrapper';
-import Spinner from '../src/components/spinner/spinner';
 
 /***********************************************************************************************
 tests

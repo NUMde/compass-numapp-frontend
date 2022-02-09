@@ -10,12 +10,14 @@ import { renderWithRedux, initRenderModule } from '../__utils__/render';
 
 import store from '../src/store';
 import SurveyScreen from '../src/screens/checkIn/surveyScreen';
-import WelcomeText from '../src/components/checkIn/welcomeText';
+import {
+  CheckInWelcomeText,
+  CheckInTiles,
+  CheckInListView,
+} from '../src/components/checkIn';
 import * as actions from '../src/screens/checkIn/checkInActions';
 import CheckInScreen from '../src/screens/checkIn/checkInScreen';
-import CheckInTiles from '../src/components/checkIn/checkInTiles';
 import { CheckInContainer } from '../src/screens/checkIn/checkInContainer';
-import CheckInListView from '../src/components/checkIn/checkInListView';
 import questionnaireAnalyzer from '../src/services/questionnaireAnalyzer/questionnaireAnalyzer';
 import loggedInClient from '../src/services/rest/loggedInClient';
 
@@ -238,7 +240,7 @@ describe('CHECKIN RENDERING:', () => {
   // simple render test
   test('<CheckInWelcomeText /> can be rendered', () => {
     // renders the component
-    const tree = renderWithRedux(<WelcomeText />);
+    const tree = renderWithRedux(<CheckInWelcomeText />);
 
     // checks if the screen matches the snapshot
     expect(tree).toMatchSnapshot();

@@ -10,9 +10,8 @@ import { StyleSheet, View, Dimensions } from 'react-native';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 
 import config from '../../config/configProvider';
-import Banner from '../../components/banner/banner';
+import { Banner, ScrollIndicatorWrapper } from '../../components/shared';
 import localization from '../../services/localization/localization';
-import ScrollIndicatorWrapper from '../../components/scrollIndicatorWrapper/scrollIndicatorWrapper';
 
 let localStyle;
 

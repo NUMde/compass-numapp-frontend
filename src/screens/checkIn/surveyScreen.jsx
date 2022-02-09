@@ -9,10 +9,9 @@ import { ListItem } from 'react-native-elements';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 import config from '../../config/configProvider';
-import Banner from '../../components/banner/banner';
+import { Banner, ScrollIndicatorWrapper } from '../../components/shared';
+import QuestionnaireModal from '../../components/questionnaireModal';
 import localization from '../../services/localization/localization';
-import QuestionnaireModal from '../../components/questionnaireModal/questionnaireModal';
-import ScrollIndicatorWrapper from '../../components/scrollIndicatorWrapper/scrollIndicatorWrapper';
 
 let localStyle;
 
