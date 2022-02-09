@@ -222,7 +222,9 @@ describe('CHECKIN RENDERING:', () => {
   // simple render test
   test('<SurveyScreen /> can be rendered', () => {
     // renders the component
-    const tree = renderWithRedux(<SurveyScreen />);
+    const tree = renderWithRedux(
+      <SurveyScreen actions={{ showQuestionnaireModal: () => jest.fn() }} />,
+    );
 
     // checks if the screen matches the snapshot
     expect(tree).toMatchSnapshot();

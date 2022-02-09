@@ -4,13 +4,13 @@
 imports
 ***********************************************************************************************/
 
-import React, { Component } from 'react';
-import { ListItem } from 'react-native-elements';
+import React, { PureComponent } from 'react';
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 import config from '../../config/configProvider';
 import { Banner, ScrollIndicatorWrapper } from '../../components/shared';
 import QuestionnaireModal from '../../components/questionnaireModal';
+import CategoriesList from '../../components/survey/categoriesList';
 import localization from '../../services/localization/localization';
 
 let localStyle;
@@ -20,7 +20,7 @@ component:
 renders the survey screen
 ***********************************************************************************************/
 
-class SurveyScreen extends Component {
+class SurveyScreen extends PureComponent {
   /**
    * @param  {object}   props
    * @param  {object}   props.actions holds actions for the component (./checkInActions.js)
@@ -29,106 +29,6 @@ class SurveyScreen extends Component {
    * @param  {Function} props.exportAndUploadQuestionnaireResponse exports the questionnaire
    * @param  {object}   props.questionnaireItemMap object holding every item from the questionnaire
    */
-
-  /**
-   * depending on the state of the given category an accessibility hint is built from the strings defined in the config file
-   * @param {*} category
-   * @returns a string as accessibility hint
-   */
-  getAccessibilityHint = (category) => {
-    const { questionnaireItemMap } = this.props;
-    let hint =
-      localization.translate('accessibility').questionnaire.categoryCellHint;
-    if (
-      !questionnaireItemMap[category.linkId].done &&
-      questionnaireItemMap[category.linkId].started
-    ) {
-      return (hint +=
-        localization.translate('accessibility').questionnaire.category +
-        localization.translate('accessibility').questionnaire.notFinished);
-    }
-    if (
-      !questionnaireItemMap[category.linkId].done &&
-      questionnaireItemMap[category.linkId].started
-    ) {
-      return (hint +=
-        localization.translate('accessibility').questionnaire.category +
-        localization.translate('accessibility').questionnaire.notStarted);
-    }
-    if (questionnaireItemMap[category.linkId].done) {
-      return (hint +=
-        localization.translate('accessibility').questionnaire.category +
-        localization.translate('accessibility').questionnaire.finished);
-    }
-    return (hint += '');
-  };
-
-  getCategoryChevronProps = (category) => {
-    const { questionnaireItemMap } = this.props;
-    const categoryState = questionnaireItemMap[category.linkId];
-    if (categoryState.done) {
-      return {
-        name: 'check',
-        color: config.theme.values.defaultSurveyIconCompletedColor,
-      };
-    }
-    if (categoryState.started) {
-      return {
-        name: 'dots-horizontal',
-        color: config.theme.values.defaultSurveyIconTouchedColor,
-      };
-    }
-    return {
-      name: 'pencil-outline',
-      color: config.theme.values.defaultSurveyIconUntouchedColor,
-    };
-  };
-
-  /**
-   * renders a list of level-1 questionnaire items (i.e. the main-categories) which - when clicked on - opens the questionnaireModal
-   * with the the sub-questions from that category loaded
-   */
-  createListView = () => {
-    const { actions, categories } = this.props;
-    if (categories) {
-      return (
-        <View style={localStyle.wrapper}>
-          {/* maps a listItem onto each category */}
-          {categories.map((category, index) => {
-            // get additional properties based on the completion state of the category
-            const chevronProps = this.getCategoryChevronProps(category);
-            return (
-              <ListItem
-                key={category.linkId}
-                containerStyle={localStyle.listItemContainer}
-                onPress={() => actions.showQuestionnaireModal(index)}
-                accessibilityLabel={category.text}
-                accessibilityRole={
-                  localization.translate('accessibility').types.button
-                }
-                accessibilityHint={this.getAccessibilityHint(category)}
-              >
-                {/* title */}
-                <ListItem.Content>
-                  <ListItem.Title style={localStyle.titleStyle}>
-                    {category.text}
-                  </ListItem.Title>
-                </ListItem.Content>
-                <ListItem.Chevron
-                  type="material-community"
-                  name={chevronProps.name}
-                  size={12}
-                  reverse
-                  color={chevronProps.color}
-                />
-              </ListItem>
-            );
-          })}
-        </View>
-      );
-    }
-    return <View />;
-  };
 
   // rendering
   /*-----------------------------------------------------------------------------------*/
@@ -168,7 +68,11 @@ class SurveyScreen extends Component {
           contentData={
             <View style={{ ...localStyle.flexi, ...localStyle.wrapper }}>
               {/* creates the list items for the categories */}
-              {this.createListView()}
+              <CategoriesList
+                showQuestionnaireModal={actions.showQuestionnaireModal}
+                categories={categories}
+                questionnaireItemMap={questionnaireItemMap}
+              />
 
               {/* renders a send-button at the bottom if the questionnaire is completed */}
               <View style={localStyle.bottom}>
@@ -239,18 +143,6 @@ localStyle = StyleSheet.create({
 
   buttonLabel: {
     ...config.theme.classes.buttonLabel,
-  },
-
-  listItemContainer: {
-    width: '100%',
-    borderBottomColor: config.theme.colors.accent3,
-    borderBottomWidth: 1,
-    backgroundColor: config.theme.values.defaultSurveyItemBackgroundColor,
-  },
-
-  titleStyle: {
-    ...config.theme.fonts.title2,
-    color: config.theme.values.defaultSurveyItemTitleColor,
   },
 });
 
