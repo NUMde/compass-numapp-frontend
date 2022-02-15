@@ -427,8 +427,8 @@ class CheckInContainer extends Component {
      * @type {ExportData}
      */
     const exportData = documentCreator.createResponseJSON(
-      categories,
       questionnaireItemMap,
+      categories,
     );
 
     // sends the questionnaire
