@@ -16,7 +16,7 @@ For both platforms example configurations are given in the aforementioned files.
 == Certificate Pinning ==
 link:https://www.ibm.com/docs/en/mpf/8.0.0?topic=application-certificate-pinning[Certificate Pinning] is a technique to verify the certificate of the domain with which the app communicates, preventing 'man-in-the middle' attacks.
 This works by saving the base64 encoded digest of X.509 certificate's _"Subject Public Key Info"_ field in the app and comparing it to the certificate of the domain each time a request is made.
-The Configration for 'Certificate Pinning' for is done in the same files as the configuration for link:README.adoc#secure-traffic[secure traffice].
+The Configration for 'Certificate Pinning' is done in the same files as the configuration for link:README.adoc#secure-traffic[secure traffice].
 
 Again, for both Platforms examples are given in these files.
 For additional info see link:https://developer.android.com/training/articles/security-config#CertificatePinning[here (Android)] and link:https://developer.apple.com/news/?id=g9ejcf8y[here (iOS)]
