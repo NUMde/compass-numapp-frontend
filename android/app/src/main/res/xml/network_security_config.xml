@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="false">
+        <!-- insert domains here which shall only be connected to via https
+        Note: only relevant for Android <= 8.1 -->
+        <domain includeSubdomains="true">
+            secure.domain
+        </domain>
+        <pin-set>
+            <!-- certificate pinning-->
+             <pin digest="SHA-256">7HIpactkIAq2Y49orFOOQKurWxmmSFZhBCoQYcRhJ3Y=</pin>
+            <!-- backup pin -->
+            <pin digest="SHA-256">7HIpactkIAq2Y49orFOOQKurWxmmSFZhBCoQYcRhJ3Y</pin>
+        </pin-set>
+
+    </domain-config>
+    <!-- enable cleartext traffic -->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">
+            <!-- domain with cleartext traffic-->
+            unsecure.domain
+        </domain>
+    </domain-config>
+</network-security-config>
