@@ -21,7 +21,6 @@ imports
 ***********************************************************************************************/
 
 import '../../typedef';
-import store from '../../store';
 import config from '../../config/configProvider';
 
 /***********************************************************************************************
@@ -36,15 +35,14 @@ service methods
  * is tested as an regular expression. it is used to determine if an item
  * was correctly answered.
  * @param {string} linkId linkId of a questionnaire-item
+ * @param {Map<string, QuestionnaireItem>} questionnaireItemMap: the item map with all questions
  */
-const checkRegExExtension = (linkId) => {
-  const props = store.getState().CheckIn;
-
+const checkRegExExtension = (linkId, questionnaireItemMap) => {
   /**
    * the item that owns the extension
    * @type {QuestionnaireItem}
    */
-  const item = props.questionnaireItemMap[linkId];
+  const item = questionnaireItemMap[linkId];
 
   const itemControlExtension = item?.extension?.find(
     (e) => e.url === 'http://hl7.org/fhir/StructureDefinition/regex',
@@ -52,7 +50,7 @@ const checkRegExExtension = (linkId) => {
 
   if (itemControlExtension?.valueString) {
     return RegExp(itemControlExtension.valueString).test(
-      props.questionnaireItemMap[item.linkId].answer,
+      questionnaireItemMap[item.linkId].answer,
     );
   }
 
@@ -82,12 +80,11 @@ const getEnableWhenAnswerType = (condition) => {
  * if not, the condition is automatically not set. this is due to the fact that right now
  * only the-comparison-operator ("=") is available for conditional rendering
  * @param  {QuestionnaireItem} item questionnaire item
+ * @param {Map<string, QuestionnaireItem>} questionnaireItemMap
  */
-const checkIfAnswersToConditionsAreAvailable = (item) => {
+const checkIfAnswersToConditionsAreAvailable = (item, questionnaireItemMap) => {
   /** return value of the function, tells if answer conditions are available */
   let available;
-
-  const props = store.getState().CheckIn;
 
   // if enableBehavior is "all" (or not set)
   if (
@@ -100,7 +97,7 @@ const checkIfAnswersToConditionsAreAvailable = (item) => {
     // iterates over all conditions
     item.enableWhen.forEach((condition) => {
       // sets the return value to FALSE should a single condition not be met
-      if (!props.questionnaireItemMap[condition.question].answer) {
+      if (!questionnaireItemMap[condition.question].answer) {
         available = false;
       }
     });
@@ -115,7 +112,7 @@ const checkIfAnswersToConditionsAreAvailable = (item) => {
   // iterates over all conditions
   item.enableWhen.forEach((condition) => {
     // sets the return value to TRUE if a single condition is met
-    if (props.questionnaireItemMap[condition.question].answer) available = true;
+    if (questionnaireItemMap[condition.question].answer) available = true;
   });
 
   return available;
@@ -123,18 +120,24 @@ const checkIfAnswersToConditionsAreAvailable = (item) => {
 
 /**
  * calculates the relative progress of navigating through a category
- * @param  {object} [props] props-object of the calling component
+ * @param  {*} categories: list of all categories, i.e. the first level items
+ * @param {number} currentCategoryIndex index of the current category
+ * @param {number} currentPageIndex the index of the current page
  */
-const calculatePageProgress = (props) => {
+const calculatePageProgress = (
+  categories,
+  currentCategoryIndex,
+  currentPageIndex,
+) => {
   let pageIndex = 0;
   let pageCountRead = 0;
   let pageCountRemaining = 0;
 
-  props.categories[props.currentCategoryIndex].item.forEach((item) => {
+  categories[currentCategoryIndex].item.forEach((item) => {
     if (checkDependenciesOfSingleItem(item)) {
       pageCountRemaining += 1;
 
-      if (pageIndex < props.currentPageIndex) pageCountRead += 1;
+      if (pageIndex < currentPageIndex) pageCountRead += 1;
     }
     pageIndex += 1;
   });
@@ -146,6 +149,7 @@ const calculatePageProgress = (props) => {
  * checks the validity of a single item and returns it. should the item contain subitems, then those will
  * also be checked by executing "traverseItems()" on those subitems.
  * @param  {QuestionnaireItem} item questionnaire-item
+ * @param {Map<string, QuestionnaireItem>} questionnaireItemMap
  */
 const checkItem = (item, questionnaireItemMap) => {
   /** return value of the function, speaks about the validity of an item */
@@ -156,12 +160,12 @@ const checkItem = (item, questionnaireItemMap) => {
     item.type === 'ignore' ||
     !item.required ||
     item.type === 'display' ||
-    !checkDependenciesOfSingleItem(item)
+    !checkDependenciesOfSingleItem(item, questionnaireItemMap)
   ) {
     returnValue = true;
   }
   // if the item does not met its own regEx
-  else if (!checkRegExExtension(item.linkId)) {
+  else if (!checkRegExExtension(item.linkId, questionnaireItemMap)) {
     returnValue = false;
   } else {
     // if its a boolean
@@ -361,20 +365,21 @@ const getCorrectlyFormattedAnswer = (item) => {
  * needs to be checked) and iterates over all active (as in they met their enableWhen-conditions)
  * sub-items to check if they are valid.
  * @param  {QuestionnaireItem[]} [items] the items property of a questionnaire-item (from the categories-array)
- * @param  {object} [props] props-object of the calling component (needed to call an action)
+ * @param  {QuestionnaireItem[]} categories the list of categories, i.e. the first level items
+ * @param  {Map<string, QuestionnaireItem>} itemMap the item map with all questions
+ * @param  {function} setQuestionnaireItemMap callback to update the questionnaireItemMap if necessary
  */
-const checkCompletionStateOfMultipleItems = (items, props) => {
-  /**
-   * local copy of the categories-array from the checkIn-state
-   * @type {QuestionnaireItem[]}
-   */
-  const categories = items || props.categories;
-
+const checkCompletionStateOfMultipleItems = (
+  items,
+  categories,
+  itemMap,
+  setQuestionnaireItemMap,
+) => {
   /**
    * local copy of the questionnaireItemMap from the checkIn-state
    * @type {QuestionnaireItemMap}
    */
-  const questionnaireItemMap = { ...props.questionnaireItemMap, done: true };
+  const questionnaireItemMap = { ...itemMap, done: true };
 
   // if a set of items was given
   if (items) {
@@ -398,7 +403,7 @@ const checkCompletionStateOfMultipleItems = (items, props) => {
   });
 
   // persists the new questionnaireItemMap
-  props.actions.setQuestionnaireItemMap(questionnaireItemMap);
+  setQuestionnaireItemMap(questionnaireItemMap);
 
   return questionnaireItemMap.done;
 };
@@ -430,10 +435,9 @@ const codingEquals = (coding1, coding2) => {
  * this basically tells us if the items needs to be rendered or if its answer should have
  * an impact on the completion state of the whole questionnaire
  * @param  {QuestionnaireItem} [item] questionnaire item
+ * @param  {Map<string, QuestionnaireItem>} questionnaireItemMap the item map with all questions
  */
-const checkDependenciesOfSingleItem = (item) => {
-  const props = store.getState().CheckIn;
-
+const checkDependenciesOfSingleItem = (item, questionnaireItemMap) => {
   // if item is supposed to be hidden
   const hiddenExtension = item.extension?.find(
     (it) =>
@@ -445,7 +449,7 @@ const checkDependenciesOfSingleItem = (item) => {
   if (item && item.enableWhen) {
     // if the item has a set of conditions
     // checks if the items mentioned in the conditions are even answered...
-    if (!checkIfAnswersToConditionsAreAvailable(item)) {
+    if (!checkIfAnswersToConditionsAreAvailable(item, questionnaireItemMap)) {
       // ...if not, the returnValue is set to FALSE - game over
       return false;
     }
@@ -453,7 +457,7 @@ const checkDependenciesOfSingleItem = (item) => {
       const elementTestCallback = (condition) => {
         const answerType = getEnableWhenAnswerType(condition);
         const expected = condition[answerType];
-        const question = props.questionnaireItemMap[condition.question];
+        const question = questionnaireItemMap[condition.question];
 
         if (answerType === 'answerCoding') {
           return (
@@ -484,16 +488,15 @@ const checkDependenciesOfSingleItem = (item) => {
 
 /**
  * this creates the document that, as soon as encrypted, will be sent to the backend
+ * @param   {Map<string, QuestionnaireItem>} questionnaireItemMap the item map with all questions
+ * @param   {QuestionnaireItem[]} categories the list of categories, i.e. first level items
  * @returns {ExportData}
  */
-const createResponseJSON = () => {
+const createResponseJSON = (questionnaireItemMap, categories) => {
   /** persists the information if a trigger was... well, triggered
    * @type {Object.<string, boolean>}
    */
   const triggerMap = {};
-
-  /** a local copy of the checkIn-state */
-  const props = store.getState().CheckIn;
 
   /**
    * return the correct answer object
@@ -536,10 +539,10 @@ const createResponseJSON = () => {
          * holds the correct itemdetails
          * @type {ItemMapEntry}
          */
-        const itemDetails = props.questionnaireItemMap[item.linkId];
+        const itemDetails = questionnaireItemMap[item.linkId];
 
         // if the conditions of the item are met or if one of the ChildItems provides the necessary answer
-        if (checkDependenciesOfSingleItem(item)) {
+        if (checkDependenciesOfSingleItem(item, questionnaireItemMap)) {
           /**
            * creates a new item
            * @type {ResponseItem}
@@ -699,15 +702,6 @@ const createResponseJSON = () => {
           }
         }
       });
-      // for (const key in rootItem) {
-      //   if (rootItem.hasOwnProperty(key)) {
-      //     if (!cleanItem(rootItem[key])) {
-      //       delete rootItem[key];
-      //     } else {
-      //       hasProperties = true;
-      //     }
-      //   }
-      // }
 
       if (rootItem.linkId) {
         return rootItem.item || rootItem.answer ? hasProperties : false;
@@ -725,11 +719,11 @@ const createResponseJSON = () => {
    */
   const questionnaireResponse = {
     authored: new Date().toISOString(),
-    item: createItems(props.categories),
+    item: createItems(categories),
     resourceType: 'QuestionnaireResponse',
-    questionnaire: props.questionnaireItemMap.url,
-    identifier: props.questionnaireItemMap.identifier,
-    status: props.questionnaireItemMap.done ? 'completed' : 'in-progress',
+    questionnaire: questionnaireItemMap.url,
+    identifier: questionnaireItemMap.identifier,
+    status: questionnaireItemMap.done ? 'completed' : 'in-progress',
   };
 
   // removes empty entries
