@@ -419,14 +419,17 @@ class CheckInContainer extends Component {
    * creates the questionnaire-response and sends it out
    */
   exportAndUploadQuestionnaireResponseStart = async () => {
-    const { actions, user } = this.props;
+    const { actions, user, categories, questionnaireItemMap } = this.props;
     // redux output
     actions.sendQuestionnaireResponseStart();
 
     /** generates the response-json
      * @type {ExportData}
      */
-    const exportData = documentCreator.createResponseJSON();
+    const exportData = documentCreator.createResponseJSON(
+      questionnaireItemMap,
+      categories,
+    );
 
     // sends the questionnaire
     await loggedInClient

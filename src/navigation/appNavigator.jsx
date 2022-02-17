@@ -6,7 +6,7 @@ imports
 
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import About from '../screens/about/aboutContainer';
 import Login from '../screens/login/loginContainer';
@@ -19,7 +19,7 @@ export and AppContainer-creation
 // creates the stack-navigator for the navigation while NOT LOGGED IN
 
 function SignedOutView() {
-  const Stack = createStackNavigator();
+  const Stack = createNativeStackNavigator();
   return (
     <Stack.Navigator
       screenOptions={{
@@ -37,7 +37,7 @@ function SignedOutView() {
 // creates the stack-navigator for the navigation while LOGGED IN
 
 function SignedInView() {
-  const Stack = createStackNavigator();
+  const Stack = createNativeStackNavigator();
   return (
     <Stack.Navigator
       screenOptions={{
@@ -59,7 +59,7 @@ function SignedInView() {
  * creates the app container based on the two stack-navigators
  */
 const createAppNavigator = () => {
-  const RootStack = createStackNavigator();
+  const RootStack = createNativeStackNavigator();
   return (
     <NavigationContainer>
       <RootStack.Navigator
