@@ -282,6 +282,7 @@ For more information on this visit link:https://reactnative.dev/docs/debugging[t
 |=== 
 
 === Reading the current Redux State
-*When in debug mode*, the app will output any action in the developer console as well as all states before that action and after it. You can access the content of all states at any time:
+*To debug the redux state* use the redux-devtools, a great tool to view and manipulate the application state. It can also record and replay changes. You can either install it as link:https://github.com/reduxjs/redux-devtools/tree/main/packages/redux-devtools-app[standalone] app or as part of the link:https://github.com/jhen0409/react-native-debugger[react-native-debugger].
 
-image:./images/states.png[auto, 600]
+
+image:./images/redux-devtools.png[auto, 800]
