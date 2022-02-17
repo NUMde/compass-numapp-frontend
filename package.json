@@ -37,7 +37,7 @@
     "react-native-camera": "^4.2.1",
     "react-native-elements": "^3.4.2",
     "react-native-encrypted-storage": "^4.0.2",
-    "react-native-gesture-handler": "^1.10.3",
+    "react-native-gesture-handler": "^2.2.0",
     "react-native-localize": "^2.1.7",
     "react-native-modal": "^13.0.0",
     "react-native-permissions": "^3.2.0",
