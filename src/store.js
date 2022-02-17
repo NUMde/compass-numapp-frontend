@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-param-reassign */
 
 // (C) Copyright IBM Deutschland GmbH 2021.  All rights reserved.
@@ -10,7 +11,7 @@ imports
 /*-----------------------------------------------------------------------------------*/
 
 import { combineReducers, createStore, applyMiddleware } from 'redux';
-import { createLogger } from 'redux-logger';
+import { composeWithDevTools } from '@redux-devtools/extension';
 import thunk from 'redux-thunk';
 
 // reducers
@@ -72,12 +73,11 @@ middleware
 const middleware = [];
 middleware.push(thunk);
 
-if (__DEV__ && process.env.NODE_ENV !== 'test') {
-  middleware.push(createLogger({ collapsed: true }));
-}
-
 /***********************************************************************************************
 export
 ***********************************************************************************************/
 
-export default createStore(rootReducer, applyMiddleware(...middleware));
+export default createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(...middleware)),
+);
