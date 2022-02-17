@@ -5,16 +5,12 @@ imports
 ***********************************************************************************************/
 
 import React from 'react';
-import { fireEvent, waitFor } from '@testing-library/react-native';
+import { fireEvent } from '@testing-library/react-native';
 import { renderWithRedux } from '../__utils__/render';
 
-import App from '../App';
 import LoginScreen from '../src/screens/login/loginScreen';
 import LandingScreen from '../src/screens/login/landingScreen';
-import CheckInScreen from '../src/screens/checkIn/checkInScreen';
 import LoginContainer from '../src/screens/login/loginContainer';
-
-import config from '../src/config/configProvider';
 
 /***********************************************************************************************
 tests
@@ -83,88 +79,5 @@ describe('LOGIN RENDERING:', () => {
 
     // checks if the screen matches the snapshot
     expect(tree).toMatchSnapshot();
-  });
-});
-
-describe('LOGIN Handling:', () => {
-  // tests if the flow from the landing screen to the checkin screen can be executed.
-  // the test can use the login-automation defined in "config.appConfig.automateQrLogin".
-  // if that is not possible the function "scanSuccess" will be executed directly.
-  it('User can load the app, login and then trigger the automatic questionnaire download', async () => {
-    // renders the app
-    const tree = renderWithRedux(<App />);
-
-    // as we start with an empty state, the app will navigate the user to the LandingScreen...
-    let { instance } = tree.UNSAFE_getByType(LandingScreen);
-
-    // ...which should be noted in the navigation-object:
-    expect(instance).toBeTruthy();
-
-    // also, there is a button on that screen that should take us to the login screen
-    const loginButton = tree.getByText('Navigate to Login Screen');
-
-    // checks if that button exists..
-    expect(loginButton).toBeTruthy();
-
-    // ...and "presses" it
-    fireEvent.press(loginButton);
-
-    // if the automateQrLogin-option is set
-    if (config.appConfig.automateQrLogin) {
-      // checks if the checkin screen was already loaded
-      await waitFor(
-        () => (instance = tree.UNSAFE_getByType(CheckInScreen).instance),
-      )
-        // waits for the loading process to finish
-        .then(() => {
-          waitFor(() =>
-            expect(
-              tree.getByTestId('checkInSpinner').props.visible,
-            ).toBeFalsy(),
-          );
-          waitFor(() => expect(instance.props.loading).toBeFalsy())
-            // checks if categoriesLoaded was set to true (as this is only possible after a successful login and the download of the questionnaire)
-            .then(() => {
-              waitFor(() =>
-                expect(instance.props.categoriesLoaded).toBeTruthy(),
-              ).then(() => {
-                expect(instance.props.questionnaireItemMap).toBeTruthy();
-              });
-            });
-        });
-    }
-
-    // if the automateQrLogin-option is not set
-    else {
-      // checks if the login screen was already loaded
-      await waitFor(
-        () => (instance = tree.UNSAFE_getByType(LoginScreen).instance),
-      )
-        // then triggers the successCallback of the QR-Code-Scanner (with a scanresult as parameter)
-        .then(() =>
-          waitFor(() =>
-            instance.props.scanSuccess({
-              data: '{"AppIdentifier":"COMPASS","SubjectId":"7bfc3b07-a97d-4e11-8ac6-b970c1745476"}',
-            }),
-          )
-            // waits till the user was navigated to the checkin screen
-            .then(() =>
-              waitFor(
-                () =>
-                  (instance = tree.UNSAFE_getByType(CheckInScreen).instance),
-              )
-                // waits for the loading screen to turn invisible
-                .then(() =>
-                  waitFor(() => expect(instance.props.loading).toBeFalsy())
-                    // checks if categoriesLoaded was set to true (as this is only possible after a successful login an the download of the questionnaire)
-                    .then(() =>
-                      waitFor(() =>
-                        expect(instance.props.categoriesLoaded).toBeTruthy(),
-                      ),
-                    ),
-                ),
-            ),
-        );
-    }
   });
 });
