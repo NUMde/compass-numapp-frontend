@@ -3,7 +3,7 @@ module.exports = {
 
   moduleDirectories: ['node_modules', 'src'],
 
-  testEnvironment: 'jsdom',
+  testEnvironment: 'node',
 
   setupFiles: [
     './node_modules/react-native-gesture-handler/jestSetup.js',
