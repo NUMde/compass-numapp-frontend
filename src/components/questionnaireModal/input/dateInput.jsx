@@ -103,7 +103,7 @@ export default function DateInput({ item }) {
               dispatch(
                 setAnswer({
                   linkId: item.linkId,
-                  answer: currentDate || new DateInput(),
+                  answer: currentDate || new Date(),
                 }),
               );
               setShowDatePicker(false);
