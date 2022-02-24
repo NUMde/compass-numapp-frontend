@@ -10,7 +10,7 @@ import { View, StyleSheet } from 'react-native';
 
 import store from '../../store';
 import config from '../../config/configProvider';
-import Banner from '../../components/banner/banner';
+import { Banner } from '../../components/shared';
 
 let localStyle;
 

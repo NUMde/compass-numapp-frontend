@@ -8,13 +8,18 @@ import React, { PureComponent } from 'react';
 import { View, StyleSheet } from 'react-native';
 
 import config from '../../config/configProvider';
-import Banner from '../../components/banner/banner';
-import Spinner from '../../components/spinner/spinner';
-import CheckInTiles from '../../components/checkIn/checkInTiles';
+import {
+  Banner,
+  Spinner,
+  ScrollIndicatorWrapper,
+} from '../../components/shared';
+import {
+  CheckInTiles,
+  CheckInWelcomeText,
+  CheckInListView,
+} from '../../components/checkIn';
+
 import localization from '../../services/localization/localization';
-import CheckInWelcomeText from '../../components/checkIn/welcomeText';
-import CheckInListView from '../../components/checkIn/checkInListView';
-import ScrollIndicatorWrapper from '../../components/scrollIndicatorWrapper/scrollIndicatorWrapper';
 
 let localStyle;
 

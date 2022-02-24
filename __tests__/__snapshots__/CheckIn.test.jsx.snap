@@ -1237,7 +1237,165 @@ exports[`CHECKIN RENDERING: <SurveyScreen /> can be rendered 1`] = `
       />
     </View>
   </View>
-  <View />
+  <Modal
+    animationType="none"
+    deviceHeight={null}
+    deviceWidth={null}
+    hardwareAccelerated={false}
+    hideModalContentWhileAnimating={false}
+    onBackdropPress={[Function]}
+    onModalHide={[Function]}
+    onModalWillHide={[Function]}
+    onModalWillShow={[Function]}
+    onRequestClose={[Function]}
+    panResponderThreshold={4}
+    scrollHorizontal={false}
+    scrollOffset={0}
+    scrollOffsetMax={50}
+    scrollTo={[Function]}
+    statusBarTranslucent={false}
+    supportedOrientations={
+      Array [
+        "portrait",
+        "landscape",
+      ]
+    }
+    swipeDirection={
+      Array [
+        "down",
+      ]
+    }
+    swipeThreshold={100}
+    transparent={true}
+    visible={false}
+  >
+    <View
+      accessible={true}
+      collapsable={false}
+      focusable={true}
+      forwardedRef={[Function]}
+      nativeID="animatedComponent"
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "backgroundColor": "black",
+          "bottom": 0,
+          "height": 1334,
+          "left": 0,
+          "opacity": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+          "width": 750,
+        }
+      }
+    />
+    <View
+      onLayout={[Function]}
+      pointerEvents="box-none"
+      style={
+        Array [
+          Array [
+            Object {
+              "margin": 37.5,
+              "transform": Array [
+                Object {
+                  "translateY": 0,
+                },
+              ],
+            },
+            Object {
+              "flex": 1,
+              "justifyContent": "center",
+            },
+            Object {
+              "borderRadius": 10,
+              "justifyContent": "flex-end",
+              "marginBottom": 0,
+              "marginLeft": 0,
+              "marginRight": 0,
+              "marginTop": 20,
+            },
+            Object {
+              "margin": 0,
+            },
+          ],
+          Object {
+            "paddingBottom": 0,
+          },
+        ]
+      }
+    >
+      <View
+        collapsable={false}
+        deviceHeight={null}
+        deviceWidth={null}
+        forwardedRef={[Function]}
+        hideModalContentWhileAnimating={false}
+        nativeID="animatedComponent"
+        onBackdropPress={[Function]}
+        onModalHide={[Function]}
+        onModalWillHide={[Function]}
+        onModalWillShow={[Function]}
+        onMoveShouldSetResponder={[Function]}
+        onMoveShouldSetResponderCapture={[Function]}
+        onResponderEnd={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderReject={[Function]}
+        onResponderRelease={[Function]}
+        onResponderStart={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        onStartShouldSetResponderCapture={[Function]}
+        panResponderThreshold={4}
+        pointerEvents="box-none"
+        scrollHorizontal={false}
+        scrollOffset={0}
+        scrollOffsetMax={50}
+        scrollTo={[Function]}
+        statusBarTranslucent={false}
+        style={
+          Object {
+            "borderRadius": 10,
+            "flex": 1,
+            "justifyContent": "flex-end",
+            "left": 0,
+            "margin": 37.5,
+            "marginBottom": 0,
+            "marginLeft": 0,
+            "marginRight": 0,
+            "marginTop": 20,
+            "top": 0,
+            "transform": Array [
+              Object {
+                "translateY": 0,
+              },
+            ],
+          }
+        }
+        supportedOrientations={
+          Array [
+            "portrait",
+            "landscape",
+          ]
+        }
+        swipeDirection={
+          Array [
+            "down",
+          ]
+        }
+        swipeThreshold={100}
+      />
+    </View>
+  </Modal>
   <View
     onLayout={[Function]}
     style={
@@ -1264,7 +1422,9 @@ exports[`CHECKIN RENDERING: <SurveyScreen /> can be rendered 1`] = `
             }
           }
         >
-          <View />
+          <CategoriesList
+            showQuestionnaireModal={[Function]}
+          />
           <View
             style={
               Object {

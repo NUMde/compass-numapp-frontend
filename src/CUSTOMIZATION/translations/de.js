@@ -28,13 +28,13 @@ export default {
     loginHint: 'Startet Anmeldevorgang und leitet den QRCODE-Scanner um.',
 
     questionnaire: {
-      middleButtonFinished: 'Nächste Frage.Frage wird beantwortet.',
+      middleButtonFinished: 'Nächste Frage. Frage wird beantwortet.',
       middleButtonUnfinished:
         'Nächste Frage, obwohl die Frage noch nicht beantwortet wird.',
       middleButtonHint:
         'Springt zu den nächsten Fragen oder schließt das Modal, wenn dies die letzte Frage war.',
 
-      rightButtonHint: 'Schließt das Modal.',
+      rightButtonHint: 'Springt zur nächsten Frage.',
       leftButtonHint: 'Springt zur vorherigen Frage.',
       alertButtonHint: 'Schließt den Alarm.',
 
@@ -217,6 +217,8 @@ export default {
       'Dies ist die regelmäßige Begrüßungsnachricht.Es wird angezeigt, wenn ein Fragebogen verfügbar ist und der Benutzer ein wiederkehrendes ist.Darunter sollte das Fälligkeitsdatum angezeigt werden.',
     welcomeTextFirstTimeUser1:
       'Dies ist Text, der an Erstzeitern dargestellt wird.Es sagt ihnen, wenn der erste Fragebogen fällig ist: ',
+    invalidInteger: 'Nur ganzzahlige Werte erlaubt!',
+    invalidDecimal: 'Keine gültige Dezimalzahl!',
   },
 
   /** strings for the special-report-flow */

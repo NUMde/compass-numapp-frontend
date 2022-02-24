@@ -7,12 +7,14 @@ imports
 import React from 'react';
 import { renderWithRedux } from '../__utils__/render';
 
-import Banner from '../src/components/banner/banner';
-import ProgressBar from '../src/components/modal/progressbar';
-import RedirectModal from '../src/components/modal/redirectModal';
-import QuestionnaireModal from '../src/components/modal/questionnaireModal';
-import ScrollIndicatorWrapper from '../src/components/scrollIndicatorWrapper/scrollIndicatorWrapper';
-import Spinner from '../src/components/spinner/spinner';
+import { RedirectModal } from '../src/components/about';
+import QuestionnaireModal from '../src/components/questionnaireModal';
+import {
+  Banner,
+  Spinner,
+  ScrollIndicatorWrapper,
+} from '../src/components/shared';
+import ProgressBar from '../src/components/questionnaireModal/progressbar';
 
 /***********************************************************************************************
 tests
@@ -56,7 +58,11 @@ describe('SHARED COMPONENTS:', () => {
   // simple render test
   test('<QuestionnaireModal /> can be rendered', () => {
     // renders the component
-    const tree = renderWithRedux(<QuestionnaireModal />);
+    const tree = renderWithRedux(
+      <QuestionnaireModal
+        actions={{ hideQuestionnaireModal: () => jest.fn() }}
+      />,
+    );
 
     // checks if the component matches the snapshot
     expect(tree).toMatchSnapshot();

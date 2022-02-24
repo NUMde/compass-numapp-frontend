@@ -9,10 +9,12 @@ import { Text } from 'react-native-elements';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 
 import config from '../../config/configProvider';
-import Banner from '../../components/banner/banner';
-import Spinner from '../../components/spinner/spinner';
+import {
+  Banner,
+  Spinner,
+  ScrollIndicatorWrapper,
+} from '../../components/shared';
 import localization from '../../services/localization/localization';
-import ScrollIndicatorWrapper from '../../components/scrollIndicatorWrapper/scrollIndicatorWrapper';
 
 let localStyle;
 

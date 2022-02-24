@@ -37,7 +37,7 @@ export default {
       middleButtonHint:
         "Allez à la prochaine question ou ferme le modal si c'était la dernière question.",
 
-      rightButtonHint: 'Ferme le modal.',
+      rightButtonHint: 'Aller à la question prochaine.',
       leftButtonHint: 'Aller à la question précédente.',
       alertButtonHint: "Ferme l'alarme.",
 
@@ -219,6 +219,8 @@ export default {
       "C'est le message d'accueil régulier. Il apparaît lorsqu'un questionnaire est disponible et que l'utilisateur est récurrent. Darunder devrait afficher la date d'échéance.",
     welcomeTextFirstTimeUser1:
       "Ceci est un texte affiché sur les points d'extrémité. Il vous dit si le premier questionnaire est dû: ",
+    invalidInteger: 'Seuls les nombres entiers sont autorisés',
+    invalidDecimal: 'Seuls les décimaux sont autorisés',
   },
 
   /** strings for the special-report-flow */

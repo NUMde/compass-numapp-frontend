@@ -128,13 +128,14 @@ const calculatePageProgress = (
   categories,
   currentCategoryIndex,
   currentPageIndex,
+  questionnaireItemMap,
 ) => {
   let pageIndex = 0;
   let pageCountRead = 0;
   let pageCountRemaining = 0;
 
   categories[currentCategoryIndex].item.forEach((item) => {
-    if (checkDependenciesOfSingleItem(item)) {
+    if (checkDependenciesOfSingleItem(item, questionnaireItemMap)) {
       pageCountRemaining += 1;
 
       if (pageIndex < currentPageIndex) pageCountRead += 1;

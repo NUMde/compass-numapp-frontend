@@ -6,18 +6,19 @@ imports
 
 import React, { PureComponent } from 'react';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
-
 import { ListItem } from 'react-native-elements';
 import { Picker } from '@react-native-picker/picker';
+
 import store from '../../store';
 import config from '../../config/configProvider';
-import Banner from '../../components/banner/banner';
 import kioskMode from '../../config/kioskApiConfig';
-import RedirectModal from '../../components/modal/redirectModal';
-import AboutListItem from '../../components/about/aboutListItem';
-import AboutListLink from '../../components/about/aboutListLink';
+import { Banner, ScrollIndicatorWrapper } from '../../components/shared';
+import {
+  RedirectModal,
+  AboutListItem,
+  AboutListLink,
+} from '../../components/about';
 import localization from '../../services/localization/localization';
-import ScrollIndicatorWrapper from '../../components/scrollIndicatorWrapper/scrollIndicatorWrapper';
 
 let localStyle;
 
