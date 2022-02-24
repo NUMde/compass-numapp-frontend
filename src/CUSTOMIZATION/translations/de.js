@@ -217,6 +217,8 @@ export default {
       'Dies ist die regelmäßige Begrüßungsnachricht.Es wird angezeigt, wenn ein Fragebogen verfügbar ist und der Benutzer ein wiederkehrendes ist.Darunter sollte das Fälligkeitsdatum angezeigt werden.',
     welcomeTextFirstTimeUser1:
       'Dies ist Text, der an Erstzeitern dargestellt wird.Es sagt ihnen, wenn der erste Fragebogen fällig ist: ',
+    invalidInteger: 'Nur ganzzahlige Werte erlaubt!',
+    invalidDecimal: 'Keine gültige Dezimalzahl!',
   },
 
   /** strings for the special-report-flow */

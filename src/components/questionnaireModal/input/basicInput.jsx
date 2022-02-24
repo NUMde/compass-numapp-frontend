@@ -64,12 +64,12 @@ export default function BasicInput({ item }) {
     setValue(input);
     // show error when value is not valid integer
     if (item.type === 'integer' && !Number.isInteger(Number(input))) {
-      setErrorMsg('Enter Valid number');
+      setErrorMsg(localization.translate('survey').invalidInteger);
       return;
 
       // show error when value is not valid decimal
     } else if (item.type === 'decimal' && Number.isNaN(Number(input))) {
-      setErrorMsg('Enter Decimal');
+      setErrorMsg(localization.translate('survey').invalidDecimal);
       return;
     }
     // only update global value if input is valid

@@ -217,6 +217,8 @@ export default {
       'This is the regular welcome message. It will be shown if a questionnaire is available and the user a recurring one. Below this, the due date should be displayed.',
     welcomeTextFirstTimeUser1:
       'This is text that is presented to first-time-users. It tells them when the first questionnaire is due: ',
+    invalidInteger: 'Only integers allowed!',
+    invalidDecimal: 'Only decimals allowed!',
   },
 
   /** strings for the special-report-flow */
