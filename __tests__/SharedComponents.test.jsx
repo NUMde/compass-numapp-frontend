@@ -58,7 +58,11 @@ describe('SHARED COMPONENTS:', () => {
   // simple render test
   test('<QuestionnaireModal /> can be rendered', () => {
     // renders the component
-    const tree = renderWithRedux(<QuestionnaireModal />);
+    const tree = renderWithRedux(
+      <QuestionnaireModal
+        actions={{ hideQuestionnaireModal: () => jest.fn() }}
+      />,
+    );
 
     // checks if the component matches the snapshot
     expect(tree).toMatchSnapshot();
