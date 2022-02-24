@@ -90,13 +90,13 @@ const initialState = {
   error401: false,
   categories: null,
   currentPageIndex: 1,
-  showDatePicker: false,
   categoriesLoaded: false,
   questionnaireItemMap: null,
-  currentCategoryIndex: null,
+  currentCategoryIndex: -1,
   showQuestionnaireModal: false,
   questionnaireResponseError: null,
   noNewQuestionnaireAvailableYet: false,
+  lastNavWasForwards: true,
 };
 
 /***********************************************************************************************
@@ -114,24 +114,6 @@ const valuesHandlers = {
   }),
 
   /**
-   * displays the datepicker component
-   * @param  {any} state redux state
-   */
-  SHOW_DATEPICKER: (state) => ({
-    ...state,
-    showDatePicker: true,
-  }),
-
-  /**
-   * hides the datepicker component
-   * @param  {any} state
-   */
-  HIDE_DATEPICKER: (state) => ({
-    ...state,
-    showDatePicker: false,
-  }),
-
-  /**
    * shows the modal that renders all the questionnaire-items
    * @param  {any} state redux state
    * @param  {any} values values to be set
@@ -141,7 +123,6 @@ const valuesHandlers = {
     showQuestionnaireModal: true,
     currentCategoryIndex: values.values.currentCategoryIndex,
     currentPageIndex: values.values.currentPageIndex,
-    showDatePicker: false,
   }),
 
   /**
@@ -152,7 +133,6 @@ const valuesHandlers = {
   HIDE_QUESTIONNAIRE_MODAL: (state) => ({
     ...state,
     showQuestionnaireModal: false,
-    showDatePicker: false,
   }),
 
   /**
@@ -163,26 +143,29 @@ const valuesHandlers = {
    */
   SWITCH_CONTENT: (state, values) => {
     // if the user navigated forwards
-    if (values.forward) {
+    if (
+      values.forward ||
+      (values.forward === undefined && state.lastNavWasForwards)
+    ) {
       return {
         ...state,
-        showDatePicker: false,
         currentPageIndex:
           state.categories[state.currentCategoryIndex].item.length ===
           state.currentPageIndex
             ? state.currentPageIndex
             : state.currentPageIndex + 1,
+        lastNavWasForwards: true,
       };
     }
-    // if the user navigated forwards
+    // if the user navigated backwards
 
     return {
       ...state,
-      showDatePicker: false,
       currentPageIndex:
         state.currentPageIndex === 1
           ? state.currentPageIndex
           : state.currentPageIndex - 1,
+      lastNavWasForwards: false,
     };
   },
 
@@ -260,7 +243,6 @@ const valuesHandlers = {
 
     return {
       ...state,
-      showDatePicker: localValues.answer.showDatePicker,
       questionnaireItemMap,
     };
   },

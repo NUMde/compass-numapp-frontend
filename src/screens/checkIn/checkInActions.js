@@ -94,30 +94,13 @@ export const hideQuestionnaireModal = () => async (dispatch) => {
  * updates the page number of the currently opened category to display
  * a different page
  * @param  {boolean} forward if true,we're turning the page forward
- * @param  {number}  numberOfPages amount of pages in the category
- * @param  {number}  currentPageIndex current page index
  */
-export const switchContent =
-  (forward, numberOfPages, currentPageIndex) => async (dispatch) => {
-    // checks if the last page is reached and if yes, closes the modal
-    if (
-      forward &&
-      numberOfPages &&
-      currentPageIndex &&
-      numberOfPages === currentPageIndex
-    ) {
-      dispatch({
-        type: 'HIDE_QUESTIONNAIRE_MODAL',
-      });
-    }
-    // if its not the last page, switches the content
-    else {
-      dispatch({
-        type: 'SWITCH_CONTENT',
-        forward,
-      });
-    }
-  };
+export const switchContent = (forward) => async (dispatch) => {
+  dispatch({
+    type: 'SWITCH_CONTENT',
+    forward,
+  });
+};
 
 /**
  * @param  {Date | string | number} answer answer to be set
