@@ -20,10 +20,9 @@ export default /**
  * creates the bottom-navigation-bar of the modal
  * @param {object} props the props of this component
  * @param {React.RefObject<any>} props.modalTitleRef a reference object of the modal title for a11y purposes
- * @param {Boolean} props.usesAccessibility whether a screenReader is enabled
  * @param {Function} props.handleScrollTo a callback to scroll to the top when switching between pages
  */
-function BottomBar({ modalTitleRef, usesAccessibility, handleScrollTo }) {
+function BottomBar({ modalTitleRef, handleScrollTo }) {
   const {
     currentPageIndex,
     currentCategoryIndex,
@@ -147,7 +146,7 @@ function BottomBar({ modalTitleRef, usesAccessibility, handleScrollTo }) {
                    as the middle button can be used to go to the next page. */}
         <Button
           type="clear"
-          accessibilityLabel={localization.translate('accessibility').close}
+          accessibilityLabel={localization.translate('accessibility').neext}
           accessibilityRole={
             localization.translate('accessibility').types.button
           }
@@ -156,23 +155,12 @@ function BottomBar({ modalTitleRef, usesAccessibility, handleScrollTo }) {
               .rightButtonHint
           }
           onPress={() => {
-            if (!usesAccessibility) {
-              handleForwardPress();
-            } else {
-              // when accessibility features are enabled, user should be able to close modal with this button
-              dispatch(hideQuestionnaireModal());
-            }
+            handleForwardPress();
           }}
           style={bottomBarStyles.modalPaginationButton}
           icon={
             <Icon
-              name={
-                usesAccessibility
-                  ? 'close'
-                  : I18nManager.isRTL
-                  ? 'arrow-left'
-                  : 'arrow-right'
-              }
+              name={I18nManager.isRTL ? 'arrow-left' : 'arrow-right'}
               type="material-community"
               color={config.theme.colors.accent4}
             />

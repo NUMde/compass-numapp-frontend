@@ -22,7 +22,7 @@ export default {
       'Switches to default browser application, and opens link there.',
 
     menu: 'Additional Information',
-    menuHint: 'Opens new page with additional informations and links.',
+    menuHint: 'Opens new page with additional information and links.',
 
     logoutHint: 'Starts logout process and redirects to login page.',
     loginHint: 'Starts login process and redirects to QRCode scanner.',
@@ -34,9 +34,9 @@ export default {
       middleButtonHint:
         'Jumps to the next questions, or closes the modal if this was the last question.',
 
-      rightButtonHint: 'Closes the modal.',
-      leftButtonHint: 'Jumps to previous question.',
-      alertButtonHint: 'Closes the alert.',
+      rightButtonHint: 'Jump to the next question.',
+      leftButtonHint: 'Jump to previous question.',
+      alertButtonHint: 'Close the alert.',
 
       questionnaireCellHint:
         "Opens new page to see the questionnaire's categories.",

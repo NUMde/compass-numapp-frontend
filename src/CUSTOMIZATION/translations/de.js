@@ -28,13 +28,13 @@ export default {
     loginHint: 'Startet Anmeldevorgang und leitet den QRCODE-Scanner um.',
 
     questionnaire: {
-      middleButtonFinished: 'Nächste Frage.Frage wird beantwortet.',
+      middleButtonFinished: 'Nächste Frage. Frage wird beantwortet.',
       middleButtonUnfinished:
         'Nächste Frage, obwohl die Frage noch nicht beantwortet wird.',
       middleButtonHint:
         'Springt zu den nächsten Fragen oder schließt das Modal, wenn dies die letzte Frage war.',
 
-      rightButtonHint: 'Schließt das Modal.',
+      rightButtonHint: 'Springt zur nächsten Frage.',
       leftButtonHint: 'Springt zur vorherigen Frage.',
       alertButtonHint: 'Schließt den Alarm.',
 

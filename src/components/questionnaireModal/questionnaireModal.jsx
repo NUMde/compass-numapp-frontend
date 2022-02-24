@@ -27,13 +27,15 @@ imports
 import React, { Component } from 'react';
 import RNModal from 'react-native-modal';
 import {
-  AccessibilityInfo,
+  TouchableOpacity,
   Text,
   View,
   StyleSheet,
   ScrollView,
   I18nManager,
 } from 'react-native';
+
+import { Icon } from 'react-native-elements';
 
 import '../../typedef';
 import exportService from '../../services/questionnaireAnalyzer/questionnaireAnalyzer';
@@ -71,12 +73,6 @@ class QuestionnaireModal extends Component {
   modalTitleRef;
 
   /**
-   * tells us if the screen reader is enabled
-   * @type {boolean}
-   */
-  isAccessibilityOn = false;
-
-  /**
 	* @constructor
 	* @param  {object}  props
 	* @param  {object}  props.actions the redux actions of the parents state of this (checkInActions)
@@ -103,11 +99,6 @@ class QuestionnaireModal extends Component {
 
     // setting defaults
     this.scrollOffset = 0;
-
-    // check if accessibility-features are enabled
-    AccessibilityInfo.isScreenReaderEnabled().then((screenReaderEnabled) => {
-      this.isAccessibilityOn = screenReaderEnabled;
-    });
   }
 
   componentDidMount() {
@@ -178,85 +169,99 @@ class QuestionnaireModal extends Component {
    */
   render() {
     // if there is something to render
-    // eslint-disable-next-line react/destructuring-assignment
-    if (true) {
-      const {
-        showQuestionnaireModal,
-        actions,
-        categories,
-        currentPageIndex,
-        questionnaireItemMap,
-        currentCategoryIndex,
-      } = this.props;
-      return (
-        <RNModal
-          scrollOffsetMax={50}
-          avoidKeyboard
-          propagateSwipe
-          backdropOpacity={0.9}
-          style={localStyle.modal}
-          swipeDirection={['down']}
-          scrollTo={this.handleScrollTo}
-          scrollOffset={this.scrollOffset}
-          isVisible={showQuestionnaireModal}
-          onBackdropPress={actions.hideQuestionnaireModal}
-          onSwipeComplete={actions.hideQuestionnaireModal}
-          onBackButtonPress={actions.hideQuestionnaireModal}
-          onModalWillHide={() =>
-            exportService.checkCompletionStateOfMultipleItems(
-              null,
-              categories,
-              questionnaireItemMap,
-              actions.setQuestionnaireItemMap,
-            )
-          }
-        >
-          {/* renders the content of the page */}
-          {showQuestionnaireModal && (
-            <>
-              <View style={localStyle.content}>
-                <ScrollView
-                  ref={this.scrollViewRef}
-                  onScroll={this.handleOnScroll}
-                  scrollEventThrottle={16}
+    const {
+      showQuestionnaireModal,
+      actions,
+      categories,
+      currentPageIndex,
+      questionnaireItemMap,
+      currentCategoryIndex,
+    } = this.props;
+    return (
+      <RNModal
+        scrollOffsetMax={50}
+        avoidKeyboard
+        propagateSwipe
+        backdropOpacity={0.9}
+        style={localStyle.modal}
+        swipeDirection={['down']}
+        scrollTo={this.handleScrollTo}
+        scrollOffset={this.scrollOffset}
+        isVisible={showQuestionnaireModal}
+        onBackdropPress={actions.hideQuestionnaireModal}
+        onSwipeComplete={actions.hideQuestionnaireModal}
+        onBackButtonPress={actions.hideQuestionnaireModal}
+        onModalWillHide={() =>
+          exportService.checkCompletionStateOfMultipleItems(
+            null,
+            categories,
+            questionnaireItemMap,
+            actions.setQuestionnaireItemMap,
+          )
+        }
+      >
+        {/* renders the content of the page */}
+        {showQuestionnaireModal && (
+          <>
+            <View style={localStyle.content}>
+              <View style={localStyle.titleWrapper}>
+                <Text
+                  style={localStyle.modalTitle}
+                  ref={this.modalTitleRef}
+                  accessibilityRole={
+                    localization.translate('accessibility').types.header
+                  }
                 >
-                  <View style={localStyle.modalViewWrapper}>
-                    <Text
-                      style={localStyle.modalTitle}
-                      ref={this.modalTitleRef}
-                      accessibilityRole={
-                        localization.translate('accessibility').types.header
-                      }
-                    >
-                      {`${categories[currentCategoryIndex].text}`}
-                    </Text>
-                    <QuestionnaireItem
-                      item={
-                        categories[currentCategoryIndex].item[
-                          currentPageIndex - 1
-                        ]
-                      }
-                      key={
-                        categories[currentCategoryIndex].item[
-                          currentPageIndex - 1
-                        ].linkId
-                      }
-                    />
-                  </View>
-                </ScrollView>
+                  {`${categories[currentCategoryIndex].text}`}
+                </Text>
+                <TouchableOpacity
+                  style={localStyle.closeButton}
+                  onPress={() => actions.hideQuestionnaireModal()}
+                  accessibilityRole={
+                    localization.translate('accessibility').types.button
+                  }
+                  accessibilityLabel={
+                    localization.translate('accessibility').close
+                  }
+                  accessibilityHint={
+                    localization.translate('accessibility').closeHint
+                  }
+                >
+                  <Icon
+                    name="close"
+                    type="material-community"
+                    color={config.theme.colors.accent4}
+                    accessible={false}
+                  />
+                </TouchableOpacity>
               </View>
-              {/* renders the bottom bar with the buttons to switch between
+              <ScrollView
+                ref={this.scrollViewRef}
+                onScroll={this.handleOnScroll}
+                scrollEventThrottle={16}
+              >
+                <QuestionnaireItem
+                  item={
+                    categories[currentCategoryIndex].item[currentPageIndex - 1]
+                  }
+                  key={
+                    categories[currentCategoryIndex].item[currentPageIndex - 1]
+                      .linkId
+                  }
+                />
+              </ScrollView>
+            </View>
+
+            {/* renders the bottom bar with the buttons to switch between
               questions*/}
-              <BottomBar
-                modalTitleRef={this.modalTitleRef}
-                usesAccessibility={this.isAccessibilityOn}
-                handleScrollTo={this.handleScrollTo}
-              />
-            </>
-          )}
-        </RNModal>
-      );
-    }
+            <BottomBar
+              modalTitleRef={this.modalTitleRef}
+              handleScrollTo={this.handleScrollTo}
+            />
+          </>
+        )}
+      </RNModal>
+    );
   }
 }
 
@@ -274,29 +279,30 @@ localStyle = StyleSheet.create({
     borderRadius: 10,
   },
 
-  content: {
-    backgroundColor: config.theme.values.defaultModalContentBackgroundColor,
-    paddingLeft: 20,
-    paddingRight: 20,
-    height: 'auto',
-    maxHeight: '90%',
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-  },
-
-  modalViewWrapper: {
-    paddingTop: 20,
-    paddingBottom: 20,
-    ...(I18nManager.isRTL && {
-      alignItems: 'flex-start',
-    }),
+  titleWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 10,
+    alignItems: 'center',
+    width: I18nManager.isRTL ? '100%' : 'auto',
   },
 
   modalTitle: {
     fontSize: 24,
-    marginBottom: 5,
     ...config.theme.fonts.title,
     color: config.theme.values.defaultModalTitleColor,
+  },
+
+  content: {
+    backgroundColor: config.theme.values.defaultModalContentBackgroundColor,
+    padding: 20,
+    height: 'auto',
+    maxHeight: '90%',
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    ...(I18nManager.isRTL && {
+      alignItems: 'flex-start',
+    }),
   },
 });
 

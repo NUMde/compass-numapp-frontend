@@ -37,7 +37,7 @@ export default {
       middleButtonHint:
         "Allez à la prochaine question ou ferme le modal si c'était la dernière question.",
 
-      rightButtonHint: 'Ferme le modal.',
+      rightButtonHint: 'Aller à la question prochaine.',
       leftButtonHint: 'Aller à la question précédente.',
       alertButtonHint: "Ferme l'alarme.",
 
