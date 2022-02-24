@@ -18,8 +18,8 @@ import {
 import * as actions from '../src/screens/checkIn/checkInActions';
 import CheckInScreen from '../src/screens/checkIn/checkInScreen';
 import { CheckInContainer } from '../src/screens/checkIn/checkInContainer';
-import questionnaireAnalyzer from '../src/services/questionnaireAnalyzer/questionnaireAnalyzer';
-import loggedInClient from '../src/services/rest/loggedInClient';
+import questionnaireAnalyzer from '../src/services/questionnaireAnalyzer';
+import { loggedInClient } from '../src/services/rest';
 
 /***********************************************************************************************
 state & properties

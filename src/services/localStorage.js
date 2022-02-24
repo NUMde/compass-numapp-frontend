@@ -7,7 +7,7 @@ imports
 ***********************************************************************************************/
 
 import EncryptedStorage from 'react-native-encrypted-storage';
-import config from '../../config/configProvider';
+import config from '../config/configProvider';
 
 /***********************************************************************************************
 operations

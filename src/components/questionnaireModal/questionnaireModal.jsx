@@ -38,9 +38,9 @@ import {
 import { Icon } from 'react-native-elements';
 
 import '../../typedef';
-import exportService from '../../services/questionnaireAnalyzer/questionnaireAnalyzer';
-import setAccessibilityResponder from '../../services/accessibility/setAccessbilityResponder';
-import localization from '../../services/localization/localization';
+import exportService from '../../services/questionnaireAnalyzer';
+import setAccessibilityResponder from '../../services/setAccessibilityResponder';
+import translate from '../../services/localization';
 import config from '../../config/configProvider';
 import BottomBar from './bottomBar';
 
@@ -208,24 +208,16 @@ class QuestionnaireModal extends Component {
                 <Text
                   style={localStyle.modalTitle}
                   ref={this.modalTitleRef}
-                  accessibilityRole={
-                    localization.translate('accessibility').types.header
-                  }
+                  accessibilityRole={translate('accessibility').types.header}
                 >
                   {`${categories[currentCategoryIndex].text}`}
                 </Text>
                 <TouchableOpacity
                   style={localStyle.closeButton}
                   onPress={() => actions.hideQuestionnaireModal()}
-                  accessibilityRole={
-                    localization.translate('accessibility').types.button
-                  }
-                  accessibilityLabel={
-                    localization.translate('accessibility').close
-                  }
-                  accessibilityHint={
-                    localization.translate('accessibility').closeHint
-                  }
+                  accessibilityRole={translate('accessibility').types.button}
+                  accessibilityLabel={translate('accessibility').close}
+                  accessibilityHint={translate('accessibility').closeHint}
                 >
                   <Icon
                     name="close"

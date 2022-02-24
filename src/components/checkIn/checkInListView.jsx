@@ -10,7 +10,7 @@ import { ListItem } from 'react-native-elements';
 
 import config from '../../config/configProvider';
 import { formatDateString } from '../../services/utils';
-import localization from '../../services/localization/localization';
+import translate from '../../services/localization';
 
 let localStyle;
 
@@ -62,22 +62,21 @@ class CheckInListView extends PureComponent {
   getAccessibilityHint = () => {
     const { questionnaireItemMap } = this.props;
     let hint =
-      localization.translate('accessibility').questionnaire
-        .questionnaireCellHint +
-      localization.translate('accessibility').questionnaire.questionnaire;
+      translate('accessibility').questionnaire.questionnaireCellHint +
+      translate('accessibility').questionnaire.questionnaire;
     if (
       questionnaireItemMap &&
       !questionnaireItemMap.done &&
       questionnaireItemMap.started
     ) {
-      hint += localization.translate('accessibility').questionnaire.notFinished;
+      hint += translate('accessibility').questionnaire.notFinished;
       return hint;
     }
     if (!questionnaireItemMap.done && !questionnaireItemMap.notStarted) {
-      hint += localization.translate('accessibility').questionnaire.notStarted;
+      hint += translate('accessibility').questionnaire.notStarted;
       return hint;
     }
-    hint += localization.translate('accessibility').questionnaire.finished;
+    hint += translate('accessibility').questionnaire.finished;
     return hint;
   };
 
@@ -138,28 +137,26 @@ class CheckInListView extends PureComponent {
               onPress={() => navigation.navigate('Survey')}
               accessibilityLabel={`${
                 user.firstTime
-                  ? localization.translate('survey').surveyTitleFirstTime
-                  : localization.translate('survey').surveyTitle
+                  ? translate('survey').surveyTitleFirstTime
+                  : translate('survey').surveyTitle
               }. ${
-                localization.translate('survey').surveySubTitle +
+                translate('survey').surveySubTitle +
                 formatDateString(new Date(user.due_date))
               }`}
-              accessibilityRole={
-                localization.translate('accessibility').types.button
-              }
+              accessibilityRole={translate('accessibility').types.button}
               accessibilityHint={this.getAccessibilityHint()}
             >
               <ListItem.Content>
                 {/* shows a special title for first-time-users or the regular title for all other users */}
                 <ListItem.Title style={localStyle.title}>
                   {user.firstTime
-                    ? localization.translate('survey').surveyTitleFirstTime
-                    : localization.translate('survey').surveyTitle}
+                    ? translate('survey').surveyTitleFirstTime
+                    : translate('survey').surveyTitle}
                 </ListItem.Title>
 
                 {/* subtitle with formatted due date of the questionnaire */}
                 <ListItem.Subtitle style={localStyle.subTitle}>
-                  {localization.translate('survey').surveySubTitle +
+                  {translate('survey').surveySubTitle +
                     formatDateString(new Date(user.due_date))}
                 </ListItem.Subtitle>
               </ListItem.Content>

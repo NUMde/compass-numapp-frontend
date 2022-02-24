@@ -5,7 +5,7 @@ import { Input } from 'react-native-elements';
 import debounce from 'lodash.debounce';
 
 import { setAnswer } from '../../../screens/checkIn/checkInActions';
-import localization from '../../../services/localization/localization';
+import translate from '../../../services/localization';
 import SharedStyles from './sharedStyles';
 
 /**
@@ -64,12 +64,12 @@ export default function BasicInput({ item }) {
     setValue(input);
     // show error when value is not valid integer
     if (item.type === 'integer' && !Number.isInteger(Number(input))) {
-      setErrorMsg(localization.translate('survey').invalidInteger);
+      setErrorMsg(translate('survey').invalidInteger);
       return;
 
       // show error when value is not valid decimal
     } else if (item.type === 'decimal' && Number.isNaN(Number(input))) {
-      setErrorMsg(localization.translate('survey').invalidDecimal);
+      setErrorMsg(translate('survey').invalidDecimal);
       return;
     }
     // only update global value if input is valid
@@ -83,14 +83,14 @@ export default function BasicInput({ item }) {
       {/* input */}
       <Input
         containerStyle={SharedStyles.modalContainer}
-        placeholder={localization.translate('login').inputPlaceholder}
+        placeholder={translate('login').inputPlaceholder}
         value={value || ''} // displays an empty string when a 'falsy' answer needs to be rendered
         keyboardType={getKeyboardType(item)}
         style={localStyle.alignment}
         maxLength={item.maxLength || null}
         // accessibilityLabel={ }
         accessibilityHint={
-          localization.translate('accessibility').questionnaire.textFieldHint
+          translate('accessibility').questionnaire.textFieldHint
         }
         onChangeText={handleInputChange}
         errorMessage={errorMsg}

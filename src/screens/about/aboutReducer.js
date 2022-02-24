@@ -5,7 +5,7 @@ import
 ***********************************************************************************************/
 
 import '../../typedef';
-import localization from '../../services/localization/localization';
+import { defaultLanguage } from '../../services/localization';
 
 /***********************************************************************************************
 initial state
@@ -15,7 +15,7 @@ const initialState = {
   showModal: false,
   modalLink: {},
   currentWebView: null,
-  currentlyChosenLanguage: localization.defaultLanguage,
+  currentlyChosenLanguage: defaultLanguage,
 };
 
 /***********************************************************************************************

@@ -18,7 +18,10 @@ import {
   AboutListItem,
   AboutListLink,
 } from '../../components/about';
-import localization from '../../services/localization/localization';
+import translate, {
+  availableLanguages,
+  getLanguageTag,
+} from '../../services/localization';
 
 let localStyle;
 
@@ -55,8 +58,8 @@ class AboutScreen extends PureComponent {
         {/* top banner */}
         <Banner
           nav={navigation}
-          title={localization.translate('about').title}
-          subTitle={localization.translate('about').subTitle}
+          title={translate('about').title}
+          subTitle={translate('about').subTitle}
           noMenu
         />
 
@@ -83,19 +86,19 @@ class AboutScreen extends PureComponent {
                       {/* title & subtitle of the listItem - the strings a identified by the webView*/}
                       <ListItem.Content>
                         <ListItem.Title style={localStyle.title}>
-                          {localization.translate('about').legal.title}
+                          {translate('about').legal.title}
                         </ListItem.Title>
 
                         <ListItem.Subtitle style={localStyle.subTitle}>
-                          {localization.translate('about').legal.subTitle}
+                          {translate('about').legal.subTitle}
                         </ListItem.Subtitle>
                       </ListItem.Content>
 
                       {/* the icon on the right-hand-side */}
                       <ListItem.Chevron
                         {...{
-                          type: localization.translate('about').legal.iconType,
-                          name: localization.translate('about').legal.iconTitle,
+                          type: translate('about').legal.iconType,
+                          name: translate('about').legal.iconTitle,
                           color: config.theme.values.legalListLinkIconColor,
                           reverse: true,
                           size: 12,
@@ -104,8 +107,8 @@ class AboutScreen extends PureComponent {
                     </ListItem>
                   )}
 
-                  {/* iterates over all items in localization.translate('wevViews') */}
-                  {localization.translate('webViews').map((webView) => (
+                  {/* iterates over all items in translate('wevViews') */}
+                  {translate('webViews').map((webView) => (
                     // navigates to the webview screen
                     <AboutListLink
                       key={webView.title}
@@ -116,8 +119,8 @@ class AboutScreen extends PureComponent {
                     />
                   ))}
 
-                  {/* iterates over all items in localization.translate('modalLinks') */}
-                  {localization.translate('modalLinks').map((_modalLink) => (
+                  {/* iterates over all items in translate('modalLinks') */}
+                  {translate('modalLinks').map((_modalLink) => (
                     // navigates to the webview screen
                     <AboutListItem
                       actions={actions}
@@ -132,35 +135,33 @@ class AboutScreen extends PureComponent {
                   {/* language picker */}
                   <View style={localStyle.languagePickerWrapper}>
                     <Text style={localStyle.title}>
-                      {localization.translate('about').languageSelection}
+                      {translate('about').languageSelection}
                     </Text>
 
                     {store.getState().CheckIn.questionnaireItemMap &&
                       store.getState().CheckIn.questionnaireItemMap.started && (
                         <Text style={localStyle.warningSubTitle}>
-                          {localization.translate('about').languageWarning}
+                          {translate('about').languageWarning}
                         </Text>
                       )}
 
                     <Picker
                       style={localStyle.picker}
                       mode="dropdown"
-                      selectedValue={localization.getLanguageTag()}
+                      selectedValue={getLanguageTag()}
                       onValueChange={(itemValue) => {
-                        if (localization.getLanguageTag() !== itemValue) {
+                        if (getLanguageTag() !== itemValue) {
                           changeLanguage(itemValue);
                         }
                       }}
                     >
-                      {Object.keys(localization.availableLanguages).map(
-                        (key) => (
-                          <Picker.Item
-                            key={key}
-                            label={localization.availableLanguages[key].title}
-                            value={key}
-                          />
-                        ),
-                      )}
+                      {Object.keys(availableLanguages).map((key) => (
+                        <Picker.Item
+                          key={key}
+                          label={availableLanguages[key].title}
+                          value={key}
+                        />
+                      ))}
                     </Picker>
                   </View>
 
@@ -169,18 +170,14 @@ class AboutScreen extends PureComponent {
                     <TouchableOpacity
                       style={localStyle.button}
                       onPress={logout}
-                      accessibilityLabel={
-                        localization.translate('about').logout
-                      }
+                      accessibilityLabel={translate('about').logout}
                       accessibilityRole={
-                        localization.translate('accessibility').types.button
+                        translate('accessibility').types.button
                       }
-                      accessibilityHint={
-                        localization.translate('accessibility').logoutHint
-                      }
+                      accessibilityHint={translate('accessibility').logoutHint}
                     >
                       <Text style={localStyle.buttonLabel}>
-                        {localization.translate('about').logout}
+                        {translate('about').logout}
                       </Text>
                     </TouchableOpacity>
                   )}
@@ -190,20 +187,16 @@ class AboutScreen extends PureComponent {
                     <TouchableOpacity
                       style={localStyle.buttonAlert}
                       onPress={clearAll}
-                      accessibilityLabel={
-                        localization.translate('about').delete
-                      }
+                      accessibilityLabel={translate('about').delete}
                       accessibilityRole={
-                        localization.translate('accessibility').types.button
+                        translate('accessibility').types.button
                       }
-                      accessibilityHint={
-                        localization.translate('accessibility').logoutHint
-                      }
+                      accessibilityHint={translate('accessibility').logoutHint}
                     >
                       <Text style={localStyle.buttonLabel}>
                         {kioskMode.active
-                          ? localization.translate('about').demoDelete
-                          : localization.translate('about').delete}
+                          ? translate('about').demoDelete
+                          : translate('about').delete}
                       </Text>
                     </TouchableOpacity>
                   )}

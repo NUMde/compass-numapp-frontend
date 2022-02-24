@@ -11,12 +11,17 @@ import SplashScreen from 'react-native-splash-screen';
 import { StyleSheet, View, StatusBar, LogBox, Platform } from 'react-native';
 import RNRestart from 'react-native-restart';
 import { URL as nativeURL } from 'react-native-url-polyfill/auto';
-import localization from './src/services/localization/localization';
+import {
+  initLocalization,
+  setI18nConfig,
+  setAvailableLanguages,
+} from './src/services/localization';
 
 import reduxStore from './src/store';
 import config from './src/config/configProvider';
 import kioskMode from './src/config/kioskApiConfig';
 import createAppNavigator from './src/navigation/appNavigator';
+import { guestClient } from './src/services/rest';
 
 /***********************************************************************************************
 Component
@@ -30,7 +35,10 @@ class App extends PureComponent {
    */
   constructor(props) {
     super(props);
-    localization.init();
+    initLocalization();
+    guestClient.getLanguages().then((res) => {
+      setAvailableLanguages(res);
+    });
   }
 
   // just in case the device language is changed while the app is running
@@ -45,7 +53,7 @@ class App extends PureComponent {
 
   // fires after the device language was changed while the app is running
   handleLocalizationChange = () => {
-    localization.setI18nConfig();
+    setI18nConfig();
     RNRestart.Restart();
   };
 

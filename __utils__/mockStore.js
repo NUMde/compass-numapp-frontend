@@ -20,7 +20,7 @@ import CheckInReducer from '../src/screens/checkIn/checkInReducer';
 // services
 /*-----------------------------------------------------------------------------------*/
 
-import localStorage from '../src/services/localStorage/localStorage';
+import localStorage from '../src/services/localStorage';
 
 /***********************************************************************************************
 reducer

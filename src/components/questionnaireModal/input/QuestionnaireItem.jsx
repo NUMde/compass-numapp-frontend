@@ -8,7 +8,7 @@ import ChoicesInput from './choicesInput';
 import DateInput from './dateInput';
 import SliderInput from './sliderInput';
 
-import questionnaireAnalyzer from '../../../services/questionnaireAnalyzer/questionnaireAnalyzer';
+import questionnaireAnalyzer from '../../../services/questionnaireAnalyzer';
 
 import SharedStyles, {
   calculateFontSize,
@@ -34,7 +34,7 @@ export default function QuestionnaireItem({ item }) {
   ) {
     return <View />;
   }
-  // if the item represents a group of questions, display the title of the group and render the children below
+  // if the item represents a group of questions, display the ti  tle of the group and render the children below
   if (item.type === 'group') {
     return (
       <View key={item.linkId}>

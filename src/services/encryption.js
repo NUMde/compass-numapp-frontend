@@ -7,8 +7,8 @@ imports
 ***********************************************************************************************/
 
 import * as forge from 'node-forge';
-import store from '../../store';
-import config from '../../config/configProvider';
+import store from '../store';
+import config from '../config/configProvider';
 
 /***********************************************************************************************
 encryption
@@ -62,4 +62,4 @@ const encrypt = (messageToBeEncrypted) => {
 export
 ***********************************************************************************************/
 
-export default { encrypt };
+export default encrypt;

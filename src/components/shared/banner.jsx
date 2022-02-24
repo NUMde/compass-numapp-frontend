@@ -16,7 +16,7 @@ import {
 } from 'react-native';
 
 import config from '../../config/configProvider';
-import localization from '../../services/localization/localization';
+import translate from '../../services/localization';
 
 // import logo and background image
 const customLogo = require('../../CUSTOMIZATION/images/logo.png');
@@ -89,15 +89,9 @@ class Banner extends PureComponent {
                     color={config.theme.values.defaultBannerButtonColor}
                   />
                 }
-                accessibilityLabel={
-                  localization.translate('accessibility').refresh
-                }
-                accessibilityRole={
-                  localization.translate('accessibility').types.button
-                }
-                accessibilityHint={
-                  localization.translate('accessibility').refreshHint
-                }
+                accessibilityLabel={translate('accessibility').refresh}
+                accessibilityRole={translate('accessibility').types.button}
+                accessibilityHint={translate('accessibility').refreshHint}
               />
             )}
 
@@ -116,15 +110,9 @@ class Banner extends PureComponent {
                     color={config.theme.values.defaultBannerButtonColor}
                   />
                 }
-                accessibilityLabel={
-                  localization.translate('accessibility').back
-                }
-                accessibilityRole={
-                  localization.translate('accessibility').types.button
-                }
-                accessibilityHint={
-                  localization.translate('accessibility').backHint
-                }
+                accessibilityLabel={translate('accessibility').back}
+                accessibilityRole={translate('accessibility').types.button}
+                accessibilityHint={translate('accessibility').backHint}
               />
             )}
 
@@ -139,9 +127,7 @@ class Banner extends PureComponent {
               <Text
                 numberOfLines={1}
                 style={localStyle.bannerTitle}
-                accessibilityRole={
-                  localization.translate('accessibility').types.header
-                }
+                accessibilityRole={translate('accessibility').types.header}
               >
                 {title}
               </Text>
@@ -161,15 +147,9 @@ class Banner extends PureComponent {
                     color={config.theme.values.defaultBannerButtonColor}
                   />
                 }
-                accessibilityLabel={
-                  localization.translate('accessibility').menu
-                }
-                accessibilityRole={
-                  localization.translate('accessibility').types.button
-                }
-                accessibilityHint={
-                  localization.translate('accessibility').menuHint
-                }
+                accessibilityLabel={translate('accessibility').menu}
+                accessibilityRole={translate('accessibility').types.button}
+                accessibilityHint={translate('accessibility').menuHint}
               />
             )}
 
@@ -181,9 +161,7 @@ class Banner extends PureComponent {
               <Text
                 numberOfLines={1}
                 style={localStyle.bannerSubtitle}
-                accessibilityRole={
-                  localization.translate('accessibility').types.header
-                }
+                accessibilityRole={translate('accessibility').types.header}
               >
                 {subTitle}
               </Text>

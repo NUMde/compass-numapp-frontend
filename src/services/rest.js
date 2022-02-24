@@ -1,6 +1,6 @@
 // (C) Copyright IBM Deutschland GmbH 2021.  All rights reserved.
 
-// this file provides methods concerning the communication with the backend after the user
+// this file provides methods concerning the communication with the backend before the user
 // is logged in.
 
 /***********************************************************************************************
@@ -8,11 +8,35 @@ imports
 ***********************************************************************************************/
 
 import axios from 'axios';
-import store from '../../store';
-import security from '../encryption/encryption';
-import config from '../../config/configProvider';
-import kioskMode from '../../config/kioskApiConfig';
-import localStorage from '../localStorage/localStorage';
+import config from '../config/configProvider';
+import kioskMode from '../config/kioskApiConfig';
+import store from '../store';
+import encrypt from './encryption';
+import localStorage from './localStorage';
+
+/***********************************************************************************************
+guest client functions
+***********************************************************************************************/
+
+/**
+ * @param  {string} subjectId the id used to identify the user
+ */
+const login = (subjectId) =>
+  kioskMode.active
+    ? kioskMode.login()
+    : axios.get(config.appConfig.endpoints.login + subjectId);
+
+/**
+ * procures the list of languages
+ */
+const getLanguages = async () =>
+  kioskMode.active
+    ? kioskMode.getLanguages()
+    : axios.get(config.appConfig.endpoints.getLanguages, {
+        headers: {
+          Accept: 'application/json',
+        },
+      });
 
 /***********************************************************************************************
 support functions
@@ -46,7 +70,7 @@ const generateEncapsuledMessage = (subjectId, type, body = {}) => {
   };
   if (body) msg.data.body = body;
 
-  const encryptedMsg = security.encrypt(msg);
+  const encryptedMsg = encrypt(msg);
 
   // console output
   if (config.appConfig.logEncryptedResponse) {
@@ -76,19 +100,6 @@ const getUserUpdate = async () => {
 
 // language
 /*-----------------------------------------------------------------------------------*/
-
-/**
- * procures the list of languages
- */
-const getLanguages = async () =>
-  kioskMode.active
-    ? kioskMode.getLanguages()
-    : axios.get(config.appConfig.endpoints.getLanguages, {
-        headers: {
-          Authorization: createAuthorizationToken(),
-          Accept: 'application/json',
-        },
-      });
 
 /**
  * updates the backend with the chosen language
@@ -227,12 +238,17 @@ const getBaseQuestionnaire = async (questionnaireId, langCode) =>
 export
 ***********************************************************************************************/
 
-export default {
+export const loggedInClient = {
   sendReport,
   getBaseQuestionnaire,
   sendQuestionnaire,
   getUserUpdate,
   updateDeviceToken,
   updateLanguageCode,
+  getLanguages,
+};
+
+export const guestClient = {
+  login,
   getLanguages,
 };

@@ -9,10 +9,10 @@ import {
   setQuestionnaireItemMap,
 } from '../../screens/checkIn/checkInActions';
 
-import setAccessibilityResponder from '../../services/accessibility/setAccessbilityResponder';
+import setAccessibilityResponder from '../../services/setAccessibilityResponder';
 
-import exportService from '../../services/questionnaireAnalyzer/questionnaireAnalyzer';
-import localization from '../../services/localization/localization';
+import exportService from '../../services/questionnaireAnalyzer';
+import translate from '../../services/localization';
 import config from '../../config/configProvider';
 import ProgressBar from './progressbar';
 
@@ -93,12 +93,10 @@ function BottomBar({ modalTitleRef, handleScrollTo }) {
           type="clear"
           disabled={currentPageIndex === 1}
           disabledStyle={bottomBarStyles.disabledButton}
-          accessibilityLabel={localization.translate('accessibility').back}
-          accessibilityRole={
-            localization.translate('accessibility').types.button
-          }
+          accessibilityLabel={translate('accessibility').back}
+          accessibilityRole={translate('accessibility').types.button}
           accessibilityHint={
-            localization.translate('accessibility').questionnaire.leftButtonHint
+            translate('accessibility').questionnaire.leftButtonHint
           }
           onPress={handleBackPress}
           style={bottomBarStyles.modalPaginationButton}
@@ -115,17 +113,12 @@ function BottomBar({ modalTitleRef, handleScrollTo }) {
           type="clear"
           accessibilityLabel={
             completed
-              ? localization.translate('accessibility').questionnaire
-                  .middleButtonFinished
-              : localization.translate('accessibility').questionnaire
-                  .middleButtonUnfinished
+              ? translate('accessibility').questionnaire.middleButtonFinished
+              : translate('accessibility').questionnaire.middleButtonUnfinished
           }
-          accessibilityRole={
-            localization.translate('accessibility').types.button
-          }
+          accessibilityRole={translate('accessibility').types.button}
           accessibilityHint={
-            localization.translate('accessibility').questionnaire
-              .middleButtonHint
+            translate('accessibility').questionnaire.middleButtonHint
           }
           onPress={handleForwardPress}
           icon={
@@ -146,13 +139,10 @@ function BottomBar({ modalTitleRef, handleScrollTo }) {
                    as the middle button can be used to go to the next page. */}
         <Button
           type="clear"
-          accessibilityLabel={localization.translate('accessibility').neext}
-          accessibilityRole={
-            localization.translate('accessibility').types.button
-          }
+          accessibilityLabel={translate('accessibility').neext}
+          accessibilityRole={translate('accessibility').types.button}
           accessibilityHint={
-            localization.translate('accessibility').questionnaire
-              .rightButtonHint
+            translate('accessibility').questionnaire.rightButtonHint
           }
           onPress={() => {
             handleForwardPress();
