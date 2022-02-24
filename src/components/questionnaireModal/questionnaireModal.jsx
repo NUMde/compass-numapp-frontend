@@ -46,8 +46,6 @@ import QuestionnaireItem from './input/QuestionnaireItem';
 
 let localStyle;
 
-const NAV_DIRECTION = { FORWARD: 'forward', BACKWARDS: 'backwards' };
-
 /***********************************************************************************************
 component:
 renders the questionnaireModal and the contents of the questionnaire
