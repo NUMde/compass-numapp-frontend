@@ -1393,7 +1393,9 @@ exports[`CHECKIN RENDERING: <SurveyScreen /> can be rendered 1`] = `
           ]
         }
         swipeThreshold={100}
-      />
+      >
+        <View />
+      </View>
     </View>
   </Modal>
   <View

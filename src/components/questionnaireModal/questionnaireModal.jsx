@@ -252,6 +252,7 @@ class QuestionnaireModal extends Component {
             />
           </>
         )}
+        {!showQuestionnaireModal && <View />}
       </RNModal>
     );
   }
