@@ -45,32 +45,50 @@ const setGlobalAnswer = debounce((item, retVal, dispatch) => {
  */
 export default function BasicInput({ item }) {
   // get currentValue from state
-  const currentValue = useSelector((state) =>
+  const globalValue = useSelector((state) =>
     state.CheckIn.questionnaireItemMap[item.linkId].answer?.toString(),
   );
   // internally store value of input
-  const [value, setValue] = useState('');
+  const [localValue, setLocalValue] = useState(null);
   // error message in case input is not valid
   const [errorMsg, setErrorMsg] = useState('');
 
-  // when the component is updated get current value from global state
-  useEffect(() => setValue(currentValue), [currentValue]);
+  // when the component is updated get current value from global state if local value does not exist
+  useEffect(
+    () => setLocalValue(localValue ?? globalValue),
+    [localValue, globalValue],
+  );
   const dispatch = useDispatch();
+
   // check and validate input
   const handleInputChange = (input) => {
     // reset error message
     setErrorMsg('');
     // update local state
-    setValue(input);
-    // show error when value is not valid integer
-    if (item.type === 'integer' && !Number.isInteger(Number(input))) {
+    setLocalValue(input);
+    // show error when value is not valid integer, i.e. contains '.' or ','
+    if (
+      item.type === 'integer' &&
+      (!Number.isInteger(Number(input)) ||
+        // X.0 and X,0 are treated as integers but should be treated as decimals
+        input.includes(',') ||
+        input.includes('.'))
+    ) {
       setErrorMsg(translate('survey').invalidInteger);
+      // cancel previous update to global state
+      setGlobalAnswer(item, null, dispatch);
       return;
 
       // show error when value is not valid decimal
-    } else if (item.type === 'decimal' && Number.isNaN(Number(input))) {
-      setErrorMsg(translate('survey').invalidDecimal);
-      return;
+    } else if (item.type === 'decimal') {
+      // eslint-disable-next-line no-param-reassign
+      input = input.replace(',', '.');
+      if (Number.isNaN(Number(input))) {
+        setErrorMsg(translate('survey').invalidDecimal);
+        // cancel previous update to global state
+        setGlobalAnswer(item, null, dispatch);
+        return;
+      }
     }
     // only update global value if input is valid
     setGlobalAnswer(item, input.trim(), dispatch);
@@ -84,7 +102,7 @@ export default function BasicInput({ item }) {
       <Input
         containerStyle={SharedStyles.modalContainer}
         placeholder={translate('login').inputPlaceholder}
-        value={value || ''} // displays an empty string when a 'falsy' answer needs to be rendered
+        value={localValue}
         keyboardType={getKeyboardType(item)}
         style={localStyle.alignment}
         maxLength={item.maxLength || null}
