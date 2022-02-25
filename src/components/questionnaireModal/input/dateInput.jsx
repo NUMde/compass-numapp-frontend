@@ -67,12 +67,14 @@ export default function DateInput({ item }) {
           locale="de-de"
           display="spinner"
           onChange={(_event, date) => {
-            dispatch(
-              setAnswer({
-                linkId: item.linkId,
-                answer: date,
-              }),
-            );
+            if (date) {
+              dispatch(
+                setAnswer({
+                  linkId: item.linkId,
+                  answer: date,
+                }),
+              );
+            }
             // only on android the datepicker appears as dialog which must be closed
             Platform.OS === 'android' && setShowDatePicker(false);
           }}
@@ -99,15 +101,7 @@ export default function DateInput({ item }) {
           <Button
             title={localization.translate('generic').ok}
             color={config.theme.colors.secondary}
-            onPress={() => {
-              dispatch(
-                setAnswer({
-                  linkId: item.linkId,
-                  answer: currentDate || new Date(),
-                }),
-              );
-              setShowDatePicker(false);
-            }}
+            onPress={() => setShowDatePicker(false)}
             type="clear"
             titleStyle={{ color: config.theme.colors.accent4 }}
           />
