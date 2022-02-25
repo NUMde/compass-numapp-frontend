@@ -6,7 +6,7 @@ import Slider from '@react-native-community/slider';
 import { setAnswer } from '../../../screens/checkIn/checkInActions';
 
 import config from '../../../config/configProvider';
-import localization from '../../../services/localization/localization';
+import translate from '../../../services/localization';
 
 import SharedStyles from './sharedStyles';
 
@@ -58,13 +58,11 @@ export default function SliderInput({ item }) {
         maximumTrackTintColor={config.theme.colors.primary}
         accessibilityHint={
           sliderProperties.minValue +
-          localization.translate('accessibility').questionnaire
-            .sliderFieldEquals +
+          translate('accessibility').questionnaire.sliderFieldEquals +
           sliderProperties.LowRangeLabel +
-          localization.translate('accessibility').questionnaire.sliderFieldAnd +
+          translate('accessibility').questionnaire.sliderFieldAnd +
           sliderProperties.maxValue +
-          localization.translate('accessibility').questionnaire
-            .sliderFieldEquals +
+          translate('accessibility').questionnaire.sliderFieldEquals +
           sliderProperties.HighRangeLabel
         }
         onSlidingComplete={(value) => {

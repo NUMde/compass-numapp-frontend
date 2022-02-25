@@ -12,8 +12,8 @@ import { Input, Button } from 'react-native-elements';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { setAnswer } from '../../../screens/checkIn/checkInActions';
 import config from '../../../config/configProvider';
-import exportService from '../../../services/questionnaireAnalyzer/questionnaireAnalyzer';
-import localization from '../../../services/localization/localization';
+import exportService from '../../../services/questionnaireAnalyzer';
+import translate from '../../../services/localization';
 
 import SharedStyles from './sharedStyles';
 
@@ -40,12 +40,12 @@ export default function DateInput({ item }) {
         <TouchableOpacity
           onPress={() => setShowDatePicker(true)}
           // accessibilityLabel={ }
-          // accessibilityRole={localization.translate('accessibility').types.button}
-          // accessibilityHint={localization.translate('accessibility').questionnaire.dateFieldHint}
+          // accessibilityRole={translate('accessibility').types.button}
+          // accessibilityHint={translate('accessibility').questionnaire.dateFieldHint}
         >
           <Input
             containerStyle={SharedStyles.modalContainer}
-            placeholder={localization.translate('login').inputPlaceholderTime}
+            placeholder={translate('login').inputPlaceholderTime}
             value={
               currentDate
                 ? exportService.getFormattedDate(currentDate, true)
@@ -84,7 +84,7 @@ export default function DateInput({ item }) {
       {Platform.OS === 'ios' && showDatePicker && (
         <View style={localStyle.dateTimePickerButtonBar}>
           <Button
-            title={localization.translate('generic').abort}
+            title={translate('generic').abort}
             onPress={() => {
               dispatch(
                 setAnswer({
@@ -99,7 +99,7 @@ export default function DateInput({ item }) {
             titleStyle={{ color: config.theme.colors.accent4 }}
           />
           <Button
-            title={localization.translate('generic').ok}
+            title={translate('generic').ok}
             color={config.theme.colors.secondary}
             onPress={() => setShowDatePicker(false)}
             type="clear"

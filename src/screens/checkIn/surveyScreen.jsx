@@ -11,7 +11,7 @@ import config from '../../config/configProvider';
 import { Banner, ScrollIndicatorWrapper } from '../../components/shared';
 import QuestionnaireModal from '../../components/questionnaireModal';
 import CategoriesList from '../../components/survey/categoriesList';
-import localization from '../../services/localization/localization';
+import translate from '../../services/localization';
 
 let localStyle;
 
@@ -48,10 +48,7 @@ class SurveyScreen extends PureComponent {
     return (
       <View style={{ ...localStyle.flexi, ...localStyle.wrapper }}>
         {/* render the top banner */}
-        <Banner
-          nav={navigation}
-          title={localization.translate('survey').title}
-        />
+        <Banner nav={navigation} title={translate('survey').title} />
 
         {/* the questionnaire modal */}
         <QuestionnaireModal
@@ -78,13 +75,10 @@ class SurveyScreen extends PureComponent {
               <View style={localStyle.bottom}>
                 {questionnaireItemMap && questionnaireItemMap.done && (
                   <TouchableOpacity
-                    accessibilityLabel={localization.translate('survey').send}
-                    accessibilityRole={
-                      localization.translate('accessibility').types.button
-                    }
+                    accessibilityLabel={translate('survey').send}
+                    accessibilityRole={translate('accessibility').types.button}
                     accessibilityHint={
-                      localization.translate('accessibility').questionnaire
-                        .sendHint
+                      translate('accessibility').questionnaire.sendHint
                     }
                     onPress={() => exportAndUploadQuestionnaireResponse()}
                     style={{
@@ -93,7 +87,7 @@ class SurveyScreen extends PureComponent {
                     }}
                   >
                     <Text style={localStyle.buttonLabel}>
-                      {localization.translate('survey').send}
+                      {translate('survey').send}
                     </Text>
                   </TouchableOpacity>
                 )}

@@ -13,8 +13,8 @@ import RNRestart from 'react-native-restart';
 import AboutScreen from './aboutScreen';
 import WebViewScreen from './webViewScreen';
 import LegalInformationScreen from './legalInformationScreen';
-import localization from '../../services/localization/localization';
-import localStorage from '../../services/localStorage/localStorage';
+import translate, { setI18nConfig } from '../../services/localization';
+import localStorage from '../../services/localStorage';
 import * as aboutActions from './aboutActions';
 import store from '../../store';
 
@@ -40,11 +40,11 @@ class AboutContainer extends Component {
   clearAll = () => {
     const { actions } = this.props;
     Alert.alert(
-      localization.translate('generic').warning,
-      localization.translate('generic').eraseAllWarning,
+      translate('generic').warning,
+      translate('generic').eraseAllWarning,
       [
         {
-          text: localization.translate('generic').delete,
+          text: translate('generic').delete,
           onPress: () => {
             actions.logout();
             actions.deleteLocalData();
@@ -54,7 +54,7 @@ class AboutContainer extends Component {
           },
         },
         {
-          text: localization.translate('generic').abort,
+          text: translate('generic').abort,
           style: 'cancel',
         },
       ],
@@ -69,11 +69,11 @@ class AboutContainer extends Component {
   logout = () => {
     const { actions } = this.props;
     Alert.alert(
-      localization.translate('generic').warning,
-      localization.translate('generic').logoutWarning,
+      translate('generic').warning,
+      translate('generic').logoutWarning,
       [
         {
-          text: localization.translate('generic').goBack,
+          text: translate('generic').goBack,
           onPress: () => {
             actions.logout();
             setTimeout(() => {
@@ -82,7 +82,7 @@ class AboutContainer extends Component {
           },
         },
         {
-          text: localization.translate('generic').abort,
+          text: translate('generic').abort,
           style: 'cancel',
         },
       ],
@@ -96,19 +96,19 @@ class AboutContainer extends Component {
       store.getState().CheckIn.questionnaireItemMap.started
     ) {
       Alert.alert(
-        localization.translate('generic').warning,
-        localization.translate('about').languageWarning +
-          localization.translate('about').languageWarningAddition,
+        translate('generic').warning,
+        translate('about').languageWarning +
+          translate('about').languageWarningAddition,
         [
           {
-            text: localization.translate('generic').delete,
+            text: translate('generic').delete,
             onPress: () => {
               // deletes the local questionnaire - which will trigger the app to download a new one in the correct language
               this.setLanguage(languageTag);
             },
           },
           {
-            text: localization.translate('generic').abort,
+            text: translate('generic').abort,
             style: 'cancel',
           },
         ],
@@ -125,7 +125,7 @@ class AboutContainer extends Component {
       actions.deleteLocalQuestionnaire();
     }
     setTimeout(async () => {
-      localization.setI18nConfig(languageTag);
+      setI18nConfig(languageTag);
       await localStorage.persistLocalizationSettings(
         languageTag,
         store.getState().Login.subjectId,

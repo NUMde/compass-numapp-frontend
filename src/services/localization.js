@@ -10,12 +10,11 @@ import i18n from 'i18n-js';
 import memoize from 'lodash.memoize';
 import { I18nManager } from 'react-native';
 import * as RNLocalize from 'react-native-localize';
-import guestClient from '../rest/guestClient';
 
-import de from '../../CUSTOMIZATION/translations/de';
-import en from '../../CUSTOMIZATION/translations/en';
-import fr from '../../CUSTOMIZATION/translations/fr';
-import ar from '../../CUSTOMIZATION/translations/ar';
+import de from '../CUSTOMIZATION/translations/de';
+import en from '../CUSTOMIZATION/translations/en';
+import fr from '../CUSTOMIZATION/translations/fr';
+import ar from '../CUSTOMIZATION/translations/ar';
 
 /***********************************************************************************************
 constants
@@ -24,7 +23,7 @@ constants
 // the fallback
 // this is the default the app will fallback to in case nothing else matches.
 // (for example: the device language is hindi, but only "de", "en", "fr", "ar" are provided by the app. So the last resort fallback would be "de")
-const defaultLanguage = 'de';
+export const defaultLanguage = 'de';
 
 // the fallback
 // this is the default reading direction the app will fallback to in case nothing else matches.
@@ -62,7 +61,7 @@ const availableLanguageFiles = {
 };
 
 // is used as the final composit of available languages
-const availableLanguages = {
+export const availableLanguages = {
   ...availableLanguageFiles,
 };
 
@@ -73,7 +72,7 @@ const translate = memoize(
 );
 
 // creates the set of languages available for the user
-const setAvailableLanguages = (list) => {
+export const setAvailableLanguages = (list) => {
   // this function generates the union set of locally available languages and the languages the backend can provide the questionnaires in.
 
   const defaultLang = availableLanguageFiles[defaultLanguage];
@@ -114,7 +113,7 @@ const generateDefaultI18nConfigValues = () => {
 };
 
 // sets the config
-const setI18nConfig = async (forcedLanguageTag) => {
+export const setI18nConfig = async (forcedLanguageTag) => {
   let finalLanguageTag = defaultLanguage;
   let finalIsFinalRTL;
   // generates the final config
@@ -143,26 +142,15 @@ const setI18nConfig = async (forcedLanguageTag) => {
 };
 
 // just returns the language tag
-const getLanguageTag = () => i18n.locale;
+export const getLanguageTag = () => i18n.locale;
 
-// initilization of the module - executed in App.jsx
-const init = (forcedLanguageTag) => {
+// initialization of the module - executed in App.jsx
+export const initLocalization = (forcedLanguageTag) => {
   setI18nConfig(forcedLanguageTag);
-  guestClient.getLanguages().then((res) => {
-    setAvailableLanguages(res);
-  });
 };
 
 /***********************************************************************************************
 export
 ***********************************************************************************************/
 
-export default {
-  init,
-  translate,
-  setI18nConfig,
-  getLanguageTag,
-  defaultLanguage,
-  availableLanguages,
-  generateDefaultI18nConfigValues,
-};
+export default translate;

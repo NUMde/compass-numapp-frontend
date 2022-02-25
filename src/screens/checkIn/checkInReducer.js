@@ -5,8 +5,8 @@
 import
 ***********************************************************************************************/
 
-import localization from '../../services/localization/localization';
-import localStorage from '../../services/localStorage/localStorage';
+import { getLanguageTag } from '../../services/localization';
+import localStorage from '../../services/localStorage';
 
 /***********************************************************************************************
 support
@@ -72,10 +72,7 @@ const generateQuestionnaireItemMap = (questionnaire, subjectId, backendId) => {
 
   // persists the langugage of the last questionnaire in the LocalStorage
   setTimeout(async () => {
-    localStorage.persistLastQuestionnaireLanguage(
-      localization.getLanguageTag(),
-      subjectId,
-    );
+    localStorage.persistLastQuestionnaireLanguage(getLanguageTag(), subjectId);
   }, 0);
 
   return questionnaireItemMap;

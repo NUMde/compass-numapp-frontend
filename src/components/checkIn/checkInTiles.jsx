@@ -15,7 +15,7 @@ import {
 } from 'react-native';
 
 import config from '../../config/configProvider';
-import localization from '../../services/localization/localization';
+import translate from '../../services/localization';
 
 let localStyle;
 
@@ -68,13 +68,10 @@ class CheckInTiles extends PureComponent {
                     style={{ ...localStyle.tile, ...localStyle.buttonGreen }}
                     disabled={user && noNewQuestionnaireAvailableYet}
                     onPress={exportAndUploadQuestionnaireResponse}
-                    accessibilityLabel={localization.translate('survey').send}
-                    accessibilityRole={
-                      localization.translate('accessibility').types.button
-                    }
+                    accessibilityLabel={translate('survey').send}
+                    accessibilityRole={translate('accessibility').types.button}
                     accessibilityHint={
-                      localization.translate('accessibility').questionnaire
-                        .sendHint
+                      translate('accessibility').questionnaire.sendHint
                     }
                   >
                     <View style={localStyle.buttonWrapper}>
@@ -85,7 +82,7 @@ class CheckInTiles extends PureComponent {
                       />
 
                       <Text style={localStyle.tileText}>
-                        {localization.translate('survey').send}
+                        {translate('survey').send}
                       </Text>
                     </View>
                   </TouchableOpacity>
@@ -104,9 +101,7 @@ class CheckInTiles extends PureComponent {
                     ? localStyle.tile
                     : localStyle.disabledTile
                 }
-                accessibilityRole={
-                  localization.translate('accessibility').types.button
-                }
+                accessibilityRole={translate('accessibility').types.button}
               >
                 <View style={localStyle.buttonWrapper}>
                   <Icon
@@ -115,7 +110,7 @@ class CheckInTiles extends PureComponent {
                     iconStyle={localStyle.buttonIcon}
                   />
                   <Text style={localStyle.tileText}>
-                    {localization.translate('reporting').symptoms_header}
+                    {translate('reporting').symptoms_header}
                   </Text>
                 </View>
               </TouchableOpacity>
@@ -130,9 +125,7 @@ class CheckInTiles extends PureComponent {
                     ...localStyle.tile,
                     ...localStyle.deleteAndLogoutTile,
                   }}
-                  accessibilityRole={
-                    localization.translate('accessibility').types.button
-                  }
+                  accessibilityRole={translate('accessibility').types.button}
                 >
                   <View style={localStyle.buttonWrapper}>
                     <Icon
@@ -141,10 +134,7 @@ class CheckInTiles extends PureComponent {
                       iconStyle={localStyle.buttonIcon}
                     />
                     <Text style={localStyle.tileText}>
-                      {
-                        localization.translate('generic')
-                          .eraseLocalDataAtEndOfStudyTitle
-                      }
+                      {translate('generic').eraseLocalDataAtEndOfStudyTitle}
                     </Text>
                   </View>
                 </TouchableOpacity>

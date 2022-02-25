@@ -12,10 +12,10 @@ import { bindActionCreators } from 'redux';
 import messaging from '@react-native-firebase/messaging';
 import store from '../../store';
 
-import loggedInClient from '../../services/rest/loggedInClient';
-import localStorage from '../../services/localStorage/localStorage';
-import localization from '../../services/localization/localization';
-import documentCreator from '../../services/questionnaireAnalyzer/questionnaireAnalyzer';
+import { loggedInClient } from '../../services/rest';
+import localStorage from '../../services/localStorage';
+import translate, { getLanguageTag } from '../../services/localization';
+import documentCreator from '../../services/questionnaireAnalyzer';
 
 import SurveyScreen from './surveyScreen';
 import * as checkInActions from './checkInActions';
@@ -136,10 +136,7 @@ class CheckInContainer extends Component {
 
     // gets the questionnaire with the correct id
     await loggedInClient
-      .getBaseQuestionnaire(
-        user.current_questionnaire_id,
-        localization.getLanguageTag(),
-      )
+      .getBaseQuestionnaire(user.current_questionnaire_id, getLanguageTag())
       // success
       .then((resp) => {
         setTimeout(async () => {
@@ -152,11 +149,11 @@ class CheckInContainer extends Component {
       // fail: displays an alert window with an error output and updates the state on button-click
       .catch((error) => {
         Alert.alert(
-          localization.translate('generic').errorTitle,
-          localization.translate('generic').sendError,
+          translate('generic').errorTitle,
+          translate('generic').sendError,
           [
             {
-              text: localization.translate('generic').ok,
+              text: translate('generic').ok,
               onPress: () => {
                 actions.getQuestionnaireFail(error || 'n/a');
               },
@@ -184,7 +181,7 @@ class CheckInContainer extends Component {
       actions.updateLanguageStart();
       // sends the data
       await loggedInClient
-        .updateLanguageCode(user.subjectId, localization.getLanguageTag())
+        .updateLanguageCode(user.subjectId, getLanguageTag())
         .then(
           () => actions.updateLanguageSuccess(),
           (error) => this.updateLanguageFail(error),
@@ -202,11 +199,11 @@ class CheckInContainer extends Component {
   updateUserFail = (error) => {
     const { actions } = this.props;
     Alert.alert(
-      localization.translate('generic').info,
-      localization.translate('generic').updateError,
+      translate('generic').info,
+      translate('generic').updateError,
       [
         {
-          text: localization.translate('generic').ok,
+          text: translate('generic').ok,
           onPress: () => {
             actions.updateUserFail(error);
           },
@@ -256,7 +253,7 @@ class CheckInContainer extends Component {
         if (
           config.appConfig.skipIncomingQuestionnaireCheck ||
           (lastQuestionnaireId === newData.current_questionnaire_id &&
-            lastLang === localization.getLanguageTag())
+            lastLang === getLanguageTag())
         ) {
           // loads the persisted questionnaire
           this.checkForCachedData();
@@ -265,8 +262,8 @@ class CheckInContainer extends Component {
           // the one the user is supposed to look at
           setTimeout(() => {
             this.deleteLocalQuestionnaireData(
-              lastLang !== localization.getLanguageTag() ??
-                localization.translate('generic').wrongLanguageVersionDetected,
+              lastLang !== getLanguageTag() ??
+                translate('generic').wrongLanguageVersionDetected,
             );
           }, 0);
         }
@@ -343,13 +340,13 @@ class CheckInContainer extends Component {
     const { actions } = this.props;
     setTimeout(() => {
       Alert.alert(
-        localization.translate('generic').info,
+        translate('generic').info,
         message
-          ? message + localization.translate('generic').infoRemoval
-          : localization.translate('generic').infoRemoval,
+          ? message + translate('generic').infoRemoval
+          : translate('generic').infoRemoval,
         [
           {
-            text: localization.translate('generic').ok,
+            text: translate('generic').ok,
             onPress: async () => {
               await actions.deleteLocalQuestionnaire();
 
@@ -381,14 +378,14 @@ class CheckInContainer extends Component {
       // the one the user is supposed to look at
       setTimeout(() => {
         this.deleteLocalQuestionnaireData(
-          localization.translate('generic').sendErrorTwoDevices,
+          translate('generic').sendErrorTwoDevices,
         );
       }, 0);
     } else {
       setTimeout(() => {
         Alert.alert(
-          localization.translate('generic').errorTitle,
-          localization.translate('generic').sendError,
+          translate('generic').errorTitle,
+          translate('generic').sendError,
         );
       }, 0);
     }
@@ -409,8 +406,8 @@ class CheckInContainer extends Component {
 
     setTimeout(() => {
       Alert.alert(
-        localization.translate('generic').successTitle,
-        localization.translate('generic').sendSuccess,
+        translate('generic').successTitle,
+        translate('generic').sendSuccess,
       );
     }, 0);
   };
@@ -457,11 +454,11 @@ class CheckInContainer extends Component {
     if (questionnaireItemMap && !questionnaireItemMap.done) {
       // shows a message remembering the user to complete the questionnaire
       Alert.alert(
-        localization.translate('generic').info,
-        localization.translate('survey').sendUnfinishedMessageDenied,
+        translate('generic').info,
+        translate('survey').sendUnfinishedMessageDenied,
         [
           {
-            text: localization.translate('generic').ok,
+            text: translate('generic').ok,
           },
         ],
         { cancelable: false },
@@ -471,15 +468,15 @@ class CheckInContainer extends Component {
     // triggers the call if confirmed
     else {
       Alert.alert(
-        localization.translate('generic').info,
-        localization.translate('survey').sendFinishedMessage,
+        translate('generic').info,
+        translate('survey').sendFinishedMessage,
         [
           {
-            text: localization.translate('survey').sendFinished,
+            text: translate('survey').sendFinished,
             onPress: this.exportAndUploadQuestionnaireResponseStart,
           },
           {
-            text: localization.translate('generic').abort,
+            text: translate('generic').abort,
             style: 'cancel',
           },
         ],
@@ -501,11 +498,11 @@ class CheckInContainer extends Component {
 
     setTimeout(() => {
       Alert.alert(
-        localization.translate('generic').info,
-        localization.translate('generic').sendError,
+        translate('generic').info,
+        translate('generic').sendError,
         [
           {
-            text: localization.translate('generic').ok,
+            text: translate('generic').ok,
             onPress: () => {
               setTimeout(() => navigation.navigate('CheckIn'), 0);
             },
@@ -526,11 +523,11 @@ class CheckInContainer extends Component {
 
     setTimeout(() => {
       Alert.alert(
-        localization.translate('reporting').symptoms_success_header,
-        localization.translate('reporting').symptoms_success_message,
+        translate('reporting').symptoms_success_header,
+        translate('reporting').symptoms_success_message,
         [
           {
-            text: localization.translate('reporting').symptoms_success_ok,
+            text: translate('reporting').symptoms_success_ok,
             onPress: () => {
               setTimeout(() => navigation.navigate('CheckIn'), 0);
               this.updateUser();
@@ -566,11 +563,11 @@ class CheckInContainer extends Component {
     if (user && user.additional_iterations_left) {
       // shows a dialog telling the user that he/she already send out a report
       Alert.alert(
-        localization.translate('generic').info,
-        localization.translate('generic').reportWhileInIteratedMode,
+        translate('generic').info,
+        translate('generic').reportWhileInIteratedMode,
         [
           {
-            text: localization.translate('generic').ok,
+            text: translate('generic').ok,
           },
         ],
         { cancelable: false },
@@ -580,11 +577,11 @@ class CheckInContainer extends Component {
     else if (!noNewQuestionnaireAvailableYet) {
       // dialog telling the user to use the current questionnaire
       Alert.alert(
-        localization.translate('generic').info,
-        localization.translate('generic').reportWhileQuestionnaire,
+        translate('generic').info,
+        translate('generic').reportWhileQuestionnaire,
         [
           {
-            text: localization.translate('generic').ok,
+            text: translate('generic').ok,
           },
         ],
         { cancelable: false },
@@ -593,18 +590,18 @@ class CheckInContainer extends Component {
     // shows an alert and sends out the report
     else {
       Alert.alert(
-        localization.translate('reporting').symptoms_header,
-        localization.translate('reporting').symptoms_question,
+        translate('reporting').symptoms_header,
+        translate('reporting').symptoms_question,
         [
           {
-            text: localization.translate('reporting').symptoms_yes,
+            text: translate('reporting').symptoms_yes,
             onPress: () => {
               // sends out the report
               this.sendReportStart();
             },
           },
           {
-            text: localization.translate('reporting').symptoms_no,
+            text: translate('reporting').symptoms_no,
             style: 'cancel',
           },
         ],
@@ -623,11 +620,11 @@ class CheckInContainer extends Component {
   deleteLocalDataAndLogout = () => {
     const { actions, navigation } = this.props;
     Alert.alert(
-      localization.translate('generic').warning,
-      localization.translate('generic').eraseLocalDataAtEndOfStudyText,
+      translate('generic').warning,
+      translate('generic').eraseLocalDataAtEndOfStudyText,
       [
         {
-          text: localization.translate('generic').delete,
+          text: translate('generic').delete,
           onPress: () => {
             actions.deleteLocalData();
 
@@ -638,7 +635,7 @@ class CheckInContainer extends Component {
           },
         },
         {
-          text: localization.translate('generic').abort,
+          text: translate('generic').abort,
           style: 'cancel',
         },
       ],

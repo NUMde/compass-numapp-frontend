@@ -3,7 +3,7 @@ imports
 ***********************************************************************************************/
 
 import cloneDeep from 'lodash.clonedeep';
-import localStorage from '../services/localStorage/localStorage';
+import localStorage from '../services/localStorage';
 import hardcodedTestQuestionnaire from '../assets/files/questionnaire'; // the predefined questionnaire the demo is gonna use
 
 /***********************************************************************************************

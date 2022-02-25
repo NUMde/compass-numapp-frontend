@@ -11,9 +11,9 @@ import SharedStyles, {
 } from './sharedStyles';
 
 import { setAnswer } from '../../../screens/checkIn/checkInActions';
-import localization from '../../../services/localization/localization';
+import translate from '../../../services/localization';
 import config from '../../../config/configProvider';
-import exportService from '../../../services/questionnaireAnalyzer/questionnaireAnalyzer';
+import exportService from '../../../services/questionnaireAnalyzer';
 
 /**
  * when an item is of type choice it has the attribute "answerOptions".
@@ -60,7 +60,7 @@ function Choices({ item }) {
       <Text
         accessibilityLabel={item.text}
         accessibilityHint={
-          localization.translate('accessibility').questionnaire.singleChoice
+          translate('accessibility').questionnaire.singleChoice
         }
         style={{
           ...SharedStyles.contentTitle,

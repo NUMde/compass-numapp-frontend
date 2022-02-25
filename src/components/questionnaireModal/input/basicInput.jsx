@@ -5,7 +5,7 @@ import { Input } from 'react-native-elements';
 import debounce from 'lodash.debounce';
 
 import { setAnswer } from '../../../screens/checkIn/checkInActions';
-import localization from '../../../services/localization/localization';
+import translate from '../../../services/localization';
 import SharedStyles from './sharedStyles';
 
 /**
@@ -74,7 +74,7 @@ export default function BasicInput({ item }) {
         input.includes(',') ||
         input.includes('.'))
     ) {
-      setErrorMsg(localization.translate('survey').invalidInteger);
+      setErrorMsg(translate('survey').invalidInteger);
       // cancel previous update to global state
       setGlobalAnswer(item, null, dispatch);
       return;
@@ -84,7 +84,7 @@ export default function BasicInput({ item }) {
       // eslint-disable-next-line no-param-reassign
       input = input.replace(',', '.');
       if (Number.isNaN(Number(input))) {
-        setErrorMsg(localization.translate('survey').invalidDecimal);
+        setErrorMsg(translate('survey').invalidDecimal);
         // cancel previous update to global state
         setGlobalAnswer(item, null, dispatch);
         return;
@@ -101,14 +101,14 @@ export default function BasicInput({ item }) {
       {/* input */}
       <Input
         containerStyle={SharedStyles.modalContainer}
-        placeholder={localization.translate('login').inputPlaceholder}
+        placeholder={translate('login').inputPlaceholder}
         value={localValue}
         keyboardType={getKeyboardType(item)}
         style={localStyle.alignment}
         maxLength={item.maxLength || null}
         // accessibilityLabel={ }
         accessibilityHint={
-          localization.translate('accessibility').questionnaire.textFieldHint
+          translate('accessibility').questionnaire.textFieldHint
         }
         onChangeText={handleInputChange}
         errorMessage={errorMsg}

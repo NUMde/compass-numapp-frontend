@@ -11,8 +11,8 @@ import { bindActionCreators } from 'redux';
 import RNRestart from 'react-native-restart';
 
 import config from '../../config/configProvider';
-import localStorage from '../../services/localStorage/localStorage';
-import localization from '../../services/localization/localization';
+import localStorage from '../../services/localStorage';
+import translate from '../../services/localization';
 
 import LoginScreen from './loginScreen';
 import LandingScreen from './landingScreen';
@@ -87,11 +87,11 @@ class LoginContainer extends Component {
   deleteLocalData = () => {
     const { actions } = this.props;
     Alert.alert(
-      localization.translate('generic').warning,
-      localization.translate('generic').eraseAllWarning,
+      translate('generic').warning,
+      translate('generic').eraseAllWarning,
       [
         {
-          text: localization.translate('generic').delete,
+          text: translate('generic').delete,
           onPress: () => {
             actions.logout();
             actions.deleteLocalData();
@@ -101,7 +101,7 @@ class LoginContainer extends Component {
           },
         },
         {
-          text: localization.translate('generic').abort,
+          text: translate('generic').abort,
           style: 'cancel',
         },
       ],

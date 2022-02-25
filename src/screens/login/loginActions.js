@@ -5,9 +5,9 @@ imports
 ***********************************************************************************************/
 
 import config from '../../config/configProvider';
-import guestClient from '../../services/rest/guestClient';
-import localStorage from '../../services/localStorage/localStorage';
-import localization from '../../services/localization/localization';
+import { guestClient } from '../../services/rest';
+import localStorage from '../../services/localStorage';
+import translate, { setI18nConfig } from '../../services/localization';
 
 /***********************************************************************************************
 actions
@@ -86,7 +86,7 @@ export const sendCredentials =
             cleanedScanResult,
           );
 
-          if (lang) localization.setI18nConfig(lang);
+          if (lang) setI18nConfig(lang);
 
           dispatch(sendCredentialsSuccess(cleanedScanResult, data));
         })
@@ -97,8 +97,7 @@ export const sendCredentials =
           dispatch(
             sendCredentialsFail({
               err,
-              loginError:
-                err.error ?? localization.translate('login').errorUserGeneric,
+              loginError: err.error ?? translate('login').errorUserGeneric,
               loginUnauthorized: err.error?.response?.status === 401,
             }),
           );
@@ -109,7 +108,7 @@ export const sendCredentials =
       // persists a generic error
       dispatch(
         sendCredentialsFail({
-          loginError: localization.translate('login').noSubjectId,
+          loginError: translate('login').noSubjectId,
           loginUnauthorized: false,
         }),
       );

@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-param-reassign */
 
 // (C) Copyright IBM Deutschland GmbH 2021.  All rights reserved.
@@ -24,7 +23,7 @@ import CheckInReducer from './screens/checkIn/checkInReducer';
 // services
 /*-----------------------------------------------------------------------------------*/
 
-import localStorage from './services/localStorage/localStorage';
+import localStorage from './services/localStorage';
 
 /***********************************************************************************************
 reducer

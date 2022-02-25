@@ -425,7 +425,9 @@ exports[`SHARED COMPONENTS: <QuestionnaireModal /> can be rendered 1`] = `
         ]
       }
       swipeThreshold={100}
-    />
+    >
+      <View />
+    </View>
   </View>
 </Modal>
 `;

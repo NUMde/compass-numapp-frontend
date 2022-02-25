@@ -9,7 +9,7 @@ import { View, StyleSheet, Text } from 'react-native';
 
 import config from '../../config/configProvider';
 import { Banner, ScrollIndicatorWrapper } from '../../components/shared';
-import localization from '../../services/localization/localization';
+import translate from '../../services/localization';
 
 let localStyle;
 
@@ -36,8 +36,8 @@ class LegalInformationScreen extends PureComponent {
           {/* banner */}
           <Banner
             nav={navigation}
-            title={localization.translate('legalInformation').title}
-            subTitle={localization.translate('legalInformation').subTitle}
+            title={translate('legalInformation').title}
+            subTitle={translate('legalInformation').subTitle}
           />
 
           {/* content */}
@@ -47,10 +47,10 @@ class LegalInformationScreen extends PureComponent {
                 <View style={{ ...localStyle.wrapper, ...localStyle.top }}>
                   {/* top elements title & text */}
                   <Text style={localStyle.titleText}>
-                    {localization.translate('legalInformation').headline}
+                    {translate('legalInformation').headline}
                   </Text>
                   <Text style={localStyle.infoText}>
-                    {localization.translate('legalInformation').content}
+                    {translate('legalInformation').content}
                   </Text>
                 </View>
               }

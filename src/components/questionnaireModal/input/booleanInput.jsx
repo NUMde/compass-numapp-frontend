@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { setAnswer } from '../../../screens/checkIn/checkInActions';
 import config from '../../../config/configProvider';
-import exportService from '../../../services/questionnaireAnalyzer/questionnaireAnalyzer';
+import exportService from '../../../services/questionnaireAnalyzer';
 
 import SharedStyles, { calculateIndent } from './sharedStyles';
 

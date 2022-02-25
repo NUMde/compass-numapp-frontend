@@ -20,8 +20,8 @@
 imports
 ***********************************************************************************************/
 
-import '../../typedef';
-import config from '../../config/configProvider';
+import '../typedef';
+import config from '../config/configProvider';
 
 /***********************************************************************************************
 service methods

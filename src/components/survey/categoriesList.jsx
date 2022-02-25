@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { ListItem } from 'react-native-elements';
-import localization from '../../services/localization/localization';
+import translate from '../../services/localization';
 import config from '../../config/configProvider';
 
 class CategoriesList extends Component {
@@ -12,28 +12,27 @@ class CategoriesList extends Component {
    */
   getAccessibilityHint = (category) => {
     const { questionnaireItemMap } = this.props;
-    let hint =
-      localization.translate('accessibility').questionnaire.categoryCellHint;
+    let hint = translate('accessibility').questionnaire.categoryCellHint;
     if (
       !questionnaireItemMap[category.linkId].done &&
       questionnaireItemMap[category.linkId].started
     ) {
       return (hint +=
-        localization.translate('accessibility').questionnaire.category +
-        localization.translate('accessibility').questionnaire.notFinished);
+        translate('accessibility').questionnaire.category +
+        translate('accessibility').questionnaire.notFinished);
     }
     if (
       !questionnaireItemMap[category.linkId].done &&
       questionnaireItemMap[category.linkId].started
     ) {
       return (hint +=
-        localization.translate('accessibility').questionnaire.category +
-        localization.translate('accessibility').questionnaire.notStarted);
+        translate('accessibility').questionnaire.category +
+        translate('accessibility').questionnaire.notStarted);
     }
     if (questionnaireItemMap[category.linkId].done) {
       return (hint +=
-        localization.translate('accessibility').questionnaire.category +
-        localization.translate('accessibility').questionnaire.finished);
+        translate('accessibility').questionnaire.category +
+        translate('accessibility').questionnaire.finished);
     }
     return (hint += '');
   };
@@ -74,9 +73,7 @@ class CategoriesList extends Component {
                 containerStyle={localStyle.listItemContainer}
                 onPress={() => showQuestionnaireModal(index)}
                 accessibilityLabel={category.text}
-                accessibilityRole={
-                  localization.translate('accessibility').types.button
-                }
+                accessibilityRole={translate('accessibility').types.button}
                 accessibilityHint={this.getAccessibilityHint(category)}
               >
                 {/* title */}

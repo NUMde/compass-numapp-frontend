@@ -19,7 +19,7 @@ import {
   CheckInListView,
 } from '../../components/checkIn';
 
-import localization from '../../services/localization/localization';
+import translate from '../../services/localization';
 
 let localStyle;
 
@@ -66,8 +66,8 @@ class CheckInScreen extends PureComponent {
         {/* banner at the top */}
         <Banner
           nav={navigation}
-          title={localization.translate('survey').titleCheckIn}
-          subTitle={localization.translate('survey').subTitleCheckIn}
+          title={translate('survey').titleCheckIn}
+          subTitle={translate('survey').subTitleCheckIn}
           updateUser={updateUser}
           isCheckIn
           noWayBack
