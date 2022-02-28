@@ -78,5 +78,8 @@ export
 
 export default createStore(
   rootReducer,
-  composeWithDevTools(applyMiddleware(...middleware)),
+  composeWithDevTools({
+    trace: true,
+    traceLimit: 25,
+  })(applyMiddleware(...middleware)),
 );

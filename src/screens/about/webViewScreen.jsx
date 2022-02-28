@@ -4,22 +4,18 @@
 imports
 ***********************************************************************************************/
 
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { WebView } from 'react-native-webview';
 import { View, StyleSheet } from 'react-native';
-
-import store from '../../store';
 import config from '../../config/configProvider';
 import { Banner } from '../../components/shared';
-
-let localStyle;
 
 /***********************************************************************************************
 component:
 renders the webView screen
 ***********************************************************************************************/
 
-class WebViewScreen extends PureComponent {
+function WebViewScreen({ route, navigation }) {
   /**
    * @constructor
    * @param  {object}    props
@@ -28,37 +24,27 @@ class WebViewScreen extends PureComponent {
 
   // rendering
   /*-----------------------------------------------------------------------------------*/
+  const { title, screenSubTitle, uri } = route.params;
+  return (
+    <View>
+      <View style={localStyle.wrapper}>
+        {/* banner */}
+        <Banner nav={navigation} title={title} subTitle={screenSubTitle} />
 
-  render() {
-    const { navigation } = this.props;
-    return (
-      <View>
-        <View style={localStyle.wrapper}>
-          {/* banner */}
-          <Banner
-            nav={navigation}
-            title={store.getState().About.currentWebView.title}
-            subTitle={store.getState().About.currentWebView.screenSubTitle}
-          />
-
-          {/* content */}
-          <View style={{ ...localStyle.flexi, ...localStyle.wrapper }}>
-            <WebView
-              originWhitelist={['*']}
-              source={{ uri: store.getState().About.currentWebView.uri }}
-            />
-          </View>
+        {/* content */}
+        <View style={{ ...localStyle.flexi, ...localStyle.wrapper }}>
+          <WebView originWhitelist={['*']} source={{ uri }} />
         </View>
       </View>
-    );
-  }
+    </View>
+  );
 }
 
 /***********************************************************************************************
 localStyle
 ***********************************************************************************************/
 
-localStyle = StyleSheet.create({
+const localStyle = StyleSheet.create({
   wrapper: {
     height: '100%',
     flexDirection: 'column',

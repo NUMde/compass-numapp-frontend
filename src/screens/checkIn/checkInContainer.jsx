@@ -683,9 +683,6 @@ class CheckInContainer extends Component {
         exportAndUploadQuestionnaireResponse={
           this.exportAndUploadQuestionnaireResponse
         }
-        exportAndUploadQuestionnaireResponseStart={
-          this.exportAndUploadQuestionnaireResponseStart
-        }
         sendReport={this.sendReport}
         updateUser={this.updateUser}
       />

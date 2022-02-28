@@ -8,8 +8,11 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import About from '../screens/about/aboutContainer';
-import Login from '../screens/login/loginContainer';
+import AboutScreen from '../screens/about/aboutScreen';
+import WebViewScreen from '../screens/about/webViewScreen';
+import LegalInformationScreen from '../screens/about/legalInformationScreen';
+import LandingScreen from '../screens/login/landingScreen';
+import LoginScreen from '../screens/login/loginScreen';
 import { CheckIn } from '../screens/checkIn/checkInContainer';
 
 /***********************************************************************************************
@@ -28,8 +31,8 @@ function SignedOutView() {
       }}
       initialRouteName="Landing"
     >
-      <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="Landing" component={Login} />
+      <Stack.Screen name="Landing" component={LandingScreen} />
+      <Stack.Screen name="Login" component={LoginScreen} />
     </Stack.Navigator>
   );
 }
@@ -48,9 +51,12 @@ function SignedInView() {
     >
       <Stack.Screen name="CheckIn" component={CheckIn} />
       <Stack.Screen name="Survey" component={CheckIn} />
-      <Stack.Screen name="About" component={About} />
-      <Stack.Screen name="WebView" component={About} />
-      <Stack.Screen name="LegalInformation" component={About} />
+      <Stack.Screen name="About" component={AboutScreen} />
+      <Stack.Screen name="WebView" component={WebViewScreen} />
+      <Stack.Screen
+        name="LegalInformation"
+        component={LegalInformationScreen}
+      />
     </Stack.Navigator>
   );
 }

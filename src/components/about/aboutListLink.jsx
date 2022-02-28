@@ -32,15 +32,12 @@ class AboutListLink extends PureComponent {
   /*-----------------------------------------------------------------------------------*/
 
   render() {
-    const { actions, navigation, webView } = this.props;
+    const { navigation, webView } = this.props;
     return (
       <ListItem
         containerStyle={localStyle.containerStyle}
         onPress={() => {
-          actions.setCurrentWebView(webView);
-          setTimeout(() => {
-            navigation.navigate('WebView');
-          }, 0);
+          navigation.navigate('WebView', { ...webView });
         }}
       >
         {/* title & subtitle of the listItem - the strings a identified by the webView*/}

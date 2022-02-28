@@ -13,7 +13,6 @@ import {
   Text,
   View,
   StyleSheet,
-  ScrollView,
 } from 'react-native';
 
 import config from '../../config/configProvider';
@@ -30,18 +29,6 @@ by the property "modalLink"
 class RedirectModal extends Component {
   // public members
   /*-----------------------------------------------------------------------------------*/
-
-  /**
-   * reference for the scrollView component
-   * @type {object}
-   */
-  scrollViewRef;
-
-  /**
-   * holds the current y-offset of the scrollView
-   * @type {number}
-   */
-  scrollOffset;
 
   /**
    * tells us if the screen reader is enabled
@@ -65,32 +52,12 @@ class RedirectModal extends Component {
 	*/
   constructor(props) {
     super(props);
-    this.scrollViewRef = React.createRef();
-    this.scrollOffset = 0;
 
     // check if accessibility-features are enabled
     AccessibilityInfo.isScreenReaderEnabled().then((screenReaderEnabled) => {
       this.isAccessibilityOn = screenReaderEnabled;
     });
   }
-
-  // modal events
-  /*-----------------------------------------------------------------------------------*/
-
-  /**
-   * handles the scroll-event of the scrollView
-   * @param {object} event scroll event
-   */
-  handleOnScroll = (event) => event.nativeEvent.contentOffset.y;
-
-  /**
-   * @param {HTMLElement} element UI element that RNModal will scroll to (for example if the software-keyboard is shown)
-   */
-  handleScrollTo = (element) => {
-    if (this.scrollViewRef.current) {
-      this.scrollViewRef.current.scrollTo({ ...element, animated: true });
-    }
-  };
 
   // rendering
   /*-----------------------------------------------------------------------------------*/
@@ -100,34 +67,26 @@ class RedirectModal extends Component {
    * defined
    */
   render() {
-    const { actions, showModal, modalLink } = this.props;
+    const { showModal, hideModal, modalLink } = this.props;
     return (
       <RNModal
         avoidKeyboard
         scrollOffsetMax={50}
         style={localStyle.modal}
-        scrollTo={this.handleScrollTo}
-        scrollOffset={this.scrollOffset}
         isVisible={showModal}
-        onBackdropPress={actions.hideModal}
-        onSwipeComplete={actions.hideModal}
-        onBackButtonPress={actions.hideModal}
+        onBackdropPress={hideModal}
+        onSwipeComplete={hideModal}
+        onBackButtonPress={hideModal}
       >
         {/* content of the modal */}
         <View style={localStyle.content}>
-          <ScrollView
-            ref={this.scrollViewRef}
-            onScroll={this.handleOnScroll}
-            scrollEventThrottle={16}
-          >
-            {/* renders a title and an example text */}
-            <View style={localStyle.modalViewWrapper}>
-              <View style={localStyle.modalTitleWrapper}>
-                <Text style={localStyle.modalTitle}>{modalLink.title}</Text>
-              </View>
-              <Text style={localStyle.welcomeText}>{modalLink.text}</Text>
+          {/* renders a title and an example text */}
+          <View style={localStyle.modalViewWrapper}>
+            <View style={localStyle.modalTitleWrapper}>
+              <Text style={localStyle.modalTitle}>{modalLink.title}</Text>
             </View>
-          </ScrollView>
+            <Text style={localStyle.welcomeText}>{modalLink.text}</Text>
+          </View>
         </View>
 
         {/* separator between content and bottom-bar */}
@@ -144,7 +103,7 @@ class RedirectModal extends Component {
             accessibilityHint={translate('accessibility').acceptHint}
             onPress={() => {
               Linking.openURL(modalLink.uri);
-              actions.hideModal();
+              hideModal();
             }}
             icon={
               <Icon
@@ -163,7 +122,7 @@ class RedirectModal extends Component {
               accessibilityRole={translate('accessibility').types.button}
               accessibilityHint={translate('accessibility').closeHint}
               onPress={() => {
-                actions.hideModal();
+                hideModal();
               }}
               icon={
                 <Icon

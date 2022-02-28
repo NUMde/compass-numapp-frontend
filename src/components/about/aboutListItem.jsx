@@ -32,18 +32,18 @@ class AboutListItem extends PureComponent {
 		uri: string,
 		iconTitle: string,
 		iconType: string
-	}}	props.modalLink holds the strings and the link to open in the webView
+	}}	props.modalLink holds the strings and the link to open in the browser
 	*/
 
   // rendering
   /*-----------------------------------------------------------------------------------*/
 
   render() {
-    const { actions, modalLink } = this.props;
+    const { showModal, modalLink } = this.props;
     return (
       <ListItem
         containerStyle={localStyle.containerStyle}
-        onPress={() => actions.showModal(modalLink)}
+        onPress={() => showModal()}
       >
         {/* title & subtitle of the listItem */}
         <ListItem.Content>

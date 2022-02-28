@@ -4,21 +4,19 @@
 imports
 ***********************************************************************************************/
 
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 
 import config from '../../config/configProvider';
 import { Banner, ScrollIndicatorWrapper } from '../../components/shared';
 import translate from '../../services/localization';
 
-let localStyle;
-
 /***********************************************************************************************
 component:
 renders the webView screen
 ***********************************************************************************************/
 
-class LegalInformationScreen extends PureComponent {
+function LegalInformationScreen({ navigation }) {
   /**
    * @constructor
    * @param  {object}    props
@@ -27,46 +25,42 @@ class LegalInformationScreen extends PureComponent {
 
   // rendering
   /*-----------------------------------------------------------------------------------*/
+  return (
+    <View>
+      <View style={localStyle.wrapper}>
+        {/* banner */}
+        <Banner
+          nav={navigation}
+          title={translate('legalInformation').title}
+          subTitle={translate('legalInformation').subTitle}
+        />
 
-  render() {
-    const { navigation } = this.props;
-    return (
-      <View>
-        <View style={localStyle.wrapper}>
-          {/* banner */}
-          <Banner
-            nav={navigation}
-            title={translate('legalInformation').title}
-            subTitle={translate('legalInformation').subTitle}
+        {/* content */}
+        <View style={{ ...localStyle.flexi, ...localStyle.wrapper }}>
+          <ScrollIndicatorWrapper
+            contentData={
+              <View style={{ ...localStyle.wrapper, ...localStyle.top }}>
+                {/* top elements title & text */}
+                <Text style={localStyle.titleText}>
+                  {translate('legalInformation').headline}
+                </Text>
+                <Text style={localStyle.infoText}>
+                  {translate('legalInformation').content}
+                </Text>
+              </View>
+            }
           />
-
-          {/* content */}
-          <View style={{ ...localStyle.flexi, ...localStyle.wrapper }}>
-            <ScrollIndicatorWrapper
-              contentData={
-                <View style={{ ...localStyle.wrapper, ...localStyle.top }}>
-                  {/* top elements title & text */}
-                  <Text style={localStyle.titleText}>
-                    {translate('legalInformation').headline}
-                  </Text>
-                  <Text style={localStyle.infoText}>
-                    {translate('legalInformation').content}
-                  </Text>
-                </View>
-              }
-            />
-          </View>
         </View>
       </View>
-    );
-  }
+    </View>
+  );
 }
 
 /***********************************************************************************************
 localStyle
 ***********************************************************************************************/
 
-localStyle = StyleSheet.create({
+const localStyle = StyleSheet.create({
   wrapper: {
     height: '100%',
     flexDirection: 'column',

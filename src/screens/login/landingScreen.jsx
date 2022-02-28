@@ -4,146 +4,231 @@
 imports
 ***********************************************************************************************/
 
-import React, { PureComponent } from 'react';
-import { Text } from 'react-native-elements';
-import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import React, { useEffect } from 'react';
+import { Alert, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import RNRestart from 'react-native-restart';
 
-import config from '../../config/configProvider';
 import {
-  Banner,
   Spinner,
+  Banner,
   ScrollIndicatorWrapper,
 } from '../../components/shared';
+
+import config from '../../config/configProvider';
+import localStorage from '../../services/localStorage';
 import translate from '../../services/localization';
 
-let localStyle;
+import { logout, sendCredentials } from './loginActions';
+
+/**
+ * tries to parse the input-string and returns the subjectId (from the qr-code)
+ * @param  {string} str string to be checked
+ * @returns {string}
+ */
+const checkQrCodeForUsername = (str) => {
+  let subjectId;
+  try {
+    const qrCode = JSON.parse(str);
+    if (
+      qrCode[config.appConfig.qrCodeAttributeHoldingTheAppIdentifier] ===
+      config.appConfig.appIdentifier
+    ) {
+      subjectId = qrCode[config.appConfig.qrCodeAttributeHoldingTheSubjectId];
+    }
+  } catch (e) {
+    return '';
+  }
+  // returns the id or an e
+  return subjectId || '';
+};
 
 /***********************************************************************************************
 component:
-renders the landing-screen
+container for the login screen
 ***********************************************************************************************/
+/**
+ *
+ * @param  {object}    props
+ * @param  {object}    props.navigation the navigation object provided by 'react-navigation'
+ */
+function LoginScreen({ navigation }) {
+  // events
+  /*-----------------------------------------------------------------------------------*/
 
-class LandingScreen extends PureComponent {
+  // get date from state
+  const { loading, loggedIn, loginError } = useSelector((state) => state.Login);
+  const dispatch = useDispatch();
+
   /**
-   * @constructor
-   * @param  {object}    props
-   * @param  {object}    props.navigation the navigation object provided by 'react-navigation'
+   * tries to log in the last persisted user, is triggered by componentDidMount()
    */
+  const autoLoginLastUser = async () => {
+    // gets the last user from the AsyncStore
+    const lastSubjectId = await localStorage.loadLastSubjectId();
+    // logs the user in
+    if (lastSubjectId) {
+      dispatch(sendCredentials(lastSubjectId));
+    }
+  };
 
-  render() {
-    const {
-      loading,
-      navigation,
-      loginError,
-      autoLoginLastUser,
-      deleteLocalData,
-    } = this.props;
-    return (
-      <View style={localStyle.wrapper}>
-        {/* loading spinner */}
-        <Spinner visible={loading} testID="landingSpinner" />
+  // when component loads handle log in
+  useEffect(() => {
+    // navigate to checkin if login was successful
+    if (loggedIn) {
+      navigation.navigate('SignedIn', { screen: 'CheckIn' });
+    }
 
-        {/* banner */}
-        <Banner
-          nav={navigation}
-          title={translate('login').landing.title}
-          subTitle={translate('login').landing.subTitle}
-          noWayBack
-          noMenu
-        />
+    // triggers the auto-login when on the login-screen (only on DEV)
+    else if (config.appConfig.automateQrLogin) {
+      // parses the input string to determine the subjectId (from the qr-code)
+      const scannedId = checkQrCodeForUsername(
+        config.appConfig.automateQrLoginSubjectId || '',
+      );
+      // triggers the login
+      dispatch(sendCredentials(scannedId));
+    } else {
+      (async () => {
+        try {
+          const lastSubjectId = await localStorage.loadLastSubjectId();
+          if (lastSubjectId) {
+            dispatch(sendCredentials(lastSubjectId));
+          }
+        } catch (e) {
+          console.log(e);
+        }
+      })();
+    }
+  }, [dispatch, loggedIn, navigation]);
 
-        {/* scrollIndicator */}
-        <View style={{ ...localStyle.flexi, ...localStyle.wrapper }}>
-          <ScrollIndicatorWrapper
-            contentData={
-              loginError ? (
-                <View style={localStyle.wrapper}>
-                  <View style={localStyle.top}>
-                    <Text style={localStyle.titleText}>
-                      {translate('login').landing.autoLoginErrorTitle}
-                    </Text>
-                    <Text style={localStyle.infoText}>
-                      {translate('login').landing.autoLoginError}
-                    </Text>
-                  </View>
-                  <View style={localStyle.bottom}>
-                    <TouchableOpacity
-                      style={localStyle.button}
-                      onPress={() => autoLoginLastUser()}
-                      accessibilityLabel={translate('login').landing.retry}
-                      accessibilityRole={
-                        translate('accessibility').types.Button
-                      }
-                      accessibilityHint={translate('accessibility').retryHint}
-                    >
-                      <Text style={localStyle.buttonLabel}>
-                        {translate('login').landing.retry}
-                      </Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                      style={{
-                        ...localStyle.button,
-                        ...localStyle.buttonAlert,
-                      }}
-                      onPress={() => deleteLocalData()}
-                      accessibilityLabel={translate('login').landing.deleteAll}
-                      accessibilityRole={
-                        translate('accessibility').types.Button
-                      }
-                      accessibilityHint={translate('accessibility').retryHint}
-                    >
-                      <Text style={localStyle.buttonLabel}>
-                        {translate('login').landing.deleteAll}
-                      </Text>
-                    </TouchableOpacity>
-                  </View>
-                </View>
-              ) : (
-                <View style={localStyle.wrapper}>
-                  {/* top elements title & text */}
-                  <View style={localStyle.top}>
-                    <Text style={localStyle.titleText}>
-                      {translate('login').landing.welcomeTitle}
-                    </Text>
-                    <Text style={localStyle.infoText}>
-                      {translate('login').landing.text}
-                    </Text>
-                  </View>
-
-                  {/* bottom login button */}
-                  <View style={localStyle.bottom}>
-                    <TouchableOpacity
-                      style={localStyle.button}
-                      onPress={() => {
-                        navigation.navigate('Login');
-                      }}
-                      accessibilityLabel={translate('login').landing.buttonText}
-                      accessibilityRole={
-                        translate('accessibility').types.button
-                      }
-                      accessibilityHint={translate('accessibility').loginHint}
-                    >
-                      <Text style={localStyle.buttonLabel}>
-                        {translate('login').landing.buttonText}
-                      </Text>
-                    </TouchableOpacity>
-                  </View>
-                </View>
-              )
-            }
-          />
-        </View>
-      </View>
+  /**
+   * deletes all local data
+   */
+  const deleteLocalData = () => {
+    Alert.alert(
+      translate('generic').warning,
+      translate('generic').eraseAllWarning,
+      [
+        {
+          text: translate('generic').delete,
+          onPress: () => {
+            dispatch(logout());
+            dispatch(deleteLocalData());
+            RNRestart.Restart();
+          },
+        },
+        {
+          text: translate('generic').abort,
+          style: 'cancel',
+        },
+      ],
+      { cancelable: false },
     );
-  }
+  };
+
+  // rendering
+  /*-----------------------------------------------------------------------------------*/
+
+  // checks the currently selected route
+  return (
+    <View style={localStyle.wrapper}>
+      {/* loading spinner */}
+      <Spinner visible={loading} testID="landingSpinner" />
+
+      {/* banner */}
+      <Banner
+        nav={navigation}
+        title={translate('login').landing.title}
+        subTitle={translate('login').landing.subTitle}
+        noWayBack
+        noMenu
+      />
+
+      {/* scrollIndicator */}
+      <View style={{ ...localStyle.flexi, ...localStyle.wrapper }}>
+        <ScrollIndicatorWrapper
+          contentData={
+            loginError ? (
+              <View style={localStyle.wrapper}>
+                <View style={localStyle.top}>
+                  <Text style={localStyle.titleText}>
+                    {translate('login').landing.autoLoginErrorTitle}
+                  </Text>
+                  <Text style={localStyle.infoText}>
+                    {translate('login').landing.autoLoginError}
+                  </Text>
+                </View>
+                <View style={localStyle.bottom}>
+                  <TouchableOpacity
+                    style={localStyle.button}
+                    onPress={() => autoLoginLastUser()}
+                    accessibilityLabel={translate('login').landing.retry}
+                    accessibilityRole={translate('accessibility').types.Button}
+                    accessibilityHint={translate('accessibility').retryHint}
+                  >
+                    <Text style={localStyle.buttonLabel}>
+                      {translate('login').landing.retry}
+                    </Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                    style={{
+                      ...localStyle.button,
+                      ...localStyle.buttonAlert,
+                    }}
+                    onPress={() => deleteLocalData()}
+                    accessibilityLabel={translate('login').landing.deleteAll}
+                    accessibilityRole={translate('accessibility').types.Button}
+                    accessibilityHint={translate('accessibility').retryHint}
+                  >
+                    <Text style={localStyle.buttonLabel}>
+                      {translate('login').landing.deleteAll}
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            ) : (
+              <View style={localStyle.wrapper}>
+                {/* top elements title & text */}
+                <View style={localStyle.top}>
+                  <Text style={localStyle.titleText}>
+                    {translate('login').landing.welcomeTitle}
+                  </Text>
+                  <Text style={localStyle.infoText}>
+                    {translate('login').landing.text}
+                  </Text>
+                </View>
+
+                {/* bottom login button */}
+                <View style={localStyle.bottom}>
+                  <TouchableOpacity
+                    style={localStyle.button}
+                    onPress={() => {
+                      navigation.navigate('Login');
+                    }}
+                    accessibilityLabel={translate('login').landing.buttonText}
+                    accessibilityRole={translate('accessibility').types.button}
+                    accessibilityHint={translate('accessibility').loginHint}
+                  >
+                    <Text style={localStyle.buttonLabel}>
+                      {translate('login').landing.buttonText}
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            )
+          }
+        />
+      </View>
+    </View>
+  );
 }
 
 /***********************************************************************************************
 localStyle
 ***********************************************************************************************/
 
-localStyle = StyleSheet.create({
+const localStyle = StyleSheet.create({
   wrapper: {
     height: '100%',
     flexDirection: 'column',
@@ -213,4 +298,4 @@ localStyle = StyleSheet.create({
 export
 ***********************************************************************************************/
 
-export default LandingScreen;
+export default LoginScreen;
