@@ -31,10 +31,11 @@ compass
 │   ├── navigation
 │   ├── screens
 │   ├── services
+│   ├── store
 │   ├── theme
 │   ├── typedef.js
-|   └── store.js
-└── App.js
+├── App.js 
+└── index.js
 ```
 * *_ /__tests__ _* + 
 The directory containing link:https://jestjs.io/[Jest] Frontend Tests. Those tests utilize link:https://testing-library.com/docs/react-native-testing-library/intro/[React Native Testing Library] for their implementation.
@@ -67,7 +68,7 @@ Contains the source files.
 This is where the additional files (images, fonts, etc...) are located.
 
 ** */components* + 
-This contains all react components that are not screens. Each component has a directory containing the `.js` file, along with other necessary files (like local styles, etc...)
+This contains all react components that are not screens. Each component has a directory containing the `.jsx` file, along with other necessary files (like local styles, etc...). Components are either grouped by the screen to which they belong or placed in the 'shared' directory when used by multiple screens.
 
 ** */config* + 
 Holds various configurations files. For more information see: + 
@@ -87,24 +88,7 @@ Provides the App-Navigator, basically the definition of which screen is provided
 ** */screens* + 
 + 
 
-This is where the screen components are located. A screen component is a React component which takes up the entire display and is therefore part of the navigational hierarchy. Each screen has a respective container file, which handles the business logic and provides the component with access to the current state as well as to additional methods defined within the container. + 
-+ 
-Each Screen also represents a state of the app. The app provides three states, as there are three main screens (Login, CheckIn & About) +  
-+ 
-Each screen component has a directory containing following files along with any assets or other helper files:  
-+ 
---
-```
-ignite-project
-├── src
-│   ├── screens
-│   │   ├── FEATURE
-│   │   │   ├── FEATUREScreen.js
-│   │   │   ├── FEATUREContainer.js
-│   │   │   ├── FEATUREActions.js
-│   │   │   └── FEATUREReducer.js
-```
---
+This is where the screen components are located. A screen component is a React component which takes up the entire display and is therefore part of the navigational hierarchy.
 
 
 ** */services* + 
@@ -118,19 +102,26 @@ The module handling the internal storing of session data
 *** */questionnaireAnalyzer* + 
 Used to handle the creation of a questionnaire response and to check the completion of a filled out questionnaire
 *** */rest* + 
-Handles all outgoing calls
+Handles all outgoing calls to the backend
+
+** */store* + 
+contains the setup for the redux store. For each part of the global state, there is a '-slice.js'-file which manages that part ('slice') of the state.
+To prevent dependency cycles, some actions are placed in 'sharedActions'; executing these actions has consequences in multiple slices of the state.
+In the index.js file, the redux store is set up, combining all reducers for the different slices of state.
+For more information about the slices and how their actions work read link:https://redux-toolkit.js.org/[here] about redux-toolkit.
 
 ** */theme* + 
 Holds the theme for the application, including spacing, colors, and typography. To updated it follow the steps provided by the *`link:..//theming[Theming Documentation]`*.
 
-** *store.js*
-Defines the appReducer by combining all state reducers.
 
 ** *typdef.js* + 
 Holds some type definitions.
 
 * *App.js* + 
 The starting point of the REACT-Native Application.
+
+* *index.js* +
+The App is mounted here. Also background handlers for push notifications are defined here
 
 == Accessibility
 
@@ -216,12 +207,12 @@ link:https://redux.js.org/[Redux] provides a predictable state container to cent
 The App component is wrapped in a `Provider` from `react-redux` (see *`link:../../../../tree/main/App.js[App.js]`*), which has a store as its props. This store is built by passing the **root reducer** to the `createStore()` method (see *`link:../../../../tree/main/src/store.js[App.js]`*).
 This global store allows different components to share data.
 
-The root reducer combines all reducers (see section **Reducers**) of an application together. The reducers are linked to the root reducer in the `store.js` file by calling `combineReducers()`.
+The root reducer combines all reducers of an application together. The reducers are linked to the root reducer in the `store.js` file by calling `combineReducers()`.
 
 ```
 const rootReducer = combineReducers({
-  Login: LoginReducer,
-  App: AppReducer
+  Globals: LoginReducer,
+  User: UserReducer
 });
 
 const middleware = [];
@@ -230,29 +221,7 @@ middleware.push(thunk);
 export default createStore(rootReducer, applyMiddleware(...middleware));
 ```
 
-=== Reducers
-
-Reducers hold the state of the respective component(s). Each feature has its own reducer, which is responsible for the state within this feature/screen and can be found under `src/screens/FEATURE/reducer.js`. This file should always hold an `initialState`, as the default state, and `actionHandlers`, which - when called - can change the state accordingly.
-
-=== Actions
-
-Actions include tasks, which change the state. For example, when a user logs into the app, the triggered action would entail the authentication, and saving the user data, after this is done, then the action will dispatch information about a state-change. This information will be picked up by the `reducer`, which then changes the state. 
-
-=== Container
-
-Container should represent the link between UI and Logic/State. If a container wants to use and/or change data, it must first connect itself to the corresponding reducer and actions. Therefore, following lines must be called in every container (example given for Feature Login):
-
-```
-const mapStateToProps = state => {
-    return state.Login;
-};
-
-const mapDispatchToProps = dispatch => {
-    return { loginActions: bindActionCreators(loginActions, dispatch)}
-};
-
-const ConnectedLogin = connect(mapStateToProps, mapDispatchToProps)(LoginContainer);
-```
+Read more about how the state management with redux works link:https://redux.js.org/[here].
 
 == Push Notifications
 
