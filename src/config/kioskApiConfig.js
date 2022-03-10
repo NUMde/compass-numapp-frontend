@@ -185,9 +185,13 @@ export default {
     new Promise((res) => {
       setTimeout(() => res({ data: generateMockUserData() }), 900);
     }),
-  updateDeviceToken: () =>
+  updateLanguageCode: () =>
     new Promise((res) => {
       setTimeout(() => res({ data: hardcodedTestQuestionnaire }), 400);
+    }),
+  updateDeviceToken: () =>
+    new Promise((res) => {
+      setTimeout(() => res(), 400);
     }),
   getBaseQuestionnaire,
 };

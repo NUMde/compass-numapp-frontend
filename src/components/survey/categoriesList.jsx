@@ -1,102 +1,118 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { ListItem } from 'react-native-elements';
+import memoize from 'lodash.memoize';
 import translate from '../../services/localization';
 import config from '../../config/configProvider';
 
-class CategoriesList extends Component {
-  /**
-   * depending on the state of the given category an accessibility hint is built from the strings defined in the config file
-   * @param {*} category
-   * @returns a string as accessibility hint
-   */
-  getAccessibilityHint = (category) => {
-    const { questionnaireItemMap } = this.props;
-    let hint = translate('accessibility').questionnaire.categoryCellHint;
-    if (
-      !questionnaireItemMap[category.linkId].done &&
-      questionnaireItemMap[category.linkId].started
-    ) {
-      return (hint +=
-        translate('accessibility').questionnaire.category +
-        translate('accessibility').questionnaire.notFinished);
-    }
-    if (
-      !questionnaireItemMap[category.linkId].done &&
-      questionnaireItemMap[category.linkId].started
-    ) {
-      return (hint +=
-        translate('accessibility').questionnaire.category +
-        translate('accessibility').questionnaire.notStarted);
-    }
-    if (questionnaireItemMap[category.linkId].done) {
-      return (hint +=
-        translate('accessibility').questionnaire.category +
-        translate('accessibility').questionnaire.finished);
-    }
-    return (hint += '');
-  };
-
-  getCategoryChevronProps = (category) => {
-    const { questionnaireItemMap } = this.props;
-    const categoryState = questionnaireItemMap[category.linkId];
-    if (categoryState.done) {
-      return {
-        name: 'check',
-        color: config.theme.values.defaultSurveyIconCompletedColor,
-      };
-    }
-    if (categoryState.started) {
-      return {
-        name: 'dots-horizontal',
-        color: config.theme.values.defaultSurveyIconTouchedColor,
-      };
-    }
-    return {
-      name: 'pencil-outline',
-      color: config.theme.values.defaultSurveyIconUntouchedColor,
-    };
-  };
-
-  render() {
-    const { showQuestionnaireModal, categories } = this.props;
-    if (categories) {
-      return (
-        <View style={localStyle.wrapper}>
-          {/* maps a listItem onto each category */}
-          {categories.map((category, index) => {
-            // get additional properties based on the completion state of the category
-            const chevronProps = this.getCategoryChevronProps(category);
-            return (
-              <ListItem
-                key={category.linkId}
-                containerStyle={localStyle.listItemContainer}
-                onPress={() => showQuestionnaireModal(index)}
-                accessibilityLabel={category.text}
-                accessibilityRole={translate('accessibility').types.button}
-                accessibilityHint={this.getAccessibilityHint(category)}
-              >
-                {/* title */}
-                <ListItem.Content>
-                  <ListItem.Title style={localStyle.titleStyle}>
-                    {category.text}
-                  </ListItem.Title>
-                </ListItem.Content>
-                <ListItem.Chevron
-                  type="material-community"
-                  name={chevronProps.name}
-                  size={12}
-                  reverse
-                  color={chevronProps.color}
-                />
-              </ListItem>
-            );
-          })}
-        </View>
-      );
-    }
-    return <View />;
+/**
+ * depending on the state of the given category an accessibility hint is built from the strings defined in the config file
+ * @param {boolean} done whether the category has been completely answered as required
+ * @param {boolean} started whether the category has been started
+ * @returns {string} a string as accessibility hint describing the state of the category
+ */
+const getAccessibilityHint = (done, started) => {
+  let hint = translate('accessibility').questionnaire.categoryCellHint;
+  if (done) {
+    return (hint +=
+      translate('accessibility').questionnaire.category +
+      translate('accessibility').questionnaire.finished);
   }
+  if (started) {
+    return (hint +=
+      translate('accessibility').questionnaire.category +
+      translate('accessibility').questionnaire.notFinished);
+  }
+
+  return (hint +=
+    translate('accessibility').questionnaire.category +
+    translate('accessibility').questionnaire.notStarted);
+};
+
+/**
+ * depending on the state of the given category an accessibility hint is built from the strings defined in the config file
+ * @param {boolean} done whether the category has been completely answered as required
+ * @param {boolean} started whether the category has been started
+ * @returns {{name: string, color : string}} an object describing properties of the chevron
+ */
+const getCategoryChevronProps = (done, started) => {
+  if (done) {
+    return {
+      name: 'check',
+      color: config.theme.values.defaultSurveyIconCompletedColor,
+    };
+  }
+  if (started) {
+    return {
+      name: 'dots-horizontal',
+      color: config.theme.values.defaultSurveyIconTouchedColor,
+    };
+  }
+  return {
+    name: 'pencil-outline',
+    color: config.theme.values.defaultSurveyIconUntouchedColor,
+  };
+};
+
+/***********************************************************************************************
+ * component
+ * renders the list of categories, i.e. the first-level items
+ *
+ * @param  {object}    props
+ * @param  {[QuestionnaireItem]}   props.categories indicates whether the current category has been completely answered
+ * @param  {object<string, QuestionnaireItem>}   props.itemMap
+ * @param  {function} props.showQuestionnaireModal callback to open the modal at the chosen category
+ */
+function CategoriesList({ categories, itemMap, showQuestionnaireModal }) {
+  // memoize determination of chevronProps
+  const chevronProps = memoize(
+    getCategoryChevronProps,
+    (done, started) => `${done}_${started}`,
+  );
+
+  // memoize determination of accessibility hint
+  const a11yHint = memoize(
+    getAccessibilityHint,
+    (done, started) => `${done}_${started}`,
+  );
+
+  if (categories) {
+    return (
+      <View style={localStyle.wrapper}>
+        {/* maps a listItem onto each category */}
+        {categories.map((category, index) => {
+          // get additional properties based on the completion state of the category
+
+          const { done, started } = itemMap[category.linkId];
+          return (
+            <ListItem
+              key={category.linkId}
+              containerStyle={localStyle.listItemContainer}
+              onPress={() => showQuestionnaireModal(index)}
+              accessibilityLabel={category.text}
+              accessibilityRole={translate('accessibility').types.button}
+              accessibilityHint={a11yHint(done, started)}
+            >
+              {/* title */}
+              <ListItem.Content>
+                <ListItem.Title style={localStyle.titleStyle}>
+                  {category.text}
+                </ListItem.Title>
+              </ListItem.Content>
+              <ListItem.Chevron
+                type="material-community"
+                name={chevronProps(done, started).name}
+                size={12}
+                reverse
+                color={chevronProps(done, started).color}
+              />
+            </ListItem>
+          );
+        })}
+      </View>
+    );
+  }
+  return <View />;
 }
 
 const localStyle = StyleSheet.create({

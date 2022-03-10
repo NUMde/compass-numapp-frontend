@@ -2,39 +2,46 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { useSelector } from 'react-redux';
 
-import BasicInput from './basicInput';
-import BooleanInput from './booleanInput';
-import ChoicesInput from './choicesInput';
-import DateInput from './dateInput';
-import SliderInput from './sliderInput';
+// custom input components for the different types of questions
+import BasicInput from './input/basicInput';
+import BooleanInput from './input/booleanInput';
+import ChoicesInput from './input/choicesInput';
+import DateInput from './input/dateInput';
+import SliderInput from './input/sliderInput';
 
-import questionnaireAnalyzer from '../../../services/questionnaireAnalyzer';
+// services & config
+import questionnaireAnalyzer from '../../services/questionnaireAnalyzer';
 
+// shared styles & style calculations
 import SharedStyles, {
   calculateFontSize,
   calculateIndent,
   calculateLineHeight,
-} from './sharedStyles';
-/**
+} from './input/sharedStyles';
+
+/***********************************************************************************************
+ * component:
  * renders a single FHIR-Questionnaire Item
  * should this item be oif type group, its child items are rendered recursively
+ *
  * @param {object} props
  * @param {QuestionnaireItem} props.item the item to be rendered
- *
- */
+ **********************************************************************************************/
 export default function QuestionnaireItem({ item }) {
   const questionnaireItemMap = useSelector(
-    (state) => state.CheckIn.questionnaireItemMap,
+    (state) => state.Questionnaire.itemMap,
   );
+
+  // only render the item if its requirements (i.e. the "enableWhen" constraints) are met
   if (
     !questionnaireAnalyzer.checkDependenciesOfSingleItem(
       item,
       questionnaireItemMap,
     )
   ) {
-    return <View />;
+    return null;
   }
-  // if the item represents a group of questions, display the ti  tle of the group and render the children below
+  // if the item represents a group of questions, display the title of the group and render the children below
   if (item.type === 'group') {
     return (
       <View key={item.linkId}>
@@ -94,9 +101,8 @@ export default function QuestionnaireItem({ item }) {
           <BasicInput item={item} key={item.linkId} />
         );
 
-      // if nothing else matches - display the title if at least the dependencies check out
+      // if nothing else matches - display the title
       default:
-        // checks the dependencies of the item and renders it (if the dependencies check out)
         return (
           <Text
             style={{

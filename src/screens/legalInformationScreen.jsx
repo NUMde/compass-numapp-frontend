@@ -7,24 +7,21 @@ imports
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 
-import config from '../../config/configProvider';
-import { Banner, ScrollIndicatorWrapper } from '../../components/shared';
-import translate from '../../services/localization';
+// custom components
+import { Banner, ScrollIndicatorWrapper } from '../components/shared';
+
+// services & config
+import translate from '../services/localization';
+import config from '../config/configProvider';
 
 /***********************************************************************************************
-component:
-renders the webView screen
-***********************************************************************************************/
-
+ * component:
+ * renders the legal information screen which contains legal information about the study
+ *
+ * @param {object} props
+ * @param {object} props.navigation the navigation object provided by 'react-navigation'
+ ***********************************************************************************************/
 function LegalInformationScreen({ navigation }) {
-  /**
-   * @constructor
-   * @param  {object}    props
-   * @param  {object}    props.navigation the navigation object provided by 'react-navigation'
-   */
-
-  // rendering
-  /*-----------------------------------------------------------------------------------*/
   return (
     <View>
       <View style={localStyle.wrapper}>
@@ -34,7 +31,6 @@ function LegalInformationScreen({ navigation }) {
           title={translate('legalInformation').title}
           subTitle={translate('legalInformation').subTitle}
         />
-
         {/* content */}
         <View style={{ ...localStyle.flexi, ...localStyle.wrapper }}>
           <ScrollIndicatorWrapper

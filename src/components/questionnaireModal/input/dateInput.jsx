@@ -8,27 +8,35 @@ import {
   Dimensions,
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
+
+// components
 import { Input, Button } from 'react-native-elements';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { setAnswer } from '../../../screens/checkIn/checkInActions';
+
+// redux actions
+import { setAnswer } from '../../../store/questionnaire.slice';
+
+// services & config
 import config from '../../../config/configProvider';
 import exportService from '../../../services/questionnaireAnalyzer';
 import translate from '../../../services/localization';
 
 import SharedStyles from './sharedStyles';
 
-/**
+/***********************************************************************************************
+ * component
  * renders a questionnaire item as date input
+ *
  * @param {object} props
  * @param {QuestionnaireItem} props.item the item to be rendered
- */
+ **********************************************************************************************/
 export default function DateInput({ item }) {
   // internal state which controls, whether the datepicker is shown
   const [showDatePicker, setShowDatePicker] = useState(false);
   const dispatch = useDispatch();
   // get currentDate from state
   const currentDate = useSelector(
-    (state) => state.CheckIn.questionnaireItemMap[item.linkId].answer,
+    (state) => state.Questionnaire.itemMap[item.linkId].answer,
   );
   return (
     <View style={SharedStyles.modalInput}>
@@ -61,12 +69,17 @@ export default function DateInput({ item }) {
 
       {showDatePicker && (
         <DateTimePicker
-          value={currentDate || new Date()}
+          value={currentDate ? new Date(currentDate) : new Date()}
           mode="date"
           style={{ width: modalWidth }}
           locale="de-de"
           display="spinner"
           onChange={(_event, date) => {
+            // on iOS the date picker is toggled with custom buttons
+            // on android the picker is closed when confirming or canceling on the datepicker itself
+            if (Platform.OS === 'android') {
+              setShowDatePicker(false);
+            }
             if (date) {
               dispatch(
                 setAnswer({
@@ -75,8 +88,6 @@ export default function DateInput({ item }) {
                 }),
               );
             }
-            // only on android the datepicker appears as dialog which must be closed
-            Platform.OS === 'android' && setShowDatePicker(false);
           }}
         />
       )}
@@ -87,29 +98,45 @@ export default function DateInput({ item }) {
             title={translate('generic').abort}
             onPress={() => {
               dispatch(
+                // when a date as previously been selected, don't change it
+                // return empty otherwise; no date has been selected
                 setAnswer({
                   linkId: item.linkId,
-                  answer: '',
+                  answer: currentDate ?? '',
                 }),
                 setShowDatePicker(false),
               );
             }}
             style={localStyle.dateTimePickerButton}
             type="clear"
-            titleStyle={{ color: config.theme.colors.accent4 }}
+            titleStyle={localStyle.iOSButton}
           />
           <Button
             title={translate('generic').ok}
             color={config.theme.colors.secondary}
-            onPress={() => setShowDatePicker(false)}
+            onPress={() => {
+              dispatch(
+                // when confirming, either set the date provided by the date picker or create a new one
+                // based on the current date (which is the one shown by default)
+                setAnswer({
+                  linkId: item.linkId,
+                  answer: currentDate ?? new Date(),
+                }),
+              );
+              setShowDatePicker(false);
+            }}
             type="clear"
-            titleStyle={{ color: config.theme.colors.accent4 }}
+            titleStyle={localStyle.iOSButton}
           />
         </View>
       )}
     </View>
   );
 }
+
+/***********************************************************************************************
+localStyle
+***********************************************************************************************/
 
 const modalWidth = Dimensions.get('window').width - 40;
 
@@ -125,5 +152,9 @@ const localStyle = StyleSheet.create({
 
   dateTimePickerButton: {
     paddingRight: 40,
+  },
+
+  iOSButton: {
+    color: config.theme.colors.accent4,
   },
 });

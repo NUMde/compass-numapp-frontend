@@ -7,8 +7,6 @@ imports
 ***********************************************************************************************/
 
 import * as forge from 'node-forge';
-import store from '../store';
-import config from '../config/configProvider';
 
 /***********************************************************************************************
 encryption
@@ -18,17 +16,9 @@ encryption
  * takes a string and returns it encrypted
  * @param {any} messageToBeEncrypted message to be encrypted
  */
-const encrypt = (messageToBeEncrypted) => {
-  // TODO: remove workaround
-  let pemString =
-    store?.getState().Login?.session?.recipientCertificatePemString;
-  pemString =
-    pemString === 'false' || !pemString
-      ? config.appConfig.defaultRecipientCertificatePemString
-      : pemString;
-
+const encrypt = (messageToBeEncrypted, certString) => {
   // retrieves the necessary certificate
-  const cert = forge.pki.certificateFromPem(pemString);
+  const cert = forge.pki.certificateFromPem(certString);
 
   // creates enveloped data and provides the certificate
   const p7 = forge.pkcs7.createEnvelopedData();

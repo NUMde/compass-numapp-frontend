@@ -7,13 +7,19 @@ imports
 import React, { createRef } from 'react';
 import { StyleSheet, View, Text, Dimensions } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+
+// components
 import QRCodeScanner from 'react-native-qrcode-scanner';
 
-import config from '../../config/configProvider';
-import { Banner, ScrollIndicatorWrapper } from '../../components/shared';
-import translate from '../../services/localization';
+// custom components
+import { Banner, ScrollIndicatorWrapper } from '../components/shared';
 
-import { sendCredentials, updateSubjectId } from './loginActions';
+// redux actions
+import { sendCredentials } from '../store/user.slice';
+
+// services & config
+import config from '../config/configProvider';
+import translate from '../services/localization';
 
 /**
  * tries to parse the input-string and returns the subjectId (from the qr-code)
@@ -33,15 +39,16 @@ const checkQrCodeForUsername = (str) => {
   } catch (e) {
     return '';
   }
-  // returns the id or an e
+  // returns the id or an empty string if no id could be found
   return subjectId || '';
 };
 
 /***********************************************************************************************
- * renders the login-screen
+ * component:
+ * renders the login-screen with the qr code scanner
+ *
  * @param  {object}    props
  * @param  {object}    props.navigation the navigation object provided by 'react-navigation'
- *
  ***********************************************************************************************/
 function LoginScreen({ navigation }) {
   const dispatch = useDispatch();
@@ -52,7 +59,7 @@ function LoginScreen({ navigation }) {
   let camera = createRef();
 
   // get data from state
-  const { loginUnauthorized, loginError } = useSelector((state) => state.Login);
+  const { error } = useSelector((state) => state.Globals);
 
   /**
    * is triggered when the qr-scann is getting something.
@@ -65,10 +72,8 @@ function LoginScreen({ navigation }) {
     // parses the input string to determine the subjectId (from the qr-code)
     const subjectId = checkQrCodeForUsername(scanResult.data);
 
-    // sets the subjectId defined in appConfig.js
-    dispatch(updateSubjectId(subjectId));
     // triggers the login
-    setTimeout(() => dispatch(sendCredentials(subjectId, camera), 500));
+    dispatch(sendCredentials(subjectId, camera));
   };
 
   // rendering
@@ -114,10 +119,10 @@ function LoginScreen({ navigation }) {
                 </Text>
 
                 {/* login error text */}
-                {loginError && (
+                {error && (
                   <View>
                     {/* displays an error message in case of 401 */}
-                    {loginUnauthorized && (
+                    {error.code === 401 && (
                       <Text
                         style={{
                           ...localStyle.infoText,
@@ -129,7 +134,7 @@ function LoginScreen({ navigation }) {
                     )}
 
                     {/* if anything other than a 401: outputs the returned error message (or a generic error message instead) followed by another instructional string*/}
-                    {!loginUnauthorized && (
+                    {error && (
                       <View>
                         <Text
                           style={{
@@ -137,7 +142,7 @@ function LoginScreen({ navigation }) {
                             ...localStyle.loginErrorText,
                           }}
                         >
-                          {loginError?.message ??
+                          {error?.message ??
                             translate('login').errorUserGeneric}
                           {'\n'}
                           {translate('login').nextStepAfterError}
@@ -209,5 +214,7 @@ const localStyle = StyleSheet.create({
 /***********************************************************************************************
 export
 ***********************************************************************************************/
+
+LoginScreen.screenName = 'Login';
 
 export default LoginScreen;

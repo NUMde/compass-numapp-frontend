@@ -9,10 +9,7 @@ imports
 
 import axios from 'axios';
 import config from '../config/configProvider';
-import kioskMode from '../config/kioskApiConfig';
-import store from '../store';
 import encrypt from './encryption';
-import localStorage from './localStorage';
 
 /***********************************************************************************************
 guest client functions
@@ -22,21 +19,17 @@ guest client functions
  * @param  {string} subjectId the id used to identify the user
  */
 const login = (subjectId) =>
-  kioskMode.active
-    ? kioskMode.login()
-    : axios.get(config.appConfig.endpoints.login + subjectId);
+  axios.get(config.appConfig.endpoints.login + subjectId);
 
 /**
  * procures the list of languages
  */
 const getLanguages = async () =>
-  kioskMode.active
-    ? kioskMode.getLanguages()
-    : axios.get(config.appConfig.endpoints.getLanguages, {
-        headers: {
-          Accept: 'application/json',
-        },
-      });
+  axios.get(config.appConfig.endpoints.getLanguages, {
+    headers: {
+      Accept: 'application/json',
+    },
+  });
 
 /***********************************************************************************************
 support functions
@@ -46,12 +39,10 @@ support functions
  * creates the Bearer token
  * @param  {string} [token] access token
  */
-
 const createAuthorizationToken = (token) => {
   if (token) {
     return `Bearer ${token}`;
   }
-  return `Bearer ${store.getState().Login.session.accessToken}`;
 };
 
 /**
@@ -61,7 +52,7 @@ const createAuthorizationToken = (token) => {
  * @param  {string} type type of the message
  * @param  {object} body body to encrypt
  */
-const generateEncapsuledMessage = (subjectId, type, body = {}) => {
+const generateEncapsuledMessage = (subjectId, type, certString, body = {}) => {
   const msg = {
     type,
     data: {
@@ -70,7 +61,7 @@ const generateEncapsuledMessage = (subjectId, type, body = {}) => {
   };
   if (body) msg.data.body = body;
 
-  const encryptedMsg = encrypt(msg);
+  const encryptedMsg = encrypt(msg, certString);
 
   // console output
   if (config.appConfig.logEncryptedResponse) {
@@ -90,12 +81,8 @@ clients
 /**
  * gets the subjectId and calls the getUser-endpoint
  */
-const getUserUpdate = async () => {
-  let { subjectId } = store.getState().Login;
-  if (!subjectId) subjectId = await localStorage.loadLastSubjectId();
-  return kioskMode.active
-    ? kioskMode.getUserUpdate()
-    : axios.get(config.appConfig.endpoints.getUser + subjectId);
+const getUserUpdate = async (subjectId) => {
+  return axios.get(config.appConfig.endpoints.getUser + subjectId);
 };
 
 // language
@@ -107,20 +94,18 @@ const getUserUpdate = async () => {
  * @param  {string} languageCode the language code
  */
 const updateLanguageCode = async (subjectId, languageCode) =>
-  kioskMode.active
-    ? kioskMode.updateDeviceToken()
-    : axios.post(
-        config.appConfig.endpoints.updateLanguage + subjectId,
-        {
-          language: languageCode,
-        },
-        {
-          headers: {
-            Authorization: createAuthorizationToken(),
-            Accept: 'application/json',
-          },
-        },
-      );
+  axios.post(
+    config.appConfig.endpoints.updateLanguage + subjectId,
+    {
+      language: languageCode,
+    },
+    {
+      headers: {
+        Authorization: createAuthorizationToken(subjectId),
+        Accept: 'application/json',
+      },
+    },
+  );
 
 // push
 /*-----------------------------------------------------------------------------------*/
@@ -131,20 +116,18 @@ const updateLanguageCode = async (subjectId, languageCode) =>
  * @param  {string} token the token
  */
 const updateDeviceToken = async (subjectId, token) =>
-  kioskMode.active
-    ? kioskMode.updateDeviceToken()
-    : axios.post(
-        config.appConfig.endpoints.updateToken + subjectId,
-        {
-          token,
-        },
-        {
-          headers: {
-            Authorization: createAuthorizationToken(),
-            Accept: 'application/json',
-          },
-        },
-      );
+  axios.post(
+    config.appConfig.endpoints.updateToken + subjectId,
+    {
+      token,
+    },
+    {
+      headers: {
+        Authorization: createAuthorizationToken(subjectId),
+        Accept: 'application/json',
+      },
+    },
+  );
 
 // reports
 /*-----------------------------------------------------------------------------------*/
@@ -153,26 +136,24 @@ const updateDeviceToken = async (subjectId, token) =>
  * sends out the encapsuled message
  * @param  {string} subjectId string identifying the user
  */
-const sendReport = async (subjectId) =>
-  kioskMode.active
-    ? kioskMode.sendReport()
-    : axios.post(
-        config.appConfig.endpoints.report,
-        generateEncapsuledMessage(subjectId, 'report'),
-        {
-          headers: {
-            Authorization: createAuthorizationToken(),
-            Accept: 'application/json',
-          },
-          params: {
-            subjectId,
-            type: 'report',
-            updateValues: {
-              [config.appConfig.defaultReportAttribute]: true,
-            },
-          },
+const sendReport = async (subjectId, certString) =>
+  axios.post(
+    config.appConfig.endpoints.report,
+    generateEncapsuledMessage(subjectId, 'report', certString),
+    {
+      headers: {
+        Authorization: createAuthorizationToken(subjectId),
+        Accept: 'application/json',
+      },
+      params: {
+        subjectId,
+        type: 'report',
+        updateValues: {
+          [config.appConfig.defaultReportAttribute]: true,
         },
-      );
+      },
+    },
+  );
 
 // questionnaires
 /*-----------------------------------------------------------------------------------*/
@@ -184,6 +165,7 @@ const sendReport = async (subjectId) =>
  * @param  {string}  subjectId string identifying the user
  * @param  {string}  surveyId string identifying the current questionnaire
  * @param  {string}  instanceId instance of the current questionnaire
+ * @param  {string}  certString the certificate containing the public key with which the response shall be encrypted
  */
 const sendQuestionnaire = async (
   body,
@@ -191,48 +173,50 @@ const sendQuestionnaire = async (
   subjectId,
   surveyId,
   instanceId,
+  certString,
 ) =>
-  kioskMode.active
-    ? kioskMode.sendQuestionnaire()
-    : axios.post(
-        config.appConfig.endpoints.sendQuestionnaire,
-        generateEncapsuledMessage(subjectId, 'questionnaire_response', body),
-        {
-          headers: {
-            Authorization: createAuthorizationToken(),
-            Accept: 'application/json',
-          },
-          params: {
-            type: 'questionnaire_response',
-            id: subjectId,
-            subjectId,
-            surveyId,
-            instanceId,
-            updateValues: {
-              ...triggerMap,
-            },
-          },
+  axios.post(
+    config.appConfig.endpoints.sendQuestionnaire,
+    generateEncapsuledMessage(
+      subjectId,
+      'questionnaire_response',
+      certString,
+      body,
+    ),
+    {
+      headers: {
+        Authorization: createAuthorizationToken(subjectId),
+        Accept: 'application/json',
+      },
+      params: {
+        type: 'questionnaire_response',
+        id: subjectId,
+        subjectId,
+        surveyId,
+        instanceId,
+        updateValues: {
+          ...triggerMap,
         },
-      );
+      },
+    },
+  );
 
 /**
  * procures the questionnaire from the backend
  * @param  {string} questionnaireId id of the questionnaire that the user is supposed to fill out
  */
-const getBaseQuestionnaire = async (questionnaireId, langCode) =>
-  kioskMode.active
-    ? kioskMode.getBaseQuestionnaire(langCode)
-    : axios.get(
-        `${config.appConfig.endpoints.getQuestionnaire}${encodeURIComponent(
-          questionnaireId,
-        )}/${langCode}`,
-        {
-          headers: {
-            Authorization: createAuthorizationToken(),
-            Accept: 'application/json',
-          },
-        },
-      );
+const getBaseQuestionnaire = async (questionnaireId, subjectId, langCode) =>
+  axios.get(
+    `${config.appConfig.endpoints.getQuestionnaire}${encodeURIComponent(
+      questionnaireId,
+    )}/${langCode}`,
+    {
+      headers: {
+        Authorization: createAuthorizationToken(subjectId),
+        Accept: 'application/json',
+      },
+    },
+  );
 
 /***********************************************************************************************
 export

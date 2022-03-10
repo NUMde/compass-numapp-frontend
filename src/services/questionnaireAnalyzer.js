@@ -149,12 +149,12 @@ const calculatePageProgress = (
 /**
  * checks the validity of a single item and returns it. should the item contain subitems, then those will
  * also be checked by executing "traverseItems()" on those subitems.
- * @param  {QuestionnaireItem} item questionnaire-item
+ * @param {QuestionnaireItem} item questionnaire-item
  * @param {Map<string, QuestionnaireItem>} questionnaireItemMap
  */
 const checkItem = (item, questionnaireItemMap) => {
   /** return value of the function, speaks about the validity of an item */
-  let returnValue = false;
+  let completed = false;
 
   // if this item needs to be ignored
   if (
@@ -163,18 +163,18 @@ const checkItem = (item, questionnaireItemMap) => {
     item.type === 'display' ||
     !checkDependenciesOfSingleItem(item, questionnaireItemMap)
   ) {
-    returnValue = true;
+    completed = true;
   }
-  // if the item does not met its own regEx
+  // if the item does not meet its own regEx
   else if (!checkRegExExtension(item.linkId, questionnaireItemMap)) {
-    returnValue = false;
+    completed = false;
   } else {
     // if its a boolean
     if (item.type === 'boolean') {
       // boolean are by default always valid (as FALSE is a valid answer).
       // but if it has subItems they must be traversed, and the result of that
       // is the result of the boolean
-      returnValue = item.item
+      completed = item.item
         ? traverseItems(item.item, questionnaireItemMap)
         : true;
     }
@@ -187,7 +187,7 @@ const checkItem = (item, questionnaireItemMap) => {
       item.type === 'number'
     ) {
       // ...should not be empty -> but 0 is valid value
-      returnValue =
+      completed =
         (questionnaireItemMap[item.linkId].answer &&
           questionnaireItemMap[item.linkId].answer !== '') ||
         questionnaireItemMap[item.linkId].answer === 0;
@@ -195,20 +195,20 @@ const checkItem = (item, questionnaireItemMap) => {
     // if there is no subItem..
     else if (!item.item) {
       // ...we just look up if the answer is still in its initial state (meaning null)
-      returnValue = questionnaireItemMap[item.linkId].answer != null;
+      completed = questionnaireItemMap[item.linkId].answer != null;
     }
     // and should there be at least the item-property...
     else {
       // ... traverse it and see if they all check out
-      returnValue = traverseItems(item.item, questionnaireItemMap);
+      completed = traverseItems(item.item, questionnaireItemMap);
     }
 
     // should the item be of type "choice"...
-    if (returnValue && item.type === 'choice') {
+    if (completed && item.type === 'choice') {
       // ... and only accept a single answer
       if (!item.repeats) {
         // ... make sure its not NULL
-        returnValue = questionnaireItemMap[item.linkId].answer != null;
+        completed = questionnaireItemMap[item.linkId].answer != null;
       }
       // if multiple answers are allowed
       else {
@@ -221,11 +221,7 @@ const checkItem = (item, questionnaireItemMap) => {
     }
   }
 
-  // sets the done property of the item
-  // eslint-disable-next-line no-param-reassign
-  questionnaireItemMap[item.linkId].done = returnValue;
-
-  return returnValue;
+  return completed;
 };
 
 /**
@@ -366,47 +362,24 @@ const getCorrectlyFormattedAnswer = (item) => {
  * needs to be checked) and iterates over all active (as in they met their enableWhen-conditions)
  * sub-items to check if they are valid.
  * @param  {QuestionnaireItem[]} [items] the items property of a questionnaire-item (from the categories-array)
- * @param  {QuestionnaireItem[]} categories the list of categories, i.e. the first level items
  * @param  {Map<string, QuestionnaireItem>} itemMap the item map with all questions
- * @param  {function} setQuestionnaireItemMap callback to update the questionnaireItemMap if necessary
  */
-const checkCompletionStateOfMultipleItems = (
-  items,
-  categories,
-  itemMap,
-  setQuestionnaireItemMap,
-) => {
+const checkCompletionStateOfItems = (items, itemMap) => {
   /**
    * local copy of the questionnaireItemMap from the checkIn-state
    * @type {QuestionnaireItemMap}
    */
   const questionnaireItemMap = { ...itemMap, done: true };
 
-  // if a set of items was given
-  if (items) {
-    /** return value of the function */
-    let returnValue = true;
+  /** return value of the function */
+  let completed = true;
 
-    // sets the returnValue to false if a single item does not check out
-    items.forEach((item) => {
-      if (!checkItem(item, questionnaireItemMap)) returnValue = false;
-    });
-
-    return returnValue;
-  }
-  // if there is no set, go over all categories
-
-  // sets the done-property for the whole questionnaire
-  categories.forEach((category) => {
-    if (!checkItem(category, questionnaireItemMap)) {
-      questionnaireItemMap.done = false;
-    }
+  // sets the returnValue to false if a single item does not check out
+  items.forEach((item) => {
+    if (!checkItem(item, questionnaireItemMap)) completed = false;
   });
 
-  // persists the new questionnaireItemMap
-  setQuestionnaireItemMap(questionnaireItemMap);
-
-  return questionnaireItemMap.done;
+  return completed;
 };
 
 /**
@@ -491,9 +464,10 @@ const checkDependenciesOfSingleItem = (item, questionnaireItemMap) => {
  * this creates the document that, as soon as encrypted, will be sent to the backend
  * @param   {Map<string, QuestionnaireItem>} questionnaireItemMap the item map with all questions
  * @param   {QuestionnaireItem[]} categories the list of categories, i.e. first level items
+ * @param   {object} FHIRmetadata metadata of the questionnaire
  * @returns {ExportData}
  */
-const createResponseJSON = (questionnaireItemMap, categories) => {
+const createResponseJSON = (questionnaireItemMap, categories, FHIRmetadata) => {
   /** persists the information if a trigger was... well, triggered
    * @type {Object.<string, boolean>}
    */
@@ -722,9 +696,9 @@ const createResponseJSON = (questionnaireItemMap, categories) => {
     authored: new Date().toISOString(),
     item: createItems(categories),
     resourceType: 'QuestionnaireResponse',
-    questionnaire: questionnaireItemMap.url,
-    identifier: questionnaireItemMap.identifier,
-    status: questionnaireItemMap.done ? 'completed' : 'in-progress',
+    questionnaire: FHIRmetadata.url,
+    identifier: FHIRmetadata.identifier,
+    status: 'completed',
   };
 
   // removes empty entries
@@ -758,5 +732,5 @@ export default {
   calculatePageProgress,
   getCorrectlyFormattedAnswer,
   checkDependenciesOfSingleItem,
-  checkCompletionStateOfMultipleItems,
+  checkCompletionStateOfItems,
 };

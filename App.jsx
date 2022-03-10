@@ -4,24 +4,27 @@
 imports
 ***********************************************************************************************/
 
-import { Provider } from 'react-redux';
 import React, { PureComponent } from 'react';
+import { StyleSheet, View, StatusBar, LogBox, Platform } from 'react-native';
 import * as RNLocalize from 'react-native-localize';
 import SplashScreen from 'react-native-splash-screen';
-import { StyleSheet, View, StatusBar, LogBox, Platform } from 'react-native';
-import RNRestart from 'react-native-restart';
 import { URL as nativeURL } from 'react-native-url-polyfill/auto';
+
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 import {
   initLocalization,
-  setI18nConfig,
-  setAvailableLanguages,
+  availableLanguages,
 } from './src/services/localization';
-
-import reduxStore from './src/store';
-import config from './src/config/configProvider';
+import { persistor, reduxStore } from './src/store';
+import AppNavigator from './src/navigation/appNavigator';
 import kioskMode from './src/config/kioskApiConfig';
-import createAppNavigator from './src/navigation/appNavigator';
-import { guestClient } from './src/services/rest';
+import config from './src/config/configProvider';
+
+// redux actions
+import { updateLanguage } from './src/store/user.slice';
+
+import { Spinner } from './src/components/shared';
 
 /***********************************************************************************************
 Component
@@ -36,9 +39,6 @@ class App extends PureComponent {
   constructor(props) {
     super(props);
     initLocalization();
-    guestClient.getLanguages().then((res) => {
-      setAvailableLanguages(res);
-    });
   }
 
   // just in case the device language is changed while the app is running
@@ -53,8 +53,9 @@ class App extends PureComponent {
 
   // fires after the device language was changed while the app is running
   handleLocalizationChange = () => {
-    setI18nConfig();
-    RNRestart.Restart();
+    updateLanguage(
+      RNLocalize.findBestAvailableLanguage(Object.keys(availableLanguages)),
+    );
   };
 
   render() {
@@ -80,7 +81,11 @@ class App extends PureComponent {
           />
         )}
 
-        <Provider store={reduxStore}>{createAppNavigator()}</Provider>
+        <Provider store={reduxStore}>
+          <PersistGate loading={<Spinner />} persistor={persistor}>
+            <AppNavigator />
+          </PersistGate>
+        </Provider>
       </View>
     );
   }
