@@ -1,28 +1,33 @@
 import React from 'react';
 import { View, Text, Dimensions, StyleSheet } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+
+// components
 import Slider from '@react-native-community/slider';
 
-import { setAnswer } from '../../../screens/checkIn/checkInActions';
+// redux actions
+import { setAnswer } from '../../../store/questionnaire.slice';
 
+// services & config
 import config from '../../../config/configProvider';
 import translate from '../../../services/localization';
 
 import SharedStyles from './sharedStyles';
 
-/**
- *
+/***********************************************************************************************
+ * component
  * renders a questionnaire item as slider input
+ *
  * @param {object} props
  * @param {QuestionnaireItem} props.item the item to be rendered
- * @returns
- */
+ ***********************************************************************************************/
 export default function SliderInput({ item }) {
-  // get  from state
-  const currentValue = useSelector(
-    (state) => state.CheckIn.questionnaireItemMap[item.linkId].answer,
-  );
   const dispatch = useDispatch();
+
+  // get current value from state
+  const currentValue = useSelector(
+    (state) => state.Questionnaire.itemMap[item.linkId].answer,
+  );
   // creates the default slider-object
   const sliderProperties = Object.create({
     'questionnaire-sliderStepVal': 1,
@@ -90,6 +95,10 @@ export default function SliderInput({ item }) {
     </View>
   );
 }
+
+/***********************************************************************************************
+localStyle
+***********************************************************************************************/
 
 const modalWidth = Dimensions.get('window').width - 40;
 

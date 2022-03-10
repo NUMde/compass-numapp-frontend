@@ -45,7 +45,6 @@
     "react-native-modal": "^13.0.0",
     "react-native-permissions": "^3.2.0",
     "react-native-qrcode-scanner": "^1.5.4",
-    "react-native-restart": "0.0.23",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "^3.10.2",
     "react-native-splash-screen": "^3.3.0",

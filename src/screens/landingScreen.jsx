@@ -7,19 +7,19 @@ imports
 import React, { useEffect } from 'react';
 import { Alert, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import RNRestart from 'react-native-restart';
 
-import {
-  Spinner,
-  Banner,
-  ScrollIndicatorWrapper,
-} from '../../components/shared';
+// custom components
+import { Spinner, Banner, ScrollIndicatorWrapper } from '../components/shared';
 
-import config from '../../config/configProvider';
-import localStorage from '../../services/localStorage';
-import translate from '../../services/localization';
+// services & config
+import config from '../config/configProvider';
+import translate from '../services/localization';
 
-import { logout, sendCredentials } from './loginActions';
+// redux actions
+import { sendCredentials } from '../store/user.slice';
+import { reset } from '../store/sharedActions';
+
+import { Routes, Stacks } from '../navigation/constants';
 
 /**
  * tries to parse the input-string and returns the subjectId (from the qr-code)
@@ -44,39 +44,25 @@ const checkQrCodeForUsername = (str) => {
 };
 
 /***********************************************************************************************
-component:
-container for the login screen
-***********************************************************************************************/
-/**
+ * component:
+ * renders the landing screen with the welcome message an a button
+ * which redirects to the login screen
  *
  * @param  {object}    props
  * @param  {object}    props.navigation the navigation object provided by 'react-navigation'
- */
-function LoginScreen({ navigation }) {
-  // events
-  /*-----------------------------------------------------------------------------------*/
-
-  // get date from state
-  const { loading, loggedIn, loginError } = useSelector((state) => state.Login);
+ **********************************************************************************************/
+function LandingScreen({ navigation }) {
   const dispatch = useDispatch();
 
-  /**
-   * tries to log in the last persisted user, is triggered by componentDidMount()
-   */
-  const autoLoginLastUser = async () => {
-    // gets the last user from the AsyncStore
-    const lastSubjectId = await localStorage.loadLastSubjectId();
-    // logs the user in
-    if (lastSubjectId) {
-      dispatch(sendCredentials(lastSubjectId));
-    }
-  };
+  // get date from state
+  const { loading, error } = useSelector((state) => state.Globals);
+  const { subjectId } = useSelector((state) => state.User);
 
   // when component loads handle log in
   useEffect(() => {
-    // navigate to checkin if login was successful
-    if (loggedIn) {
-      navigation.navigate('SignedIn', { screen: 'CheckIn' });
+    // navigate to  'checkInScreen' if login was successful
+    if (subjectId) {
+      navigation.navigate(Stacks.SIGNED_IN, { screen: Routes.CHECK_IN });
     }
 
     // triggers the auto-login when on the login-screen (only on DEV)
@@ -87,24 +73,13 @@ function LoginScreen({ navigation }) {
       );
       // triggers the login
       dispatch(sendCredentials(scannedId));
-    } else {
-      (async () => {
-        try {
-          const lastSubjectId = await localStorage.loadLastSubjectId();
-          if (lastSubjectId) {
-            dispatch(sendCredentials(lastSubjectId));
-          }
-        } catch (e) {
-          console.log(e);
-        }
-      })();
     }
-  }, [dispatch, loggedIn, navigation]);
+  }, [dispatch, subjectId, navigation]);
 
   /**
-   * deletes all local data
+   * deletes all local data after user confirmation
    */
-  const deleteLocalData = () => {
+  const deleteHandler = () => {
     Alert.alert(
       translate('generic').warning,
       translate('generic').eraseAllWarning,
@@ -112,9 +87,7 @@ function LoginScreen({ navigation }) {
         {
           text: translate('generic').delete,
           onPress: () => {
-            dispatch(logout());
-            dispatch(deleteLocalData());
-            RNRestart.Restart();
+            dispatch(reset());
           },
         },
         {
@@ -130,10 +103,11 @@ function LoginScreen({ navigation }) {
   /*-----------------------------------------------------------------------------------*/
 
   // checks the currently selected route
-  return (
+  return loading ? (
+    <Spinner />
+  ) : (
     <View style={localStyle.wrapper}>
       {/* loading spinner */}
-      <Spinner visible={loading} testID="landingSpinner" />
 
       {/* banner */}
       <Banner
@@ -145,10 +119,10 @@ function LoginScreen({ navigation }) {
       />
 
       {/* scrollIndicator */}
-      <View style={{ ...localStyle.flexi, ...localStyle.wrapper }}>
+      <View style={[localStyle.flexi, localStyle.wrapper]}>
         <ScrollIndicatorWrapper
           contentData={
-            loginError ? (
+            error ? (
               <View style={localStyle.wrapper}>
                 <View style={localStyle.top}>
                   <Text style={localStyle.titleText}>
@@ -161,7 +135,7 @@ function LoginScreen({ navigation }) {
                 <View style={localStyle.bottom}>
                   <TouchableOpacity
                     style={localStyle.button}
-                    onPress={() => autoLoginLastUser()}
+                    onPress={() => navigation.navigate(Routes.LOGIN)}
                     accessibilityLabel={translate('login').landing.retry}
                     accessibilityRole={translate('accessibility').types.Button}
                     accessibilityHint={translate('accessibility').retryHint}
@@ -172,11 +146,8 @@ function LoginScreen({ navigation }) {
                   </TouchableOpacity>
 
                   <TouchableOpacity
-                    style={{
-                      ...localStyle.button,
-                      ...localStyle.buttonAlert,
-                    }}
-                    onPress={() => deleteLocalData()}
+                    style={[localStyle.button, localStyle.buttonAlert]}
+                    onPress={() => deleteHandler()}
                     accessibilityLabel={translate('login').landing.deleteAll}
                     accessibilityRole={translate('accessibility').types.Button}
                     accessibilityHint={translate('accessibility').retryHint}
@@ -203,9 +174,7 @@ function LoginScreen({ navigation }) {
                 <View style={localStyle.bottom}>
                   <TouchableOpacity
                     style={localStyle.button}
-                    onPress={() => {
-                      navigation.navigate('Login');
-                    }}
+                    onPress={() => navigation.navigate(Routes.LOGIN)}
                     accessibilityLabel={translate('login').landing.buttonText}
                     accessibilityRole={translate('accessibility').types.button}
                     accessibilityHint={translate('accessibility').loginHint}
@@ -298,4 +267,4 @@ const localStyle = StyleSheet.create({
 export
 ***********************************************************************************************/
 
-export default LoginScreen;
+export default LandingScreen;

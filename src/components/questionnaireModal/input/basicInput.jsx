@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { I18nManager, View, Text, StyleSheet } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { Input } from 'react-native-elements';
 import debounce from 'lodash.debounce';
 
-import { setAnswer } from '../../../screens/checkIn/checkInActions';
+// components
+import { Input } from 'react-native-elements';
+
+// redux actions
+import { setAnswer } from '../../../store/questionnaire.slice';
+
+// services & config
 import translate from '../../../services/localization';
+
+// shared styles
 import SharedStyles from './sharedStyles';
 
 /**
@@ -37,16 +44,18 @@ const setGlobalAnswer = debounce((item, retVal, dispatch) => {
   dispatch(setAnswer({ answer: retVal, linkId: item.linkId }));
 }, 350);
 
-/**
+/***********************************************************************************************
  * renders a questionnaire item as basic input element for either strings, decimals, or integers
+ *
  * @param {object} props
  * @param {QuestionnaireItem} props.item the item to be rendered
- * @returns
- */
+ **********************************************************************************************/
 export default function BasicInput({ item }) {
+  const dispatch = useDispatch();
+
   // get currentValue from state
   const globalValue = useSelector((state) =>
-    state.CheckIn.questionnaireItemMap[item.linkId].answer?.toString(),
+    state.Questionnaire.itemMap[item.linkId].answer?.toString(),
   );
   // internally store value of input
   const [localValue, setLocalValue] = useState(null);
@@ -58,7 +67,6 @@ export default function BasicInput({ item }) {
     () => setLocalValue(localValue ?? globalValue),
     [localValue, globalValue],
   );
-  const dispatch = useDispatch();
 
   // check and validate input
   const handleInputChange = (input) => {
@@ -116,6 +124,10 @@ export default function BasicInput({ item }) {
     </View>
   );
 }
+
+/***********************************************************************************************
+localStyle
+***********************************************************************************************/
 
 const localStyle = StyleSheet.create({
   alignment: {

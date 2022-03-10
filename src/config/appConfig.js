@@ -131,36 +131,12 @@ const conf = {
   // ATTENTION: These are not encrypted!
 
   /** local storage identifier:
-   * persist the questionnaireItemMap */
-  localStorageMap: '@COMPASS_STORE:persisted_survey',
-
-  /** local storage identifier:
-   * persists the questionnaireItemMap */
-  localStorageList: '@COMPASS_STORE:persisted_survey_list',
-
-  /** local storage identifier:
-   * the subject-id of the user last logged in */
-  lastSubjectId: '@COMPASS_STORE:last_active_user',
-
-  /** local storage identifier:
-   * the id of the last active questionnaire of the last active user */
-  lastQuestionnaireId: '@COMPASS_STORE:last_questionnaire_id',
-
-  /** local storage identifier:
-   * the language of the last active questionnaire of the last active user */
-  lastQuestionnaireLang: '@COMPASS_STORE:last_questionnaire_lang',
-
-  /** local storage identifier:
-   * persists all relevant information about the notification-service */
-  FCMToken: '@COMPASS_STORE:fcm_token',
-
-  /** local storage identifier:
    * persists all necessary data for the kiosk mode */
   kioskModeData: '@COMPASS_STORE:kiosk_mode_data',
 
   /** local storage identifier:
-   * persists all necessary localization data */
-  localeData: '@COMPASS_STORE:locale_data',
+   * persists all necessary data for the kiosk mode */
+  userLanguage: '@COMPASS_STORE:user_language',
 
   // push notification
   /*-----------------------------------------------------------------------------------*/

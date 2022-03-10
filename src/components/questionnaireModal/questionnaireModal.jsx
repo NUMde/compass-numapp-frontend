@@ -1,31 +1,31 @@
 // (C) Copyright IBM Deutschland GmbH 2021.  All rights reserved.
 
-// the code contained in this file is rendering the content (meaning the ui-elements) of
-// the modal that opens when an item on the survey screen is clicked on. the user-input
-// received by these ui-elements is persisted in the object "questionnaireItemMap", located
-// in the checkIn state.
-
-// the following terms are used in the comments in this file:
-
-// item:
-// a single questionnaire item:
-// https://www.hl7.org/fhir/questionnaire-definitions.html#Questionnaire.item
-
-// categories:
-// all first level items with linkIds like "1" or "6" or "15"
-
-// page:
-// a page is composed of all sub-items of a category that have
-// the identical value as the second position of their linkId. for example:
-// all linkIds starting with "1.2" (and "1.2.1" and "1.2.1.1" and so on) will
-// be considered a page
+/**
+ * the code contained in this file is rendering the content (meaning the ui-elements) of
+ * the modal that opens when an item on the survey screen is clicked on. the user-input
+ * received by these ui-elements is persisted in the object "questionnaireItemMap", located
+ * in the checkIn state.
+ *
+ * the following terms are used in the comments in this file:
+ *
+ * item:
+ * a single questionnaire item:
+ * https://www.hl7.org/fhir/questionnaire-definitions.html#Questionnaire.item
+ *
+ * categories:
+ * all first level items with linkIds like "1" or "6" or "15"
+ * page:
+ * a page is composed of all sub-items of a category that have
+ * the identical value as the second position of their linkId. for example:
+ * all linkIds starting with "1.2" (and "1.2.1" and "1.2.1.1" and so on) will
+ * be considered a page
+ */
 
 /***********************************************************************************************
 imports
 ***********************************************************************************************/
 
-import React, { Component } from 'react';
-import RNModal from 'react-native-modal';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   TouchableOpacity,
   Text,
@@ -34,235 +34,153 @@ import {
   ScrollView,
   I18nManager,
 } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 
+// components
+import RNModal from 'react-native-modal';
 import { Icon } from 'react-native-elements';
 
-import '../../typedef';
-import exportService from '../../services/questionnaireAnalyzer';
+// custom components
+import BottomBar from './bottomBar';
+import QuestionnaireItem from './questionnaireItem';
+
+// redux actions
+import { switchContent } from '../../store/questionnaire.slice';
+
+// services & config
 import setAccessibilityResponder from '../../services/setAccessibilityResponder';
 import translate from '../../services/localization';
 import config from '../../config/configProvider';
-import BottomBar from './bottomBar';
-
-import QuestionnaireItem from './input/QuestionnaireItem';
-
-let localStyle;
 
 /***********************************************************************************************
-component:
-renders the questionnaireModal and the contents of the questionnaire
-***********************************************************************************************/
+ * component:
+ * renders the questionnaireModal and the contents of the questionnaire
+ ***********************************************************************************************/
+function QuestionnaireModal() {
+  const dispatch = useDispatch();
 
-class QuestionnaireModal extends Component {
-  /**
-   * holds the current y-offset of the scrollView
-   * @type {number}
-   */
-  scrollOffset;
+  // creating references
+  const scrollViewRef = useRef();
+  const modalTitleRef = useRef();
 
-  /**
-   * reference for the scrollView component
-   * @type {object}
-   */
-  scrollViewRef;
+  // setting defaults
+  let scrollOffset = 0;
 
-  /**
-   * reference for the title-text component that is rendered
-   * @type {object}
-   */
-  modalTitleRef;
+  const { pageIndex, categoryIndex, categories } = useSelector(
+    (state) => state.Questionnaire,
+  );
 
-  /**
-	* @constructor
-	* @param  {object}  props
-	* @param  {object}  props.actions the redux actions of the parents state of this (checkInActions)
-	* @param  {boolean} props.showDatePicker if true: shows the DatePicker
-	* @param  {number}  props.currentPageIndex the index of the page of the current category that is
-	* @param  {QuestionnaireItem[]}	props.categories array with an entry for each category
-		displayed. a page is composed of all sub-items of a category that have the identical value as the
-		second position of their linkId. for example: all linkIds starting with "1.2" (and "1.2.1" and
-		"1.2.1.1" and so on) will be considered a page
-	* @param  {QuestionnaireItemMap} props.questionnaireItemMap holds a property for every item of the questionnaire
-		as well  as their current answer and rendering-state. also contains properties to indicate the state
-		of the whole questionnaire (like started, or done). if the properties of this object are updated
-		through an action then the ui will be refreshed directly afterwards
-	* @param  {number}  props.currentCategoryIndex the index of the currently active category (that means
-		all first level items with linkIds like "1" or "6") also: categories must be of type "group"
-	* @param  {boolean} props.showQuestionnaireModal if true: displays the QuestionnaireModal
-	*/
-  constructor(props) {
-    super(props);
+  // show the modal if the currently chosen categoryIndex is valid (i.e. > -1)
+  const modalVisible = categoryIndex > -1;
 
-    // creating references
-    this.scrollViewRef = React.createRef();
-    this.modalTitleRef = React.createRef();
-
-    // setting defaults
-    this.scrollOffset = 0;
-  }
-
-  componentDidMount() {
-    setAccessibilityResponder(this.modalTitleRef);
-  }
-
-  // class events
-  /*-----------------------------------------------------------------------------------*/
-
-  /**
-   * is invoked immediately after updating occurs. this method is not called for the initial render.
-   * basically it resets currentPageNeedsRendering and scrolls back to the top.
-   */
-  componentDidUpdate() {
-    const {
-      actions,
-      categories,
-      currentPageIndex,
-      currentCategoryIndex,
-      questionnaireItemMap,
-      showQuestionnaireModal,
-    } = this.props;
-    // when the requirements for the current question are not met,
-    // an update is triggered to skip to the next (or previous) question
-    if (
-      showQuestionnaireModal &&
-      !exportService.checkDependenciesOfSingleItem(
-        categories[currentCategoryIndex].item[currentPageIndex - 1],
-        questionnaireItemMap,
-      )
-    ) {
-      if (categories[currentCategoryIndex].item.length === currentPageIndex) {
-        // if the requirements for last question are not met, the modal is dismissed
-        actions.hideQuestionnaireModal();
-      } else {
-        actions.switchContent();
-      }
-    }
-  }
-
-  // modal events
-  /*-----------------------------------------------------------------------------------*/
+  useEffect(() => {
+    setAccessibilityResponder(modalTitleRef);
+  });
 
   /**
    * handles the scroll-event of the scrollView
    * @param  {object} event scroll event
    */
-  handleOnScroll = (event) => {
+  const handleOnScroll = (event) => {
     // just sets the current scrollOffset
-    this.scrollOffset = event.nativeEvent.contentOffset.y;
+    scrollOffset = event.nativeEvent.contentOffset.y;
   };
 
   /**
    * @param  {{ y: number, animated: boolean }} element UI element that RNModal will scroll to (for example if the software-keyboard is shown)
    */
-  handleScrollTo = (element) => {
+  const handleScrollTo = (element) => {
     // scrolls to the given element if the scrollView is currently active
-    if (this.scrollViewRef.current) {
-      this.scrollViewRef.current.scrollTo({ ...element, animated: true });
+    if (scrollViewRef.current) {
+      scrollViewRef.current.scrollTo({ ...element, animated: true });
     }
   };
 
-  // rendering
-  /*-----------------------------------------------------------------------------------*/
+  const hideModalHandle = () => {
+    dispatch(switchContent({ categoryIndex: -1, pageIndex: 0 }));
+  };
 
   /**
    * renders the content based on the currently chosen category
    */
-  render() {
-    // if there is something to render
-    const {
-      showQuestionnaireModal,
-      actions,
-      categories,
-      currentPageIndex,
-      questionnaireItemMap,
-      currentCategoryIndex,
-    } = this.props;
-    return (
-      <RNModal
-        scrollOffsetMax={50}
-        avoidKeyboard
-        propagateSwipe
-        backdropOpacity={0.9}
-        style={localStyle.modal}
-        swipeDirection={['down']}
-        scrollTo={this.handleScrollTo}
-        scrollOffset={this.scrollOffset}
-        isVisible={showQuestionnaireModal}
-        onBackdropPress={actions.hideQuestionnaireModal}
-        onSwipeComplete={actions.hideQuestionnaireModal}
-        onBackButtonPress={actions.hideQuestionnaireModal}
-        onModalWillHide={() =>
-          exportService.checkCompletionStateOfMultipleItems(
-            null,
-            categories,
-            questionnaireItemMap,
-            actions.setQuestionnaireItemMap,
-          )
-        }
-      >
-        {/* renders the content of the page */}
-        {showQuestionnaireModal && (
-          <>
-            <View style={localStyle.content}>
-              <View style={localStyle.titleWrapper}>
-                <Text
-                  style={localStyle.modalTitle}
-                  ref={this.modalTitleRef}
-                  accessibilityRole={translate('accessibility').types.header}
-                >
-                  {`${categories[currentCategoryIndex].text}`}
-                </Text>
-                <TouchableOpacity
-                  style={localStyle.closeButton}
-                  onPress={() => actions.hideQuestionnaireModal()}
-                  accessibilityRole={translate('accessibility').types.button}
-                  accessibilityLabel={translate('accessibility').close}
-                  accessibilityHint={translate('accessibility').closeHint}
-                >
-                  <Icon
-                    name="close"
-                    type="material-community"
-                    color={config.theme.colors.accent4}
-                    accessible={false}
-                  />
-                </TouchableOpacity>
-              </View>
-              <ScrollView
-                ref={this.scrollViewRef}
-                onScroll={this.handleOnScroll}
-                scrollEventThrottle={16}
+  return (
+    <RNModal
+      scrollOffsetMax={50}
+      avoidKeyboard
+      propagateSwipe
+      backdropOpacity={0.9}
+      style={localStyle.modal}
+      swipeDirection={['down']}
+      scrollTo={handleScrollTo}
+      scrollOffset={scrollOffset}
+      isVisible={modalVisible}
+      onBackdropPress={hideModalHandle}
+      onSwipeComplete={hideModalHandle}
+      onBackButtonPress={hideModalHandle}
+    >
+      {/* renders the content of the page */}
+      {modalVisible && (
+        <>
+          <View style={localStyle.content}>
+            <View style={localStyle.titleWrapper}>
+              <Text
+                style={localStyle.modalTitle}
+                ref={modalTitleRef}
+                accessibilityRole={translate('accessibility').types.header}
               >
-                <QuestionnaireItem
-                  item={
-                    categories[currentCategoryIndex].item[currentPageIndex - 1]
-                  }
-                  key={
-                    categories[currentCategoryIndex].item[currentPageIndex - 1]
-                      .linkId
-                  }
+                {`${categories[categoryIndex].text}`}
+              </Text>
+              {/* button to close the modal */}
+              <TouchableOpacity
+                onPress={() => {
+                  dispatch(switchContent({ categoryIndex: -1, pageIndex: 0 }));
+                }}
+                accessibilityRole={translate('accessibility').types.button}
+                accessibilityLabel={translate('accessibility').close}
+                accessibilityHint={translate('accessibility').closeHint}
+              >
+                <Icon
+                  name="close"
+                  type="material-community"
+                  color={config.theme.colors.accent4}
+                  accessible={false}
                 />
-              </ScrollView>
+              </TouchableOpacity>
             </View>
+            <ScrollView
+              ref={scrollViewRef}
+              onScroll={handleOnScroll}
+              scrollEventThrottle={16}
+            >
+              <QuestionnaireItem
+                item={categories[categoryIndex].item[pageIndex - 1]}
+                key={categories[categoryIndex].item[pageIndex - 1].linkId}
+              />
+            </ScrollView>
+          </View>
 
-            {/* renders the bottom bar with the buttons to switch between
+          {/* renders the bottom bar with the buttons to switch between
               questions*/}
-            <BottomBar
-              modalTitleRef={this.modalTitleRef}
-              handleScrollTo={this.handleScrollTo}
-            />
-          </>
-        )}
-        {!showQuestionnaireModal && <View />}
-      </RNModal>
-    );
-  }
+          <BottomBar
+            modalTitleRef={modalTitleRef}
+            handleScrollTo={handleScrollTo}
+            hideModal={() =>
+              dispatch(switchContent({ categoryIndex: -1, pageIndex: 0 }))
+            }
+          />
+        </>
+      )}
+      {/* empty View in case the modal is hidden */}
+      {!modalVisible && <View />}
+    </RNModal>
+  );
 }
 
 /***********************************************************************************************
 styles
 ***********************************************************************************************/
 
-localStyle = StyleSheet.create({
+const localStyle = StyleSheet.create({
   modal: {
     justifyContent: 'flex-end',
     marginLeft: 0,

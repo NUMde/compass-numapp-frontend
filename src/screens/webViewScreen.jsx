@@ -7,23 +7,23 @@ imports
 import React from 'react';
 import { WebView } from 'react-native-webview';
 import { View, StyleSheet } from 'react-native';
-import config from '../../config/configProvider';
-import { Banner } from '../../components/shared';
 
-/***********************************************************************************************
-component:
-renders the webView screen
-***********************************************************************************************/
+// custom components
+import { Banner } from '../components/shared';
 
+// services & config
+import config from '../config/configProvider';
+
+/**
+ * component:
+ * renders the webview screen which displays a website within the app
+ *
+ * @param  {object}    props
+ * @param  {object}    props.route the route object provided by 'react-navigation'
+ * @param  {object}    props.navigation the navigation object provided by 'react-navigation'
+ */
 function WebViewScreen({ route, navigation }) {
-  /**
-   * @constructor
-   * @param  {object}    props
-   * @param  {object}    props.navigation the navigation object provided by 'react-navigation'
-   */
-
-  // rendering
-  /*-----------------------------------------------------------------------------------*/
+  // retrieve params passed via navigation
   const { title, screenSubTitle, uri } = route.params;
   return (
     <View>
@@ -32,7 +32,7 @@ function WebViewScreen({ route, navigation }) {
         <Banner nav={navigation} title={title} subTitle={screenSubTitle} />
 
         {/* content */}
-        <View style={{ ...localStyle.flexi, ...localStyle.wrapper }}>
+        <View style={[localStyle.flexi, localStyle.wrapper]}>
           <WebView originWhitelist={['*']} source={{ uri }} />
         </View>
       </View>

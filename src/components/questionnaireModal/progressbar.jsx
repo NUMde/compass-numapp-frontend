@@ -1,13 +1,11 @@
-/***********************************************************************************************
+/**********************************************************************************
 import
 ***********************************************************************************************/
 
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
 import config from '../../config/configProvider';
-
-let localStyle;
 
 const calculateWidth = (width) =>
   StyleSheet.create({
@@ -17,39 +15,26 @@ const calculateWidth = (width) =>
   });
 
 /***********************************************************************************************
-component:
-renders a progressbar on the bottom of the questionnaireModal
-***********************************************************************************************/
+ * component:
+ * renders a progressbar on the bottom of the questionnaireModal
+ * @param {object} props
+ * @param {number} props.progress the progress as a decimal value between 0 and 1
+ ***********************************************************************************************/
+function ProgressBar({ progress }) {
+  const width = calculateWidth(progress);
 
-class ProgressBar extends PureComponent {
-  /**
-   * @constructor
-   * @param {object} props
-   * @param {number} props.progress the progress as a decimal value between 0 and 1
-   */
-
-  // rendering
-  /*-----------------------------------------------------------------------------------*/
-
-  render() {
-    const { progress } = this.props;
-    const width = calculateWidth(progress);
-
-    return (
-      <View style={localStyle.container}>
-        <View
-          style={{ ...localStyle.progressBar, ...width.progressBarWidth }}
-        />
-      </View>
-    );
-  }
+  return (
+    <View style={localStyle.container}>
+      <View style={[localStyle.progressBar, width.progressBarWidth]} />
+    </View>
+  );
 }
 
 /***********************************************************************************************
 local styling
 ***********************************************************************************************/
 
-localStyle = StyleSheet.create({
+const localStyle = StyleSheet.create({
   container: {
     width: '95%',
     alignSelf: 'center',
