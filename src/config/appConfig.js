@@ -134,6 +134,10 @@ const conf = {
    * persists all necessary data for the kiosk mode */
   kioskModeData: '@COMPASS_STORE:kiosk_mode_data',
 
+  /** local storage identifier:
+   * persists all necessary data for the kiosk mode */
+  userLanguage: '@COMPASS_STORE:user_language',
+
   // push notification
   /*-----------------------------------------------------------------------------------*/
 

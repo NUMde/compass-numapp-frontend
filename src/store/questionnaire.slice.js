@@ -55,7 +55,7 @@ const fetchQuestionnaire = createAsyncThunk(
       );
       return thunkApi.rejectWithValue({
         error: {
-          code: error.response?.status ?? 'NETWORK_ERROR',
+          code: error.response?.status ?? 'ERROR',
           message: error?.response,
           failedAction: 'questionnaire/FETCH',
         },

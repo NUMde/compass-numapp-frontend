@@ -11,15 +11,15 @@ import {
 } from '../components/checkIn';
 
 // redux actions
+import { getLanguages } from '../store/globals.slice';
 import { updateUser, updateFCMToken } from '../store/user.slice';
-import { sendQuestionnaireResponse, sendReport } from '../store/sharedActions';
 import { deleteQuestionnaire } from '../store/questionnaire.slice';
+import { sendQuestionnaireResponse, sendReport } from '../store/sharedActions';
 
 // services & config
 import translate from '../services/localization';
 import config from '../config/configProvider';
 import exportService from '../services/questionnaireAnalyzer';
-import { getLanguages } from '../store/globals.slice';
 
 /***********************************************************************************************
  * component

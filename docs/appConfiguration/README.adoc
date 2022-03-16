@@ -81,11 +81,14 @@ The Login options contain the attribute-names necessary to check the appIdentifi
 == Local Storage Identifiers
 In order for the app to function properly it must persist various values. For that purpose https://github.com/emeraldsanto/react-native-encrypted-storage[React Native Encrypted Storage] is being utilized. This module provides a wrapper around Android's https://developer.android.com/reference/androidx/security/crypto/EncryptedSharedPreferences[EncryptedSharedPreferences] and https://developer.apple.com/documentation/security/keychain_services[iOS' Keychain]. This ensures the encryption of the locally persisted data.
 
-The following values carry the strings used to generate the names of the values belonging to the compass-application. Another part of that name is the SubjectId of the current user (in case multiple user want to use the same device) - the names are generated here: **`link:../../../../tree/main/src/services/localStorage/localStorage.js[src/services/localStorage/localStorage.js]`**
+The following values carry the strings used to generate the names of the values belonging to the compass-application. The names are generated here: **`link:../../../../tree/main/src/services/localStorage/localStorage.js[src/services/localStorage/localStorage.js]`**
 
 
 * *kioskModeData*
 ** used to store data when app is build for kiosk mode
+
+* *userLanguage*
+** used to store the language chosen by the user (in case it differs from the system language)
 
 == Push Notifications
 Contains options concerning the push notification service

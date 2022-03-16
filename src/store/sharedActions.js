@@ -59,7 +59,7 @@ const sendQuestionnaireResponse = createAsyncThunk(
       );
       return thunkApi.rejectWithValue({
         error: {
-          status: err.response?.status ?? 'NETWORK_ERROR',
+          status: err.response?.status ?? 'ERROR',
           message: err.message,
           failedAction: 'shared/SEND_QUESTIONNAIRE_RESPONSE',
         },
@@ -97,7 +97,7 @@ const sendReport = createAsyncThunk(
       );
       return thunkApi.rejectWithValue({
         error: {
-          status: err.response?.status ?? 'NETWORK_ERROR',
+          status: err.response?.status ?? 'ERROR',
           message: err.message,
           failedAction: 'shared/SEND_REPORT',
         },

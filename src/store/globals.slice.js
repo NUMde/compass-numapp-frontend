@@ -25,7 +25,7 @@ const getLanguages = createAsyncThunk(
 const GlobalsSlice = createSlice({
   name: 'globals',
   initialState: {
-    loading: false,
+    loading: true,
     error: null,
     availableLanguages: null,
   },

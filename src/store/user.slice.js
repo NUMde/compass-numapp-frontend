@@ -7,6 +7,7 @@ import { reset, sendQuestionnaireResponse, sendReport } from './sharedActions';
 // services & config
 import { loggedInClient, guestClient } from '../services/rest';
 import translate, { setI18nConfig } from '../services/localization';
+import localStorage from '../services/localStorage';
 import config from '../config/configProvider';
 import kioskApi from '../config/kioskApiConfig';
 
@@ -33,7 +34,7 @@ const updateUser = createAsyncThunk(
       );
       return thunkApi.rejectWithValue({
         error: {
-          code: err.response?.status ?? 'NETWORK_ERROR',
+          code: err.response?.status ?? 'ERROR',
           message: err?.message,
           failedAction: 'user/UPDATE',
         },
@@ -63,7 +64,7 @@ const sendCredentials = createAsyncThunk(
       );
       return thunkApi.rejectWithValue({
         error: {
-          code: err.response?.status ?? 'NETWORK_ERROR',
+          code: err.response?.status ?? 'ERROR',
           message: err?.message,
           failedAction: 'user/SEND_CREDENTIALS',
         },
@@ -80,6 +81,7 @@ const updateLanguage = createAsyncThunk(
         ? kioskApi.updateLanguageCode(subjectId, languageTag)
         : loggedInClient.updateLanguageCode(subjectId, languageTag);
       setI18nConfig(languageTag);
+      await localStorage.persistUserLanguage(languageTag);
       return thunkApi.fulfillWithValue(languageTag);
     } catch (err) {
       Alert.alert(
@@ -94,7 +96,7 @@ const updateLanguage = createAsyncThunk(
       );
       return thunkApi.rejectWithValue({
         error: {
-          code: err.response?.status ?? 'NETWORK_ERROR',
+          code: err.response?.status ?? 'ERROR',
           message: err?.message,
           failedAction: 'user/UPDATE_LANGUAGE',
         },

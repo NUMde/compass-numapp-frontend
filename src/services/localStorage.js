@@ -51,6 +51,43 @@ const removeKioskModeData = async () => {
   }
 };
 
+/**
+ * save the language chosen by the user
+ * @param  {string} languageCode languageCode of the questionnaire
+ */
+const persistUserLanguage = async (languageCode) => {
+  try {
+    await EncryptedStorage.setItem(config.appConfig.userLanguage, languageCode);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+/**
+ * loads the language chosen by the user
+ * @param  {string} [subjectId] subject-id
+ * @returns string | null
+ */
+const loadUserLanguage = async () => {
+  try {
+    return await EncryptedStorage.getItem(config.appConfig.userLanguage);
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
+/**
+ * deletes the language chosen by the user
+ */
+const removeUserLanguage = async () => {
+  try {
+    await EncryptedStorage.removeItem(config.appConfig.userLanguage);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 /***********************************************************************************************
 export
 ***********************************************************************************************/
@@ -59,4 +96,8 @@ export default {
   loadKioskModeData,
   persistKioskModeData,
   removeKioskModeData,
+
+  loadUserLanguage,
+  persistUserLanguage,
+  removeUserLanguage,
 };
