@@ -35,15 +35,16 @@ function AboutListLink({ navigation, webView }) {
       onPress={() => {
         navigation.navigate(Routes.WEBVIEW, { ...webView });
       }}
+      testID="aboutListLink"
     >
       {/* title & subtitle of the listItem - the strings a identified by the webView*/}
       <ListItem.Content>
-        <ListItem.Title style={localStyle.title}>
+        <ListItem.Title style={localStyle.title} testID="ALL_title">
           {webView.title}
         </ListItem.Title>
 
         {webView.subTitle && (
-          <ListItem.Subtitle style={localStyle.subTitle}>
+          <ListItem.Subtitle style={localStyle.subTitle} testID="ALL_subTitle">
             {webView.subTitle}
           </ListItem.Subtitle>
         )}

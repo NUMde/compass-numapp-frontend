@@ -30,15 +30,19 @@ import config from '../../config/configProvider';
  ***********************************************************************************************/
 function AboutListItem({ showModal, modalLink }) {
   return (
-    <ListItem containerStyle={localStyle.containerStyle} onPress={showModal}>
+    <ListItem
+      containerStyle={localStyle.containerStyle}
+      onPress={showModal}
+      testID="aboutListItem"
+    >
       {/* title & subtitle of the listItem */}
       <ListItem.Content>
-        <ListItem.Title style={localStyle.title}>
+        <ListItem.Title style={localStyle.title} testID="ALI_title">
           {modalLink.title}
         </ListItem.Title>
 
         {modalLink.subTitle && (
-          <ListItem.Subtitle style={localStyle.subTitle}>
+          <ListItem.Subtitle style={localStyle.subTitle} testID="ALI_subTitle">
             {modalLink.subTitle}
           </ListItem.Subtitle>
         )}

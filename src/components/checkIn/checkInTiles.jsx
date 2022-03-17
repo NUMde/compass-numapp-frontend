@@ -64,6 +64,7 @@ function CheckInTiles({
                   accessibilityHint={
                     translate('accessibility').questionnaire.sendHint
                   }
+                  testID="send_response_btn"
                 >
                   <View style={localStyle.buttonWrapper}>
                     <Icon
@@ -92,6 +93,7 @@ function CheckInTiles({
                   : localStyle.disabledTile
               }
               accessibilityRole={translate('accessibility').types.button}
+              testID="send_report_btn"
             >
               <View style={localStyle.buttonWrapper}>
                 <Icon
@@ -116,6 +118,7 @@ function CheckInTiles({
                   ...localStyle.deleteAndLogoutTile,
                 }}
                 accessibilityRole={translate('accessibility').types.button}
+                testID="logout_btn"
               >
                 <View style={localStyle.buttonWrapper}>
                   <Icon

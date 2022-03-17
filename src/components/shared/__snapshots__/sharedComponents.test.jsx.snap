@@ -1,0 +1,767 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Banner should render the banner 1`] = `
+<View
+  style={
+    Object {
+      "alignContent": "stretch",
+      "alignItems": "stretch",
+      "backgroundColor": "#F8F9FA",
+      "flexDirection": "column",
+      "height": 354.06976744186045,
+      "justifyContent": "flex-start",
+      "overflow": "hidden",
+      "paddingTop": 30,
+      "width": "100%",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "flex-start",
+        "flexDirection": "row",
+        "flexWrap": "wrap",
+        "justifyContent": "space-between",
+        "paddingTop": 10,
+        "width": "100%",
+        "zIndex": 2,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "flexWrap": "wrap",
+          "justifyContent": "flex-end",
+          "marginLeft": 15,
+          "marginRight": 15,
+          "textAlign": "center",
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "borderRadius": 3,
+              "overflow": "hidden",
+            },
+            Object {
+              "borderRadius": 3,
+            },
+            undefined,
+            false,
+          ]
+        }
+      >
+        <View
+          accessibilityHint="Re-fetches the questionnaire and status. The current page will be updated."
+          accessibilityLabel="refresh"
+          accessibilityRole="button"
+          accessibilityState={
+            Object {
+              "busy": false,
+              "disabled": false,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          nativeID="animatedComponent"
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "height": 44,
+              "opacity": 1,
+              "width": 104.65116279069767,
+            }
+          }
+          testID="banner_refresh_btn"
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "transparent",
+                "borderColor": "#2089dc",
+                "borderRadius": 3,
+                "borderWidth": 0,
+                "flexDirection": "row",
+                "justifyContent": "center",
+                "padding": 8,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "overflow": "hidden",
+                }
+              }
+            >
+              <View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "transparent",
+                      "justifyContent": "center",
+                    }
+                  }
+                >
+                  <Text
+                    allowFontScaling={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#EB576A",
+                          "fontSize": 48.83720930232558,
+                        },
+                        Object {
+                          "backgroundColor": "transparent",
+                        },
+                        Object {
+                          "fontFamily": "Material Design Icons",
+                          "fontStyle": "normal",
+                          "fontWeight": "normal",
+                        },
+                        Object {},
+                      ]
+                    }
+                    testID="iconIcon"
+                  >
+                    󰑐
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+      <Text
+        accessibilityRole="header"
+        numberOfLines={1}
+        style={
+          Object {
+            "alignContent": "center",
+            "alignSelf": "center",
+            "color": "#1F2532",
+            "flex": 1,
+            "fontFamily": "IBMPlexSans-SemiBold",
+            "fontSize": 33.75,
+            "lineHeight": 43.125,
+            "textAlign": "center",
+            "width": "100%",
+          }
+        }
+      >
+        title
+      </Text>
+      <View
+        style={
+          Array [
+            Object {
+              "borderRadius": 3,
+              "overflow": "hidden",
+            },
+            Object {
+              "borderRadius": 3,
+            },
+            undefined,
+            false,
+          ]
+        }
+      >
+        <View
+          accessibilityHint="Opens new page with additional informations and links."
+          accessibilityLabel="Additional Information"
+          accessibilityRole="button"
+          accessibilityState={
+            Object {
+              "busy": false,
+              "disabled": false,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          nativeID="animatedComponent"
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "height": 44,
+              "opacity": 1,
+              "width": 104.65116279069767,
+            }
+          }
+          testID="banner_menu_btn"
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "transparent",
+                "borderColor": "#2089dc",
+                "borderRadius": 3,
+                "borderWidth": 0,
+                "flexDirection": "row",
+                "justifyContent": "center",
+                "padding": 8,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "overflow": "hidden",
+                }
+              }
+            >
+              <View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "transparent",
+                      "justifyContent": "center",
+                    }
+                  }
+                >
+                  <Text
+                    allowFontScaling={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#EB576A",
+                          "fontSize": 48.83720930232558,
+                        },
+                        Object {
+                          "backgroundColor": "transparent",
+                        },
+                        Object {
+                          "fontFamily": "Material Design Icons",
+                          "fontStyle": "normal",
+                          "fontWeight": "normal",
+                        },
+                        Object {},
+                      ]
+                    }
+                    testID="iconIcon"
+                  >
+                    󰍜
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+      <Text
+        accessibilityRole="header"
+        numberOfLines={1}
+        style={
+          Object {
+            "alignSelf": "center",
+            "color": "#1F2532",
+            "fontFamily": "IBMPlexSans",
+            "fontSize": 30,
+            "lineHeight": 39.375,
+            "marginBottom": 8.720930232558139,
+            "marginTop": -26.162790697674417,
+            "position": "relative",
+            "textAlign": "center",
+            "width": "100%",
+          }
+        }
+      >
+        subtitle
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "flexDirection": "column",
+        "justifyContent": "flex-end",
+        "left": 0,
+        "position": "absolute",
+        "top": 0,
+      }
+    }
+  >
+    <Image
+      resizeMode="cover"
+      source={
+        Object {
+          "process": [Function],
+        }
+      }
+      style={
+        Object {
+          "height": 354.06976744186045,
+          "width": 750,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "flexDirection": "column",
+        "justifyContent": "flex-end",
+      }
+    }
+  >
+    <Image
+      resizeMode="contain"
+      source={
+        Object {
+          "process": [Function],
+        }
+      }
+      style={
+        Object {
+          "alignSelf": "center",
+          "bottom": 7.848837209302324,
+          "maxHeight": 247.02541914548405,
+          "maxWidth": 650,
+          "position": "relative",
+        }
+      }
+    />
+  </View>
+</View>
+`;
+
+exports[`Banner should render the banner with title & without subtitle 1`] = `
+<View
+  style={
+    Object {
+      "alignContent": "stretch",
+      "alignItems": "stretch",
+      "backgroundColor": "#F8F9FA",
+      "flexDirection": "column",
+      "height": 354.06976744186045,
+      "justifyContent": "flex-start",
+      "overflow": "hidden",
+      "paddingTop": 30,
+      "width": "100%",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "flex-start",
+        "flexDirection": "row",
+        "flexWrap": "wrap",
+        "justifyContent": "space-between",
+        "paddingTop": 10,
+        "width": "100%",
+        "zIndex": 2,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "flexWrap": "wrap",
+          "justifyContent": "flex-end",
+          "marginLeft": 15,
+          "marginRight": 15,
+          "textAlign": "center",
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "borderRadius": 3,
+              "overflow": "hidden",
+            },
+            Object {
+              "borderRadius": 3,
+            },
+            undefined,
+            false,
+          ]
+        }
+      >
+        <View
+          accessibilityHint="Re-fetches the questionnaire and status. The current page will be updated."
+          accessibilityLabel="refresh"
+          accessibilityRole="button"
+          accessibilityState={
+            Object {
+              "busy": false,
+              "disabled": false,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          nativeID="animatedComponent"
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "height": 44,
+              "opacity": 1,
+              "width": 104.65116279069767,
+            }
+          }
+          testID="banner_refresh_btn"
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "transparent",
+                "borderColor": "#2089dc",
+                "borderRadius": 3,
+                "borderWidth": 0,
+                "flexDirection": "row",
+                "justifyContent": "center",
+                "padding": 8,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "overflow": "hidden",
+                }
+              }
+            >
+              <View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "transparent",
+                      "justifyContent": "center",
+                    }
+                  }
+                >
+                  <Text
+                    allowFontScaling={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#EB576A",
+                          "fontSize": 48.83720930232558,
+                        },
+                        Object {
+                          "backgroundColor": "transparent",
+                        },
+                        Object {
+                          "fontFamily": "Material Design Icons",
+                          "fontStyle": "normal",
+                          "fontWeight": "normal",
+                        },
+                        Object {},
+                      ]
+                    }
+                    testID="iconIcon"
+                  >
+                    󰑐
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+      <Text
+        accessibilityRole="header"
+        numberOfLines={1}
+        style={
+          Object {
+            "alignContent": "center",
+            "alignSelf": "center",
+            "color": "#1F2532",
+            "flex": 1,
+            "fontFamily": "IBMPlexSans-SemiBold",
+            "fontSize": 33.75,
+            "lineHeight": 43.125,
+            "textAlign": "center",
+            "width": "100%",
+          }
+        }
+      >
+        title
+      </Text>
+      <View
+        style={
+          Array [
+            Object {
+              "borderRadius": 3,
+              "overflow": "hidden",
+            },
+            Object {
+              "borderRadius": 3,
+            },
+            undefined,
+            false,
+          ]
+        }
+      >
+        <View
+          accessibilityHint="Opens new page with additional informations and links."
+          accessibilityLabel="Additional Information"
+          accessibilityRole="button"
+          accessibilityState={
+            Object {
+              "busy": false,
+              "disabled": false,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          nativeID="animatedComponent"
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "height": 44,
+              "opacity": 1,
+              "width": 104.65116279069767,
+            }
+          }
+          testID="banner_menu_btn"
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "transparent",
+                "borderColor": "#2089dc",
+                "borderRadius": 3,
+                "borderWidth": 0,
+                "flexDirection": "row",
+                "justifyContent": "center",
+                "padding": 8,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "overflow": "hidden",
+                }
+              }
+            >
+              <View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "transparent",
+                      "justifyContent": "center",
+                    }
+                  }
+                >
+                  <Text
+                    allowFontScaling={false}
+                    style={
+                      Array [
+                        Object {
+                          "color": "#EB576A",
+                          "fontSize": 48.83720930232558,
+                        },
+                        Object {
+                          "backgroundColor": "transparent",
+                        },
+                        Object {
+                          "fontFamily": "Material Design Icons",
+                          "fontStyle": "normal",
+                          "fontWeight": "normal",
+                        },
+                        Object {},
+                      ]
+                    }
+                    testID="iconIcon"
+                  >
+                    󰍜
+                  </Text>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "flexDirection": "column",
+        "justifyContent": "flex-end",
+        "left": 0,
+        "position": "absolute",
+        "top": 0,
+      }
+    }
+  >
+    <Image
+      resizeMode="cover"
+      source={
+        Object {
+          "process": [Function],
+        }
+      }
+      style={
+        Object {
+          "height": 354.06976744186045,
+          "width": 750,
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "flexDirection": "column",
+        "justifyContent": "flex-end",
+      }
+    }
+  >
+    <Image
+      resizeMode="contain"
+      source={
+        Object {
+          "process": [Function],
+        }
+      }
+      style={
+        Object {
+          "alignSelf": "center",
+          "bottom": 13.081395348837209,
+          "maxHeight": 308.781773931855,
+          "maxWidth": 650,
+          "position": "relative",
+        }
+      }
+    />
+  </View>
+</View>
+`;
+
+exports[`ScrollIndicatorWrapper scrollIndicatorWrapper should be rendered 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Object {
+      "flex": 1,
+      "flexDirection": "column",
+      "width": "100%",
+    }
+  }
+>
+  <RCTScrollView
+    contentContainerStyle={
+      Object {
+        "flexGrow": 1,
+      }
+    }
+    enableOnAndroid={true}
+    onScroll={[Function]}
+    scrollEventThrottle={16}
+    style={
+      Object {
+        "flex": 1,
+        "flexDirection": "column",
+        "width": "100%",
+      }
+    }
+  >
+    <View>
+      <View>
+        <Text
+          testID="demoContent"
+        >
+          Some content here
+        </Text>
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;
+
+exports[`Spinner should render the spinner 1`] = `
+<Modal
+  hardwareAccelerated={false}
+  visible={true}
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#1F2532",
+        "bottom": 0,
+        "flex": 1,
+        "left": 0,
+        "position": "absolute",
+        "right": 0,
+        "top": 0,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "bottom": 0,
+          "justifyContent": "center",
+          "left": 0,
+          "position": "absolute",
+          "right": 0,
+          "top": 0,
+        }
+      }
+    >
+      <ActivityIndicator
+        color="#EB576A"
+        size="large"
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+      />
+    </View>
+  </View>
+</Modal>
+`;

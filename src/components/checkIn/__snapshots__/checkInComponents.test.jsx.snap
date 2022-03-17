@@ -1,0 +1,602 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`checkInListView should render the 'listView' 1`] = `
+<View
+  accessibilityHint="Opens new page to see the questionnaire's categories.This questionnaire has not been answered yet."
+  accessibilityLabel="Your Entry-Questionnaire Title. To be completed till:  14.03.2022"
+  accessibilityRole="button"
+  accessible={true}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  testID="CheckInListItem"
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#EB576A",
+        "borderBottomColor": "#EB576A",
+        "borderBottomWidth": 1,
+        "borderColor": "#bcbbc1",
+        "borderTopColor": "#EB576A",
+        "borderTopWidth": 1,
+        "flexDirection": "row",
+        "marginVertical": 43.604651162790695,
+        "padding": 52.325581395348834,
+        "width": "100%",
+      }
+    }
+    testID="padView"
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "alignItems": "flex-start",
+            "flex": 1,
+            "justifyContent": "center",
+          },
+          undefined,
+        ]
+      }
+      theme={
+        Object {
+          "colors": Object {
+            "black": "#242424",
+            "disabled": "hsl(208, 8%, 90%)",
+            "divider": "#bcbbc1",
+            "error": "#ff190c",
+            "grey0": "#393e42",
+            "grey1": "#43484d",
+            "grey2": "#5e6977",
+            "grey3": "#86939e",
+            "grey4": "#bdc6cf",
+            "grey5": "#e1e8ee",
+            "greyOutline": "#bbb",
+            "platform": Object {
+              "android": Object {
+                "error": "#f44336",
+                "grey": "rgba(0, 0, 0, 0.54)",
+                "primary": "#2196f3",
+                "searchBg": "#dcdce1",
+                "secondary": "#9C27B0",
+                "success": "#4caf50",
+                "warning": "#ffeb3b",
+              },
+              "default": Object {
+                "error": "#ff3b30",
+                "grey": "#7d7d7d",
+                "primary": "#007aff",
+                "searchBg": "#dcdce1",
+                "secondary": "#5856d6",
+                "success": "#4cd964",
+                "warning": "#ffcc00",
+              },
+              "ios": Object {
+                "error": "#ff3b30",
+                "grey": "#7d7d7d",
+                "primary": "#007aff",
+                "searchBg": "#dcdce1",
+                "secondary": "#5856d6",
+                "success": "#4cd964",
+                "warning": "#ffcc00",
+              },
+              "web": Object {
+                "error": "#ff190c",
+                "grey": "#393e42",
+                "primary": "#2089dc",
+                "searchBg": "#303337",
+                "secondary": "#ca71eb",
+                "success": "#52c41a",
+                "warning": "#faad14",
+              },
+            },
+            "primary": "#2089dc",
+            "searchBg": "#303337",
+            "secondary": "#ca71eb",
+            "success": "#52c41a",
+            "warning": "#faad14",
+            "white": "#ffffff",
+          },
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "backgroundColor": "transparent",
+            "color": "#F8F9FA",
+            "fontFamily": "IBMPlexSans-SemiBold",
+            "fontSize": 30,
+            "lineHeight": 37.5,
+          }
+        }
+        testID="listItemTitle"
+      >
+        Your Entry-Questionnaire Title
+      </Text>
+      <Text
+        style={
+          Object {
+            "backgroundColor": "transparent",
+            "color": "#F8F9FA",
+            "fontFamily": "IBMPlexSans",
+            "fontSize": 28.125,
+            "lineHeight": 37.5,
+          }
+        }
+        testID="listItemTitle"
+      >
+        To be completed till:  14.03.2022
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "paddingLeft": 16,
+        }
+      }
+    />
+    <View
+      style={
+        Object {
+          "alignSelf": "center",
+          "backgroundColor": "#F8F9FA",
+          "borderRadius": 16,
+          "height": 28,
+          "margin": 7,
+          "overflow": "hidden",
+          "shadowColor": "rgba(0,0,0, .4)",
+          "shadowOffset": Object {
+            "height": 1,
+            "width": 1,
+          },
+          "shadowOpacity": 1,
+          "shadowRadius": 1,
+          "width": 28,
+        }
+      }
+    >
+      <View>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "backgroundColor": "#ffffff",
+              "borderRadius": 16,
+              "height": 28,
+              "justifyContent": "center",
+              "width": 28,
+            }
+          }
+        >
+          <Text
+            allowFontScaling={false}
+            style={
+              Array [
+                Object {
+                  "color": "#EB576A",
+                  "fontSize": 12,
+                },
+                Object {
+                  "backgroundColor": "transparent",
+                },
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+                Object {},
+              ]
+            }
+            testID="iconIcon"
+          >
+            󰲶
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`welcomeText should render the welcomeText for firstTime and no questionnaire 1`] = `
+<View
+  style={
+    Object {
+      "marginHorizontal": 52.325581395348834,
+      "marginVertical": 43.604651162790695,
+    }
+  }
+>
+  <View>
+    <Text
+      style={
+        Object {
+          "alignSelf": "center",
+          "color": "#1F2532",
+          "fontFamily": "IBMPlexSans-SemiBold",
+          "fontSize": 45,
+          "lineHeight": 54.375,
+          "textAlign": "center",
+        }
+      }
+    >
+      CheckIn-Title for new Users
+    </Text>
+    <Text
+      style={
+        Object {
+          "alignSelf": "center",
+          "color": "#1F2532",
+          "fontFamily": "IBMPlexSans",
+          "fontSize": 28.125,
+          "lineHeight": 37.5,
+          "marginTop": 34.883720930232556,
+          "textAlign": "center",
+        }
+      }
+    >
+      This is text that is presented to first-time-users. It tells them when the first questionnaire is due: 
+      <Text
+        style={
+          Object {
+            "fontFamily": "IBMPlexSans-SemiBold",
+            "fontSize": 26.25,
+            "lineHeight": 35.625,
+          }
+        }
+      >
+        16.03.2022, 00:00
+        .
+      </Text>
+       - See? This is the second part of that message.
+    </Text>
+    <View>
+      <Text
+        style={
+          Object {
+            "alignSelf": "center",
+            "color": "#1F2532",
+            "fontFamily": "IBMPlexSans-SemiBold",
+            "fontSize": 31.875,
+            "lineHeight": 41.25,
+            "marginTop": 34.883720930232556,
+            "textAlign": "center",
+          }
+        }
+      >
+        This text will be shown to communicate TO A NEW USER when the next questionnaire is available: 
+      </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "alignSelf": "center",
+              "color": "#1F2532",
+              "fontFamily": "IBMPlexSans-SemiBold",
+              "fontSize": 31.875,
+              "lineHeight": 41.25,
+              "marginTop": 34.883720930232556,
+              "textAlign": "center",
+            },
+            Object {
+              "color": "#006864",
+            },
+          ]
+        }
+      >
+        14.03.2022, 00:00
+        .
+      </Text>
+    </View>
+    <Text
+      style={
+        Object {
+          "alignSelf": "center",
+          "color": "#1F2532",
+          "fontFamily": "IBMPlexSans",
+          "fontSize": 28.125,
+          "lineHeight": 37.5,
+          "marginTop": 34.883720930232556,
+          "textAlign": "center",
+        }
+      }
+    >
+      This is the bottom snippet of the welcomeText. You may place something useful here... like a limerick.
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`welcomeText should render the welcomeText for firstTime and questionnaire 1`] = `
+<View
+  style={
+    Object {
+      "marginHorizontal": 52.325581395348834,
+      "marginVertical": 43.604651162790695,
+    }
+  }
+>
+  <View>
+    <Text
+      style={
+        Object {
+          "alignSelf": "center",
+          "color": "#1F2532",
+          "fontFamily": "IBMPlexSans-SemiBold",
+          "fontSize": 45,
+          "lineHeight": 54.375,
+          "textAlign": "center",
+        }
+      }
+    >
+      CheckIn-Title for new Users
+    </Text>
+    <Text
+      style={
+        Object {
+          "alignSelf": "center",
+          "color": "#1F2532",
+          "fontFamily": "IBMPlexSans",
+          "fontSize": 28.125,
+          "lineHeight": 37.5,
+          "marginTop": 34.883720930232556,
+          "textAlign": "center",
+        }
+      }
+    >
+      This is text that is presented to first-time-users. It tells them when the first questionnaire is due: 
+      <Text
+        style={
+          Object {
+            "fontFamily": "IBMPlexSans-SemiBold",
+            "fontSize": 26.25,
+            "lineHeight": 35.625,
+          }
+        }
+      >
+        16.03.2022, 00:00
+        .
+      </Text>
+       - See? This is the second part of that message.
+    </Text>
+    <Text
+      style={
+        Object {
+          "alignSelf": "center",
+          "color": "#1F2532",
+          "fontFamily": "IBMPlexSans",
+          "fontSize": 28.125,
+          "lineHeight": 37.5,
+          "marginTop": 34.883720930232556,
+          "textAlign": "center",
+        }
+      }
+    >
+      This is the bottom snippet of the welcomeText. You may place something useful here... like a limerick.
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`welcomeText should render the welcomeText for subsequent visits and no questionnaire 1`] = `
+<View
+  style={
+    Object {
+      "marginHorizontal": 52.325581395348834,
+      "marginVertical": 43.604651162790695,
+    }
+  }
+>
+  <View>
+    <Text
+      style={
+        Object {
+          "alignSelf": "center",
+          "color": "#1F2532",
+          "fontFamily": "IBMPlexSans-SemiBold",
+          "fontSize": 45,
+          "lineHeight": 54.375,
+          "textAlign": "center",
+        }
+      }
+    >
+      This text will be displayed if no questionnaire is available right now.
+    </Text>
+    <Text
+      style={
+        Object {
+          "alignSelf": "center",
+          "color": "#1F2532",
+          "fontFamily": "IBMPlexSans",
+          "fontSize": 28.125,
+          "lineHeight": 37.5,
+          "marginTop": 34.883720930232556,
+          "textAlign": "center",
+        }
+      }
+    >
+      This text will be displayed if no questionnaire is available right now.
+    </Text>
+    <View>
+      <Text
+        style={
+          Object {
+            "alignSelf": "center",
+            "color": "#1F2532",
+            "fontFamily": "IBMPlexSans-SemiBold",
+            "fontSize": 31.875,
+            "lineHeight": 41.25,
+            "marginTop": 34.883720930232556,
+            "textAlign": "center",
+          }
+        }
+      >
+        This text will be shown to communicate when the next questionnaire is available: 
+      </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "alignSelf": "center",
+              "color": "#1F2532",
+              "fontFamily": "IBMPlexSans-SemiBold",
+              "fontSize": 31.875,
+              "lineHeight": 41.25,
+              "marginTop": 34.883720930232556,
+              "textAlign": "center",
+            },
+            Object {
+              "color": "#006864",
+            },
+          ]
+        }
+      >
+        14.03.2022, 00:00
+        .
+      </Text>
+    </View>
+    <Text
+      style={
+        Object {
+          "alignSelf": "center",
+          "color": "#1F2532",
+          "fontFamily": "IBMPlexSans",
+          "fontSize": 28.125,
+          "lineHeight": 37.5,
+          "marginTop": 34.883720930232556,
+          "textAlign": "center",
+        }
+      }
+    >
+      This is the bottom snippet of the welcomeText. You may place something useful here... like a limerick.
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`welcomeText should render the welcomeText for subsequent visits and questionnaire 1`] = `
+<View
+  style={
+    Object {
+      "marginHorizontal": 52.325581395348834,
+      "marginVertical": 43.604651162790695,
+    }
+  }
+>
+  <View>
+    <Text
+      style={
+        Object {
+          "alignSelf": "center",
+          "color": "#1F2532",
+          "fontFamily": "IBMPlexSans-SemiBold",
+          "fontSize": 45,
+          "lineHeight": 54.375,
+          "textAlign": "center",
+        }
+      }
+    >
+      CheckIn-Title
+    </Text>
+    <View>
+      <Text
+        style={
+          Object {
+            "alignSelf": "center",
+            "color": "#1F2532",
+            "fontFamily": "IBMPlexSans",
+            "fontSize": 28.125,
+            "lineHeight": 37.5,
+            "marginTop": 34.883720930232556,
+            "textAlign": "center",
+          }
+        }
+      >
+        This is the regular welcome message. It will be shown if a questionnaire is available and the user a recurring one. Below this, the due date should be displayed.
+      </Text>
+      <Text
+        style={
+          Object {
+            "alignSelf": "center",
+            "color": "#1F2532",
+            "fontFamily": "IBMPlexSans-SemiBold",
+            "fontSize": 31.875,
+            "lineHeight": 41.25,
+            "marginTop": 34.883720930232556,
+            "textAlign": "center",
+          }
+        }
+      >
+        16.03.2022, 00:00
+        .
+      </Text>
+    </View>
+    <Text
+      style={
+        Object {
+          "alignSelf": "center",
+          "color": "#1F2532",
+          "fontFamily": "IBMPlexSans",
+          "fontSize": 28.125,
+          "lineHeight": 37.5,
+          "marginTop": 34.883720930232556,
+          "textAlign": "center",
+        }
+      }
+    >
+      This is the bottom snippet of the welcomeText. You may place something useful here... like a limerick.
+    </Text>
+  </View>
+</View>
+`;
+
+exports[`welcomeText should render the welcomeText when off-study 1`] = `
+<View
+  style={
+    Object {
+      "marginHorizontal": 52.325581395348834,
+      "marginVertical": 43.604651162790695,
+    }
+  }
+>
+  <View>
+    <Text
+      style={
+        Object {
+          "alignSelf": "center",
+          "color": "#1F2532",
+          "fontFamily": "IBMPlexSans-SemiBold",
+          "fontSize": 45,
+          "lineHeight": 54.375,
+          "textAlign": "center",
+        }
+      }
+    >
+      End of Participation Title
+    </Text>
+    <Text
+      style={
+        Object {
+          "alignSelf": "center",
+          "color": "#1F2532",
+          "fontFamily": "IBMPlexSans",
+          "fontSize": 28.125,
+          "lineHeight": 37.5,
+          "marginTop": 34.883720930232556,
+          "textAlign": "center",
+        }
+      }
+    >
+      This string will hold information about the end of the study for the user.
+    </Text>
+  </View>
+</View>
+`;

@@ -5,9 +5,9 @@ imports
 ***********************************************************************************************/
 
 import * as forge from 'node-forge';
-import config from '../src/config/configProvider';
+import config from '../config/configProvider';
 
-import encrypt from '../src/services/encryption';
+import encrypt from './encryption';
 
 /***********************************************************************************************
 tests
@@ -32,7 +32,7 @@ describe('ENCRYPTION:', () => {
   // test the encryptions modules
   test('EncryptionModule produces a valid encrypted string', () => {
     // encrypts a message
-    let encryptedMessage = encrypt('test message');
+    let encryptedMessage = encrypt('test message', pemString);
     // crates an ASN1 message from the encrypted message
     encryptedMessage = forge.util.decode64(encryptedMessage);
 
