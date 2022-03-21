@@ -6,7 +6,6 @@ imports
 
 import React, { useEffect } from 'react';
 import { StyleSheet, View, StatusBar, LogBox, Platform } from 'react-native';
-import { URL as nativeURL } from 'react-native-url-polyfill/auto';
 import * as RNLocalize from 'react-native-localize';
 
 // components
@@ -26,6 +25,7 @@ import config from './src/config/configProvider';
 
 // redux actions
 import { updateLanguage } from './src/store/user.slice';
+import { init } from './src/store/globals.slice';
 
 // custom components
 import { Spinner } from './src/components/shared';
@@ -36,6 +36,16 @@ import {
   availableLanguages,
   initLocalization,
 } from './src/services/localization';
+
+/***********************************************************************************************
+global variables / settings
+***********************************************************************************************/
+
+// needed by node-forge for the encryption functionality
+global.Buffer = require('buffer').Buffer;
+
+// deactivates the logbox-warning about the debugger running in the background
+LogBox.ignoreLogs(['Remote debugger']);
 
 /***********************************************************************************************
 Component
@@ -59,7 +69,7 @@ function App() {
     // load user language from localStorage and initialize localization
     localStorage.loadUserLanguage().then((langCode) => {
       initLocalization(langCode);
-
+      reduxStore.dispatch(init());
       SplashScreen.hide();
     });
 
@@ -107,19 +117,6 @@ const localStyle = StyleSheet.create({
     backgroundColor: '#fff',
   },
 });
-
-/***********************************************************************************************
-global variables / settings
-***********************************************************************************************/
-
-// needed by node-forge for the encryption functionality
-global.Buffer = require('buffer').Buffer;
-
-// polyfill for iOS
-global.URL = nativeURL;
-
-// deactivates the logbox-warning about the debugger running in the background
-LogBox.ignoreLogs(['Remote debugger']);
 
 /***********************************************************************************************
 export
