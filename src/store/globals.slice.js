@@ -29,7 +29,9 @@ const GlobalsSlice = createSlice({
     error: null,
     availableLanguages: null,
   },
-  reducers: {},
+  reducers: {
+    INIT: (state) => ({ ...state, loading: false }),
+  },
   extraReducers: (builder) => {
     builder
       .addCase(sendCredentials.pending, (state) => ({
@@ -132,3 +134,4 @@ const GlobalsSlice = createSlice({
 
 export default GlobalsSlice.reducer;
 export { getLanguages };
+export const { INIT: init } = GlobalsSlice.actions;
