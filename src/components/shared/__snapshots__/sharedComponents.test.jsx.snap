@@ -182,7 +182,7 @@ exports[`Banner should render the banner 1`] = `
         }
       >
         <View
-          accessibilityHint="Opens new page with additional informations and links."
+          accessibilityHint="Opens new page with additional information and links."
           accessibilityLabel="Additional Information"
           accessibilityRole="button"
           accessibilityState={
@@ -532,7 +532,7 @@ exports[`Banner should render the banner with title & without subtitle 1`] = `
         }
       >
         <View
-          accessibilityHint="Opens new page with additional informations and links."
+          accessibilityHint="Opens new page with additional information and links."
           accessibilityLabel="Additional Information"
           accessibilityRole="button"
           accessibilityState={

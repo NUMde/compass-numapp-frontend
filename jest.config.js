@@ -10,6 +10,8 @@ module.exports = {
     '<rootDir>/__mocks__/mocks.js',
   ],
 
+  setupFilesAfterEnv: ['<rootDir>/__mocks__/jest.setup.js'],
+
   globals: {
     __DEV__: true,
   },
