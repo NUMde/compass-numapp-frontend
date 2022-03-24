@@ -120,6 +120,7 @@ export default function BasicInput({ item }) {
         }
         onChangeText={handleInputChange}
         errorMessage={errorMsg}
+        testID="BasicInput.Input"
       />
     </View>
   );

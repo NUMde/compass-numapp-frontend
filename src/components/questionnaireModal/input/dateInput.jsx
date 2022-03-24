@@ -50,6 +50,7 @@ export default function DateInput({ item }) {
           // accessibilityLabel={ }
           // accessibilityRole={translate('accessibility').types.button}
           // accessibilityHint={translate('accessibility').questionnaire.dateFieldHint}
+          testID="overlay"
         >
           <Input
             containerStyle={SharedStyles.modalContainer}
@@ -63,6 +64,7 @@ export default function DateInput({ item }) {
             editable={false}
             leftIcon={{ type: 'font-awesome', name: 'calendar' }}
             pointerEvents="none"
+            testID="chosenDate"
           />
         </TouchableOpacity>
       }
@@ -89,6 +91,7 @@ export default function DateInput({ item }) {
               );
             }
           }}
+          testID="DatePicker"
         />
       )}
       {/* ios datepicker- Buttons*/}
@@ -102,31 +105,25 @@ export default function DateInput({ item }) {
                 // return empty otherwise; no date has been selected
                 setAnswer({
                   linkId: item.linkId,
-                  answer: currentDate ?? '',
+                  answer: '',
                 }),
-                setShowDatePicker(false),
               );
+              setShowDatePicker(false);
             }}
             style={localStyle.dateTimePickerButton}
             type="clear"
             titleStyle={localStyle.iOSButton}
+            testID="ios.abort"
           />
           <Button
             title={translate('generic').ok}
             color={config.theme.colors.secondary}
             onPress={() => {
-              dispatch(
-                // when confirming, either set the date provided by the date picker or create a new one
-                // based on the current date (which is the one shown by default)
-                setAnswer({
-                  linkId: item.linkId,
-                  answer: currentDate ?? new Date(),
-                }),
-              );
               setShowDatePicker(false);
             }}
             type="clear"
             titleStyle={localStyle.iOSButton}
+            testID="ios.submit"
           />
         </View>
       )}

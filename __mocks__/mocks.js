@@ -10,18 +10,6 @@ import mockPermissions from 'react-native-permissions/mock';
 mocks
 ***********************************************************************************************/
 
-// mocks the datetimepicker
-/*-----------------------------------------------------------------------------------*/
-jest.mock('@react-native-community/datetimepicker', () => jest.fn());
-
-// mocks the picker
-/*-----------------------------------------------------------------------------------*/
-jest.mock('@react-native-picker/picker', () => jest.fn());
-
-// mocks the NativeAnimatedHelper module
-/*-----------------------------------------------------------------------------------*/
-jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
-
 // react native permissions
 /*-----------------------------------------------------------------------------------*/
 jest.mock('react-native', () => {

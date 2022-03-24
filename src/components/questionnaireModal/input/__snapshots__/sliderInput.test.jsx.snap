@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SliderInput should render sliderInput with all properties 1`] = `
+<View
+  style={
+    Object {
+      "marginBottom": 10,
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "#1F2532",
+        "fontFamily": "IBMPlexSans-SemiBold",
+        "fontSize": 33.75,
+        "lineHeight": 43.125,
+        "marginBottom": 5,
+        "marginTop": 5,
+      }
+    }
+  >
+    integer
+  </Text>
+  <RNCSlider
+    accessibilityHint="0 equals Low-Label, and 10 equals High-Label"
+    disabled={false}
+    enabled={true}
+    inverted={false}
+    maximumTrackTintColor="#1F2532"
+    maximumValue={10}
+    minimumTrackTintColor="#1F2532"
+    minimumValue={0}
+    onChange={null}
+    onRNCSliderSlidingComplete={[Function]}
+    onRNCSliderSlidingStart={null}
+    onRNCSliderValueChange={null}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    step={1}
+    style={
+      Array [
+        Object {
+          "height": 40,
+        },
+        Object {
+          "width": 710,
+        },
+      ]
+    }
+    tapToSeek={false}
+    testID="Slider"
+    thumbImage={null}
+    value={5}
+  />
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "width": 710,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "textAlign": "left",
+          "width": "33%",
+        }
+      }
+    >
+      Low-Label
+    </Text>
+    <Text
+      style={
+        Object {
+          "textAlign": "right",
+          "width": "33%",
+        }
+      }
+    >
+      High-Label
+    </Text>
+  </View>
+</View>
+`;
