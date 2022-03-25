@@ -1,7 +1,7 @@
-import itemMap from '../assets/testFiles/itemMap';
-import emptyItemMap from '../assets/testFiles/emptyItemMap';
-import categories from '../assets/testFiles/categories';
-import expectedResponse from '../assets/testFiles/expectedResponse';
+import itemMap from '../../__mocks__/questionnaire/itemMap';
+import emptyItemMap from '../../__mocks__/questionnaire/emptyItemMap';
+import categories from '../../__mocks__/questionnaire/categories';
+import expectedResponse from '../../__mocks__/questionnaire/expectedResponse';
 import analyzer from './questionnaireAnalyzer';
 
 describe('codingEquals', () => {

@@ -21,8 +21,8 @@ import config from '../../config/configProvider';
  * component
  * creates the bottom-navigation-bar of the modal
  *
- * @param {function}              props.hideModal a callback to hide the modal
  * @param {object}                props the props of this component
+ * @param {function}              props.hideModal a callback to hide the modal
  * @param {React.RefObject<any>}  props.modalTitleRef a reference object of the modal title for a11y purposes
  * @param {function}              props.handleScrollTo a callback to scroll to the top when switching between pages
  **********************************************************************************************/
@@ -92,6 +92,7 @@ export default function BottomBar({
           ? localStyles.bottomBarWrapper
           : localStyles.bottomBarWrapperWithShadow
       }
+      testID="BottomBar"
     >
       {config.appConfig.useProgressBar && (
         <ProgressBar
@@ -127,6 +128,7 @@ export default function BottomBar({
               color={config.theme.colors.accent4}
             />
           }
+          testID="BottomBar_back_btn"
         />
         {/* the confirmation button in the middle - its color depends on checkCurrentPageState() */}
         <Button
@@ -153,11 +155,12 @@ export default function BottomBar({
               }
             />
           }
+          testID="BottomBar_confirm_btn"
         />
         {/* navigational button on the right side */}
         <Button
           type="clear"
-          accessibilityLabel={translate('accessibility').neext}
+          accessibilityLabel={translate('accessibility').next}
           accessibilityRole={translate('accessibility').types.button}
           accessibilityHint={
             translate('accessibility').questionnaire.rightButtonHint
@@ -175,6 +178,7 @@ export default function BottomBar({
           }
           disabled={pageIndex === categories[categoryIndex]?.item.length}
           disabledStyle={localStyles.disabledButton}
+          testID="BottomBar_fwd_btn"
         />
       </View>
     </View>

@@ -10,6 +10,10 @@ import mockPermissions from 'react-native-permissions/mock';
 mocks
 ***********************************************************************************************/
 
+// mocks the NativeAnimatedHelper module
+/*-----------------------------------------------------------------------------------*/
+jest.mock('react-native/Libraries/Animated/NativeAnimatedHelper');
+
 // react native permissions
 /*-----------------------------------------------------------------------------------*/
 jest.mock('react-native', () => {
