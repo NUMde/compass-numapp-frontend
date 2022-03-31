@@ -78,7 +78,7 @@ export const setAvailableLanguages = (list) => {
   const defaultLang = availableLanguageFiles[defaultLanguage];
 
   // adds new missing ones from the server
-  list.data.forEach((langCode) => {
+  list.forEach((langCode) => {
     if (!availableLanguages[langCode]) {
       availableLanguages[langCode] = {
         file: en,
@@ -94,7 +94,7 @@ export const setAvailableLanguages = (list) => {
 
   // updates the ones that do not have a matching entry from the backend
   Object.keys(availableLanguageFiles).forEach((key) => {
-    if (!list.data.includes(key)) {
+    if (!list.includes(key)) {
       availableLanguages[key].title += ` (${
         availableLanguages[key].file.generic.questionnaire
       }: ${defaultLanguage.replace(/^\w/, (c) => c.toUpperCase())})`;

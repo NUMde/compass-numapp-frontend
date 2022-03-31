@@ -32,13 +32,13 @@ const fetchQuestionnaire = createAsyncThunk(
             getLanguageTag(),
           ));
       // to create the metadata object the response is copied and the questions (i.e.the top-level items) are removed.
-      const metadata = { ...response.data };
+      const metadata = { ...response };
       delete metadata.item;
       return thunkApi.fulfillWithValue({
         questionnaire: config.appConfig
           .useLocalQuestionnaireInsteadOftheReceivedOne
           ? questionnaire
-          : response.data,
+          : response,
         FHIRmetadata: metadata,
         subjectId,
       });
@@ -55,8 +55,8 @@ const fetchQuestionnaire = createAsyncThunk(
       );
       return thunkApi.rejectWithValue({
         error: {
-          code: error.response?.status ?? 'ERROR',
-          message: error?.response,
+          code: error.code ?? 'ERROR',
+          message: error.message,
           failedAction: 'questionnaire/FETCH',
         },
       });

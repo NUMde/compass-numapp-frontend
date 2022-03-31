@@ -28,7 +28,6 @@
     "@react-navigation/native-stack": "^6.5.0",
     "@redux-devtools/extension": "^3.2.2",
     "@reduxjs/toolkit": "^1.8.0",
-    "axios": "^0.26.0",
     "buffer": "^6.0.3",
     "i18n-js": "^3.8.0",
     "lodash.clonedeep": "^4.5.0",
