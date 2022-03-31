@@ -59,7 +59,7 @@ const sendQuestionnaireResponse = createAsyncThunk(
       );
       return thunkApi.rejectWithValue({
         error: {
-          status: err.response?.status ?? 'ERROR',
+          code: err.code ?? 'ERROR',
           message: err.message,
           failedAction: 'shared/SEND_QUESTIONNAIRE_RESPONSE',
         },
@@ -97,7 +97,7 @@ const sendReport = createAsyncThunk(
       );
       return thunkApi.rejectWithValue({
         error: {
-          status: err.response?.status ?? 'ERROR',
+          code: err.code ?? 'ERROR',
           message: err.message,
           failedAction: 'shared/SEND_REPORT',
         },

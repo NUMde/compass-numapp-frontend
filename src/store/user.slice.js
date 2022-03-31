@@ -20,7 +20,7 @@ const updateUser = createAsyncThunk(
       const userData = await (isKioskMode
         ? kioskApi.getUserUpdate()
         : loggedInClient.getUserUpdate(subjectId));
-      return thunkApi.fulfillWithValue(userData.data);
+      return thunkApi.fulfillWithValue(userData);
     } catch (err) {
       Alert.alert(
         translate('generic').errorTitle,
@@ -34,8 +34,8 @@ const updateUser = createAsyncThunk(
       );
       return thunkApi.rejectWithValue({
         error: {
-          code: err.response?.status ?? 'ERROR',
-          message: err?.message,
+          code: err.code ?? 'ERROR',
+          message: err.message,
           failedAction: 'user/UPDATE',
         },
       });
@@ -50,7 +50,7 @@ const sendCredentials = createAsyncThunk(
       const userData = await (isKioskMode
         ? kioskApi.login()
         : guestClient.login(subjectId));
-      return thunkApi.fulfillWithValue(userData.data);
+      return thunkApi.fulfillWithValue(userData);
     } catch (err) {
       Alert.alert(
         translate('generic').errorTitle,
@@ -64,8 +64,8 @@ const sendCredentials = createAsyncThunk(
       );
       return thunkApi.rejectWithValue({
         error: {
-          code: err.response?.status ?? 'ERROR',
-          message: err?.message,
+          code: err.code ?? 'ERROR',
+          message: err.message,
           failedAction: 'user/SEND_CREDENTIALS',
         },
       });
@@ -96,8 +96,8 @@ const updateLanguage = createAsyncThunk(
       );
       return thunkApi.rejectWithValue({
         error: {
-          code: err.response?.status ?? 'ERROR',
-          message: err?.message,
+          code: err.code ?? 'ERROR',
+          message: err.message,
           failedAction: 'user/UPDATE_LANGUAGE',
         },
       });

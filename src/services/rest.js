@@ -7,29 +7,8 @@
 imports
 ***********************************************************************************************/
 
-import axios from 'axios';
 import config from '../config/configProvider';
 import encrypt from './encryption';
-
-/***********************************************************************************************
-guest client functions
-***********************************************************************************************/
-
-/**
- * @param  {string} subjectId the id used to identify the user
- */
-const login = (subjectId) =>
-  axios.get(config.appConfig.endpoints.login + subjectId);
-
-/**
- * procures the list of languages
- */
-const getLanguages = async () =>
-  axios.get(config.appConfig.endpoints.getLanguages, {
-    headers: {
-      Accept: 'application/json',
-    },
-  });
 
 /***********************************************************************************************
 support functions
@@ -75,6 +54,48 @@ const generateEncapsuledMessage = (subjectId, type, certString, body = {}) => {
 clients
 ***********************************************************************************************/
 
+/***********************************************************************************************
+guest client functions
+***********************************************************************************************/
+
+/**
+ * @param  {string} subjectId the id used to identify the user
+ */
+const login = async (subjectId) => {
+  const response = await fetch(config.appConfig.endpoints.login + subjectId);
+  const body = response.json();
+  if (response.ok) {
+    return body;
+  }
+  const err = new Error(body.errorMessage || 'NETWORK REQUEST FAILED');
+  err.name = body.errorCode;
+  err.code = response.status;
+  throw err;
+};
+
+/**
+ * procures the list of languages
+ */
+const getLanguages = async () => {
+  const response = await fetch(config.appConfig.endpoints.getLanguages, {
+    headers: {
+      Accept: 'application/json',
+    },
+  });
+  const body = response.json();
+  if (response.ok) {
+    return body;
+  }
+  const err = new Error(body.errorMessage || 'NETWORK REQUEST FAILED');
+  err.name = body.errorCode;
+  err.code = response.status;
+  throw err;
+};
+
+/***********************************************************************************************
+logged in client functions
+***********************************************************************************************/
+
 // user handling
 /*-----------------------------------------------------------------------------------*/
 
@@ -82,7 +103,15 @@ clients
  * gets the subjectId and calls the getUser-endpoint
  */
 const getUserUpdate = async (subjectId) => {
-  return axios.get(config.appConfig.endpoints.getUser + subjectId);
+  const response = await fetch(config.appConfig.endpoints.getUser + subjectId);
+  const body = await response.json();
+  if (response.ok) {
+    return body;
+  }
+  const err = new Error(body.errorMessage || 'NETWORK REQUEST FAILED');
+  err.name = body.errorCode;
+  err.code = response.status;
+  throw err;
 };
 
 // language
@@ -93,19 +122,31 @@ const getUserUpdate = async (subjectId) => {
  * @param  {string} subjectId string identifying the user
  * @param  {string} languageCode the language code
  */
-const updateLanguageCode = async (subjectId, languageCode) =>
-  axios.post(
+const updateLanguageCode = async (subjectId, languageCode) => {
+  const response = await fetch(
     config.appConfig.endpoints.updateLanguage + subjectId,
     {
-      language: languageCode,
-    },
-    {
+      method: 'POST',
+      body: JSON.stringify({
+        language: languageCode,
+      }),
       headers: {
         Authorization: createAuthorizationToken(subjectId),
         Accept: 'application/json',
+        'Content-Type': 'application/json',
       },
     },
   );
+
+  if (response.ok) {
+    return;
+  }
+  const body = await response.json();
+  const err = new Error(body.errorMessage || 'NETWORK REQUEST FAILED');
+  err.name = body.errorCode;
+  err.code = response.status;
+  throw err;
+};
 
 // push
 /*-----------------------------------------------------------------------------------*/
@@ -115,19 +156,29 @@ const updateLanguageCode = async (subjectId, languageCode) =>
  * @param  {string} subjectId string identifying the user
  * @param  {string} token the token
  */
-const updateDeviceToken = async (subjectId, token) =>
-  axios.post(
+const updateDeviceToken = async (subjectId, token) => {
+  const response = await fetch(
     config.appConfig.endpoints.updateToken + subjectId,
     {
-      token,
-    },
-    {
+      method: 'POST',
+      body: JSON.stringify({ token }),
       headers: {
         Authorization: createAuthorizationToken(subjectId),
         Accept: 'application/json',
+        'Content-Type': 'application/json',
       },
     },
   );
+
+  if (response.ok) {
+    return;
+  }
+  const body = response.json();
+  const err = new Error(body.errorMessage || 'NETWORK REQUEST FAILED');
+  err.name = body.errorCode;
+  err.code = response.status;
+  throw err;
+};
 
 // reports
 /*-----------------------------------------------------------------------------------*/
@@ -136,24 +187,36 @@ const updateDeviceToken = async (subjectId, token) =>
  * sends out the encapsuled message
  * @param  {string} subjectId string identifying the user
  */
-const sendReport = async (subjectId, certString) =>
-  axios.post(
-    config.appConfig.endpoints.report,
-    generateEncapsuledMessage(subjectId, 'report', certString),
+const sendReport = async (subjectId, certString) => {
+  const params = new URLSearchParams();
+  params.append('subject', subjectId);
+  params.append('type', 'report');
+  params.append('updateValues', {
+    [config.appConfig.defaultReportAttribute]: true,
+  });
+
+  const response = await fetch(
+    config.appConfig.endpoints.report + params.toString(),
     {
+      method: 'POST',
+      body: JSON.stringify(
+        generateEncapsuledMessage(subjectId, 'report', certString),
+      ),
       headers: {
         Authorization: createAuthorizationToken(subjectId),
         Accept: 'application/json',
       },
-      params: {
-        subjectId,
-        type: 'report',
-        updateValues: {
-          [config.appConfig.defaultReportAttribute]: true,
-        },
-      },
     },
   );
+  if (response.ok) {
+    return;
+  }
+  const body = response.json();
+  const err = new Error(body.errorMessage || 'NETWORK REQUEST FAILED');
+  err.name = body.errorCode;
+  err.code = response.status;
+  throw err;
+};
 
 // questionnaires
 /*-----------------------------------------------------------------------------------*/
@@ -174,39 +237,45 @@ const sendQuestionnaire = async (
   surveyId,
   instanceId,
   certString,
-) =>
-  axios.post(
-    config.appConfig.endpoints.sendQuestionnaire,
-    generateEncapsuledMessage(
-      subjectId,
-      'questionnaire_response',
-      certString,
-      body,
-    ),
+) => {
+  const queryParams = new URLSearchParams();
+  queryParams.append('type', 'questionnaire_response');
+  queryParams.append('id', subjectId);
+  queryParams.append('subjectId', subjectId);
+  queryParams.append('surveyId', surveyId);
+  queryParams.append('instanceId', instanceId);
+  queryParams.append('updateValues', JSON.stringify({ ...triggerMap }));
+  const response = await fetch(
+    config.appConfig.endpoints.sendQuestionnaire + queryParams.toString(),
     {
+      body: generateEncapsuledMessage(
+        subjectId,
+        'questionnaire_response',
+        certString,
+        body,
+      ),
       headers: {
         Authorization: createAuthorizationToken(subjectId),
         Accept: 'application/json',
       },
-      params: {
-        type: 'questionnaire_response',
-        id: subjectId,
-        subjectId,
-        surveyId,
-        instanceId,
-        updateValues: {
-          ...triggerMap,
-        },
-      },
     },
   );
+  if (response.ok) {
+    return;
+  }
+  const responseBody = await response.json();
+  const err = new Error(responseBody.errorMessage || 'NETWORK REQUEST FAILED');
+  err.name = responseBody.errorCode;
+  err.code = response.status;
+  throw err;
+};
 
 /**
  * procures the questionnaire from the backend
  * @param  {string} questionnaireId id of the questionnaire that the user is supposed to fill out
  */
-const getBaseQuestionnaire = async (questionnaireId, subjectId, langCode) =>
-  axios.get(
+const getBaseQuestionnaire = async (questionnaireId, subjectId, langCode) => {
+  const response = await fetch(
     `${config.appConfig.endpoints.getQuestionnaire}${encodeURIComponent(
       questionnaireId,
     )}/${langCode}`,
@@ -217,6 +286,15 @@ const getBaseQuestionnaire = async (questionnaireId, subjectId, langCode) =>
       },
     },
   );
+  const body = await response.json();
+  if (response.ok) {
+    return body;
+  }
+  const err = new Error(body.errorMessage || 'NETWORK REQUEST FAILED');
+  err.name = body.errorCode;
+  err.code = response.status;
+  throw err;
+};
 
 /***********************************************************************************************
 export
