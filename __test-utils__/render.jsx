@@ -1,8 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import { render as rtlRender } from '@testing-library/react-native';
-import { combineReducers, createStore } from 'redux';
+import { combineReducers, createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 
 import UserReducer from '../src/store/user.slice';
 import GlobalsReducer from '../src/store/globals.slice';
@@ -19,10 +20,10 @@ function renderWithRedux(
   {
     initialState = {
       User: UserReducer.initialState,
-      Globals: GlobalsReducer.initialState,
+      Globals: { loading: false, error: false },
       Questionnaire: QuestionnaireReducer.initialState,
     },
-    store = createStore(testReducer, initialState),
+    store = createStore(testReducer, initialState, applyMiddleware(thunk)),
     ...renderOptions
   } = {},
 ) {

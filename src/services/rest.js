@@ -196,7 +196,7 @@ const sendReport = async (subjectId, certString) => {
   });
 
   const response = await fetch(
-    config.appConfig.endpoints.report + params.toString(),
+    `${config.appConfig.endpoints.report}?${params.toString()}`,
     {
       method: 'POST',
       body: JSON.stringify(
@@ -246,17 +246,21 @@ const sendQuestionnaire = async (
   queryParams.append('instanceId', instanceId);
   queryParams.append('updateValues', JSON.stringify({ ...triggerMap }));
   const response = await fetch(
-    config.appConfig.endpoints.sendQuestionnaire + queryParams.toString(),
+    `${config.appConfig.endpoints.sendQuestionnaire}?${queryParams.toString()}`,
     {
-      body: generateEncapsuledMessage(
-        subjectId,
-        'questionnaire_response',
-        certString,
-        body,
+      method: 'post',
+      body: JSON.stringify(
+        generateEncapsuledMessage(
+          subjectId,
+          'questionnaire_response',
+          certString,
+          body,
+        ),
       ),
       headers: {
         Authorization: createAuthorizationToken(subjectId),
         Accept: 'application/json',
+        'Content-Type': 'application/json',
       },
     },
   );

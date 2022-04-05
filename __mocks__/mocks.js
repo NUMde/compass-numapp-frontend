@@ -5,6 +5,7 @@ imports
 ***********************************************************************************************/
 
 import mockPermissions from 'react-native-permissions/mock';
+import 'react-native-gesture-handler/jestSetup';
 
 /***********************************************************************************************
 mocks

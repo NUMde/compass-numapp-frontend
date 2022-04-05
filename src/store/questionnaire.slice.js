@@ -13,7 +13,7 @@ import { loggedInClient } from '../services/rest';
 import kioskApi from '../config/kioskApiConfig';
 import config from '../config/configProvider';
 import analyzer from '../services/questionnaireAnalyzer';
-import questionnaire from '../assets/files/questionnaire';
+import staticQuestionnaire from '../assets/files/questionnaire';
 
 const isKioskMode = kioskApi.active;
 
@@ -37,7 +37,7 @@ const fetchQuestionnaire = createAsyncThunk(
       return thunkApi.fulfillWithValue({
         questionnaire: config.appConfig
           .useLocalQuestionnaireInsteadOftheReceivedOne
-          ? questionnaire
+          ? staticQuestionnaire
           : response,
         FHIRmetadata: metadata,
         subjectId,

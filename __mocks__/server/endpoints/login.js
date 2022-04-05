@@ -14,8 +14,9 @@ export default rest.get(
         subjectId: '7bfc3b07-a97d-4e11-8ac6-b970c1745476',
         firstTime: true,
         status: 'on-study',
-        general_study_end_date: 'Unknown Type: date',
-        personal_study_end_date: 'Unknown Type: date',
+        general_study_end_date: '9999-12-30T23:00:00.000Z',
+        personal_study_end_date: '9999-12-30T23:00:00.000Z',
+        recipient_certificate_pem_string: 'false',
       }),
     );
   },

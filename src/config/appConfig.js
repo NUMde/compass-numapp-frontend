@@ -175,13 +175,13 @@ const conf = {
 
     /** rest:
      * endpoint for a special report */
-    report: `${__DEV__ ? baseUriDevelopment : baseUriProductive}queue/`,
+    report: `${__DEV__ ? baseUriDevelopment : baseUriProductive}queue`,
 
     /** rest:
      * endpoint to post the questionnaire to */
     sendQuestionnaire: `${
       __DEV__ ? baseUriDevelopment : baseUriProductive
-    }queue/`,
+    }queue`,
 
     /** rest:
      * endpoint to receive the questionnaire */

@@ -45,7 +45,7 @@ const sendQuestionnaireResponse = createAsyncThunk(
       const response = await (isKioskMode
         ? kioskApi.getUserUpdate()
         : loggedInClient.getUserUpdate(subjectId));
-      return thunkApi.fulfillWithValue(response.data);
+      return thunkApi.fulfillWithValue(response);
     } catch (err) {
       Alert.alert(
         translate('generic').errorTitle,
@@ -83,7 +83,7 @@ const sendReport = createAsyncThunk(
         translate('generic').successTitle,
         translate('generic').sendSuccess,
       );
-      return thunkApi.fulfillWithValue(response.data);
+      return thunkApi.fulfillWithValue(response);
     } catch (err) {
       Alert.alert(
         translate('generic').errorTitle,
