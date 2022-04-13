@@ -1,24 +1,29 @@
 import React from 'react';
-import { CheckBox } from 'react-native-elements';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { setAnswer } from '../../../screens/checkIn/checkInActions';
+// components
+import { CheckBox } from 'react-native-elements';
+
+// redux actions
+import { setAnswer } from '../../../store/questionnaire.slice';
+
+// services & config
 import config from '../../../config/configProvider';
-import exportService from '../../../services/questionnaireAnalyzer';
 
 import SharedStyles, { calculateIndent } from './sharedStyles';
 
-/**
+/***********************************************************************************************
  * renders a questionnaire item as boolean input
+ *
  * @param {object} props
  * @param {QuestionnaireItem} props.item the item to be rendered
- *
- */
-export default function Boolean({ item }) {
+ **********************************************************************************************/
+export default function BooleanInput({ item }) {
   const dispatch = useDispatch();
+
   // get current value from State
   const currentAnswer = useSelector(
-    (state) => state.CheckIn.questionnaireItemMap[item.linkId].answer,
+    (state) => state.Questionnaire.itemMap[item.linkId].answer,
   );
   return (
     <CheckBox
@@ -30,10 +35,7 @@ export default function Boolean({ item }) {
         dispatch(
           setAnswer({
             linkId: item.linkId,
-            answer:
-              exportService.getCorrectlyFormattedAnswer(item) === null
-                ? true
-                : !currentAnswer,
+            answer: !currentAnswer,
           }),
         )
       }
@@ -41,10 +43,7 @@ export default function Boolean({ item }) {
         dispatch(
           setAnswer({
             linkId: item.linkId,
-            answer:
-              exportService.getCorrectlyFormattedAnswer(item) === null
-                ? true
-                : !currentAnswer,
+            answer: !currentAnswer,
           }),
         )
       }
@@ -54,6 +53,7 @@ export default function Boolean({ item }) {
         marginLeft: calculateIndent(item.linkId),
       }}
       textStyle={SharedStyles.choiceText}
+      testID="BooleanInput.CheckBox"
     />
   );
 }

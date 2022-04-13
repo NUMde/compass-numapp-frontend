@@ -4,42 +4,29 @@
 import
 ***********************************************************************************************/
 
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { StyleSheet, View, Modal, ActivityIndicator } from 'react-native';
 
 import config from '../../config/configProvider';
 
 /***********************************************************************************************
-component:
-displays a fullscreen-loading animation (a simple spinner)
-***********************************************************************************************/
-
-class Spinner extends PureComponent {
-  /**
-   * @constructor
-   * @param  {object}      props
-   * @param  {boolean}     props.visible if true, shows the spinner
-   */
-
-  // rendering
-  /*-----------------------------------------------------------------------------------*/
-
-  render() {
-    const { visible } = this.props;
-    return (
-      <Modal visible={visible}>
-        <View style={localStyle.container}>
-          <View style={localStyle.background}>
-            <ActivityIndicator
-              color={config.theme.values.defaultSpinnerColor}
-              size="large"
-              style={localStyle.activityIndicator}
-            />
-          </View>
+ * component:
+ * displays a fullscreen-loading animation (a simple spinner)
+ ***********************************************************************************************/
+function Spinner() {
+  return (
+    <Modal visible={true} testID="Spinner">
+      <View style={localStyle.container}>
+        <View style={localStyle.background}>
+          <ActivityIndicator
+            color={config.theme.values.defaultSpinnerColor}
+            size="large"
+            style={localStyle.activityIndicator}
+          />
         </View>
-      </Modal>
-    );
-  }
+      </View>
+    </Modal>
+  );
 }
 
 /***********************************************************************************************

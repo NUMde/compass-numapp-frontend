@@ -32,7 +32,7 @@ The processes for build and deployment are bundled when developing iOS apps. Ple
 
 *Apple Developer* + 
 https://developer.apple.com/account/ 
-
+
 *App Store Connect* + 
 https://appstoreconnect.apple.com/ 
 

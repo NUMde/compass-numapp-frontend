@@ -4,78 +4,71 @@
 imports
 ***********************************************************************************************/
 
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { StyleSheet } from 'react-native';
+
+// components
 import { ListItem } from 'react-native-elements';
 
+// config
 import config from '../../config/configProvider';
-
-let localStyle;
+import { Routes } from '../../navigation/constants';
 
 /***********************************************************************************************
-component:
-Renders a ListItem which will navigate to another screen when clicked on
-***********************************************************************************************/
-class AboutListLink extends PureComponent {
-  /**
-	* @param  {object}	props
-	* @param  {object}	props.actions redux-actions of the currently active screen
-	* @param  {object}  props.navigation the navigation object provided by 'react-navigation'
-	* @param  {{
-			title:string,
-			subTitle: string,
-			uri: string
-		}}	props.webView holds the strings and the link to open in the webView
-	*/
+ * component:
+ * Renders a ListItem which will navigate to another screen when clicked on
+ *
+ * @param  {object}	props
+ * @param  {object} props.navigation the navigation object provided by 'react-navigation'
+ * @param  {{
+ *			title:string,
+ *			subTitle: string,
+ *      iconType: string,
+ *      iconTitle: string,
+ *			uri: string
+ * }}	props.webView holds the strings and the link to open in the webView
+ ***********************************************************************************************/
+function AboutListLink({ navigation, webView }) {
+  return (
+    <ListItem
+      containerStyle={localStyle.containerStyle}
+      onPress={() => {
+        navigation.navigate(Routes.WEBVIEW, { ...webView });
+      }}
+      testID="aboutListLink"
+    >
+      {/* title & subtitle of the listItem - the strings a identified by the webView*/}
+      <ListItem.Content>
+        <ListItem.Title style={localStyle.title} testID="ALL_title">
+          {webView.title}
+        </ListItem.Title>
 
-  // rendering
-  /*-----------------------------------------------------------------------------------*/
+        {webView.subTitle && (
+          <ListItem.Subtitle style={localStyle.subTitle} testID="ALL_subTitle">
+            {webView.subTitle}
+          </ListItem.Subtitle>
+        )}
+      </ListItem.Content>
 
-  render() {
-    const { actions, navigation, webView } = this.props;
-    return (
-      <ListItem
-        containerStyle={localStyle.containerStyle}
-        onPress={() => {
-          actions.setCurrentWebView(webView);
-          setTimeout(() => {
-            navigation.navigate('WebView');
-          }, 0);
+      {/* the icon on the right-hand-side */}
+      <ListItem.Chevron
+        {...{
+          type: webView.iconType,
+          name: webView.iconTitle,
+          color: config.theme.values.defaultListLinkIconColor,
+          reverse: true,
+          size: 12,
         }}
-      >
-        {/* title & subtitle of the listItem - the strings a identified by the webView*/}
-        <ListItem.Content>
-          <ListItem.Title style={localStyle.title}>
-            {webView.title}
-          </ListItem.Title>
-
-          {webView.subTitle && (
-            <ListItem.Subtitle style={localStyle.subTitle}>
-              {webView.subTitle}
-            </ListItem.Subtitle>
-          )}
-        </ListItem.Content>
-
-        {/* the icon on the right-hand-side */}
-        <ListItem.Chevron
-          {...{
-            type: webView.iconType,
-            name: webView.iconTitle,
-            color: config.theme.values.defaultListLinkIconColor,
-            reverse: true,
-            size: 12,
-          }}
-        />
-      </ListItem>
-    );
-  }
+      />
+    </ListItem>
+  );
 }
 
 /***********************************************************************************************
 local styling
 ***********************************************************************************************/
 
-localStyle = StyleSheet.create({
+const localStyle = StyleSheet.create({
   containerStyle: {
     width: '100%',
     borderBottomColor: config.theme.colors.accent3,

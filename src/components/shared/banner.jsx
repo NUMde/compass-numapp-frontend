@@ -4,7 +4,7 @@
 import
 ***********************************************************************************************/
 
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { Icon, Button } from 'react-native-elements';
 import {
   Text,
@@ -15,6 +15,7 @@ import {
   Dimensions,
 } from 'react-native';
 
+// services & config
 import config from '../../config/configProvider';
 import translate from '../../services/localization';
 
@@ -24,185 +25,172 @@ const defaultLogo = require('../../assets/images/defaultLogo.png');
 const customBackground = require('../../CUSTOMIZATION/images/logoBackground.png');
 const defaultBackground = require('../../assets/images/defaultLogoBackground.png');
 
-let localStyle;
-
 /***********************************************************************************************
-component:
-renders a banner with title, logo and navigational buttons
-***********************************************************************************************/
+ * component:
+ * renders a banner with title, subtitle, logo, background image, and navigational buttons
+ * @param  {object}    props
+ * @param  {object}    props.nav the navigation object provided by 'react-navigation'
+ * @param  {string}    props.title the title displayed
+ * @param  {boolean}   props.noMenu if true no menu-button will be rendered in the top right corner
+ * @param  {string}    props.subTitle the subtitle displayed
+ * @param  {boolean}   props.isCheckIn true if the banner is used on the checkIn-screen
+ * @param  {boolean}   props.noWayBack if true no 'back'-button will be rendered
+ * @param  {boolean}   props.noRefresh if true no 'refesh'-button will be rendered
+ * @param  {function}  props.updateUser triggers a user update
+ ***********************************************************************************************/
+function Banner({
+  nav,
+  title,
+  noMenu,
+  subTitle,
+  isCheckIn,
+  noWayBack,
+  noRefresh,
+  updateUser,
+}) {
+  /** holds the correct logo file */
+  const logo = config.theme.ui.useCustomLogo ? customLogo : defaultLogo;
 
-class Banner extends PureComponent {
-  /**
-   * @constructor
-   * @param  {object}    props
-   * @param  {string}    props.title the title displayed
-   * @param  {string}    props.subTitle the subtitle displayed
-   * @param  {boolean}   props.noMenu if true no menu-button will be rendered in the top right corner
-   * @param  {boolean}   props.isCheckIn true if the banner is used on the checkIn-screen
-   * @param  {boolean}   props.noWayBack if true no 'back'-button will be rendered
-   * @param  {boolean}   props.noRefresh if true no 'refesh'-button will be rendered
-   * @param  {function}  props.updateUser triggers a user update
-   * @param  {object}    props.nav the navigation object provided by 'react-navigation'
-   */
+  /** holds the correct logoBackground file */
+  const logoBackground = config.theme.ui.useCustomLogoBackground
+    ? customBackground
+    : defaultBackground;
 
-  // rendering
-  /*-----------------------------------------------------------------------------------*/
+  const hasSubTitle = subTitle && subTitle.length;
+  const hasTitle = title && title.length;
 
-  render() {
-    const {
-      title,
-      subTitle,
-      isCheckIn,
-      noMenu,
-      updateUser,
-      noWayBack,
-      nav,
-      noRefresh,
-    } = this.props;
-
-    /** holds the correct logo file */
-    const logo = config.theme.ui.useCustomLogo ? customLogo : defaultLogo;
-
-    /** holds the correct logoBackground file */
-    const logoBackground = config.theme.ui.useCustomLogoBackground
-      ? customBackground
-      : defaultBackground;
-
-    const hasSubTitle = subTitle && subTitle.length;
-    const hasTitle = title && title.length;
-
-    return (
-      <View style={localStyle.banner}>
-        <View style={localStyle.bannerUpperHalf}>
-          <View style={localStyle.bannerTitleWrapper}>
-            {/* if this is the checkIn-screen and reloads are not forbidden shows a reload button in the top left corner */}
-            {isCheckIn && !noRefresh && (
-              <Button
-                type="clear"
-                style={localStyle.bannerIcon}
-                onPress={() => updateUser()}
-                icon={
-                  <Icon
-                    size={config.appConfig.scaleUiFkt(28)}
-                    name="refresh"
-                    type="material-community"
-                    color={config.theme.values.defaultBannerButtonColor}
-                  />
-                }
-                accessibilityLabel={translate('accessibility').refresh}
-                accessibilityRole={translate('accessibility').types.button}
-                accessibilityHint={translate('accessibility').refreshHint}
-              />
-            )}
-
-            {/* If navigating back is allowed and there actually is a 'back' in the nav-stack shows the back-button in the top left corner.
-                            There will be no back-button on the checkIn-screen as it is the first screen of the SignedInView defined in '../../navigation/appNavigator.js'  */}
-            {!noWayBack && nav && (
-              <Button
-                type="clear"
-                style={localStyle.bannerIcon}
-                onPress={() => nav.goBack()}
-                icon={
-                  <Icon
-                    size={config.appConfig.scaleUiFkt(28)}
-                    name="arrow-left"
-                    type="material-community"
-                    color={config.theme.values.defaultBannerButtonColor}
-                  />
-                }
-                accessibilityLabel={translate('accessibility').back}
-                accessibilityRole={translate('accessibility').types.button}
-                accessibilityHint={translate('accessibility').backHint}
-              />
-            )}
-
-            {/* Renders an empty icon if none of the other options came back positiv. */}
-            {!(isCheckIn || (!noWayBack && nav)) ||
-              (isCheckIn && noRefresh && (
-                <View style={localStyle.bannerIcon} />
-              ))}
-
-            {/* The title string. */}
-            {title !== '' && (
-              <Text
-                numberOfLines={1}
-                style={localStyle.bannerTitle}
-                accessibilityRole={translate('accessibility').types.header}
-              >
-                {title}
-              </Text>
-            )}
-
-            {/* Renders a menu button in the top right corner that navigates to the about-screen. */}
-            {!noMenu && (
-              <Button
-                type="clear"
-                style={localStyle.bannerIcon}
-                onPress={() => nav.navigate('About')}
-                icon={
-                  <Icon
-                    size={config.appConfig.scaleUiFkt(28)}
-                    name="menu"
-                    type="material-community"
-                    color={config.theme.values.defaultBannerButtonColor}
-                  />
-                }
-                accessibilityLabel={translate('accessibility').menu}
-                accessibilityRole={translate('accessibility').types.button}
-                accessibilityHint={translate('accessibility').menuHint}
-              />
-            )}
-
-            {/* Another empty icon in case there is no menu-button to be rendered. */}
-            {noMenu && <View style={localStyle.bannerIcon} />}
-
-            {/* Rendering the subtitle */}
-            {subTitle !== '' && (
-              <Text
-                numberOfLines={1}
-                style={localStyle.bannerSubtitle}
-                accessibilityRole={translate('accessibility').types.header}
-              >
-                {subTitle}
-              </Text>
-            )}
-          </View>
-        </View>
-
-        {/* Renders the logo-background. */}
-        {config.theme.ui.useBannerBackground && (
-          <View style={localStyle.bannerFull}>
-            <Image
-              resizeMode="cover"
-              style={localStyle.bannerBackgroundImage}
-              source={logoBackground}
+  return (
+    <View style={localStyle.banner}>
+      <View style={localStyle.bannerUpperHalf}>
+        <View style={localStyle.bannerTitleWrapper}>
+          {/* if this is the checkIn-screen and reloads are not forbidden shows a reload button in the top left corner */}
+          {isCheckIn && !noRefresh && (
+            <Button
+              type="clear"
+              style={localStyle.bannerIcon}
+              onPress={() => updateUser()}
+              icon={
+                <Icon
+                  size={config.appConfig.scaleUiFkt(28)}
+                  name="refresh"
+                  type="material-community"
+                  color={config.theme.values.defaultBannerButtonColor}
+                />
+              }
+              accessibilityLabel={translate('accessibility').refresh}
+              accessibilityRole={translate('accessibility').types.button}
+              accessibilityHint={translate('accessibility').refreshHint}
+              testID="banner_refresh_btn"
             />
-          </View>
-        )}
+          )}
 
-        {/* Renders the logo. */}
-        <View style={localStyle.bannerHalf}>
-          <Image
-            resizeMode="contain"
-            style={(() => {
-              // depending on whether title and/or subtitle is/are set, the logo is scaled
-              if (hasTitle && hasSubTitle) {
-                // small logo with title and subtitle
-                return localStyle.bannerImageLogoUnderSubtitleAndTitle;
+          {/* If navigating back is allowed and there actually is a 'back' in the nav-stack shows the back-button in the top left corner.
+                            There will be no back-button on the checkIn-screen as it is the first screen of the SignedInView defined in '../../navigation/appNavigator.js'  */}
+          {!noWayBack && nav && (
+            <Button
+              type="clear"
+              style={localStyle.bannerIcon}
+              onPress={() => nav.goBack()}
+              icon={
+                <Icon
+                  size={config.appConfig.scaleUiFkt(28)}
+                  name="arrow-left"
+                  type="material-community"
+                  color={config.theme.values.defaultBannerButtonColor}
+                />
               }
-              if (hasTitle) {
-                // medium logo with title only
-                return localStyle.bannerImageLogoUnderTitle;
+              accessibilityLabel={translate('accessibility').back}
+              accessibilityRole={translate('accessibility').types.button}
+              accessibilityHint={translate('accessibility').backHint}
+              testID="banner_back_btn"
+            />
+          )}
+
+          {/* Renders an empty icon if none of the other options came back positive. */}
+          {!(isCheckIn || (!noWayBack && nav)) ||
+            (isCheckIn && noRefresh && <View style={localStyle.bannerIcon} />)}
+
+          {/* The title string. */}
+          {title !== '' && (
+            <Text
+              numberOfLines={1}
+              style={localStyle.bannerTitle}
+              accessibilityRole={translate('accessibility').types.header}
+            >
+              {title}
+            </Text>
+          )}
+
+          {/* Renders a menu button in the top right corner that navigates to the about-screen. */}
+          {!noMenu && (
+            <Button
+              type="clear"
+              style={localStyle.bannerIcon}
+              onPress={() => nav.navigate('About')}
+              icon={
+                <Icon
+                  size={config.appConfig.scaleUiFkt(28)}
+                  name="menu"
+                  type="material-community"
+                  color={config.theme.values.defaultBannerButtonColor}
+                />
               }
-              // large logo with neither title nor subtitle
-              return localStyle.bannerImageLogoFullSize;
-            })()}
-            source={logo}
-          />
+              accessibilityLabel={translate('accessibility').menu}
+              accessibilityRole={translate('accessibility').types.button}
+              accessibilityHint={translate('accessibility').menuHint}
+              testID="banner_menu_btn"
+            />
+          )}
+
+          {/* Another empty icon in case there is no menu-button to be rendered. */}
+          {noMenu && <View style={localStyle.bannerIcon} />}
+
+          {/* Rendering the subtitle */}
+          {subTitle !== '' && (
+            <Text
+              numberOfLines={1}
+              style={localStyle.bannerSubtitle}
+              accessibilityRole={translate('accessibility').types.header}
+            >
+              {subTitle}
+            </Text>
+          )}
         </View>
       </View>
-    );
-  }
+
+      {/* Renders the logo-background. */}
+      {config.theme.ui.useBannerBackground && (
+        <View style={localStyle.bannerFull}>
+          <Image
+            resizeMode="cover"
+            style={localStyle.bannerBackgroundImage}
+            source={logoBackground}
+          />
+        </View>
+      )}
+
+      {/* Renders the logo. */}
+      <View style={localStyle.bannerHalf}>
+        <Image
+          resizeMode="contain"
+          style={(() => {
+            // depending on whether title and/or subtitle is/are set, the logo is scaled
+            if (hasTitle && hasSubTitle) {
+              // small logo with title and subtitle
+              return localStyle.bannerImageLogoUnderSubtitleAndTitle;
+            }
+            if (hasTitle) {
+              // medium logo with title only
+              return localStyle.bannerImageLogoUnderTitle;
+            }
+            // large logo with neither title nor subtitle
+            return localStyle.bannerImageLogoFullSize;
+          })()}
+          source={logo}
+        />
+      </View>
+    </View>
+  );
 }
 
 /***********************************************************************************************
@@ -215,7 +203,7 @@ const bannerHeight =
     : config.appConfig.scaleUiFkt(290, 0.6);
 const bannerWidth = Dimensions.get('window').width;
 
-localStyle = StyleSheet.create({
+const localStyle = StyleSheet.create({
   // Some values need to be calculated in the context of the plattform the app is running on
   // as well as the hight of the statusbar. 'Plattform' and 'getStatusBarHeight()' are used
   // to accomplish that. Additionally, scaleUiFkt() (located in src/config/appConfig.js)

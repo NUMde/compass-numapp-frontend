@@ -4,86 +4,107 @@
 imports
 ***********************************************************************************************/
 
-import { Provider } from 'react-redux';
-import React, { PureComponent } from 'react';
-import * as RNLocalize from 'react-native-localize';
-import SplashScreen from 'react-native-splash-screen';
+import React, { useEffect } from 'react';
 import { StyleSheet, View, StatusBar, LogBox, Platform } from 'react-native';
-import RNRestart from 'react-native-restart';
-import { URL as nativeURL } from 'react-native-url-polyfill/auto';
+import * as RNLocalize from 'react-native-localize';
+
+// components
+import SplashScreen from 'react-native-splash-screen';
+
+// redux & store
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistor, reduxStore } from './src/store';
+
+// navigation setup
+import AppNavigator from './src/navigation/appNavigator';
+
+// config
+import kioskMode from './src/config/kioskApiConfig';
+import config from './src/config/configProvider';
+
+// redux actions
+import { updateLanguage } from './src/store/user.slice';
+import { init } from './src/store/globals.slice';
+
+// custom components
+import { Spinner } from './src/components/shared';
+
+// services
+import localStorage from './src/services/localStorage';
 import {
+  availableLanguages,
   initLocalization,
-  setI18nConfig,
-  setAvailableLanguages,
 } from './src/services/localization';
 
-import reduxStore from './src/store';
-import config from './src/config/configProvider';
-import kioskMode from './src/config/kioskApiConfig';
-import createAppNavigator from './src/navigation/appNavigator';
-import { guestClient } from './src/services/rest';
+/***********************************************************************************************
+global variables / settings
+***********************************************************************************************/
+
+// needed by node-forge for the encryption functionality
+global.Buffer = require('buffer').Buffer;
+
+// deactivates the logbox-warning about the debugger running in the background
+LogBox.ignoreLogs(['Remote debugger']);
 
 /***********************************************************************************************
 Component
 ***********************************************************************************************/
 
-class App extends PureComponent {
+function App() {
   /**
-   * creates the appNavigator and provides the initial view
-   * @constructor
-   * @param  {object} props
+   * handler for when the user changes the system language
    */
-  constructor(props) {
-    super(props);
-    initLocalization();
-    guestClient.getLanguages().then((res) => {
-      setAvailableLanguages(res);
-    });
-  }
-
-  // just in case the device language is changed while the app is running
-  componentDidMount() {
-    RNLocalize.addEventListener('change', this.handleLocalizationChange);
-  }
-
-  // just in case the device language is changed while the app is running
-  componentWillUnmount() {
-    RNLocalize.removeEventListener('change', this.handleLocalizationChange);
-  }
-
-  // fires after the device language was changed while the app is running
-  handleLocalizationChange = () => {
-    setI18nConfig();
-    RNRestart.Restart();
+  const handleLocalizationChange = () => {
+    reduxStore.dispatch(
+      updateLanguage(
+        RNLocalize.findBestAvailableLanguage(Object.keys(availableLanguages)),
+      ),
+    );
   };
 
-  render() {
-    // hides the splash screen
-    SplashScreen.hide();
+  useEffect(() => {
+    RNLocalize.addEventListener('change', handleLocalizationChange);
 
-    // should this be a demo
-    if (kioskMode.active) kioskMode.initKioskMode();
+    // load user language from localStorage and initialize localization
+    localStorage.loadUserLanguage().then((langCode) => {
+      initLocalization(langCode);
+      reduxStore.dispatch(init());
+      SplashScreen.hide();
+    });
 
-    // and returns the basic view that contains the navigator
-    return (
-      <View style={localStyle.container}>
-        {Platform.OS === 'ios' && (
-          <StatusBar barStyle={config.theme.values.defaultStatusBarStyleIos} />
-        )}
+    return () => {
+      // removeEventListener when unmounting
+      RNLocalize.removeEventListener('change', handleLocalizationChange);
+    };
+  }, []);
 
-        {Platform.OS === 'android' && (
-          <StatusBar
-            barStyle={config.theme.values.defaultStatusBarStyleAndroid}
-            backgroundColor={
-              config.theme.values.defaultStatusBarAndroidBackgroundColor
-            }
-          />
-        )}
+  // should this be a demo init kiosk mode
+  if (kioskMode.active) kioskMode.initKioskMode();
 
-        <Provider store={reduxStore}>{createAppNavigator()}</Provider>
-      </View>
-    );
-  }
+  // return the basic view that contains the navigator
+  return (
+    <View style={localStyle.container}>
+      {Platform.OS === 'ios' && (
+        <StatusBar barStyle={config.theme.values.defaultStatusBarStyleIos} />
+      )}
+
+      {Platform.OS === 'android' && (
+        <StatusBar
+          barStyle={config.theme.values.defaultStatusBarStyleAndroid}
+          backgroundColor={
+            config.theme.values.defaultStatusBarAndroidBackgroundColor
+          }
+        />
+      )}
+
+      <Provider store={reduxStore}>
+        <PersistGate loading={<Spinner />} persistor={persistor}>
+          <AppNavigator />
+        </PersistGate>
+      </Provider>
+    </View>
+  );
 }
 
 /***********************************************************************************************
@@ -96,19 +117,6 @@ const localStyle = StyleSheet.create({
     backgroundColor: '#fff',
   },
 });
-
-/***********************************************************************************************
-global variables / settings
-***********************************************************************************************/
-
-// needed by node-forge for the encryption functionality
-global.Buffer = require('buffer').Buffer;
-
-// polyfill for iOS
-global.URL = nativeURL;
-
-// deactivates the logbox-warning about the debugger running in the background
-LogBox.ignoreLogs(['Remote debugger']);
 
 /***********************************************************************************************
 export

@@ -8,9 +8,15 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import About from '../screens/about/aboutContainer';
-import Login from '../screens/login/loginContainer';
-import { CheckIn } from '../screens/checkIn/checkInContainer';
+import AboutScreen from '../screens/aboutScreen';
+import WebViewScreen from '../screens/webViewScreen';
+import LegalInformationScreen from '../screens/legalInformationScreen';
+import LandingScreen from '../screens/landingScreen';
+import LoginScreen from '../screens/loginScreen';
+import CheckInScreen from '../screens/checkInScreen';
+import SurveyScreen from '../screens/surveyScreen';
+
+import { Routes, Stacks } from './constants';
 
 /***********************************************************************************************
 export and AppContainer-creation
@@ -26,10 +32,10 @@ function SignedOutView() {
         headerShown: false,
         gestureEnabled: false,
       }}
-      initialRouteName="Landing"
+      initialRouteName={Routes.LANDING}
     >
-      <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="Landing" component={Login} />
+      <Stack.Screen name={Routes.LANDING} component={LandingScreen} />
+      <Stack.Screen name={Routes.LOGIN} component={LoginScreen} />
     </Stack.Navigator>
   );
 }
@@ -44,13 +50,16 @@ function SignedInView() {
         headerShown: false,
         gestureEnabled: false,
       }}
-      initialRouteName="CheckIn"
+      initialRouteName={Routes.CHECK_IN}
     >
-      <Stack.Screen name="CheckIn" component={CheckIn} />
-      <Stack.Screen name="Survey" component={CheckIn} />
-      <Stack.Screen name="About" component={About} />
-      <Stack.Screen name="WebView" component={About} />
-      <Stack.Screen name="LegalInformation" component={About} />
+      <Stack.Screen name={Routes.CHECK_IN} component={CheckInScreen} />
+      <Stack.Screen name={Routes.SURVEY} component={SurveyScreen} />
+      <Stack.Screen name={Routes.ABOUT} component={AboutScreen} />
+      <Stack.Screen name={Routes.WEBVIEW} component={WebViewScreen} />
+      <Stack.Screen
+        name={Routes.LEGAL_INFORMATION}
+        component={LegalInformationScreen}
+      />
     </Stack.Navigator>
   );
 }
@@ -58,7 +67,7 @@ function SignedInView() {
 /**
  * creates the app container based on the two stack-navigators
  */
-const createAppNavigator = () => {
+function AppNavigator() {
   const RootStack = createNativeStackNavigator();
   return (
     <NavigationContainer>
@@ -67,13 +76,13 @@ const createAppNavigator = () => {
           headerShown: false,
           gestureEnabled: false,
         }}
-        initialRouteName="SignedOut"
+        initialRouteName={Stacks.SIGNED_OUT}
       >
-        <RootStack.Screen name="SignedIn" component={SignedInView} />
-        <RootStack.Screen name="SignedOut" component={SignedOutView} />
+        <RootStack.Screen name={Stacks.SIGNED_IN} component={SignedInView} />
+        <RootStack.Screen name={Stacks.SIGNED_OUT} component={SignedOutView} />
       </RootStack.Navigator>
     </NavigationContainer>
   );
-};
+}
 
-export default createAppNavigator;
+export default AppNavigator;

@@ -1,0 +1,390 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginScreen should render the login screen 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#F8F9FA",
+      "height": "100%",
+    }
+  }
+  testID="LoginScreen"
+>
+  <View
+    style={
+      Object {
+        "alignContent": "stretch",
+        "alignItems": "stretch",
+        "backgroundColor": "#F8F9FA",
+        "flexDirection": "column",
+        "height": 354.06976744186045,
+        "justifyContent": "flex-start",
+        "overflow": "hidden",
+        "paddingTop": 30,
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "flex-start",
+          "flexDirection": "row",
+          "flexWrap": "wrap",
+          "justifyContent": "space-between",
+          "paddingTop": 10,
+          "width": "100%",
+          "zIndex": 2,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "flexWrap": "wrap",
+            "justifyContent": "flex-end",
+            "marginLeft": 15,
+            "marginRight": 15,
+            "textAlign": "center",
+          }
+        }
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "borderRadius": 3,
+                "overflow": "hidden",
+              },
+              Object {
+                "borderRadius": 3,
+              },
+              undefined,
+              false,
+            ]
+          }
+        >
+          <View
+            accessibilityHint="Jumps to previous page."
+            accessibilityLabel="back"
+            accessibilityRole="button"
+            accessibilityState={
+              Object {
+                "busy": false,
+                "disabled": false,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={true}
+            nativeID="animatedComponent"
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "height": 44,
+                "opacity": 1,
+                "width": 104.65116279069767,
+              }
+            }
+            testID="banner_back_btn"
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "transparent",
+                  "borderColor": "#2089dc",
+                  "borderRadius": 3,
+                  "borderWidth": 0,
+                  "flexDirection": "row",
+                  "justifyContent": "center",
+                  "padding": 8,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "overflow": "hidden",
+                  }
+                }
+              >
+                <View>
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "transparent",
+                        "justifyContent": "center",
+                      }
+                    }
+                  >
+                    <Text
+                      allowFontScaling={false}
+                      selectable={false}
+                      style={
+                        Array [
+                          Object {
+                            "color": "#EB576A",
+                            "fontSize": 48.83720930232558,
+                          },
+                          Object {
+                            "backgroundColor": "transparent",
+                          },
+                          Object {
+                            "fontFamily": "Material Design Icons",
+                            "fontStyle": "normal",
+                            "fontWeight": "normal",
+                          },
+                          Object {},
+                        ]
+                      }
+                      testID="iconIcon"
+                    >
+                      󰁍
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+        <Text
+          accessibilityRole="header"
+          numberOfLines={1}
+          style={
+            Object {
+              "alignContent": "center",
+              "alignSelf": "center",
+              "color": "#1F2532",
+              "flex": 1,
+              "fontFamily": "IBMPlexSans-SemiBold",
+              "fontSize": 33.75,
+              "lineHeight": 43.125,
+              "textAlign": "center",
+              "width": "100%",
+            }
+          }
+        >
+          Login
+        </Text>
+        <View
+          style={
+            Object {
+              "height": 44,
+              "width": 104.65116279069767,
+            }
+          }
+        />
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "flexDirection": "column",
+          "justifyContent": "flex-end",
+          "left": 0,
+          "position": "absolute",
+          "top": 0,
+        }
+      }
+    >
+      <Image
+        resizeMode="cover"
+        source={
+          Object {
+            "process": [Function],
+          }
+        }
+        style={
+          Object {
+            "height": 354.06976744186045,
+            "width": 750,
+          }
+        }
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "flexDirection": "column",
+          "justifyContent": "flex-end",
+        }
+      }
+    >
+      <Image
+        resizeMode="contain"
+        source={
+          Object {
+            "process": [Function],
+          }
+        }
+        style={
+          Object {
+            "alignSelf": "center",
+            "bottom": 13.081395348837209,
+            "maxHeight": 308.781773931855,
+            "maxWidth": 650,
+            "position": "relative",
+          }
+        }
+      />
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#F8F9FA",
+        "flex": 1,
+        "height": "100%",
+      }
+    }
+  >
+    <View
+      onLayout={[Function]}
+      style={
+        Object {
+          "flex": 1,
+          "flexDirection": "column",
+          "width": "100%",
+        }
+      }
+    >
+      <RCTScrollView
+        contentContainerStyle={
+          Object {
+            "flexGrow": 1,
+          }
+        }
+        enableOnAndroid={true}
+        onScroll={[Function]}
+        scrollEventThrottle={16}
+        style={
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+            "width": "100%",
+          }
+        }
+      >
+        <View>
+          <View
+            style={
+              Object {
+                "backgroundColor": "#F8F9FA",
+                "height": "100%",
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#F8F9FA",
+                  "flex": 1,
+                  "height": "100%",
+                }
+              }
+            >
+              <View
+                testID="scannerWrapper"
+              >
+                <View
+                  style={
+                    Array [
+                      Object {
+                        "flex": 1,
+                      },
+                      Object {
+                        "height": 750,
+                        "marginTop": 0,
+                        "width": "100%",
+                      },
+                    ]
+                  }
+                >
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "flex": 2,
+                          "justifyContent": "center",
+                          "width": 750,
+                        },
+                        undefined,
+                      ]
+                    }
+                  />
+                  <View>
+                    <View
+                      style={
+                        Object {
+                          "alignItems": "center",
+                          "flex": 1,
+                          "justifyContent": "center",
+                        }
+                      }
+                    >
+                      <Text
+                        style={
+                          Object {
+                            "fontSize": 16,
+                            "textAlign": "center",
+                          }
+                        }
+                      >
+                        ...
+                      </Text>
+                    </View>
+                  </View>
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "center",
+                          "flex": 2,
+                          "justifyContent": "center",
+                          "width": 750,
+                        },
+                        undefined,
+                      ]
+                    }
+                  />
+                </View>
+              </View>
+              <Text
+                style={
+                  Object {
+                    "alignSelf": "center",
+                    "color": "#1F2532",
+                    "fontFamily": "IBMPlexSans",
+                    "fontSize": 30,
+                    "lineHeight": 39.375,
+                    "marginBottom": 0,
+                    "marginLeft": 122.09302325581395,
+                    "marginRight": 122.09302325581395,
+                    "marginTop": 52.325581395348834,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                Please point the camera onto the qr-code.
+              </Text>
+            </View>
+          </View>
+        </View>
+      </RCTScrollView>
+    </View>
+  </View>
+</View>
+`;

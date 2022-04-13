@@ -27,7 +27,7 @@
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/native-stack": "^6.5.0",
     "@redux-devtools/extension": "^3.2.2",
-    "axios": "^0.26.0",
+    "@reduxjs/toolkit": "^1.8.0",
     "buffer": "^6.0.3",
     "i18n-js": "^3.8.0",
     "lodash.clonedeep": "^4.5.0",
@@ -44,7 +44,6 @@
     "react-native-modal": "^13.0.0",
     "react-native-permissions": "^3.2.0",
     "react-native-qrcode-scanner": "^1.5.4",
-    "react-native-restart": "0.0.23",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "^3.10.2",
     "react-native-splash-screen": "^3.3.0",
@@ -53,10 +52,12 @@
     "react-native-webview": ">=11.17.0",
     "react-redux": "^7.2.6",
     "redux": "^4.1.2",
+    "redux-persist": "^6.0.0",
     "redux-thunk": "^2.4.1"
   },
   "devDependencies": {
     "@babel/core": "^7.17.4",
+    "@babel/preset-env": "^7.16.11",
     "@react-native-community/eslint-config": "^3.0.1",
     "@testing-library/react-native": "^9.0.0",
     "babel-eslint": "^10.1.0",
@@ -75,8 +76,10 @@
     "jest-transform-stub": "^2.0.0",
     "jsdom": "19.0.0",
     "metro-react-native-babel-preset": "^0.68.0",
+    "msw": "^0.39.2",
     "patch-package": "^6.4.7",
-    "react-test-renderer": "17.0.2"
+    "react-test-renderer": "17.0.2",
+    "typescript": "^4.6.3"
   },
   "private": true,
   "engines": {

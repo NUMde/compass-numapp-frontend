@@ -1,59 +1,68 @@
 import React from 'react';
 import { View, StyleSheet, I18nManager } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
+
+// components
 import { Button, Icon } from 'react-native-elements';
 
-import {
-  hideQuestionnaireModal,
-  switchContent,
-  setQuestionnaireItemMap,
-} from '../../screens/checkIn/checkInActions';
+// custom components
+import ProgressBar from './progressbar';
 
+// redux actions
+import { switchContent } from '../../store/questionnaire.slice';
+
+// services & config
 import setAccessibilityResponder from '../../services/setAccessibilityResponder';
-
 import exportService from '../../services/questionnaireAnalyzer';
 import translate from '../../services/localization';
 import config from '../../config/configProvider';
-import ProgressBar from './progressbar';
 
-export default /**
+/***********************************************************************************************
+ * component
  * creates the bottom-navigation-bar of the modal
- * @param {object} props the props of this component
- * @param {React.RefObject<any>} props.modalTitleRef a reference object of the modal title for a11y purposes
- * @param {Function} props.handleScrollTo a callback to scroll to the top when switching between pages
- */
-function BottomBar({ modalTitleRef, handleScrollTo }) {
-  const {
-    currentPageIndex,
-    currentCategoryIndex,
-    questionnaireItemMap,
-    categories,
-  } = useSelector((state) => state.CheckIn);
-  const completed = exportService.checkCompletionStateOfMultipleItems(
-    [
-      categories[currentCategoryIndex].item[
-        // the -1 is necessary as the indexes of the questionnaire-items start wit 1
-        currentPageIndex - 1
-      ],
-    ],
-    categories,
-    questionnaireItemMap,
-    (itemMap) => dispatch(setQuestionnaireItemMap(itemMap)),
-  );
+ *
+ * @param {object}                props the props of this component
+ * @param {function}              props.hideModal a callback to hide the modal
+ * @param {React.RefObject<any>}  props.modalTitleRef a reference object of the modal title for a11y purposes
+ * @param {function}              props.handleScrollTo a callback to scroll to the top when switching between pages
+ **********************************************************************************************/
+export default function BottomBar({
+  modalTitleRef,
+  handleScrollTo,
+  hideModal,
+}) {
   const dispatch = useDispatch();
 
+  // get data from state
+
+  const { pageIndex, categoryIndex, itemMap, categories } = useSelector(
+    (state) => state.Questionnaire,
+  );
+
+  // check whether the current page has been completely answered
+  const completed =
+    itemMap[categories[categoryIndex].item[pageIndex - 1].linkId].done;
+
   /**
-   * handler for the 'forward' button
+   * handler for the 'forward' and 'confirm' buttons
    */
   const handleForwardPress = () => {
     setAccessibilityResponder(modalTitleRef);
-    // when on last page, hide modal; there is no way forward
-    if (currentPageIndex === categories[currentCategoryIndex].item.length) {
-      dispatch(hideQuestionnaireModal());
-    } else {
-      dispatch(switchContent(true));
+    // skip questions whose dependencies are not
+    let index = pageIndex;
+    while (index < categories[categoryIndex].item.length) {
+      if (
+        exportService.checkDependenciesOfSingleItem(
+          categories[categoryIndex].item[index],
+          itemMap,
+        )
+      ) {
+        dispatch(switchContent({ pageIndex: index + 1 }));
+        return handleScrollTo({ y: 0, animated: false });
+      }
+      index += 1;
     }
-    handleScrollTo({ y: 0, animated: false });
+    hideModal();
   };
 
   /**
@@ -61,16 +70,29 @@ function BottomBar({ modalTitleRef, handleScrollTo }) {
    */
   const handleBackPress = () => {
     setAccessibilityResponder(modalTitleRef);
-    dispatch(switchContent(false));
-    handleScrollTo({ y: 0, animated: false });
+    let index = pageIndex - 1;
+    while (index >= 0) {
+      if (
+        exportService.checkDependenciesOfSingleItem(
+          categories[categoryIndex].item[index - 1],
+          itemMap,
+        )
+      ) {
+        dispatch(switchContent({ pageIndex: index }));
+        return handleScrollTo({ y: 0, animated: false });
+      }
+      index -= 1;
+    }
   };
+
   return (
     <View
       style={
         config.appConfig.useProgressBar
-          ? bottomBarStyles.bottomBarWrapper
-          : bottomBarStyles.bottomBarWrapperWithShadow
+          ? localStyles.bottomBarWrapper
+          : localStyles.bottomBarWrapperWithShadow
       }
+      testID="BottomBar"
     >
       {config.appConfig.useProgressBar && (
         <ProgressBar
@@ -78,28 +100,27 @@ function BottomBar({ modalTitleRef, handleScrollTo }) {
             config.appConfig.useStrictModeProgressBar
               ? exportService.calculatePageProgress(
                   categories,
-                  currentCategoryIndex,
-                  currentPageIndex,
-                  questionnaireItemMap,
+                  categoryIndex,
+                  pageIndex,
+                  itemMap,
                 )
-              : currentPageIndex / categories[currentCategoryIndex].item.length
+              : pageIndex / categories[categoryIndex].item.length
           }
         />
       )}
-
-      <View style={bottomBarStyles.bottomBarButtons}>
+      <View style={localStyles.bottomBarButtons}>
         {/* the left navigational button; hidden if on page 1 */}
         <Button
           type="clear"
-          disabled={currentPageIndex === 1}
-          disabledStyle={bottomBarStyles.disabledButton}
+          disabled={pageIndex === 1}
+          disabledStyle={localStyles.disabledButton}
           accessibilityLabel={translate('accessibility').back}
           accessibilityRole={translate('accessibility').types.button}
           accessibilityHint={
             translate('accessibility').questionnaire.leftButtonHint
           }
           onPress={handleBackPress}
-          style={bottomBarStyles.modalPaginationButton}
+          style={localStyles.modalPaginationButton}
           icon={
             <Icon
               name={I18nManager.isRTL ? 'arrow-right' : 'arrow-left'}
@@ -107,6 +128,7 @@ function BottomBar({ modalTitleRef, handleScrollTo }) {
               color={config.theme.colors.accent4}
             />
           }
+          testID="BottomBar_back_btn"
         />
         {/* the confirmation button in the middle - its color depends on checkCurrentPageState() */}
         <Button
@@ -133,13 +155,12 @@ function BottomBar({ modalTitleRef, handleScrollTo }) {
               }
             />
           }
+          testID="BottomBar_confirm_btn"
         />
-        {/* navigational button on the right side - if we're not the last page
-                   accessibility: if VoiceOver/TalkBalk is on, we use this button for the closing mechanism,
-                   as the middle button can be used to go to the next page. */}
+        {/* navigational button on the right side */}
         <Button
           type="clear"
-          accessibilityLabel={translate('accessibility').neext}
+          accessibilityLabel={translate('accessibility').next}
           accessibilityRole={translate('accessibility').types.button}
           accessibilityHint={
             translate('accessibility').questionnaire.rightButtonHint
@@ -147,7 +168,7 @@ function BottomBar({ modalTitleRef, handleScrollTo }) {
           onPress={() => {
             handleForwardPress();
           }}
-          style={bottomBarStyles.modalPaginationButton}
+          style={localStyles.modalPaginationButton}
           icon={
             <Icon
               name={I18nManager.isRTL ? 'arrow-left' : 'arrow-right'}
@@ -155,17 +176,20 @@ function BottomBar({ modalTitleRef, handleScrollTo }) {
               color={config.theme.colors.accent4}
             />
           }
-          disabled={
-            currentPageIndex === categories[currentCategoryIndex]?.item.length
-          }
-          disabledStyle={bottomBarStyles.disabledButton}
+          disabled={pageIndex === categories[categoryIndex]?.item.length}
+          disabledStyle={localStyles.disabledButton}
+          testID="BottomBar_fwd_btn"
         />
       </View>
     </View>
   );
 }
 
-const bottomBarStyles = StyleSheet.create({
+/***********************************************************************************************
+localStyle
+***********************************************************************************************/
+
+const localStyles = StyleSheet.create({
   bottomBarWrapper: {
     backgroundColor: config.theme.values.defaultModalBottomBarBackgroundColor,
   },
@@ -176,6 +200,7 @@ const bottomBarStyles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.8,
     shadowRadius: 2,
+    elevation: 15,
   },
 
   bottomBarButtons: {
@@ -184,7 +209,7 @@ const bottomBarStyles = StyleSheet.create({
     textAlign: 'center',
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-    marginBottom: 10,
+    marginVertical: 10,
   },
 
   disabledButton: {

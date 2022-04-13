@@ -1,19 +1,24 @@
 import React from 'react';
 import { Text } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
+
+// components
 import { Picker } from '@react-native-picker/picker';
 import { CheckBox } from 'react-native-elements';
+
+// redux actions
+import { setAnswer } from '../../../store/questionnaire.slice';
+
+// services & config
+import translate from '../../../services/localization';
+import config from '../../../config/configProvider';
+import exportService from '../../../services/questionnaireAnalyzer';
 
 import SharedStyles, {
   calculateFontSize,
   calculateIndent,
   calculateLineHeight,
 } from './sharedStyles';
-
-import { setAnswer } from '../../../screens/checkIn/checkInActions';
-import translate from '../../../services/localization';
-import config from '../../../config/configProvider';
-import exportService from '../../../services/questionnaireAnalyzer';
 
 /**
  * when an item is of type choice it has the attribute "answerOptions".
@@ -42,15 +47,18 @@ const getItemTitle = (item) => {
   return title.split('#')[title.includes('# ') ? 1 : 0].trim();
 };
 
-/**
- * renders a list of Choices either as checkboxes, radio buttons or a dropdown
+/***********************************************************************************************
+ * component:
+ * renders a list of choices either as checkboxes, radio buttons or a dropdown
+ *
  * @param {object} props
  * @param {QuestionnaireItem} props.item the item to be rendered
- */
-function Choices({ item }) {
+ **********************************************************************************************/
+function ChoicesInput({ item }) {
   const dispatch = useDispatch();
+
   const questionnaireItemMap = useSelector(
-    (state) => state.CheckIn.questionnaireItemMap,
+    (state) => state.Questionnaire.itemMap,
   );
 
   // checks the dependencies of the item and renders it (if the dependencies check out)
@@ -75,11 +83,14 @@ function Choices({ item }) {
       {/* if yes, it will render it. */}
       {/* if not, the default way is chosen. */}
       {item.extension &&
-      item.extension[0].valueCodeableConcept &&
-      item.extension[0].valueCodeableConcept.coding &&
-      item.extension[0].valueCodeableConcept.coding[0].code === 'drop-down' ? (
+      item.extension.some((extension) =>
+        extension.valueCodeableConcept?.coding?.some(
+          (coding) => coding.code === 'drop-down',
+        ),
+      ) ? (
         /* renders the drop-down */
         <Picker
+          testID="Picker"
           selectedValue={questionnaireItemMap[item.linkId].answer}
           onValueChange={(value) => {
             dispatch(
@@ -92,8 +103,8 @@ function Choices({ item }) {
         >
           {item.answerOption.map((answerOption, index) => (
             <Picker.Item
-              label={answerOption.valueString}
-              value={answerOption.valueString}
+              label={getItemTitle(answerOption)}
+              value={getItemTitle(answerOption)}
               // eslint-disable-next-line react/no-array-index-key
               key={index}
             />
@@ -185,9 +196,8 @@ function Choices({ item }) {
               )
             }
             checked={
-              (questionnaireItemMap[item.linkId].answer &&
-                answerOption.valueCoding &&
-                questionnaireItemMap[item.linkId].answer.some(
+              (answerOption.valueCoding &&
+                questionnaireItemMap[item.linkId]?.answer?.some(
                   (c) =>
                     c.code === answerOption.valueCoding.code &&
                     c.system === answerOption.valueCoding.system,
@@ -215,4 +225,4 @@ function Choices({ item }) {
   );
 }
 
-export default Choices;
+export default ChoicesInput;

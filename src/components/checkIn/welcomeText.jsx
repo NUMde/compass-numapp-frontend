@@ -4,196 +4,162 @@
 imports
 ***********************************************************************************************/
 
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 
+// services & config
 import config from '../../config/configProvider';
 import { formatDateString } from '../../services/utils';
 import translate from '../../services/localization';
 
-let localStyle;
-
 /***********************************************************************************************
-component
-***********************************************************************************************/
+ * component
+ *
+ * renders a welcome text composed of multiple strings (originating from 'src/config/textConfig.js)
+ * and a formatted Date-string (representing the due date of the current questionnaire or the
+ * start date of the next one)
+ * @param {object}                          props
+ * @param {object}                          props.error error if any
+ * @param {('on-study' | 'off-study')}      props.status the status of the user ('on-study' or 'off-study')
+ * @param {string}                          props.dueDate dueDate of the current questionnaire
+ * @param {string}                          props.startDate start date of the current questionnaire
+ * @param {boolean}                         props.firstTime
+ * @param {boolean}                         props.noNewQuestionnaireAvailableYet true if there is currently no questionnaire available
+ ***********************************************************************************************/
+function WelcomeText({
+  error,
+  status,
+  dueDate,
+  startDate,
+  firstTime,
+  noNewQuestionnaireAvailableYet,
+}) {
+  return (
+    <View style={localStyle.wrapper}>
+      {/* if there is no authentication error, no sending error and the participant ist still part of the study */}
+      {status !== 'off-study' && (
+        <View>
+          {/* title text: depends on the params 'firstTime' & 'noNewQuestionnaireAvailableYet'*/}
+          <Text style={localStyle.welcomeText}>
+            {(() => {
+              if (firstTime) return translate('survey').welcomeTitleFirstTime;
+              if (noNewQuestionnaireAvailableYet) {
+                return translate('survey').noNewQuestionnaireAvailableYetTitle;
+              }
+              return translate('survey').welcomeTitle;
+            })()}
+          </Text>
 
-class WelcomeText extends PureComponent {
-  /**
-	* renders a welcome text composed of multiple strings (originating from 'src/config/textConfig.js)
-	* and a formatted Date-string (representing the due date of the current questionnaire or the
-	* start date of the next one)
-	* @constructor
-	* @param  {object}      props
-	* @param  {object}      props.user holds the userdata
-	* @param  {object}      props.navigation the navigation object provided by 'react-navigation'
-	* @param  {object}      props.questionnaireError the return object should the sendQuestionnaire
-		function produce an error
-	* @param  {boolean}     props.error401 true if the user was rejected by the backend
-	* @param  {boolean}     props.noNewQuestionnaireAvailableYet true if there is currently no
-		questionnaire available
-	*/
-
-  // rendering
-  /*-----------------------------------------------------------------------------------*/
-
-  render() {
-    const {
-      error401,
-      questionnaireError,
-      noNewQuestionnaireAvailableYet,
-      user,
-    } = this.props;
-    return (
-      <View style={localStyle.wrapper}>
-        {/* if there is no authentication error, no sending error and the participant ist still part of the study */}
-        {!error401 &&
-          questionnaireError === null &&
-          user?.status !== 'off-study' && (
-            <View>
-              {/* title text: depends on the params 'firstTime' & 'noNewQuestionnaireAvailableYet'*/}
-              <Text style={localStyle.welcomeText}>
-                {(() => {
-                  if (user.firstTime) {
-                    return translate('survey').welcomeTitleFirstTime;
-                  }
-                  if (noNewQuestionnaireAvailableYet) {
-                    return translate('survey').noNewQuestionnaireAvailableYet;
-                  }
-                  return translate('survey').welcomeTitle;
-                })()}
+          {/* if this is a new user */}
+          {firstTime && (
+            <Text style={localStyle.infoText}>
+              {translate('survey').welcomeTextFirstTimeUser1}
+              <Text style={localStyle.timeTextSmall}>
+                {formatDateString(dueDate, true)}.
               </Text>
+              {translate('survey').welcomeTextFirstTimeUser2}
+            </Text>
+          )}
 
-              {/* if this is a new user */}
-              {user.firstTime && user && (
-                <Text style={localStyle.infoText}>
-                  {translate('survey').welcomeTextFirstTimeUser1}
-                  <Text style={{ ...localStyle.timeTextSmall }}>
-                    {formatDateString(user.due_date, true)}.
-                  </Text>
-                  {translate('survey').welcomeTextFirstTimeUser2}
-                </Text>
-              )}
+          {/* if this is not a first-time-user and NO new questionnaire is currently available */}
+          {!firstTime && noNewQuestionnaireAvailableYet && (
+            <Text style={localStyle.infoText}>
+              {translate('survey').noNewQuestionnaireAvailableYet}
+            </Text>
+          )}
 
-              {/* if this is not a first-time-user and NO new questionnaire is currently available */}
-              {!user.firstTime && noNewQuestionnaireAvailableYet && (
-                <Text style={localStyle.infoText}>
-                  {translate('survey').noNewQuestionnaireAvailableYet}
-                </Text>
-              )}
-
-              {/* if this is not a first-time-user and A questionnaire is currently available */}
-              {!user.firstTime && !noNewQuestionnaireAvailableYet && (
-                <View>
-                  <Text style={localStyle.infoText}>
-                    {translate('survey').welcomeTextUser}
-                  </Text>
-                  <Text style={{ ...localStyle.timeText }}>
-                    {formatDateString(user.due_date, true)}.
-                  </Text>
-                </View>
-              )}
-
-              {/* if this is not a first-time-user and NO new questionnaire is currently available */}
-              {!user.firstTime && noNewQuestionnaireAvailableYet && (
-                <View>
-                  <Text style={localStyle.timeText}>
-                    {translate('survey').nextOne}
-                  </Text>
-                  <Text
-                    style={{
-                      ...localStyle.timeText,
-                      ...localStyle.timeTextGreen,
-                    }}
-                  >
-                    {formatDateString(user.start_date, true)}.
-                  </Text>
-                </View>
-              )}
-
-              {/* if this is a first-time-user and A questionnaire is currently available */}
-              {user.firstTime && noNewQuestionnaireAvailableYet && (
-                <View>
-                  <Text style={localStyle.timeText}>
-                    {translate('survey').nextOneNew}
-                  </Text>
-                  <Text
-                    style={{
-                      ...localStyle.timeText,
-                      ...localStyle.timeTextGreen,
-                    }}
-                  >
-                    {formatDateString(user.start_date, true)}.
-                  </Text>
-                </View>
-              )}
-
+          {/* if this is not a first-time-user and A questionnaire is currently available */}
+          {!firstTime && !noNewQuestionnaireAvailableYet && (
+            <View>
               <Text style={localStyle.infoText}>
-                {translate('survey').furtherInfo}
+                {translate('survey').welcomeTextUser}
+              </Text>
+              <Text style={{ ...localStyle.timeText }}>
+                {formatDateString(dueDate, true)}.
               </Text>
             </View>
           )}
 
-        {user?.status === 'off-study' && (
-          <View>
-            <Text style={localStyle.welcomeText}>
-              {translate('survey').endedStudyTitle}
+          {/* if this is not a first-time-user and NO new questionnaire is currently available */}
+          {!firstTime && noNewQuestionnaireAvailableYet && (
+            <View>
+              <Text style={localStyle.timeText}>
+                {translate('survey').nextOne}
+              </Text>
+              <Text style={[localStyle.timeText, localStyle.timeTextGreen]}>
+                {formatDateString(startDate, true)}.
+              </Text>
+            </View>
+          )}
+
+          {/* if this is a first-time-user and A questionnaire is currently available */}
+          {firstTime && noNewQuestionnaireAvailableYet && (
+            <View>
+              <Text style={localStyle.timeText}>
+                {translate('survey').nextOneNew}
+              </Text>
+              <Text style={[localStyle.timeText, localStyle.timeTextGreen]}>
+                {formatDateString(startDate, true)}.
+              </Text>
+            </View>
+          )}
+
+          <Text style={localStyle.infoText}>
+            {translate('survey').furtherInfo}
+          </Text>
+        </View>
+      )}
+
+      {status === 'off-study' && (
+        <View>
+          <Text style={localStyle.welcomeText}>
+            {translate('survey').endedStudyTitle}
+          </Text>
+
+          <Text style={localStyle.infoText}>
+            {translate('survey').endedStudyText}
+          </Text>
+        </View>
+      )}
+
+      {/* if the user update failed */}
+      {error && error.failedAction === 'user/UPDATE' && (
+        <View style={localStyle.wrapper} testID="user_update_error">
+          <Text style={[localStyle.welcomeText, localStyle.welcomeTextRed]}>
+            {translate('generic').error}
+          </Text>
+
+          <Text style={localStyle.infoText}>
+            {translate('generic').updateError}
+          </Text>
+        </View>
+      )}
+      {/* if the submission of the questionnaire response failed */}
+      {error &&
+        (error.failedAction === 'shared/SEND_REPORT' ||
+          error.failedAction === 'shared/SEND_QUESTIONNAIRE_RESPONSE') && (
+          <View style={localStyle.wrapper} testID="submission_error">
+            <Text style={[localStyle.welcomeText, localStyle.welcomeTextRed]}>
+              {translate('generic').error}
             </Text>
 
             <Text style={localStyle.infoText}>
-              {translate('survey').endedStudyText}
+              {translate('generic').sendError}
             </Text>
           </View>
         )}
-
-        {/* if the user update came back with an authentication error */}
-        {error401 && (
-          <View>
-            <Text
-              style={{
-                ...localStyle.welcomeText,
-                ...localStyle.welcomeTextRed,
-              }}
-            >
-              {translate('survey').noUserTitle}
-            </Text>
-
-            <Text style={localStyle.infoText}>
-              {translate('survey').noUserText}
-            </Text>
-          </View>
-        )}
-
-        {/* if there occurred an error while transmitting a questionnaire */}
-        {questionnaireError && (
-          <View>
-            <Text
-              style={{
-                ...localStyle.welcomeText,
-                ...localStyle.welcomeTextRed,
-              }}
-            >
-              {translate('survey').noQuestionnaireTitle}
-            </Text>
-
-            <Text style={localStyle.infoText}>
-              {translate('survey').noQuestionnaireText}
-            </Text>
-          </View>
-        )}
-      </View>
-    );
-  }
+    </View>
+  );
 }
 
 /***********************************************************************************************
 local styling
 ***********************************************************************************************/
 
-localStyle = StyleSheet.create({
+const localStyle = StyleSheet.create({
   wrapper: {
-    marginLeft: config.appConfig.scaleUiFkt(30),
-    marginRight: config.appConfig.scaleUiFkt(30),
-    marginBottom: config.appConfig.scaleUiFkt(25),
+    marginHorizontal: config.appConfig.scaleUiFkt(30),
+    marginVertical: config.appConfig.scaleUiFkt(25),
   },
 
   welcomeText: {

@@ -4,189 +4,116 @@
 imports
 ***********************************************************************************************/
 
-import RNModal from 'react-native-modal';
-import React, { Component } from 'react';
-import { Icon, Button } from 'react-native-elements';
+import React from 'react';
 import {
-  AccessibilityInfo,
+  TouchableOpacity,
   Linking,
   Text,
   View,
   StyleSheet,
-  ScrollView,
 } from 'react-native';
 
+// components
+import { Icon, Button } from 'react-native-elements';
+import RNModal from 'react-native-modal';
+
+// services & config
 import config from '../../config/configProvider';
 import translate from '../../services/localization';
 
-let localStyle;
-
 /***********************************************************************************************
-component:
-generates a modal-view which redirects the user to his/her browser and opens up a uri provided
-by the property "modalLink"
-***********************************************************************************************/
-
-class RedirectModal extends Component {
-  // public members
-  /*-----------------------------------------------------------------------------------*/
-
-  /**
-   * reference for the scrollView component
-   * @type {object}
-   */
-  scrollViewRef;
-
-  /**
-   * holds the current y-offset of the scrollView
-   * @type {number}
-   */
-  scrollOffset;
-
-  /**
-   * tells us if the screen reader is enabled
-   * @type {boolean}
-   */
-  isAccessibilityOn = false;
-
-  /**
-	* @constructor
-	* @param  {object}	props
-	* @param  {object}	props.actions redux-actions of the currently active screen
-	* @param  {boolean}	props.showModal if true the modal will be rendered
-	* @param  {{
-		title: string,
-		subTitle: string,
-		text: string,
-		uri: string,
-		iconTitle: string,
-		iconType: string
-    }}	props.modalLink holds the strings and the link to open in the webView
-	*/
-  constructor(props) {
-    super(props);
-    this.scrollViewRef = React.createRef();
-    this.scrollOffset = 0;
-
-    // check if accessibility-features are enabled
-    AccessibilityInfo.isScreenReaderEnabled().then((screenReaderEnabled) => {
-      this.isAccessibilityOn = screenReaderEnabled;
-    });
-  }
-
-  // modal events
-  /*-----------------------------------------------------------------------------------*/
-
-  /**
-   * handles the scroll-event of the scrollView
-   * @param {object} event scroll event
-   */
-  handleOnScroll = (event) => event.nativeEvent.contentOffset.y;
-
-  /**
-   * @param {HTMLElement} element UI element that RNModal will scroll to (for example if the software-keyboard is shown)
-   */
-  handleScrollTo = (element) => {
-    if (this.scrollViewRef.current) {
-      this.scrollViewRef.current.scrollTo({ ...element, animated: true });
-    }
-  };
-
-  // rendering
-  /*-----------------------------------------------------------------------------------*/
-
-  /**
-   * renders a modal that redirects the user to his/her webbrowser and opens a website
-   * defined
-   */
-  render() {
-    const { actions, showModal, modalLink } = this.props;
-    return (
-      <RNModal
-        avoidKeyboard
-        scrollOffsetMax={50}
-        style={localStyle.modal}
-        scrollTo={this.handleScrollTo}
-        scrollOffset={this.scrollOffset}
-        isVisible={showModal}
-        onBackdropPress={actions.hideModal}
-        onSwipeComplete={actions.hideModal}
-        onBackButtonPress={actions.hideModal}
-      >
-        {/* content of the modal */}
-        <View style={localStyle.content}>
-          <ScrollView
-            ref={this.scrollViewRef}
-            onScroll={this.handleOnScroll}
-            scrollEventThrottle={16}
-          >
-            {/* renders a title and an example text */}
-            <View style={localStyle.modalViewWrapper}>
-              <View style={localStyle.modalTitleWrapper}>
-                <Text style={localStyle.modalTitle}>{modalLink.title}</Text>
-              </View>
-              <Text style={localStyle.welcomeText}>{modalLink.text}</Text>
-            </View>
-          </ScrollView>
-        </View>
-
-        {/* separator between content and bottom-bar */}
-        <View style={localStyle.separator} />
-
-        {/* the navigation bar at the bottom of the modal */}
-        <View style={localStyle.bottomBarWrapper}>
-          <View style={localStyle.modalPaginationButton} />
-
-          <Button
-            type="clear"
-            accessibilityLabel={translate('accessibility').accept}
-            accessibilityRole={translate('accessibility').types.button}
-            accessibilityHint={translate('accessibility').acceptHint}
-            onPress={() => {
-              Linking.openURL(modalLink.uri);
-              actions.hideModal();
-            }}
-            icon={
-              <Icon
-                name="check"
-                reverse
-                type="material-community"
-                color={config.theme.colors.primary}
-              />
-            }
-          />
-
-          {this.isAccessibilityOn && (
-            <Button
-              type="clear"
-              accessibilityLabel={translate('accessibility').cancel}
+ * component:
+ * generates a modal-view which redirects the user to his/her browser and opens up a uri provided
+ * by the property "modalLink"
+ *
+ * @param  {object}	props
+ * @param  {function}	props.hideModal callback ti dismissing the modal
+ * @param  {boolean}	props.showModal if true the modal will be rendered
+ * @param  {{
+ *	title: string,
+ *	text: string,
+ *	uri: string,
+ *  }}	props.modalLink holds the strings and the link to open in the webView
+ **********************************************************************************************/
+function RedirectModal({ showModal, hideModal, modalLink }) {
+  return (
+    <RNModal
+      avoidKeyboard
+      scrollOffsetMax={50}
+      style={localStyle.modal}
+      isVisible={showModal}
+      onBackdropPress={hideModal}
+      onSwipeComplete={hideModal}
+      onBackButtonPress={hideModal}
+      testID="redirectModal"
+    >
+      {/* content of the modal */}
+      <View style={localStyle.content}>
+        {/* renders a title and an example text */}
+        <View style={localStyle.modalViewWrapper}>
+          <View style={localStyle.modalTitleWrapper}>
+            <Text style={localStyle.modalTitle} testID="RM_title">
+              {modalLink?.title}
+            </Text>
+            {/* button to close the modal */}
+            <TouchableOpacity
+              style={localStyle.closeButton}
+              onPress={hideModal}
               accessibilityRole={translate('accessibility').types.button}
+              accessibilityLabel={translate('accessibility').close}
               accessibilityHint={translate('accessibility').closeHint}
-              onPress={() => {
-                actions.hideModal();
-              }}
-              icon={
-                <Icon
-                  name="close"
-                  reverse
-                  type="material-community"
-                  color={config.theme.colors.primary}
-                />
-              }
-            />
-          )}
-          <View style={localStyle.modalPaginationButton} />
+            >
+              <Icon
+                name="close"
+                type="material-community"
+                color={config.theme.colors.accent4}
+                accessible={false}
+              />
+            </TouchableOpacity>
+          </View>
+          <Text style={localStyle.welcomeText} testID="RM_text">
+            {modalLink?.text}
+          </Text>
         </View>
-      </RNModal>
-    );
-  }
+      </View>
+
+      {/* separator between content and bottom-bar */}
+      <View style={localStyle.separator} />
+
+      {/* the navigation bar at the bottom of the modal */}
+      <View style={localStyle.bottomBarWrapper}>
+        <View style={localStyle.modalPaginationButton} />
+
+        <Button
+          type="clear"
+          accessibilityLabel={translate('accessibility').accept}
+          accessibilityRole={translate('accessibility').types.button}
+          accessibilityHint={translate('accessibility').acceptHint}
+          onPress={() => {
+            Linking.openURL(modalLink.uri);
+            hideModal();
+          }}
+          icon={
+            <Icon
+              name="check"
+              reverse
+              type="material-community"
+              color={config.theme.colors.primary}
+            />
+          }
+          testID="redirectBtn"
+        />
+        <View style={localStyle.modalPaginationButton} />
+      </View>
+    </RNModal>
+  );
 }
 
 /***********************************************************************************************
 local styling
 ***********************************************************************************************/
 
-localStyle = StyleSheet.create({
+const localStyle = StyleSheet.create({
   modal: {
     justifyContent: 'flex-end',
     marginLeft: 0,
@@ -196,7 +123,6 @@ localStyle = StyleSheet.create({
     borderColor: config.theme.colors.white,
     marginTop: 80,
   },
-
   content: {
     backgroundColor: config.theme.values.defaultModalContentBackgroundColor,
     paddingLeft: 20,
@@ -232,6 +158,8 @@ localStyle = StyleSheet.create({
     borderBottomColor: config.theme.colors.white,
     borderBottomWidth: 1,
     marginBottom: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 
   modalPaginationButton: {
