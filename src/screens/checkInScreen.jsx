@@ -181,7 +181,7 @@ function CheckInScreen({ navigation }) {
   return loading ? (
     <Spinner />
   ) : (
-    <View style={localStyle.wrapper}>
+    <View style={localStyle.wrapper} testID="CheckInScreen">
       {/* banner at the top */}
       <Banner
         nav={navigation}

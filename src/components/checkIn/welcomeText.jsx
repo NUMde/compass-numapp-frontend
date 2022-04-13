@@ -44,7 +44,7 @@ function WelcomeText({
             {(() => {
               if (firstTime) return translate('survey').welcomeTitleFirstTime;
               if (noNewQuestionnaireAvailableYet) {
-                return translate('survey').noNewQuestionnaireAvailableYet;
+                return translate('survey').noNewQuestionnaireAvailableYetTitle;
               }
               return translate('survey').welcomeTitle;
             })()}

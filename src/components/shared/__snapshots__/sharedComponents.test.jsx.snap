@@ -724,6 +724,7 @@ exports[`ScrollIndicatorWrapper scrollIndicatorWrapper should be rendered 1`] = 
 exports[`Spinner should render the spinner 1`] = `
 <Modal
   hardwareAccelerated={false}
+  testID="Spinner"
   visible={true}
 >
   <View

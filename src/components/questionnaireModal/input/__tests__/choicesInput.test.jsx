@@ -3,8 +3,8 @@ import {
   renderWithRedux,
   act,
   fireEvent,
-} from '../../../../__test-utils__/render';
-import ChoicesInput from './choicesInput';
+} from '../../../../../__test-utils__/render';
+import ChoicesInput from '../choicesInput';
 
 const initialState = {
   Questionnaire: {

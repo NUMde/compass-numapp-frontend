@@ -35,22 +35,35 @@ function SurveyScreen({ navigation }) {
     (state) => state.Questionnaire,
   );
   const { loading, error } = useSelector((state) => state.Globals);
-  const { current_questionnaire_id, subjectId } = useSelector(
+  const { current_questionnaire_id, subjectId, start_date } = useSelector(
     (state) => state.User,
   );
 
   // when the component loads and no categories are present - i.e. no questionnaire has previously been fetched
   // get questionnaire from backend if no error ocurred before
   useEffect(() => {
-    if (!categories && !error && subjectId) {
-      dispatch(
-        fetchQuestionnaire({
-          questionnaireID: current_questionnaire_id,
-          subjectId,
-        }),
-      );
+    if (!categories && !error) {
+      if (new Date() > new Date(start_date)) {
+        dispatch(
+          fetchQuestionnaire({
+            questionnaireID: current_questionnaire_id,
+            subjectId,
+          }),
+        );
+      } else if (!loading) {
+        navigation.navigate(Routes.CHECK_IN);
+      }
     }
-  }, [categories, dispatch, error, current_questionnaire_id, subjectId]);
+  }, [
+    categories,
+    dispatch,
+    error,
+    loading,
+    current_questionnaire_id,
+    subjectId,
+    navigation,
+    start_date,
+  ]);
 
   // Alert user when an error ocurred while fetching data
   useEffect(() => {
@@ -123,7 +136,7 @@ function SurveyScreen({ navigation }) {
   return loading ? (
     <Spinner />
   ) : (
-    <View style={[localStyle.flexi, localStyle.wrapper]}>
+    <View style={[localStyle.flexi, localStyle.wrapper]} testID="SurveyScreen">
       {/* render the top banner */}
       <Banner nav={navigation} title={translate('survey').title} />
 

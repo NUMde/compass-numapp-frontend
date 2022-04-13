@@ -77,9 +77,9 @@ const updateLanguage = createAsyncThunk(
   'user/UPDATE_LANGUAGE',
   async ({ subjectId, languageTag }, thunkApi) => {
     try {
-      (await isKioskMode)
+      await (isKioskMode
         ? kioskApi.updateLanguageCode(subjectId, languageTag)
-        : loggedInClient.updateLanguageCode(subjectId, languageTag);
+        : loggedInClient.updateLanguageCode(subjectId, languageTag));
       setI18nConfig(languageTag);
       await localStorage.persistUserLanguage(languageTag);
       return thunkApi.fulfillWithValue(languageTag);

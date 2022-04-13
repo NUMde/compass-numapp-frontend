@@ -4,4 +4,4 @@ import { initLocalization } from '../src/services/localization';
 
 global.fetch = fetch;
 
-beforeAll(() => initLocalization('en'));
+beforeEach(() => initLocalization('en'));

@@ -4,8 +4,8 @@ import {
   renderWithRedux,
   act,
   fireEvent,
-} from '../../../../__test-utils__/render';
-import BooleanInput from './booleanInput';
+} from '../../../../../__test-utils__/render';
+import BooleanInput from '../booleanInput';
 
 describe('BooleanInput', () => {
   it('should render a BooleanInput', () => {

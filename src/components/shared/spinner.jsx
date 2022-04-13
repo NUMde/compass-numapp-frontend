@@ -15,7 +15,7 @@ import config from '../../config/configProvider';
  ***********************************************************************************************/
 function Spinner() {
   return (
-    <Modal visible={true}>
+    <Modal visible={true} testID="Spinner">
       <View style={localStyle.container}>
         <View style={localStyle.background}>
           <ActivityIndicator

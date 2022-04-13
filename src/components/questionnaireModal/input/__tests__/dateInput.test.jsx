@@ -4,9 +4,9 @@ import {
   renderWithRedux,
   act,
   fireEvent,
-} from '../../../../__test-utils__/render';
+} from '../../../../../__test-utils__/render';
 
-import DateInput from './dateInput';
+import DateInput from '../dateInput';
 
 const initialState = {
   Questionnaire: {
@@ -23,8 +23,6 @@ const initialState = {
 };
 
 describe('DateInput (Android/default)', () => {
-  let mockOS;
-
   beforeAll(() => {
     Platform.OS = 'android';
   });

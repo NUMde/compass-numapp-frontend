@@ -408,7 +408,7 @@ exports[`welcomeText should render the welcomeText for subsequent visits and no 
         }
       }
     >
-      This text will be displayed if no questionnaire is available right now.
+      Title, in case no Questionnaire is available
     </Text>
     <Text
       style={

@@ -4,7 +4,7 @@
 imports
 ***********************************************************************************************/
 
-import React, { createRef } from 'react';
+import React, { createRef, useEffect } from 'react';
 import { StyleSheet, View, Text, Dimensions } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -13,6 +13,7 @@ import QRCodeScanner from 'react-native-qrcode-scanner';
 
 // custom components
 import { Banner, ScrollIndicatorWrapper } from '../components/shared';
+import { Stacks, Routes } from '../navigation/constants';
 
 // redux actions
 import { sendCredentials } from '../store/user.slice';
@@ -52,6 +53,8 @@ const checkQrCodeForUsername = (str) => {
  ***********************************************************************************************/
 function LoginScreen({ navigation }) {
   const dispatch = useDispatch();
+
+  const { subjectId } = useSelector((state) => state.User);
   /**
    * reference to access the camera
    * @type {object}
@@ -60,6 +63,21 @@ function LoginScreen({ navigation }) {
 
   // get data from state
   const { error } = useSelector((state) => state.Globals);
+
+  useEffect(() => {
+    if (subjectId) {
+      return navigation.navigate(Stacks.SIGNED_IN, { screen: Routes.CHECK_IN });
+    }
+    // triggers the auto-login when on the login-screen (only on DEV)
+    if (config.appConfig.automateQrLogin) {
+      // parses the input string to determine the subjectId (from the qr-code)
+      const scannedId = checkQrCodeForUsername(
+        config.appConfig.automateQrLoginSubjectId || '',
+      );
+      // triggers the login
+      dispatch(sendCredentials(scannedId));
+    }
+  }, [dispatch, subjectId, navigation]);
 
   /**
    * is triggered when the qr-scann is getting something.
@@ -80,7 +98,7 @@ function LoginScreen({ navigation }) {
   /*-----------------------------------------------------------------------------------*/
 
   return (
-    <View style={localStyle.wrapper}>
+    <View style={localStyle.wrapper} testID="LoginScreen">
       {/* banner */}
       <Banner
         nav={navigation}
@@ -95,7 +113,7 @@ function LoginScreen({ navigation }) {
           contentData={
             <View style={localStyle.wrapper}>
               <View style={{ ...localStyle.flexi, ...localStyle.wrapper }}>
-                <View>
+                <View testID="scannerWrapper">
                   {/* the qr-code-scanner */}
                   <QRCodeScanner
                     fadeIn={false}
@@ -106,7 +124,7 @@ function LoginScreen({ navigation }) {
                       camera = node;
                     }}
                     containerStyle={localStyle.qrScannerContainer}
-                    onRead={(scanResult) => scanSuccess(scanResult)}
+                    onRead={scanSuccess}
                     permissionDialogMessage={
                       translate('login').permissionDialog
                     }

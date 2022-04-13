@@ -27,7 +27,7 @@ const sendQuestionnaireResponse = createAsyncThunk(
     } = thunkApi.getState();
     try {
       // send out response
-      await (isKioskMode
+      const response = await (isKioskMode
         ? kioskApi.sendQuestionnaire()
         : loggedInClient.sendQuestionnaire(
             body,
@@ -41,10 +41,6 @@ const sendQuestionnaireResponse = createAsyncThunk(
         translate('generic').successTitle,
         translate('generic').sendSuccess,
       );
-      // update user data
-      const response = await (isKioskMode
-        ? kioskApi.getUserUpdate()
-        : loggedInClient.getUserUpdate(subjectId));
       return thunkApi.fulfillWithValue(response);
     } catch (err) {
       Alert.alert(
@@ -73,11 +69,7 @@ const sendReport = createAsyncThunk(
   async ({ subjectId, certificate }, thunkApi) => {
     try {
       // send out report
-      await loggedInClient.sendReport(subjectId, certificate);
-      // get updated userData from backend
-      const response = await (isKioskMode
-        ? kioskApi.getUserUpdate()
-        : loggedInClient.getUserUpdate(subjectId));
+      const response = await loggedInClient.sendReport(subjectId, certificate);
       // return data to update state
       Alert.alert(
         translate('generic').successTitle,
