@@ -45,13 +45,16 @@ function RedirectModal({ showModal, hideModal, modalLink }) {
       onBackdropPress={hideModal}
       onSwipeComplete={hideModal}
       onBackButtonPress={hideModal}
+      testID="redirectModal"
     >
       {/* content of the modal */}
       <View style={localStyle.content}>
         {/* renders a title and an example text */}
         <View style={localStyle.modalViewWrapper}>
           <View style={localStyle.modalTitleWrapper}>
-            <Text style={localStyle.modalTitle}>{modalLink?.title}</Text>
+            <Text style={localStyle.modalTitle} testID="RM_title">
+              {modalLink?.title}
+            </Text>
             {/* button to close the modal */}
             <TouchableOpacity
               style={localStyle.closeButton}
@@ -68,7 +71,9 @@ function RedirectModal({ showModal, hideModal, modalLink }) {
               />
             </TouchableOpacity>
           </View>
-          <Text style={localStyle.welcomeText}>{modalLink?.text}</Text>
+          <Text style={localStyle.welcomeText} testID="RM_text">
+            {modalLink?.text}
+          </Text>
         </View>
       </View>
 
@@ -96,6 +101,7 @@ function RedirectModal({ showModal, hideModal, modalLink }) {
               color={config.theme.colors.primary}
             />
           }
+          testID="redirectBtn"
         />
         <View style={localStyle.modalPaginationButton} />
       </View>

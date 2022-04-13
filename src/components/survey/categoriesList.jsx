@@ -105,6 +105,7 @@ function CategoriesList({ categories, itemMap, showQuestionnaireModal }) {
                 size={12}
                 reverse
                 color={chevronProps(done, started).color}
+                testID={`${category.linkId}_icon`}
               />
             </ListItem>
           );

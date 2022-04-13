@@ -114,6 +114,7 @@ function CheckInListView({ done, started, dueDate, firstTime, navigation }) {
       }`}
       accessibilityRole={translate('accessibility').types.button}
       accessibilityHint={getAccessibilityHint(done, started)}
+      testID="CheckInListItem"
     >
       <ListItem.Content>
         {/* shows a special title for first-time-users or the regular title for all other users */}

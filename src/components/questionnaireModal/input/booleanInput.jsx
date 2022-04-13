@@ -9,7 +9,6 @@ import { setAnswer } from '../../../store/questionnaire.slice';
 
 // services & config
 import config from '../../../config/configProvider';
-import exportService from '../../../services/questionnaireAnalyzer';
 
 import SharedStyles, { calculateIndent } from './sharedStyles';
 
@@ -36,10 +35,7 @@ export default function BooleanInput({ item }) {
         dispatch(
           setAnswer({
             linkId: item.linkId,
-            answer:
-              exportService.getCorrectlyFormattedAnswer(item) === null
-                ? true
-                : !currentAnswer,
+            answer: !currentAnswer,
           }),
         )
       }
@@ -47,10 +43,7 @@ export default function BooleanInput({ item }) {
         dispatch(
           setAnswer({
             linkId: item.linkId,
-            answer:
-              exportService.getCorrectlyFormattedAnswer(item) === null
-                ? true
-                : !currentAnswer,
+            answer: !currentAnswer,
           }),
         )
       }
@@ -60,6 +53,7 @@ export default function BooleanInput({ item }) {
         marginLeft: calculateIndent(item.linkId),
       }}
       textStyle={SharedStyles.choiceText}
+      testID="BooleanInput.CheckBox"
     />
   );
 }

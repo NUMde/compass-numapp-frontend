@@ -126,7 +126,7 @@ const GlobalsSlice = createSlice({
       }))
       .addCase(getLanguages.fulfilled, (state, action) => ({
         ...state,
-        availableLanguages: action.payload.data,
+        availableLanguages: action.payload,
       }))
       .addDefaultCase((state) => ({ ...state }));
   },

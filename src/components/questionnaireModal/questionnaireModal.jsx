@@ -117,6 +117,7 @@ function QuestionnaireModal() {
       onBackdropPress={hideModalHandle}
       onSwipeComplete={hideModalHandle}
       onBackButtonPress={hideModalHandle}
+      testID="QuestionnaireModal"
     >
       {/* renders the content of the page */}
       {modalVisible && (
@@ -138,6 +139,7 @@ function QuestionnaireModal() {
                 accessibilityRole={translate('accessibility').types.button}
                 accessibilityLabel={translate('accessibility').close}
                 accessibilityHint={translate('accessibility').closeHint}
+                testID="QuestionnaireModal_close"
               >
                 <Icon
                   name="close"
@@ -155,6 +157,9 @@ function QuestionnaireModal() {
               <QuestionnaireItem
                 item={categories[categoryIndex].item[pageIndex - 1]}
                 key={categories[categoryIndex].item[pageIndex - 1].linkId}
+                testID={`QuestionnaireItem_${
+                  categories[categoryIndex].item[pageIndex - 1].linkId
+                }`}
               />
             </ScrollView>
           </View>
@@ -164,9 +169,7 @@ function QuestionnaireModal() {
           <BottomBar
             modalTitleRef={modalTitleRef}
             handleScrollTo={handleScrollTo}
-            hideModal={() =>
-              dispatch(switchContent({ categoryIndex: -1, pageIndex: 0 }))
-            }
+            hideModal={hideModalHandle}
           />
         </>
       )}

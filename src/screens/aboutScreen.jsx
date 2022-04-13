@@ -212,6 +212,7 @@ function AboutScreen({ navigation }) {
                   )}
 
                   <Picker
+                    testID="languagePicker"
                     style={localStyle.picker}
                     mode="dropdown"
                     selectedValue={getLanguageTag()}

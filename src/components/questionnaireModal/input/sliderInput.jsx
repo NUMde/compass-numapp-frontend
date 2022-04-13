@@ -83,6 +83,7 @@ export default function SliderInput({ item }) {
             ? currentValue
             : (sliderProperties.minValue + sliderProperties.maxValue) / 2
         }
+        testID="Slider"
       />
       <View style={localStyle.sliderLabel}>
         <Text style={localStyle.sliderTextMin}>

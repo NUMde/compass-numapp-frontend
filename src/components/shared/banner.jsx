@@ -80,6 +80,7 @@ function Banner({
               accessibilityLabel={translate('accessibility').refresh}
               accessibilityRole={translate('accessibility').types.button}
               accessibilityHint={translate('accessibility').refreshHint}
+              testID="banner_refresh_btn"
             />
           )}
 
@@ -101,6 +102,7 @@ function Banner({
               accessibilityLabel={translate('accessibility').back}
               accessibilityRole={translate('accessibility').types.button}
               accessibilityHint={translate('accessibility').backHint}
+              testID="banner_back_btn"
             />
           )}
 
@@ -136,6 +138,7 @@ function Banner({
               accessibilityLabel={translate('accessibility').menu}
               accessibilityRole={translate('accessibility').types.button}
               accessibilityHint={translate('accessibility').menuHint}
+              testID="banner_menu_btn"
             />
           )}
 

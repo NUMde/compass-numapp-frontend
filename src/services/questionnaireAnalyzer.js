@@ -365,18 +365,12 @@ const getCorrectlyFormattedAnswer = (item) => {
  * @param  {Map<string, QuestionnaireItem>} itemMap the item map with all questions
  */
 const checkCompletionStateOfItems = (items, itemMap) => {
-  /**
-   * local copy of the questionnaireItemMap from the checkIn-state
-   * @type {QuestionnaireItemMap}
-   */
-  const questionnaireItemMap = { ...itemMap, done: true };
-
   /** return value of the function */
   let completed = true;
 
   // sets the returnValue to false if a single item does not check out
   items.forEach((item) => {
-    if (!checkItem(item, questionnaireItemMap)) completed = false;
+    if (!checkItem(item, itemMap)) completed = false;
   });
 
   return completed;
@@ -517,7 +511,10 @@ const createResponseJSON = (questionnaireItemMap, categories, FHIRmetadata) => {
         const itemDetails = questionnaireItemMap[item.linkId];
 
         // if the conditions of the item are met or if one of the ChildItems provides the necessary answer
-        if (checkDependenciesOfSingleItem(item, questionnaireItemMap)) {
+        if (
+          checkDependenciesOfSingleItem(item, questionnaireItemMap) &&
+          item.type !== 'display'
+        ) {
           /**
            * creates a new item
            * @type {ResponseItem}
@@ -529,8 +526,6 @@ const createResponseJSON = (questionnaireItemMap, categories, FHIRmetadata) => {
             ...(itemDetails.definition && {
               definition: itemDetails.definition,
             }),
-            // if there is an extension...
-            ...(itemDetails.extension && { extension: itemDetails.extension }),
             answer: [],
           };
 
@@ -610,8 +605,6 @@ const createResponseJSON = (questionnaireItemMap, categories, FHIRmetadata) => {
                   valueDate: getFormattedDate(String(itemDetails.answer)),
                 },
               ];
-              break;
-            default:
               break;
           }
 

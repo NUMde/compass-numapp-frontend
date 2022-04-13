@@ -83,11 +83,14 @@ function ChoicesInput({ item }) {
       {/* if yes, it will render it. */}
       {/* if not, the default way is chosen. */}
       {item.extension &&
-      item.extension[0].valueCodeableConcept &&
-      item.extension[0].valueCodeableConcept.coding &&
-      item.extension[0].valueCodeableConcept.coding[0].code === 'drop-down' ? (
+      item.extension.some((extension) =>
+        extension.valueCodeableConcept?.coding?.some(
+          (coding) => coding.code === 'drop-down',
+        ),
+      ) ? (
         /* renders the drop-down */
         <Picker
+          testID="Picker"
           selectedValue={questionnaireItemMap[item.linkId].answer}
           onValueChange={(value) => {
             dispatch(
@@ -100,8 +103,8 @@ function ChoicesInput({ item }) {
         >
           {item.answerOption.map((answerOption, index) => (
             <Picker.Item
-              label={answerOption.valueString}
-              value={answerOption.valueString}
+              label={getItemTitle(answerOption)}
+              value={getItemTitle(answerOption)}
               // eslint-disable-next-line react/no-array-index-key
               key={index}
             />
@@ -193,9 +196,8 @@ function ChoicesInput({ item }) {
               )
             }
             checked={
-              (questionnaireItemMap[item.linkId].answer &&
-                answerOption.valueCoding &&
-                questionnaireItemMap[item.linkId].answer.some(
+              (answerOption.valueCoding &&
+                questionnaireItemMap[item.linkId]?.answer?.some(
                   (c) =>
                     c.code === answerOption.valueCoding.code &&
                     c.system === answerOption.valueCoding.system,

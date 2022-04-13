@@ -16,32 +16,10 @@ import config from '../config/configProvider';
 import translate from '../services/localization';
 
 // redux actions
-import { sendCredentials } from '../store/user.slice';
+
 import { reset } from '../store/sharedActions';
 
 import { Routes, Stacks } from '../navigation/constants';
-
-/**
- * tries to parse the input-string and returns the subjectId (from the qr-code)
- * @param  {string} str string to be checked
- * @returns {string}
- */
-const checkQrCodeForUsername = (str) => {
-  let subjectId;
-  try {
-    const qrCode = JSON.parse(str);
-    if (
-      qrCode[config.appConfig.qrCodeAttributeHoldingTheAppIdentifier] ===
-      config.appConfig.appIdentifier
-    ) {
-      subjectId = qrCode[config.appConfig.qrCodeAttributeHoldingTheSubjectId];
-    }
-  } catch (e) {
-    return '';
-  }
-  // returns the id or an e
-  return subjectId || '';
-};
 
 /***********************************************************************************************
  * component:
@@ -63,16 +41,6 @@ function LandingScreen({ navigation }) {
     // navigate to  'checkInScreen' if login was successful
     if (subjectId) {
       navigation.navigate(Stacks.SIGNED_IN, { screen: Routes.CHECK_IN });
-    }
-
-    // triggers the auto-login when on the login-screen (only on DEV)
-    else if (config.appConfig.automateQrLogin) {
-      // parses the input string to determine the subjectId (from the qr-code)
-      const scannedId = checkQrCodeForUsername(
-        config.appConfig.automateQrLoginSubjectId || '',
-      );
-      // triggers the login
-      dispatch(sendCredentials(scannedId));
     }
   }, [dispatch, subjectId, navigation]);
 

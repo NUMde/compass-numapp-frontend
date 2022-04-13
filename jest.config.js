@@ -10,12 +10,14 @@ module.exports = {
     '<rootDir>/__mocks__/mocks.js',
   ],
 
+  setupFilesAfterEnv: ['<rootDir>/__mocks__/jest.setup.js'],
+
   globals: {
     __DEV__: true,
   },
 
   transform: {
-    '^.+\\.(js|jsx|ts|tsx)$': 'babel-jest',
+    '^.+\\.(js|jsx)$': 'babel-jest',
   },
 
   transformIgnorePatterns: [
@@ -25,4 +27,5 @@ module.exports = {
     '^.+.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
       'jest-transform-stub',
   },
+  coveragePathIgnorePatterns: ['node_modules', 'config'],
 };

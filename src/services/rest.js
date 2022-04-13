@@ -63,7 +63,7 @@ guest client functions
  */
 const login = async (subjectId) => {
   const response = await fetch(config.appConfig.endpoints.login + subjectId);
-  const body = response.json();
+  const body = await response.json();
   if (response.ok) {
     return body;
   }
@@ -82,7 +82,7 @@ const getLanguages = async () => {
       Accept: 'application/json',
     },
   });
-  const body = response.json();
+  const body = await response.json();
   if (response.ok) {
     return body;
   }
@@ -173,7 +173,7 @@ const updateDeviceToken = async (subjectId, token) => {
   if (response.ok) {
     return;
   }
-  const body = response.json();
+  const body = await response.json();
   const err = new Error(body.errorMessage || 'NETWORK REQUEST FAILED');
   err.name = body.errorCode;
   err.code = response.status;
@@ -189,14 +189,14 @@ const updateDeviceToken = async (subjectId, token) => {
  */
 const sendReport = async (subjectId, certString) => {
   const params = new URLSearchParams();
-  params.append('subject', subjectId);
+  params.append('subjectId', subjectId);
   params.append('type', 'report');
   params.append('updateValues', {
     [config.appConfig.defaultReportAttribute]: true,
   });
 
   const response = await fetch(
-    config.appConfig.endpoints.report + params.toString(),
+    `${config.appConfig.endpoints.report}?${params.toString()}`,
     {
       method: 'POST',
       body: JSON.stringify(
@@ -208,10 +208,10 @@ const sendReport = async (subjectId, certString) => {
       },
     },
   );
+  const body = await response.json();
   if (response.ok) {
-    return;
+    return body;
   }
-  const body = response.json();
   const err = new Error(body.errorMessage || 'NETWORK REQUEST FAILED');
   err.name = body.errorCode;
   err.code = response.status;
@@ -246,24 +246,28 @@ const sendQuestionnaire = async (
   queryParams.append('instanceId', instanceId);
   queryParams.append('updateValues', JSON.stringify({ ...triggerMap }));
   const response = await fetch(
-    config.appConfig.endpoints.sendQuestionnaire + queryParams.toString(),
+    `${config.appConfig.endpoints.sendQuestionnaire}?${queryParams.toString()}`,
     {
-      body: generateEncapsuledMessage(
-        subjectId,
-        'questionnaire_response',
-        certString,
-        body,
+      method: 'post',
+      body: JSON.stringify(
+        generateEncapsuledMessage(
+          subjectId,
+          'questionnaire_response',
+          certString,
+          body,
+        ),
       ),
       headers: {
         Authorization: createAuthorizationToken(subjectId),
         Accept: 'application/json',
+        'Content-Type': 'application/json',
       },
     },
   );
-  if (response.ok) {
-    return;
-  }
   const responseBody = await response.json();
+  if (response.ok) {
+    return responseBody;
+  }
   const err = new Error(responseBody.errorMessage || 'NETWORK REQUEST FAILED');
   err.name = responseBody.errorCode;
   err.code = response.status;

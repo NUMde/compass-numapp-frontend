@@ -44,7 +44,7 @@ function WelcomeText({
             {(() => {
               if (firstTime) return translate('survey').welcomeTitleFirstTime;
               if (noNewQuestionnaireAvailableYet) {
-                return translate('survey').noNewQuestionnaireAvailableYet;
+                return translate('survey').noNewQuestionnaireAvailableYetTitle;
               }
               return translate('survey').welcomeTitle;
             })()}
@@ -124,7 +124,7 @@ function WelcomeText({
 
       {/* if the user update failed */}
       {error && error.failedAction === 'user/UPDATE' && (
-        <View style={localStyle.wrapper}>
+        <View style={localStyle.wrapper} testID="user_update_error">
           <Text style={[localStyle.welcomeText, localStyle.welcomeTextRed]}>
             {translate('generic').error}
           </Text>
@@ -138,7 +138,7 @@ function WelcomeText({
       {error &&
         (error.failedAction === 'shared/SEND_REPORT' ||
           error.failedAction === 'shared/SEND_QUESTIONNAIRE_RESPONSE') && (
-          <View style={localStyle.wrapper}>
+          <View style={localStyle.wrapper} testID="submission_error">
             <Text style={[localStyle.welcomeText, localStyle.welcomeTextRed]}>
               {translate('generic').error}
             </Text>
