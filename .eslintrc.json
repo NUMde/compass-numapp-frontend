@@ -5,7 +5,11 @@
     "jest/globals": true,
     "react-native/react-native": true
   },
-  "extends": ["plugin:react/recommended", "airbnb", "@react-native-community"],
+  "extends": [
+    "plugin:react/recommended",
+    "airbnb",
+    "@react-native-community"
+  ],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -13,13 +17,47 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": ["react", "react-native", "jest"],
+  "plugins": [
+    "react",
+    "react-native",
+    "jest",
+    "import"
+  ],
   "rules": {
-    "spaced-comment": ["error", "always", { "exceptions": ["**", "-"] }],
-    "no-return-assign": ["error", "except-parens"],
-    "react/prop-types": [1],
-    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
-    "no-use-before-define": ["error", { "variables": false }]
+    "spaced-comment": [
+      "error",
+      "always",
+      {
+        "exceptions": [
+          "**",
+          "-"
+        ]
+      }
+    ],
+    "no-return-assign": [
+      "error",
+      "except-parens"
+    ],
+    "react/prop-types": [
+      1
+    ],
+    "no-plusplus": [
+      "error",
+      {
+        "allowForLoopAfterthoughts": true
+      }
+    ],
+    "no-use-before-define": [
+      "error",
+      {
+        "variables": false
+      }
+    ]
   },
-  "parser": "babel-eslint"
+  "parser": "babel-eslint",
+  "settings": {
+    "import/resolver": {
+      "babel-module": {}
+    }
+  }
 }

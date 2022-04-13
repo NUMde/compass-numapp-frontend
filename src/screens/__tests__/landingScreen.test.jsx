@@ -1,12 +1,12 @@
 import React from 'react';
 import { Alert } from 'react-native';
 
-import { renderWithRedux, fireEvent } from '../../../__test-utils__/render';
+import { renderWithRedux, fireEvent } from '__test-utils__/render';
 
-import en from '../../CUSTOMIZATION/translations/en';
+import en from '~CUSTOMIZATION/translations/en';
 
+import { Stacks, Routes } from '~navigation/constants';
 import LandingScreen from '../landingScreen';
-import { Stacks, Routes } from '../../navigation/constants';
 
 describe('LandingScreen', () => {
   it('should render screen', () => {

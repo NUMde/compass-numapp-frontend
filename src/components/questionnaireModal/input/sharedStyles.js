@@ -1,6 +1,6 @@
 import { StyleSheet, I18nManager, Dimensions } from 'react-native';
 
-import config from '../../../config/configProvider';
+import config from '~config/configProvider';
 
 // visual calculations
 /*-----------------------------------------------------------------------------------*/

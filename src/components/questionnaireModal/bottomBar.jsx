@@ -5,17 +5,17 @@ import { useSelector, useDispatch } from 'react-redux';
 // components
 import { Button, Icon } from 'react-native-elements';
 
-// custom components
-import ProgressBar from './progressbar';
-
 // redux actions
-import { switchContent } from '../../store/questionnaire.slice';
+import { switchContent } from '~store/questionnaire.slice';
 
 // services & config
-import setAccessibilityResponder from '../../services/setAccessibilityResponder';
-import exportService from '../../services/questionnaireAnalyzer';
-import translate from '../../services/localization';
-import config from '../../config/configProvider';
+import setAccessibilityResponder from '~services/setAccessibilityResponder';
+import exportService from '~services/questionnaireAnalyzer';
+import translate from '~services/localization';
+import config from '~config/configProvider';
+
+// custom components
+import ProgressBar from './progressbar';
 
 /***********************************************************************************************
  * component

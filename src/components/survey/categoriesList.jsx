@@ -1,9 +1,12 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
+
 import { ListItem } from 'react-native-elements';
+
 import memoize from 'lodash.memoize';
-import translate from '../../services/localization';
-import config from '../../config/configProvider';
+
+import translate from '~services/localization';
+import config from '~config/configProvider';
 
 /**
  * depending on the state of the given category an accessibility hint is built from the strings defined in the config file

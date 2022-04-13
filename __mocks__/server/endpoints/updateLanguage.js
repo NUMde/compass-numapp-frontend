@@ -1,5 +1,5 @@
 import { rest } from 'msw';
-import config from '../../../src/config/configProvider';
+import config from '~config/configProvider';
 
 export default rest.post(
   `${config.appConfig.endpoints.updateLanguage}:subjectId`,

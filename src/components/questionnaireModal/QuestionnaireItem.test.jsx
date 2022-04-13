@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { renderWithRedux } from '../../../__test-utils__/render';
+import { renderWithRedux } from '__test-utils__/render';
 
-import emptyItemMap from '../../../__mocks__/questionnaire/emptyItemMap';
+import emptyItemMap from '__mocks__/questionnaire/emptyItemMap';
 
 import QuestionnaireItem from './questionnaireItem';
 

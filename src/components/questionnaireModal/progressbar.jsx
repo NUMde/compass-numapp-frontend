@@ -5,7 +5,7 @@ import
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
-import config from '../../config/configProvider';
+import config from '~config/configProvider';
 
 const calculateWidth = (width) =>
   StyleSheet.create({

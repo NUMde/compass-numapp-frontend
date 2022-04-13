@@ -1,12 +1,14 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+
+import { guestClient } from '~services/rest';
+import kioskApi from '~config/kioskApiConfig';
+import { setAvailableLanguages } from '~services/localization';
+
 import { updateUser, sendCredentials, updateLanguage } from './user.slice';
 import { fetchQuestionnaire } from './questionnaire.slice';
 import { sendQuestionnaireResponse, sendReport, reset } from './sharedActions';
 
 // services & config
-import { guestClient } from '../services/rest';
-import kioskApi from '../config/kioskApiConfig';
-import { setAvailableLanguages } from '../services/localization';
 
 const getLanguages = createAsyncThunk(
   'globals/GET_LANGUAGES',

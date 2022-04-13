@@ -1,8 +1,8 @@
-import defaultThemeValues from '../theme/theme';
-import defaultAppConfigValues from './appConfig';
+import customThemeValues from '~CUSTOMIZATION/customTheme';
+import customAppConfigValues from '~CUSTOMIZATION/customAppConfig';
 
-import customThemeValues from '../CUSTOMIZATION/customTheme';
-import customAppConfigValues from '../CUSTOMIZATION/customAppConfig';
+import defaultThemeValues from '~theme/theme';
+import defaultAppConfigValues from './appConfig';
 
 const exportValues = {
   /** provides variables controlling the style of the application */

@@ -3,23 +3,20 @@ import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
 // components
-import { Spinner, Banner, ScrollIndicatorWrapper } from '../components/shared';
-import QuestionnaireModal from '../components/questionnaireModal';
-import CategoriesList from '../components/survey/categoriesList';
+import { Spinner, Banner, ScrollIndicatorWrapper } from '~components/shared';
+import QuestionnaireModal from '~components/questionnaireModal';
+import CategoriesList from '~components/survey/categoriesList';
 
 // services
-import translate from '../services/localization';
-import config from '../config/configProvider';
-import exportService from '../services/questionnaireAnalyzer';
+import translate from '~services/localization';
+import config from '~config/configProvider';
+import exportService from '~services/questionnaireAnalyzer';
 
 // redux actions
-import {
-  fetchQuestionnaire,
-  switchContent,
-} from '../store/questionnaire.slice';
-import { sendQuestionnaireResponse } from '../store/sharedActions';
+import { fetchQuestionnaire, switchContent } from '~store/questionnaire.slice';
+import { sendQuestionnaireResponse } from '~store/sharedActions';
 
-import { Routes } from '../navigation/constants';
+import { Routes } from '~navigation/constants';
 
 /***********************************************************************************************
  * renders the survey-screen with the list of all categories, the modal to answer the questionnaire

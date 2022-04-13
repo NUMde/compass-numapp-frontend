@@ -8,9 +8,9 @@ import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 
 // services & config
-import config from '../../config/configProvider';
-import { formatDateString } from '../../services/utils';
-import translate from '../../services/localization';
+import config from '~config/configProvider';
+import { formatDateString } from '~services/utils';
+import translate from '~services/localization';
 
 /***********************************************************************************************
  * component

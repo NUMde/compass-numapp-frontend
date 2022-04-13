@@ -6,11 +6,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import Slider from '@react-native-community/slider';
 
 // redux actions
-import { setAnswer } from '../../../store/questionnaire.slice';
+import { setAnswer } from '~store/questionnaire.slice';
 
 // services & config
-import config from '../../../config/configProvider';
-import translate from '../../../services/localization';
+import config from '~config/configProvider';
+import translate from '~services/localization';
 
 import SharedStyles from './sharedStyles';
 

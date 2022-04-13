@@ -1,12 +1,9 @@
 import React from 'react';
-import BasicInput from '../basicInput';
-import {
-  renderWithRedux,
-  fireEvent,
-  act,
-} from '../../../../../__test-utils__/render';
 
-import translate from '../../../../services/localization';
+import { renderWithRedux, fireEvent, act } from '__test-utils__/render';
+import translate from '~services/localization';
+
+import BasicInput from '../basicInput';
 
 describe('BasicInput', () => {
   beforeEach(() => {

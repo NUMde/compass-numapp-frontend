@@ -16,14 +16,14 @@ import {
 } from 'react-native';
 
 // services & config
-import config from '../../config/configProvider';
-import translate from '../../services/localization';
+import config from '~config/configProvider';
+import translate from '~services/localization';
 
 // import logo and background image
-const customLogo = require('../../CUSTOMIZATION/images/logo.png');
-const defaultLogo = require('../../assets/images/defaultLogo.png');
-const customBackground = require('../../CUSTOMIZATION/images/logoBackground.png');
-const defaultBackground = require('../../assets/images/defaultLogoBackground.png');
+const customLogo = require('~CUSTOMIZATION/images/logo.png');
+const defaultLogo = require('~assets/images/defaultLogo.png');
+const customBackground = require('~CUSTOMIZATION/images/logoBackground.png');
+const defaultBackground = require('~assets/images/defaultLogoBackground.png');
 
 /***********************************************************************************************
  * component:
@@ -85,7 +85,7 @@ function Banner({
           )}
 
           {/* If navigating back is allowed and there actually is a 'back' in the nav-stack shows the back-button in the top left corner.
-                            There will be no back-button on the checkIn-screen as it is the first screen of the SignedInView defined in '../../navigation/appNavigator.js'  */}
+                            There will be no back-button on the checkIn-screen as it is the first screen of the SignedInView defined in '~navigation/appNavigator.js'  */}
           {!noWayBack && nav && (
             <Button
               type="clear"
