@@ -272,12 +272,10 @@ const checkQuestionnaireStatus = (linkId, items, itemMap) => {
   // check if the item is a child of a subgroup
   let newItemMap;
   if (linkId.length) {
-    // copy the itemMap
-    newItemMap = cloneDeep(itemMap);
     // check the completion state of the group to which the item (identified by the linkId ) belongs
     const status = analyzer.checkCompletionStateOfItems(items, itemMap);
     newItemMap = {
-      ...itemMap,
+      ...cloneDeep(itemMap),
       [linkId]: {
         ...itemMap[linkId],
         done: status,
@@ -293,7 +291,7 @@ const checkQuestionnaireStatus = (linkId, items, itemMap) => {
       newItemMap,
     );
   }
-  return newItemMap || itemMap;
+  return itemMap;
 };
 
 /*********************************************************************************************

@@ -152,7 +152,7 @@ function LoginScreen({ navigation }) {
                     )}
 
                     {/* if anything other than a 401: outputs the returned error message (or a generic error message instead) followed by another instructional string*/}
-                    {error && (
+                    {error.code !== 401 && (
                       <View>
                         <Text
                           style={{
