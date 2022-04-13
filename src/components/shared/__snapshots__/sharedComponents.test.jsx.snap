@@ -120,6 +120,7 @@ exports[`Banner should render the banner 1`] = `
                 >
                   <Text
                     allowFontScaling={false}
+                    selectable={false}
                     style={
                       Array [
                         Object {
@@ -244,6 +245,7 @@ exports[`Banner should render the banner 1`] = `
                 >
                   <Text
                     allowFontScaling={false}
+                    selectable={false}
                     style={
                       Array [
                         Object {
@@ -470,6 +472,7 @@ exports[`Banner should render the banner with title & without subtitle 1`] = `
                 >
                   <Text
                     allowFontScaling={false}
+                    selectable={false}
                     style={
                       Array [
                         Object {
@@ -594,6 +597,7 @@ exports[`Banner should render the banner with title & without subtitle 1`] = `
                 >
                   <Text
                     allowFontScaling={false}
+                    selectable={false}
                     style={
                       Array [
                         Object {

@@ -62,6 +62,7 @@ Array [
       <Text
         allowFontScaling={false}
         onPress={[Function]}
+        selectable={false}
         style={
           Array [
             Object {
@@ -148,6 +149,7 @@ Array [
       <Text
         allowFontScaling={false}
         onPress={[Function]}
+        selectable={false}
         style={
           Array [
             Object {
@@ -234,6 +236,7 @@ Array [
       <Text
         allowFontScaling={false}
         onPress={[Function]}
+        selectable={false}
         style={
           Array [
             Object {
@@ -320,6 +323,7 @@ Array [
       <Text
         allowFontScaling={false}
         onPress={[Function]}
+        selectable={false}
         style={
           Array [
             Object {
@@ -406,6 +410,7 @@ Array [
       <Text
         allowFontScaling={false}
         onPress={[Function]}
+        selectable={false}
         style={
           Array [
             Object {
@@ -580,6 +585,7 @@ Array [
       <Text
         allowFontScaling={false}
         onPress={[Function]}
+        selectable={false}
         style={
           Array [
             Object {
@@ -666,6 +672,7 @@ Array [
       <Text
         allowFontScaling={false}
         onPress={[Function]}
+        selectable={false}
         style={
           Array [
             Object {
@@ -752,6 +759,7 @@ Array [
       <Text
         allowFontScaling={false}
         onPress={[Function]}
+        selectable={false}
         style={
           Array [
             Object {
@@ -838,6 +846,7 @@ Array [
       <Text
         allowFontScaling={false}
         onPress={[Function]}
+        selectable={false}
         style={
           Array [
             Object {
@@ -924,6 +933,7 @@ Array [
       <Text
         allowFontScaling={false}
         onPress={[Function]}
+        selectable={false}
         style={
           Array [
             Object {

@@ -47,6 +47,7 @@ exports[`BooleanInput should render a BooleanInput 1`] = `
     <Text
       allowFontScaling={false}
       onPress={[Function]}
+      selectable={false}
       style={
         Array [
           Object {

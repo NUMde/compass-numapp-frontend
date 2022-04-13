@@ -129,6 +129,7 @@ exports[`LoginScreen should render the login screen 1`] = `
                   >
                     <Text
                       allowFontScaling={false}
+                      selectable={false}
                       style={
                         Array [
                           Object {
@@ -324,15 +325,7 @@ exports[`LoginScreen should render the login screen 1`] = `
                       ]
                     }
                   />
-                  <View
-                    style={
-                      Object {
-                        "height": "100%",
-                        "overflow": "hidden",
-                        "width": "100%",
-                      }
-                    }
-                  >
+                  <View>
                     <View
                       style={
                         Object {

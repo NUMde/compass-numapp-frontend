@@ -162,6 +162,7 @@ exports[`categoriesList should render the categories list 1`] = `
           >
             <Text
               allowFontScaling={false}
+              selectable={false}
               style={
                 Array [
                   Object {
@@ -341,6 +342,7 @@ exports[`categoriesList should render the categories list 1`] = `
           >
             <Text
               allowFontScaling={false}
+              selectable={false}
               style={
                 Array [
                   Object {
@@ -520,6 +522,7 @@ exports[`categoriesList should render the categories list 1`] = `
           >
             <Text
               allowFontScaling={false}
+              selectable={false}
               style={
                 Array [
                   Object {

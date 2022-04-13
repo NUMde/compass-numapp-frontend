@@ -164,6 +164,7 @@ exports[`aboutListItem should render the aboutListItem 1`] = `
         >
           <Text
             allowFontScaling={false}
+            selectable={false}
             style={
               Array [
                 Object {
@@ -356,6 +357,7 @@ exports[`aboutListLink should render the aboutListLink 1`] = `
         >
           <Text
             allowFontScaling={false}
+            selectable={false}
             style={
               Array [
                 Object {
@@ -612,6 +614,7 @@ exports[`redirectModal should render the redirectModal 1`] = `
                   >
                     <Text
                       allowFontScaling={false}
+                      selectable={false}
                       style={
                         Array [
                           Object {
@@ -764,6 +767,7 @@ exports[`redirectModal should render the redirectModal 1`] = `
                   >
                     <Text
                       allowFontScaling={false}
+                      selectable={false}
                       style={
                         Array [
                           Object {
