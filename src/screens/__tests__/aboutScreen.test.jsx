@@ -8,7 +8,7 @@ import {
   renderWithRedux,
   waitForElementToBeRemoved,
 } from '../../../__test-utils__/render';
-import { server } from '../../../__mocks__/server';
+import server from '../../../__mocks__/server';
 
 import en from '../../CUSTOMIZATION/translations/en';
 

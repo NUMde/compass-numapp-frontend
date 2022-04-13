@@ -7,7 +7,7 @@ import {
   renderWithRedux,
   waitForElementToBeRemoved,
 } from '../../../__test-utils__/render';
-import { server } from '../../../__mocks__/server';
+import server from '../../../__mocks__/server';
 import emptyItemMap from '../../../__mocks__/questionnaire/emptyItemMap';
 import itemMap from '../../../__mocks__/questionnaire/itemMap';
 import categories from '../../../__mocks__/questionnaire/categories';

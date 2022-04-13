@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { renderWithRedux, waitFor, act } from '../../../__test-utils__/render';
-import { server } from '../../../__mocks__/server';
+import server from '../../../__mocks__/server';
 
 import config from '../../config/configProvider';
 

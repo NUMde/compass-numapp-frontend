@@ -9,7 +9,7 @@ import {
 
 import categories from '../../../__mocks__/questionnaire/categories';
 import itemMap from '../../../__mocks__/questionnaire/itemMap';
-import { server } from '../../../__mocks__/server';
+import server from '../../../__mocks__/server';
 import { loggedInClient } from '../../services/rest';
 
 import en from '../../CUSTOMIZATION/translations/en';

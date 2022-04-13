@@ -1,1 +1,4 @@
-export { default as server } from './server';
+import { setupServer } from 'msw/node';
+import endpoints from './endpoints';
+
+export default setupServer(...endpoints);
