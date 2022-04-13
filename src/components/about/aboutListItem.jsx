@@ -11,7 +11,7 @@ import { StyleSheet } from 'react-native';
 import { ListItem } from 'react-native-elements';
 
 // config
-import config from '../../config/configProvider';
+import config from '~config/configProvider';
 
 /***********************************************************************************************
  * component:

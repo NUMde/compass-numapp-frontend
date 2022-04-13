@@ -6,11 +6,11 @@ import {
   fireEvent,
   within,
   waitFor,
-} from '../../../__test-utils__/render';
-import emptyItemMap from '../../../__mocks__/questionnaire/emptyItemMap';
-import categories from '../../../__mocks__/questionnaire/categories';
+} from '__test-utils__/render';
+import emptyItemMap from '__mocks__/questionnaire/emptyItemMap';
+import categories from '__mocks__/questionnaire/categories';
 
-import config from '../../config/configProvider';
+import config from '~config/configProvider';
 
 import QuestionnaireModal from './questionnaireModal';
 

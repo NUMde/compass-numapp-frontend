@@ -2,10 +2,11 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { render, fireEvent } from '@testing-library/react-native';
+import { Routes } from '~navigation/constants';
+
 import Banner from './banner';
 import Spinner from './spinner';
 import ScrollIndicatorWrapper from './scrollIndicatorWrapper';
-import { Routes } from '../../navigation/constants';
 
 describe('Banner', () => {
   const bannerProps = {

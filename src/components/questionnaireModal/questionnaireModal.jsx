@@ -40,17 +40,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import RNModal from 'react-native-modal';
 import { Icon } from 'react-native-elements';
 
-// custom components
-import BottomBar from './bottomBar';
-import QuestionnaireItem from './questionnaireItem';
-
 // redux actions
-import { switchContent } from '../../store/questionnaire.slice';
+import { switchContent } from '~store/questionnaire.slice';
 
 // services & config
-import setAccessibilityResponder from '../../services/setAccessibilityResponder';
-import translate from '../../services/localization';
-import config from '../../config/configProvider';
+import setAccessibilityResponder from '~services/setAccessibilityResponder';
+import translate from '~services/localization';
+import config from '~config/configProvider';
+
+// custom components
+import QuestionnaireItem from './questionnaireItem';
+import BottomBar from './bottomBar';
 
 /***********************************************************************************************
  * component:

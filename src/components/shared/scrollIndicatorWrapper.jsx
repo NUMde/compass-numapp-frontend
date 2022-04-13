@@ -17,8 +17,8 @@ import {
 } from 'react-native';
 
 // services & config
-import config from '../../config/configProvider';
-import translate from '../../services/localization';
+import config from '~config/configProvider';
+import translate from '~services/localization';
 
 /***********************************************************************************************
  * component

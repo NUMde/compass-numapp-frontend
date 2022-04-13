@@ -3,23 +3,23 @@ import { View, StyleSheet, Alert } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
 // custom components
-import { Spinner, Banner, ScrollIndicatorWrapper } from '../components/shared';
+import { Spinner, Banner, ScrollIndicatorWrapper } from '~components/shared';
 import {
   CheckInWelcomeText,
   CheckInListView,
   CheckInTiles,
-} from '../components/checkIn';
+} from '~components/checkIn';
 
 // redux actions
-import { getLanguages } from '../store/globals.slice';
-import { updateUser, updateFCMToken } from '../store/user.slice';
-import { deleteQuestionnaire } from '../store/questionnaire.slice';
-import { sendQuestionnaireResponse, sendReport } from '../store/sharedActions';
+import { getLanguages } from '~store/globals.slice';
+import { updateUser, updateFCMToken } from '~store/user.slice';
+import { deleteQuestionnaire } from '~store/questionnaire.slice';
+import { sendQuestionnaireResponse, sendReport } from '~store/sharedActions';
 
 // services & config
-import translate from '../services/localization';
-import config from '../config/configProvider';
-import exportService from '../services/questionnaireAnalyzer';
+import translate from '~services/localization';
+import config from '~config/configProvider';
+import exportService from '~services/questionnaireAnalyzer';
 
 /***********************************************************************************************
  * component

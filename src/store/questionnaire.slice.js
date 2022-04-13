@@ -3,17 +3,17 @@ import { createSlice, createAsyncThunk, current } from '@reduxjs/toolkit';
 import { REHYDRATE } from 'redux-persist';
 import cloneDeep from 'lodash.clonedeep';
 
+// service & config
+import translate, { getLanguageTag } from '~services/localization';
+import { loggedInClient } from '~services/rest';
+import kioskApi from '~config/kioskApiConfig';
+import config from '~config/configProvider';
+import analyzer from '~services/questionnaireAnalyzer';
+import staticQuestionnaire from '~assets/files/questionnaire';
+
 // other actions
 import { reset, sendQuestionnaireResponse } from './sharedActions';
 import { updateLanguage } from './user.slice';
-
-// service & config
-import translate, { getLanguageTag } from '../services/localization';
-import { loggedInClient } from '../services/rest';
-import kioskApi from '../config/kioskApiConfig';
-import config from '../config/configProvider';
-import analyzer from '../services/questionnaireAnalyzer';
-import staticQuestionnaire from '../assets/files/questionnaire';
 
 const isKioskMode = kioskApi.active;
 

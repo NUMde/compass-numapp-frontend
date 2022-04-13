@@ -7,12 +7,12 @@ import { Picker } from '@react-native-picker/picker';
 import { CheckBox } from 'react-native-elements';
 
 // redux actions
-import { setAnswer } from '../../../store/questionnaire.slice';
+import { setAnswer } from '~store/questionnaire.slice';
 
 // services & config
-import translate from '../../../services/localization';
-import config from '../../../config/configProvider';
-import exportService from '../../../services/questionnaireAnalyzer';
+import translate from '~services/localization';
+import config from '~config/configProvider';
+import exportService from '~services/questionnaireAnalyzer';
 
 import SharedStyles, {
   calculateFontSize,

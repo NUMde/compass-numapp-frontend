@@ -2,9 +2,9 @@ import { Alert } from 'react-native';
 import EncryptedStorage from 'react-native-encrypted-storage';
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
 
-import { loggedInClient } from '../services/rest';
-import translate from '../services/localization';
-import kioskApi from '../config/kioskApiConfig';
+import { loggedInClient } from '~services/rest';
+import translate from '~services/localization';
+import kioskApi from '~config/kioskApiConfig';
 
 const isKioskMode = kioskApi.active;
 

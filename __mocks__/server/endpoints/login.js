@@ -1,5 +1,5 @@
 import { rest } from 'msw';
-import config from '../../../src/config/configProvider';
+import config from '~config/configProvider';
 
 let outdatedInitial = true;
 

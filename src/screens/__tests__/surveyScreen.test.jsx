@@ -6,17 +6,17 @@ import {
   fireEvent,
   renderWithRedux,
   waitForElementToBeRemoved,
-} from '../../../__test-utils__/render';
-import server from '../../../__mocks__/server';
-import emptyItemMap from '../../../__mocks__/questionnaire/emptyItemMap';
-import itemMap from '../../../__mocks__/questionnaire/itemMap';
-import categories from '../../../__mocks__/questionnaire/categories';
+} from '__test-utils__/render';
+import server from '__mocks__/server';
+import emptyItemMap from '__mocks__/questionnaire/emptyItemMap';
+import itemMap from '__mocks__/questionnaire/itemMap';
+import categories from '__mocks__/questionnaire/categories';
 
-import config from '../../config/configProvider';
-import en from '../../CUSTOMIZATION/translations/en';
+import config from '~config/configProvider';
+import en from '~CUSTOMIZATION/translations/en';
 
+import { Routes } from '~navigation/constants';
 import SurveyScreen from '../surveyScreen';
-import { Routes } from '../../navigation/constants';
 
 describe('SurveyScreen', () => {
   beforeAll(() => {

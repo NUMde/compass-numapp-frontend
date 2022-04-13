@@ -7,7 +7,7 @@
 imports
 ***********************************************************************************************/
 
-import config from '../config/configProvider';
+import config from '~config/configProvider';
 import encrypt from './encryption';
 
 /***********************************************************************************************

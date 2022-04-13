@@ -2,15 +2,15 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { useSelector } from 'react-redux';
 
+// services & config
+import questionnaireAnalyzer from '~services/questionnaireAnalyzer';
+
 // custom input components for the different types of questions
 import BasicInput from './input/basicInput';
 import BooleanInput from './input/booleanInput';
 import ChoicesInput from './input/choicesInput';
 import DateInput from './input/dateInput';
 import SliderInput from './input/sliderInput';
-
-// services & config
-import questionnaireAnalyzer from '../../services/questionnaireAnalyzer';
 
 // shared styles & style calculations
 import SharedStyles, {

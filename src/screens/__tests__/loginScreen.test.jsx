@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { renderWithRedux, waitFor, act } from '../../../__test-utils__/render';
-import server from '../../../__mocks__/server';
+import { renderWithRedux, waitFor, act } from '__test-utils__/render';
+import server from '__mocks__/server';
 
-import config from '../../config/configProvider';
+import config from '~config/configProvider';
 
+import { Stacks, Routes } from '~navigation/constants';
 import LoginScreen from '../loginScreen';
-import { Stacks, Routes } from '../../navigation/constants';
 
 describe('LoginScreen', () => {
   beforeAll(() => {
