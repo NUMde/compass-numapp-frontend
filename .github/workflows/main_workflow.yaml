@@ -3,9 +3,9 @@
 name: main workflow
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 jobs:
   run_tests:
     runs-on: ubuntu-latest
@@ -14,28 +14,34 @@ jobs:
       matrix:
         node-version: [14.x]
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: cache node_modules
-      uses: actions/cache@v1
-      with:
-        path: ~/.npm
-        key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
-        restore-keys:
-          ${{ runner.OS }}-build-${{ env.cache-name }}-
-          ${{ runner.OS }}-build-
-          ${{ runner.OS }}-
-    - name: install npm
-      run: npm install -g npm@latest
-    - name: install node dependencies
-      run: npm ci
-      env:
-        CI: true
-    - name: run all tests
-      run: npm test
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: cache node_modules
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.OS }}-build-${{ env.cache-name }}-
+            ${{ runner.OS }}-build-
+            ${{ runner.OS }}-
+      - name: install npm
+        run: npm install -g npm@latest
+      - name: install node dependencies
+        run: npm ci
+        env:
+          CI: true
+      - name: run all tests & generate coverage report
+        run: npm test -- --collectCoverage
+      - name: upload coverage report
+      - uses: actions/checkout@master
+      - uses: codecov/codecov-action@v2
+        with:
+          files: ./coverage/clover.xml
+          flags: unittests
+          name: codecov-umbrella
   lint_annotations:
     runs-on: ubuntu-latest
     strategy:
@@ -43,25 +49,24 @@ jobs:
       matrix:
         node-version: [14.x]
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: cache node_modules
-      uses: actions/cache@v1
-      with:
-        path: ~/.npm
-        key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
-        restore-keys:
-          ${{ runner.OS }}-build-${{ env.cache-name }}-
-          ${{ runner.OS }}-build-
-          ${{ runner.OS }}-
-    - name: install npm
-      run: npm install -g npm@latest
-    - name: install node dependencies
-      run: npm ci
-      env:
-        CI: true
-    - name: run lint & generate annotations
-      run: npm run lint:annotate
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: cache node_modules
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.OS }}-build-${{ env.cache-name }}-
+            ${{ runner.OS }}-build-
+            ${{ runner.OS }}-
+      - name: install npm
+        run: npm install -g npm@latest
+      - name: install node dependencies
+        run: npm ci
+        env:
+          CI: true
+      - name: run lint & generate annotations
+        run: npm run lint:annotate
