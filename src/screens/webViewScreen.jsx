@@ -9,10 +9,10 @@ import { WebView } from 'react-native-webview';
 import { View, StyleSheet } from 'react-native';
 
 // custom components
-import { Banner } from '../components/shared';
+import { Banner } from '~components/shared';
 
 // services & config
-import config from '../config/configProvider';
+import config from '~config/configProvider';
 
 /**
  * component:

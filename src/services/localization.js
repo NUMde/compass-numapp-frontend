@@ -11,10 +11,10 @@ import memoize from 'lodash.memoize';
 import { I18nManager } from 'react-native';
 import * as RNLocalize from 'react-native-localize';
 
-import de from '../CUSTOMIZATION/translations/de';
-import en from '../CUSTOMIZATION/translations/en';
-import fr from '../CUSTOMIZATION/translations/fr';
-import ar from '../CUSTOMIZATION/translations/ar';
+import de from '~CUSTOMIZATION/translations/de';
+import en from '~CUSTOMIZATION/translations/en';
+import fr from '~CUSTOMIZATION/translations/fr';
+import ar from '~CUSTOMIZATION/translations/ar';
 
 /***********************************************************************************************
 constants

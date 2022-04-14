@@ -14,28 +14,25 @@ import SplashScreen from 'react-native-splash-screen';
 // redux & store
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-import { persistor, reduxStore } from './src/store';
+import { persistor, reduxStore } from '~store';
 
 // navigation setup
-import AppNavigator from './src/navigation/appNavigator';
+import AppNavigator from '~navigation/appNavigator';
 
 // config
-import kioskMode from './src/config/kioskApiConfig';
-import config from './src/config/configProvider';
+import kioskMode from '~config/kioskApiConfig';
+import config from '~config/configProvider';
 
 // redux actions
-import { updateLanguage } from './src/store/user.slice';
-import { init } from './src/store/globals.slice';
+import { updateLanguage } from '~store/user.slice';
+import { init } from '~store/globals.slice';
 
 // custom components
-import { Spinner } from './src/components/shared';
+import { Spinner } from '~components/shared';
 
 // services
-import localStorage from './src/services/localStorage';
-import {
-  availableLanguages,
-  initLocalization,
-} from './src/services/localization';
+import localStorage from '~services/localStorage';
+import { availableLanguages, initLocalization } from '~services/localization';
 
 /***********************************************************************************************
 global variables / settings

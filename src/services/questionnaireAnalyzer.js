@@ -21,7 +21,7 @@ imports
 ***********************************************************************************************/
 
 import '../typedef';
-import config from '../config/configProvider';
+import config from '~config/configProvider';
 
 /***********************************************************************************************
 service methods

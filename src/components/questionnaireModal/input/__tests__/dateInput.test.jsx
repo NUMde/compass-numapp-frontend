@@ -1,10 +1,6 @@
 import React from 'react';
 import { Platform } from 'react-native';
-import {
-  renderWithRedux,
-  act,
-  fireEvent,
-} from '../../../../../__test-utils__/render';
+import { renderWithRedux, act, fireEvent } from '__test-utils__/render';
 
 import DateInput from '../dateInput';
 

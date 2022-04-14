@@ -1,7 +1,9 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
-import translate from '../../services/localization';
-import config from '../../config/configProvider';
+
+import translate from '~services/localization';
+import config from '~config/configProvider';
+
 import CategoriesList from './categoriesList';
 
 describe('categoriesList', () => {

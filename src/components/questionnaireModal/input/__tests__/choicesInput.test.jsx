@@ -1,9 +1,6 @@
 import React from 'react';
-import {
-  renderWithRedux,
-  act,
-  fireEvent,
-} from '../../../../../__test-utils__/render';
+import { renderWithRedux, act, fireEvent } from '__test-utils__/render';
+
 import ChoicesInput from '../choicesInput';
 
 const initialState = {

@@ -1,6 +1,6 @@
 import { rest } from 'msw';
-import config from '../../../src/config/configProvider';
-import questionnaire from '../../../src/assets/files/questionnaire';
+import config from '~config/configProvider';
+import questionnaire from '~assets/files/questionnaire';
 
 export default rest.get(
   `${config.appConfig.endpoints.getQuestionnaire}:questionnaireId/:langCode`,

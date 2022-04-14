@@ -8,11 +8,11 @@ import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 
 // custom components
-import { Banner, ScrollIndicatorWrapper } from '../components/shared';
+import { Banner, ScrollIndicatorWrapper } from '~components/shared';
 
 // services & config
-import translate from '../services/localization';
-import config from '../config/configProvider';
+import translate from '~services/localization';
+import config from '~config/configProvider';
 
 /***********************************************************************************************
  * component:

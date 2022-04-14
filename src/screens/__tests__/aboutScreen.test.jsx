@@ -7,15 +7,15 @@ import {
   fireEvent,
   renderWithRedux,
   waitForElementToBeRemoved,
-} from '../../../__test-utils__/render';
-import server from '../../../__mocks__/server';
+} from '__test-utils__/render';
+import server from '__mocks__/server';
 
-import en from '../../CUSTOMIZATION/translations/en';
+import en from '~CUSTOMIZATION/translations/en';
 
-import { getLanguageTag } from '../../services/localization';
+import { getLanguageTag } from '~services/localization';
 
-import AboutScreen from '../aboutScreen';
-import { Stacks, Routes } from '../../navigation/constants';
+import AboutScreen from '~screens/aboutScreen';
+import { Stacks, Routes } from '~navigation/constants';
 
 describe('AboutScreen', () => {
   beforeAll(() => {

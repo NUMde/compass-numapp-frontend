@@ -14,12 +14,12 @@ import { Input, Button } from 'react-native-elements';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 // redux actions
-import { setAnswer } from '../../../store/questionnaire.slice';
+import { setAnswer } from '~store/questionnaire.slice';
 
 // services & config
-import config from '../../../config/configProvider';
-import exportService from '../../../services/questionnaireAnalyzer';
-import translate from '../../../services/localization';
+import config from '~config/configProvider';
+import exportService from '~services/questionnaireAnalyzer';
+import translate from '~services/localization';
 
 import SharedStyles from './sharedStyles';
 
