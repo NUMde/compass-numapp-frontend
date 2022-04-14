@@ -36,8 +36,7 @@ jobs:
     - name: run all tests & generate coverage report
       run: npm test -- --collectCoverage
     - name: upload coverage report
-    - uses: actions/checkout@master
-    - uses: codecov/codecov-action@v2
+      uses: codecov/codecov-action@v2
       with:
         files: ./coverage/clover.xml
         flags: unittests
