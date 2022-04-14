@@ -7,7 +7,7 @@ import
 import React from 'react';
 import { StyleSheet, View, Modal, ActivityIndicator } from 'react-native';
 
-import config from '../../config/configProvider';
+import config from '~config/configProvider';
 
 /***********************************************************************************************
  * component:

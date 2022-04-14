@@ -12,15 +12,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 
 // custom components
-import { Banner, ScrollIndicatorWrapper } from '../components/shared';
-import { Stacks, Routes } from '../navigation/constants';
+import { Banner, ScrollIndicatorWrapper } from '~components/shared';
+import { Stacks, Routes } from '~navigation/constants';
 
 // redux actions
-import { sendCredentials } from '../store/user.slice';
+import { sendCredentials } from '~store/user.slice';
 
 // services & config
-import config from '../config/configProvider';
-import translate from '../services/localization';
+import config from '~config/configProvider';
+import translate from '~services/localization';
 
 /**
  * tries to parse the input-string and returns the subjectId (from the qr-code)

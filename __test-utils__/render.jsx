@@ -5,9 +5,9 @@ import { combineReducers, createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
-import UserReducer from '../src/store/user.slice';
-import GlobalsReducer from '../src/store/globals.slice';
-import QuestionnaireReducer from '../src/store/questionnaire.slice';
+import UserReducer from '~store/user.slice';
+import GlobalsReducer from '~store/globals.slice';
+import QuestionnaireReducer from '~store/questionnaire.slice';
 
 const testReducer = combineReducers({
   User: UserReducer,

@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
-import config from '../../config/configProvider';
-import { Routes } from '../../navigation/constants';
+import config from '~config/configProvider';
+import { Routes } from '~navigation/constants';
 import CheckInListView from './checkInListView';
 import WelcomeText from './welcomeText';
 import CheckInTiles from './checkInTiles';

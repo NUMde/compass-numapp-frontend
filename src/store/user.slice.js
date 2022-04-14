@@ -2,14 +2,15 @@ import { Alert } from 'react-native';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { REHYDRATE } from 'redux-persist';
 import messaging from '@react-native-firebase/messaging';
-import { reset, sendQuestionnaireResponse, sendReport } from './sharedActions';
 
 // services & config
-import { loggedInClient, guestClient } from '../services/rest';
-import translate, { setI18nConfig } from '../services/localization';
-import localStorage from '../services/localStorage';
-import config from '../config/configProvider';
-import kioskApi from '../config/kioskApiConfig';
+import { loggedInClient, guestClient } from '~services/rest';
+import translate, { setI18nConfig } from '~services/localization';
+import localStorage from '~services/localStorage';
+import config from '~config/configProvider';
+import kioskApi from '~config/kioskApiConfig';
+
+import { reset, sendQuestionnaireResponse, sendReport } from './sharedActions';
 
 const isKioskMode = kioskApi.active;
 

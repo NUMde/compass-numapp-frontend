@@ -11,10 +11,10 @@ import { StyleSheet } from 'react-native';
 import { ListItem } from 'react-native-elements';
 
 // services & config
-import config from '../../config/configProvider';
-import { formatDateString } from '../../services/utils';
-import translate from '../../services/localization';
-import { Routes } from '../../navigation/constants';
+import config from '~config/configProvider';
+import { formatDateString } from '~services/utils';
+import translate from '~services/localization';
+import { Routes } from '~navigation/constants';
 
 /**
  * depending on the state of the questionnaire (untouched, started, finished),

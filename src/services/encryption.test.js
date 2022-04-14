@@ -5,7 +5,7 @@ imports
 ***********************************************************************************************/
 
 import * as forge from 'node-forge';
-import config from '../config/configProvider';
+import config from '~config/configProvider';
 
 import encrypt from './encryption';
 

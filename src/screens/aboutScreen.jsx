@@ -13,25 +13,21 @@ import { Picker } from '@react-native-picker/picker';
 import { ListItem } from 'react-native-elements';
 
 // custom components
-import {
-  AboutListItem,
-  AboutListLink,
-  RedirectModal,
-} from '../components/about';
-import { Banner, Spinner, ScrollIndicatorWrapper } from '../components/shared';
+import { AboutListItem, AboutListLink, RedirectModal } from '~components/about';
+import { Banner, Spinner, ScrollIndicatorWrapper } from '~components/shared';
 
 // redux actions
-import { reset } from '../store/sharedActions';
-import { updateLanguage } from '../store/user.slice';
+import { reset } from '~store/sharedActions';
+import { updateLanguage } from '~store/user.slice';
 
 // services & config
-import config from '../config/configProvider';
-import kioskMode from '../config/kioskApiConfig';
+import config from '~config/configProvider';
+import kioskMode from '~config/kioskApiConfig';
 import translate, {
   availableLanguages,
   getLanguageTag,
-} from '../services/localization';
-import { Routes, Stacks } from '../navigation/constants';
+} from '~services/localization';
+import { Routes, Stacks } from '~navigation/constants';
 
 /***********************************************************************************************
  * component:

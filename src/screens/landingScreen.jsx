@@ -9,17 +9,17 @@ import { Alert, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
 // custom components
-import { Spinner, Banner, ScrollIndicatorWrapper } from '../components/shared';
+import { Spinner, Banner, ScrollIndicatorWrapper } from '~components/shared';
 
 // services & config
-import config from '../config/configProvider';
-import translate from '../services/localization';
+import config from '~config/configProvider';
+import translate from '~services/localization';
 
 // redux actions
 
-import { reset } from '../store/sharedActions';
+import { reset } from '~store/sharedActions';
 
-import { Routes, Stacks } from '../navigation/constants';
+import { Routes, Stacks } from '~navigation/constants';
 
 /***********************************************************************************************
  * component:

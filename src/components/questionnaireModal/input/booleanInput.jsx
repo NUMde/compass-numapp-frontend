@@ -5,10 +5,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { CheckBox } from 'react-native-elements';
 
 // redux actions
-import { setAnswer } from '../../../store/questionnaire.slice';
+import { setAnswer } from '~store/questionnaire.slice';
 
 // services & config
-import config from '../../../config/configProvider';
+import config from '~config/configProvider';
 
 import SharedStyles, { calculateIndent } from './sharedStyles';
 

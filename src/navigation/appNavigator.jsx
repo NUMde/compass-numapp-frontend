@@ -8,13 +8,13 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import AboutScreen from '../screens/aboutScreen';
-import WebViewScreen from '../screens/webViewScreen';
-import LegalInformationScreen from '../screens/legalInformationScreen';
-import LandingScreen from '../screens/landingScreen';
-import LoginScreen from '../screens/loginScreen';
-import CheckInScreen from '../screens/checkInScreen';
-import SurveyScreen from '../screens/surveyScreen';
+import AboutScreen from '~screens/aboutScreen';
+import WebViewScreen from '~screens/webViewScreen';
+import LegalInformationScreen from '~screens/legalInformationScreen';
+import LandingScreen from '~screens/landingScreen';
+import LoginScreen from '~screens/loginScreen';
+import CheckInScreen from '~screens/checkInScreen';
+import SurveyScreen from '~screens/surveyScreen';
 
 import { Routes, Stacks } from './constants';
 

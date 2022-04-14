@@ -18,8 +18,8 @@ import { Icon, Button } from 'react-native-elements';
 import RNModal from 'react-native-modal';
 
 // services & config
-import config from '../../config/configProvider';
-import translate from '../../services/localization';
+import config from '~config/configProvider';
+import translate from '~services/localization';
 
 /***********************************************************************************************
  * component:

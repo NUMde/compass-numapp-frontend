@@ -7,10 +7,10 @@ import debounce from 'lodash.debounce';
 import { Input } from 'react-native-elements';
 
 // redux actions
-import { setAnswer } from '../../../store/questionnaire.slice';
+import { setAnswer } from '~store/questionnaire.slice';
 
 // services & config
-import translate from '../../../services/localization';
+import translate from '~services/localization';
 
 // shared styles
 import SharedStyles from './sharedStyles';
