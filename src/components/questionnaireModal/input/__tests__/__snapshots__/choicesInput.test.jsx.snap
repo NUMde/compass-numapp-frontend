@@ -4,6 +4,7 @@ exports[`choicesInput (CheckBoxes) should render a list of choices as checkboxes
 Array [
   <Text
     accessibilityHint="Single Choice - only one answer option can be selected."
+    accessibilityLabel="choice"
     style={
       Object {
         "color": "#1F2532",
@@ -15,7 +16,9 @@ Array [
         "marginTop": 5,
       }
     }
-  />,
+  >
+    choice
+  </Text>,
   <View
     accessibilityRole="checkbox"
     accessibilityState={
@@ -458,6 +461,7 @@ exports[`choicesInput (DropDown) should render a list of choices as dropdown 1`]
 Array [
   <Text
     accessibilityHint="Single Choice - only one answer option can be selected."
+    accessibilityLabel="choice"
     style={
       Object {
         "color": "#1F2532",
@@ -469,7 +473,9 @@ Array [
         "marginTop": 5,
       }
     }
-  />,
+  >
+    choice
+  </Text>,
   <View>
     <RNCPicker
       items={
@@ -527,6 +533,7 @@ exports[`choicesInput (RadioButtons) should render a list of choices as radio bu
 Array [
   <Text
     accessibilityHint="Single Choice - only one answer option can be selected."
+    accessibilityLabel="choice"
     style={
       Object {
         "color": "#1F2532",
@@ -538,7 +545,9 @@ Array [
         "marginTop": 5,
       }
     }
-  />,
+  >
+    choice
+  </Text>,
   <View
     accessibilityRole="checkbox"
     accessibilityState={

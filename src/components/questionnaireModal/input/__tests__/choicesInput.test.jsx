@@ -19,6 +19,7 @@ const initialState = {
 const choiceItem = {
   linkId: '1.1',
   type: 'choice',
+  text: 'choice',
   repeats: true,
   required: true,
   answerOption: [

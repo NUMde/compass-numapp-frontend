@@ -24,17 +24,19 @@ describe('LoginScreen', () => {
 
   it('should render the login screen', () => {
     const navigate = jest.fn();
+    const goBack = jest.fn();
     config.appConfig.automateQrLogin = false;
     const { toJSON } = renderWithRedux(
-      <LoginScreen navigation={{ navigate }} />,
+      <LoginScreen navigation={{ navigate, goBack }} />,
     );
     expect(toJSON()).toMatchSnapshot();
   });
 
   it('should automatically log in when enabled in config', async () => {
     const navigate = jest.fn();
+    const goBack = jest.fn();
     config.appConfig.automateQrLogin = true;
-    renderWithRedux(<LoginScreen navigation={{ navigate }} />);
+    renderWithRedux(<LoginScreen navigation={{ navigate, goBack }} />);
     await waitFor(() =>
       expect(navigate).toHaveBeenCalledWith(Stacks.SIGNED_IN, {
         screen: Routes.CHECK_IN,
@@ -44,9 +46,10 @@ describe('LoginScreen', () => {
 
   it('should log in when qr code was scanned', async () => {
     const navigate = jest.fn();
+    const goBack = jest.fn();
     config.appConfig.automateQrLogin = false;
     const { getByTestId } = renderWithRedux(
-      <LoginScreen navigation={{ navigate }} />,
+      <LoginScreen navigation={{ navigate, goBack }} />,
     );
     const scanner = getByTestId('scannerWrapper').children[0];
     expect(scanner).toBeTruthy();
