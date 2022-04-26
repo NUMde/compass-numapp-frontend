@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, I18nManager } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 
 // components
 import { Button, Icon } from 'react-native-elements';
@@ -184,6 +185,15 @@ export default function BottomBar({
     </View>
   );
 }
+
+BottomBar.propTypes = {
+  modalTitleRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.shape({}) }),
+  ]).isRequired,
+  handleScrollTo: PropTypes.func.isRequired,
+  hideModal: PropTypes.func.isRequired,
+};
 
 /***********************************************************************************************
 localStyle

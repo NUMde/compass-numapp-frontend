@@ -6,6 +6,8 @@ imports
 
 import React from 'react';
 import { StyleSheet } from 'react-native';
+import PropTypes from 'prop-types';
+import { modalLinkPropType } from '~propTypes';
 
 // components
 import { ListItem } from 'react-native-elements';
@@ -61,6 +63,15 @@ function AboutListItem({ showModal, modalLink }) {
     </ListItem>
   );
 }
+
+AboutListItem.propTypes = {
+  showModal: PropTypes.func.isRequired,
+  modalLink: PropTypes.shape(modalLinkPropType),
+};
+
+AboutListItem.defaultProps = {
+  modalLink: null,
+};
 
 /***********************************************************************************************
 local styling

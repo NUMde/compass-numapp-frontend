@@ -6,6 +6,8 @@ imports
 
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
+import PropTypes from 'prop-types';
+import { navigationPropType } from '~propTypes';
 
 // custom components
 import { Banner, ScrollIndicatorWrapper } from '~components/shared';
@@ -51,6 +53,10 @@ function LegalInformationScreen({ navigation }) {
     </View>
   );
 }
+
+LegalInformationScreen.propTypes = {
+  navigation: PropTypes.shape(navigationPropType).isRequired,
+};
 
 /***********************************************************************************************
 localStyle

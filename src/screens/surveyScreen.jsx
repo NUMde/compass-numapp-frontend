@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
+import { navigationPropType } from '~propTypes';
 
 // components
 import { Spinner, Banner, ScrollIndicatorWrapper } from '~components/shared';
@@ -89,8 +91,8 @@ function SurveyScreen({ navigation }) {
                   FHIRmetadata,
                 ),
               }),
-            ),
-              navigation.navigate(Routes.CHECK_IN);
+            );
+            navigation.navigate(Routes.CHECK_IN);
           },
         },
         {
@@ -176,6 +178,10 @@ function SurveyScreen({ navigation }) {
     </View>
   );
 }
+
+SurveyScreen.propTypes = {
+  navigation: PropTypes.shape(navigationPropType).isRequired,
+};
 
 /***********************************************************************************************
 localStyle

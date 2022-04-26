@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { View, StyleSheet, Alert } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
+import { navigationPropType } from '~propTypes';
 
 // custom components
 import { Spinner, Banner, ScrollIndicatorWrapper } from '~components/shared';
@@ -194,54 +196,63 @@ function CheckInScreen({ navigation }) {
       />
 
       {/*  center content */}
-      <View style={[localStyle.flexi, localStyle.wrapper]}>
-        <ScrollIndicatorWrapper
-          contentData={
-            <View style={localStyle.wrapper}>
-              {/* renders the listview item representing the questionnaire */}
-              {!noNewQuestionnaireAvailableYet && status !== 'off-study' && (
-                <CheckInListView
-                  firstTime={firstTime}
-                  navigation={navigation}
-                  dueDate={due_date}
-                  done={done}
-                  started={started}
-                />
-              )}
-              {/* welcome text with due-date information */}
-              <CheckInWelcomeText
-                error={error}
-                status={status}
-                noNewQuestionnaireAvailableYet={noNewQuestionnaireAvailableYet}
-                firstTime={firstTime}
-                dueDate={due_date}
-                startDate={start_date}
-                categoriesLoaded={categoriesLoaded}
-              />
-              {/* renders the button at the bottom */}
-              {!error && (
-                <CheckInTiles
-                  done={done}
+      {subjectId && (
+        <View style={[localStyle.flexi, localStyle.wrapper]}>
+          <ScrollIndicatorWrapper
+            contentData={
+              <View style={localStyle.wrapper}>
+                {/* renders the listview item representing the questionnaire */}
+                {!noNewQuestionnaireAvailableYet && status !== 'off-study' && (
+                  <CheckInListView
+                    firstTime={firstTime}
+                    navigation={navigation}
+                    dueDate={due_date}
+                    done={done}
+                    started={started}
+                  />
+                )}
+                {/* welcome text with due-date information */}
+                <CheckInWelcomeText
+                  error={error}
                   status={status}
-                  iterationsLeft={additional_iterations_left}
-                  categoriesLoaded={categoriesLoaded}
                   noNewQuestionnaireAvailableYet={
                     noNewQuestionnaireAvailableYet
                   }
-                  sendReport={handleReport}
-                  deleteLocalDataAndLogout={() => {
-                    /* TODO */
-                  }}
-                  exportAndUploadQuestionnaireResponse={handleSubmit}
+                  firstTime={firstTime}
+                  dueDate={due_date}
+                  startDate={start_date}
+                  categoriesLoaded={categoriesLoaded}
                 />
-              )}
-            </View>
-          }
-        />
-      </View>
+                {/* renders the button at the bottom */}
+                {!error && (
+                  <CheckInTiles
+                    done={done}
+                    status={status}
+                    iterationsLeft={additional_iterations_left}
+                    categoriesLoaded={categoriesLoaded}
+                    noNewQuestionnaireAvailableYet={
+                      noNewQuestionnaireAvailableYet
+                    }
+                    sendReport={handleReport}
+                    deleteLocalDataAndLogout={() => {
+                      /* TODO */
+                    }}
+                    exportAndUploadQuestionnaireResponse={handleSubmit}
+                  />
+                )}
+              </View>
+            }
+          />
+        </View>
+      )}
     </View>
   );
 }
+
+CheckInScreen.propTypes = {
+  navigation: PropTypes.shape(navigationPropType).isRequired,
+};
+
 /***********************************************************************************************
 localStyle
 ***********************************************************************************************/

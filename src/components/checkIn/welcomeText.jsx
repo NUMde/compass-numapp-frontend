@@ -6,6 +6,7 @@ imports
 
 import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
+import PropTypes from 'prop-types';
 
 // services & config
 import config from '~config/configProvider';
@@ -151,6 +152,17 @@ function WelcomeText({
     </View>
   );
 }
+
+WelcomeText.propTypes = {
+  error: PropTypes.shape({ failedAction: PropTypes.string.isRequired }),
+  status: PropTypes.oneOf(['on-study', 'off-study']).isRequired,
+  dueDate: PropTypes.string.isRequired,
+  startDate: PropTypes.string.isRequired,
+  firstTime: PropTypes.bool.isRequired,
+  noNewQuestionnaireAvailableYet: PropTypes.bool.isRequired,
+};
+
+WelcomeText.defaultProps = { error: null };
 
 /***********************************************************************************************
 local styling

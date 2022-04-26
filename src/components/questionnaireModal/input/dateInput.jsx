@@ -8,6 +8,8 @@ import {
   Dimensions,
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
+import { itemPropType } from '~propTypes';
 
 // components
 import { Input, Button } from 'react-native-elements';
@@ -130,6 +132,10 @@ export default function DateInput({ item }) {
     </View>
   );
 }
+
+DateInput.propTypes = {
+  item: PropTypes.shape(itemPropType).isRequired,
+};
 
 /***********************************************************************************************
 localStyle

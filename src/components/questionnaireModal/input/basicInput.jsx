@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { I18nManager, View, Text, StyleSheet } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
+import { itemPropType } from '~propTypes';
+
 import debounce from 'lodash.debounce';
 
 // components
@@ -125,6 +128,10 @@ export default function BasicInput({ item }) {
     </View>
   );
 }
+
+BasicInput.propTypes = {
+  item: PropTypes.shape(itemPropType).isRequired,
+};
 
 /***********************************************************************************************
 localStyle

@@ -7,6 +7,8 @@ imports
 import React, { createRef, useEffect } from 'react';
 import { StyleSheet, View, Text, Dimensions } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
+import { navigationPropType } from '~propTypes';
 
 // components
 import QRCodeScanner from 'react-native-qrcode-scanner';
@@ -88,10 +90,10 @@ function LoginScreen({ navigation }) {
    */
   const scanSuccess = (scanResult) => {
     // parses the input string to determine the subjectId (from the qr-code)
-    const subjectId = checkQrCodeForUsername(scanResult.data);
+    const scannedSubjectId = checkQrCodeForUsername(scanResult.data);
 
     // triggers the login
-    dispatch(sendCredentials(subjectId, camera));
+    dispatch(sendCredentials(scannedSubjectId, camera));
   };
 
   // rendering
@@ -177,6 +179,10 @@ function LoginScreen({ navigation }) {
     </View>
   );
 }
+
+LoginScreen.propTypes = {
+  navigation: PropTypes.shape(navigationPropType).isRequired,
+};
 
 /***********************************************************************************************
 localStyle

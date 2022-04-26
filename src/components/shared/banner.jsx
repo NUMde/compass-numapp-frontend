@@ -14,6 +14,7 @@ import {
   Platform,
   Dimensions,
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 // services & config
 import config from '~config/configProvider';
@@ -192,6 +193,30 @@ function Banner({
     </View>
   );
 }
+
+Banner.propTypes = {
+  nav: PropTypes.shape({
+    navigate: PropTypes.func,
+    goBack: PropTypes.func.isRequired,
+  }).isRequired,
+  title: PropTypes.string,
+  noMenu: PropTypes.bool,
+  subTitle: PropTypes.string,
+  isCheckIn: PropTypes.bool,
+  noWayBack: PropTypes.bool,
+  noRefresh: PropTypes.bool,
+  updateUser: PropTypes.func,
+};
+
+Banner.defaultProps = {
+  title: null,
+  subTitle: null,
+  noWayBack: false,
+  noMenu: false,
+  isCheckIn: false,
+  noRefresh: false,
+  updateUser: () => {},
+};
 
 /***********************************************************************************************
 local styling

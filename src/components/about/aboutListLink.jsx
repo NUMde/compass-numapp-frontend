@@ -6,6 +6,8 @@ imports
 
 import React from 'react';
 import { StyleSheet } from 'react-native';
+import PropTypes from 'prop-types';
+import { navigationPropType, webViewPropType } from '~propTypes';
 
 // components
 import { ListItem } from 'react-native-elements';
@@ -63,6 +65,11 @@ function AboutListLink({ navigation, webView }) {
     </ListItem>
   );
 }
+
+AboutListLink.propTypes = {
+  navigation: PropTypes.shape(navigationPropType).isRequired,
+  webView: PropTypes.shape(webViewPropType).isRequired,
+};
 
 /***********************************************************************************************
 local styling

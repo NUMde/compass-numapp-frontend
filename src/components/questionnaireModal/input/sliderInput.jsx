@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Text, Dimensions, StyleSheet } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
+import { itemPropType } from '~propTypes';
 
 // components
 import Slider from '@react-native-community/slider';
@@ -96,6 +98,10 @@ export default function SliderInput({ item }) {
     </View>
   );
 }
+
+SliderInput.propTypes = {
+  item: PropTypes.shape(itemPropType).isRequired,
+};
 
 /***********************************************************************************************
 localStyle
