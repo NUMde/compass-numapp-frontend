@@ -90,74 +90,72 @@ function LandingScreen({ navigation }) {
 
       {/* scrollIndicator */}
       <View style={[localStyle.flexi, localStyle.wrapper]}>
-        <ScrollIndicatorWrapper
-          contentData={
-            error ? (
-              <View style={localStyle.wrapper}>
-                <View style={localStyle.top}>
-                  <Text style={localStyle.titleText}>
-                    {translate('login').landing.autoLoginErrorTitle}
-                  </Text>
-                  <Text style={localStyle.infoText}>
-                    {translate('login').landing.autoLoginError}
-                  </Text>
-                </View>
-                <View style={localStyle.bottom}>
-                  <TouchableOpacity
-                    style={localStyle.button}
-                    onPress={() => navigation.navigate(Routes.LOGIN)}
-                    accessibilityLabel={translate('login').landing.retry}
-                    accessibilityRole={translate('accessibility').types.Button}
-                    accessibilityHint={translate('accessibility').retryHint}
-                  >
-                    <Text style={localStyle.buttonLabel}>
-                      {translate('login').landing.retry}
-                    </Text>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity
-                    style={[localStyle.button, localStyle.buttonAlert]}
-                    onPress={() => deleteHandler()}
-                    accessibilityLabel={translate('login').landing.deleteAll}
-                    accessibilityRole={translate('accessibility').types.Button}
-                    accessibilityHint={translate('accessibility').retryHint}
-                  >
-                    <Text style={localStyle.buttonLabel}>
-                      {translate('login').landing.deleteAll}
-                    </Text>
-                  </TouchableOpacity>
-                </View>
+        <ScrollIndicatorWrapper>
+          {error ? (
+            <View style={localStyle.wrapper}>
+              <View style={localStyle.top}>
+                <Text style={localStyle.titleText}>
+                  {translate('login').landing.autoLoginErrorTitle}
+                </Text>
+                <Text style={localStyle.infoText}>
+                  {translate('login').landing.autoLoginError}
+                </Text>
               </View>
-            ) : (
-              <View style={localStyle.wrapper}>
-                {/* top elements title & text */}
-                <View style={localStyle.top}>
-                  <Text style={localStyle.titleText}>
-                    {translate('login').landing.welcomeTitle}
+              <View style={localStyle.bottom}>
+                <TouchableOpacity
+                  style={localStyle.button}
+                  onPress={() => navigation.navigate(Routes.LOGIN)}
+                  accessibilityLabel={translate('login').landing.retry}
+                  accessibilityRole={translate('accessibility').types.Button}
+                  accessibilityHint={translate('accessibility').retryHint}
+                >
+                  <Text style={localStyle.buttonLabel}>
+                    {translate('login').landing.retry}
                   </Text>
-                  <Text style={localStyle.infoText}>
-                    {translate('login').landing.text}
-                  </Text>
-                </View>
+                </TouchableOpacity>
 
-                {/* bottom login button */}
-                <View style={localStyle.bottom}>
-                  <TouchableOpacity
-                    style={localStyle.button}
-                    onPress={() => navigation.navigate(Routes.LOGIN)}
-                    accessibilityLabel={translate('login').landing.buttonText}
-                    accessibilityRole={translate('accessibility').types.button}
-                    accessibilityHint={translate('accessibility').loginHint}
-                  >
-                    <Text style={localStyle.buttonLabel}>
-                      {translate('login').landing.buttonText}
-                    </Text>
-                  </TouchableOpacity>
-                </View>
+                <TouchableOpacity
+                  style={[localStyle.button, localStyle.buttonAlert]}
+                  onPress={() => deleteHandler()}
+                  accessibilityLabel={translate('login').landing.deleteAll}
+                  accessibilityRole={translate('accessibility').types.Button}
+                  accessibilityHint={translate('accessibility').retryHint}
+                >
+                  <Text style={localStyle.buttonLabel}>
+                    {translate('login').landing.deleteAll}
+                  </Text>
+                </TouchableOpacity>
               </View>
-            )
-          }
-        />
+            </View>
+          ) : (
+            <View style={localStyle.wrapper}>
+              {/* top elements title & text */}
+              <View style={localStyle.top}>
+                <Text style={localStyle.titleText}>
+                  {translate('login').landing.welcomeTitle}
+                </Text>
+                <Text style={localStyle.infoText}>
+                  {translate('login').landing.text}
+                </Text>
+              </View>
+
+              {/* bottom login button */}
+              <View style={localStyle.bottom}>
+                <TouchableOpacity
+                  style={localStyle.button}
+                  onPress={() => navigation.navigate(Routes.LOGIN)}
+                  accessibilityLabel={translate('login').landing.buttonText}
+                  accessibilityRole={translate('accessibility').types.button}
+                  accessibilityHint={translate('accessibility').loginHint}
+                >
+                  <Text style={localStyle.buttonLabel}>
+                    {translate('login').landing.buttonText}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          )}
+        </ScrollIndicatorWrapper>
       </View>
     </View>
   );

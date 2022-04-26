@@ -35,19 +35,17 @@ function LegalInformationScreen({ navigation }) {
         />
         {/* content */}
         <View style={{ ...localStyle.flexi, ...localStyle.wrapper }}>
-          <ScrollIndicatorWrapper
-            contentData={
-              <View style={{ ...localStyle.wrapper, ...localStyle.top }}>
-                {/* top elements title & text */}
-                <Text style={localStyle.titleText}>
-                  {translate('legalInformation').headline}
-                </Text>
-                <Text style={localStyle.infoText}>
-                  {translate('legalInformation').content}
-                </Text>
-              </View>
-            }
-          />
+          <ScrollIndicatorWrapper>
+            <View style={{ ...localStyle.wrapper, ...localStyle.top }}>
+              {/* top elements title & text */}
+              <Text style={localStyle.titleText}>
+                {translate('legalInformation').headline}
+              </Text>
+              <Text style={localStyle.infoText}>
+                {translate('legalInformation').content}
+              </Text>
+            </View>
+          </ScrollIndicatorWrapper>
         </View>
       </View>
     </View>

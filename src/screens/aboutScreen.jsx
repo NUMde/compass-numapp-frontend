@@ -135,121 +135,115 @@ function AboutScreen({ navigation }) {
 
       {/* ScrollView with content */}
       <View style={localStyle.wrapper}>
-        <ScrollIndicatorWrapper
-          contentData={
+        <ScrollIndicatorWrapper>
+          <View style={localStyle.wrapper}>
+            {/* holds the list-items */}
             <View style={localStyle.wrapper}>
-              {/* holds the list-items */}
-              <View style={localStyle.wrapper}>
-                {/* links to the LegalInformationScreen */}
-                {config.appConfig.allowAccessToLegalInformationScreen && (
-                  <ListItem
-                    containerStyle={localStyle.containerStyle}
-                    onPress={() =>
-                      navigation.navigate(Routes.LEGAL_INFORMATION)
-                    }
-                  >
-                    {/* title & subtitle of the listItem - the strings a identified by the webView*/}
-                    <ListItem.Content>
-                      <ListItem.Title style={localStyle.title}>
-                        {translate('about').legal.title}
-                      </ListItem.Title>
+              {/* links to the LegalInformationScreen */}
+              {config.appConfig.allowAccessToLegalInformationScreen && (
+                <ListItem
+                  containerStyle={localStyle.containerStyle}
+                  onPress={() => navigation.navigate(Routes.LEGAL_INFORMATION)}
+                >
+                  {/* title & subtitle of the listItem - the strings a identified by the webView*/}
+                  <ListItem.Content>
+                    <ListItem.Title style={localStyle.title}>
+                      {translate('about').legal.title}
+                    </ListItem.Title>
 
-                      <ListItem.Subtitle style={localStyle.subTitle}>
-                        {translate('about').legal.subTitle}
-                      </ListItem.Subtitle>
-                    </ListItem.Content>
+                    <ListItem.Subtitle style={localStyle.subTitle}>
+                      {translate('about').legal.subTitle}
+                    </ListItem.Subtitle>
+                  </ListItem.Content>
 
-                    {/* the icon on the right-hand-side */}
-                    <ListItem.Chevron
-                      {...{
-                        type: translate('about').legal.iconType,
-                        name: translate('about').legal.iconTitle,
-                        color: config.theme.values.legalListLinkIconColor,
-                        reverse: true,
-                        size: 12,
-                      }}
-                    />
-                  </ListItem>
-                )}
-
-                {/* iterates over all items in translate('wevViews') */}
-                {translate('webViews').map((webView) => (
-                  // navigates to the webview screen
-                  <AboutListLink
-                    key={webView.title}
-                    navigation={navigation}
-                    webView={webView}
-                  />
-                ))}
-
-                {/* iterates over all items in translate('modalLinks') */}
-                {translate('modalLinks').map((modalLink) => (
-                  // navigates to the webview screen
-                  <AboutListItem
-                    showModal={() =>
-                      setModalState({ hidden: false, modalLink })
-                    }
-                    key={modalLink.title}
-                    modalLink={modalLink}
-                  />
-                ))}
-              </View>
-
-              {/* optional buttons on the bottom of the screen - JUST FOR DEVELOPMENT*/}
-              <View style={localStyle.bottom}>
-                {/* language picker */}
-                <View style={localStyle.languagePickerWrapper}>
-                  <Text style={localStyle.title}>
-                    {translate('about').languageSelection}
-                  </Text>
-
-                  {started && (
-                    <Text style={localStyle.warningSubTitle}>
-                      {translate('about').languageWarning}
-                    </Text>
-                  )}
-
-                  <Picker
-                    testID="languagePicker"
-                    style={localStyle.picker}
-                    mode="dropdown"
-                    selectedValue={getLanguageTag()}
-                    onValueChange={(itemValue) => {
-                      if (getLanguageTag() !== itemValue) {
-                        changeLanguage(itemValue);
-                      }
+                  {/* the icon on the right-hand-side */}
+                  <ListItem.Chevron
+                    {...{
+                      type: translate('about').legal.iconType,
+                      name: translate('about').legal.iconTitle,
+                      color: config.theme.values.legalListLinkIconColor,
+                      reverse: true,
+                      size: 12,
                     }}
-                  >
-                    {Object.keys(availableLanguages).map((key) => (
-                      <Picker.Item
-                        key={key}
-                        label={availableLanguages[key].title}
-                        value={key}
-                      />
-                    ))}
-                  </Picker>
-                </View>
+                  />
+                </ListItem>
+              )}
 
-                {/* delete-all-data button */}
-                {(config.appConfig.showEraseAll || kioskMode.active) && (
-                  <TouchableOpacity
-                    style={localStyle.buttonAlert}
-                    onPress={clearAll}
-                    accessibilityLabel={translate('about').delete}
-                    accessibilityRole={translate('accessibility').types.button}
-                    accessibilityHint={translate('accessibility').logoutHint}
-                  >
-                    <Text style={localStyle.buttonLabel}>
-                      {kioskMode.active
-                        ? translate('about').demoDelete
-                        : translate('about').delete}
-                    </Text>
-                  </TouchableOpacity>
-                )}
-              </View>
+              {/* iterates over all items in translate('wevViews') */}
+              {translate('webViews').map((webView) => (
+                // navigates to the webview screen
+                <AboutListLink
+                  key={webView.title}
+                  navigation={navigation}
+                  webView={webView}
+                />
+              ))}
+
+              {/* iterates over all items in translate('modalLinks') */}
+              {translate('modalLinks').map((modalLink) => (
+                // navigates to the webview screen
+                <AboutListItem
+                  showModal={() => setModalState({ hidden: false, modalLink })}
+                  key={modalLink.title}
+                  modalLink={modalLink}
+                />
+              ))}
             </View>
-          }
-        />
+
+            {/* optional buttons on the bottom of the screen - JUST FOR DEVELOPMENT*/}
+            <View style={localStyle.bottom}>
+              {/* language picker */}
+              <View style={localStyle.languagePickerWrapper}>
+                <Text style={localStyle.title}>
+                  {translate('about').languageSelection}
+                </Text>
+
+                {started && (
+                  <Text style={localStyle.warningSubTitle}>
+                    {translate('about').languageWarning}
+                  </Text>
+                )}
+
+                <Picker
+                  testID="languagePicker"
+                  style={localStyle.picker}
+                  mode="dropdown"
+                  selectedValue={getLanguageTag()}
+                  onValueChange={(itemValue) => {
+                    if (getLanguageTag() !== itemValue) {
+                      changeLanguage(itemValue);
+                    }
+                  }}
+                >
+                  {Object.keys(availableLanguages).map((key) => (
+                    <Picker.Item
+                      key={key}
+                      label={availableLanguages[key].title}
+                      value={key}
+                    />
+                  ))}
+                </Picker>
+              </View>
+
+              {/* delete-all-data button */}
+              {(config.appConfig.showEraseAll || kioskMode.active) && (
+                <TouchableOpacity
+                  style={localStyle.buttonAlert}
+                  onPress={clearAll}
+                  accessibilityLabel={translate('about').delete}
+                  accessibilityRole={translate('accessibility').types.button}
+                  accessibilityHint={translate('accessibility').logoutHint}
+                >
+                  <Text style={localStyle.buttonLabel}>
+                    {kioskMode.active
+                      ? translate('about').demoDelete
+                      : translate('about').delete}
+                  </Text>
+                </TouchableOpacity>
+              )}
+            </View>
+          </View>
+        </ScrollIndicatorWrapper>
       </View>
     </View>
   );

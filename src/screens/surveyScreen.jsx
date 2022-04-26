@@ -142,39 +142,37 @@ function SurveyScreen({ navigation }) {
       {/* the questionnaire modal */}
       <QuestionnaireModal />
 
-      <ScrollIndicatorWrapper
-        contentData={
-          <View style={[localStyle.flexi, localStyle.wrapper]}>
-            {/* creates the list items for the categories */}
-            <CategoriesList
-              showQuestionnaireModal={(index) => {
-                dispatch(switchContent({ categoryIndex: index, pageIndex: 1 }));
-              }}
-              categories={categories}
-              itemMap={itemMap}
-            />
+      <ScrollIndicatorWrapper>
+        <View style={[localStyle.flexi, localStyle.wrapper]}>
+          {/* creates the list items for the categories */}
+          <CategoriesList
+            showQuestionnaireModal={(index) => {
+              dispatch(switchContent({ categoryIndex: index, pageIndex: 1 }));
+            }}
+            categories={categories}
+            itemMap={itemMap}
+          />
 
-            {/* renders a send-button at the bottom if the questionnaire is completed */}
-            <View style={localStyle.bottom}>
-              {done && (
-                <TouchableOpacity
-                  accessibilityLabel={translate('survey').send}
-                  accessibilityRole={translate('accessibility').types.button}
-                  accessibilityHint={
-                    translate('accessibility').questionnaire.sendHint
-                  }
-                  onPress={handleSubmit}
-                  style={[localStyle.button, localStyle.buttonComplete]}
-                >
-                  <Text style={localStyle.buttonLabel}>
-                    {translate('survey').send}
-                  </Text>
-                </TouchableOpacity>
-              )}
-            </View>
+          {/* renders a send-button at the bottom if the questionnaire is completed */}
+          <View style={localStyle.bottom}>
+            {done && (
+              <TouchableOpacity
+                accessibilityLabel={translate('survey').send}
+                accessibilityRole={translate('accessibility').types.button}
+                accessibilityHint={
+                  translate('accessibility').questionnaire.sendHint
+                }
+                onPress={handleSubmit}
+                style={[localStyle.button, localStyle.buttonComplete]}
+              >
+                <Text style={localStyle.buttonLabel}>
+                  {translate('survey').send}
+                </Text>
+              </TouchableOpacity>
+            )}
           </View>
-        }
-      />
+        </View>
+      </ScrollIndicatorWrapper>
     </View>
   );
 }
