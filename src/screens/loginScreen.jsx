@@ -111,70 +111,65 @@ function LoginScreen({ navigation }) {
 
       {/* scrollIndicator with qrcode scanner */}
       <View style={{ ...localStyle.flexi, ...localStyle.wrapper }}>
-        <ScrollIndicatorWrapper
-          contentData={
-            <View style={localStyle.wrapper}>
-              <View style={{ ...localStyle.flexi, ...localStyle.wrapper }}>
-                <View testID="scannerWrapper">
-                  {/* the qr-code-scanner */}
-                  <QRCodeScanner
-                    fadeIn={false}
-                    showMarker
-                    cameraStyle={localStyle.qrScanner}
-                    markerStyle={localStyle.qrScannerMarker}
-                    ref={(node) => {
-                      camera = node;
-                    }}
-                    containerStyle={localStyle.qrScannerContainer}
-                    onRead={scanSuccess}
-                    permissionDialogMessage={
-                      translate('login').permissionDialog
-                    }
-                  />
-                </View>
+        <ScrollIndicatorWrapper>
+          <View style={localStyle.wrapper}>
+            <View style={{ ...localStyle.flexi, ...localStyle.wrapper }}>
+              <View testID="scannerWrapper">
+                {/* the qr-code-scanner */}
+                <QRCodeScanner
+                  fadeIn={false}
+                  showMarker
+                  cameraStyle={localStyle.qrScanner}
+                  markerStyle={localStyle.qrScannerMarker}
+                  ref={(node) => {
+                    camera = node;
+                  }}
+                  containerStyle={localStyle.qrScannerContainer}
+                  onRead={scanSuccess}
+                  permissionDialogMessage={translate('login').permissionDialog}
+                />
+              </View>
 
-                {/* information text */}
-                <Text style={localStyle.infoText}>
-                  {translate('login').qrInfo}
-                </Text>
+              {/* information text */}
+              <Text style={localStyle.infoText}>
+                {translate('login').qrInfo}
+              </Text>
 
-                {/* login error text */}
-                {error && (
-                  <View>
-                    {/* displays an error message in case of 401 */}
-                    {error.code === 401 && (
+              {/* login error text */}
+              {error && (
+                <View>
+                  {/* displays an error message in case of 401 */}
+                  {error.code === 401 && (
+                    <Text
+                      style={{
+                        ...localStyle.infoText,
+                        ...localStyle.loginErrorText,
+                      }}
+                    >
+                      {translate('login').errorUserUnauthorized}
+                    </Text>
+                  )}
+
+                  {/* if anything other than a 401: outputs the returned error message (or a generic error message instead) followed by another instructional string*/}
+                  {error.code !== 401 && (
+                    <View>
                       <Text
                         style={{
                           ...localStyle.infoText,
                           ...localStyle.loginErrorText,
                         }}
                       >
-                        {translate('login').errorUserUnauthorized}
+                        {error?.message ?? translate('login').errorUserGeneric}
+                        {'\n'}
+                        {translate('login').nextStepAfterError}
                       </Text>
-                    )}
-
-                    {/* if anything other than a 401: outputs the returned error message (or a generic error message instead) followed by another instructional string*/}
-                    {error.code !== 401 && (
-                      <View>
-                        <Text
-                          style={{
-                            ...localStyle.infoText,
-                            ...localStyle.loginErrorText,
-                          }}
-                        >
-                          {error?.message ??
-                            translate('login').errorUserGeneric}
-                          {'\n'}
-                          {translate('login').nextStepAfterError}
-                        </Text>
-                      </View>
-                    )}
-                  </View>
-                )}
-              </View>
+                    </View>
+                  )}
+                </View>
+              )}
             </View>
-          }
-        />
+          </View>
+        </ScrollIndicatorWrapper>
       </View>
     </View>
   );

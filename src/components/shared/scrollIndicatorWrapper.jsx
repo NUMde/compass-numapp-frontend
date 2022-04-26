@@ -29,9 +29,9 @@ import translate from '~services/localization';
  * when clicking that indicator button the scroll view is scroll by the height of the viewport
  *
  * @param {object}          props
- * @param {[JSX.Element]}   props.contentData the content to be wrapped in this component
+ * @param {[JSX.Element]}   props.children the content to be wrapped in this component
  **********************************************************************************************/
-export default function ScrollIndicatorWrapper({ contentData }) {
+export default function ScrollIndicatorWrapper({ children }) {
   // internal state
   const [showIndicator, setShowIndicator] = useState(false);
   const [nextScrollValue, setNextScrollValue] = useState(0);
@@ -84,7 +84,7 @@ export default function ScrollIndicatorWrapper({ contentData }) {
         }}
       >
         {/* the content */}
-        {contentData}
+        {children}
       </ScrollView>
 
       {/* if "allowScrollIndicators" is true and the situation calls for a scroll indicator ("showIndicator") and
@@ -116,7 +116,10 @@ export default function ScrollIndicatorWrapper({ contentData }) {
 }
 
 ScrollIndicatorWrapper.propTypes = {
-  contentData: PropTypes.shape(React.Element).isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.element.isRequired,
+    PropTypes.arrayOf(PropTypes.element),
+  ]).isRequired,
 };
 
 /***********************************************************************************************

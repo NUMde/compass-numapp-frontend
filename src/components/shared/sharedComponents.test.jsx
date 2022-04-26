@@ -75,7 +75,7 @@ describe('ScrollIndicatorWrapper', () => {
       </View>
     );
     const { toJSON, getByTestId } = render(
-      <ScrollIndicatorWrapper contentData={demoContent} />,
+      <ScrollIndicatorWrapper>{demoContent}</ScrollIndicatorWrapper>,
     );
     expect(toJSON()).toMatchSnapshot();
     expect(getByTestId('demoContent')).toBeTruthy();
