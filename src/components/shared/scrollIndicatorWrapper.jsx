@@ -5,7 +5,6 @@ imports
 ***********************************************************************************************/
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Icon } from 'react-native-elements';
 import {
   AccessibilityInfo,
   StyleSheet,
@@ -15,6 +14,10 @@ import {
   ScrollView,
   KeyboardAvoidingView,
 } from 'react-native';
+import PropTypes from 'prop-types';
+
+// components
+import { Icon } from 'react-native-elements';
 
 // services & config
 import config from '~config/configProvider';
@@ -111,6 +114,10 @@ export default function ScrollIndicatorWrapper({ contentData }) {
     </KeyboardAvoidingView>
   );
 }
+
+ScrollIndicatorWrapper.propTypes = {
+  contentData: PropTypes.shape(React.Element).isRequired,
+};
 
 /***********************************************************************************************
 localStyle

@@ -1,5 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
+import { itemPropType } from '~propTypes';
 
 // components
 import { CheckBox } from 'react-native-elements';
@@ -57,3 +59,7 @@ export default function BooleanInput({ item }) {
     />
   );
 }
+
+BooleanInput.propTypes = {
+  item: PropTypes.shape(itemPropType).isRequired,
+};

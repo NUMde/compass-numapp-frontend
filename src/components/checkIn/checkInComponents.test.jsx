@@ -15,7 +15,7 @@ describe('checkInListView', () => {
         done={false}
         started={false}
         firstTime={true}
-        dueDate={new Date('Mon Mar 14 2022')}
+        dueDate={new Date('Mon Mar 14 2022').toUTCString()}
         navigation={navigation}
       />,
     );
@@ -28,7 +28,7 @@ describe('checkInListView', () => {
         done={false}
         started={false}
         firstTime={true}
-        dueDate={new Date('Mon Mar 14 2022')}
+        dueDate={new Date('Mon Mar 14 2022').toUTCString()}
         navigation={navigation}
       />,
     );
@@ -42,7 +42,7 @@ describe('checkInListView', () => {
         done={false}
         started={false}
         firstTime={true}
-        dueDate={new Date('Mon Mar 14 2022')}
+        dueDate={new Date('Mon Mar 14 2022').toUTCString()}
         navigation={navigation}
       />,
     );
@@ -54,7 +54,7 @@ describe('checkInListView', () => {
         done={false}
         started={true}
         firstTime={true}
-        dueDate={new Date('Mon Mar 14 2022')}
+        dueDate={new Date('Mon Mar 14 2022').toUTCString()}
         navigation={navigation}
       />,
     );
@@ -66,7 +66,7 @@ describe('checkInListView', () => {
         done={true}
         started={true}
         firstTime={true}
-        dueDate={new Date('Mon Mar 14 2022')}
+        dueDate={new Date('Mon Mar 14 2022').toUTCString()}
         navigation={navigation}
       />,
     );
@@ -78,10 +78,10 @@ describe('checkInListView', () => {
 
 describe('welcomeText', () => {
   const props = {
-    error: false,
+    error: null,
     status: 'on-study',
-    dueDate: new Date('Wed Mar 16 2022'),
-    startDate: new Date('Mon Mar 14 2022'),
+    dueDate: new Date('Wed Mar 16 2022').toUTCString(),
+    startDate: new Date('Mon Mar 14 2022').toUTCString(),
     firstTime: true,
     noNewQuestionnaireAvailableYet: true,
   };
@@ -115,13 +115,13 @@ describe('welcomeText', () => {
   });
 
   it('should render the welcomeText when off-study', () => {
-    const tree = render(<WelcomeText status="off-study" />);
+    const tree = render(<WelcomeText {...props} status="off-study" />);
     expect(tree).toMatchSnapshot();
   });
 
   it('should render the welcomeText with failed user updated', () => {
     const { getByTestId } = render(
-      <WelcomeText error={{ failedAction: 'user/UPDATE' }} />,
+      <WelcomeText {...props} error={{ failedAction: 'user/UPDATE' }} />,
     );
     expect(getByTestId('user_update_error')).toBeTruthy();
   });
@@ -129,12 +129,15 @@ describe('welcomeText', () => {
   it('should render the welcomeText with failed submission of report or questionnaire', () => {
     const { getByTestId, rerender } = render(
       <WelcomeText
+        {...props}
         error={{ failedAction: 'shared/SEND_QUESTIONNAIRE_RESPONSE' }}
       />,
     );
     expect(getByTestId('submission_error')).toBeTruthy();
 
-    rerender(<WelcomeText error={{ failedAction: 'shared/SEND_REPORT' }} />);
+    rerender(
+      <WelcomeText {...props} error={{ failedAction: 'shared/SEND_REPORT' }} />,
+    );
     expect(getByTestId('submission_error')).toBeTruthy();
   });
 });

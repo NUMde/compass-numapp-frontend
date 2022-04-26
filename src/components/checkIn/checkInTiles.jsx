@@ -12,6 +12,7 @@ import {
   TouchableOpacity,
   Dimensions,
 } from 'react-native';
+import PropTypes from 'prop-types';
 
 // components
 import { Icon } from 'react-native-elements';
@@ -137,6 +138,22 @@ function CheckInTiles({
     </View>
   );
 }
+
+CheckInTiles.propTypes = {
+  done: PropTypes.bool,
+  status: PropTypes.oneOf(['on-study', 'off-study']).isRequired,
+  sendReport: PropTypes.func.isRequired,
+  iterationsLeft: PropTypes.number.isRequired,
+  categoriesLoaded: PropTypes.bool,
+  deleteLocalDataAndLogout: PropTypes.func.isRequired,
+  noNewQuestionnaireAvailableYet: PropTypes.bool.isRequired,
+  exportAndUploadQuestionnaireResponse: PropTypes.func.isRequired,
+};
+
+CheckInTiles.defaultProps = {
+  done: false,
+  categoriesLoaded: false,
+};
 
 /***********************************************************************************************
 local styling

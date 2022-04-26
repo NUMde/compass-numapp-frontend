@@ -59,5 +59,8 @@
     "import/resolver": {
       "babel-module": {}
     }
-  }
+  },
+  "ignorePatterns": [
+    "coverage"
+  ]
 }

@@ -32,8 +32,15 @@ describe('CheckInScreen', () => {
   });
   it('should render the CheckInScreen', async () => {
     const navigate = jest.fn();
+    const goBack = jest.fn();
+
     const { findByText, toJSON } = renderWithRedux(
-      <CheckInScreen navigation={{ navigate }} />,
+      <CheckInScreen navigation={{ navigate, goBack }} />,
+      {
+        initialState: {
+          User: { subjectId: 'someUserId', additional_iterations_left: 0 },
+        },
+      },
     );
     expect(await findByText(en.survey.welcomeTitleFirstTime)).toBeTruthy();
     expect(toJSON()).toMatchSnapshot();
@@ -41,10 +48,15 @@ describe('CheckInScreen', () => {
 
   it('should trigger user update when mounting CheckInScreen', async () => {
     const navigate = jest.fn();
+    const goBack = jest.fn();
     const restSpy = jest.spyOn(loggedInClient, 'getUserUpdate');
     const { findByText } = renderWithRedux(
-      <CheckInScreen navigation={{ navigate }} />,
-      { initialState: { User: { subjectId: 'someUserId' } } },
+      <CheckInScreen navigation={{ navigate, goBack }} />,
+      {
+        initialState: {
+          User: { subjectId: 'someUserId', additional_iterations_left: 1 },
+        },
+      },
     );
     expect(await findByText(en.survey.welcomeTitleFirstTime)).toBeTruthy();
     expect(restSpy).toHaveBeenCalled();
@@ -52,6 +64,7 @@ describe('CheckInScreen', () => {
 
   it('should alert User when questionnaire is outdated', async () => {
     const navigate = jest.fn();
+    const goBack = jest.fn();
     const spyAlert = jest
       .spyOn(Alert, 'alert')
       .mockImplementation(async (title, message, callbackOrButtons) => {
@@ -60,12 +73,13 @@ describe('CheckInScreen', () => {
         }
       });
     const { findByText, queryByText } = renderWithRedux(
-      <CheckInScreen navigation={{ navigate }} />,
+      <CheckInScreen navigation={{ navigate, goBack }} />,
       {
         initialState: {
           User: {
             subjectId: 'someUserId',
             current_questionnaire_id: 'http://example.com:1.0',
+            additional_iterations_left: 1,
           },
           Questionnaire: {
             itemMap,
@@ -87,6 +101,7 @@ describe('CheckInScreen', () => {
 
   it('should submit completed questionnaire', (done) => {
     const navigate = jest.fn();
+    const goBack = jest.fn();
     jest
       .spyOn(Alert, 'alert')
       .mockImplementation((_title, _message, callbackOrButtons) => {
@@ -95,7 +110,7 @@ describe('CheckInScreen', () => {
         }
       });
     const { findByText, getByText, queryByText, getByTestId } = renderWithRedux(
-      <CheckInScreen navigation={{ navigate }} />,
+      <CheckInScreen navigation={{ navigate, goBack }} />,
       {
         initialState: {
           User: {
@@ -107,6 +122,7 @@ describe('CheckInScreen', () => {
             firstTime: true,
             due_date: new Date(new Date().setDate(new Date().getDate() + 3)),
             certificate: config.appConfig.defaultRecipientCertificatePemString,
+            additional_iterations_left: 1,
           },
           Questionnaire: {
             itemMap,
@@ -133,8 +149,9 @@ describe('CheckInScreen', () => {
 
   it('should refresh user data', (done) => {
     const navigate = jest.fn();
+    const goBack = jest.fn();
     const { queryByTestId, getByTestId, findByLabelText } = renderWithRedux(
-      <CheckInScreen navigation={{ navigate }} />,
+      <CheckInScreen navigation={{ navigate, goBack }} />,
       {
         initialState: {
           User: {
@@ -146,6 +163,7 @@ describe('CheckInScreen', () => {
             firstTime: true,
             due_date: new Date(new Date().setDate(new Date().getDate() + 3)),
             certificate: config.appConfig.defaultRecipientCertificatePemString,
+            additional_iterations_left: 0,
           },
           Questionnaire: {
             itemMap,
@@ -178,8 +196,9 @@ describe('CheckInScreen', () => {
         }
       });
     const navigate = jest.fn();
+    const goBack = jest.fn();
     const { findByText } = renderWithRedux(
-      <CheckInScreen navigation={{ navigate }} />,
+      <CheckInScreen navigation={{ navigate, goBack }} />,
       {
         initialState: {
           User: {
@@ -224,8 +243,9 @@ describe('CheckInScreen', () => {
         }
       });
     const navigate = jest.fn();
+    const goBack = jest.fn();
     const { findByText } = renderWithRedux(
-      <CheckInScreen navigation={{ navigate }} />,
+      <CheckInScreen navigation={{ navigate, goBack }} />,
       {
         initialState: {
           User: {
@@ -270,8 +290,9 @@ describe('CheckInScreen', () => {
         }
       });
     const navigate = jest.fn();
+    const goBack = jest.fn();
     const { findByText, getByTestId, queryByTestId, getByText } =
-      renderWithRedux(<CheckInScreen navigation={{ navigate }} />, {
+      renderWithRedux(<CheckInScreen navigation={{ navigate, goBack }} />, {
         initialState: {
           User: {
             subjectId: 'reportingUser',

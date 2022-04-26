@@ -11,8 +11,9 @@ import LandingScreen from '../landingScreen';
 describe('LandingScreen', () => {
   it('should render screen', () => {
     const navigate = jest.fn();
+    const goBack = jest.fn();
     const { getByText, toJSON } = renderWithRedux(
-      <LandingScreen navigation={{ navigate }} />,
+      <LandingScreen navigation={{ navigate, goBack }} />,
     );
     expect(toJSON()).toMatchSnapshot();
     expect(getByText(en.login.landing.buttonText)).toBeTruthy();
@@ -20,8 +21,9 @@ describe('LandingScreen', () => {
 
   it('should navigate to loginScreen when pressing button', () => {
     const navigate = jest.fn();
+    const goBack = jest.fn();
     const { getByText } = renderWithRedux(
-      <LandingScreen navigation={{ navigate }} />,
+      <LandingScreen navigation={{ navigate, goBack }} />,
     );
 
     fireEvent.press(getByText(en.login.landing.buttonText));
@@ -30,7 +32,8 @@ describe('LandingScreen', () => {
 
   it('should navigate to checkInScreen when subjectId is present', () => {
     const navigate = jest.fn();
-    renderWithRedux(<LandingScreen navigation={{ navigate }} />, {
+    const goBack = jest.fn();
+    renderWithRedux(<LandingScreen navigation={{ navigate, goBack }} />, {
       initialState: { User: { subjectId: 'someId' } },
     });
 
@@ -48,8 +51,9 @@ describe('LandingScreen', () => {
         }
       });
     const navigate = jest.fn();
+    const goBack = jest.fn();
     const { getByText, findByText } = renderWithRedux(
-      <LandingScreen navigation={{ navigate }} />,
+      <LandingScreen navigation={{ navigate, goBack }} />,
       { initialState: { Globals: { error: 'some error' } } },
     );
     const retryBtn = getByText(en.login.landing.retry);

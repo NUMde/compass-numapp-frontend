@@ -4,6 +4,7 @@ import
 
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
+import PropTypes from 'prop-types';
 
 import config from '~config/configProvider';
 
@@ -29,6 +30,10 @@ function ProgressBar({ progress }) {
     </View>
   );
 }
+
+ProgressBar.propTypes = {
+  progress: PropTypes.number.isRequired,
+};
 
 /***********************************************************************************************
 local styling

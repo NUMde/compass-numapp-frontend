@@ -5,9 +5,12 @@ imports
 ***********************************************************************************************/
 
 import React from 'react';
-import { WebView } from 'react-native-webview';
 import { View, StyleSheet } from 'react-native';
+import PropTypes from 'prop-types';
+import { navigationPropType } from '~propTypes';
 
+// components
+import { WebView } from 'react-native-webview';
 // custom components
 import { Banner } from '~components/shared';
 
@@ -39,6 +42,17 @@ function WebViewScreen({ route, navigation }) {
     </View>
   );
 }
+
+WebViewScreen.propTypes = {
+  navigation: PropTypes.shape(navigationPropType).isRequired,
+  route: PropTypes.shape({
+    params: PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      screenSubTitle: PropTypes.string,
+      uri: PropTypes.string.isRequired,
+    }),
+  }).isRequired,
+};
 
 /***********************************************************************************************
 localStyle

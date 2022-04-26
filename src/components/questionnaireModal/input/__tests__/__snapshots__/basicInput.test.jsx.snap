@@ -19,7 +19,9 @@ exports[`BasicInput should render basic input 1`] = `
         "marginTop": 5,
       }
     }
-  />
+  >
+    empty
+  </Text>
   <View
     style={
       Object {

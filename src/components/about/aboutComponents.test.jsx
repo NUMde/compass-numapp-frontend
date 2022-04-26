@@ -59,7 +59,7 @@ describe('aboutListLink', () => {
     iconType: 'entypo',
   };
 
-  const navigation = { navigate: jest.fn() };
+  const navigation = { navigate: jest.fn(), goBack: jest.fn() };
 
   it('should render the aboutListLink', () => {
     const tree = render(
@@ -99,6 +99,8 @@ describe('redirectModal', () => {
     subTitle: 'subtitle',
     text: 'some text',
     uri: 'http://example.com',
+    iconTitle: 'link',
+    iconType: 'entypo',
   };
   const hideModal = jest.fn();
 
@@ -122,7 +124,7 @@ describe('redirectModal', () => {
       />,
     );
     expect(getByTestId('redirectModal').props.visible).toBe(false);
-    rerender(<RedirectModal showModal={true} />);
+    rerender(<RedirectModal showModal={true} hideModal={hideModal} />);
     expect(getByTestId('redirectModal').props.visible).toBe(true);
   });
 

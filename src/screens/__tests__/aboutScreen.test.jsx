@@ -33,8 +33,9 @@ describe('AboutScreen', () => {
 
   it('should render the about screen', () => {
     const navigate = jest.fn();
+    const goBack = jest.fn();
     const { toJSON } = renderWithRedux(
-      <AboutScreen navigation={{ navigate }} />,
+      <AboutScreen navigation={{ navigate, goBack }} />,
       { initialState: { User: { subjectId: 'someSubjectId' } } },
     );
     expect(toJSON()).toMatchSnapshot();
@@ -42,6 +43,7 @@ describe('AboutScreen', () => {
 
   it('should redirect to landing screen when reset was successful', async () => {
     const navigate = jest.fn();
+    const goBack = jest.fn();
     const spyAlert = jest
       .spyOn(Alert, 'alert')
       .mockImplementation(async (title, message, callbackOrButtons) => {
@@ -50,7 +52,7 @@ describe('AboutScreen', () => {
         }
       });
     const { getByText } = renderWithRedux(
-      <AboutScreen navigation={{ navigate }} />,
+      <AboutScreen navigation={{ navigate, goBack }} />,
       {
         initialState: {
           Globals: { loading: false },
@@ -76,6 +78,7 @@ describe('AboutScreen', () => {
 
   it('should change language', async () => {
     const navigate = jest.fn();
+    const goBack = jest.fn();
     jest
       .spyOn(Alert, 'alert')
       .mockImplementation(async (title, message, callbackOrButtons) => {
@@ -84,7 +87,7 @@ describe('AboutScreen', () => {
         }
       });
     const { getByTestId } = renderWithRedux(
-      <AboutScreen navigation={{ navigate }} />,
+      <AboutScreen navigation={{ navigate, goBack }} />,
       {
         initialState: {
           Globals: { loading: false },
@@ -100,6 +103,7 @@ describe('AboutScreen', () => {
 
   it('should warn user before changing language when questionnaire has been started', async () => {
     const navigate = jest.fn();
+    const goBack = jest.fn();
     const spyAlert = jest
       .spyOn(Alert, 'alert')
       .mockImplementation(async (title, message, callbackOrButtons) => {
@@ -108,7 +112,7 @@ describe('AboutScreen', () => {
         }
       });
     const { getByTestId } = renderWithRedux(
-      <AboutScreen navigation={{ navigate }} />,
+      <AboutScreen navigation={{ navigate, goBack }} />,
       {
         initialState: {
           Globals: { loading: false },
@@ -133,9 +137,10 @@ describe('AboutScreen', () => {
 
   it('should show and hide redirectModal', async () => {
     const navigate = jest.fn();
+    const goBack = jest.fn();
     const spyLinking = jest.spyOn(Linking, 'openURL');
     const { getByTestId, getByText } = renderWithRedux(
-      <AboutScreen navigation={{ navigate }} />,
+      <AboutScreen navigation={{ navigate, goBack }} />,
     );
     const modalLink = en.modalLinks[0];
     const item = getByText(modalLink.title);

@@ -34,6 +34,7 @@ compass
 │   ├── store
 │   ├── theme
 │   ├── typedef.js
+│   ├── propTypes.js
 ├── App.js 
 └── index.js
 ```
@@ -116,6 +117,9 @@ Holds the theme for the application, including spacing, colors, and typography. 
 
 ** *typdef.js* + 
 Holds some type definitions.
+
+** *propTypes.js* + 
+definitions of props shared between multiple components
 
 * *App.js* + 
 The starting point of the REACT-Native Application.

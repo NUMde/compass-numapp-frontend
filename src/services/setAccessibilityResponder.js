@@ -19,7 +19,6 @@ export default function setAccessibilityResponder(object) {
   if (object && object.current) {
     const temp = findNodeHandle(object.current);
     if (temp) {
-      // eslint-disable-next-line no-unused-expressions
       Platform.OS === 'android'
         ? UIManager.sendAccessibilityEvent(temp, 8)
         : AccessibilityInfo.setAccessibilityFocus(temp);

@@ -12,6 +12,8 @@ import {
   View,
   StyleSheet,
 } from 'react-native';
+import PropTypes from 'prop-types';
+import { modalLinkPropType } from '~propTypes';
 
 // components
 import { Icon, Button } from 'react-native-elements';
@@ -108,6 +110,14 @@ function RedirectModal({ showModal, hideModal, modalLink }) {
     </RNModal>
   );
 }
+
+RedirectModal.propTypes = {
+  showModal: PropTypes.bool.isRequired,
+  hideModal: PropTypes.func.isRequired,
+  modalLink: PropTypes.shape(modalLinkPropType),
+};
+
+RedirectModal.defaultProps = { modalLink: null };
 
 /***********************************************************************************************
 local styling

@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
+import PropTypes from 'prop-types';
 
 import { ListItem } from 'react-native-elements';
 
@@ -118,6 +119,24 @@ function CategoriesList({ categories, itemMap, showQuestionnaireModal }) {
   }
   return <View />;
 }
+
+CategoriesList.propTypes = {
+  categories: PropTypes.arrayOf(
+    PropTypes.shape({
+      linkId: PropTypes.string,
+      text: PropTypes.string.isRequired,
+    }),
+  ),
+  itemMap: PropTypes.objectOf(
+    PropTypes.shape({ linkId: PropTypes.string, text: PropTypes.string }),
+  ),
+  showQuestionnaireModal: PropTypes.func.isRequired,
+};
+
+CategoriesList.defaultProps = {
+  categories: null,
+  itemMap: null,
+};
 
 const localStyle = StyleSheet.create({
   wrapper: {

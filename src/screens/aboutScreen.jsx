@@ -7,6 +7,8 @@ imports
 import React, { useState, useEffect } from 'react';
 import { Alert, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
+import { navigationPropType } from '~propTypes';
 
 // components
 import { Picker } from '@react-native-picker/picker';
@@ -252,6 +254,10 @@ function AboutScreen({ navigation }) {
     </View>
   );
 }
+
+AboutScreen.propTypes = {
+  navigation: PropTypes.shape(navigationPropType).isRequired,
+};
 
 /***********************************************************************************************
 local styling

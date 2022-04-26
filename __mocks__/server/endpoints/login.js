@@ -10,7 +10,7 @@ export default rest.get(
       current_instance_id: 'first_instance',
       current_questionnaire_id:
         'http://hl7.org/fhir/Questionnaire/Fragebogen_COMPASS_Beispiel|1.0',
-      due_date: '9999-12-30T23:00:00.000Z',
+      due_date: new Date('Mon Mar 14 2022').toUTCString(),
       start_date: new Date().toUTCString(),
       subjectId: req.params.subjectId,
       firstTime: true,

@@ -33,9 +33,10 @@ describe('SurveyScreen', () => {
 
   it('should render the screen when not completed', async () => {
     const navigate = jest.fn();
+    const goBack = jest.fn();
 
     const { findByText, queryByText } = renderWithRedux(
-      <SurveyScreen navigation={navigate} />,
+      <SurveyScreen navigation={{ navigate, goBack }} />,
       {
         initialState: {
           Globals: { loading: false },
@@ -55,9 +56,10 @@ describe('SurveyScreen', () => {
 
   it('should fetch questionnaire if not present', async () => {
     const navigate = jest.fn();
+    const goBack = jest.fn();
 
     const { findByText, queryByText } = renderWithRedux(
-      <SurveyScreen navigation={navigate} />,
+      <SurveyScreen navigation={{ navigate, goBack }} />,
       {
         initialState: {
           Globals: { loading: false },
@@ -81,6 +83,7 @@ describe('SurveyScreen', () => {
 
   it('should render the screen when completed', (done) => {
     const navigate = jest.fn();
+    const goBack = jest.fn();
     config.appConfig.automateQrLogin = true;
     jest
       .spyOn(Alert, 'alert')
@@ -91,7 +94,7 @@ describe('SurveyScreen', () => {
       });
 
     const { getByText, getByTestId, queryByTestId } = renderWithRedux(
-      <SurveyScreen navigation={{ navigate }} />,
+      <SurveyScreen navigation={{ navigate, goBack }} />,
       {
         initialState: {
           Globals: { loading: false },
@@ -121,8 +124,9 @@ describe('SurveyScreen', () => {
 
   it('should open modal when clicking category', () => {
     const navigate = jest.fn();
+    const goBack = jest.fn();
     const { getByText } = renderWithRedux(
-      <SurveyScreen navigation={{ navigate }} />,
+      <SurveyScreen navigation={{ navigate, goBack }} />,
       {
         initialState: {
           Globals: { loading: false },

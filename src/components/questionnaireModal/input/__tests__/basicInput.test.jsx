@@ -12,11 +12,11 @@ describe('BasicInput', () => {
 
   it('should render basic input', () => {
     const { getByTestId, toJSON } = renderWithRedux(
-      <BasicInput item={{ linkId: '1.1', type: 'text' }} />,
+      <BasicInput item={{ linkId: '1.1', type: 'string', text: 'empty' }} />,
       {
         initialState: {
           Questionnaire: {
-            itemMap: { 1.1: { linkId: '1.1', type: 'text' } },
+            itemMap: { 1.1: { linkId: '1.1', type: 'string' } },
           },
         },
       },
@@ -30,20 +30,20 @@ describe('BasicInput', () => {
       Questionnaire: {
         itemMap: {
           1: { linkId: '1', type: 'group', item: [{ linkId: '1.1' }] },
-          1.1: { linkId: '1.1', type: 'string', text: 'empty' },
+          1.1: { linkId: '1.1', type: 'string', text: 'string' },
         },
         categories: [
           {
             linkId: '1',
             type: 'text',
-            item: [{ linkId: '1.1', type: 'string', text: 'empty' }],
+            item: [{ linkId: '1.1', type: 'string', text: 'string' }],
           },
         ],
       },
     };
 
     const { getByTestId } = renderWithRedux(
-      <BasicInput item={{ linkId: '1.1', type: 'string' }} />,
+      <BasicInput item={{ linkId: '1.1', type: 'string', text: 'string' }} />,
       {
         initialState: state,
       },
@@ -72,7 +72,9 @@ describe('BasicInput', () => {
     };
 
     const { getByTestId } = renderWithRedux(
-      <BasicInput item={{ linkId: '1.1', type: 'string', maxLength: 5 }} />,
+      <BasicInput
+        item={{ linkId: '1.1', type: 'string', text: 'string', maxLength: 5 }}
+      />,
       {
         initialState: state,
       },
@@ -95,7 +97,7 @@ describe('BasicInput', () => {
     };
 
     const { getByTestId, getByText } = renderWithRedux(
-      <BasicInput item={{ linkId: '1.1', type: 'integer' }} />,
+      <BasicInput item={{ linkId: '1.1', type: 'integer', text: 'integer' }} />,
       {
         initialState: state,
       },
@@ -129,7 +131,7 @@ describe('BasicInput', () => {
     };
 
     const { getByTestId, getByText } = renderWithRedux(
-      <BasicInput item={{ linkId: '1.1', type: 'decimal' }} />,
+      <BasicInput item={{ linkId: '1.1', type: 'decimal', text: 'decimal' }} />,
       {
         initialState: state,
       },

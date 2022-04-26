@@ -7,6 +7,8 @@ imports
 import React, { useEffect } from 'react';
 import { Alert, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
+import { navigationPropType } from '~propTypes';
 
 // custom components
 import { Spinner, Banner, ScrollIndicatorWrapper } from '~components/shared';
@@ -160,6 +162,10 @@ function LandingScreen({ navigation }) {
     </View>
   );
 }
+
+LandingScreen.propTypes = {
+  navigation: PropTypes.shape(navigationPropType).isRequired,
+};
 
 /***********************************************************************************************
 localStyle

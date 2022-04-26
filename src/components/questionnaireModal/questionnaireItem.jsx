@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
+import { itemPropType } from '~propTypes';
 
 // services & config
 import questionnaireAnalyzer from '~services/questionnaireAnalyzer';
@@ -118,3 +120,7 @@ export default function QuestionnaireItem({ item }) {
     }
   }
 }
+
+QuestionnaireItem.propTypes = {
+  item: PropTypes.shape(itemPropType).isRequired,
+};

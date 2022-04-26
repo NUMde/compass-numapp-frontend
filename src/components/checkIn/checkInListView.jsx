@@ -6,6 +6,7 @@ imports
 
 import React from 'react';
 import { StyleSheet } from 'react-native';
+import PropTypes from 'prop-types';
 
 // components
 import { ListItem } from 'react-native-elements';
@@ -142,6 +143,20 @@ function CheckInListView({ done, started, dueDate, firstTime, navigation }) {
     </ListItem>
   );
 }
+
+CheckInListView.propTypes = {
+  done: PropTypes.bool,
+  started: PropTypes.bool,
+  dueDate: PropTypes.string.isRequired,
+  firstTime: PropTypes.bool.isRequired,
+  navigation: PropTypes.shape({ navigate: PropTypes.func.isRequired })
+    .isRequired,
+};
+
+CheckInListView.defaultProps = {
+  done: false,
+  started: false,
+};
 
 /***********************************************************************************************
 local styling

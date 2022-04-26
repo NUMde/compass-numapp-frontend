@@ -1,6 +1,8 @@
 import React from 'react';
 import { Text } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
+import { itemPropType } from '~propTypes';
 
 // components
 import { Picker } from '@react-native-picker/picker';
@@ -224,5 +226,9 @@ function ChoicesInput({ item }) {
     </>
   );
 }
+
+ChoicesInput.propTypes = {
+  item: PropTypes.shape(itemPropType).isRequired,
+};
 
 export default ChoicesInput;
