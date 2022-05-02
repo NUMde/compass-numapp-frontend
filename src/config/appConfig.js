@@ -95,7 +95,7 @@ const conf = {
 
   /** dev-option:
    * used the locally available questionnaire.js instead of the procured one from the backend */
-  useLocalQuestionnaireInsteadOftheReceivedOne: __DEV__ && false,
+  useLocalQuestionnaireInsteadOftheReceivedOne: __DEV__ && true,
 
   /** dev-option:
    * skips the id-comparison */

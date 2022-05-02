@@ -145,4 +145,58 @@ describe('BasicInput', () => {
     fireEvent.changeText(getByTestId('BasicInput.Input'), 'abc');
     expect(errorHint.props.children).toBe(errorMessage);
   });
+
+  it('should alert when input does not match regex', () => {
+    const state = {
+      Questionnaire: {
+        itemMap: {
+          1.1: {
+            linkId: '1.1',
+            type: 'string',
+            text: 'empty',
+            extension: [
+              {
+                url: 'http://hl7.org/fhir/StructureDefinition/regex',
+                valueString: '^[a-z]+$',
+              },
+            ],
+          },
+        },
+        categories: [
+          {
+            linkId: '1',
+            type: 'text',
+            item: [{ linkId: '1.1', type: 'string', text: 'empty' }],
+          },
+        ],
+      },
+    };
+
+    const { getByTestId, getByText } = renderWithRedux(
+      <BasicInput
+        item={{
+          linkId: '1.1',
+          type: 'string',
+          text: 'decimal',
+          extension: [
+            {
+              url: 'http://hl7.org/fhir/StructureDefinition/regex',
+              valueString: '^[a-z]+$',
+            },
+          ],
+        }}
+      />,
+      {
+        initialState: state,
+      },
+    );
+    fireEvent.changeText(getByTestId('BasicInput.Input'), 'Abc');
+    const errorMessage = translate('survey').notMatchingPattern;
+    const errorHint = getByText(errorMessage);
+    expect(errorHint).toBeTruthy();
+    fireEvent.changeText(getByTestId('BasicInput.Input'), '');
+    expect(errorHint.props.children).toBe('');
+    fireEvent.changeText(getByTestId('BasicInput.Input'), 'abc');
+    expect(errorHint.props.children).toBe('');
+  });
 });

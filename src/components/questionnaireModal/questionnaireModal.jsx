@@ -91,9 +91,7 @@ function QuestionnaireModal() {
    */
   const handleScrollTo = (element) => {
     // scrolls to the given element if the scrollView is currently active
-    if (scrollViewRef.current) {
-      scrollViewRef.current.scrollTo({ ...element, animated: true });
-    }
+    scrollViewRef.current.scrollTo({ ...element, animated: true });
   };
 
   const hideModalHandle = () => {

@@ -445,14 +445,34 @@ export default {
       },
       {
         linkId: '1.24',
-        text: 'bla',
+        text: "Diese Frage wird nur angezeigt, wenn Frage 1.20 mit 'Alpha' beantwortet wurde",
+        type: 'string',
+        required: true,
+        enableWhen: [
+          {
+            question: '1.20',
+            operator: '=',
+            answerCoding: {
+              system: 'snomed',
+              code: 'A',
+              display: 'Alpha',
+            },
+          },
+        ],
+        done: false,
+        answer: null,
+      },
+      {
+        linkId: '1.25',
+        text: 'Frage mit regulärem Ausdruck; nur Kleinbuchstaben erlaubt',
         type: 'string',
         extension: [
           {
-            url: 'http://hl7.org/fhir/StructureDefinition/questionnaire-hidden',
-            valueBoolean: true,
+            url: 'http://hl7.org/fhir/StructureDefinition/regex',
+            valueString: '^[a-z]',
           },
         ],
+        required: true,
       },
     ],
     done: false,
@@ -1129,6 +1149,20 @@ export default {
     done: false,
     answer: null,
     required: false,
+  },
+  1.25: {
+    linkId: '1.25',
+    text: 'Frage mit regulärem Ausdruck; nur Kleinbuchstaben erlaubt',
+    type: 'string',
+    extension: [
+      {
+        url: 'http://hl7.org/fhir/StructureDefinition/regex',
+        valueString: '^[a-z]+$',
+      },
+    ],
+    required: true,
+    answer: null,
+    done: false,
   },
   2.1: {
     linkId: '2.1',

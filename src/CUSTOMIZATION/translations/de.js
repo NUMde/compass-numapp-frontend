@@ -101,6 +101,8 @@ export default {
   /** strings with generic purpose that can be used throughout the application */
   generic: {
     questionnaire: 'Fragebogen',
+    no: 'Nein',
+    yes: 'Ja',
     ok: 'okay',
     error: 'Fehler',
     abort: 'Abbrechen',
@@ -214,11 +216,12 @@ export default {
     furtherInfo:
       'Dies ist der untere Snippet des Welcometext.Sie können hier etwas nützliches platzieren ... wie ein Limerick.',
     welcomeTextUser:
-      'Dies ist die regelmäßige Begrüßungsnachricht.Es wird angezeigt, wenn ein Fragebogen verfügbar ist und der Benutzer ein wiederkehrendes ist.Darunter sollte das Fälligkeitsdatum angezeigt werden.',
+      'Dies ist die regelmäßige Begrüßungsnachricht. Es wird angezeigt, wenn ein Fragebogen verfügbar ist und der Benutzer ein wiederkehrendes ist.Darunter sollte das Fälligkeitsdatum angezeigt werden.',
     welcomeTextFirstTimeUser1:
-      'Dies ist Text, der an Erstzeitern dargestellt wird.Es sagt ihnen, wenn der erste Fragebogen fällig ist: ',
+      'Dies ist Text, der an Erstzeitern dargestellt wird. Es sagt ihnen, wenn der erste Fragebogen fällig ist: ',
     invalidInteger: 'Nur ganzzahlige Werte erlaubt!',
     invalidDecimal: 'Keine gültige Dezimalzahl!',
+    notMatchingPattern: 'Eingabe entspricht nicht den Vorgaben!',
   },
 
   /** strings for the special-report-flow */

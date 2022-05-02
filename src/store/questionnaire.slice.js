@@ -93,12 +93,8 @@ const QuestionnaireSlice = createSlice({
           // set the answer at index "linkId" of the itemMap
           [linkId]: {
             ...itemMap[linkId],
-            done:
-              !!answer ||
-              typeof answer === 'number' ||
-              itemMap[linkId].type === 'boolean' ||
-              !itemMap[linkId].required,
-            answer,
+            done: !!answer,
+            answer: [answer],
           },
           // mark the category as started
           [linkId.split('.')[0]]: {
@@ -113,7 +109,9 @@ const QuestionnaireSlice = createSlice({
           ? [...state.itemMap[linkId].answer]
           : [];
         // check if answer was previously selected
-        const foundIndex = currentAnswers.findIndex((item) => item === answer);
+        const foundIndex = currentAnswers.findIndex(
+          (item) => JSON.stringify(item) === JSON.stringify(answer),
+        );
         // if answer was present, remove it
         if (foundIndex > -1) {
           currentAnswers.splice(foundIndex, 1);
@@ -206,11 +204,7 @@ const traverseItem = (item, questionnaireItemMap) => {
      * c) it is not required
      * d) it is a group of booleans (see a))
      */
-    done:
-      item.type === 'boolean' ||
-      item.type === 'display' ||
-      !item.required ||
-      item.item?.every((childItem) => childItem.type === 'boolean'),
+    done: item.type === 'display' || !item.required,
     answer: null,
     type: item.type || 'ignore',
     required: item.required || false,

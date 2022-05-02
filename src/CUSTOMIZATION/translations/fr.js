@@ -102,6 +102,8 @@ export default {
   /** strings with generic purpose that can be used throughout the application */
   generic: {
     ok: "d'accord",
+    no: 'Non',
+    yes: 'Oui',
     error: 'échec',
     abort: 'Avorter',
     warning: 'Attention',
@@ -221,6 +223,7 @@ export default {
       "Ceci est un texte affiché sur les points d'extrémité. Il vous dit si le premier questionnaire est dû: ",
     invalidInteger: 'Seuls les nombres entiers sont autorisés',
     invalidDecimal: 'Seuls les décimaux sont autorisés',
+    notMatchingPattern: "L'entrée ne correspond pas au modèle requis",
   },
 
   /** strings for the special-report-flow */

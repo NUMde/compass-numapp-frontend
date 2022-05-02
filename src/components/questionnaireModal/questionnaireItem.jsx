@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Text } from 'react-native';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { itemPropType } from '~propTypes';
@@ -44,45 +44,40 @@ export default function QuestionnaireItem({ item }) {
     return null;
   }
   // if the item represents a group of questions, display the title of the group and render the children below
-  if (item.type === 'group') {
+  if (item.type === 'display') {
     return (
-      <View key={item.linkId}>
-        <Text
-          style={{
-            ...SharedStyles.contentTitle,
-            fontSize: calculateFontSize(item.linkId),
-            lineHeight: calculateLineHeight(item.linkId),
-            marginLeft: calculateIndent(item.linkId),
-          }}
-        >
-          {item.text}
-        </Text>
-        {item.item &&
-          item.item.map((subItem) => (
-            <QuestionnaireItem item={subItem} key={subItem.linkId} />
-          ))}
-      </View>
+      <Text
+        style={{
+          ...SharedStyles.contentTitle,
+          fontSize: calculateFontSize(item.linkId),
+          lineHeight: calculateLineHeight(item.linkId),
+          marginLeft: calculateIndent(item.linkId),
+        }}
+      >
+        {item.text}
+      </Text>
     );
   } else {
     let itemControlExtension;
     let isSlider;
+    let questionItem;
     switch (item.type) {
       // creates regular inputs for strings
       case 'string':
-        return <BasicInput item={item} key={item.linkId} />;
-
+        questionItem = <BasicInput item={item} key={item.linkId} />;
+        break;
       // creates either a list of radio buttons, a list of checkboxes or a drop-down element
       case 'choice':
-        return <ChoicesInput item={item} key={item.linkId} />;
-
+        questionItem = <ChoicesInput item={item} key={item.linkId} />;
+        break;
       // creates a checkbox
       case 'boolean':
         return <BooleanInput item={item} key={item.linkId} />;
 
       // creates a date input
       case 'date':
-        return <DateInput item={item} key={item.linkId} />;
-
+        questionItem = <DateInput item={item} key={item.linkId} />;
+        break;
       // creates the inputs for decimals and integers (and numerical sliders)
       // this also utilizes the decimal-pad or the num-pad
       case 'integer':
@@ -97,15 +92,15 @@ export default function QuestionnaireItem({ item }) {
             c.system === 'http://hl7.org/fhir/questionnaire-item-control' &&
             c.code === 'slider',
         );
-        return isSlider ? (
+        questionItem = isSlider ? (
           <SliderInput item={item} key={item.linkId} />
         ) : (
           <BasicInput item={item} key={item.linkId} />
         );
-
+        break;
       // if nothing else matches - display the title
       default:
-        return (
+        questionItem = (
           <Text
             style={{
               ...SharedStyles.contentTitle,
@@ -118,6 +113,17 @@ export default function QuestionnaireItem({ item }) {
           </Text>
         );
     }
+    return (
+      <>
+        {/* the question item itself */}
+        {questionItem}
+        {/* nested items of the question if existent */}
+        {item.item &&
+          item.item.map((subItem) => (
+            <QuestionnaireItem item={subItem} key={subItem.linkId} />
+          ))}
+      </>
+    );
   }
 }
 

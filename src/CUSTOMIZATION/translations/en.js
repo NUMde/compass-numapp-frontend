@@ -97,6 +97,8 @@ export default {
   /** strings with generic purpose that can be used throughout the application */
   generic: {
     ok: 'OK',
+    no: 'No',
+    yes: 'Yes',
     error: 'Error',
     abort: 'Cancel',
     warning: 'Warning',
@@ -219,6 +221,7 @@ export default {
       'This is text that is presented to first-time-users. It tells them when the first questionnaire is due: ',
     invalidInteger: 'Only integers allowed!',
     invalidDecimal: 'Only decimals allowed!',
+    notMatchingPattern: 'Input does not match required input',
   },
 
   /** strings for the special-report-flow */

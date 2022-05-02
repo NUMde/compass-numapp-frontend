@@ -38,7 +38,7 @@ export default function DateInput({ item }) {
   const dispatch = useDispatch();
   // get currentDate from state
   const currentDate = useSelector(
-    (state) => state.Questionnaire.itemMap[item.linkId].answer,
+    (state) => state.Questionnaire.itemMap[item.linkId].answer?.[0]?.answerDate,
   );
   return (
     <View style={SharedStyles.modalInput}>
@@ -88,7 +88,7 @@ export default function DateInput({ item }) {
               dispatch(
                 setAnswer({
                   linkId: item.linkId,
-                  answer: date,
+                  answer: { answerDate: exportService.getFormattedDate(date) },
                 }),
               );
             }
@@ -107,7 +107,7 @@ export default function DateInput({ item }) {
                 // return empty otherwise; no date has been selected
                 setAnswer({
                   linkId: item.linkId,
-                  answer: '',
+                  answer: null,
                 }),
               );
               setShowDatePicker(false);

@@ -163,19 +163,15 @@ export default {
         },
         {
           linkId: '1.16',
-          text: 'Bedingte Abfrage mit answerInteger',
+          text: 'Bedingte Abfrage Ganzzahl (erwartet = 1)',
+          answer: [
+            {
+              valueInteger: 1,
+            },
+          ],
           item: [
             {
               linkId: '1.16.1',
-              text: 'Abfrage Ganzzahl (erwartet = 1)',
-              answer: [
-                {
-                  valueInteger: 1,
-                },
-              ],
-            },
-            {
-              linkId: '1.16.2',
               text: 'Diese Frage wird nur bei erwarteter Eingabe angezeigt',
               answer: [
                 {
@@ -235,8 +231,8 @@ export default {
             {
               valueCoding: {
                 system: 'snomed',
-                code: 'B',
-                display: 'Beta',
+                code: 'A',
+                display: 'Alpha',
               },
             },
           ],
@@ -264,6 +260,11 @@ export default {
               ],
             },
           ],
+        },
+        {
+          linkId: '1.24',
+          text: "Diese Frage wird nur angezeigt, wenn Frage 1.20 mit 'Alpha' beantwortet wurde",
+          answer: [{ valueString: 'abc' }],
         },
       ],
     },

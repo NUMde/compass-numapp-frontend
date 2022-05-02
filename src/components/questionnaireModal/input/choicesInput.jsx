@@ -14,7 +14,6 @@ import { setAnswer } from '~store/questionnaire.slice';
 // services & config
 import translate from '~services/localization';
 import config from '~config/configProvider';
-import exportService from '~services/questionnaireAnalyzer';
 
 import SharedStyles, {
   calculateFontSize,
@@ -63,6 +62,10 @@ function ChoicesInput({ item }) {
     (state) => state.Questionnaire.itemMap,
   );
 
+  const itemMapEntry = useSelector(
+    (state) => state.Questionnaire.itemMap[item.linkId],
+  );
+
   // checks the dependencies of the item and renders it (if the dependencies check out)
   return (
     <>
@@ -93,12 +96,14 @@ function ChoicesInput({ item }) {
         /* renders the drop-down */
         <Picker
           testID="Picker"
-          selectedValue={questionnaireItemMap[item.linkId].answer}
+          selectedValue={JSON.stringify(
+            itemMapEntry.answer ? itemMapEntry.answer[0] : null,
+          )}
           onValueChange={(value) => {
             dispatch(
               setAnswer({
                 linkId: item.linkId,
-                answer: value,
+                answer: JSON.parse(value),
               }),
             );
           }}
@@ -106,7 +111,7 @@ function ChoicesInput({ item }) {
           {item.answerOption.map((answerOption, index) => (
             <Picker.Item
               label={getItemTitle(answerOption)}
-              value={getItemTitle(answerOption)}
+              value={JSON.stringify(answerOption)}
               // eslint-disable-next-line react/no-array-index-key
               key={index}
             />
@@ -132,37 +137,29 @@ function ChoicesInput({ item }) {
               dispatch(
                 setAnswer({
                   linkId: item.linkId,
-                  answer:
-                    answerOption.valueCoding ||
-                    answerOption.valueString ||
-                    answerOption.valueInteger,
+                  answer: {
+                    [Object.keys(answerOption)[0]]:
+                      answerOption[Object.keys(answerOption)[0]],
+                  },
                 }),
               )
             }
-            onIconPress={() => {
+            onIconPress={() =>
               dispatch(
                 setAnswer({
                   linkId: item.linkId,
-                  answer:
-                    answerOption.valueCoding ||
-                    answerOption.valueString ||
-                    answerOption.valueInteger,
+                  answer: {
+                    [Object.keys(answerOption)[0]]:
+                      answerOption[Object.keys(answerOption)[0]],
+                  },
                 }),
-              );
-            }}
+              )
+            }
             checked={
-              exportService.codingEquals(
-                exportService.getCorrectlyFormattedAnswer(
-                  questionnaireItemMap[item.linkId],
-                ),
-                answerOption.valueCoding,
-              ) ||
-              exportService.getCorrectlyFormattedAnswer(
-                questionnaireItemMap[item.linkId],
-              ) === answerOption.valueString ||
-              exportService.getCorrectlyFormattedAnswer(
-                questionnaireItemMap[item.linkId],
-              ) === answerOption.valueInteger
+              !!questionnaireItemMap[item.linkId].answer?.find(
+                (entry) =>
+                  JSON.stringify(entry) === JSON.stringify(answerOption),
+              )
             }
           />
         ))
@@ -177,10 +174,10 @@ function ChoicesInput({ item }) {
               dispatch(
                 setAnswer({
                   linkId: item.linkId,
-                  answer:
-                    answerOption.valueCoding ||
-                    answerOption.valueString ||
-                    answerOption.valueInteger,
+                  answer: {
+                    [Object.keys(answerOption)[0]]:
+                      answerOption[Object.keys(answerOption)[0]],
+                  },
                   repeats: true,
                 }),
               )
@@ -189,29 +186,19 @@ function ChoicesInput({ item }) {
               dispatch(
                 setAnswer({
                   linkId: item.linkId,
-                  answer:
-                    answerOption.valueCoding ||
-                    answerOption.valueString ||
-                    answerOption.valueInteger,
+                  answer: {
+                    [Object.keys(answerOption)[0]]:
+                      answerOption[Object.keys(answerOption)[0]],
+                  },
                   repeats: true,
                 }),
               )
             }
             checked={
-              (answerOption.valueCoding &&
-                questionnaireItemMap[item.linkId]?.answer?.some(
-                  (c) =>
-                    c.code === answerOption.valueCoding.code &&
-                    c.system === answerOption.valueCoding.system,
-                )) ||
-              (questionnaireItemMap[item.linkId].answer &&
-                questionnaireItemMap[item.linkId].answer.includes(
-                  answerOption.valueString,
-                )) ||
-              (questionnaireItemMap[item.linkId].answer &&
-                questionnaireItemMap[item.linkId].answer.includes(
-                  answerOption.valueInteger,
-                ))
+              !!questionnaireItemMap[item.linkId].answer?.find(
+                (entry) =>
+                  JSON.stringify(entry) === JSON.stringify(answerOption),
+              )
             }
             // eslint-disable-next-line react/no-array-index-key
             key={`${item.linkId}.a_${index}`}

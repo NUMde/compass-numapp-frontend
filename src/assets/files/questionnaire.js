@@ -282,24 +282,18 @@ export default {
         },
         {
           linkId: '1.16',
-          text: 'Bedingte Abfrage mit answerInteger',
-          type: 'group',
+          text: 'Bedingte Abfrage Ganzzahl (erwartet = 1)',
+          type: 'integer',
           required: true,
           item: [
             {
               linkId: '1.16.1',
-              text: 'Abfrage Ganzzahl (erwartet = 1)',
-              type: 'integer',
-              required: true,
-            },
-            {
-              linkId: '1.16.2',
               text: 'Diese Frage wird nur bei erwarteter Eingabe angezeigt',
               type: 'string',
               required: true,
               enableWhen: [
                 {
-                  question: '1.16.1',
+                  question: '1.16',
                   operator: '=',
                   answerInteger: 1,
                 },
@@ -460,6 +454,35 @@ export default {
               ],
             },
           ],
+        },
+        {
+          linkId: '1.24',
+          text: "Diese Frage wird nur angezeigt, wenn Frage 1.20 mit 'Alpha' beantwortet wurde",
+          type: 'string',
+          required: true,
+          enableWhen: [
+            {
+              question: '1.20',
+              operator: '=',
+              answerCoding: {
+                system: 'snomed',
+                code: 'A',
+                display: 'Alpha',
+              },
+            },
+          ],
+        },
+        {
+          linkId: '1.25',
+          text: 'Frage mit regulärem Ausdruck; nur Kleinbuchstaben erlaubt',
+          type: 'string',
+          extension: [
+            {
+              url: 'http://hl7.org/fhir/StructureDefinition/regex',
+              valueString: '^[a-z]+$',
+            },
+          ],
+          required: true,
         },
       ],
     },

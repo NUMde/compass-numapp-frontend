@@ -264,24 +264,18 @@ export default {
       },
       {
         linkId: '1.16',
-        text: 'Bedingte Abfrage mit answerInteger',
-        type: 'group',
+        text: 'Bedingte Abfrage Ganzzahl (erwartet = 1)',
+        type: 'integer',
         required: true,
         item: [
           {
             linkId: '1.16.1',
-            text: 'Abfrage Ganzzahl (erwartet = 1)',
-            type: 'integer',
-            required: true,
-          },
-          {
-            linkId: '1.16.2',
             text: 'Diese Frage wird nur bei erwarteter Eingabe angezeigt',
             type: 'string',
             required: true,
             enableWhen: [
               {
-                question: '1.16.1',
+                question: '1.16',
                 operator: '=',
                 answerInteger: 1,
               },
@@ -445,14 +439,32 @@ export default {
       },
       {
         linkId: '1.24',
-        text: 'bla',
+        text: "Diese Frage wird nur angezeigt, wenn Frage 1.20 mit 'Alpha' beantwortet wurde",
+        type: 'string',
+        required: true,
+        enableWhen: [
+          {
+            question: '1.20',
+            operator: '=',
+            answerCoding: {
+              system: 'snomed',
+              code: 'A',
+              display: 'Alpha',
+            },
+          },
+        ],
+      },
+      {
+        linkId: '1.25',
+        text: 'Frage mit regulärem Ausdruck; nur Kleinbuchstaben erlaubt',
         type: 'string',
         extension: [
           {
-            url: 'http://hl7.org/fhir/StructureDefinition/questionnaire-hidden',
-            valueBoolean: true,
+            url: 'http://hl7.org/fhir/StructureDefinition/regex',
+            valueString: '^[a-z]+$',
           },
         ],
+        required: true,
       },
     ],
     done: true,
@@ -523,7 +535,7 @@ export default {
     text: 'Das ist eine Freitextabfrage',
     type: 'string',
     required: true,
-    answer: 'text',
+    answer: [{ valueString: 'text' }],
     done: true,
   },
   1.2: {
@@ -531,7 +543,7 @@ export default {
     text: 'Das ist eine Datumsabfrage',
     type: 'date',
     required: true,
-    answer: '2022-03-14T11:04:50.000Z',
+    answer: [{ valueDate: '2022-03-14' }],
     done: true,
   },
   1.3: {
@@ -539,7 +551,7 @@ export default {
     text: 'Das ist eine Dezimalzahlenabfrage',
     type: 'decimal',
     required: true,
-    answer: '1.0',
+    answer: [{ valueDecimal: 1.0 }],
     done: true,
   },
   1.4: {
@@ -547,7 +559,7 @@ export default {
     text: 'Das ist eine Ganzzahlenabfrage',
     type: 'integer',
     required: true,
-    answer: '10',
+    answer: [{ valueInteger: 10 }],
     done: true,
   },
   1.5: {
@@ -556,7 +568,7 @@ export default {
     type: 'boolean',
     required: true,
     done: true,
-    answer: null,
+    answer: [{ valueBoolean: false }],
   },
   1.6: {
     linkId: '1.6',
@@ -604,7 +616,7 @@ export default {
       },
     ],
     required: true,
-    answer: 3,
+    answer: [{ valueInteger: 3 }],
     done: true,
   },
   1.8: {
@@ -613,7 +625,7 @@ export default {
     type: 'string',
     required: false,
     done: true,
-    answer: 'empty',
+    answer: [{ valueString: 'empty' }],
   },
   1.9: {
     linkId: '1.9',
@@ -650,7 +662,17 @@ export default {
         valueString: 'Option I',
       },
     ],
-    answer: ['Option A', 'Option D', 'Option G'],
+    answer: [
+      {
+        valueString: 'Option A',
+      },
+      {
+        valueString: 'Option D',
+      },
+      {
+        valueString: 'Option G',
+      },
+    ],
     done: true,
   },
   '1.10': {
@@ -687,7 +709,7 @@ export default {
     type: 'boolean',
     required: true,
     done: true,
-    answer: true,
+    answer: [{ valueBoolean: true }],
   },
   '1.10.2': {
     linkId: '1.10.2',
@@ -695,7 +717,7 @@ export default {
     type: 'boolean',
     required: true,
     done: true,
-    answer: null,
+    answer: [{ valueBoolean: false }],
   },
   '1.10.3': {
     linkId: '1.10.3',
@@ -703,7 +725,7 @@ export default {
     type: 'boolean',
     required: true,
     done: true,
-    answer: true,
+    answer: [{ valueBoolean: true }],
   },
   1.11: {
     linkId: '1.11',
@@ -740,7 +762,7 @@ export default {
         valueString: 'Option I',
       },
     ],
-    answer: 'Option E',
+    answer: [{ valueString: 'Option E' }],
     done: true,
   },
   1.12: {
@@ -775,7 +797,7 @@ export default {
       },
     ],
     enableBehavior: 'any',
-    answer: 'empty',
+    answer: [{ valueString: 'empty' }],
     done: true,
   },
   1.14: {
@@ -832,7 +854,7 @@ export default {
     text: 'Abfrage Dezimalzahl (erwartet = 1.5)',
     type: 'decimal',
     required: true,
-    answer: '1.5',
+    answer: [{ valueDecimal: 1.5 }],
     done: true,
   },
   '1.15.2': {
@@ -847,29 +869,23 @@ export default {
         answerDecimal: 1.5,
       },
     ],
-    answer: '1',
+    answer: [{ valueString: '1' }],
     done: true,
   },
   1.16: {
     linkId: '1.16',
-    text: 'Bedingte Abfrage mit answerInteger',
-    type: 'group',
+    text: 'Bedingte Abfrage Ganzzahl (erwartet = 1)',
+    type: 'integer',
     required: true,
     item: [
       {
         linkId: '1.16.1',
-        text: 'Abfrage Ganzzahl (erwartet = 1)',
-        type: 'integer',
-        required: true,
-      },
-      {
-        linkId: '1.16.2',
         text: 'Diese Frage wird nur bei erwarteter Eingabe angezeigt',
         type: 'string',
         required: true,
         enableWhen: [
           {
-            question: '1.16.1',
+            question: '1.16',
             operator: '=',
             answerInteger: 1,
           },
@@ -877,29 +893,21 @@ export default {
       },
     ],
     done: true,
-    answer: null,
+    answer: [{ valueInteger: 1 }],
   },
   '1.16.1': {
     linkId: '1.16.1',
-    text: 'Abfrage Ganzzahl (erwartet = 1)',
-    type: 'integer',
-    required: true,
-    answer: '1',
-    done: true,
-  },
-  '1.16.2': {
-    linkId: '1.16.2',
     text: 'Diese Frage wird nur bei erwarteter Eingabe angezeigt',
     type: 'string',
     required: true,
     enableWhen: [
       {
-        question: '1.16.1',
+        question: '1.16',
         operator: '=',
         answerInteger: 1,
       },
     ],
-    answer: '123',
+    answer: [{ valueString: '123' }],
     done: true,
   },
   1.17: {
@@ -936,7 +944,7 @@ export default {
     text: 'Abfrage Datum (erwartet = 01.01.2021)',
     type: 'date',
     required: true,
-    answer: '2021-01-01T11:06:02.000Z',
+    answer: [{ valueDate: '2021-01-01' }],
     done: true,
   },
   '1.17.2': {
@@ -951,7 +959,7 @@ export default {
         answerDate: '2021-01-01',
       },
     ],
-    answer: '123',
+    answer: [{ valueString: '123' }],
     done: true,
   },
   1.18: {
@@ -960,7 +968,7 @@ export default {
     type: 'string',
     required: true,
     definition: 'http://loinc.org/example#uri',
-    answer: 'abc',
+    answer: [{ valueString: 'abc' }],
     done: true,
   },
   1.19: {
@@ -969,7 +977,7 @@ export default {
     type: 'string',
     required: true,
     maxLength: 10,
-    answer: 'abcdefg',
+    answer: [{ valueString: 'abcdefg' }],
     done: true,
   },
   '1.20': {
@@ -1000,11 +1008,15 @@ export default {
         },
       },
     ],
-    answer: {
-      system: 'snomed',
-      code: 'B',
-      display: 'Beta',
-    },
+    answer: [
+      {
+        valueCoding: {
+          system: 'snomed',
+          code: 'A',
+          display: 'Alpha',
+        },
+      },
+    ],
     done: true,
   },
   1.21: {
@@ -1054,7 +1066,7 @@ export default {
         },
       },
     ],
-    answer: 'Option B',
+    answer: [{ valueString: 'Option B' }],
     done: true,
   },
   1.22: {
@@ -1103,7 +1115,7 @@ export default {
     text: 'Abfrage Datum',
     type: 'date',
     required: true,
-    answer: '2022-03-14T11:06:47.000Z',
+    answer: [{ valueDate: '2022-03-14' }],
     done: true,
   },
   '1.23.2': {
@@ -1122,17 +1134,36 @@ export default {
   },
   1.24: {
     linkId: '1.24',
-    text: 'bla',
+    text: "Diese Frage wird nur angezeigt, wenn Frage 1.20 mit 'Alpha' beantwortet wurde",
     type: 'string',
-    extension: [
+    required: true,
+    enableWhen: [
       {
-        url: 'http://hl7.org/fhir/StructureDefinition/questionnaire-hidden',
-        valueBoolean: true,
+        question: '1.20',
+        operator: '=',
+        answerCoding: {
+          system: 'snomed',
+          code: 'A',
+          display: 'Alpha',
+        },
       },
     ],
     done: true,
-    answer: null,
-    required: false,
+    answer: [{ valueString: 'abc' }],
+  },
+  1.25: {
+    linkId: '1.25',
+    text: 'Frage mit regulärem Ausdruck; nur Kleinbuchstaben erlaubt',
+    type: 'string',
+    extension: [
+      {
+        url: 'http://hl7.org/fhir/StructureDefinition/regex',
+        valueString: '^[a-z]+$',
+      },
+    ],
+    required: true,
+    answer: [{ valueString: 'abc' }],
+    done: false,
   },
   2.1: {
     linkId: '2.1',
@@ -1225,7 +1256,7 @@ export default {
     text: 'Frage der Untergruppe 2',
     type: 'string',
     required: true,
-    answer: 'abc',
+    answer: [{ valueString: 'abc' }],
     done: true,
   },
   '2.1.1.2': {
@@ -1255,7 +1286,7 @@ export default {
     text: 'Frage 1 der Untergruppe 3',
     type: 'string',
     required: true,
-    answer: 'abc',
+    answer: [{ valueString: 'abc' }],
     done: true,
   },
   '2.1.1.2.2': {
@@ -1263,7 +1294,7 @@ export default {
     text: 'Frage 2 der Untergruppe 3',
     type: 'string',
     required: true,
-    answer: 'abc',
+    answer: [{ valueString: 'abc' }],
     done: true,
   },
   '2.1.2': {
@@ -1272,6 +1303,6 @@ export default {
     type: 'boolean',
     required: true,
     done: true,
-    answer: null,
+    answer: [{ valueBoolean: false }],
   },
 };

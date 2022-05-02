@@ -31,49 +31,12 @@ service methods
 /*-----------------------------------------------------------------------------------*/
 
 /**
- * should a questionnaire item contain the "extension" property, its content
- * is tested as an regular expression. it is used to determine if an item
- * was correctly answered.
- * @param {string} linkId linkId of a questionnaire-item
- * @param {Map<string, QuestionnaireItem>} questionnaireItemMap: the item map with all questions
- */
-const checkRegExExtension = (linkId, questionnaireItemMap) => {
-  /**
-   * the item that owns the extension
-   * @type {QuestionnaireItem}
-   */
-  const item = questionnaireItemMap[linkId];
-
-  const itemControlExtension = item?.extension?.find(
-    (e) => e.url === 'http://hl7.org/fhir/StructureDefinition/regex',
-  );
-
-  if (itemControlExtension?.valueString) {
-    return RegExp(itemControlExtension.valueString).test(
-      questionnaireItemMap[item.linkId].answer,
-    );
-  }
-
-  // just returns true if there is no extension
-  return true;
-};
-
-/**
  * gets an entry of an enableWhen-array (a condition) and returns
  * the correct attribute-name for the conditional answer
  * @param {Condition} condition enableWhen condition
  */
-const getEnableWhenAnswerType = (condition) => {
-  if (condition.answerString) return 'answerString';
-  if (condition.answerDate) return 'answerDate';
-  if (condition.answerTime) return 'answerTime';
-  if (condition.answerCoding) return 'answerCoding';
-  if (condition.answerInteger) return 'answerInteger';
-  if (condition.answerDecimal) return 'answerDecimal';
-  if (condition.answerBoolean) return 'answerBoolean';
-  if (condition.answerDateTime) return 'answerDateTime';
-  return 'answerQuantity';
-};
+const getEnableWhenAnswerType = (condition) =>
+  Object.keys(condition).filter((key) => key.startsWith('answer'))[0];
 
 /**
  * checks if the questions mentioned in the enableWhen-conditions were even answered.
@@ -164,33 +127,19 @@ const checkItem = (item, questionnaireItemMap) => {
     !checkDependenciesOfSingleItem(item, questionnaireItemMap)
   ) {
     completed = true;
-  }
-  // if the item does not meet its own regEx
-  else if (!checkRegExExtension(item.linkId, questionnaireItemMap)) {
-    completed = false;
   } else {
     // if its a boolean
-    if (item.type === 'boolean') {
-      // boolean are by default always valid (as FALSE is a valid answer).
-      // but if it has subItems they must be traversed, and the result of that
-      // is the result of the boolean
-      completed = item.item
-        ? traverseItems(item.item, questionnaireItemMap)
-        : true;
-    }
-    // dates, numbers, strings...
-    else if (
+    if (
+      item.type === 'boolean' ||
       item.type === 'date' ||
       item.type === 'string' ||
       item.type === 'integer' ||
       item.type === 'decimal' ||
       item.type === 'number'
     ) {
-      // ...should not be empty -> but 0 is valid value
       completed =
-        (questionnaireItemMap[item.linkId].answer &&
-          questionnaireItemMap[item.linkId].answer !== '') ||
-        questionnaireItemMap[item.linkId].answer === 0;
+        questionnaireItemMap[item.linkId].answer != null &&
+        traverseItems(item.item ?? [], questionnaireItemMap);
     }
     // if there is no subItem..
     else if (!item.item) {
@@ -213,10 +162,7 @@ const checkItem = (item, questionnaireItemMap) => {
       // if multiple answers are allowed
       else {
         // make sure there is something
-        return (
-          Array.isArray(questionnaireItemMap[item.linkId].answer) &&
-          questionnaireItemMap[item.linkId].answer.length
-        );
+        return !!questionnaireItemMap[item.linkId].answer;
       }
     }
   }
@@ -247,15 +193,14 @@ const traverseItems = (elements, questionnaireItemMap) => {
       ) {
         // iterates over all conditions
         item.enableWhen.forEach((condition) => {
+          const requiredAnswer = getEnableWhenAnswerType(condition);
           if (
             // if the condition provides an array of answers and the needed answer is among then OR there is only one answer and it matches
-            ((Array.isArray(questionnaireItemMap[condition.question].answer) &&
-              questionnaireItemMap[condition.question].answer.includes(
-                condition[getEnableWhenAnswerType(condition)],
-              )) ||
-              getCorrectlyFormattedAnswer(
-                questionnaireItemMap[condition.question],
-              ) === condition[getEnableWhenAnswerType(condition)]) &&
+            questionnaireItemMap[condition.question].answer?.find(
+              (entry) =>
+                entry[requiredAnswer.replace('answer', 'value')] ===
+                condition[requiredAnswer],
+            ) &&
             // and the item is not valid
             !checkItem(item, questionnaireItemMap)
           ) {
@@ -276,16 +221,15 @@ const traverseItems = (elements, questionnaireItemMap) => {
 
         // iterates over all conditions
         item.enableWhen.forEach((condition) => {
+          const requiredAnswer = getEnableWhenAnswerType(condition);
           if (
             // if the condition provides an array of answers and the current answer is among then
-            (Array.isArray(questionnaireItemMap[condition.question].answer) &&
-              questionnaireItemMap[condition.question].answer.includes(
-                condition[getEnableWhenAnswerType(condition)],
-              )) ||
-            // OR: there is only one answer and it matches
-            getCorrectlyFormattedAnswer(
-              questionnaireItemMap[condition.question],
-            ) === condition[getEnableWhenAnswerType(condition)]
+            questionnaireItemMap[condition.question].answer?.find((entry) => {
+              return (
+                entry[requiredAnswer.replace('answer', 'value')] ===
+                condition[requiredAnswer]
+              );
+            })
           ) {
             // if the condition is met
             aChangeOccurred = true;
@@ -331,29 +275,6 @@ const getFormattedDate = (date, DMY) => {
   if (day.length < 2) day = `0${day}`;
 
   return DMY ? [day, month, year].join('.') : [year, month, day].join('-');
-};
-
-/**
- * this function is used to produce the answer of an item in a corrected
- * way. for example: the format used for dates in the questionnaire is not the same as
- * the one used in this application. to be able to compare those two this function is used
- * to parse the formats.
- * @param  {ItemMapEntry} item item from the the questionnaireItemMap-object
- */
-const getCorrectlyFormattedAnswer = (item) => {
-  switch (item.type) {
-    case 'date':
-      // formats the Date into yyyy-mm-dd
-      return getFormattedDate(String(item.answer));
-    case 'integer':
-      // needed for string comparisons
-      return parseInt(String(item.answer), 10);
-    case 'decimal':
-      // needed for string comparisons
-      return parseFloat(String(item.answer));
-    default:
-      return item.answer;
-  }
 };
 
 /**
@@ -428,16 +349,12 @@ const checkDependenciesOfSingleItem = (item, questionnaireItemMap) => {
         const question = questionnaireItemMap[condition.question];
 
         if (answerType === 'answerCoding') {
-          return (
-            (Array.isArray(question.answer) &&
-              question.answer.some((it) => codingEquals(it, expected))) ||
-            codingEquals(getCorrectlyFormattedAnswer(question), expected)
+          return question.answer?.find((it) =>
+            codingEquals(it.valueCoding, expected),
           );
         }
-        return (
-          (Array.isArray(question.answer) &&
-            question.answer.includes(expected)) ||
-          getCorrectlyFormattedAnswer(question) === expected
+        return question.answer?.find(
+          (it) => it[answerType.replace('answer', 'value')] === expected,
         );
       };
       return !item.enableBehavior || item.enableBehavior === 'all'
@@ -468,20 +385,6 @@ const createResponseJSON = (questionnaireItemMap, categories, FHIRmetadata) => {
   const triggerMap = {};
 
   /**
-   * return the correct answer object
-   * @param  {{valueString?:string, valueInteger?: number, valueCoding?: Object}} answer answer-object
-   */
-  const createAnswerObject = (answer) => {
-    if (typeof answer === 'string') return { valueString: answer };
-
-    if (typeof answer === 'number') return { valueInteger: answer };
-
-    if (typeof answer === 'object') return { valueCoding: answer };
-
-    return { valueString: answer };
-  };
-
-  /**
    * traverses a set of items and its children (and so on) and creates the structure
    * that will hold the answers of the questionnaire-response
    * @param  {QuestionnaireItem[]} items the questionnaire-items
@@ -492,18 +395,6 @@ const createResponseJSON = (questionnaireItemMap, categories, FHIRmetadata) => {
 
     if (items) {
       items.forEach((item) => {
-        /**
-         * will hold the created child-items, if there are any
-         * @type {QuestionnaireItem[]}
-         */
-        let childItems = [];
-
-        /**
-         * wil hold the correct answer
-         * @type {ResponseAnswer}
-         */
-        let answerObject = {};
-
         /**
          * holds the correct itemdetails
          * @type {ItemMapEntry}
@@ -526,87 +417,8 @@ const createResponseJSON = (questionnaireItemMap, categories, FHIRmetadata) => {
             ...(itemDetails.definition && {
               definition: itemDetails.definition,
             }),
-            answer: [],
+            answer: itemDetails.answer,
           };
-
-          // creates the item property of the new item based on its type
-          switch (item.type) {
-            case 'group':
-              // easy, nothing to check here
-              newItem.item = createItems(item.item);
-              break;
-
-            case 'boolean':
-              answerObject = {
-                // either the set answer, or just false
-                valueBoolean: Boolean(itemDetails.answer) || false,
-              };
-              // traverse the child-items, if there are any, and add them to the answer
-              childItems = item.item ? createItems(item.item) : [];
-              if (childItems.length !== 0) answerObject.item = childItems;
-              newItem.answer = [answerObject];
-              break;
-
-            case 'choice':
-              // if there are multiple answers
-              if (Array.isArray(itemDetails.answer)) {
-                // iterates over all answers
-                itemDetails.answer.forEach((answer) => {
-                  // so now we create an object for each set answer
-                  answerObject = createAnswerObject(answer);
-                  // and check if there are any child-items.
-                  // if yes: traverse the child-items and add them to the answer
-                  childItems = item.item ? createItems(item.item) : [];
-                  if (childItems.length !== 0) answerObject.item = childItems;
-                  newItem.answer.push(answerObject);
-                });
-              }
-              // if there is just a single answer
-              else {
-                answerObject = createAnswerObject(itemDetails.answer);
-                // traverse the child-items, if there are any and add them to the answer
-                childItems = item.item ? createItems(item.item) : [];
-                if (childItems.length !== 0) answerObject.item = childItems;
-                newItem.answer = [answerObject];
-              }
-              break;
-
-            case 'string':
-              newItem.answer = [
-                {
-                  // just the answer
-                  valueString: itemDetails.answer
-                    ? String(itemDetails.answer)
-                    : null,
-                },
-              ];
-              break;
-
-            case 'integer':
-              newItem.answer = [
-                {
-                  valueInteger: parseInt(String(itemDetails.answer), 10),
-                },
-              ];
-              break;
-
-            case 'decimal':
-              newItem.answer = [
-                {
-                  // the answer as a float
-                  valueDecimal: parseFloat(String(itemDetails.answer)),
-                },
-              ];
-              break;
-
-            case 'date':
-              newItem.answer = [
-                {
-                  valueDate: getFormattedDate(String(itemDetails.answer)),
-                },
-              ];
-              break;
-          }
 
           // if there is an definition and a set answer
           if (itemDetails.definition && itemDetails.answer) {
@@ -626,7 +438,7 @@ const createResponseJSON = (questionnaireItemMap, categories, FHIRmetadata) => {
               });
             });
           }
-
+          if (item.item) newItem.item = createItems(item.item);
           newItems.push(newItem);
         }
       });
@@ -723,7 +535,6 @@ export default {
   getFormattedDate,
   createResponseJSON,
   calculatePageProgress,
-  getCorrectlyFormattedAnswer,
   checkDependenciesOfSingleItem,
   checkCompletionStateOfItems,
 };

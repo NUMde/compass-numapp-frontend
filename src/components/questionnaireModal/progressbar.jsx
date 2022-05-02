@@ -25,7 +25,7 @@ function ProgressBar({ progress }) {
   const width = calculateWidth(progress);
 
   return (
-    <View style={localStyle.container}>
+    <View style={localStyle.container} testID="progressBar">
       <View style={[localStyle.progressBar, width.progressBarWidth]} />
     </View>
   );

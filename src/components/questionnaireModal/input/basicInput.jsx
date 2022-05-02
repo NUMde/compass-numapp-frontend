@@ -57,8 +57,12 @@ export default function BasicInput({ item }) {
   const dispatch = useDispatch();
 
   // get currentValue from state
-  const globalValue = useSelector((state) =>
-    state.Questionnaire.itemMap[item.linkId].answer?.toString(),
+  const globalValue = useSelector(
+    (state) =>
+      // whatever the item type, retrieve the current value if existent
+      Object.values(
+        state.Questionnaire.itemMap[item.linkId].answer?.[0] ?? {},
+      )[0],
   );
   // internally store value of input
   const [localValue, setLocalValue] = useState(null);
@@ -73,6 +77,8 @@ export default function BasicInput({ item }) {
 
   // check and validate input
   const handleInputChange = (input) => {
+    // eslint-disable-next-line no-param-reassign
+    input = input.trim();
     // reset error message
     setErrorMsg('');
     // update local state
@@ -101,8 +107,32 @@ export default function BasicInput({ item }) {
         return;
       }
     }
+    const itemControlExtension = item.extension?.find(
+      (e) => e.url === 'http://hl7.org/fhir/StructureDefinition/regex',
+    );
+
+    if (itemControlExtension && !!input) {
+      if (!RegExp(itemControlExtension.valueString).test(input)) {
+        setErrorMsg(translate('survey').notMatchingPattern);
+        // cancel previous update to global state
+        setGlobalAnswer(item, null, dispatch);
+        return;
+      }
+    }
+
     // only update global value if input is valid
-    setGlobalAnswer(item, input.trim(), dispatch);
+    // construct an answer object where the key is one of answerString, answerInteger, ...
+    // and the value is the trimmed input
+    setGlobalAnswer(
+      item,
+      input
+        ? {
+            [`answer${item.type.charAt(0).toUpperCase() + item.type.slice(1)}`]:
+              item.type === 'string' ? input.trim() : Number(input),
+          }
+        : null,
+      dispatch,
+    );
   };
 
   return (
@@ -113,7 +143,7 @@ export default function BasicInput({ item }) {
       <Input
         containerStyle={SharedStyles.modalContainer}
         placeholder={translate('login').inputPlaceholder}
-        value={localValue}
+        value={localValue?.toString()}
         keyboardType={getKeyboardType(item)}
         style={localStyle.alignment}
         maxLength={item.maxLength || null}
