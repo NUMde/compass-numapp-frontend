@@ -29,8 +29,7 @@ import SharedStyles, {
  * @param  {AnswerOption} item entry of an answerOption-entry.
  */
 const getItemTitle = (item) => {
-  // default value
-  let title = 'NO NAME FOUND';
+  let title;
 
   // sets the title in case of a valueCoding attribute
   if (item.valueCoding) {
