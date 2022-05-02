@@ -2,7 +2,6 @@ import React from 'react';
 
 import {
   renderWithRedux,
-  act,
   fireEvent,
   within,
   waitFor,
@@ -56,9 +55,9 @@ describe('Questionnaire Modal', () => {
     expect(icon.parent.parent.parent.props.style.backgroundColor).toBe(
       config.theme.colors.accent4,
     );
-    act(() => {
-      fireEvent.changeText(input, 'some text');
-    });
+
+    fireEvent.changeText(input, 'some text');
+
     expect(input.props.value).toBe('some text');
     await waitFor(() =>
       expect(icon.parent.parent.parent.props.style.backgroundColor).toBe(
@@ -72,7 +71,7 @@ describe('Questionnaire Modal', () => {
       initialState,
     });
     const confirmButton = getByTestId('BottomBar_confirm_btn');
-    act(() => fireEvent.press(confirmButton));
+    fireEvent.press(confirmButton);
 
     await waitFor(() => expect(getByText(/Datumsabfrage/)).toBeTruthy());
     expect(getByTestId('chosenDate')).toBeTruthy();
@@ -83,7 +82,7 @@ describe('Questionnaire Modal', () => {
       initialState,
     });
     const confirmButton = getByTestId('BottomBar_fwd_btn');
-    act(() => fireEvent.press(confirmButton));
+    fireEvent.press(confirmButton);
 
     await waitFor(() => expect(getByText(/Datumsabfrage/)).toBeTruthy());
     expect(getByTestId('chosenDate')).toBeTruthy();
@@ -97,7 +96,7 @@ describe('Questionnaire Modal', () => {
     });
     () => expect(getByText(/Datumsabfrage/)).toBeTruthy();
     const backButton = getByTestId('BottomBar_back_btn');
-    act(() => fireEvent.press(backButton));
+    fireEvent.press(backButton);
 
     await waitFor(() => expect(getByText(/Freitext/)).toBeTruthy());
   });
@@ -110,7 +109,7 @@ describe('Questionnaire Modal', () => {
       },
     );
     const closeButton = getByTestId('QuestionnaireModal_close');
-    act(() => fireEvent.press(closeButton));
+    fireEvent.press(closeButton);
 
     await waitFor(() =>
       expect(getByTestId('QuestionnaireModal').props.visible).toBe(false),
@@ -129,7 +128,7 @@ describe('Questionnaire Modal', () => {
     );
 
     const confirmButton = getByTestId('BottomBar_confirm_btn');
-    act(() => fireEvent.press(confirmButton));
+    fireEvent.press(confirmButton);
 
     await waitFor(() =>
       expect(getByTestId('QuestionnaireModal').props.visible).toBe(false),
@@ -145,7 +144,7 @@ describe('Questionnaire Modal', () => {
     });
     expect(getByText(/Choice-Abfrage/)).toBeTruthy();
     const confirmButton = getByTestId('BottomBar_confirm_btn');
-    act(() => fireEvent.press(confirmButton));
+    fireEvent.press(confirmButton);
 
     await waitFor(() => expect(getByText(/Abfrage Dezimalzahl/)).toBeTruthy());
   });
@@ -158,8 +157,19 @@ describe('Questionnaire Modal', () => {
     });
     expect(getByText(/Abfrage Dezimalzahl/)).toBeTruthy();
     const backButton = getByTestId('BottomBar_back_btn');
-    act(() => fireEvent.press(backButton));
+    fireEvent.press(backButton);
 
     await waitFor(() => expect(getByText(/Choice-Abfrage/)).toBeTruthy());
+  });
+
+  it('should render the modal with the progressBar', () => {
+    const modifiedInitialState = { ...initialState };
+    modifiedInitialState.Questionnaire.pageIndex = 2;
+    config.appConfig.useProgressBar = true;
+    const { getByTestId, toJSON } = renderWithRedux(<QuestionnaireModal />, {
+      initialState,
+    });
+    expect(getByTestId('progressBar')).toBeTruthy();
+    expect(toJSON()).toMatchSnapshot();
   });
 });

@@ -93,6 +93,8 @@ export default {
   /** strings with generic purpose that can be used throughout the application */
   generic: {
     ok: 'نعم',
+    no: 'لا',
+    yes: 'نعم',
     error: 'خطأ',
     abort: 'يلغي',
     warning: 'تحذير',
@@ -202,6 +204,7 @@ export default {
       'هذا هو النص الذي يتم تقديمه للمستخدمين لأول مرة.يخبرهم عندما يكون الاستبيان الأول مستحقا: ',
     invalidInteger: 'يسمح فقط بالأعداد الصحيحة!',
     invalidDecimal: 'يسمح فقط الكسور العشرية!!',
+    notMatchingPattern: 'الإدخال لا يتطابق مع النمط المطلوب',
   },
 
   /** strings for the special-report-flow */

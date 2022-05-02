@@ -28,7 +28,8 @@ export default function SliderInput({ item }) {
 
   // get current value from state
   const currentValue = useSelector(
-    (state) => state.Questionnaire.itemMap[item.linkId].answer,
+    (state) =>
+      state.Questionnaire.itemMap[item.linkId].answer?.[0].answerInteger,
   );
   // creates the default slider-object
   const sliderProperties = Object.create({
@@ -76,7 +77,7 @@ export default function SliderInput({ item }) {
           dispatch(
             setAnswer({
               linkId: item.linkId,
-              answer: value,
+              answer: { answerInteger: value },
             }),
           );
         }}

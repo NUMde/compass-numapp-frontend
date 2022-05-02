@@ -197,7 +197,11 @@ describe('choicesInput (DropDown)', () => {
     );
 
     const Picker = getByTestId('Picker');
-    act(() => Picker.props.onChange({ nativeEvent: { newValue: 'Option C' } }));
+    act(() =>
+      Picker.props.onChange({
+        nativeEvent: { newValue: JSON.stringify({ valueString: 'Option C' }) },
+      }),
+    );
     expect(Picker.props.selectedIndex).toBe(2);
   });
 });

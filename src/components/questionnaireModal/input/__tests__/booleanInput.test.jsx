@@ -21,7 +21,8 @@ describe('BooleanInput', () => {
         },
       },
     );
-    expect(getByTestId('BooleanInput.CheckBox')).toBeTruthy();
+    expect(getByTestId('BooleanInput.true')).toBeTruthy();
+    expect(getByTestId('BooleanInput.false')).toBeTruthy();
     expect(toJSON()).toMatchSnapshot();
   });
 
@@ -55,20 +56,22 @@ describe('BooleanInput', () => {
       },
     );
     act(() => {
-      fireEvent.press(getByTestId('BooleanInput.CheckBox'));
+      fireEvent.press(getByTestId('BooleanInput.true'));
     });
-    expect(
-      getByTestId('BooleanInput.CheckBox').props.accessibilityState,
-    ).toEqual({
+    expect(getByTestId('BooleanInput.true').props.accessibilityState).toEqual({
       checked: true,
     });
-    act(() => {
-      fireEvent.press(getByText('\uf046'));
-    });
-    expect(
-      getByTestId('BooleanInput.CheckBox').props.accessibilityState,
-    ).toEqual({
+    expect(getByTestId('BooleanInput.false').props.accessibilityState).toEqual({
       checked: false,
+    });
+    act(() => {
+      fireEvent.press(getByText('\uf10c'));
+    });
+    expect(getByTestId('BooleanInput.true').props.accessibilityState).toEqual({
+      checked: false,
+    });
+    expect(getByTestId('BooleanInput.false').props.accessibilityState).toEqual({
+      checked: true,
     });
   });
 });

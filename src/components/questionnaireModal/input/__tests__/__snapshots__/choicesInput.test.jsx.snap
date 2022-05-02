@@ -484,31 +484,31 @@ Array [
             "label": "Option A",
             "testID": undefined,
             "textColor": undefined,
-            "value": "Option A",
+            "value": "{\\"valueString\\":\\"Option A\\"}",
           },
           Object {
             "label": "Option B",
             "testID": undefined,
             "textColor": undefined,
-            "value": "Option B",
+            "value": "{\\"valueString\\":\\"Option B\\"}",
           },
           Object {
             "label": "Option C",
             "testID": undefined,
             "textColor": undefined,
-            "value": "Option C",
+            "value": "{\\"valueString\\":\\"Option C\\"}",
           },
           Object {
             "label": "Option D",
             "testID": undefined,
             "textColor": undefined,
-            "value": "Option D",
+            "value": "{\\"valueString\\":\\"Option D\\"}",
           },
           Object {
             "label": "Option E",
             "testID": undefined,
             "textColor": undefined,
-            "value": "Option E",
+            "value": "{\\"valueCoding\\":{\\"code\\":\\"someCode\\",\\"system\\":\\"someSystem\\",\\"display\\":\\"Option E\\"}}",
           },
         ]
       }
