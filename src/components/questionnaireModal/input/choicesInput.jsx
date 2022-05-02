@@ -26,8 +26,6 @@ import SharedStyles, {
  * the entries of that attribute contain the possible choices - and the titles of those
  * choices are either provided by the attribute valueString ot valueInteger.
  * this functions determines what is available an returns it.
- * the title is then stripped of an id, should it be encoded in the string.
- * for example "01# test-answer" becomes "test-answer".
  * @param  {AnswerOption} item entry of an answerOption-entry.
  */
 const getItemTitle = (item) => {
@@ -37,15 +35,12 @@ const getItemTitle = (item) => {
   // sets the title in case of a valueCoding attribute
   if (item.valueCoding) {
     title = item.valueCoding.display ?? item.valueCoding.code;
+  } else {
+    // get the object entry whose key starts with 'value'
+    title =
+      item[Object.keys(item).find((key) => key.startsWith('value'))].toString();
   }
-
-  // get the string
-  title =
-    item.valueString ||
-    (item.valueInteger ? item.valueInteger.toString() : title);
-
-  // splits it
-  return title.split('#')[title.includes('# ') ? 1 : 0].trim();
+  return title;
 };
 
 /***********************************************************************************************

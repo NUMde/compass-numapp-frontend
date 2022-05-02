@@ -454,6 +454,93 @@ Array [
       </Text>
     </View>
   </View>,
+  <View
+    accessibilityRole="checkbox"
+    accessibilityState={
+      Object {
+        "checked": false,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    nativeID="animatedComponent"
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "transparent",
+        "borderColor": "transparent",
+        "borderRadius": 3,
+        "borderWidth": 1,
+        "margin": 0,
+        "marginLeft": 0,
+        "marginRight": 10,
+        "opacity": 1,
+        "padding": 10,
+        "paddingLeft": 0,
+        "paddingRight": 0,
+      }
+    }
+    testID="checkbox"
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+        }
+      }
+    >
+      <Text
+        allowFontScaling={false}
+        onPress={[Function]}
+        selectable={false}
+        style={
+          Array [
+            Object {
+              "color": "#919191",
+              "fontSize": 24,
+            },
+            Object {
+              "minWidth": 24,
+            },
+            Object {
+              "fontFamily": "FontAwesome",
+              "fontStyle": "normal",
+              "fontWeight": "normal",
+            },
+            Object {},
+          ]
+        }
+      >
+        
+      </Text>
+      <Text
+        style={
+          Object {
+            "color": "#1F2532",
+            "fontFamily": "IBMPlexSans-SemiBold",
+            "fontSize": 26.25,
+            "fontWeight": "bold",
+            "lineHeight": 35.625,
+            "margin": 0,
+            "marginLeft": 10,
+            "marginRight": 10,
+            "padding": 0,
+          }
+        }
+        testID="checkboxTitle"
+      >
+        someCode
+      </Text>
+    </View>
+  </View>,
 ]
 `;
 
@@ -509,6 +596,12 @@ Array [
             "testID": undefined,
             "textColor": undefined,
             "value": "{\\"valueCoding\\":{\\"code\\":\\"someCode\\",\\"system\\":\\"someSystem\\",\\"display\\":\\"Option E\\"}}",
+          },
+          Object {
+            "label": "someCode",
+            "testID": undefined,
+            "textColor": undefined,
+            "value": "{\\"valueCoding\\":{\\"code\\":\\"someCode\\",\\"system\\":\\"someSystem\\"}}",
           },
         ]
       }
@@ -980,6 +1073,93 @@ Array [
         testID="checkboxTitle"
       >
         Option E
+      </Text>
+    </View>
+  </View>,
+  <View
+    accessibilityRole="checkbox"
+    accessibilityState={
+      Object {
+        "checked": false,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    nativeID="animatedComponent"
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "backgroundColor": "transparent",
+        "borderColor": "transparent",
+        "borderRadius": 3,
+        "borderWidth": 1,
+        "margin": 0,
+        "marginLeft": 0,
+        "marginRight": 10,
+        "opacity": 1,
+        "padding": 10,
+        "paddingLeft": 0,
+        "paddingRight": 0,
+      }
+    }
+    testID="checkbox"
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "row",
+        }
+      }
+    >
+      <Text
+        allowFontScaling={false}
+        onPress={[Function]}
+        selectable={false}
+        style={
+          Array [
+            Object {
+              "color": "#919191",
+              "fontSize": 24,
+            },
+            Object {
+              "minWidth": 24,
+            },
+            Object {
+              "fontFamily": "FontAwesome",
+              "fontStyle": "normal",
+              "fontWeight": "normal",
+            },
+            Object {},
+          ]
+        }
+      >
+        
+      </Text>
+      <Text
+        style={
+          Object {
+            "color": "#1F2532",
+            "fontFamily": "IBMPlexSans-SemiBold",
+            "fontSize": 26.25,
+            "fontWeight": "bold",
+            "lineHeight": 35.625,
+            "margin": 0,
+            "marginLeft": 10,
+            "marginRight": 10,
+            "padding": 0,
+          }
+        }
+        testID="checkboxTitle"
+      >
+        someCode
       </Text>
     </View>
   </View>,

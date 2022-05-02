@@ -42,18 +42,26 @@ const choiceItem = {
         display: 'Option E',
       },
     },
+    {
+      valueCoding: {
+        code: 'someCode',
+        system: 'someSystem',
+      },
+    },
   ],
 };
 
 describe('choicesInput (CheckBoxes)', () => {
   it('should render a list of choices as checkboxes', async () => {
-    const { toJSON, getAllByTestId, getAllByText } = renderWithRedux(
+    const { toJSON, getAllByTestId, getAllByText, getByText } = renderWithRedux(
       <ChoicesInput item={choiceItem} />,
       { initialState },
     );
     expect(toJSON()).toMatchSnapshot();
-    expect(getAllByTestId('checkbox').length).toBe(5);
-    expect(getAllByText('\uf096').length).toBe(5);
+    expect(getAllByTestId('checkbox').length).toBe(6);
+    expect(getAllByText('\uf096').length).toBe(6);
+    // when no display value is present, the code value should be used as title
+    expect(getByText('someCode')).toBeTruthy();
   });
 
   it('should render a list of integer choices as checkBoxes', async () => {
@@ -80,16 +88,16 @@ describe('choicesInput (CheckBoxes)', () => {
       initialState,
     });
     const answerItem = getByText('Option C');
-    act(() => {
-      fireEvent.press(answerItem);
-    });
+
+    fireEvent.press(answerItem);
+
     const selectedItem = getByText('\uf046');
     expect(selectedItem).toBeTruthy();
     expect(selectedItem.parent.parent.props.checked).toBe(true);
     expect(selectedItem.parent.parent.props.title).toBe('Option C');
-    act(() => {
-      fireEvent.press(selectedItem);
-    });
+
+    fireEvent.press(selectedItem);
+
     expect(selectedItem.props.children).not.toContain('\uf046');
   });
 });
@@ -101,8 +109,8 @@ describe('choicesInput (RadioButtons)', () => {
       { initialState },
     );
     expect(toJSON()).toMatchSnapshot();
-    expect(getAllByTestId('checkbox').length).toBe(5);
-    expect(getAllByText('\uf10c').length).toBe(5);
+    expect(getAllByTestId('checkbox').length).toBe(6);
+    expect(getAllByText('\uf10c').length).toBe(6);
   });
 
   it('should render a list of integer choices as radio buttons', async () => {
@@ -170,7 +178,7 @@ describe('choicesInput (DropDown)', () => {
     expect(toJSON()).toMatchSnapshot();
     const Picker = getByTestId('Picker');
     expect(Picker).toBeTruthy();
-    expect(Picker.props.items.length).toBe(5);
+    expect(Picker.props.items.length).toBe(6);
   });
 
   it('should select answer', () => {
