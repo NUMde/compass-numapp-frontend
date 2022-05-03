@@ -167,15 +167,15 @@ export default {
           answer: [
             {
               valueInteger: 1,
-            },
-          ],
-          item: [
-            {
-              linkId: '1.16.1',
-              text: 'Diese Frage wird nur bei erwarteter Eingabe angezeigt',
-              answer: [
+              item: [
                 {
-                  valueString: '123',
+                  linkId: '1.16.1',
+                  text: 'Diese Frage wird nur bei erwarteter Eingabe angezeigt',
+                  answer: [
+                    {
+                      valueString: '123',
+                    },
+                  ],
                 },
               ],
             },

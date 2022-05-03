@@ -93,8 +93,7 @@ const QuestionnaireSlice = createSlice({
           // set the answer at index "linkId" of the itemMap
           [linkId]: {
             ...itemMap[linkId],
-            done: !!answer,
-            answer: [answer],
+            answer: answer ? [answer] : null,
           },
           // mark the category as started
           [linkId.split('.')[0]]: {
@@ -125,7 +124,7 @@ const QuestionnaireSlice = createSlice({
           // set the answer at index "linkId" of the itemMap
           [linkId]: {
             ...itemMap[linkId],
-            answer: currentAnswers,
+            answer: currentAnswers.length > 0 ? currentAnswers : null,
             done: currentAnswers.length > 0 || !itemMap[linkId].required,
           },
           // mark the category as started
@@ -135,12 +134,11 @@ const QuestionnaireSlice = createSlice({
           },
         };
       }
-      const parentLinkId = linkId.substr(0, linkId.lastIndexOf('.'));
       return {
         ...state,
         itemMap: checkQuestionnaireStatus(
-          parentLinkId,
-          newItemMap[parentLinkId].item,
+          linkId,
+          newItemMap[linkId].item,
           newItemMap,
         ),
         started: !!answer || state.started,
@@ -205,7 +203,7 @@ const traverseItem = (item, questionnaireItemMap) => {
      * d) it is a group of booleans (see a))
      */
     done: item.type === 'display' || !item.required,
-    answer: null,
+    answer: item.type !== 'display' && item.type !== 'group' ? null : undefined,
     type: item.type || 'ignore',
     required: item.required || false,
   };
@@ -266,8 +264,13 @@ const checkQuestionnaireStatus = (linkId, items, itemMap) => {
   // check if the item is a child of a subgroup
   let newItemMap;
   if (linkId.length) {
-    // check the completion state of the group to which the item (identified by the linkId ) belongs
-    const status = analyzer.checkCompletionStateOfItems(items, itemMap);
+    let status;
+    if (items) {
+      // check the completion state of the group to which the item (identified by the linkId ) belongs
+      status = analyzer.checkCompletionStateOfItems(items, itemMap);
+    } else {
+      status = !!itemMap[linkId].answer || itemMap[linkId].type === 'display';
+    }
     newItemMap = {
       ...cloneDeep(itemMap),
       [linkId]: {
@@ -275,6 +278,7 @@ const checkQuestionnaireStatus = (linkId, items, itemMap) => {
         done: status,
       },
     };
+
     // get linkId of parent item
     const parentLinkId = linkId.substring(0, linkId.lastIndexOf('.'));
     // when linkId is not valid, return
