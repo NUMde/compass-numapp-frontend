@@ -81,11 +81,9 @@ const QuestionnaireSlice = createSlice({
     // is invoked whenever user answers a question
     SET_ANSWER: (state, action) => {
       const { itemMap } = current(state);
-      let { answer } = action.payload;
+      const { answer } = action.payload;
       const { linkId, repeats } = action.payload;
       let newItemMap;
-      // null empty string
-      if (typeof answer === 'string' && !answer) answer = null;
       // no repeat; only on answer allowed
       if (!repeats) {
         newItemMap = {
