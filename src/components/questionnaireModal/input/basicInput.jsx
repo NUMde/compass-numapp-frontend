@@ -127,7 +127,7 @@ export default function BasicInput({ item }) {
       item,
       input
         ? {
-            [`answer${item.type.charAt(0).toUpperCase() + item.type.slice(1)}`]:
+            [`value${item.type.charAt(0).toUpperCase() + item.type.slice(1)}`]:
               item.type === 'string' ? input.trim() : Number(input),
           }
         : null,

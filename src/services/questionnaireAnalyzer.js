@@ -122,49 +122,19 @@ const checkItem = (item, questionnaireItemMap) => {
   // if this item needs to be ignored
   if (
     item.type === 'ignore' ||
-    !item.required ||
     item.type === 'display' ||
+    !item.required ||
     !checkDependenciesOfSingleItem(item, questionnaireItemMap)
   ) {
     completed = true;
   } else {
-    // if its a boolean
-    if (
-      item.type === 'boolean' ||
-      item.type === 'date' ||
-      item.type === 'string' ||
-      item.type === 'integer' ||
-      item.type === 'decimal' ||
-      item.type === 'number'
-    ) {
-      completed =
-        questionnaireItemMap[item.linkId].answer != null &&
-        traverseItems(item.item ?? [], questionnaireItemMap);
-    }
-    // if there is no subItem..
-    else if (!item.item) {
-      // ...we just look up if the answer is still in its initial state (meaning null)
-      completed = questionnaireItemMap[item.linkId].answer != null;
-    }
-    // and should there be at least the item-property...
-    else {
-      // ... traverse it and see if they all check out
-      completed = traverseItems(item.item, questionnaireItemMap);
-    }
-
-    // should the item be of type "choice"...
-    if (completed && item.type === 'choice') {
-      // ... and only accept a single answer
-      if (!item.repeats) {
-        // ... make sure its not NULL
-        completed = questionnaireItemMap[item.linkId].answer != null;
-      }
-      // if multiple answers are allowed
-      else {
-        // make sure there is something
-        return !!questionnaireItemMap[item.linkId].answer;
-      }
-    }
+    completed =
+      // when it is a 'group' then it can't have (an) answer(s)
+      (item.type === 'group' ||
+        // otherwise it must have an answer
+        questionnaireItemMap[item.linkId].answer != null) &&
+      // if child items exist, check those
+      traverseItems(item.item ?? [], questionnaireItemMap);
   }
 
   return completed;
@@ -175,6 +145,7 @@ const checkItem = (item, questionnaireItemMap) => {
  * and then checks for their validity. executes the "checkItem" function for each
  * valid item.
  * @param  {QuestionnaireItem[]} elements the items-array of a questionnaire-item
+ * @param  {Map<string, QuestionnaireItem>} questionnaireItemMap
  */
 const traverseItems = (elements, questionnaireItemMap) => {
   /**
@@ -198,7 +169,7 @@ const traverseItems = (elements, questionnaireItemMap) => {
             // if the condition provides an array of answers and the needed answer is among then OR there is only one answer and it matches
             questionnaireItemMap[condition.question].answer?.find(
               (entry) =>
-                entry[requiredAnswer.replace('answer', 'value')] ===
+                entry?.[requiredAnswer.replace('answer', 'value')] ===
                 condition[requiredAnswer],
             ) &&
             // and the item is not valid
@@ -354,7 +325,7 @@ const checkDependenciesOfSingleItem = (item, questionnaireItemMap) => {
           );
         }
         return question.answer?.find(
-          (it) => it[answerType.replace('answer', 'value')] === expected,
+          (it) => it?.[answerType.replace('answer', 'value')] === expected,
         );
       };
       return !item.enableBehavior || item.enableBehavior === 'all'
@@ -438,7 +409,13 @@ const createResponseJSON = (questionnaireItemMap, categories, FHIRmetadata) => {
               });
             });
           }
-          if (item.item) newItem.item = createItems(item.item);
+          if (item.item) {
+            if (item.type === 'group') {
+              newItem.item = createItems(item.item);
+            } else {
+              newItem.answer[0].item = createItems(item.item);
+            }
+          }
           newItems.push(newItem);
         }
       });
