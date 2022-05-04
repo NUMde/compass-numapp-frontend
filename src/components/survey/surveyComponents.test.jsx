@@ -4,6 +4,10 @@ import { render, fireEvent } from '@testing-library/react-native';
 import translate from '~services/localization';
 import config from '~config/configProvider';
 
+import emptyItemMap from '__mocks__/questionnaire/emptyItemMap';
+import allCategories from '__mocks__/questionnaire/categories';
+import en from '~CUSTOMIZATION/translations/en';
+
 import CategoriesList from './categoriesList';
 
 describe('categoriesList', () => {
@@ -19,6 +23,10 @@ describe('categoriesList', () => {
   };
 
   const showQuestionnaireModal = jest.fn();
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
 
   it('should render the categories list', () => {
     const tree = render(
@@ -98,5 +106,44 @@ describe('categoriesList', () => {
       getByTestId(`${categories[2].linkId}_icon`).props.children.props.style
         .backgroundColor,
     ).toBe(config.theme.colors.success);
+  });
+
+  it('should toggle accordion', () => {
+    const { getAllByA11yHint, queryByText } = render(
+      <CategoriesList
+        categories={allCategories}
+        itemMap={emptyItemMap}
+        showQuestionnaireModal={showQuestionnaireModal}
+      />,
+    );
+    const [icon1, icon2] = getAllByA11yHint(
+      en.accessibility.questionnaire.expandCategory,
+    );
+    expect(queryByText(/Freitext/)).toBeFalsy();
+    fireEvent.press(icon1);
+    expect(queryByText(/Freitext/)).toBeTruthy();
+    fireEvent.press(icon2);
+    expect(queryByText(/Freitext/)).toBeFalsy();
+    expect(queryByText(/Untergruppe/)).toBeTruthy();
+    fireEvent.press(icon2);
+    expect(queryByText(/Untergruppe/)).toBeFalsy();
+  });
+
+  it('should open modal at chosen item', () => {
+    const { getAllByA11yHint, queryByText } = render(
+      <CategoriesList
+        categories={allCategories}
+        itemMap={emptyItemMap}
+        showQuestionnaireModal={showQuestionnaireModal}
+      />,
+    );
+    const icon1 = getAllByA11yHint(
+      en.accessibility.questionnaire.expandCategory,
+    )[0];
+    expect(queryByText(/Freitext/)).toBeFalsy();
+    fireEvent.press(icon1);
+    expect(queryByText(/Freitext/)).toBeTruthy();
+    fireEvent.press(queryByText(/Freitext/));
+    expect(showQuestionnaireModal).toHaveBeenCalledWith(0, 1);
   });
 });

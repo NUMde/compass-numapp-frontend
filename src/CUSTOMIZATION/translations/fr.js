@@ -64,6 +64,8 @@ export default {
 
       triggerHint:
         'Si cet élément est sélectionné, une autre question supplémentaire est affichée, qui est connectée à cet élément. Veuillez remplir la question supplémentaire.',
+      expandCategory: 'afficher les articles de cette catégorie',
+      collapseCategory: 'masquer les articles de cette catégorie',
     },
   },
 

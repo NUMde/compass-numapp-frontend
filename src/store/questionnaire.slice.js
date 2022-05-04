@@ -145,7 +145,7 @@ const QuestionnaireSlice = createSlice({
     // is invoked when the user switches between pages on the questionnaire modal
     SWITCH_CONTENT: (state, action) => ({
       ...state,
-      pageIndex: action.payload.pageIndex,
+      pageIndex: action.payload.pageIndex ?? 1,
       categoryIndex:
         action.payload.categoryIndex ?? current(state).categoryIndex,
     }),
