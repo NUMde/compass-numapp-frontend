@@ -146,8 +146,8 @@ function SurveyScreen({ navigation }) {
         <View style={[localStyle.flexi, localStyle.wrapper]}>
           {/* creates the list items for the categories */}
           <CategoriesList
-            showQuestionnaireModal={(index) => {
-              dispatch(switchContent({ categoryIndex: index, pageIndex: 1 }));
+            showQuestionnaireModal={(categoryIndex, pageIndex) => {
+              dispatch(switchContent({ categoryIndex, pageIndex }));
             }}
             categories={categories}
             itemMap={itemMap}

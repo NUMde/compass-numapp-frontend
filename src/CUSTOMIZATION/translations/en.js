@@ -60,6 +60,8 @@ export default {
 
       triggerHint:
         'If this element is selected, another additional question will be shown that is connected to this element. Please fill out the additional question as well.',
+      expandCategory: 'show items of this category',
+      collapseCategory: 'hide items of this category',
     },
   },
 
