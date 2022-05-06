@@ -28,7 +28,7 @@ export default function BooleanInput({ item }) {
   // get current value from State
   const currentAnswer = useSelector(
     (state) =>
-      state.Questionnaire.itemMap[item.linkId].answer?.[0]?.answerBoolean,
+      state.Questionnaire.itemMap[item.linkId].answer?.[0]?.valueBoolean,
   );
   return (
     <>
@@ -44,7 +44,7 @@ export default function BooleanInput({ item }) {
           dispatch(
             setAnswer({
               linkId: item.linkId,
-              answer: { answerBoolean: true },
+              answer: { valueBoolean: true },
             }),
           )
         }
@@ -67,7 +67,7 @@ export default function BooleanInput({ item }) {
           dispatch(
             setAnswer({
               linkId: item.linkId,
-              answer: { answerBoolean: false },
+              answer: { valueBoolean: false },
             }),
           )
         }
