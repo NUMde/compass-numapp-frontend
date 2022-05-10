@@ -22,7 +22,7 @@ The NUM-App enables the display of link:https://www.hl7.org/fhir/questionnaire.h
 
 == Kiosk Mode
 
-The frontend client comes with a build-in kiosk mode. This means that the app can be set up in a way that it basically provides it own mock-backend to simulate a basic workflow with the app. The purpose is to demonstrate the capabilites of the NUM-App to new audiences.
+The frontend client comes with a build-in kiosk mode. This means that the app can be set up in a way that it basically provides it own mock-backend to simulate a basic workflow with the app. The purpose is to demonstrate the capabilities of the NUM-App to new audiences.
 
 == Features
 

@@ -16,19 +16,20 @@ IMPORTANT: At least npm v7 is required for this project
 +
 IMPORTANT: Please follow these instructions exactly! If you intend to use an Android emulator and/or iOS simulator, make sure these are installed and configured. Android Studio and XCode do not necessarily come with the ones you prefer already installed or pre-configured.
 
-. *Installing Dependencies*
+. *Create your App*
 +
---
-On MacOS, run the following command to install all necessary packages. This includes all iOS Pods as well as Watchman tasks.
-....
-npm run clean_install_macos
-....
 
-If you are working on windows, please use this command (it omits the MacOS installation part): 
+--
+Run the following command to create an app with the compass-numapp template.
 ....
-npm run clean_install_windows
+npx react-native init *yourAppId* --template https://github.com/NUMde/compass-numapp-frontend/tree/VX.X.X --title *"your App Display Name"*.
 ....
-TIP: This command can also be useful when trying to dissolve build problems after dependency updates.
+Insert your app identifier and display name and replace 'X.X.X' with the link:https://github.com/mbastian93/release-test/releases[latest released version] of the template.
+
+To change the bundle identifier (default is 'de.num.yourappid.android' or 'de.num.yourappid.ios'), replace all occurrences in the android project and replace the value for 'PRODUCT_BUNDLE_IDENTIFIER' in 'ios/YourAppName.xcodeproj/project.pbxproj'
+
+
+TIP: If you have trouble during the initial installation or the later addition/update of dependencies, using `npm run clean_install_windows` or `npm run clean_install_macos` depending on your platform might solve them for you.
 
 If you use nvm to switch between different versions of node/npm you might run into the following error when trying to build the app:
 
@@ -36,7 +37,7 @@ If you use nvm to switch between different versions of node/npm you might run in
 ** BUILD FAILED **
 
 The following build commands failed:
-PhaseScriptExecution [CP-User]\ Generate\ Specs /Users/[useranme]/Library/Developer/Xcode/DerivedData/[AppName]/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FBReactNativeSpec.build/Script-**.sh
+PhaseScriptExecution [CP-User]\ Generate\ Specs /Users/[username]/Library/Developer/Xcode/DerivedData/[AppName]/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/FBReactNativeSpec.build/Script-**.sh
 ....
 
 In that case run the following command to fix it:
@@ -49,7 +50,7 @@ nvm unalias default
 . *Create local.properties*
 +
 --
-Android Studio needs a file `local.properties` referencing the android-sdk location. Create the file inside the *`link:../../../../tree/main/android[android]`* directory with the content as follows: + 
+Android Studio needs a file `local.properties` referencing the android-sdk location. Create the file inside the *`link:../../../../tree/main/compass-numapp-template/android[android]`* directory with the content as follows: + 
 
 *`sdk.dir = [LOCATION_OF_YOUR_ANDROID_SDK]`*
 
@@ -140,77 +141,6 @@ npm run clean_install_windows
 + 
 This can be necessary on MacOS and Windows devices - especially after updates concerning XCode and/or Android Studio.
 
-== App Name and Bundle Identifier/Package Name
-
-Android and iOS need an app name to render below the app icon. Another important aspect is the bundle identifier (for iOS) or, respectively the package name (in the case of Android) - and both need to be unique. This means that there cannot be two apps on the stores with the same bundle identifier (Apple App Store) or package name (Google Play).
-
-IMPORTANT: Once you have published your app to either the App Store or Google Play, you cannot change the bundle identifier/package name again. You need to be sure before you publish your project.
-
-To update name and identifier proceed as follows:
-
-=== Android
-The default *Package Name* for the Android Build is:
-....
-de.num.compass.demo.android
-....
-
-The default *App Name* for the Android Build is:
-....
-Compass DEMO (Android)
-....
-
-To change those values follow these instructions:
-
-.. Open the file *`link:../../../../tree/main/android/app/src/main/res/values/strings.xml[android/app/src/main/res/values/strings.xml]`*.
-.. Update the content of the string tag with you preferred *Android App Name*: + 
-+ 
---
-....
-<resources>
-  <string name="app_name">YOUR_APP_NAME</string>
-</resources>
-....
---
-.. Find and replace any occurrence of the string `de.num.compass.demo.android` with your new preferred package name. Include every file of the Compass project in this query - the string will occur a few times.
-
-=== iOS
-The default *Bundle Identifier* for the iOS Build is:
-....
-de.num.compass.ios
-....
-The default *App Name* for the iOS Build is:
-....
-Compass DEMO (iOS)
-....
-
-You can update the iOS App Name and Bundle Identifier by simply open the *`link:../../../../tree/main/ios/Compass.xcworkspace[.xcworkspace]`* file in XCode. The _General_ tab will provide inputs for both values: +
-
-.Updating the Display Name / Bundle Identifier in Xcode
-[caption="Example: "]
-==========================
-image:./images/xcode.png[auto, 650]
-==========================
-
-==== Without using XCode
-Should you want to update these values without using XCode, proceed as follows:
-
-.. Open the file *`link:../../../../tree/main/ios/Compass/Info.plist[ios/Compass/Info.plist]`*.
-.. Update the content of the string under the *CFBundleDisplayName*-tag with you preferred *iOS App Name*: + 
-+ 
---
-....
-<key>CFBundleDisplayName</key>
-<string>YOUR_APP_NAME</string>
-....
---
-.. Open the file *`link:../../../../tree/main/ios/Compass.xcodeproj/project.pbxproj[ios/Compass.xcodeproj/project.pbxproj]`*.
-.. Search for the key *PRODUCT_BUNDLE_IDENTIFIER* (all occurrences) and set its value to your preferred *iOS Bundle Identifier* + 
-+ 
---
-....
-PRODUCT_BUNDLE_IDENTIFIER = YOUR_IOS_BUNDLE_IDENTIFIER;
-....
---
 
 == Enabling Push Notifications
 In order for the app to receive push notifications you need to establish a Firebase Cloud-Messaging Service instance and provide the credentials to said instance. 
