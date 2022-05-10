@@ -2,6 +2,11 @@
 const fetch = require('node-fetch');
 const fs = require('fs');
 
+// create directory
+if (!fs.existsSync('./src/assets/files')) {
+  fs.mkdirSync('./src/assets/files', { recursive: true });
+}
+
 // get questionnaire
 fetch(
   'https://raw.githubusercontent.com/NUMde/compass-implementation-guide/master/input/questionnaire-generic.json',
