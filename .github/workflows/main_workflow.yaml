@@ -68,4 +68,4 @@ jobs:
       env:
         CI: true
     - name: run lint & generate annotations
-      run: cd compass-numapp-template && run lint:annotate
+      run: cd compass-numapp-template && npm run lint:annotate
