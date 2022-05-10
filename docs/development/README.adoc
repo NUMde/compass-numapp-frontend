@@ -19,7 +19,6 @@ compass
 ├── __mocks__
 ├── __utils__
 ├── android
-├── docs
 ├── ios
 ├── node_modules
 ├── patches
@@ -32,10 +31,9 @@ compass
 │   ├── screens
 │   ├── services
 │   ├── store
-│   ├── theme
 │   ├── typedef.js
 │   ├── propTypes.js
-├── App.js 
+│   ├── App.js 
 └── index.js
 ```
 * *_ /__tests__ _* + 
@@ -49,9 +47,6 @@ The directory containing the utilities needed (renderer and mock-redux-store) fo
 
 * */android* + 
 The working directory for the android project.
-
-* */docs* + 
-The documentation files.
 
 * */ios* + 
 The working directory for the ios project.
@@ -75,13 +70,10 @@ This contains all react components that are not screens. Each component has a di
 Holds various configurations files. For more information see: + 
 *`link:..//appConfiguration[-> App Configuration]`* + 
 *`link:..//content[-> Content Configuration]`* + 
+*`link:..//theming[-> Theme Customization]`* + 
 
 ** */CUSTOMIZATION* + 
-This contains the customization files that can be used to alter the style, content and some app options. 
-For more information see: + 
-*`link:..//appConfiguration[-> App Configuration]`* + 
-*`link:..//content[-> Content Configuration]`* + 
-*`link:..//theming[-> Theme Customization]`* + 
+contains images files and the translations for the different languages
 
 ** */navigation* + 
 Provides the App-Navigator, basically the definition of which screen is provided under specific circumstances.
@@ -110,10 +102,6 @@ contains the setup for the redux store. For each part of the global state, there
 To prevent dependency cycles, some actions are placed in 'sharedActions'; executing these actions has consequences in multiple slices of the state.
 In the index.js file, the redux store is set up, combining all reducers for the different slices of state.
 For more information about the slices and how their actions work read link:https://redux-toolkit.js.org/[here] about redux-toolkit.
-
-** */theme* + 
-Holds the theme for the application, including spacing, colors, and typography. To updated it follow the steps provided by the *`link:..//theming[Theming Documentation]`*.
-
 
 ** *typdef.js* + 
 Holds some type definitions.
