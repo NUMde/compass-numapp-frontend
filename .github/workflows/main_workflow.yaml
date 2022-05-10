@@ -30,7 +30,7 @@ jobs:
     - name: install npm
       run: npm install -g npm@latest
     - name: install node dependencies
-      run: cd compass-numapp-template && npm ci
+      run: cd compass-numapp-template && npm ci && npm run postinstall
       env:
         CI: true
     - name: run all tests & generate coverage report
@@ -64,7 +64,7 @@ jobs:
     - name: install npm
       run: npm install -g npm@latest
     - name: install node dependencies
-      run:  cd compass-numapp-template && npm ci
+      run:  cd compass-numapp-template && npm ci && npm run postinstall
       env:
         CI: true
     - name: run lint & generate annotations
