@@ -119,7 +119,12 @@ android {
     }
     signingConfigs {
         release {
-            if (project.hasProperty('MYAPP_UPLOAD_STORE_FILE')) {
+            if (project.hasProperty('PROVISIONAL_SIGNING')) {
+                storeFile file('../debug.keystore')
+                keyAlias 'androiddebugkey'
+                keyPassword 'android'
+                storePassword 'android'
+            } else if (project.hasProperty('MYAPP_UPLOAD_STORE_FILE')) {
                 storeFile file(MYAPP_UPLOAD_STORE_FILE)
                 storePassword MYAPP_UPLOAD_STORE_PASSWORD
                 keyAlias MYAPP_UPLOAD_KEY_ALIAS

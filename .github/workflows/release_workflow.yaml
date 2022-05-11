@@ -1,0 +1,56 @@
+name: release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build_release:
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 24
+      matrix:
+        node-version: [14.x]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: cache node_modules
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
+        restore-keys:
+          ${{ runner.OS }}-build-${{ env.cache-name }}-
+          ${{ runner.OS }}-build-
+          ${{ runner.OS }}-
+    - name: install node modules
+      run: cd compass-numapp-template && npm ci
+      env:
+        CI: true
+    - name: enable kiosk mode
+      run: cd compass-numapp-template/src/config && sed -i -e 's/const kioskModeIsActive = false/const kioskModeIsActive = true/g' kioskApiConfig.js
+    - name: update display name
+      run: cd compass-numapp-template/android/app/src/main/res/values && sed -i -e "s/App Title/Compass Demo/g" strings.xml
+    - name: create signing key
+      uses: timheuer/base64-to-file@v1.1
+      with:
+        fileName: 'debug.keystore'
+        fileDir: './compass-numapp-template/android/'
+        encodedString: ${{secrets.SIGNING_KEY}}
+    - name: build apk
+      run: cd ./compass-numapp-template/android && ./gradlew assembleRelease "-PPROVISIONAL_SIGNING"
+    - name: version
+      run: echo "::set-output name=version::$(echo ${github.event.release.tag_name})"
+      id: version
+    - name: upload apk artifact
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      with:
+        upload_url: ${{ github.event.release.upload_url }}
+        asset_path: ./compass-numapp-template/android/app/build/outputs/apk/release/app-release.apk
+        asset_name: COMPASS-DEMO-${{github.event.release.tag_name}}.apk
+        asset_content_type: application/gzip

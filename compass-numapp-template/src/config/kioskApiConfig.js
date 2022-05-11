@@ -11,11 +11,12 @@ import hardcodedTestQuestionnaire from '~assets/files/questionnaire.json'; // th
 ***********************************************************************************************/
 
 // this triggers the kiosk mode.
-const kioskModeIsActive = false;
+const kioskModeIsActive = true;
 
 // default user data
 const defaultMockUserData = {
   firstTime: false,
+  status: 'on-study',
   current_interval: 7,
   additional_iterations_left: 0,
   due_date: '9999-12-30T23:00:00.000Z',
@@ -58,6 +59,13 @@ const initKioskMode = async () => {
 };
 
 /**
+ * reset kiosk mode
+ */
+const resetKioskModeData = () => {
+  kioskModeData = {};
+};
+
+/**
  * calculates the next start date
  * @param  {boolean} laterOn tells us if we need to up the date
  */
@@ -84,13 +92,7 @@ const getDueDate = (laterOn) => {
  */
 const getLanguages = () =>
   new Promise((res) => {
-    setTimeout(
-      () =>
-        res({
-          data: ['de', 'en', 'fr', 'ar'],
-        }),
-      500,
-    );
+    setTimeout(() => res(['de', 'en', 'fr', 'ar']), 500);
   });
 
 /**
@@ -164,7 +166,7 @@ const getBaseQuestionnaire = (langCode) => {
     item.text += ` (${langCode})`;
   });
   return new Promise((res) => {
-    setTimeout(() => res({ data: questionnaire }), 900);
+    setTimeout(() => res(questionnaire), 900);
   });
 };
 
@@ -179,19 +181,20 @@ export default {
   active: kioskModeIsActive,
   login: () =>
     new Promise((res) => {
-      setTimeout(() => res({ data: generateMockUserData() }), 500);
+      setTimeout(() => res(generateMockUserData()), 500);
     }),
   getUserUpdate: () =>
     new Promise((res) => {
-      setTimeout(() => res({ data: generateMockUserData() }), 900);
+      setTimeout(() => res(generateMockUserData()), 900);
     }),
   updateLanguageCode: () =>
     new Promise((res) => {
-      setTimeout(() => res({ data: hardcodedTestQuestionnaire }), 400);
+      setTimeout(() => res(hardcodedTestQuestionnaire), 400);
     }),
   updateDeviceToken: () =>
     new Promise((res) => {
       setTimeout(() => res(), 400);
     }),
   getBaseQuestionnaire,
+  resetKioskModeData,
 };

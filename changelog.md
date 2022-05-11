@@ -17,10 +17,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
--   Transformed project to template to be process by the react-native cli.
+-/-
 
 ### Removed
 
 -/-
 
-## [0.1.0] - TBD
+## [0.1.0] - 2022-05-11
+
+### Added
+
+-/-
+
+### Fixed
+
+-/-
+
+### Changed
+
+-   Transformed project to template to be processed by the react-native cli.
+
+### Removed
+
+-   DEMO apk is not longer in the repository itself but instead added as asset to each new release.

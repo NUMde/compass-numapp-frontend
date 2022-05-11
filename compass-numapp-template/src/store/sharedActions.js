@@ -100,6 +100,7 @@ const sendReport = createAsyncThunk(
 
 const reset = createAsyncThunk('shared/RESET', async () => {
   await EncryptedStorage.clear();
+  isKioskMode ? kioskApi.resetKioskModeData() : null;
 });
 
 export { hideModal, sendQuestionnaireResponse, sendReport, reset };

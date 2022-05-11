@@ -84,7 +84,7 @@ android/.idea/
 local.properties
 
 #keystore
-android/app/*.store
+*.keystore
 android/_.hprof
 
 # push service config
