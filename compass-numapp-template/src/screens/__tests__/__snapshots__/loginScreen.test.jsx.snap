@@ -11,204 +11,143 @@ exports[`LoginScreen should render the login screen 1`] = `
   testID="LoginScreen"
 >
   <View
+    accessibilityIgnoresInvertColors={true}
     style={
       Object {
-        "alignContent": "stretch",
-        "alignItems": "stretch",
         "backgroundColor": "#F8F9FA",
         "flexDirection": "column",
         "height": 354.06976744186045,
-        "justifyContent": "flex-start",
-        "overflow": "hidden",
         "paddingTop": 30,
         "width": "100%",
       }
     }
   >
+    <Image
+      resizeMode="cover"
+      source={
+        Object {
+          "process": [Function],
+        }
+      }
+      style={
+        Array [
+          Object {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          },
+          Object {
+            "height": 354.06976744186045,
+            "width": "100%",
+          },
+          undefined,
+        ]
+      }
+    />
     <View
       style={
         Object {
-          "alignItems": "flex-start",
+          "alignItems": "center",
+          "alignSelf": "center",
           "flexDirection": "row",
-          "flexWrap": "wrap",
           "justifyContent": "space-between",
-          "paddingTop": 10,
-          "width": "100%",
-          "zIndex": 2,
+          "marginVertical": 20,
+          "width": "90%",
         }
       }
     >
       <View
         style={
           Object {
-            "alignItems": "center",
-            "flexDirection": "row",
-            "flexWrap": "wrap",
-            "justifyContent": "flex-end",
-            "marginLeft": 15,
-            "marginRight": 15,
-            "textAlign": "center",
+            "overflow": "hidden",
           }
         }
       >
         <View
-          style={
-            Array [
-              Object {
-                "borderRadius": 3,
-                "overflow": "hidden",
-              },
-              Object {
-                "borderRadius": 3,
-              },
-              undefined,
-              false,
-            ]
+          accessibilityHint="Jumps to previous page."
+          accessibilityLabel="back"
+          accessibilityRole="button"
+          accessibilityState={
+            Object {
+              "disabled": false,
+            }
           }
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          testID="banner_back_btn"
         >
           <View
-            accessibilityHint="Jumps to previous page."
-            accessibilityLabel="back"
-            accessibilityRole="button"
-            accessibilityState={
-              Object {
-                "busy": false,
-                "disabled": false,
-              }
-            }
-            accessible={true}
-            collapsable={false}
-            focusable={true}
-            nativeID="animatedComponent"
-            onClick={[Function]}
-            onResponderGrant={[Function]}
-            onResponderMove={[Function]}
-            onResponderRelease={[Function]}
-            onResponderTerminate={[Function]}
-            onResponderTerminationRequest={[Function]}
-            onStartShouldSetResponder={[Function]}
             style={
               Object {
-                "height": 44,
-                "opacity": 1,
-                "width": 104.65116279069767,
+                "alignItems": "center",
+                "backgroundColor": "transparent",
+                "justifyContent": "center",
               }
             }
-            testID="banner_back_btn"
           >
-            <View
+            <Text
+              allowFontScaling={false}
+              selectable={false}
               style={
-                Object {
-                  "alignItems": "center",
-                  "backgroundColor": "transparent",
-                  "borderColor": "#2089dc",
-                  "borderRadius": 3,
-                  "borderWidth": 0,
-                  "flexDirection": "row",
-                  "justifyContent": "center",
-                  "padding": 8,
-                }
-              }
-            >
-              <View
-                style={
+                Array [
                   Object {
-                    "overflow": "hidden",
-                  }
-                }
-              >
-                <View>
-                  <View
-                    style={
-                      Object {
-                        "alignItems": "center",
-                        "backgroundColor": "transparent",
-                        "justifyContent": "center",
-                      }
-                    }
-                  >
-                    <Text
-                      allowFontScaling={false}
-                      selectable={false}
-                      style={
-                        Array [
-                          Object {
-                            "color": "#EB576A",
-                            "fontSize": 48.83720930232558,
-                          },
-                          Object {
-                            "backgroundColor": "transparent",
-                          },
-                          Object {
-                            "fontFamily": "Material Design Icons",
-                            "fontStyle": "normal",
-                            "fontWeight": "normal",
-                          },
-                          Object {},
-                        ]
-                      }
-                      testID="iconIcon"
-                    >
-                      󰁍
-                    </Text>
-                  </View>
-                </View>
-              </View>
-            </View>
+                    "color": "#EB576A",
+                    "fontSize": 48.83720930232558,
+                  },
+                  Object {
+                    "backgroundColor": "transparent",
+                  },
+                  Object {
+                    "fontFamily": "Material Design Icons",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                  Object {},
+                ]
+              }
+              testID="iconIcon"
+            >
+              󰁍
+            </Text>
           </View>
         </View>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }
+      >
         <Text
           accessibilityRole="header"
           numberOfLines={1}
           style={
             Object {
-              "alignContent": "center",
-              "alignSelf": "center",
               "color": "#1F2532",
-              "flex": 1,
               "fontFamily": "IBMPlexSans-SemiBold",
               "fontSize": 33.75,
               "lineHeight": 43.125,
-              "textAlign": "center",
-              "width": "100%",
             }
           }
         >
           Login
         </Text>
-        <View
-          style={
-            Object {
-              "height": 44,
-              "width": 104.65116279069767,
-            }
-          }
-        />
       </View>
-    </View>
-    <View
-      style={
-        Object {
-          "flex": 1,
-          "flexDirection": "column",
-          "justifyContent": "flex-end",
-          "left": 0,
-          "position": "absolute",
-          "top": 0,
-        }
-      }
-    >
-      <Image
-        resizeMode="cover"
-        source={
-          Object {
-            "process": [Function],
-          }
-        }
+      <View
         style={
           Object {
-            "height": 354.06976744186045,
-            "width": 750,
+            "height": 26,
+            "width": 26,
           }
         }
       />
@@ -218,7 +157,7 @@ exports[`LoginScreen should render the login screen 1`] = `
         Object {
           "flex": 1,
           "flexDirection": "column",
-          "justifyContent": "flex-end",
+          "justifyContent": "center",
         }
       }
     >

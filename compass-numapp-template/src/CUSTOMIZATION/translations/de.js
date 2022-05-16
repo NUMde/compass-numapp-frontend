@@ -171,9 +171,9 @@ export default {
 
   /** strings of the survey-screen */
   survey: {
-    subTitle: ' ',
+    subTitle: 'test',
     logout: 'Ausloggen',
-    subTitleCheckIn: ' ',
+    subTitleCheckIn: '',
     title: 'Fragebogen',
     isLoading: 'Wird geladen...',
     yourAnswer: 'Ihre Antwort',

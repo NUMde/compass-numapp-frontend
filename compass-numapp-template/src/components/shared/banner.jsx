@@ -5,7 +5,7 @@ import
 ***********************************************************************************************/
 
 import React from 'react';
-import { Icon, Button } from 'react-native-elements';
+import { Icon } from 'react-native-elements';
 import {
   Text,
   View,
@@ -13,6 +13,7 @@ import {
   StyleSheet,
   Platform,
   Dimensions,
+  ImageBackground,
 } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -61,58 +62,53 @@ function Banner({
   const hasTitle = title && title.length;
 
   return (
-    <View style={localStyle.banner}>
-      <View style={localStyle.bannerUpperHalf}>
-        <View style={localStyle.bannerTitleWrapper}>
-          {/* if this is the checkIn-screen and reloads are not forbidden shows a reload button in the top left corner */}
-          {isCheckIn && !noRefresh && (
-            <Button
-              type="clear"
-              style={localStyle.bannerIcon}
-              onPress={() => updateUser()}
-              icon={
-                <Icon
-                  size={appConfig.scaleUiFkt(28)}
-                  name="refresh"
-                  type="material-community"
-                  color={theme.values.defaultBannerButtonColor}
-                />
-              }
-              accessibilityLabel={translate('accessibility').refresh}
-              accessibilityRole={translate('accessibility').types.button}
-              accessibilityHint={translate('accessibility').refreshHint}
-              testID="banner_refresh_btn"
-            />
-          )}
+    <ImageBackground
+      style={localStyle.banner}
+      resizeMode="cover"
+      source={theme.ui.useBannerBackground ? logoBackground : null}
+    >
+      <View style={localStyle.menuBar}>
+        {/* if this is the checkIn-screen and reloads are not forbidden shows a reload button in the top left corner */}
+        {isCheckIn && !noRefresh && (
+          <Icon
+            size={appConfig.scaleUiFkt(28)}
+            name="refresh"
+            type="material-community"
+            color={theme.values.defaultBannerButtonColor}
+            onPress={updateUser}
+            accessibilityLabel={translate('accessibility').refresh}
+            accessibilityRole={translate('accessibility').types.button}
+            accessibilityHint={translate('accessibility').refreshHint}
+            testID="banner_refresh_btn"
+          />
+        )}
 
-          {/* If navigating back is allowed and there actually is a 'back' in the nav-stack shows the back-button in the top left corner.
-                            There will be no back-button on the checkIn-screen as it is the first screen of the SignedInView defined in '~navigation/appNavigator.js'  */}
-          {!noWayBack && nav && (
-            <Button
-              type="clear"
-              style={localStyle.bannerIcon}
-              onPress={() => nav.goBack()}
-              icon={
-                <Icon
-                  size={appConfig.scaleUiFkt(28)}
-                  name="arrow-left"
-                  type="material-community"
-                  color={theme.values.defaultBannerButtonColor}
-                />
-              }
-              accessibilityLabel={translate('accessibility').back}
-              accessibilityRole={translate('accessibility').types.button}
-              accessibilityHint={translate('accessibility').backHint}
-              testID="banner_back_btn"
-            />
-          )}
+        {/* If navigating back is allowed and there actually is a 'back' in the nav-stack,
+        shows the back-button in the top left corner.
+        There will be no back-button on the checkIn-screen as it is the first screen of the SignedInView defined in '~navigation/appNavigator.js'  */}
+        {!noWayBack && nav && (
+          <Icon
+            size={appConfig.scaleUiFkt(28)}
+            name="arrow-left"
+            type="material-community"
+            color={theme.values.defaultBannerButtonColor}
+            onPress={nav.goBack}
+            accessibilityLabel={translate('accessibility').back}
+            accessibilityRole={translate('accessibility').types.button}
+            accessibilityHint={translate('accessibility').backHint}
+            testID="banner_back_btn"
+          />
+        )}
 
-          {/* Renders an empty icon if none of the other options came back positive. */}
-          {!(isCheckIn || (!noWayBack && nav)) ||
-            (isCheckIn && noRefresh && <View style={localStyle.bannerIcon} />)}
+        {/* Renders an empty icon if none of the other options came back positive. */}
+        {!(isCheckIn || (!noWayBack && nav)) ||
+          (isCheckIn && noRefresh && (
+            <View style={localStyle.iconPlaceholder} />
+          ))}
 
-          {/* The title string. */}
-          {title !== '' && (
+        {/* The title string. */}
+        {!!title && (
+          <View style={localStyle.titleWrapper}>
             <Text
               numberOfLines={1}
               style={localStyle.bannerTitle}
@@ -120,56 +116,37 @@ function Banner({
             >
               {title}
             </Text>
-          )}
+            {/* Rendering the subtitle */}
+            {!!subTitle && (
+              <Text
+                numberOfLines={1}
+                style={localStyle.bannerSubtitle}
+                accessibilityRole={translate('accessibility').types.header}
+              >
+                {subTitle}
+              </Text>
+            )}
+          </View>
+        )}
 
-          {/* Renders a menu button in the top right corner that navigates to the about-screen. */}
-          {!noMenu && (
-            <Button
-              type="clear"
-              style={localStyle.bannerIcon}
-              onPress={() => nav.navigate('About')}
-              icon={
-                <Icon
-                  size={appConfig.scaleUiFkt(28)}
-                  name="menu"
-                  type="material-community"
-                  color={theme.values.defaultBannerButtonColor}
-                />
-              }
-              accessibilityLabel={translate('accessibility').menu}
-              accessibilityRole={translate('accessibility').types.button}
-              accessibilityHint={translate('accessibility').menuHint}
-              testID="banner_menu_btn"
-            />
-          )}
-
-          {/* Another empty icon in case there is no menu-button to be rendered. */}
-          {noMenu && <View style={localStyle.bannerIcon} />}
-
-          {/* Rendering the subtitle */}
-          {subTitle !== '' && (
-            <Text
-              numberOfLines={1}
-              style={localStyle.bannerSubtitle}
-              accessibilityRole={translate('accessibility').types.header}
-            >
-              {subTitle}
-            </Text>
-          )}
-        </View>
-      </View>
-
-      {/* Renders the logo-background. */}
-      {theme.ui.useBannerBackground && (
-        <View style={localStyle.bannerFull}>
-          <Image
-            resizeMode="cover"
-            style={localStyle.bannerBackgroundImage}
-            source={logoBackground}
+        {/* Renders a menu button in the top right corner that navigates to the about-screen. */}
+        {!noMenu && (
+          <Icon
+            size={appConfig.scaleUiFkt(28)}
+            name="menu"
+            type="material-community"
+            color={theme.values.defaultBannerButtonColor}
+            onPress={() => nav.navigate('About')}
+            containerStyle={localStyle.bannerIcon}
+            accessibilityLabel={translate('accessibility').menu}
+            accessibilityRole={translate('accessibility').types.button}
+            accessibilityHint={translate('accessibility').menuHint}
+            testID="banner_menu_btn"
           />
-        </View>
-      )}
-
+        )}
+        {/* Another empty icon in case there is no menu-button to be rendered. */}
+        {noMenu && <View style={localStyle.iconPlaceholder} />}
+      </View>
       {/* Renders the logo. */}
       <View style={localStyle.bannerHalf}>
         <Image
@@ -190,7 +167,7 @@ function Banner({
           source={logo}
         />
       </View>
-    </View>
+    </ImageBackground>
   );
 }
 
@@ -229,7 +206,7 @@ const bannerHeight =
 const bannerWidth = Dimensions.get('window').width;
 
 const localStyle = StyleSheet.create({
-  // Some values need to be calculated in the context of the plattform the app is running on
+  // Some values need to be calculated in the context of the platform the app is running on
   // as well as the hight of the statusbar. 'Plattform' and 'getStatusBarHeight()' are used
   // to accomplish that. Additionally, scaleUiFkt() (located in src/config/appConfig.js)
   // will dynamically alter some sized based on the physical device-measurements.
@@ -237,65 +214,43 @@ const localStyle = StyleSheet.create({
   banner: {
     width: '100%',
     flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignContent: 'stretch',
-    alignItems: 'stretch',
     paddingTop: Platform.OS === 'ios' ? 30 : 0,
-    overflow: 'hidden',
     backgroundColor: theme.values.defaultBannerBackgroundColor,
     height: bannerHeight,
   },
 
-  bannerUpperHalf: {
-    zIndex: 2,
-    width: '100%',
-    flexWrap: 'wrap',
-    alignItems: 'flex-start',
+  iconPlaceholder: {
+    width: 26,
+    height: 26,
+  },
+
+  menuBar: {
+    width: '90%',
+    alignSelf: 'center',
+    alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingTop: 10,
+    marginVertical: 20,
+  },
+
+  titleWrapper: {
+    alignItems: 'center',
   },
 
   bannerTitle: {
-    width: '100%',
-    alignSelf: 'center',
-    alignContent: 'center',
-    textAlign: 'center',
-    flex: 1,
     color: theme.values.defaultBannerTitleColor,
     ...theme.fonts.header2,
   },
 
   bannerSubtitle: {
-    alignSelf: 'center',
-    textAlign: 'center',
-    marginBottom: appConfig.scaleUiFkt(5),
-    marginTop: -appConfig.scaleUiFkt(15),
-    width: '100%',
     color: theme.values.defaultBannerSubTitleColor,
     ...theme.fonts.subHeader1,
-    position: 'relative',
-  },
-
-  bannerIcon: {
-    width: appConfig.scaleUiFkt(60),
-    height: 44,
-  },
-
-  bannerTitleWrapper: {
-    textAlign: 'center',
-    alignItems: 'center',
-    flexWrap: 'wrap',
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    marginLeft: 15,
-    marginRight: 15,
   },
 
   bannerHalf: {
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
   },
 
   bannerImageLogoUnderSubtitleAndTitle: {
@@ -320,20 +275,6 @@ const localStyle = StyleSheet.create({
     maxHeight: appConfig.scaleUiFkt(bannerHeight, 0.7),
     maxWidth: bannerWidth - 100,
     bottom: appConfig.scaleUiFkt(15, 0.7),
-  },
-
-  bannerFull: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'flex-end',
-  },
-
-  bannerBackgroundImage: {
-    height: bannerHeight,
-    width: bannerWidth,
   },
 });
 

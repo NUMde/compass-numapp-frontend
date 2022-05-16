@@ -11,79 +11,58 @@ exports[`LandingScreen should render screen 1`] = `
   }
 >
   <View
+    accessibilityIgnoresInvertColors={true}
     style={
       Object {
-        "alignContent": "stretch",
-        "alignItems": "stretch",
         "backgroundColor": "#F8F9FA",
         "flexDirection": "column",
         "height": 354.06976744186045,
-        "justifyContent": "flex-start",
-        "overflow": "hidden",
         "paddingTop": 30,
         "width": "100%",
       }
     }
   >
+    <Image
+      resizeMode="cover"
+      source={
+        Object {
+          "process": [Function],
+        }
+      }
+      style={
+        Array [
+          Object {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          },
+          Object {
+            "height": 354.06976744186045,
+            "width": "100%",
+          },
+          undefined,
+        ]
+      }
+    />
     <View
       style={
         Object {
-          "alignItems": "flex-start",
+          "alignItems": "center",
+          "alignSelf": "center",
           "flexDirection": "row",
-          "flexWrap": "wrap",
           "justifyContent": "space-between",
-          "paddingTop": 10,
-          "width": "100%",
-          "zIndex": 2,
+          "marginVertical": 20,
+          "width": "90%",
         }
       }
     >
       <View
         style={
           Object {
-            "alignItems": "center",
-            "flexDirection": "row",
-            "flexWrap": "wrap",
-            "justifyContent": "flex-end",
-            "marginLeft": 15,
-            "marginRight": 15,
-            "textAlign": "center",
-          }
-        }
-      >
-        <View
-          style={
-            Object {
-              "height": 44,
-              "width": 104.65116279069767,
-            }
-          }
-        />
-      </View>
-    </View>
-    <View
-      style={
-        Object {
-          "flex": 1,
-          "flexDirection": "column",
-          "justifyContent": "flex-end",
-          "left": 0,
-          "position": "absolute",
-          "top": 0,
-        }
-      }
-    >
-      <Image
-        resizeMode="cover"
-        source={
-          Object {
-            "process": [Function],
-          }
-        }
-        style={
-          Object {
-            "height": 354.06976744186045,
-            "width": 750,
+            "height": 26,
+            "width": 26,
           }
         }
       />
@@ -93,7 +72,7 @@ exports[`LandingScreen should render screen 1`] = `
         Object {
           "flex": 1,
           "flexDirection": "column",
-          "justifyContent": "flex-end",
+          "justifyContent": "center",
         }
       }
     >
