@@ -186,9 +186,12 @@ const sendReport = async (subjectId, certString) => {
   const params = new URLSearchParams();
   params.append('subjectId', subjectId);
   params.append('type', 'report');
-  params.append('updateValues', {
-    [appConfig.defaultReportAttribute]: true,
-  });
+  params.append(
+    'updateValues',
+    JSON.stringify({
+      [appConfig.defaultReportAttribute]: true,
+    }),
+  );
 
   const response = await fetch(`${endpoints.report}?${params.toString()}`, {
     method: 'POST',
@@ -197,6 +200,7 @@ const sendReport = async (subjectId, certString) => {
     ),
     headers: {
       Authorization: createAuthorizationToken(subjectId),
+      'Content-Type': 'application/json',
       Accept: 'application/json',
     },
   });
