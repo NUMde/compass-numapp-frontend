@@ -13,11 +13,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
--/-
+-   Fixed submission of 'special report'; transmitted data was not transformed correctly
 
 ### Changed
 
--/-
+-   reformatted internal structure of banner component
 
 ### Removed
 
