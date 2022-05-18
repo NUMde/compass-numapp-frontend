@@ -1,5 +1,15 @@
 {
-  "extends": [
-    "config:base"
-  ]
+    "extends": ["config:base"],
+    "timezone": "Europe/Berlin",
+    "packageRules": [
+        {
+            "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+            "automerge": true
+        }
+    ],
+    "schedule": [
+        "after 6pm every weekday",
+        "before 5am every weekday",
+        "every weekend"
+    ]
 }
