@@ -32,6 +32,7 @@ exports[`SliderInput should render sliderInput with all properties 1`] = `
     minimumTrackTintColor="#1F2532"
     minimumValue={0}
     onChange={null}
+    onRNCSliderAccessibilityAction={null}
     onRNCSliderSlidingComplete={[Function]}
     onRNCSliderSlidingStart={null}
     onRNCSliderValueChange={null}
