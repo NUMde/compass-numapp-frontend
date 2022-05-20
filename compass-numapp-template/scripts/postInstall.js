@@ -13,7 +13,7 @@ fetch(
 )
   .then((response) => response.text())
   .then((data) => {
-    fs.appendFile('./src/assets/files/questionnaire.json', data, (error) => {
+    fs.writeFile('./src/assets/files/questionnaire.json', data, (error) => {
       error
         ? console.error(
             `Something went wrong while trying to create the questionnaire file:\n${error}`,
