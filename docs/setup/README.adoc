@@ -22,9 +22,9 @@ IMPORTANT: Please follow these instructions exactly! If you intend to use an And
 --
 Run the following command to create an app with the compass-numapp template.
 ....
-npx react-native init *yourAppId* --template https://github.com/NUMde/compass-numapp-frontend/tree/VX.X.X --title *"your App Display Name"*.
+npx react-native init *yourAppId* --template https://github.com/NUMde/compass-numapp-frontend/tree/vX.X.X --title *"your App Display Name"*.
 ....
-Insert your app identifier and display name and replace 'X.X.X' with the link:https://github.com/mbastian93/release-test/releases[latest released version] of the template.
+Insert your app identifier and display name and replace 'X.X.X' with the link:https://github.com/NUMde/compass-numapp-frontend/releases[latest released version] of the template.
 
 To change the bundle identifier (default is 'de.num.yourappid.android' or 'de.num.yourappid.ios'), replace all occurrences in the android project and replace the value for 'PRODUCT_BUNDLE_IDENTIFIER' in 'ios/YourAppName.xcodeproj/project.pbxproj'
 
