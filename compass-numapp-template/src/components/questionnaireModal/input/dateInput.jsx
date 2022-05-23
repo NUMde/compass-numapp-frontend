@@ -38,7 +38,7 @@ export default function DateInput({ item }) {
   const dispatch = useDispatch();
   // get currentDate from state
   const currentDate = useSelector(
-    (state) => state.Questionnaire.itemMap[item.linkId].answer?.[0]?.answerDate,
+    (state) => state.Questionnaire.itemMap[item.linkId].answer?.[0]?.valueDate,
   );
   return (
     <View style={SharedStyles.modalInput}>
@@ -88,7 +88,7 @@ export default function DateInput({ item }) {
               dispatch(
                 setAnswer({
                   linkId: item.linkId,
-                  answer: { answerDate: exportService.getFormattedDate(date) },
+                  answer: { valueDate: exportService.getFormattedDate(date) },
                 }),
               );
             }

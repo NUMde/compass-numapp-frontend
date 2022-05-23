@@ -191,7 +191,7 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
               }
             }
           >
-            Fragegruppe 1
+            Datentypen
           </Text>
           <View
             accessibilityHint="Closes current page or modal."
@@ -451,7 +451,7 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
                   "height": 5,
                 },
                 Object {
-                  "width": "10.526315789473683%",
+                  "width": "22.22222222222222%",
                 },
               ]
             }

@@ -124,9 +124,9 @@ describe('categoriesList', () => {
     expect(queryByText(/Freitext/)).toBeTruthy();
     fireEvent.press(icon2);
     expect(queryByText(/Freitext/)).toBeFalsy();
-    expect(queryByText(/Untergruppe/)).toBeTruthy();
+    expect(queryByText(/Slider/)).toBeTruthy();
     fireEvent.press(icon2);
-    expect(queryByText(/Untergruppe/)).toBeFalsy();
+    expect(queryByText(/Slider/)).toBeFalsy();
   });
 
   it('should open modal at chosen item', () => {

@@ -93,7 +93,7 @@ describe('calculatePageProgress', () => {
     expect(analyzer.calculatePageProgress(categories, 0, 0, itemMap)).toBe(0);
     expect(
       analyzer.calculatePageProgress(categories, 0, 5, itemMap),
-    ).toBeCloseTo(0.238);
+    ).toBeCloseTo(0.56);
   });
 });
 

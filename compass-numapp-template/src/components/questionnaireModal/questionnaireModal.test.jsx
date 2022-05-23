@@ -70,9 +70,10 @@ describe('Questionnaire Modal', () => {
 
   it('providing required answer should enable conditional question', async () => {
     const localState = cloneDeep(initialState);
-    localState.Questionnaire.pageIndex = 15;
-    localState.Questionnaire.itemMap['1.15.1'] = {
-      linkId: '1.15.1',
+    localState.Questionnaire.categoryIndex = 3;
+    localState.Questionnaire.pageIndex = 1;
+    localState.Questionnaire.itemMap['4.1.1'] = {
+      linkId: '4.1.1',
       text: 'Abfrage Dezimalzahl (erwartet = 1.5)',
       type: 'decimal',
       required: true,
@@ -132,7 +133,7 @@ describe('Questionnaire Modal', () => {
   });
 
   it("should navigate to previous question when clicking 'back button'", async () => {
-    const modifiedInitialState = { ...initialState };
+    const modifiedInitialState = cloneDeep(initialState);
     modifiedInitialState.Questionnaire.pageIndex = 2;
     const { getByTestId, getByText } = renderWithRedux(<QuestionnaireModal />, {
       initialState,
@@ -161,8 +162,8 @@ describe('Questionnaire Modal', () => {
   });
 
   it("should close the modal when clicking 'confirm button' on last page", async () => {
-    const modifiedInitialState = { ...initialState };
-    modifiedInitialState.Questionnaire.pageIndex = 23;
+    const modifiedInitialState = cloneDeep(initialState);
+    modifiedInitialState.Questionnaire.pageIndex = 9;
     const { getByTestId, queryByTestId } = renderWithRedux(
       <QuestionnaireModal />,
       {
@@ -180,37 +181,71 @@ describe('Questionnaire Modal', () => {
   });
 
   it('should skip questions whose dependencies are not met', async () => {
-    const modifiedInitialState = { ...initialState };
-    modifiedInitialState.Questionnaire.pageIndex = 11;
+    const modifiedInitialState = cloneDeep(initialState);
+    modifiedInitialState.Questionnaire.categoryIndex = 3;
+    modifiedInitialState.Questionnaire.pageIndex = 3;
+    modifiedInitialState.Questionnaire.itemMap['3.2.1'] = {
+      linkId: '3.2.1',
+      text: 'Option A',
+      type: 'boolean',
+      required: true,
+      answer: [{ valueBoolean: true }],
+      done: true,
+    };
     const { getByTestId, getByText } = renderWithRedux(<QuestionnaireModal />, {
       initialState: modifiedInitialState,
     });
-    expect(getByText(/Choice-Abfrage/)).toBeTruthy();
+    expect(
+      getByText(modifiedInitialState.Questionnaire.categories[3].item[2].text),
+    ).toBeTruthy();
     const confirmButton = getByTestId('BottomBar_confirm_btn');
     fireEvent.press(confirmButton);
 
-    await waitFor(() => expect(getByText(/Abfrage Dezimalzahl/)).toBeTruthy());
+    await waitFor(() =>
+      expect(
+        getByText(
+          modifiedInitialState.Questionnaire.categories[3].item[4].text,
+        ),
+      ).toBeTruthy(),
+    );
   });
 
   it('should skip questions whose dependencies are not met (backwards)', async () => {
-    const modifiedInitialState = { ...initialState };
-    modifiedInitialState.Questionnaire.pageIndex = 15;
+    const modifiedInitialState = cloneDeep(initialState);
+    modifiedInitialState.Questionnaire.categoryIndex = 3;
+    modifiedInitialState.Questionnaire.pageIndex = 5;
+    modifiedInitialState.Questionnaire.itemMap['3.2.1'] = {
+      linkId: '3.2.1',
+      text: 'Option A',
+      type: 'boolean',
+      required: true,
+      answer: [{ valueBoolean: true }],
+      done: true,
+    };
     const { getByTestId, getByText } = renderWithRedux(<QuestionnaireModal />, {
       initialState: modifiedInitialState,
     });
-    expect(getByText(/Abfrage Dezimalzahl/)).toBeTruthy();
+    expect(
+      getByText(modifiedInitialState.Questionnaire.categories[3].item[4].text),
+    ).toBeTruthy();
     const backButton = getByTestId('BottomBar_back_btn');
     fireEvent.press(backButton);
 
-    await waitFor(() => expect(getByText(/Choice-Abfrage/)).toBeTruthy());
+    await waitFor(() =>
+      expect(
+        getByText(
+          modifiedInitialState.Questionnaire.categories[3].item[2].text,
+        ),
+      ).toBeTruthy(),
+    );
   });
 
   it('should render the modal with the progressBar', () => {
-    const modifiedInitialState = { ...initialState };
+    const modifiedInitialState = cloneDeep(initialState);
     modifiedInitialState.Questionnaire.pageIndex = 2;
     appConfig.useProgressBar = true;
     const { getByTestId, toJSON } = renderWithRedux(<QuestionnaireModal />, {
-      initialState,
+      initialState: modifiedInitialState,
     });
     expect(getByTestId('progressBar')).toBeTruthy();
     expect(toJSON()).toMatchSnapshot();

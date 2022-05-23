@@ -6,7 +6,7 @@ export default {
   item: [
     {
       linkId: '1',
-      text: 'Fragegruppe 1',
+      text: 'Datentypen',
       item: [
         {
           linkId: '1.1',
@@ -47,23 +47,10 @@ export default {
         {
           linkId: '1.5',
           text: 'Das ist eine boolsche Abfrage',
-          answer: [
-            {
-              valueBoolean: false,
-            },
-          ],
+          answer: [{ valueBoolean: false }],
         },
         {
           linkId: '1.7',
-          text: 'Das ist eine Slider-Abfrage',
-          answer: [
-            {
-              valueInteger: 3,
-            },
-          ],
-        },
-        {
-          linkId: '1.8',
           text: 'Das ist eine optionale Frage',
           answer: [
             {
@@ -72,7 +59,70 @@ export default {
           ],
         },
         {
+          linkId: '1.8',
+          text: 'Das ist eine Frage mit max. Eingabelänge von 10 Zeichen',
+          answer: [
+            {
+              valueString: 'abcdefg',
+            },
+          ],
+        },
+        {
           linkId: '1.9',
+          text: 'Frage mit regulärem Ausdruck; nur Kleinbuchstaben erlaubt',
+          answer: [
+            {
+              valueString: 'abc',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      linkId: '2',
+      text: 'Fragen mit Extensions',
+      item: [
+        {
+          linkId: '2.1',
+          text: 'Das ist eine Slider-Abfrage',
+          answer: [
+            {
+              valueInteger: 3,
+            },
+          ],
+        },
+        {
+          linkId: '2.2',
+          text: 'Das ist eine Single-Choice-Abfrage als Drop-Down',
+          answer: [
+            {
+              valueString: 'Option B',
+            },
+          ],
+        },
+        {
+          linkId: '2.4',
+          text: 'Diese Frage besteht aus zwei Teilen. Der zweiter Teil wurde auf Hidden gesetzt und wird nicht angezeigt.',
+          item: [
+            {
+              linkId: '2.4.1',
+              text: 'Abfrage Datum',
+              answer: [
+                {
+                  valueDate: '2022-03-14',
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      linkId: '3',
+      text: 'Fragen mit Auswahlmöglichkeiten',
+      item: [
+        {
+          linkId: '3.1',
           text: 'Das ist eine Choice-Abfrage mit Repeat',
           answer: [
             {
@@ -87,11 +137,11 @@ export default {
           ],
         },
         {
-          linkId: '1.10',
+          linkId: '3.2',
           text: 'Das ist eine Gruppe aus Booleans (kein Choice Element)',
           item: [
             {
-              linkId: '1.10.1',
+              linkId: '3.2.1',
               text: 'Option A',
               answer: [
                 {
@@ -100,7 +150,7 @@ export default {
               ],
             },
             {
-              linkId: '1.10.2',
+              linkId: '3.2.2',
               text: 'Option B',
               answer: [
                 {
@@ -109,7 +159,7 @@ export default {
               ],
             },
             {
-              linkId: '1.10.3',
+              linkId: '3.2.3',
               text: 'Option C',
               answer: [
                 {
@@ -120,7 +170,7 @@ export default {
           ],
         },
         {
-          linkId: '1.11',
+          linkId: '3.3',
           text: 'Das ist eine Choice-Abfrage ohne Repeat',
           answer: [
             {
@@ -129,20 +179,30 @@ export default {
           ],
         },
         {
-          linkId: '1.13',
-          text: 'Diese Frage wird nur angezeigt, wenn 1.11 oder 1.10.1 mit Option A beantwortet wurde',
+          linkId: '3.4',
+          text: 'Das ist eine Single-Choice-Abfrage mit Coding',
           answer: [
             {
-              valueString: 'empty',
+              valueCoding: {
+                system: 'http://num-compass.science',
+                code: 'A',
+                display: 'Alpha',
+              },
             },
           ],
         },
+      ],
+    },
+    {
+      linkId: '4',
+      text: 'Bedingte Fragen',
+      item: [
         {
-          linkId: '1.15',
+          linkId: '4.1',
           text: 'Bedingte Abfrage mit answerDecimal',
           item: [
             {
-              linkId: '1.15.1',
+              linkId: '4.1.1',
               text: 'Abfrage Dezimalzahl (erwartet = 1.5)',
               answer: [
                 {
@@ -151,7 +211,7 @@ export default {
               ],
             },
             {
-              linkId: '1.15.2',
+              linkId: '4.1.2',
               text: 'Diese Frage wird nur bei erwarteter Eingabe angezeigt',
               answer: [
                 {
@@ -162,14 +222,14 @@ export default {
           ],
         },
         {
-          linkId: '1.16',
-          text: 'Bedingte Abfrage Ganzzahl (erwartet = 1)',
+          linkId: '4.2',
+          text: 'Bedingte Abfrage mit answerInteger',
           answer: [
             {
               valueInteger: 1,
               item: [
                 {
-                  linkId: '1.16.1',
+                  linkId: '4.2.1',
                   text: 'Diese Frage wird nur bei erwarteter Eingabe angezeigt',
                   answer: [
                     {
@@ -182,11 +242,11 @@ export default {
           ],
         },
         {
-          linkId: '1.17',
+          linkId: '4.3',
           text: 'Bedingte Abfrage mit answerDate',
           item: [
             {
-              linkId: '1.17.1',
+              linkId: '4.3.1',
               text: 'Abfrage Datum (erwartet = 01.01.2021)',
               answer: [
                 {
@@ -195,93 +255,41 @@ export default {
               ],
             },
             {
-              linkId: '1.17.2',
+              linkId: '4.3.2',
               text: 'Diese Frage wird nur bei erwarteter Eingabe angezeigt',
               answer: [
                 {
-                  valueString: '123',
+                  valueString: 'abc',
                 },
               ],
             },
           ],
         },
         {
-          linkId: '1.18',
-          text: 'Das ist eine Frage mit Definition',
-          definition: 'http://loinc.org/example#uri',
+          linkId: '4.5',
+          text: 'Diese Frage wird nur angezeigt, wenn 3.2.1 oder 3.3 mit Option A beantwortet wurde',
           answer: [
             {
-              valueString: 'abc',
+              valueString: 'empty',
             },
           ],
-        },
-        {
-          linkId: '1.19',
-          text: 'Das ist eine Frage mit max. Eingabelänge von 10 Zeichen',
-          answer: [
-            {
-              valueString: 'abcdefg',
-            },
-          ],
-        },
-        {
-          linkId: '1.20',
-          text: 'Das ist eine Single-Choice-Abfrage mit Coding',
-          answer: [
-            {
-              valueCoding: {
-                system: 'snomed',
-                code: 'A',
-                display: 'Alpha',
-              },
-            },
-          ],
-        },
-        {
-          linkId: '1.21',
-          text: 'Das ist eine Single-Choice-Abfrage als Drop-Down',
-          answer: [
-            {
-              valueString: 'Option B',
-            },
-          ],
-        },
-        {
-          linkId: '1.23',
-          text: 'Diese Frage besteht aus zwei Teilen. Der zweiter Teil wurde auf Hidden gesetzt und wird nicht angezeigt.',
-          item: [
-            {
-              linkId: '1.23.1',
-              text: 'Abfrage Datum',
-              answer: [
-                {
-                  valueDate: '2022-03-14',
-                },
-              ],
-            },
-          ],
-        },
-        {
-          linkId: '1.24',
-          text: "Diese Frage wird nur angezeigt, wenn Frage 1.20 mit 'Alpha' beantwortet wurde",
-          answer: [{ valueString: 'abc' }],
         },
       ],
     },
     {
-      linkId: '2',
-      text: 'Fragegruppe 2',
+      linkId: '5',
+      text: 'Verschachtelte Fragen',
       item: [
         {
-          linkId: '2.1',
+          linkId: '5.1',
           text: 'Untergruppe 1',
           item: [
             {
-              linkId: '2.1.1',
+              linkId: '5.1.1',
               text: 'Untergruppe 2',
               item: [
                 {
-                  linkId: '2.1.1.1',
+                  linkId: '5.1.1.1',
                   text: 'Frage der Untergruppe 2',
                   answer: [
                     {
@@ -290,11 +298,11 @@ export default {
                   ],
                 },
                 {
-                  linkId: '2.1.1.2',
+                  linkId: '5.1.1.2',
                   text: 'Untergruppe 3',
                   item: [
                     {
-                      linkId: '2.1.1.2.1',
+                      linkId: '5.1.1.2.1',
                       text: 'Frage 1 der Untergruppe 3',
                       answer: [
                         {
@@ -303,7 +311,7 @@ export default {
                       ],
                     },
                     {
-                      linkId: '2.1.1.2.2',
+                      linkId: '5.1.1.2.2',
                       text: 'Frage 2 der Untergruppe 3',
                       answer: [
                         {
@@ -316,13 +324,9 @@ export default {
               ],
             },
             {
-              linkId: '2.1.2',
+              linkId: '5.1.2',
               text: 'Frage der Untergruppe 1',
-              answer: [
-                {
-                  valueBoolean: false,
-                },
-              ],
+              answer: [{ valueBoolean: false }],
             },
           ],
         },
