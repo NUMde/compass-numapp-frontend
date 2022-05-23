@@ -65,3 +65,31 @@ fs.copyFile(
       : null;
   },
 );
+
+if (!fs.existsSync('./android/app/google-services.json')) {
+  fs.copyFile(
+    './android/app/google-services.sample.json',
+    './android/app/google-services.json',
+    (error) => {
+      error
+        ? console.error(
+            `Something went wrong while trying to copy config file:\n${error}`,
+          )
+        : null;
+    },
+  );
+}
+
+if (!fs.existsSync('./ios/GoogleService-Info.plist')) {
+  fs.copyFile(
+    './ios/GoogleService-Info.sample.plist',
+    './ios/GoogleService-Info.plist',
+    (error) => {
+      error
+        ? console.error(
+            `Something went wrong while trying to copy config file:\n${error}`,
+          )
+        : null;
+    },
+  );
+}
