@@ -36,7 +36,7 @@ jobs:
     - name: run all tests & generate coverage report
       run: cd compass-numapp-template && npm test -- --collectCoverage
     - name: upload coverage report
-      uses: codecov/codecov-action@v2
+      uses: codecov/codecov-action@v3
       with:
         files: ./coverage/clover.xml
         flags: unittests
