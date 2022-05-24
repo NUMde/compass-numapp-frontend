@@ -23,6 +23,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 -   -/-
 
+## [0.1.2] - 2022-05-24
+
+### Added
+
+-   -/-
+
+### Fixed
+
+-   fix: postInstall (https://github.com/NUMde/compass-numapp-frontend/pull/155)
+-   fix: (android) RNGestureHandler migration (https://github.com/NUMde/compass-numapp-frontend/pull/156) - caused a crash on android
+
+### Changed
+
+-   update actions/cache action to v3 (https://github.com/NUMde/compass-numapp-frontend/pull/147)
+-   update actions/checkout action to v3 (https://github.com/NUMde/compass-numapp-frontend/pull/148)
+-   update actions/setup-node action to v3 (https://github.com/NUMde/compass-numapp-frontend/pull/149)
+-   update codecov/codecov-action action to v3 (https://github.com/NUMde/compass-numapp-frontend/pull/150)
+-   update qr code for demo apk
+
+### Removed
+
+-   -/-
+
 ## [0.1.1] - 2022-05-23
 
 ### Added
