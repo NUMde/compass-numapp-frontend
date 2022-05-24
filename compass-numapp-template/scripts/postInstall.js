@@ -11,7 +11,12 @@ if (!fs.existsSync('./src/assets/files')) {
 fetch(
   'https://raw.githubusercontent.com/NUMde/compass-implementation-guide/master/input/questionnaire-generic.json',
 )
-  .then((response) => response.text())
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    return response.text();
+  })
   .then((data) => {
     fs.writeFile('./src/assets/files/questionnaire.json', data, (error) => {
       error
@@ -28,43 +33,49 @@ fetch(
   });
 
 // create config file
-fs.copyFile(
-  './src/config/appConfig.sample.js',
-  './src/config/appConfig.js',
-  (error) => {
-    error
-      ? console.error(
-          `Something went wrong while trying to copy config file:\n${error}`,
-        )
-      : null;
-  },
-);
+if (!fs.existsSync('./src/config/appConfig.js')) {
+  fs.copyFile(
+    './src/config/appConfig.sample.js',
+    './src/config/appConfig.js',
+    (error) => {
+      error
+        ? console.error(
+            `Something went wrong while trying to copy config file:\n${error}`,
+          )
+        : null;
+    },
+  );
+}
 
 // create config file for dev options
-fs.copyFile(
-  './src/config/devConfig.sample.js',
-  './src/config/devConfig.js',
-  (error) => {
-    error
-      ? console.error(
-          `Something went wrong while trying to copy config file:\n${error}`,
-        )
-      : null;
-  },
-);
+if (!fs.existsSync('./src/config/devConfig.js')) {
+  fs.copyFile(
+    './src/config/devConfig.sample.js',
+    './src/config/devConfig.js',
+    (error) => {
+      error
+        ? console.error(
+            `Something went wrong while trying to copy config file:\n${error}`,
+          )
+        : null;
+    },
+  );
+}
 
 // create config file for theme
-fs.copyFile(
-  './src/config/theme.sample.js',
-  './src/config/theme.js',
-  (error) => {
-    error
-      ? console.error(
-          `Something went wrong while trying to copy config file:\n${error}`,
-        )
-      : null;
-  },
-);
+if (!fs.existsSync('./src/config/theme.js')) {
+  fs.copyFile(
+    './src/config/theme.sample.js',
+    './src/config/theme.js',
+    (error) => {
+      error
+        ? console.error(
+            `Something went wrong while trying to copy config file:\n${error}`,
+          )
+        : null;
+    },
+  );
+}
 
 if (!fs.existsSync('./android/app/google-services.json')) {
   fs.copyFile(
