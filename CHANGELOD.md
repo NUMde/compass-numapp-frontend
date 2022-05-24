@@ -41,6 +41,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -   update actions/setup-node action to v3 (https://github.com/NUMde/compass-numapp-frontend/pull/149)
 -   update codecov/codecov-action action to v3 (https://github.com/NUMde/compass-numapp-frontend/pull/150)
 -   update qr code for demo apk
+-   reset gradle build tool to v7.0.3
 
 ### Removed
 
