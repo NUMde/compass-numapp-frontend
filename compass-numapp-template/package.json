@@ -59,8 +59,8 @@
     "redux-thunk": "2.4.1"
   },
   "devDependencies": {
-    "@babel/core": "7.17.12",
-    "@babel/preset-env": "7.17.12",
+    "@babel/core": "7.18.2",
+    "@babel/preset-env": "7.18.2",
     "@react-native-community/eslint-config": "3.0.1",
     "@testing-library/react-native": "9.1.0",
     "babel-eslint": "10.1.0",
