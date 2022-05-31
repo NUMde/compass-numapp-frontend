@@ -38,7 +38,7 @@ jobs:
     - name: upload coverage report
       uses: codecov/codecov-action@v3
       with:
-        files: ./coverage/clover.xml
+        files: .compass-numapp-template/coverage/clover.xml
         flags: unittests
         name: codecov-umbrella
   lint_annotations:
