@@ -1,5 +1,4 @@
 import React from 'react';
-import { Alert } from 'react-native';
 
 import { renderWithRedux, fireEvent } from '__test-utils__/render';
 
@@ -40,31 +39,5 @@ describe('LandingScreen', () => {
     expect(navigate).toHaveBeenCalledWith(Stacks.SIGNED_IN, {
       screen: Routes.CHECK_IN,
     });
-  });
-
-  it('should display message when error ocurred', async () => {
-    const spyAlert = jest
-      .spyOn(Alert, 'alert')
-      .mockImplementation(async (title, message, callbackOrButtons) => {
-        if (callbackOrButtons && callbackOrButtons[0]) {
-          callbackOrButtons[0].onPress();
-        }
-      });
-    const navigate = jest.fn();
-    const goBack = jest.fn();
-    const { getByText, findByText } = renderWithRedux(
-      <LandingScreen navigation={{ navigate, goBack }} />,
-      { initialState: { Globals: { error: 'some error' } } },
-    );
-    const retryBtn = getByText(en.login.landing.retry);
-    expect(retryBtn).toBeTruthy();
-    fireEvent.press(retryBtn);
-    expect(navigate).toHaveBeenCalledWith(Routes.LOGIN);
-    const deleteBtn = getByText(en.login.landing.deleteAll);
-    expect(deleteBtn).toBeTruthy();
-    fireEvent.press(deleteBtn);
-    expect(spyAlert).toHaveBeenCalled();
-
-    expect(await findByText(en.login.landing.buttonText)).toBeTruthy();
   });
 });

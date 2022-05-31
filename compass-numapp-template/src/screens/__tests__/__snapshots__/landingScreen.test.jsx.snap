@@ -179,10 +179,8 @@ exports[`LandingScreen should render screen 1`] = `
                     "fontFamily": "IBMPlexSans",
                     "fontSize": 28.125,
                     "lineHeight": 37.5,
-                    "marginBottom": 34.883720930232556,
-                    "marginLeft": 69.76744186046511,
-                    "marginRight": 69.76744186046511,
-                    "marginTop": 34.883720930232556,
+                    "marginHorizontal": 69.76744186046511,
+                    "marginVertical": 34.883720930232556,
                     "textAlign": "center",
                   }
                 }
@@ -230,10 +228,8 @@ The logo file (as well as the logoBackground) can be updated by updating the 'CU
                     "bottom": 0,
                     "opacity": 1,
                     "padding": 15,
-                    "paddingBottom": 26.162790697674417,
-                    "paddingLeft": 26.162790697674417,
-                    "paddingRight": 26.162790697674417,
-                    "paddingTop": 26.162790697674417,
+                    "paddingHorizontal": 26.162790697674417,
+                    "paddingVertical": 26.162790697674417,
                     "width": "80%",
                   }
                 }
