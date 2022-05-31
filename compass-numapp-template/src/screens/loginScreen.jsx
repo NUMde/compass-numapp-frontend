@@ -128,7 +128,9 @@ function LoginScreen({ navigation }) {
         />
 
         {/* information text */}
-        <Text style={localStyle.infoText}>{translate('login').qrInfo}</Text>
+        <View style={localStyle.textWrapper}>
+          <Text style={localStyle.infoText}>{translate('login').qrInfo}</Text>
+        </View>
       </View>
     </View>
   );
@@ -179,10 +181,13 @@ const localStyle = StyleSheet.create({
     borderColor: theme.colors.primary,
   },
 
-  infoText: {
+  textWrapper: {
     flexBasis: 33,
-    flexGrow: 1 / 4,
-    textAlignVertical: 'center',
+    flexGrow: 1 / 3,
+    justifyContent: 'center',
+  },
+
+  infoText: {
     textAlign: 'center',
     color: theme.colors.accent4,
     ...theme.fonts.subHeader1,

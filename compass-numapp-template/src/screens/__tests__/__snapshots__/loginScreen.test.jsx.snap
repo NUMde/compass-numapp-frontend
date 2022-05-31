@@ -259,22 +259,29 @@ exports[`LoginScreen should render the login screen 1`] = `
         }
       />
     </View>
-    <Text
+    <View
       style={
         Object {
-          "color": "#1F2532",
           "flexBasis": 33,
-          "flexGrow": 0.25,
-          "fontFamily": "IBMPlexSans",
-          "fontSize": 30,
-          "lineHeight": 39.375,
-          "textAlign": "center",
-          "textAlignVertical": "center",
+          "flexGrow": 0.3333333333333333,
+          "justifyContent": "center",
         }
       }
     >
-      Please point the camera onto the qr-code.
-    </Text>
+      <Text
+        style={
+          Object {
+            "color": "#1F2532",
+            "fontFamily": "IBMPlexSans",
+            "fontSize": 30,
+            "lineHeight": 39.375,
+            "textAlign": "center",
+          }
+        }
+      >
+        Please point the camera onto the qr-code.
+      </Text>
+    </View>
   </View>
 </View>
 `;
