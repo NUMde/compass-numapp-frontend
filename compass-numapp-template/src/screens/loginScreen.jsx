@@ -14,7 +14,7 @@ import { navigationPropType } from '~propTypes';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 
 // custom components
-import { Banner, ScrollIndicatorWrapper } from '~components/shared';
+import { Banner } from '~components/shared';
 import { Stacks, Routes } from '~navigation/constants';
 
 // redux actions
@@ -63,9 +63,6 @@ function LoginScreen({ navigation }) {
    */
   let camera = createRef();
 
-  // get data from state
-  const { error } = useSelector((state) => state.Globals);
-
   useEffect(() => {
     if (subjectId) {
       return navigation.navigate(Stacks.SIGNED_IN, { screen: Routes.CHECK_IN });
@@ -74,7 +71,7 @@ function LoginScreen({ navigation }) {
     if (appConfig.automateQrLogin) {
       // parses the input string to determine the subjectId (from the qr-code)
       const scannedId = checkQrCodeForUsername(
-        appConfig.automateQrLoginSubjectId || '',
+        appConfig.automateQrLoginSubjectId,
       );
       // triggers the login
       dispatch(sendCredentials(scannedId));
@@ -110,66 +107,28 @@ function LoginScreen({ navigation }) {
       />
 
       {/* scrollIndicator with qrcode scanner */}
-      <View style={{ ...localStyle.flexi, ...localStyle.wrapper }}>
-        <ScrollIndicatorWrapper>
-          <View style={localStyle.wrapper}>
-            <View style={{ ...localStyle.flexi, ...localStyle.wrapper }}>
-              <View testID="scannerWrapper">
-                {/* the qr-code-scanner */}
-                <QRCodeScanner
-                  fadeIn={false}
-                  showMarker
-                  cameraStyle={localStyle.qrScanner}
-                  markerStyle={localStyle.qrScannerMarker}
-                  ref={(node) => {
-                    camera = node;
-                  }}
-                  containerStyle={localStyle.qrScannerContainer}
-                  onRead={scanSuccess}
-                  permissionDialogMessage={translate('login').permissionDialog}
-                />
-              </View>
+      <View
+        style={[localStyle.flexi, localStyle.wrapper]}
+        testID="scannerWrapper"
+      >
+        {/* the qr-code-scanner */}
+        <QRCodeScanner
+          fadeIn={false}
+          showMarker
+          cameraStyle={localStyle.qrScanner}
+          markerStyle={localStyle.qrScannerMarker}
+          ref={(node) => {
+            camera = node;
+          }}
+          containerStyle={localStyle.qrScannerContainer}
+          onRead={scanSuccess}
+          permissionDialogMessage={translate('login').permissionDialog}
+          reactivate
+          reactivateTimeout={3000}
+        />
 
-              {/* information text */}
-              <Text style={localStyle.infoText}>
-                {translate('login').qrInfo}
-              </Text>
-
-              {/* login error text */}
-              {error && (
-                <View>
-                  {/* displays an error message in case of 401 */}
-                  {error.code === 401 && (
-                    <Text
-                      style={{
-                        ...localStyle.infoText,
-                        ...localStyle.loginErrorText,
-                      }}
-                    >
-                      {translate('login').errorUserUnauthorized}
-                    </Text>
-                  )}
-
-                  {/* if anything other than a 401: outputs the returned error message (or a generic error message instead) followed by another instructional string*/}
-                  {error.code !== 401 && (
-                    <View>
-                      <Text
-                        style={{
-                          ...localStyle.infoText,
-                          ...localStyle.loginErrorText,
-                        }}
-                      >
-                        {error?.message ?? translate('login').errorUserGeneric}
-                        {'\n'}
-                        {translate('login').nextStepAfterError}
-                      </Text>
-                    </View>
-                  )}
-                </View>
-              )}
-            </View>
-          </View>
-        </ScrollIndicatorWrapper>
+        {/* information text */}
+        <Text style={localStyle.infoText}>{translate('login').qrInfo}</Text>
       </View>
     </View>
   );
@@ -196,17 +155,7 @@ const localStyle = StyleSheet.create({
 
   flexi: {
     flex: 1,
-  },
-
-  infoText: {
-    marginBottom: 0,
-    textAlign: 'center',
-    alignSelf: 'center',
-    color: theme.colors.accent4,
-    marginTop: appConfig.scaleUiFkt(30),
-    marginLeft: appConfig.scaleUiFkt(70),
-    marginRight: appConfig.scaleUiFkt(70),
-    ...theme.fonts.subHeader1,
+    alignItems: 'center',
   },
 
   loginErrorText: {
@@ -214,19 +163,29 @@ const localStyle = StyleSheet.create({
   },
 
   qrScannerContainer: {
-    marginTop: 0,
-    width: '100%',
-    height: width,
+    flexBasis: 66,
+    flexGrow: 1,
+    maxHeight: width,
+    aspectRatio: 1,
   },
 
   qrScanner: {
-    width: '100%',
-    height: '100%',
+    maxWidth: '100%',
+    maxHeight: '100%',
     overflow: 'hidden',
   },
 
   qrScannerMarker: {
     borderColor: theme.colors.primary,
+  },
+
+  infoText: {
+    flexBasis: 33,
+    flexGrow: 1 / 4,
+    textAlignVertical: 'center',
+    textAlign: 'center',
+    color: theme.colors.accent4,
+    ...theme.fonts.subHeader1,
   },
 });
 

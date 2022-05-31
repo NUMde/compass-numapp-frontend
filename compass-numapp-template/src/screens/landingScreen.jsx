@@ -5,7 +5,7 @@ imports
 ***********************************************************************************************/
 
 import React, { useEffect } from 'react';
-import { Alert, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { navigationPropType } from '~propTypes';
@@ -16,10 +16,6 @@ import { Spinner, Banner, ScrollIndicatorWrapper } from '~components/shared';
 // services & config
 import { appConfig, theme } from '~config';
 import translate from '~services/localization';
-
-// redux actions
-
-import { reset } from '~store/sharedActions';
 
 import { Routes, Stacks } from '~navigation/constants';
 
@@ -35,7 +31,7 @@ function LandingScreen({ navigation }) {
   const dispatch = useDispatch();
 
   // get date from state
-  const { loading, error } = useSelector((state) => state.Globals);
+  const { loading } = useSelector((state) => state.Globals);
   const { subjectId } = useSelector((state) => state.User);
 
   // when component loads handle log in
@@ -45,29 +41,6 @@ function LandingScreen({ navigation }) {
       navigation.navigate(Stacks.SIGNED_IN, { screen: Routes.CHECK_IN });
     }
   }, [dispatch, subjectId, navigation]);
-
-  /**
-   * deletes all local data after user confirmation
-   */
-  const deleteHandler = () => {
-    Alert.alert(
-      translate('generic').warning,
-      translate('generic').eraseAllWarning,
-      [
-        {
-          text: translate('generic').delete,
-          onPress: () => {
-            dispatch(reset());
-          },
-        },
-        {
-          text: translate('generic').abort,
-          style: 'cancel',
-        },
-      ],
-      { cancelable: false },
-    );
-  };
 
   // rendering
   /*-----------------------------------------------------------------------------------*/
@@ -91,70 +64,32 @@ function LandingScreen({ navigation }) {
       {/* scrollIndicator */}
       <View style={[localStyle.flexi, localStyle.wrapper]}>
         <ScrollIndicatorWrapper>
-          {error ? (
-            <View style={localStyle.wrapper}>
-              <View style={localStyle.top}>
-                <Text style={localStyle.titleText}>
-                  {translate('login').landing.autoLoginErrorTitle}
-                </Text>
-                <Text style={localStyle.infoText}>
-                  {translate('login').landing.autoLoginError}
-                </Text>
-              </View>
-              <View style={localStyle.bottom}>
-                <TouchableOpacity
-                  style={localStyle.button}
-                  onPress={() => navigation.navigate(Routes.LOGIN)}
-                  accessibilityLabel={translate('login').landing.retry}
-                  accessibilityRole={translate('accessibility').types.Button}
-                  accessibilityHint={translate('accessibility').retryHint}
-                >
-                  <Text style={localStyle.buttonLabel}>
-                    {translate('login').landing.retry}
-                  </Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                  style={[localStyle.button, localStyle.buttonAlert]}
-                  onPress={() => deleteHandler()}
-                  accessibilityLabel={translate('login').landing.deleteAll}
-                  accessibilityRole={translate('accessibility').types.Button}
-                  accessibilityHint={translate('accessibility').retryHint}
-                >
-                  <Text style={localStyle.buttonLabel}>
-                    {translate('login').landing.deleteAll}
-                  </Text>
-                </TouchableOpacity>
-              </View>
+          <View style={localStyle.wrapper}>
+            {/* top elements title & text */}
+            <View style={localStyle.top}>
+              <Text style={localStyle.titleText}>
+                {translate('login').landing.welcomeTitle}
+              </Text>
+              <Text style={localStyle.infoText}>
+                {translate('login').landing.text}
+              </Text>
             </View>
-          ) : (
-            <View style={localStyle.wrapper}>
-              {/* top elements title & text */}
-              <View style={localStyle.top}>
-                <Text style={localStyle.titleText}>
-                  {translate('login').landing.welcomeTitle}
-                </Text>
-                <Text style={localStyle.infoText}>
-                  {translate('login').landing.text}
-                </Text>
-              </View>
 
-              {/* bottom login button */}
-              <View style={localStyle.bottom}>
-                <TouchableOpacity
-                  style={localStyle.button}
-                  onPress={() => navigation.navigate(Routes.LOGIN)}
-                  accessibilityLabel={translate('login').landing.buttonText}
-                  accessibilityRole={translate('accessibility').types.button}
-                  accessibilityHint={translate('accessibility').loginHint}
-                >
-                  <Text style={localStyle.buttonLabel}>
-                    {translate('login').landing.buttonText}
-                  </Text>
-                </TouchableOpacity>
-              </View>
+            {/* bottom login button */}
+            <View style={localStyle.bottom}>
+              <TouchableOpacity
+                style={localStyle.button}
+                onPress={() => navigation.navigate(Routes.LOGIN)}
+                accessibilityLabel={translate('login').landing.buttonText}
+                accessibilityRole={translate('accessibility').types.button}
+                accessibilityHint={translate('accessibility').loginHint}
+              >
+                <Text style={localStyle.buttonLabel}>
+                  {translate('login').landing.buttonText}
+                </Text>
+              </TouchableOpacity>
             </View>
-          )}
+          </View>
         </ScrollIndicatorWrapper>
       </View>
     </View>
@@ -196,10 +131,8 @@ const localStyle = StyleSheet.create({
   },
 
   infoText: {
-    marginTop: appConfig.scaleUiFkt(20),
-    marginBottom: appConfig.scaleUiFkt(20),
-    marginLeft: appConfig.scaleUiFkt(40),
-    marginRight: appConfig.scaleUiFkt(40),
+    marginVertical: appConfig.scaleUiFkt(20),
+    marginHorizontal: appConfig.scaleUiFkt(40),
     textAlign: 'center',
     alignSelf: 'center',
     color: theme.colors.accent4,
@@ -216,17 +149,8 @@ const localStyle = StyleSheet.create({
   button: {
     ...theme.classes.buttonPrimary,
     bottom: 0,
-    paddingTop: appConfig.scaleUiFkt(15),
-    paddingBottom: appConfig.scaleUiFkt(15),
-    paddingLeft: appConfig.scaleUiFkt(15),
-    paddingRight: appConfig.scaleUiFkt(15),
-    width: '80%',
-  },
-
-  buttonAlert: {
-    ...theme.classes.buttonAlert,
-    bottom: 0,
-    marginTop: 20,
+    paddingVertical: appConfig.scaleUiFkt(15),
+    paddingHorizontal: appConfig.scaleUiFkt(15),
     width: '80%',
   },
 
