@@ -205,7 +205,7 @@ exports[`LoginScreen should render the login screen 1`] = `
             "aspectRatio": 1,
             "flexBasis": 66,
             "flexGrow": 1,
-            "maxHeight": 712.5,
+            "maxHeight": 750,
           },
         ]
       }
