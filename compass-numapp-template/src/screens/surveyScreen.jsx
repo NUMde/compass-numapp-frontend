@@ -41,7 +41,7 @@ function SurveyScreen({ navigation }) {
   // when the component loads and no categories are present - i.e. no questionnaire has previously been fetched
   // get questionnaire from backend if no error ocurred before
   useEffect(() => {
-    if (!categories && !error) {
+    if (!categories && !error && !loading) {
       if (new Date() > new Date(start_date)) {
         dispatch(
           fetchQuestionnaire({
@@ -63,11 +63,6 @@ function SurveyScreen({ navigation }) {
     navigation,
     start_date,
   ]);
-
-  // Alert user when an error ocurred while fetching data
-  useEffect(() => {
-    if (error) handleError(error);
-  }, [error]);
 
   // check if all categories of the questionnaire have been answered as required
   const done = categories?.every((category) => itemMap[category.linkId].done);
@@ -104,34 +99,6 @@ function SurveyScreen({ navigation }) {
     );
   };
 
-  /**
-   * error handler; display alert depending on which action failed
-   * @param {*} err
-   */
-  const handleError = (err) => {
-    let errorMessage = '';
-    switch (err.failedAction) {
-      case 'shared/SEND_QUESTIONNAIRE_RESPONSE': {
-        errorMessage = translate('generic').sendError;
-        break;
-      }
-      case 'user/UPDATE': {
-        errorMessage = translate('generic').updateError;
-        break;
-      }
-    }
-    Alert.alert(
-      translate('generic').errorTitle,
-      errorMessage,
-      [
-        {
-          text: translate('generic').ok,
-        },
-      ],
-      { cancelable: false },
-    );
-  };
-
   return loading ? (
     <Spinner />
   ) : (
@@ -152,27 +119,47 @@ function SurveyScreen({ navigation }) {
             categories={categories}
             itemMap={itemMap}
           />
-
-          {/* renders a send-button at the bottom if the questionnaire is completed */}
-          <View style={localStyle.bottom}>
-            {done && (
-              <TouchableOpacity
-                accessibilityLabel={translate('survey').send}
-                accessibilityRole={translate('accessibility').types.button}
-                accessibilityHint={
-                  translate('accessibility').questionnaire.sendHint
-                }
-                onPress={handleSubmit}
-                style={[localStyle.button, localStyle.buttonComplete]}
-              >
-                <Text style={localStyle.buttonLabel}>
-                  {translate('survey').send}
-                </Text>
-              </TouchableOpacity>
-            )}
-          </View>
         </View>
       </ScrollIndicatorWrapper>
+      {/* renders a send-button at the bottom if the questionnaire is completed */}
+      <View>
+        {done && (
+          <TouchableOpacity
+            accessibilityLabel={translate('survey').send}
+            accessibilityRole={translate('accessibility').types.button}
+            accessibilityHint={
+              translate('accessibility').questionnaire.sendHint
+            }
+            onPress={handleSubmit}
+            style={[localStyle.button, localStyle.buttonComplete]}
+          >
+            <Text style={localStyle.buttonLabel}>
+              {translate('survey').send}
+            </Text>
+          </TouchableOpacity>
+        )}
+        {/* renders a button to retry fetching of questionnaire */}
+        {error?.failedAction === 'questionnaire/FETCH' && (
+          <TouchableOpacity
+            accessibilityLabel={translate('login').landing.retry}
+            accessibilityRole={translate('accessibility').types.button}
+            accessibilityHint={translate('accessibility').refreshHint}
+            onPress={() =>
+              dispatch(
+                fetchQuestionnaire({
+                  questionnaireID: current_questionnaire_id,
+                  subjectId,
+                }),
+              )
+            }
+            style={[localStyle.button, localStyle.buttonAlert]}
+          >
+            <Text style={localStyle.buttonLabel}>
+              {translate('login').landing.retry}
+            </Text>
+          </TouchableOpacity>
+        )}
+      </View>
     </View>
   );
 }
@@ -187,7 +174,6 @@ localStyle
 
 const localStyle = StyleSheet.create({
   wrapper: {
-    flexDirection: 'column',
     backgroundColor: theme.values.defaultBackgroundColor,
   },
 
@@ -196,23 +182,29 @@ const localStyle = StyleSheet.create({
   },
 
   bottom: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    marginBottom: 36,
-    height: '100%',
-    marginTop: 20,
+    alignSelf: 'flex-end',
+    justifyContent: 'center',
+    flex: 1 / 6,
+    width: '100%',
+  },
+
+  bottomHidden: {
+    display: 'none',
   },
 
   button: {
     ...theme.classes.buttonPrimary,
     bottom: 0,
-    marginTop: 10,
     width: '80%',
     textAlign: 'center',
   },
 
   buttonComplete: {
     backgroundColor: theme.values.defaultSendQuestionnaireButtonBackgroundColor,
+  },
+
+  buttonAlert: {
+    backgroundColor: theme.colors.alert,
   },
 
   buttonLabel: {

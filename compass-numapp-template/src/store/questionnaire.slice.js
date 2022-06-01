@@ -45,7 +45,7 @@ const fetchQuestionnaire = createAsyncThunk(
     } catch (error) {
       Alert.alert(
         translate('generic').errorTitle,
-        translate('generic').sendError,
+        translate('generic').updateError,
         [
           {
             text: translate('generic').ok,

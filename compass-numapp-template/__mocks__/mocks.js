@@ -25,22 +25,6 @@ jest.mock('react-native', () => {
   return rn;
 });
 
-// the fcm messaging
-/*-----------------------------------------------------------------------------------*/
-jest.mock('@react-native-firebase/messaging', () => ({
-  messaging: jest.fn(() => ({
-    hasPermission: jest.fn(() => Promise.resolve(true)),
-    subscribeToTopic: jest.fn(),
-    unsubscribeFromTopic: jest.fn(),
-    requestPermission: jest.fn(() => Promise.resolve(true)),
-    getToken: jest.fn(() => Promise.resolve('myMockToken')),
-  })),
-  notifications: jest.fn(() => ({
-    onNotification: jest.fn(),
-    onNotificationDisplayed: jest.fn(),
-  })),
-}));
-
 // the splashscreen used when loading the app
 /*-----------------------------------------------------------------------------------*/
 jest.mock('react-native-splash-screen', () => ({

@@ -57,6 +57,7 @@ function LoginScreen({ navigation }) {
   const dispatch = useDispatch();
 
   const { subjectId } = useSelector((state) => state.User);
+
   /**
    * reference to access the camera
    * @type {object}

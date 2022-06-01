@@ -1,9 +1,11 @@
 import React from 'react';
 import { Alert } from 'react-native';
+import { rest } from 'msw';
 
 import {
   renderWithRedux,
   fireEvent,
+  waitFor,
   waitForElementToBeRemoved,
 } from '__test-utils__/render';
 
@@ -14,6 +16,7 @@ import { loggedInClient } from '~services/rest';
 
 import en from '~CUSTOMIZATION/translations/en';
 import { appConfig } from '~config';
+import endpoints from '~services/rest/endpoints';
 
 import CheckInScreen from '../checkInScreen';
 
@@ -30,6 +33,7 @@ describe('CheckInScreen', () => {
   afterAll(() => {
     server.close();
   });
+
   it('should render the CheckInScreen', async () => {
     const navigate = jest.fn();
     const goBack = jest.fn();
@@ -330,6 +334,130 @@ describe('CheckInScreen', () => {
         expect(getByText(en.survey.surveyTitle)).toBeTruthy();
         done();
       });
+    });
+  });
+
+  it('should alert when user update failed', (done) => {
+    const spyAlert = jest.spyOn(Alert, 'alert');
+    const navigate = jest.fn();
+    const goBack = jest.fn();
+    server.use(
+      rest.get(`${endpoints.login}:subjectId`, (_req, res, ctx) => {
+        return res(
+          ctx.status(404),
+          ctx.json({
+            errorCode: 'InternalErr',
+            errorMessage: 'An internal error occurred.',
+          }),
+        );
+      }),
+    );
+    const { getByTestId, findByLabelText } = renderWithRedux(
+      <CheckInScreen navigation={{ navigate, goBack }} />,
+      {
+        initialState: {
+          User: {
+            current_questionnaire_id:
+              'http://hl7.org/fhir/Questionnaire/Fragebogen_COMPASS_Beispiel|1.0',
+            status: 'on-study',
+            start_date: new Date(),
+            firstTime: true,
+            due_date: new Date(new Date().setDate(new Date().getDate() + 3)),
+            certificate: appConfig.defaultRecipientCertificatePemString,
+            additional_iterations_left: 0,
+          },
+          Globals: { loading: false },
+        },
+      },
+    );
+    findByLabelText(en.accessibility.refresh).then((refreshBtn) => {
+      fireEvent.press(refreshBtn);
+      waitForElementToBeRemoved(() => getByTestId('Spinner')).then(() => {
+        expect(spyAlert).toHaveBeenCalledWith(
+          en.generic.errorTitle,
+          en.generic.updateError,
+          expect.anything(),
+          expect.anything(),
+        );
+        done();
+      });
+    });
+  });
+
+  it('should alert when submission of questionnaire failed', (done) => {
+    const navigate = jest.fn();
+    const goBack = jest.fn();
+    const spyAlert = jest
+      .spyOn(Alert, 'alert')
+      .mockImplementation((_title, _message, callbackOrButtons) => {
+        if (callbackOrButtons && callbackOrButtons[0].onPress) {
+          callbackOrButtons[0].onPress();
+        }
+      });
+    server.use(
+      rest.post(`${endpoints.sendQuestionnaire}`, (_req, res, ctx) => {
+        return res(
+          ctx.status(404),
+          ctx.json({
+            errorCode: 'InternalErr',
+            errorMessage: 'An internal error occurred.',
+          }),
+        );
+      }),
+    );
+    const { findByText, getByTestId } = renderWithRedux(
+      <CheckInScreen navigation={{ navigate, goBack }} />,
+      {
+        initialState: {
+          User: {
+            subjectId: 'someUserId',
+            current_questionnaire_id:
+              'http://hl7.org/fhir/Questionnaire/Fragebogen_COMPASS_Beispiel|1.0',
+            status: 'on-study',
+            start_date: new Date(),
+            firstTime: true,
+            due_date: new Date(new Date().setDate(new Date().getDate() + 3)),
+            certificate: appConfig.defaultRecipientCertificatePemString,
+            additional_iterations_left: 1,
+          },
+          Questionnaire: {
+            itemMap,
+            categories,
+            FHIRmetadata: {
+              url: 'http://hl7.org/fhir/Questionnaire/Fragebogen_COMPASS_Beispiel',
+              version: '1.0',
+            },
+          },
+        },
+      },
+    );
+    findByText(en.survey.send).then((btn) => {
+      fireEvent.press(btn);
+      waitForElementToBeRemoved(() => getByTestId('Spinner')).then(() => {
+        expect(spyAlert).toHaveBeenCalledWith(
+          en.generic.errorTitle,
+          en.generic.sendError,
+          expect.anything(),
+          expect.anything(),
+        );
+        done();
+      });
+    });
+  });
+
+  it('should connect to FCM & send token to backend', (done) => {
+    appConfig.connectToFCM = true;
+    const navigate = jest.fn();
+    const goBack = jest.fn();
+    const spyRest = jest.spyOn(loggedInClient, 'updateDeviceToken');
+    renderWithRedux(<CheckInScreen navigation={{ navigate, goBack }} />, {
+      initialState: {
+        User: { subjectId: 'someUserId', additional_iterations_left: 0 },
+      },
+    });
+
+    waitFor(() => expect(spyRest).toHaveBeenCalled()).then(() => {
+      done();
     });
   });
 });
