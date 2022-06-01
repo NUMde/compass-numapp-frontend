@@ -1,5 +1,6 @@
 import React from 'react';
 import { Alert } from 'react-native';
+import { rest } from 'msw';
 
 import {
   act,
@@ -8,6 +9,7 @@ import {
   waitForElementToBeRemoved,
 } from '__test-utils__/render';
 import server from '__mocks__/server';
+import endpoints from '~services/rest/endpoints';
 import emptyItemMap from '__mocks__/questionnaire/emptyItemMap';
 import itemMap from '__mocks__/questionnaire/itemMap';
 import categories from '__mocks__/questionnaire/categories';
@@ -21,6 +23,10 @@ import SurveyScreen from '../surveyScreen';
 describe('SurveyScreen', () => {
   beforeAll(() => {
     server.listen();
+  });
+
+  beforeEach(() => {
+    jest.clearAllMocks();
   });
 
   afterEach(() => {
@@ -87,8 +93,8 @@ describe('SurveyScreen', () => {
     appConfig.automateQrLogin = true;
     jest
       .spyOn(Alert, 'alert')
-      .mockImplementation((title, message, callbackOrButtons) => {
-        if (callbackOrButtons && callbackOrButtons[0]) {
+      .mockImplementation((_title, _message, callbackOrButtons) => {
+        if (callbackOrButtons && callbackOrButtons[0].onPress) {
           act(() => callbackOrButtons[0].onPress());
         }
       });
@@ -147,5 +153,50 @@ describe('SurveyScreen', () => {
     expect(item).toBeTruthy();
     fireEvent.press(item);
     expect(getByText(/Freitextabfrage/)).toBeTruthy();
+  });
+
+  it('should handle error when fetching of questionnaire fails', async () => {
+    const navigate = jest.fn();
+    const goBack = jest.fn();
+    const spyAlert = jest.spyOn(Alert, 'alert');
+    server.use(
+      rest.get(
+        `${endpoints.getQuestionnaire}:questionnaireId/:langCode`,
+        (_req, res, ctx) => {
+          return res(
+            ctx.status(404),
+            ctx.json({
+              errorCode: 'InternalErr',
+              errorMessage: 'An internal error occurred.',
+            }),
+          );
+        },
+      ),
+    );
+    const { findByText, queryByText } = renderWithRedux(
+      <SurveyScreen navigation={{ navigate, goBack }} />,
+      {
+        initialState: {
+          Globals: { loading: false },
+          User: {
+            subjectId: 'user',
+            start_date: new Date(),
+            current_questionnaire_id: 'id:10',
+            certificate: appConfig.defaultRecipientCertificatePemString,
+          },
+        },
+      },
+    );
+    const btn = await findByText(en.login.landing.retry);
+    expect(btn).toBeTruthy();
+    expect(spyAlert).toHaveBeenCalledWith(
+      en.generic.errorTitle,
+      en.generic.updateError,
+      expect.anything(),
+      expect.anything(),
+    );
+    server.resetHandlers();
+    fireEvent.press(btn);
+    expect(queryByText(en.login.landing.retry)).toBeFalsy();
   });
 });

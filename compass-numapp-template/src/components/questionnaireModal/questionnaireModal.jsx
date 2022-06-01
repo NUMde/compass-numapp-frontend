@@ -46,7 +46,7 @@ import { switchContent } from '~store/questionnaire.slice';
 // services & config
 import setAccessibilityResponder from '~services/setAccessibilityResponder';
 import translate from '~services/localization';
-import { appConfig, theme } from '~config';
+import { theme } from '~config';
 
 // custom components
 import QuestionnaireItem from './questionnaireItem';

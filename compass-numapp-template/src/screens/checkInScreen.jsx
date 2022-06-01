@@ -221,22 +221,19 @@ function CheckInScreen({ navigation }) {
                 categoriesLoaded={categoriesLoaded}
               />
               {/* renders the button at the bottom */}
-              {!error && (
-                <CheckInTiles
-                  done={done}
-                  status={status}
-                  iterationsLeft={additional_iterations_left}
-                  categoriesLoaded={categoriesLoaded}
-                  noNewQuestionnaireAvailableYet={
-                    noNewQuestionnaireAvailableYet
-                  }
-                  sendReport={handleReport}
-                  deleteLocalDataAndLogout={() => {
-                    /* TODO */
-                  }}
-                  exportAndUploadQuestionnaireResponse={handleSubmit}
-                />
-              )}
+
+              <CheckInTiles
+                done={done}
+                status={status}
+                iterationsLeft={additional_iterations_left}
+                categoriesLoaded={categoriesLoaded}
+                noNewQuestionnaireAvailableYet={noNewQuestionnaireAvailableYet}
+                sendReport={handleReport}
+                deleteLocalDataAndLogout={() => {
+                  /* TODO */
+                }}
+                exportAndUploadQuestionnaireResponse={handleSubmit}
+              />
             </View>
           </ScrollIndicatorWrapper>
         </View>

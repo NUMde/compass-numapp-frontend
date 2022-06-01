@@ -43,6 +43,7 @@ const GlobalsSlice = createSlice({
       .addCase(sendCredentials.fulfilled, (state) => ({
         ...state,
         loading: false,
+        error: null,
       }))
       .addCase(sendCredentials.rejected, (state, action) => ({
         ...state,
@@ -67,6 +68,7 @@ const GlobalsSlice = createSlice({
       .addCase(updateLanguage.fulfilled, (state) => ({
         ...state,
         loading: false,
+        error: null,
       }))
       .addCase(updateLanguage.rejected, (state, action) => ({
         ...state,
@@ -80,6 +82,7 @@ const GlobalsSlice = createSlice({
       .addCase(fetchQuestionnaire.fulfilled, (state) => ({
         ...state,
         loading: false,
+        error: null,
       }))
       .addCase(fetchQuestionnaire.rejected, (state, action) => ({
         ...state,
@@ -93,6 +96,7 @@ const GlobalsSlice = createSlice({
       .addCase(sendQuestionnaireResponse.fulfilled, (state) => ({
         ...state,
         loading: false,
+        error: null,
       }))
       .addCase(sendQuestionnaireResponse.rejected, (state, action) => {
         return {
