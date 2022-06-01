@@ -49,7 +49,7 @@ function SurveyScreen({ navigation }) {
             subjectId,
           }),
         );
-      } else if (!loading) {
+      } else {
         navigation.navigate(Routes.CHECK_IN);
       }
     }
