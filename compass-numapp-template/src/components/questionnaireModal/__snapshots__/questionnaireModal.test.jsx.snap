@@ -37,6 +37,7 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
 >
   <View
     accessible={true}
+    collapsable={false}
     focusable={true}
     forwardedRef={[Function]}
     onClick={[Function]}
@@ -97,6 +98,7 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
     }
   >
     <View
+      collapsable={false}
       deviceHeight={null}
       deviceWidth={null}
       forwardedRef={[Function]}
@@ -200,7 +202,6 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
             accessible={true}
             collapsable={false}
             focusable={true}
-            nativeID="animatedComponent"
             onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
@@ -293,7 +294,6 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
                 accessible={true}
                 collapsable={false}
                 focusable={true}
-                nativeID="animatedComponent"
                 onClick={[Function]}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
@@ -318,7 +318,6 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
                 >
                   <View
                     collapsable={false}
-                    nativeID="animatedComponent"
                     style={
                       Object {
                         "alignItems": "center",
@@ -497,7 +496,6 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
               accessible={true}
               collapsable={false}
               focusable={true}
-              nativeID="animatedComponent"
               onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
@@ -604,7 +602,6 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
               accessible={true}
               collapsable={false}
               focusable={true}
-              nativeID="animatedComponent"
               onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
@@ -714,7 +711,6 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
               accessible={true}
               collapsable={false}
               focusable={true}
-              nativeID="animatedComponent"
               onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}

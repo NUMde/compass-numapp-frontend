@@ -108,7 +108,7 @@ describe('redirectModal', () => {
     const tree = render(
       <RedirectModal
         hideModal={hideModal}
-        showModal={false}
+        showModal={true}
         modalLink={modalLink}
       />,
     );
@@ -132,7 +132,7 @@ describe('redirectModal', () => {
     const { getByTestId } = render(
       <RedirectModal
         hideModal={hideModal}
-        showModal={false}
+        showModal={true}
         modalLink={modalLink}
       />,
     );
@@ -143,7 +143,7 @@ describe('redirectModal', () => {
     const { getByTestId } = render(
       <RedirectModal
         hideModal={hideModal}
-        showModal={false}
+        showModal={true}
         modalLink={modalLink}
       />,
     );
@@ -166,7 +166,7 @@ describe('redirectModal', () => {
     const { getByTestId } = render(
       <RedirectModal
         hideModal={hideModal}
-        showModal={false}
+        showModal={true}
         modalLink={modalLink}
       />,
     );

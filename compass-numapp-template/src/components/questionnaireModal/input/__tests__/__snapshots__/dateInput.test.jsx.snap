@@ -26,7 +26,6 @@ exports[`DateInput (Android/default) should render a dateInput element 1`] = `
     accessible={true}
     collapsable={false}
     focusable={true}
-    nativeID="animatedComponent"
     onClick={[Function]}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
@@ -51,7 +50,6 @@ exports[`DateInput (Android/default) should render a dateInput element 1`] = `
     >
       <View
         collapsable={false}
-        nativeID="animatedComponent"
         style={
           Object {
             "alignItems": "center",
@@ -179,7 +177,6 @@ exports[`DateInput (iOS) should render a dateInput element 1`] = `
     accessible={true}
     collapsable={false}
     focusable={true}
-    nativeID="animatedComponent"
     onClick={[Function]}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
@@ -204,7 +201,6 @@ exports[`DateInput (iOS) should render a dateInput element 1`] = `
     >
       <View
         collapsable={false}
-        nativeID="animatedComponent"
         style={
           Object {
             "alignItems": "center",

@@ -414,14 +414,13 @@ exports[`redirectModal should render the redirectModal 1`] = `
   swipeThreshold={100}
   testID="redirectModal"
   transparent={true}
-  visible={false}
+  visible={true}
 >
   <View
     accessible={true}
     collapsable={false}
     focusable={true}
     forwardedRef={[Function]}
-    nativeID="animatedComponent"
     onClick={[Function]}
     onResponderGrant={[Function]}
     onResponderMove={[Function]}
@@ -486,7 +485,6 @@ exports[`redirectModal should render the redirectModal 1`] = `
       deviceWidth={null}
       forwardedRef={[Function]}
       hideModalContentWhileAnimating={false}
-      nativeID="animatedComponent"
       onBackdropPress={[MockFunction]}
       onModalHide={[Function]}
       onModalWillHide={[Function]}
@@ -512,7 +510,7 @@ exports[`redirectModal should render the redirectModal 1`] = `
           "marginTop": 80,
           "transform": Array [
             Object {
-              "translateY": 0,
+              "translateY": 1334,
             },
           ],
         }
@@ -579,7 +577,6 @@ exports[`redirectModal should render the redirectModal 1`] = `
               accessible={true}
               collapsable={false}
               focusable={true}
-              nativeID="animatedComponent"
               onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
@@ -712,7 +709,6 @@ exports[`redirectModal should render the redirectModal 1`] = `
             accessible={true}
             collapsable={false}
             focusable={true}
-            nativeID="animatedComponent"
             onClick={[Function]}
             onResponderGrant={[Function]}
             onResponderMove={[Function]}
