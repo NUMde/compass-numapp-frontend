@@ -210,7 +210,6 @@ The logo file (as well as the logoBackground) can be updated by updating the 'CU
                 accessible={true}
                 collapsable={false}
                 focusable={true}
-                nativeID="animatedComponent"
                 onClick={[Function]}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
