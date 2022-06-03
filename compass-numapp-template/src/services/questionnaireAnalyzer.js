@@ -30,6 +30,16 @@ service methods
 // support functions
 /*-----------------------------------------------------------------------------------*/
 
+const operators = {
+  EXISTS: 'exists',
+  EQUALS: '=',
+  UNEQUAL: '!=',
+  STRICT_GREATER: '>',
+  STRICT_LESS: '<',
+  GREATER_OR_EQUAL: '>=',
+  LESS_OR_EQUAL: '<=',
+};
+
 /**
  * gets an entry of an enableWhen-array (a condition) and returns
  * the correct attribute-name for the conditional answer
@@ -37,49 +47,6 @@ service methods
  */
 const getEnableWhenAnswerType = (condition) =>
   Object.keys(condition).filter((key) => key.startsWith('answer'))[0];
-
-/**
- * checks if the questions mentioned in the enableWhen-conditions were even answered.
- * if not, the condition is automatically not set. this is due to the fact that right now
- * only the-comparison-operator ("=") is available for conditional rendering
- * @param  {QuestionnaireItem} item questionnaire item
- * @param {Map<string, QuestionnaireItem>} questionnaireItemMap
- */
-const checkIfAnswersToConditionsAreAvailable = (item, questionnaireItemMap) => {
-  /** return value of the function, tells if answer conditions are available */
-  let available;
-
-  // if enableBehavior is "all" (or not set)
-  if (
-    !item.enableBehavior ||
-    (item.enableBehavior && item.enableBehavior === 'all')
-  ) {
-    // the default result
-    available = true;
-
-    // iterates over all conditions
-    item.enableWhen.forEach((condition) => {
-      // sets the return value to FALSE should a single condition not be met
-      if (!questionnaireItemMap[condition.question].answer) {
-        available = false;
-      }
-    });
-
-    return available;
-  }
-  // if enableBehavior is "any"
-
-  // the default result
-  available = false;
-
-  // iterates over all conditions
-  item.enableWhen.forEach((condition) => {
-    // sets the return value to TRUE if a single condition is met
-    if (questionnaireItemMap[condition.question].answer) available = true;
-  });
-
-  return available;
-};
 
 /**
  * calculates the relative progress of navigating through a category
@@ -188,7 +155,7 @@ const traverseItems = (elements, questionnaireItemMap) => {
         /**
          * will be set to TRUE if a single condition is met
          */
-        let aChangeOccurred = false;
+        let conditionMet = false;
 
         // iterates over all conditions
         item.enableWhen.forEach((condition) => {
@@ -203,14 +170,14 @@ const traverseItems = (elements, questionnaireItemMap) => {
             })
           ) {
             // if the condition is met
-            aChangeOccurred = true;
+            conditionMet = true;
             // if the content checks out, set itemValidityAny to true
             if (checkItem(item, questionnaireItemMap)) itemValidityAny = true;
           }
         });
 
         // if no item met the conditions... then the question will never be rendered and is therefor not invalid, meaning TRUE
-        if (!aChangeOccurred) itemValidityAny = true;
+        if (!conditionMet) itemValidityAny = true;
 
         // if nothing checks out
         if (!itemValidityAny) validityOfTraversedItems = false;
@@ -224,6 +191,137 @@ const traverseItems = (elements, questionnaireItemMap) => {
   });
 
   return validityOfTraversedItems;
+};
+
+/**
+ * check if the answer(s) provided by the question object satisfy the condition
+ * @param {Condition} condition the condition to check
+ * @param {ItemMapEntry} question the itemMap entry with the answer(s) against which the condition is checked
+ * @returns {boolean}
+ */
+const answerSatisfiesCondition = (condition, question) => {
+  const answerType = getEnableWhenAnswerType(condition);
+  const valueType = answerType.replace('answer', 'value');
+  switch (condition.operator) {
+    // check if any answer exists (only for boolean types)
+    case operators.EXISTS: {
+      return question.answer?.length > 0;
+    }
+    // check for equality
+    case operators.EQUALS: {
+      if (answerType === 'answerCoding') {
+        return (
+          question.answer?.findIndex((it) =>
+            codingEquals(it.valueCoding, condition.answerCoding),
+          ) >= 0
+        );
+      }
+      return (
+        question.answer?.findIndex(
+          (it) => it[valueType] === condition[answerType],
+        ) >= 0
+      );
+    }
+    // check for inequality
+    case operators.UNEQUAL: {
+      if (answerType === 'answerCoding') {
+        return !question.answer?.find((it) =>
+          codingEquals(it.valueCoding, condition.answerCoding),
+        );
+      }
+      return !question.answer?.find(
+        (it) => it[valueType] === condition[answerType],
+      );
+    }
+    // check if strict greater
+    case operators.STRICT_GREATER: {
+      if (answerType === 'answerDate' || answerType === 'answerDateTime') {
+        return question.answer?.find(
+          (it) => new Date(it[valueType]) > new Date(condition[answerType]),
+        );
+      }
+      if (answerType === 'answerTime') {
+        const [hoursExpected, minutesExpected] =
+          condition.answerTime.split(':');
+        return question.answer?.find((it) => {
+          const [hours, minutes] = it.valueTime.split(':');
+          return (
+            new Date(null, null, null, hours, minutes) >
+            new Date(null, null, null, hoursExpected, minutesExpected)
+          );
+        });
+      }
+      return question.answer?.find(
+        (it) => it[valueType] > condition[answerType],
+      );
+    }
+    // check if strict less
+    case operators.STRICT_LESS: {
+      if (answerType === 'answerDate' || answerType === 'answerDateTime') {
+        return question.answer?.find(
+          (it) => new Date(it[valueType]) < new Date(condition[answerType]),
+        );
+      }
+      if (answerType === 'answerTime') {
+        const [hoursExpected, minutesExpected] =
+          condition.answerTime.split(':');
+        return question.answer?.find((it) => {
+          const [hours, minutes] = it.valueTime.split(':');
+          return (
+            new Date(null, null, null, hours, minutes) <
+            new Date(null, null, null, hoursExpected, minutesExpected)
+          );
+        });
+      }
+      return question.answer?.find(
+        (it) => it[valueType] < condition[answerType],
+      );
+    }
+    // check if greater or equal
+    case operators.GREATER_OR_EQUAL: {
+      if (answerType === 'answerDate' || answerType === 'answerDateTime') {
+        return question.answer?.find(
+          (it) => new Date(it[valueType]) >= new Date(condition[answerType]),
+        );
+      }
+      if (answerType === 'answerTime') {
+        const [hoursExpected, minutesExpected] =
+          condition.answerTime.split(':');
+        return question.answer?.find((it) => {
+          const [hours, minutes] = it.valueTime.split(':');
+          return (
+            new Date(null, null, null, hours, minutes) >=
+            new Date(null, null, null, hoursExpected, minutesExpected)
+          );
+        });
+      }
+      return question.answer?.find(
+        (it) => it[valueType] >= condition[answerType],
+      );
+    }
+    // check if less or equal
+    case operators.LESS_OR_EQUAL: {
+      if (answerType === 'answerDate' || answerType === 'answerDateTime') {
+        return question.answer?.find(
+          (it) => new Date(it[valueType]) <= new Date(condition[answerType]),
+        );
+      }
+      if (answerType === 'answerTime') {
+        const [hoursExpected, minutesExpected] =
+          condition.answerTime.split(':');
+        return question.answer?.find((it) => {
+          const [hours, minutes] = it.valueTime.split(':');
+          return (
+            new Date(null, null, null, hours, minutes) <=
+            new Date(null, null, null, hoursExpected, minutesExpected)
+          );
+        });
+      }
+      return question.answer?.find(
+        (it) => it[valueType] <= condition[answerType],
+      );
+    }
+  }
 };
 
 // exported functions
@@ -307,30 +405,20 @@ const checkDependenciesOfSingleItem = (item, questionnaireItemMap) => {
     return false;
   }
   if (item && item.enableWhen) {
-    // if the item has a set of conditions
-    // checks if the items mentioned in the conditions are even answered...
-    if (!checkIfAnswersToConditionsAreAvailable(item, questionnaireItemMap)) {
-      // ...if not, the returnValue is set to FALSE - game over
-      return false;
-    }
     if (item.enableWhen.length !== 0) {
-      const elementTestCallback = (condition) => {
-        const answerType = getEnableWhenAnswerType(condition);
-        const expected = condition[answerType];
-        const question = questionnaireItemMap[condition.question];
-
-        if (answerType === 'answerCoding') {
-          return question.answer?.find((it) =>
-            codingEquals(it.valueCoding, expected),
-          );
-        }
-        return question.answer?.find(
-          (it) => it?.[answerType.replace('answer', 'value')] === expected,
-        );
-      };
       return !item.enableBehavior || item.enableBehavior === 'all'
-        ? item.enableWhen.every(elementTestCallback)
-        : item.enableWhen.some(elementTestCallback);
+        ? item.enableWhen.every((condition) =>
+            answerSatisfiesCondition(
+              condition,
+              questionnaireItemMap[condition.question],
+            ),
+          )
+        : item.enableWhen.some((condition) =>
+            answerSatisfiesCondition(
+              condition,
+              questionnaireItemMap[condition.question],
+            ),
+          );
     }
   }
   // if there is no condition (but at least something)...
@@ -374,8 +462,8 @@ const createResponseJSON = (questionnaireItemMap, categories, FHIRmetadata) => {
 
         // if the conditions of the item are met or if one of the ChildItems provides the necessary answer
         if (
-          checkDependenciesOfSingleItem(item, questionnaireItemMap) &&
-          item.type !== 'display'
+          item.type !== 'display' &&
+          checkDependenciesOfSingleItem(item, questionnaireItemMap)
         ) {
           /**
            * creates a new item
@@ -514,4 +602,5 @@ export default {
   calculatePageProgress,
   checkDependenciesOfSingleItem,
   checkCompletionStateOfItems,
+  answerSatisfiesCondition,
 };

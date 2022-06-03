@@ -156,3 +156,245 @@ describe('checkCompletionStateOfItems', () => {
     );
   });
 });
+
+describe('answerSatisfiesCondition', () => {
+  // exists
+  it('should return true when answer exists', () => {
+    const condition = { operator: 'exists', answerBoolean: true };
+    const question = { answer: [{ valueBoolean: false }] };
+    expect(analyzer.answerSatisfiesCondition(condition, question)).toBeTruthy();
+  });
+
+  it('should return false when answer does not exist', () => {
+    const condition = { operator: 'exists', answerBoolean: false };
+    const question = { answer: null };
+    expect(analyzer.answerSatisfiesCondition(condition, question)).toBeFalsy();
+  });
+
+  // equality
+  it('should return true when coding equals', () => {
+    const condition = {
+      operator: '=',
+      answerCoding: { system: 'systemA', code: 'codeA', display: 'codeA' },
+    };
+    const question = {
+      answer: [
+        { valueCoding: { system: 'systemA', code: 'codeA', display: 'codeA' } },
+      ],
+    };
+    expect(analyzer.answerSatisfiesCondition(condition, question)).toBeTruthy();
+  });
+
+  it('should return false when coding does not equal', () => {
+    const condition = {
+      operator: '=',
+      answerCoding: { system: 'systemA', code: 'codeB', display: 'codeB' },
+    };
+    const question = {
+      answer: [
+        { valueCoding: { system: 'systemA', code: 'codeA', display: 'codeA' } },
+      ],
+    };
+    expect(analyzer.answerSatisfiesCondition(condition, question)).toBeFalsy();
+  });
+
+  it('should return true when string equals', () => {
+    const condition = { operator: '=', answerString: 'text' };
+    const question = { answer: [{ valueString: 'text' }] };
+    expect(analyzer.answerSatisfiesCondition(condition, question)).toBeTruthy();
+  });
+
+  it('should return false when string not equals but expected to be to', () => {
+    const condition = { operator: '=', answerString: 'text' };
+    const question = { answer: [{ valueString: 'text2' }] };
+    expect(analyzer.answerSatisfiesCondition(condition, question)).toBeFalsy();
+  });
+
+  // inequality
+
+  it('should return true when coding does not equal', () => {
+    const condition = {
+      operator: '!=',
+      answerCoding: { system: 'systemA', code: 'codeA', display: 'codeA' },
+    };
+    const question = {
+      answer: [
+        { valueCoding: { system: 'systemA', code: 'codeB', display: 'codeB' } },
+      ],
+    };
+    expect(analyzer.answerSatisfiesCondition(condition, question)).toBeTruthy();
+  });
+
+  it('should return false when coding does equal but should not equal', () => {
+    const condition = {
+      operator: '!=',
+      answerCoding: { system: 'systemA', code: 'codeA', display: 'codeA' },
+    };
+    const question = {
+      answer: [
+        { valueCoding: { system: 'systemA', code: 'codeA', display: 'codeA' } },
+      ],
+    };
+    expect(analyzer.answerSatisfiesCondition(condition, question)).toBeFalsy();
+  });
+
+  it('should return true when string not equals', () => {
+    const condition = { operator: '!=', answerString: 'text' };
+    const question = { answer: [{ valueString: 'text2' }] };
+    expect(analyzer.answerSatisfiesCondition(condition, question)).toBeTruthy();
+  });
+
+  it('should return false when string equals but expected to be not to', () => {
+    const condition = { operator: '!=', answerString: 'text' };
+    const question = { answer: [{ valueString: 'text' }] };
+    expect(analyzer.answerSatisfiesCondition(condition, question)).toBeFalsy();
+  });
+
+  // strict greater
+  it('should return true when date greater', () => {
+    const condition = { operator: '>', answerDate: '2022-03-14' };
+    const question = { answer: [{ valueDate: '2022-03-15' }] };
+    expect(analyzer.answerSatisfiesCondition(condition, question)).toBeTruthy();
+  });
+
+  it('should return false when date not greater but expected to be', () => {
+    const condition = { operator: '>', answerDate: '2022-03-14' };
+    const question = { answer: [{ valueDate: '2022-02-15' }] };
+    expect(analyzer.answerSatisfiesCondition(condition, question)).toBeFalsy();
+  });
+
+  it('should return true when number greater', () => {
+    const condition = { operator: '>', answerDecimal: 3.5 };
+    const question = { answer: [{ valueDecimal: 4.7 }] };
+    expect(analyzer.answerSatisfiesCondition(condition, question)).toBeTruthy();
+  });
+
+  it('should return false when number not greater but expected to be', () => {
+    const condition = { operator: '>', answerDecimal: 3.5 };
+    const question = { answer: [{ valueDecimal: 3.1 }] };
+    expect(analyzer.answerSatisfiesCondition(condition, question)).toBeFalsy();
+  });
+
+  it('should return true when time greater', () => {
+    const condition = { operator: '>', answerTime: '11:00:00' };
+    const question = { answer: [{ valueTime: '11:30:00' }] };
+    expect(analyzer.answerSatisfiesCondition(condition, question)).toBeTruthy();
+  });
+
+  it('should return false when time not greater but expected to be to', () => {
+    const condition = { operator: '>', answerTime: '12:00:00' };
+    const question = { answer: [{ valueTime: '11:30:00' }] };
+    expect(analyzer.answerSatisfiesCondition(condition, question)).toBeFalsy();
+  });
+
+  // strict less / smaller
+  it('should return true when date smaller', () => {
+    const condition = { operator: '<', answerDate: '2022-03-14' };
+    const question = { answer: [{ valueDate: '2022-03-13' }] };
+    expect(analyzer.answerSatisfiesCondition(condition, question)).toBeTruthy();
+  });
+
+  it('should return false when date not smaller but expected to be', () => {
+    const condition = { operator: '<', answerDate: '2022-03-14' };
+    const question = { answer: [{ valueDate: '2022-03-15' }] };
+    expect(analyzer.answerSatisfiesCondition(condition, question)).toBeFalsy();
+  });
+
+  it('should return true when number smaller', () => {
+    const condition = { operator: '<', answerDecimal: 3.5 };
+    const question = { answer: [{ valueDecimal: 2.7 }] };
+    expect(analyzer.answerSatisfiesCondition(condition, question)).toBeTruthy();
+  });
+
+  it('should return false when number not smaller but expected to be', () => {
+    const condition = { operator: '<', answerDecimal: 3.5 };
+    const question = { answer: [{ valueDecimal: 3.7 }] };
+    expect(analyzer.answerSatisfiesCondition(condition, question)).toBeFalsy();
+  });
+
+  it('should return true when time smaller', () => {
+    const condition = { operator: '<', answerTime: '11:00:00' };
+    const question = { answer: [{ valueTime: '10:30:00' }] };
+    expect(analyzer.answerSatisfiesCondition(condition, question)).toBeTruthy();
+  });
+
+  it('should return false when time not smaller but expected to be', () => {
+    const condition = { operator: '<', answerTime: '12:00:00' };
+    const question = { answer: [{ valueTime: '12:30:00' }] };
+    expect(analyzer.answerSatisfiesCondition(condition, question)).toBeFalsy();
+  });
+
+  // greater or equals
+  it('should return true when date greater or equal', () => {
+    const condition = { operator: '>=', answerDate: '2022-03-14' };
+    const question = { answer: [{ valueDate: '2022-03-15' }] };
+    expect(analyzer.answerSatisfiesCondition(condition, question)).toBeTruthy();
+  });
+
+  it('should return false when date not greater or equal but expected to be', () => {
+    const condition = { operator: '>=', answerDate: '2022-03-14' };
+    const question = { answer: [{ valueDate: '2022-02-15' }] };
+    expect(analyzer.answerSatisfiesCondition(condition, question)).toBeFalsy();
+  });
+
+  it('should return true when number greater or equal', () => {
+    const condition = { operator: '>=', answerDecimal: 3.5 };
+    const question = { answer: [{ valueDecimal: 4.7 }] };
+    expect(analyzer.answerSatisfiesCondition(condition, question)).toBeTruthy();
+  });
+
+  it('should return false when number not greater or equal but expected to be', () => {
+    const condition = { operator: '>=', answerDecimal: 3.5 };
+    const question = { answer: [{ valueDecimal: 3.1 }] };
+    expect(analyzer.answerSatisfiesCondition(condition, question)).toBeFalsy();
+  });
+
+  it('should return true when time greater or equal', () => {
+    const condition = { operator: '>=', answerTime: '11:00:00' };
+    const question = { answer: [{ valueTime: '11:30:00' }] };
+    expect(analyzer.answerSatisfiesCondition(condition, question)).toBeTruthy();
+  });
+
+  it('should return false when time not greater or equal but expected to', () => {
+    const condition = { operator: '>=', answerTime: '12:00:00' };
+    const question = { answer: [{ valueTime: '11:30:00' }] };
+    expect(analyzer.answerSatisfiesCondition(condition, question)).toBeFalsy();
+  });
+
+  //  less / smaller or equal
+  it('should return true when date smaller or equal', () => {
+    const condition = { operator: '<=', answerDate: '2022-03-14' };
+    const question = { answer: [{ valueDate: '2022-03-13' }] };
+    expect(analyzer.answerSatisfiesCondition(condition, question)).toBeTruthy();
+  });
+
+  it('should return false when date not smaller or equal but expected to be', () => {
+    const condition = { operator: '<=', answerDate: '2022-03-14' };
+    const question = { answer: [{ valueDate: '2022-03-15' }] };
+    expect(analyzer.answerSatisfiesCondition(condition, question)).toBeFalsy();
+  });
+
+  it('should return true when number smaller or equal', () => {
+    const condition = { operator: '<=', answerDecimal: 3.5 };
+    const question = { answer: [{ valueDecimal: 2.7 }] };
+    expect(analyzer.answerSatisfiesCondition(condition, question)).toBeTruthy();
+  });
+
+  it('should return false when number not smaller or equal but expected to be', () => {
+    const condition = { operator: '<=', answerDecimal: 3.5 };
+    const question = { answer: [{ valueDecimal: 3.7 }] };
+    expect(analyzer.answerSatisfiesCondition(condition, question)).toBeFalsy();
+  });
+
+  it('should return true when time smaller or equal', () => {
+    const condition = { operator: '<=', answerTime: '12:00:00' };
+    const question = { answer: [{ valueTime: '11:30:00' }] };
+    expect(analyzer.answerSatisfiesCondition(condition, question)).toBeTruthy();
+  });
+
+  it('should return false when time not smaller or equal but expected to be', () => {
+    const condition = { operator: '<=', answerTime: '11:00:00' };
+    const question = { answer: [{ valueTime: '11:30:00' }] };
+    expect(analyzer.answerSatisfiesCondition(condition, question)).toBeFalsy();
+  });
+});
