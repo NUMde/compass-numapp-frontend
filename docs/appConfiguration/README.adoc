@@ -25,10 +25,7 @@ During installation the config files in link:../../../../tree/main/compass-numap
 * *appConfig.js* for settings that also apply to release builds
 * *theme.js* to configure the style of the app an its components
 
-Should this step fail, you can retry it with:
-....
-npm run postinstall
-....
+Should this step fail, you can manually create them by copying or renaming the sample files
 
 While the options in 'devConfig.js' are only relevant for development (meaning, they have no effect on release builds),
 the options in appConfig.js are relevant fot both development and production.
