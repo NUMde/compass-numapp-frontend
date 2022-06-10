@@ -33,7 +33,7 @@ jobs:
     - name: create config files
       run: cd compass-numapp-template/src/config && mv appConfig.sample.js appConfig.js && mv devConfig.sample.js devConfig.js && mv theme.sample.js theme.js
     - name: fetch questionnaire
-      run: curl https://raw.githubusercontent.com/NUMde/compass-implementation-guide/master/input/questionnaire-generic.json > ./compass-numapp-template/src/assets/questionnaire.json
+      run: curl https://raw.githubusercontent.com/NUMde/compass-implementation-guide/master/input/questionnaire-generic.json > ./compass-numapp-template/src/assets/files/questionnaire.json
     - name: enable kiosk mode
       run: cd compass-numapp-template/src/config && sed -i -e 's/const kioskModeIsActive = false/const kioskModeIsActive = true/g' kioskApiConfig.js
     - name: update display name
