@@ -44,6 +44,8 @@ jobs:
         fileName: 'debug.keystore'
         fileDir: './compass-numapp-template/android/'
         encodedString: ${{secrets.SIGNING_KEY}}
+    - name: copy google-services.json
+      run: cd compass-numapp-template/android/app && mv google-services.sample.json google-services.json
     - name: build apk
       run: cd ./compass-numapp-template/android && ./gradlew assembleRelease "-PPROVISIONAL_SIGNING"
     - name: version
