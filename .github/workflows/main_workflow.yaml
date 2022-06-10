@@ -33,6 +33,10 @@ jobs:
       run: cd compass-numapp-template && npm ci
       env:
         CI: true
+    - name: create config files
+      run: cd compass-numapp-template/src/config && mv appConfig.sample.js appConfig.js && mv devConfig.sample.js devConfig.js && mv theme.sample.js theme.js
+    - name: fetch questionnaire
+      run: curl https://raw.githubusercontent.com/NUMde/compass-implementation-guide/master/input/questionnaire-generic.json > ./compass-numapp-template/src/assets/questionnaire.json
     - name: run all tests & generate coverage report
       run: cd compass-numapp-template && npm test -- --collectCoverage
     - name: upload coverage report
@@ -67,5 +71,9 @@ jobs:
       run:  cd compass-numapp-template && npm ci
       env:
         CI: true
+    - name: create config files
+      run: cd compass-numapp-template/src/config && mv appConfig.sample.js appConfig.js && mv devConfig.sample.js devConfig.js && mv theme.sample.js theme.js
+    - name: fetch questionnaire
+      run: curl https://raw.githubusercontent.com/NUMde/compass-implementation-guide/master/input/questionnaire-generic.json > ./compass-numapp-template/src/assets/questionnaire.json
     - name: run lint & generate annotations
       run: cd compass-numapp-template && npm run lint:annotate
