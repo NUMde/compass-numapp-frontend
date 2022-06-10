@@ -5,4 +5,5 @@ module.exports = {
     titlePlaceholder: "App Title",
     // Directory with template
     templateDir: "./compass-numapp-template",
+    postInstall: "postInstall",
 };
