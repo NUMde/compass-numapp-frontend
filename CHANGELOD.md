@@ -23,6 +23,38 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 -   -/-
 
+## [0.1.3] - 2022-06-10
+
+### Added
+
+-   extend 'enableWhen' compatibility (https://github.com/NUMde/compass-numapp-frontend/pull/169)
+
+### Fixed
+
+-   codecov was not triggered because path to coverage report was wrong
+
+### Changed
+
+-   update dependency eslint-config-prettier to v8 (https://github.com/NUMde/compass-numapp-frontend/pull/152)
+-   update dependency typescript to v4.7.2 (https://github.com/NUMde/compass-numapp-frontend/pull/129)
+-   update dependency @reduxjs/toolkit to v1.8.2 (https://github.com/NUMde/compass-numapp-frontend/pull/161)
+-   update babel monorepo to v7.18.2 (https://github.com/NUMde/compass-numapp-frontend/pull/162)
+-   changed layout & process of login/landing screens (https://github.com/NUMde/compass-numapp-frontend/pull/163)
+-   improve error handling and testing (https://github.com/NUMde/compass-numapp-frontend/pull/165)
+-   update dependency @react-native-community/datetimepicker to v6 (https://github.com/NUMde/compass-numapp-frontend/pull/158)
+-   update dependency @react-native-firebase/messaging to v14.11.0 (https://github.com/NUMde/compass-numapp-frontend/pull/142)
+-   update dependency react-redux to v8 (https://github.com/NUMde/compass-numapp-frontend/pull/160)
+-   update dependency react-native-webview to v11.21.1 (https://github.com/NUMde/compass-numapp-frontend/pull/167)
+-   update react monorepo (https://github.com/NUMde/compass-numapp-frontend/pull/130)
+-   update dependency react-native-localize to v2.2.2 (https://github.com/NUMde/compass-numapp-frontend/pull/170)
+-   update dependency msw to v0.42.0 (https://github.com/NUMde/compass-numapp-frontend/pull/166)
+-   update dependency react-native-webview to v11.21.2 (https://github.com/NUMde/compass-numapp-frontend/pull/171)
+-   move post install script (https://github.com/NUMde/compass-numapp-frontend/pull/175)
+
+### Removed
+
+-   -/-
+
 ## [0.1.2] - 2022-05-24
 
 ### Added
