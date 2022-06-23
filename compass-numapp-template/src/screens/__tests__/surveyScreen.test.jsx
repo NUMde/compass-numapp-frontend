@@ -4,6 +4,7 @@ import { rest } from 'msw';
 
 import {
   act,
+  waitFor,
   fireEvent,
   renderWithRedux,
   waitForElementToBeRemoved,
@@ -155,7 +156,7 @@ describe('SurveyScreen', () => {
     expect(getByText(/Freitextabfrage/)).toBeTruthy();
   });
 
-  it('should handle error when fetching of questionnaire fails', async () => {
+  it('should handle error when fetching of questionnaire fails', (done) => {
     const navigate = jest.fn();
     const goBack = jest.fn();
     const spyAlert = jest.spyOn(Alert, 'alert');
@@ -173,7 +174,7 @@ describe('SurveyScreen', () => {
         },
       ),
     );
-    const { findByText, queryByText } = renderWithRedux(
+    const { findByText, getByText, queryByText } = renderWithRedux(
       <SurveyScreen navigation={{ navigate, goBack }} />,
       {
         initialState: {
@@ -187,16 +188,19 @@ describe('SurveyScreen', () => {
         },
       },
     );
-    const btn = await findByText(en.login.landing.retry);
-    expect(btn).toBeTruthy();
-    expect(spyAlert).toHaveBeenCalledWith(
-      en.generic.errorTitle,
-      en.generic.updateError,
-      expect.anything(),
-      expect.anything(),
-    );
-    server.resetHandlers();
-    fireEvent.press(btn);
-    expect(queryByText(en.login.landing.retry)).toBeFalsy();
+    findByText(en.login.landing.retry).then((btn) => {
+      expect(spyAlert).toHaveBeenCalledWith(
+        en.generic.errorTitle,
+        en.generic.updateError,
+        expect.anything(),
+        expect.anything(),
+      );
+      server.resetHandlers();
+      fireEvent.press(btn);
+      waitFor(() => expect(getByText('Datentypen')).toBeTruthy()).then(() => {
+        expect(queryByText(en.login.landing.retry)).toBeFalsy();
+        done();
+      });
+    });
   });
 });
