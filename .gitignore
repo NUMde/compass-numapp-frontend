@@ -54,6 +54,7 @@ xcuserdata/
 
 ## Pods folder
 Pods
+Podfile.lock
 
 ## Build folder
 ios/build/
