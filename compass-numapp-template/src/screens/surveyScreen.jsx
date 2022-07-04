@@ -122,7 +122,7 @@ function SurveyScreen({ navigation }) {
         </View>
       </ScrollIndicatorWrapper>
       {/* renders a send-button at the bottom if the questionnaire is completed */}
-      <View>
+      <View style={localStyle.bottom}>
         {done && (
           <TouchableOpacity
             accessibilityLabel={translate('survey').send}
