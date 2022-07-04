@@ -97,23 +97,32 @@ describe('calculatePageProgress', () => {
   });
 });
 
-describe('checkDependenciesOfSingleItem', () => {
-  it('all dependencies should be fulfilled', () => {
-    expect(analyzer.checkDependenciesOfSingleItem(categories[0], itemMap)).toBe(
+describe('checkConditionsOfSingleItem', () => {
+  it('when item has no condition, it should always be displayed', () => {
+    expect(analyzer.checkConditionsOfSingleItem(categories[0], itemMap)).toBe(
       true,
     );
   });
 
-  it('not all dependencies should be fulfilled', () => {
+  it('should return false when not at least one condition is met', () => {
     const item = {
       linkId: 1.1,
       type: 'string',
       enableWhen: [
         { question: '1.1', operator: '=', answerString: 'not available' },
+        {
+          question: '3.4',
+          operator: '=',
+          answerCoding: {
+            system: 'http://num-compass.science',
+            code: 'B',
+            display: 'Beta',
+          },
+        },
       ],
       enableBehavior: 'any',
     };
-    expect(analyzer.checkDependenciesOfSingleItem(item, itemMap)).toBe(false);
+    expect(analyzer.checkConditionsOfSingleItem(item, itemMap)).toBe(false);
   });
 
   it('when at least one requirement is fulfilled, show question', () => {
@@ -126,7 +135,7 @@ describe('checkDependenciesOfSingleItem', () => {
       ],
       enableBehavior: 'any',
     };
-    expect(analyzer.checkDependenciesOfSingleItem(item, itemMap)).toBe(true);
+    expect(analyzer.checkConditionsOfSingleItem(item, itemMap)).toBe(true);
   });
 
   it("when both requirements are not fulfilled, don't show question", () => {
@@ -139,7 +148,28 @@ describe('checkDependenciesOfSingleItem', () => {
       ],
       enableBehavior: 'all',
     };
-    expect(analyzer.checkDependenciesOfSingleItem(item, itemMap)).toBe(false);
+    expect(analyzer.checkConditionsOfSingleItem(item, itemMap)).toBe(false);
+  });
+
+  it('when all conditions must be met and are met, show question', () => {
+    const item = {
+      linkId: 1.1,
+      type: 'string',
+      enableWhen: [
+        { question: '1.1', operator: '=', answerString: 'text' },
+        {
+          question: '3.4',
+          operator: '=',
+          answerCoding: {
+            system: 'http://num-compass.science',
+            code: 'A',
+            display: 'Alpha',
+          },
+        },
+      ],
+      enableBehavior: 'all',
+    };
+    expect(analyzer.checkConditionsOfSingleItem(item, itemMap)).toBe(true);
   });
 });
 

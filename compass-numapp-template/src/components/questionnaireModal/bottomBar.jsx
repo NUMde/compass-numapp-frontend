@@ -53,7 +53,7 @@ export default function BottomBar({
     let index = pageIndex;
     while (index < categories[categoryIndex].item.length) {
       if (
-        exportService.checkDependenciesOfSingleItem(
+        exportService.checkConditionsOfSingleItem(
           categories[categoryIndex].item[index],
           itemMap,
         )
@@ -74,7 +74,7 @@ export default function BottomBar({
     let index = pageIndex - 1;
     while (index >= 0) {
       if (
-        exportService.checkDependenciesOfSingleItem(
+        exportService.checkConditionsOfSingleItem(
           categories[categoryIndex].item[index - 1],
           itemMap,
         )

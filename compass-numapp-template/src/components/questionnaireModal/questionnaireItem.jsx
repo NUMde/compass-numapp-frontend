@@ -36,7 +36,7 @@ export default function QuestionnaireItem({ item }) {
 
   // only render the item if its requirements (i.e. the "enableWhen" constraints) are met
   if (
-    !questionnaireAnalyzer.checkDependenciesOfSingleItem(
+    !questionnaireAnalyzer.checkConditionsOfSingleItem(
       item,
       questionnaireItemMap,
     )
