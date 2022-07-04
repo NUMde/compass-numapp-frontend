@@ -145,7 +145,7 @@ function CategoriesList({ categories, itemMap, showQuestionnaireModal }) {
                   const { done: itemDone, started: itemStarted } =
                     itemMap[categoryItem.linkId];
                   // only display item when dependencies are met
-                  return questionnaireAnalyzer.checkDependenciesOfSingleItem(
+                  return questionnaireAnalyzer.checkConditionsOfSingleItem(
                     categoryItem,
                     itemMap,
                   ) ? (

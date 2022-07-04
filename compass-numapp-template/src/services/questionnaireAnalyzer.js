@@ -65,7 +65,7 @@ const calculatePageProgress = (
   let pageCountRemaining = 0;
 
   categories[currentCategoryIndex].item.forEach((item) => {
-    if (checkDependenciesOfSingleItem(item, questionnaireItemMap)) {
+    if (checkConditionsOfSingleItem(item, questionnaireItemMap)) {
       pageCountRemaining += 1;
 
       if (pageIndex < currentPageIndex) pageCountRead += 1;
@@ -74,123 +74,6 @@ const calculatePageProgress = (
   });
 
   return pageCountRead / pageCountRemaining;
-};
-
-/**
- * checks the validity of a single item and returns it. should the item contain subitems, then those will
- * also be checked by executing "traverseItems()" on those subitems.
- * @param {QuestionnaireItem} item questionnaire-item
- * @param {Map<string, QuestionnaireItem>} questionnaireItemMap
- */
-const checkItem = (item, questionnaireItemMap) => {
-  /** return value of the function, speaks about the validity of an item */
-  let completed = false;
-
-  // if this item needs to be ignored
-  if (
-    item.type === 'ignore' ||
-    item.type === 'display' ||
-    !item.required ||
-    !checkDependenciesOfSingleItem(item, questionnaireItemMap)
-  ) {
-    completed = true;
-  } else {
-    completed =
-      // when it is a 'group' then it can't have (an) answer(s)
-      (item.type === 'group' ||
-        // otherwise it must have an answer
-        questionnaireItemMap[item.linkId].answer != null) &&
-      // if child items exist, check those
-      traverseItems(item.item ?? [], questionnaireItemMap);
-  }
-
-  return completed;
-};
-
-/**
- * traverses all sub-items of an item (located in the "items"-attribute of said item)
- * and then checks for their validity. executes the "checkItem" function for each
- * valid item.
- * @param  {QuestionnaireItem[]} elements the items-array of a questionnaire-item
- * @param  {Map<string, QuestionnaireItem>} questionnaireItemMap
- */
-const traverseItems = (elements, questionnaireItemMap) => {
-  /**
-   * return value of the function, shows the validity of a set ob subItems
-   */
-  let validityOfTraversedItems = true;
-
-  elements.forEach((item) => {
-    // if an enableWhen property is present...
-    if (item.enableWhen) {
-      // ... and no enableBehavior is not set (or it is set to "all")
-      if (
-        !item.enableBehavior ||
-        item.enableWhen.length === 0 ||
-        (item.enableBehavior && item.enableBehavior === 'all')
-      ) {
-        // iterates over all conditions
-        item.enableWhen.forEach((condition) => {
-          const requiredAnswer = getEnableWhenAnswerType(condition);
-          if (
-            // if the condition provides an array of answers and the needed answer is among then OR there is only one answer and it matches
-            questionnaireItemMap[condition.question].answer?.find(
-              (entry) =>
-                entry?.[requiredAnswer.replace('answer', 'value')] ===
-                condition[requiredAnswer],
-            ) &&
-            // and the item is not valid
-            !checkItem(item, questionnaireItemMap)
-          ) {
-            // if not all conditions are met, the item is invalid
-            validityOfTraversedItems = false;
-          }
-        });
-      } else {
-        /**
-         * the validity for this item (by default: false)
-         */
-        let itemValidityAny = false;
-
-        /**
-         * will be set to TRUE if a single condition is met
-         */
-        let conditionMet = false;
-
-        // iterates over all conditions
-        item.enableWhen.forEach((condition) => {
-          const requiredAnswer = getEnableWhenAnswerType(condition);
-          if (
-            // if the condition provides an array of answers and the current answer is among then
-            questionnaireItemMap[condition.question].answer?.find((entry) => {
-              return (
-                entry[requiredAnswer.replace('answer', 'value')] ===
-                condition[requiredAnswer]
-              );
-            })
-          ) {
-            // if the condition is met
-            conditionMet = true;
-            // if the content checks out, set itemValidityAny to true
-            if (checkItem(item, questionnaireItemMap)) itemValidityAny = true;
-          }
-        });
-
-        // if no item met the conditions... then the question will never be rendered and is therefor not invalid, meaning TRUE
-        if (!conditionMet) itemValidityAny = true;
-
-        // if nothing checks out
-        if (!itemValidityAny) validityOfTraversedItems = false;
-      }
-    }
-    // if no enableWhen property (meaning no condition must be met)
-    else if (!checkItem(item, questionnaireItemMap)) {
-      // set the validity to false if the item does not checks out
-      validityOfTraversedItems = false;
-    }
-  });
-
-  return validityOfTraversedItems;
 };
 
 /**
@@ -347,21 +230,39 @@ const getFormattedDate = (date, DMY) => {
 };
 
 /**
- * tells you if an item is completely answered or not.
- * it takes the "items"-property of a category (or none at all if the whole questionnaire
- * needs to be checked) and iterates over all active (as in they met their enableWhen-conditions)
- * sub-items to check if they are valid.
+ * Check whether the given items are completely answered or not.
+ * If present, recursively checks child items as well.
  * @param  {QuestionnaireItem[]} [items] the items property of a questionnaire-item (from the categories-array)
  * @param  {Map<string, QuestionnaireItem>} itemMap the item map with all questions
  */
 const checkCompletionStateOfItems = (items, itemMap) => {
-  /** return value of the function */
-  let completed = true;
+  // no items: nothing to check
+  if (!items.length) return true;
+  let completed;
 
-  // sets the returnValue to false if a single item does not check out
-  items.forEach((item) => {
-    if (!checkItem(item, itemMap)) completed = false;
-  });
+  // if the item is of type 'ignore' or 'display', or is not required, then it is completed by default
+  // also if it is a conditional question and it is not displayed, it also counts as completed
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i];
+    if (
+      item.type === 'ignore' ||
+      item.type === 'display' ||
+      !item.required ||
+      !checkConditionsOfSingleItem(item, itemMap)
+    ) {
+      completed = true;
+    } else {
+      // when it is a 'group' then it can't have (an) answer(s)
+      completed =
+        (item.type === 'group' ||
+          // otherwise it must have an answer
+          itemMap[item.linkId].answer != null) &&
+        // if child items exist, check those
+        checkCompletionStateOfItems(item.item ?? [], itemMap);
+    }
+    // if a single item was found that is not completed, immediately return false
+    if (!completed) return false;
+  }
 
   return completed;
 };
@@ -389,13 +290,13 @@ const codingEquals = (coding1, coding2) => {
   return false;
 };
 /**
- * checks the dependencies of a single item (presented through its "enableWhen" property).
- * this basically tells us if the items needs to be rendered or if its answer should have
+ * checks the conditions of a single item (presented through its "enableWhen" property).
+ * this basically tells us if the item needs to be rendered or if its answer should have
  * an impact on the completion state of the whole questionnaire
  * @param  {QuestionnaireItem} [item] questionnaire item
  * @param  {Map<string, QuestionnaireItem>} questionnaireItemMap the item map with all questions
  */
-const checkDependenciesOfSingleItem = (item, questionnaireItemMap) => {
+const checkConditionsOfSingleItem = (item, questionnaireItemMap) => {
   // if item is supposed to be hidden
   const hiddenExtension = item.extension?.find(
     (it) =>
@@ -404,30 +305,24 @@ const checkDependenciesOfSingleItem = (item, questionnaireItemMap) => {
   if (hiddenExtension && hiddenExtension.valueBoolean === true) {
     return false;
   }
-  if (item && item.enableWhen) {
-    if (item.enableWhen.length !== 0) {
-      return !item.enableBehavior || item.enableBehavior === 'all'
-        ? item.enableWhen.every((condition) =>
-            answerSatisfiesCondition(
-              condition,
-              questionnaireItemMap[condition.question],
-            ),
-          )
-        : item.enableWhen.some((condition) =>
-            answerSatisfiesCondition(
-              condition,
-              questionnaireItemMap[condition.question],
-            ),
-          );
-    }
+  if (item.enableWhen?.length) {
+    return !item.enableBehavior || item.enableBehavior === 'all'
+      ? // all conditions must be met
+        item.enableWhen.every((condition) =>
+          answerSatisfiesCondition(
+            condition,
+            questionnaireItemMap[condition.question],
+          ),
+        )
+      : // at least one condition must be met
+        item.enableWhen.some((condition) =>
+          answerSatisfiesCondition(
+            condition,
+            questionnaireItemMap[condition.question],
+          ),
+        );
   }
-  // if there is no condition (but at least something)...
-  else if (item) {
-    // ... then it technically meets its conditions
-    return true;
-  }
-  // no
-  return false;
+  return !!item;
 };
 
 /**
@@ -463,7 +358,7 @@ const createResponseJSON = (questionnaireItemMap, categories, FHIRmetadata) => {
         // if the conditions of the item are met or if one of the ChildItems provides the necessary answer
         if (
           item.type !== 'display' &&
-          checkDependenciesOfSingleItem(item, questionnaireItemMap)
+          checkConditionsOfSingleItem(item, questionnaireItemMap)
         ) {
           /**
            * creates a new item
@@ -600,7 +495,7 @@ export default {
   getFormattedDate,
   createResponseJSON,
   calculatePageProgress,
-  checkDependenciesOfSingleItem,
+  checkConditionsOfSingleItem,
   checkCompletionStateOfItems,
   answerSatisfiesCondition,
 };
