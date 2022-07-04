@@ -1,0 +1,1715 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SurveyScreen should render the screen when not completed 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "flex": 1,
+      },
+      Object {
+        "backgroundColor": "#F8F9FA",
+      },
+    ]
+  }
+  testID="SurveyScreen"
+>
+  <View
+    accessibilityIgnoresInvertColors={true}
+    style={
+      Object {
+        "backgroundColor": "#F8F9FA",
+        "flexDirection": "column",
+        "height": 354.06976744186045,
+        "paddingTop": 30,
+        "width": "100%",
+      }
+    }
+  >
+    <Image
+      resizeMode="cover"
+      source={
+        Object {
+          "process": [Function],
+        }
+      }
+      style={
+        Array [
+          Object {
+            "bottom": 0,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          },
+          Object {
+            "height": 354.06976744186045,
+            "width": "100%",
+          },
+          undefined,
+        ]
+      }
+    />
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "alignSelf": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "marginVertical": 20,
+          "width": "90%",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "overflow": "hidden",
+          }
+        }
+      >
+        <View
+          accessibilityHint="Jumps to previous page."
+          accessibilityLabel="back"
+          accessibilityRole="button"
+          accessibilityState={
+            Object {
+              "disabled": false,
+            }
+          }
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          testID="banner_back_btn"
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "transparent",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Text
+              allowFontScaling={false}
+              selectable={false}
+              style={
+                Array [
+                  Object {
+                    "color": "#EB576A",
+                    "fontSize": 48.83720930232558,
+                  },
+                  Object {
+                    "backgroundColor": "transparent",
+                  },
+                  Object {
+                    "fontFamily": "Material Design Icons",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                  Object {},
+                ]
+              }
+              testID="iconIcon"
+            >
+              󰁍
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+          }
+        }
+      >
+        <Text
+          accessibilityRole="header"
+          numberOfLines={1}
+          style={
+            Object {
+              "color": "#1F2532",
+              "fontFamily": "IBMPlexSans-SemiBold",
+              "fontSize": 33.75,
+              "lineHeight": 43.125,
+            }
+          }
+        >
+          Questionnaire
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "overflow": "hidden",
+          }
+        }
+      >
+        <View
+          accessibilityHint="Opens new page with additional information and links."
+          accessibilityLabel="Additional Information"
+          accessibilityRole="button"
+          accessibilityState={
+            Object {
+              "disabled": false,
+            }
+          }
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          testID="banner_menu_btn"
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "transparent",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Text
+              allowFontScaling={false}
+              selectable={false}
+              style={
+                Array [
+                  Object {
+                    "color": "#EB576A",
+                    "fontSize": 48.83720930232558,
+                  },
+                  Object {
+                    "backgroundColor": "transparent",
+                  },
+                  Object {
+                    "fontFamily": "Material Design Icons",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                  Object {},
+                ]
+              }
+              testID="iconIcon"
+            >
+              󰍜
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "flexDirection": "column",
+          "justifyContent": "center",
+        }
+      }
+    >
+      <Image
+        resizeMode="contain"
+        source={
+          Object {
+            "process": [Function],
+          }
+        }
+        style={
+          Object {
+            "alignSelf": "center",
+            "bottom": 13.081395348837209,
+            "maxHeight": 308.781773931855,
+            "maxWidth": 650,
+            "position": "relative",
+          }
+        }
+      />
+    </View>
+  </View>
+  <Modal
+    animationType="none"
+    deviceHeight={null}
+    deviceWidth={null}
+    hardwareAccelerated={false}
+    hideModalContentWhileAnimating={false}
+    onBackdropPress={[Function]}
+    onModalHide={[Function]}
+    onModalWillHide={[Function]}
+    onModalWillShow={[Function]}
+    onRequestClose={[Function]}
+    onSwipeComplete={[Function]}
+    panResponderThreshold={4}
+    scrollHorizontal={false}
+    scrollOffset={0}
+    scrollOffsetMax={50}
+    scrollTo={[Function]}
+    statusBarTranslucent={false}
+    supportedOrientations={
+      Array [
+        "portrait",
+        "landscape",
+      ]
+    }
+    swipeDirection={
+      Array [
+        "down",
+      ]
+    }
+    swipeThreshold={100}
+    testID="QuestionnaireModal"
+    transparent={true}
+    visible={false}
+  />
+  <View
+    onLayout={[Function]}
+    style={
+      Object {
+        "flex": 1,
+        "flexDirection": "column",
+        "width": "100%",
+      }
+    }
+  >
+    <RCTScrollView
+      contentContainerStyle={
+        Object {
+          "flexGrow": 1,
+        }
+      }
+      enableOnAndroid={true}
+      onScroll={[Function]}
+      scrollEventThrottle={16}
+      style={
+        Object {
+          "flex": 1,
+          "flexDirection": "column",
+          "width": "100%",
+        }
+      }
+    >
+      <View>
+        <View
+          style={
+            Array [
+              Object {
+                "flex": 1,
+              },
+              Object {
+                "backgroundColor": "#F8F9FA",
+              },
+            ]
+          }
+        >
+          <View
+            style={
+              Object {
+                "backgroundColor": "#F8F9FA",
+                "flexDirection": "column",
+              }
+            }
+          >
+            <View
+              accessibilityHint="Opens modal to fill out this questionnaire entry.This Category has not been answered yet."
+              accessibilityLabel="Datentypen"
+              accessibilityRole="button"
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#F8F9FA",
+                    "borderColor": "#bcbbc1",
+                    "flexDirection": "row",
+                    "padding": 14,
+                    "width": "100%",
+                  }
+                }
+                testID="padView"
+              >
+                <View
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    Object {
+                      "backgroundColor": "#F8F9FA",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "opacity": 1,
+                      "paddingLeft": 0,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignSelf": "center",
+                        "borderRadius": 16,
+                        "height": 28,
+                        "margin": 7,
+                        "overflow": "hidden",
+                        "width": 28,
+                      }
+                    }
+                  >
+                    <View
+                      testID="1_icon"
+                    >
+                      <View
+                        style={
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "#EB576A",
+                            "borderRadius": 16,
+                            "height": 28,
+                            "justifyContent": "center",
+                            "width": 28,
+                          }
+                        }
+                      >
+                        <Text
+                          allowFontScaling={false}
+                          selectable={false}
+                          style={
+                            Array [
+                              Object {
+                                "color": "#ffffff",
+                                "fontSize": 12,
+                              },
+                              Object {
+                                "backgroundColor": "transparent",
+                              },
+                              Object {
+                                "fontFamily": "Material Design Icons",
+                                "fontStyle": "normal",
+                                "fontWeight": "normal",
+                              },
+                              Object {},
+                            ]
+                          }
+                          testID="iconIcon"
+                        >
+                          󰲶
+                        </Text>
+                      </View>
+                    </View>
+                  </View>
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "flex-start",
+                          "flex": 1,
+                          "justifyContent": "center",
+                        },
+                        undefined,
+                      ]
+                    }
+                    theme={
+                      Object {
+                        "colors": Object {
+                          "black": "#242424",
+                          "disabled": "hsl(208, 8%, 90%)",
+                          "divider": "#bcbbc1",
+                          "error": "#ff190c",
+                          "grey0": "#393e42",
+                          "grey1": "#43484d",
+                          "grey2": "#5e6977",
+                          "grey3": "#86939e",
+                          "grey4": "#bdc6cf",
+                          "grey5": "#e1e8ee",
+                          "greyOutline": "#bbb",
+                          "platform": Object {
+                            "android": Object {
+                              "error": "#f44336",
+                              "grey": "rgba(0, 0, 0, 0.54)",
+                              "primary": "#2196f3",
+                              "searchBg": "#dcdce1",
+                              "secondary": "#9C27B0",
+                              "success": "#4caf50",
+                              "warning": "#ffeb3b",
+                            },
+                            "default": Object {
+                              "error": "#ff3b30",
+                              "grey": "#7d7d7d",
+                              "primary": "#007aff",
+                              "searchBg": "#dcdce1",
+                              "secondary": "#5856d6",
+                              "success": "#4cd964",
+                              "warning": "#ffcc00",
+                            },
+                            "ios": Object {
+                              "error": "#ff3b30",
+                              "grey": "#7d7d7d",
+                              "primary": "#007aff",
+                              "searchBg": "#dcdce1",
+                              "secondary": "#5856d6",
+                              "success": "#4cd964",
+                              "warning": "#ffcc00",
+                            },
+                            "web": Object {
+                              "error": "#ff190c",
+                              "grey": "#393e42",
+                              "primary": "#2089dc",
+                              "searchBg": "#303337",
+                              "secondary": "#ca71eb",
+                              "success": "#52c41a",
+                              "warning": "#faad14",
+                            },
+                          },
+                          "primary": "#2089dc",
+                          "searchBg": "#303337",
+                          "secondary": "#ca71eb",
+                          "success": "#52c41a",
+                          "warning": "#faad14",
+                          "white": "#ffffff",
+                        },
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Object {
+                          "backgroundColor": "transparent",
+                          "color": "#1F2532",
+                          "fontFamily": "IBMPlexSans-SemiBold",
+                          "fontSize": 33.75,
+                          "lineHeight": 43.125,
+                          "paddingLeft": 14,
+                        }
+                      }
+                      testID="listItemTitle"
+                    >
+                      Datentypen
+                    </Text>
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "paddingLeft": 16,
+                    }
+                  }
+                />
+                <View
+                  collapsable={false}
+                  style={
+                    Object {
+                      "transform": Array [
+                        Object {
+                          "rotate": "0deg",
+                        },
+                      ],
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "overflow": "hidden",
+                      }
+                    }
+                  >
+                    <View
+                      accessibilityHint="show items of this category"
+                      accessibilityRole="button"
+                      accessibilityState={
+                        Object {
+                          "disabled": false,
+                        }
+                      }
+                      accessible={true}
+                      focusable={true}
+                      onClick={[Function]}
+                      onResponderGrant={[Function]}
+                      onResponderMove={[Function]}
+                      onResponderRelease={[Function]}
+                      onResponderTerminate={[Function]}
+                      onResponderTerminationRequest={[Function]}
+                      onStartShouldSetResponder={[Function]}
+                    >
+                      <View
+                        style={
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "transparent",
+                            "justifyContent": "center",
+                          }
+                        }
+                      >
+                        <Text
+                          allowFontScaling={false}
+                          selectable={false}
+                          style={
+                            Array [
+                              Object {
+                                "color": undefined,
+                                "fontSize": 24,
+                              },
+                              Object {
+                                "backgroundColor": "transparent",
+                              },
+                              Object {
+                                "fontFamily": "Material Icons",
+                                "fontStyle": "normal",
+                                "fontWeight": "normal",
+                              },
+                              Object {},
+                            ]
+                          }
+                          testID="iconIcon"
+                        >
+                          
+                        </Text>
+                      </View>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View
+              collapsable={false}
+              style={
+                Object {
+                  "maxHeight": "0%",
+                  "opacity": 0,
+                }
+              }
+            />
+            <View
+              accessibilityHint="Opens modal to fill out this questionnaire entry.This Category has not been answered yet."
+              accessibilityLabel="Fragen mit Extensions"
+              accessibilityRole="button"
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#F8F9FA",
+                    "borderColor": "#bcbbc1",
+                    "flexDirection": "row",
+                    "padding": 14,
+                    "width": "100%",
+                  }
+                }
+                testID="padView"
+              >
+                <View
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    Object {
+                      "backgroundColor": "#F8F9FA",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "opacity": 1,
+                      "paddingLeft": 0,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignSelf": "center",
+                        "borderRadius": 16,
+                        "height": 28,
+                        "margin": 7,
+                        "overflow": "hidden",
+                        "width": 28,
+                      }
+                    }
+                  >
+                    <View
+                      testID="2_icon"
+                    >
+                      <View
+                        style={
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "#EB576A",
+                            "borderRadius": 16,
+                            "height": 28,
+                            "justifyContent": "center",
+                            "width": 28,
+                          }
+                        }
+                      >
+                        <Text
+                          allowFontScaling={false}
+                          selectable={false}
+                          style={
+                            Array [
+                              Object {
+                                "color": "#ffffff",
+                                "fontSize": 12,
+                              },
+                              Object {
+                                "backgroundColor": "transparent",
+                              },
+                              Object {
+                                "fontFamily": "Material Design Icons",
+                                "fontStyle": "normal",
+                                "fontWeight": "normal",
+                              },
+                              Object {},
+                            ]
+                          }
+                          testID="iconIcon"
+                        >
+                          󰲶
+                        </Text>
+                      </View>
+                    </View>
+                  </View>
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "flex-start",
+                          "flex": 1,
+                          "justifyContent": "center",
+                        },
+                        undefined,
+                      ]
+                    }
+                    theme={
+                      Object {
+                        "colors": Object {
+                          "black": "#242424",
+                          "disabled": "hsl(208, 8%, 90%)",
+                          "divider": "#bcbbc1",
+                          "error": "#ff190c",
+                          "grey0": "#393e42",
+                          "grey1": "#43484d",
+                          "grey2": "#5e6977",
+                          "grey3": "#86939e",
+                          "grey4": "#bdc6cf",
+                          "grey5": "#e1e8ee",
+                          "greyOutline": "#bbb",
+                          "platform": Object {
+                            "android": Object {
+                              "error": "#f44336",
+                              "grey": "rgba(0, 0, 0, 0.54)",
+                              "primary": "#2196f3",
+                              "searchBg": "#dcdce1",
+                              "secondary": "#9C27B0",
+                              "success": "#4caf50",
+                              "warning": "#ffeb3b",
+                            },
+                            "default": Object {
+                              "error": "#ff3b30",
+                              "grey": "#7d7d7d",
+                              "primary": "#007aff",
+                              "searchBg": "#dcdce1",
+                              "secondary": "#5856d6",
+                              "success": "#4cd964",
+                              "warning": "#ffcc00",
+                            },
+                            "ios": Object {
+                              "error": "#ff3b30",
+                              "grey": "#7d7d7d",
+                              "primary": "#007aff",
+                              "searchBg": "#dcdce1",
+                              "secondary": "#5856d6",
+                              "success": "#4cd964",
+                              "warning": "#ffcc00",
+                            },
+                            "web": Object {
+                              "error": "#ff190c",
+                              "grey": "#393e42",
+                              "primary": "#2089dc",
+                              "searchBg": "#303337",
+                              "secondary": "#ca71eb",
+                              "success": "#52c41a",
+                              "warning": "#faad14",
+                            },
+                          },
+                          "primary": "#2089dc",
+                          "searchBg": "#303337",
+                          "secondary": "#ca71eb",
+                          "success": "#52c41a",
+                          "warning": "#faad14",
+                          "white": "#ffffff",
+                        },
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Object {
+                          "backgroundColor": "transparent",
+                          "color": "#1F2532",
+                          "fontFamily": "IBMPlexSans-SemiBold",
+                          "fontSize": 33.75,
+                          "lineHeight": 43.125,
+                          "paddingLeft": 14,
+                        }
+                      }
+                      testID="listItemTitle"
+                    >
+                      Fragen mit Extensions
+                    </Text>
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "paddingLeft": 16,
+                    }
+                  }
+                />
+                <View
+                  collapsable={false}
+                  style={
+                    Object {
+                      "transform": Array [
+                        Object {
+                          "rotate": "0deg",
+                        },
+                      ],
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "overflow": "hidden",
+                      }
+                    }
+                  >
+                    <View
+                      accessibilityHint="show items of this category"
+                      accessibilityRole="button"
+                      accessibilityState={
+                        Object {
+                          "disabled": false,
+                        }
+                      }
+                      accessible={true}
+                      focusable={true}
+                      onClick={[Function]}
+                      onResponderGrant={[Function]}
+                      onResponderMove={[Function]}
+                      onResponderRelease={[Function]}
+                      onResponderTerminate={[Function]}
+                      onResponderTerminationRequest={[Function]}
+                      onStartShouldSetResponder={[Function]}
+                    >
+                      <View
+                        style={
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "transparent",
+                            "justifyContent": "center",
+                          }
+                        }
+                      >
+                        <Text
+                          allowFontScaling={false}
+                          selectable={false}
+                          style={
+                            Array [
+                              Object {
+                                "color": undefined,
+                                "fontSize": 24,
+                              },
+                              Object {
+                                "backgroundColor": "transparent",
+                              },
+                              Object {
+                                "fontFamily": "Material Icons",
+                                "fontStyle": "normal",
+                                "fontWeight": "normal",
+                              },
+                              Object {},
+                            ]
+                          }
+                          testID="iconIcon"
+                        >
+                          
+                        </Text>
+                      </View>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View
+              collapsable={false}
+              style={
+                Object {
+                  "maxHeight": "0%",
+                  "opacity": 0,
+                }
+              }
+            />
+            <View
+              accessibilityHint="Opens modal to fill out this questionnaire entry.This Category has not been answered yet."
+              accessibilityLabel="Fragen mit Auswahlmöglichkeiten"
+              accessibilityRole="button"
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#F8F9FA",
+                    "borderColor": "#bcbbc1",
+                    "flexDirection": "row",
+                    "padding": 14,
+                    "width": "100%",
+                  }
+                }
+                testID="padView"
+              >
+                <View
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    Object {
+                      "backgroundColor": "#F8F9FA",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "opacity": 1,
+                      "paddingLeft": 0,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignSelf": "center",
+                        "borderRadius": 16,
+                        "height": 28,
+                        "margin": 7,
+                        "overflow": "hidden",
+                        "width": 28,
+                      }
+                    }
+                  >
+                    <View
+                      testID="3_icon"
+                    >
+                      <View
+                        style={
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "#EB576A",
+                            "borderRadius": 16,
+                            "height": 28,
+                            "justifyContent": "center",
+                            "width": 28,
+                          }
+                        }
+                      >
+                        <Text
+                          allowFontScaling={false}
+                          selectable={false}
+                          style={
+                            Array [
+                              Object {
+                                "color": "#ffffff",
+                                "fontSize": 12,
+                              },
+                              Object {
+                                "backgroundColor": "transparent",
+                              },
+                              Object {
+                                "fontFamily": "Material Design Icons",
+                                "fontStyle": "normal",
+                                "fontWeight": "normal",
+                              },
+                              Object {},
+                            ]
+                          }
+                          testID="iconIcon"
+                        >
+                          󰲶
+                        </Text>
+                      </View>
+                    </View>
+                  </View>
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "flex-start",
+                          "flex": 1,
+                          "justifyContent": "center",
+                        },
+                        undefined,
+                      ]
+                    }
+                    theme={
+                      Object {
+                        "colors": Object {
+                          "black": "#242424",
+                          "disabled": "hsl(208, 8%, 90%)",
+                          "divider": "#bcbbc1",
+                          "error": "#ff190c",
+                          "grey0": "#393e42",
+                          "grey1": "#43484d",
+                          "grey2": "#5e6977",
+                          "grey3": "#86939e",
+                          "grey4": "#bdc6cf",
+                          "grey5": "#e1e8ee",
+                          "greyOutline": "#bbb",
+                          "platform": Object {
+                            "android": Object {
+                              "error": "#f44336",
+                              "grey": "rgba(0, 0, 0, 0.54)",
+                              "primary": "#2196f3",
+                              "searchBg": "#dcdce1",
+                              "secondary": "#9C27B0",
+                              "success": "#4caf50",
+                              "warning": "#ffeb3b",
+                            },
+                            "default": Object {
+                              "error": "#ff3b30",
+                              "grey": "#7d7d7d",
+                              "primary": "#007aff",
+                              "searchBg": "#dcdce1",
+                              "secondary": "#5856d6",
+                              "success": "#4cd964",
+                              "warning": "#ffcc00",
+                            },
+                            "ios": Object {
+                              "error": "#ff3b30",
+                              "grey": "#7d7d7d",
+                              "primary": "#007aff",
+                              "searchBg": "#dcdce1",
+                              "secondary": "#5856d6",
+                              "success": "#4cd964",
+                              "warning": "#ffcc00",
+                            },
+                            "web": Object {
+                              "error": "#ff190c",
+                              "grey": "#393e42",
+                              "primary": "#2089dc",
+                              "searchBg": "#303337",
+                              "secondary": "#ca71eb",
+                              "success": "#52c41a",
+                              "warning": "#faad14",
+                            },
+                          },
+                          "primary": "#2089dc",
+                          "searchBg": "#303337",
+                          "secondary": "#ca71eb",
+                          "success": "#52c41a",
+                          "warning": "#faad14",
+                          "white": "#ffffff",
+                        },
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Object {
+                          "backgroundColor": "transparent",
+                          "color": "#1F2532",
+                          "fontFamily": "IBMPlexSans-SemiBold",
+                          "fontSize": 33.75,
+                          "lineHeight": 43.125,
+                          "paddingLeft": 14,
+                        }
+                      }
+                      testID="listItemTitle"
+                    >
+                      Fragen mit Auswahlmöglichkeiten
+                    </Text>
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "paddingLeft": 16,
+                    }
+                  }
+                />
+                <View
+                  collapsable={false}
+                  style={
+                    Object {
+                      "transform": Array [
+                        Object {
+                          "rotate": "0deg",
+                        },
+                      ],
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "overflow": "hidden",
+                      }
+                    }
+                  >
+                    <View
+                      accessibilityHint="show items of this category"
+                      accessibilityRole="button"
+                      accessibilityState={
+                        Object {
+                          "disabled": false,
+                        }
+                      }
+                      accessible={true}
+                      focusable={true}
+                      onClick={[Function]}
+                      onResponderGrant={[Function]}
+                      onResponderMove={[Function]}
+                      onResponderRelease={[Function]}
+                      onResponderTerminate={[Function]}
+                      onResponderTerminationRequest={[Function]}
+                      onStartShouldSetResponder={[Function]}
+                    >
+                      <View
+                        style={
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "transparent",
+                            "justifyContent": "center",
+                          }
+                        }
+                      >
+                        <Text
+                          allowFontScaling={false}
+                          selectable={false}
+                          style={
+                            Array [
+                              Object {
+                                "color": undefined,
+                                "fontSize": 24,
+                              },
+                              Object {
+                                "backgroundColor": "transparent",
+                              },
+                              Object {
+                                "fontFamily": "Material Icons",
+                                "fontStyle": "normal",
+                                "fontWeight": "normal",
+                              },
+                              Object {},
+                            ]
+                          }
+                          testID="iconIcon"
+                        >
+                          
+                        </Text>
+                      </View>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View
+              collapsable={false}
+              style={
+                Object {
+                  "maxHeight": "0%",
+                  "opacity": 0,
+                }
+              }
+            />
+            <View
+              accessibilityHint="Opens modal to fill out this questionnaire entry.This Category has not been answered yet."
+              accessibilityLabel="Bedingte Fragen"
+              accessibilityRole="button"
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#F8F9FA",
+                    "borderColor": "#bcbbc1",
+                    "flexDirection": "row",
+                    "padding": 14,
+                    "width": "100%",
+                  }
+                }
+                testID="padView"
+              >
+                <View
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    Object {
+                      "backgroundColor": "#F8F9FA",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "opacity": 1,
+                      "paddingLeft": 0,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignSelf": "center",
+                        "borderRadius": 16,
+                        "height": 28,
+                        "margin": 7,
+                        "overflow": "hidden",
+                        "width": 28,
+                      }
+                    }
+                  >
+                    <View
+                      testID="4_icon"
+                    >
+                      <View
+                        style={
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "#EB576A",
+                            "borderRadius": 16,
+                            "height": 28,
+                            "justifyContent": "center",
+                            "width": 28,
+                          }
+                        }
+                      >
+                        <Text
+                          allowFontScaling={false}
+                          selectable={false}
+                          style={
+                            Array [
+                              Object {
+                                "color": "#ffffff",
+                                "fontSize": 12,
+                              },
+                              Object {
+                                "backgroundColor": "transparent",
+                              },
+                              Object {
+                                "fontFamily": "Material Design Icons",
+                                "fontStyle": "normal",
+                                "fontWeight": "normal",
+                              },
+                              Object {},
+                            ]
+                          }
+                          testID="iconIcon"
+                        >
+                          󰲶
+                        </Text>
+                      </View>
+                    </View>
+                  </View>
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "flex-start",
+                          "flex": 1,
+                          "justifyContent": "center",
+                        },
+                        undefined,
+                      ]
+                    }
+                    theme={
+                      Object {
+                        "colors": Object {
+                          "black": "#242424",
+                          "disabled": "hsl(208, 8%, 90%)",
+                          "divider": "#bcbbc1",
+                          "error": "#ff190c",
+                          "grey0": "#393e42",
+                          "grey1": "#43484d",
+                          "grey2": "#5e6977",
+                          "grey3": "#86939e",
+                          "grey4": "#bdc6cf",
+                          "grey5": "#e1e8ee",
+                          "greyOutline": "#bbb",
+                          "platform": Object {
+                            "android": Object {
+                              "error": "#f44336",
+                              "grey": "rgba(0, 0, 0, 0.54)",
+                              "primary": "#2196f3",
+                              "searchBg": "#dcdce1",
+                              "secondary": "#9C27B0",
+                              "success": "#4caf50",
+                              "warning": "#ffeb3b",
+                            },
+                            "default": Object {
+                              "error": "#ff3b30",
+                              "grey": "#7d7d7d",
+                              "primary": "#007aff",
+                              "searchBg": "#dcdce1",
+                              "secondary": "#5856d6",
+                              "success": "#4cd964",
+                              "warning": "#ffcc00",
+                            },
+                            "ios": Object {
+                              "error": "#ff3b30",
+                              "grey": "#7d7d7d",
+                              "primary": "#007aff",
+                              "searchBg": "#dcdce1",
+                              "secondary": "#5856d6",
+                              "success": "#4cd964",
+                              "warning": "#ffcc00",
+                            },
+                            "web": Object {
+                              "error": "#ff190c",
+                              "grey": "#393e42",
+                              "primary": "#2089dc",
+                              "searchBg": "#303337",
+                              "secondary": "#ca71eb",
+                              "success": "#52c41a",
+                              "warning": "#faad14",
+                            },
+                          },
+                          "primary": "#2089dc",
+                          "searchBg": "#303337",
+                          "secondary": "#ca71eb",
+                          "success": "#52c41a",
+                          "warning": "#faad14",
+                          "white": "#ffffff",
+                        },
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Object {
+                          "backgroundColor": "transparent",
+                          "color": "#1F2532",
+                          "fontFamily": "IBMPlexSans-SemiBold",
+                          "fontSize": 33.75,
+                          "lineHeight": 43.125,
+                          "paddingLeft": 14,
+                        }
+                      }
+                      testID="listItemTitle"
+                    >
+                      Bedingte Fragen
+                    </Text>
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "paddingLeft": 16,
+                    }
+                  }
+                />
+                <View
+                  collapsable={false}
+                  style={
+                    Object {
+                      "transform": Array [
+                        Object {
+                          "rotate": "0deg",
+                        },
+                      ],
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "overflow": "hidden",
+                      }
+                    }
+                  >
+                    <View
+                      accessibilityHint="show items of this category"
+                      accessibilityRole="button"
+                      accessibilityState={
+                        Object {
+                          "disabled": false,
+                        }
+                      }
+                      accessible={true}
+                      focusable={true}
+                      onClick={[Function]}
+                      onResponderGrant={[Function]}
+                      onResponderMove={[Function]}
+                      onResponderRelease={[Function]}
+                      onResponderTerminate={[Function]}
+                      onResponderTerminationRequest={[Function]}
+                      onStartShouldSetResponder={[Function]}
+                    >
+                      <View
+                        style={
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "transparent",
+                            "justifyContent": "center",
+                          }
+                        }
+                      >
+                        <Text
+                          allowFontScaling={false}
+                          selectable={false}
+                          style={
+                            Array [
+                              Object {
+                                "color": undefined,
+                                "fontSize": 24,
+                              },
+                              Object {
+                                "backgroundColor": "transparent",
+                              },
+                              Object {
+                                "fontFamily": "Material Icons",
+                                "fontStyle": "normal",
+                                "fontWeight": "normal",
+                              },
+                              Object {},
+                            ]
+                          }
+                          testID="iconIcon"
+                        >
+                          
+                        </Text>
+                      </View>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View
+              collapsable={false}
+              style={
+                Object {
+                  "maxHeight": "0%",
+                  "opacity": 0,
+                }
+              }
+            />
+            <View
+              accessibilityHint="Opens modal to fill out this questionnaire entry.This Category has not been answered yet."
+              accessibilityLabel="Verschachtelte Fragen"
+              accessibilityRole="button"
+            >
+              <View
+                style={
+                  Object {
+                    "alignItems": "center",
+                    "backgroundColor": "#F8F9FA",
+                    "borderColor": "#bcbbc1",
+                    "flexDirection": "row",
+                    "padding": 14,
+                    "width": "100%",
+                  }
+                }
+                testID="padView"
+              >
+                <View
+                  accessible={true}
+                  collapsable={false}
+                  focusable={true}
+                  onClick={[Function]}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    Object {
+                      "backgroundColor": "#F8F9FA",
+                      "flex": 1,
+                      "flexDirection": "row",
+                      "opacity": 1,
+                      "paddingLeft": 0,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "alignSelf": "center",
+                        "borderRadius": 16,
+                        "height": 28,
+                        "margin": 7,
+                        "overflow": "hidden",
+                        "width": 28,
+                      }
+                    }
+                  >
+                    <View
+                      testID="5_icon"
+                    >
+                      <View
+                        style={
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "#EB576A",
+                            "borderRadius": 16,
+                            "height": 28,
+                            "justifyContent": "center",
+                            "width": 28,
+                          }
+                        }
+                      >
+                        <Text
+                          allowFontScaling={false}
+                          selectable={false}
+                          style={
+                            Array [
+                              Object {
+                                "color": "#ffffff",
+                                "fontSize": 12,
+                              },
+                              Object {
+                                "backgroundColor": "transparent",
+                              },
+                              Object {
+                                "fontFamily": "Material Design Icons",
+                                "fontStyle": "normal",
+                                "fontWeight": "normal",
+                              },
+                              Object {},
+                            ]
+                          }
+                          testID="iconIcon"
+                        >
+                          󰲶
+                        </Text>
+                      </View>
+                    </View>
+                  </View>
+                  <View
+                    style={
+                      Array [
+                        Object {
+                          "alignItems": "flex-start",
+                          "flex": 1,
+                          "justifyContent": "center",
+                        },
+                        undefined,
+                      ]
+                    }
+                    theme={
+                      Object {
+                        "colors": Object {
+                          "black": "#242424",
+                          "disabled": "hsl(208, 8%, 90%)",
+                          "divider": "#bcbbc1",
+                          "error": "#ff190c",
+                          "grey0": "#393e42",
+                          "grey1": "#43484d",
+                          "grey2": "#5e6977",
+                          "grey3": "#86939e",
+                          "grey4": "#bdc6cf",
+                          "grey5": "#e1e8ee",
+                          "greyOutline": "#bbb",
+                          "platform": Object {
+                            "android": Object {
+                              "error": "#f44336",
+                              "grey": "rgba(0, 0, 0, 0.54)",
+                              "primary": "#2196f3",
+                              "searchBg": "#dcdce1",
+                              "secondary": "#9C27B0",
+                              "success": "#4caf50",
+                              "warning": "#ffeb3b",
+                            },
+                            "default": Object {
+                              "error": "#ff3b30",
+                              "grey": "#7d7d7d",
+                              "primary": "#007aff",
+                              "searchBg": "#dcdce1",
+                              "secondary": "#5856d6",
+                              "success": "#4cd964",
+                              "warning": "#ffcc00",
+                            },
+                            "ios": Object {
+                              "error": "#ff3b30",
+                              "grey": "#7d7d7d",
+                              "primary": "#007aff",
+                              "searchBg": "#dcdce1",
+                              "secondary": "#5856d6",
+                              "success": "#4cd964",
+                              "warning": "#ffcc00",
+                            },
+                            "web": Object {
+                              "error": "#ff190c",
+                              "grey": "#393e42",
+                              "primary": "#2089dc",
+                              "searchBg": "#303337",
+                              "secondary": "#ca71eb",
+                              "success": "#52c41a",
+                              "warning": "#faad14",
+                            },
+                          },
+                          "primary": "#2089dc",
+                          "searchBg": "#303337",
+                          "secondary": "#ca71eb",
+                          "success": "#52c41a",
+                          "warning": "#faad14",
+                          "white": "#ffffff",
+                        },
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Object {
+                          "backgroundColor": "transparent",
+                          "color": "#1F2532",
+                          "fontFamily": "IBMPlexSans-SemiBold",
+                          "fontSize": 33.75,
+                          "lineHeight": 43.125,
+                          "paddingLeft": 14,
+                        }
+                      }
+                      testID="listItemTitle"
+                    >
+                      Verschachtelte Fragen
+                    </Text>
+                  </View>
+                </View>
+                <View
+                  style={
+                    Object {
+                      "paddingLeft": 16,
+                    }
+                  }
+                />
+                <View
+                  collapsable={false}
+                  style={
+                    Object {
+                      "transform": Array [
+                        Object {
+                          "rotate": "0deg",
+                        },
+                      ],
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "overflow": "hidden",
+                      }
+                    }
+                  >
+                    <View
+                      accessibilityHint="show items of this category"
+                      accessibilityRole="button"
+                      accessibilityState={
+                        Object {
+                          "disabled": false,
+                        }
+                      }
+                      accessible={true}
+                      focusable={true}
+                      onClick={[Function]}
+                      onResponderGrant={[Function]}
+                      onResponderMove={[Function]}
+                      onResponderRelease={[Function]}
+                      onResponderTerminate={[Function]}
+                      onResponderTerminationRequest={[Function]}
+                      onStartShouldSetResponder={[Function]}
+                    >
+                      <View
+                        style={
+                          Object {
+                            "alignItems": "center",
+                            "backgroundColor": "transparent",
+                            "justifyContent": "center",
+                          }
+                        }
+                      >
+                        <Text
+                          allowFontScaling={false}
+                          selectable={false}
+                          style={
+                            Array [
+                              Object {
+                                "color": undefined,
+                                "fontSize": 24,
+                              },
+                              Object {
+                                "backgroundColor": "transparent",
+                              },
+                              Object {
+                                "fontFamily": "Material Icons",
+                                "fontStyle": "normal",
+                                "fontWeight": "normal",
+                              },
+                              Object {},
+                            ]
+                          }
+                          testID="iconIcon"
+                        >
+                          
+                        </Text>
+                      </View>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View
+              collapsable={false}
+              style={
+                Object {
+                  "maxHeight": "0%",
+                  "opacity": 0,
+                }
+              }
+            />
+          </View>
+        </View>
+      </View>
+    </RCTScrollView>
+  </View>
+  <View
+    style={
+      Object {
+        "alignSelf": "flex-end",
+        "flex": 0.16666666666666666,
+        "justifyContent": "center",
+        "width": "100%",
+      }
+    }
+  />
+</View>
+`;

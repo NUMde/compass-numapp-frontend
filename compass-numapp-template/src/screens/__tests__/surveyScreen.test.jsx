@@ -42,7 +42,7 @@ describe('SurveyScreen', () => {
     const navigate = jest.fn();
     const goBack = jest.fn();
 
-    const { findByText, queryByText } = renderWithRedux(
+    const { findByText, queryByText, toJSON } = renderWithRedux(
       <SurveyScreen navigation={{ navigate, goBack }} />,
       {
         initialState: {
@@ -59,6 +59,7 @@ describe('SurveyScreen', () => {
     const item = await findByText(emptyItemMap['1'].text);
     expect(item).toBeTruthy();
     expect(queryByText(en.survey.send)).toBe(null);
+    expect(toJSON()).toMatchSnapshot();
   });
 
   it('should fetch questionnaire if not present', async () => {
