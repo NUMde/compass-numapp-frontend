@@ -1,17 +1,30 @@
+/* eslint-disable lines-around-directive */
 // (C) Copyright IBM Deutschland GmbH 2021.  All rights reserved.
 
 /***********************************************************************************************
 imports
 ***********************************************************************************************/
 
-import React, { createRef, useEffect } from 'react';
-import { StyleSheet, View, Text, Dimensions } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import {
+  StyleSheet,
+  View,
+  Text,
+  Dimensions,
+  TouchableOpacity,
+} from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { navigationPropType } from '~propTypes';
 
 // components
-import QRCodeScanner from 'react-native-qrcode-scanner';
+import {
+  Camera,
+  useCameraDevices,
+  useFrameProcessor,
+} from 'react-native-vision-camera';
+import { scanBarcodes, BarcodeFormat } from 'vision-camera-code-scanner';
+import { runOnJS } from 'react-native-reanimated';
 
 // custom components
 import { Banner } from '~components/shared';
@@ -19,10 +32,12 @@ import { Stacks, Routes } from '~navigation/constants';
 
 // redux actions
 import { sendCredentials } from '~store/user.slice';
+import { reset } from '~store/sharedActions';
 
 // services & config
 import { appConfig, theme } from '~config';
 import translate from '~services/localization';
+import { useIsFocused } from '@react-navigation/native';
 
 /**
  * tries to parse the input-string and returns the subjectId (from the qr-code)
@@ -55,14 +70,43 @@ const checkQrCodeForUsername = (str) => {
  ***********************************************************************************************/
 function LoginScreen({ navigation }) {
   const dispatch = useDispatch();
+  const isFocused = useIsFocused();
 
   const { subjectId } = useSelector((state) => state.User);
+  const { error } = useSelector((state) => state.Globals);
+  const [hasPermission, setHasPermission] = useState(false);
 
-  /**
-   * reference to access the camera
-   * @type {object}
-   */
-  let camera = createRef();
+  const [qrCodes, setQrCodes] = useState([]);
+
+  const device = useCameraDevices().back;
+
+  // set up detection of QR codes
+  const frameProcessor = useFrameProcessor((frame) => {
+    // lgtm [js/unknown-directive]
+    'worklet';
+
+    const detectedQrCodes = scanBarcodes(frame, [BarcodeFormat.QR_CODE]);
+    runOnJS(setQrCodes)(detectedQrCodes);
+  }, []);
+
+  // request permission to use camera
+  useEffect(() => {
+    (async () => {
+      const status = await Camera.requestCameraPermission();
+      setHasPermission(status === 'authorized');
+    })();
+  }, []);
+
+  // trigger login when barcode was detected
+  useEffect(() => {
+    if (qrCodes.length) {
+      // parses the input string to determine the subjectId (from the qr-code)
+      const scannedSubjectId = checkQrCodeForUsername(qrCodes[0].content.data);
+
+      // triggers the login
+      dispatch(sendCredentials(scannedSubjectId));
+    }
+  }, [qrCodes, dispatch]);
 
   useEffect(() => {
     if (subjectId) {
@@ -72,33 +116,17 @@ function LoginScreen({ navigation }) {
     if (appConfig.automateQrLogin) {
       // parses the input string to determine the subjectId (from the qr-code)
       const scannedId = checkQrCodeForUsername(
-        appConfig.automateQrLoginSubjectId,
+        appConfig.automateQrLoginSubjectId || '',
       );
       // triggers the login
       dispatch(sendCredentials(scannedId));
     }
   }, [dispatch, subjectId, navigation]);
 
-  /**
-   * is triggered when the qr-scann is getting something.
-   * basically checks if it is a qr-code, then tries to parse it and uses the result
-   * for a login-attempt
-   * @param  {{data: string}} scanResult scan result from the qr-code scanner
-   * @param  {any} camera camera reference
-   */
-  const scanSuccess = (scanResult) => {
-    // parses the input string to determine the subjectId (from the qr-code)
-    const scannedSubjectId = checkQrCodeForUsername(scanResult.data);
-
-    // triggers the login
-    dispatch(sendCredentials(scannedSubjectId, camera));
-  };
-
   // rendering
   /*-----------------------------------------------------------------------------------*/
-
   return (
-    <View style={localStyle.wrapper} testID="LoginScreen">
+    <View testID="LoginScreen" style={localStyle.wrapper}>
       {/* banner */}
       <Banner
         nav={navigation}
@@ -107,31 +135,35 @@ function LoginScreen({ navigation }) {
         noMenu
       />
 
-      {/* scrollIndicator with qrcode scanner */}
-      <View
-        style={[localStyle.flexi, localStyle.wrapper]}
-        testID="scannerWrapper"
-      >
+      <View style={localStyle.content} testID="scannerWrapper">
         {/* the qr-code-scanner */}
-        <QRCodeScanner
-          fadeIn={false}
-          showMarker
-          cameraStyle={localStyle.qrScanner}
-          markerStyle={localStyle.qrScannerMarker}
-          ref={(node) => {
-            camera = node;
-          }}
-          containerStyle={localStyle.qrScannerContainer}
-          onRead={scanSuccess}
-          permissionDialogMessage={translate('login').permissionDialog}
-          reactivate
-          reactivateTimeout={3000}
-        />
+        {!!device && hasPermission && !error && (
+          <Camera
+            device={device}
+            isActive={isFocused}
+            frameProcessor={frameProcessor}
+            frameProcessorFps={1}
+            style={localStyle.camera}
+            photo={true}
+            video={false}
+          />
+        )}
+        {/* show button to reactivate camera */}
+        {error && (
+          <View style={localStyle.camera}>
+            <TouchableOpacity
+              style={localStyle.button}
+              onPress={() => dispatch(reset())}
+            >
+              <Text style={localStyle.buttonLabel}>
+                {translate('login').landing.retry}
+              </Text>
+            </TouchableOpacity>
+          </View>
+        )}
 
         {/* information text */}
-        <View style={localStyle.textWrapper}>
-          <Text style={localStyle.infoText}>{translate('login').qrInfo}</Text>
-        </View>
+        <Text style={localStyle.infoText}>{translate('login').qrInfo}</Text>
       </View>
     </View>
   );
@@ -145,53 +177,46 @@ LoginScreen.propTypes = {
 localStyle
 ***********************************************************************************************/
 
-// scaleUiFkt() (located in src/config/appConfig.js)
-// will dynamically alter some sized based on the physical device-measurements.
-
+// get width of screen to calculate camera view
 const { width } = Dimensions.get('window');
 
 const localStyle = StyleSheet.create({
   wrapper: {
-    height: '100%',
     backgroundColor: theme.values.defaultBackgroundColor,
+    flex: 1,
   },
 
-  flexi: {
+  content: {
     flex: 1,
     alignItems: 'center',
   },
 
-  loginErrorText: {
-    color: theme.colors.alert,
-  },
-
-  qrScannerContainer: {
-    flexBasis: 66,
-    flexGrow: 1,
-    maxHeight: width,
-    aspectRatio: 1,
-  },
-
-  qrScanner: {
-    maxWidth: '100%',
-    maxHeight: '100%',
-    overflow: 'hidden',
-  },
-
-  qrScannerMarker: {
-    borderColor: theme.colors.primary,
-  },
-
-  textWrapper: {
-    flexBasis: 33,
-    flexGrow: 1 / 3,
+  camera: {
+    marginTop: appConfig.scaleUiFkt(20),
+    maxHeight: 0.95 * width,
+    width: '95%',
+    aspectRatio: 1.0,
     justifyContent: 'center',
   },
 
   infoText: {
+    flexBasis: 33,
+    flexGrow: 1,
     textAlign: 'center',
+    textAlignVertical: 'center',
     color: theme.colors.accent4,
     ...theme.fonts.subHeader1,
+  },
+
+  button: {
+    ...theme.classes.buttonAlert,
+    bottom: 0,
+    padding: appConfig.scaleUiFkt(15),
+    width: '80%',
+  },
+
+  buttonLabel: {
+    ...theme.classes.buttonLabel,
   },
 });
 

@@ -4,4 +4,8 @@ import { initLocalization } from '~services/localization';
 
 global.fetch = fetch;
 
+jest.mock('@react-navigation/native', () => ({
+  useIsFocused: jest.fn(),
+}));
+
 beforeEach(() => initLocalization('en'));
