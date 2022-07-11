@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 // services & config
 import { appConfig, theme } from '~config';
 import { formatDateString } from '~services/utils';
-import translate from '~services/localization';
+import translate, { getLanguageTag } from '~services/localization';
 
 /***********************************************************************************************
  * component
@@ -56,7 +56,11 @@ function WelcomeText({
             <Text style={localStyle.infoText}>
               {translate('survey').welcomeTextFirstTimeUser1}
               <Text style={localStyle.timeTextSmall}>
-                {formatDateString(dueDate, true)}.
+                {formatDateString(dueDate, {
+                  includeTime: true,
+                  locale: getLanguageTag(),
+                })}
+                .
               </Text>
               {translate('survey').welcomeTextFirstTimeUser2}
             </Text>
@@ -76,7 +80,11 @@ function WelcomeText({
                 {translate('survey').welcomeTextUser}
               </Text>
               <Text style={{ ...localStyle.timeText }}>
-                {formatDateString(dueDate, true)}.
+                {formatDateString(dueDate, {
+                  includeTime: true,
+                  locale: getLanguageTag(),
+                })}
+                .
               </Text>
             </View>
           )}
@@ -88,7 +96,11 @@ function WelcomeText({
                 {translate('survey').nextOne}
               </Text>
               <Text style={[localStyle.timeText, localStyle.timeTextGreen]}>
-                {formatDateString(startDate, true)}.
+                {formatDateString(startDate, {
+                  includeTime: true,
+                  locale: getLanguageTag(),
+                })}
+                .
               </Text>
             </View>
           )}
@@ -100,7 +112,11 @@ function WelcomeText({
                 {translate('survey').nextOneNew}
               </Text>
               <Text style={[localStyle.timeText, localStyle.timeTextGreen]}>
-                {formatDateString(startDate, true)}.
+                {formatDateString(startDate, {
+                  includeTime: true,
+                  locale: getLanguageTag(),
+                })}
+                .
               </Text>
             </View>
           )}

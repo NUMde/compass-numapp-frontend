@@ -14,7 +14,7 @@ import { ListItem } from 'react-native-elements';
 // services & config
 import { appConfig, theme } from '~config';
 import { formatDateString } from '~services/utils';
-import translate from '~services/localization';
+import translate, { getLanguageTag } from '~services/localization';
 import { Routes } from '~navigation/constants';
 
 /**
@@ -113,7 +113,7 @@ function CheckInListView({ done, started, dueDate, firstTime, navigation }) {
             : translate('survey').surveyTitle
         }. ${
           translate('survey').surveySubTitle +
-          formatDateString(new Date(dueDate))
+          formatDateString(new Date(dueDate), { locale: getLanguageTag() })
         }`}
         accessibilityRole={translate('accessibility').types.button}
         accessibilityHint={getAccessibilityHint(done, started)}
@@ -130,7 +130,7 @@ function CheckInListView({ done, started, dueDate, firstTime, navigation }) {
           {/* subtitle with formatted due date of the questionnaire */}
           <ListItem.Subtitle style={localStyle.subTitle}>
             {translate('survey').surveySubTitle +
-              formatDateString(new Date(dueDate))}
+              formatDateString(new Date(dueDate), { locale: getLanguageTag() })}
           </ListItem.Subtitle>
         </ListItem.Content>
         {/* renders icon */}
