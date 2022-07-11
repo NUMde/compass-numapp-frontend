@@ -1,3 +1,4 @@
+/* eslint-disable lines-around-directive */
 // (C) Copyright IBM Deutschland GmbH 2021.  All rights reserved.
 
 /***********************************************************************************************
@@ -81,6 +82,7 @@ function LoginScreen({ navigation }) {
 
   // set up detection of QR codes
   const frameProcessor = useFrameProcessor((frame) => {
+    // lgtm [js/unknown-directive]
     'worklet';
 
     const detectedQrCodes = scanBarcodes(frame, [BarcodeFormat.QR_CODE]);
