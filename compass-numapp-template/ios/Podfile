@@ -1,32 +1,16 @@
 platform :ios, '11.0'
 
-permissions_path = '../node_modules/react-native-permissions/ios'
 require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-# Convert all permission pods into static libraries
-pre_install do |installer|
-  installer.pod_targets.each do |pod|
-    if pod.name.eql?('RNPermissions') || pod.name.start_with?('Permission-')
-      def pod.build_type;
-        Pod::BuildType.static_library
-      end
-    end
-  end
-end
-
 target 'Compass' do
 
-config = use_native_modules!
+  config = use_native_modules!
 
-use_react_native!(
-  :path => config[:reactNativePath],
-  # to enable hermes on iOS, change `false` to `true` and then install pods
-  :hermes_enabled => false
-)
-
-  pod 'Permission-Camera', :path => "#{permissions_path}/Camera/Permission-Camera.podspec"
-  pod 'Permission-Notifications', :path => "#{permissions_path}/Notifications/Permission-Notifications.podspec"
-
-
+  use_react_native!(
+    :path => config[:reactNativePath],
+    # to enable hermes on iOS, change `false` to `true` and then install pods
+    :hermes_enabled => false
+  )
+  
 end

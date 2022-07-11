@@ -5,7 +5,7 @@ exports[`LoginScreen should render the login screen 1`] = `
   style={
     Object {
       "backgroundColor": "#F8F9FA",
-      "height": "100%",
+      "flex": 1,
     }
   }
   testID="LoginScreen"
@@ -182,106 +182,29 @@ exports[`LoginScreen should render the login screen 1`] = `
   </View>
   <View
     style={
-      Array [
-        Object {
-          "alignItems": "center",
-          "flex": 1,
-        },
-        Object {
-          "backgroundColor": "#F8F9FA",
-          "height": "100%",
-        },
-      ]
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+      }
     }
     testID="scannerWrapper"
   >
-    <View
-      style={
-        Array [
-          Object {
-            "flex": 1,
-          },
-          Object {
-            "aspectRatio": 1,
-            "flexBasis": 66,
-            "flexGrow": 1,
-            "maxHeight": 750,
-          },
-        ]
-      }
-    >
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 2,
-              "justifyContent": "center",
-              "width": 750,
-            },
-            undefined,
-          ]
-        }
-      />
-      <View>
-        <View
-          style={
-            Object {
-              "alignItems": "center",
-              "flex": 1,
-              "justifyContent": "center",
-            }
-          }
-        >
-          <Text
-            style={
-              Object {
-                "fontSize": 16,
-                "textAlign": "center",
-              }
-            }
-          >
-            ...
-          </Text>
-        </View>
-      </View>
-      <View
-        style={
-          Array [
-            Object {
-              "alignItems": "center",
-              "flex": 2,
-              "justifyContent": "center",
-              "width": 750,
-            },
-            undefined,
-          ]
-        }
-      />
-    </View>
-    <View
+    <Text
       style={
         Object {
+          "color": "#1F2532",
           "flexBasis": 33,
-          "flexGrow": 0.3333333333333333,
-          "justifyContent": "center",
+          "flexGrow": 1,
+          "fontFamily": "IBMPlexSans",
+          "fontSize": 30,
+          "lineHeight": 39.375,
+          "textAlign": "center",
+          "textAlignVertical": "center",
         }
       }
     >
-      <Text
-        style={
-          Object {
-            "color": "#1F2532",
-            "fontFamily": "IBMPlexSans",
-            "fontSize": 30,
-            "lineHeight": 39.375,
-            "textAlign": "center",
-          }
-        }
-      >
-        Please point the camera onto the qr-code.
-      </Text>
-    </View>
+      Please point the camera onto the qr-code.
+    </Text>
   </View>
 </View>
 `;
