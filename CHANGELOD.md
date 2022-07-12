@@ -23,6 +23,42 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 -   -/-
 
+## [0.2.0] - 2022-07-12
+
+### Added
+
+-   -/-
+
+### Fixed
+
+-   fix and refactor analyzer (https://github.com/NUMde/compass-numapp-frontend/pull/183)
+-   fix surveyScreen layout (https://github.com/NUMde/compass-numapp-frontend/pull/184)
+
+### Changed
+
+-   update dependency react-native-webview to v11.22.2 (https://github.com/NUMde/compass-numapp-frontend/pull/173)
+-   update dependency @babel/core to v7.18.5 (https://github.com/NUMde/compass-numapp-frontend/pull/177)
+-   update dependency @react-native-community/slider to v4.2.3 (https://github.com/NUMde/compass-numapp-frontend/pull/178)
+-   update dependency msw to v0.42.3 (https://github.com/NUMde/compass-numapp-frontend/pull/172)
+-   update dependency metro-react-native-babel-preset to v0.71.1 (https://github.com/NUMde/compass-numapp-frontend/pull/176)
+-   update dependency @react-native-firebase/app to v14.11.1 (https://github.com/NUMde/compass-numapp-frontend/pull/179)
+-   update babel monorepo to v7.18.6 (https://github.com/NUMde/compass-numapp-frontend/pull/182)
+-   update dependency metro-react-native-babel-preset to v0.71.2 (https://github.com/NUMde/compass-numapp-frontend/pull/185)
+-   update dependency @react-native-community/slider to v4.2.4 (https://github.com/NUMde/compass-numapp-frontend/pull/186)
+-   update dependency metro-react-native-babel-preset to v0.71.3 (https://github.com/NUMde/compass-numapp-frontend/pull/187)
+-   update dependency com.google.gms:google-services to v4.3.13 (https://github.com/NUMde/compass-numapp-frontend/pull/180)
+-   update dependency eslint-plugin-jest to v26 (https://github.com/NUMde/compass-numapp-frontend/pull/154)
+-   migrate to new camera + code scanner (https://github.com/NUMde/compass-numapp-frontend/pull/188)
+-   simplify date formatter (https://github.com/NUMde/compass-numapp-frontend/pull/189)
+-   update dependency react-native-webview to v11.22.6 (https://github.com/NUMde/compass-numapp-frontend/pull/193)
+-   update dependency @reduxjs/toolkit to v1.8.3 (https://github.com/NUMde/compass-numapp-frontend/pull/192)
+-   pin dependency vision-camera-code-scanner to 0.2.0 (https://github.com/NUMde/compass-numapp-frontend/pull/190)
+-   update dependency @react-native-picker/picker to v2.4.2 (https://github.com/NUMde/compass-numapp-frontend/pull/191)
+
+### Removed
+
+-   -/-
+
 ## [0.1.3] - 2022-06-10
 
 ### Added
