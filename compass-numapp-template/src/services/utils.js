@@ -7,24 +7,17 @@
  * @param  {Date}    inputDate the input date
  * @param  {boolean} includeTime if true: the exported string will also contain the time
  */
-const formatDateString = (inputDate, includeTime) => {
-  const date = new Date(inputDate);
-  const numericMonth = date.getMonth() + 1;
-
-  let monthString = numericMonth.toString();
-  let dayString = date.getDate().toString();
-  let hourString = date.getHours().toString();
-  let minutesString = date.getMinutes().toString();
-
-  if (dayString.length === 1) dayString = `0${dayString}`;
-  if (monthString.length === 1) monthString = `0${monthString}`;
-  if (hourString.length === 1) hourString = `0${hourString}`;
-  if (minutesString.length === 1) minutesString = `0${minutesString}`;
-
-  let dateString = `${dayString}.${monthString}.${date.getFullYear()}`;
-  if (includeTime) dateString = `${dateString}, ${hourString}:${minutesString}`;
-
-  return dateString;
+const formatDateString = (inputDate, { includeTime, locale = 'de' }) => {
+  return new Date(inputDate).toLocaleDateString(locale, {
+    formatMatcher: 'best fit',
+    localeMatcher: 'best fit',
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    hour: includeTime ? '2-digit' : undefined,
+    minute: includeTime ? '2-digit' : undefined,
+    hourCycle: 'h23',
+  });
 };
 
 // eslint-disable-next-line import/prefer-default-export

@@ -10,7 +10,7 @@ exports[`checkInListView should render the 'listView' 1`] = `
 >
   <View
     accessibilityHint="Opens new page to see the questionnaire's categories.This questionnaire has not been answered yet."
-    accessibilityLabel="Your Entry-Questionnaire Title. To be completed till:  14.03.2022"
+    accessibilityLabel="Your Entry-Questionnaire Title. To be completed till:  03/14/2022"
     accessibilityRole="button"
     accessible={true}
     focusable={true}
@@ -137,7 +137,7 @@ exports[`checkInListView should render the 'listView' 1`] = `
           }
           testID="listItemTitle"
         >
-          To be completed till:  14.03.2022
+          To be completed till:  03/14/2022
         </Text>
       </View>
       <View
@@ -259,7 +259,7 @@ exports[`welcomeText should render the welcomeText for firstTime and no question
           }
         }
       >
-        16.03.2022, 00:00
+        03/16/2022, 00:00
         .
       </Text>
        - See? This is the second part of that message.
@@ -298,7 +298,7 @@ exports[`welcomeText should render the welcomeText for firstTime and no question
           ]
         }
       >
-        14.03.2022, 00:00
+        03/14/2022, 00:00
         .
       </Text>
     </View>
@@ -368,7 +368,7 @@ exports[`welcomeText should render the welcomeText for firstTime and questionnai
           }
         }
       >
-        16.03.2022, 00:00
+        03/16/2022, 00:00
         .
       </Text>
        - See? This is the second part of that message.
@@ -465,7 +465,7 @@ exports[`welcomeText should render the welcomeText for subsequent visits and no 
           ]
         }
       >
-        14.03.2022, 00:00
+        03/14/2022, 00:00
         .
       </Text>
     </View>
@@ -541,7 +541,7 @@ exports[`welcomeText should render the welcomeText for subsequent visits and que
           }
         }
       >
-        16.03.2022, 00:00
+        03/16/2022, 00:00
         .
       </Text>
     </View>
