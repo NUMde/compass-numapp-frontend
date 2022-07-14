@@ -34,11 +34,11 @@ describe('CheckInScreen', () => {
     server.close();
   });
 
-  it('should render the CheckInScreen', async () => {
+  it('should render the CheckInScreen', (done) => {
     const navigate = jest.fn();
     const goBack = jest.fn();
 
-    const { findByText, toJSON } = renderWithRedux(
+    const { getByText, toJSON } = renderWithRedux(
       <CheckInScreen navigation={{ navigate, goBack }} />,
       {
         initialState: {
@@ -46,15 +46,19 @@ describe('CheckInScreen', () => {
         },
       },
     );
-    expect(await findByText(en.survey.welcomeTitleFirstTime)).toBeTruthy();
-    expect(toJSON()).toMatchSnapshot();
+    waitFor(() =>
+      expect(getByText(en.survey.welcomeTitleFirstTime)).toBeTruthy(),
+    ).then(() => {
+      expect(toJSON()).toMatchSnapshot();
+      done();
+    });
   });
 
-  it('should trigger user update when mounting CheckInScreen', async () => {
+  it('should trigger user update when mounting CheckInScreen', (done) => {
     const navigate = jest.fn();
     const goBack = jest.fn();
     const restSpy = jest.spyOn(loggedInClient, 'getUserUpdate');
-    const { findByText } = renderWithRedux(
+    const { getByText } = renderWithRedux(
       <CheckInScreen navigation={{ navigate, goBack }} />,
       {
         initialState: {
@@ -62,8 +66,12 @@ describe('CheckInScreen', () => {
         },
       },
     );
-    expect(await findByText(en.survey.welcomeTitleFirstTime)).toBeTruthy();
-    expect(restSpy).toHaveBeenCalled();
+    waitFor(() =>
+      expect(getByText(en.survey.welcomeTitleFirstTime)).toBeTruthy(),
+    ).then(() => {
+      expect(restSpy).toHaveBeenCalled();
+      done();
+    });
   });
 
   it('should alert User when questionnaire is outdated', async () => {
@@ -71,7 +79,7 @@ describe('CheckInScreen', () => {
     const goBack = jest.fn();
     const spyAlert = jest
       .spyOn(Alert, 'alert')
-      .mockImplementation(async (title, message, callbackOrButtons) => {
+      .mockImplementation(async (_title, _message, callbackOrButtons) => {
         if (callbackOrButtons && callbackOrButtons[0]) {
           callbackOrButtons[0].onPress();
         }
