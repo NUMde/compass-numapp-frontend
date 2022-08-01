@@ -53,7 +53,7 @@
     "react-native-vision-camera": "2.13.5",
     "react-native-webview": "11.22.7",
     "react-redux": "8.0.2",
-    "redux": "4.1.2",
+    "redux": "4.2.0",
     "redux-persist": "6.0.0",
     "redux-thunk": "2.4.1",
     "vision-camera-code-scanner": "0.2.0"
