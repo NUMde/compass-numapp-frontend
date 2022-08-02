@@ -25,7 +25,7 @@ export default {
     menuHint: 'Öffnet neue Seite mit zusätzlichen Informationen und Links.',
 
     logoutHint: 'Startet den Abmeldeprozess und umleiten die Anmeldeseite.',
-    loginHint: 'Startet Anmeldevorgang und leitet den QRCODE-Scanner um.',
+    loginHint: 'Startet den Anmeldevorgang und leitet den QR-Code-Scanner um.',
 
     questionnaire: {
       middleButtonFinished: 'Nächste Frage. Frage wird beantwortet.',
@@ -75,12 +75,12 @@ export default {
     submit: 'Anmeldung',
     user: 'Subjekt-ID.',
     pass: 'Passwort',
-    waiting: 'Einloggen...',
+    waiting: 'Anmelden...',
     errorPass: 'Bitte versuche es erneut.',
     noSubjectId: 'Kein gültiges SubjektD gefunden',
     errorUserUnauthorized: 'Ungültige Benutzerdaten.',
     qrInfo: 'Bitte zeigen Sie die Kamera auf den QR-Code.',
-    errorUserGeneric: 'Beim Login trat ein Problem auf.',
+    errorUserGeneric: 'Bei der Anmeldung trat ein Problem auf.',
     permissionDialog:
       'Bitte erlauben Sie der App, auf Ihre Kamera zuzugreifen.',
     nextStepAfterError: 'Bitte versuchen Sie es später erneut anzumelden.',
@@ -91,8 +91,8 @@ export default {
       title: ' ',
       subTitle: ' ',
       welcomeTitle: 'Willkommen beim Compass \n  (Native Client reagieren)',
-      text: 'Dies ist der Lande-Bildschirm. \n  \n it kann verwendet werden, um eine Begrüßungsnachricht anzuzeigen, detailliert den folgenden Login-Prozess zu detaillierenAktualisiert durch Aktualisierung des Ordners Anpassen.',
-      autoLoginErrorTitle: 'Auto Login fehlgeschlagen',
+      text: 'Dies ist der Lande-Bildschirm. \n  \n Der Bildschirm wird verwendet, um eine Begrüßungsnachricht anzuzeigen, um den folgenden Anmeldevorgang zu detaillieren etc. etc.',
+      autoLoginErrorTitle: 'Auto-Anmeldung fehlgeschlagen',
       autoLoginError:
         'Beim Versuch, sich automatisch anzumelden, ist ein Fehler aufgetreten.Bitte überprüfen Sie Ihr Netzwerk und versuchen Sie es erneut',
       retry: 'wiederholen',
@@ -114,23 +114,23 @@ export default {
     successTitle: 'Erfolg',
     delete: 'Ja, Daten löschen',
     goBack: 'Ja, bitte melden Sie sich an',
-    logoutWarning: 'Logout Warnung',
+    logoutWarning: 'Abmeldung Warnung',
     sendSuccess: 'Erfolgreich gesendete Daten',
     sendError:
-      'Es gab einen Fehler, der die Daten übermittelt.Bitte versuche es erneut.',
+      'Bei der Datenübermittlung ist ein Fehler aufgetreten. Bitte versuchen Sie es zu einem späteren Zeitpunkt erneut oder kontaktieren Sie den Administrator.',
     sendErrorTwoDevices:
-      'Sie haben diesen Fragebogen bereits durch eine andere App gesendet.',
+      'Sie haben diesen Fragebogen bereits durch die App an einem anderen Gerät gesendet.',
     eraseAllWarning:
-      'Dadurch werden alle lokalen Daten gelöscht und loggt Sie an.Möchten Sie ein Verfahren?',
+      'Dadurch werden alle lokalen Daten gelöscht und Sie werden abgemeldet. Möchten Sie fortfahren?',
     eraseLocalDataAtEndOfStudyText:
-      'Dies wird erneut das Ende der Studie betonen.Sobald der Benutzer die lokalen Daten bestätigt, wird der Teilnehmer abgemeldet.Möchten Sie vorausgehen?',
-    eraseLocalDataAtEndOfStudyTitle: 'Löschen Sie lokale Daten und logout',
+      'Dies wird die Studie beenden. Sobald der Benutzer die lokalen Daten bestätigt hat, wird der Teilnehmer abgemeldet. Möchten Sie fortfahren?',
+    eraseLocalDataAtEndOfStudyTitle: 'Lokale Daten löschen und abmelden',
     wrongLanguageVersionDetected:
-      'Der anhaltende Fragebogen stimmt nicht mit der aktuell ausgewählten Sprache auf Ihrem Gerät überein.Dieser Fragebogen wird nun durch eine passende Version ersetzt.Ihre Antworten gehen verloren.',
+      'Der aktuelle Fragebogen stimmt nicht mit der aktuell ausgewählten Sprache auf Ihrem Gerät überein. Dieser Fragebogen wird nun durch eine passende Version ersetzt. Ihre Antworten gehen dabei verloren.',
     updateError:
       'Beim Erhalten der angeforderten Daten ist ein Fehler aufgetreten - bitte versuchen Sie es erneut.',
     infoRemoval:
-      'Der derzeit anhaltende Fragebogen ist veraltet und wird nun entfernt.',
+      'Der derzeit aktuelle Fragebogen ist veraltet und wird nun entfernt.',
     reportWhileInIteratedMode:
       'Dialog, um dem Benutzer mitzuteilen, dass er bereits in einem speziellen Bericht gesendet wurde und dass er gerade in einem speziellen Intervall ist.',
     reportWhileQuestionnaire:
@@ -141,9 +141,9 @@ export default {
   about: {
     title: 'Über',
     subTitle: 'Untertitel des Über-Screens',
-    logout: 'Logout (nur auf dev)',
-    delete: 'Alles löschen & logout (nur auf dev)',
-    demoDelete: 'Alles löschen & Logout (nur für diese Demo)',
+    logout: 'Abmelden',
+    delete: 'Meine Daten löschen und Abmelden',
+    demoDelete: 'Alles löschen & Abmelden (nur für diese Demo)',
     languageSelection: 'Sprachauswahl',
     languageWarning:
       'Wenn Sie die Sprache ändern, während Sie einen persistierten Speicherplatz Ihrer aktuellen Antworten haben, wird das Save-STATE entfernt.',
@@ -172,7 +172,7 @@ export default {
   /** strings of the survey-screen */
   survey: {
     subTitle: 'test',
-    logout: 'Ausloggen',
+    logout: 'Abmelden',
     subTitleCheckIn: '',
     title: 'Fragebogen',
     isLoading: 'Wird geladen...',
@@ -181,7 +181,7 @@ export default {
     welcomeTitle: 'Checkin-Titel',
     noUserTitle: 'Benutzer wurde nicht gefunden',
     sendFinished: 'Fragebogen senden.',
-    send: 'Fragebogen-Schaltflächen-Titel senden',
+    send: 'Fragebogen abschicken',
     additionalAnswer: 'zusätzlicheAntwort',
     alternativeAnswer: 'alternativeAntwort',
     surveySubTitle: 'Bis zu ergänzen: ',
@@ -216,11 +216,11 @@ export default {
     nextOneNew:
       'Dieser Text wird angezeigt, um einem neuen Benutzer zu kommunizieren, wenn der nächste Fragebogen verfügbar ist: ',
     furtherInfo:
-      'Dies ist der untere Snippet des Welcometext.Sie können hier etwas nützliches platzieren ... wie ein Limerick.',
+      'Wir informieren Sie, sobald ein weiterer Fragebogen verfügbar wird.',
     welcomeTextUser:
-      'Dies ist die regelmäßige Begrüßungsnachricht. Es wird angezeigt, wenn ein Fragebogen verfügbar ist und der Benutzer ein wiederkehrendes ist.Darunter sollte das Fälligkeitsdatum angezeigt werden.',
+      'Hallo! Ein Fragebogen ist aktuell für Sie zum Ausfüllen verfügbar. Bitte füllen Sie den Fragebogen bis zum angegeben Zeitpunkt aus:',
     welcomeTextFirstTimeUser1:
-      'Dies ist Text, der an Erstzeitern dargestellt wird. Es sagt ihnen, wenn der erste Fragebogen fällig ist: ',
+      'Wir informieren Sie, sobald ein weiterer Fragebogen verfügbar wird. ',
     invalidInteger: 'Nur ganzzahlige Werte erlaubt!',
     invalidDecimal: 'Keine gültige Dezimalzahl!',
     notMatchingPattern: 'Eingabe entspricht nicht den Vorgaben!',
@@ -232,7 +232,7 @@ export default {
     symptoms_yes: 'JAWOHL',
     symptoms_success_ok: 'Erfolgsbestätigung',
     symptoms_success_header: 'Erfolgs-Nachrichten-Header',
-    symptoms_header: 'Schaltfläche: Senden Sie einen speziellen Bericht aus',
+    symptoms_header: 'Sonderbericht schicken',
     symptoms_success_message: 'Erfolgsnachricht-Inhalt',
     symptoms_question: 'Bestätigungsfrage hier einfügen',
   },
