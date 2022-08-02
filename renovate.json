@@ -5,6 +5,10 @@
         {
             "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
             "automerge": true
+        },
+        {
+            "groupName": "@react-native-firebase",
+            "matchPackagePatterns": ["@react-native-firebase"]
         }
     ],
     "schedule": [
