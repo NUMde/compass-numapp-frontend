@@ -82,31 +82,31 @@ describe('Questionnaire Modal', () => {
     };
     const {
       getByText,
-      getByA11yLabel,
-      queryByA11yLabel,
-      getAllByA11yHint,
-      findByA11yLabel,
+      getByLabelText,
+      queryByLabelText,
+      getAllByHintText,
+      findByLabelText,
     } = renderWithRedux(<QuestionnaireModal />, {
       initialState: localState,
     });
     expect(getByText(/Bedingte Abfrage/)).toBeTruthy();
     expect(getByText(/nur bei erwarteter Eingabe/)).toBeTruthy();
     expect(
-      queryByA11yLabel(en.accessibility.questionnaire.middleButtonFinished),
+      queryByLabelText(en.accessibility.questionnaire.middleButtonFinished),
     ).toBeFalsy();
     expect(
-      getByA11yLabel(en.accessibility.questionnaire.middleButtonUnfinished),
+      getByLabelText(en.accessibility.questionnaire.middleButtonUnfinished),
     ).toBeTruthy();
 
-    const conditionalInput = getAllByA11yHint(
+    const conditionalInput = getAllByHintText(
       en.accessibility.questionnaire.textFieldHint,
     )[1];
     fireEvent.changeText(conditionalInput, 'abc');
 
-    await findByA11yLabel(en.accessibility.questionnaire.middleButtonFinished);
+    await findByLabelText(en.accessibility.questionnaire.middleButtonFinished);
 
     expect(
-      queryByA11yLabel(en.accessibility.questionnaire.middleButtonUnfinished),
+      queryByLabelText(en.accessibility.questionnaire.middleButtonUnfinished),
     ).toBeFalsy();
   });
 

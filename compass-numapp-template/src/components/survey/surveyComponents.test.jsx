@@ -54,7 +54,7 @@ describe('categoriesList', () => {
   });
 
   it('a11y hints should match', () => {
-    const { getByA11yLabel } = render(
+    const { getByLabelText } = render(
       <CategoriesList
         categories={categories}
         itemMap={itemMap}
@@ -62,22 +62,22 @@ describe('categoriesList', () => {
       />,
     );
 
-    expect(getByA11yLabel(categories[0].text)).toBeTruthy();
-    expect(getByA11yLabel(categories[0].text).props.accessibilityHint).toBe(
+    expect(getByLabelText(categories[0].text)).toBeTruthy();
+    expect(getByLabelText(categories[0].text).props.accessibilityHint).toBe(
       translate('accessibility').questionnaire.categoryCellHint +
         translate('accessibility').questionnaire.category +
         translate('accessibility').questionnaire.notStarted,
     );
 
-    expect(getByA11yLabel(categories[1].text)).toBeTruthy();
-    expect(getByA11yLabel(categories[1].text).props.accessibilityHint).toBe(
+    expect(getByLabelText(categories[1].text)).toBeTruthy();
+    expect(getByLabelText(categories[1].text).props.accessibilityHint).toBe(
       translate('accessibility').questionnaire.categoryCellHint +
         translate('accessibility').questionnaire.category +
         translate('accessibility').questionnaire.notFinished,
     );
 
-    expect(getByA11yLabel(categories[2].text)).toBeTruthy();
-    expect(getByA11yLabel(categories[2].text).props.accessibilityHint).toBe(
+    expect(getByLabelText(categories[2].text)).toBeTruthy();
+    expect(getByLabelText(categories[2].text).props.accessibilityHint).toBe(
       translate('accessibility').questionnaire.categoryCellHint +
         translate('accessibility').questionnaire.category +
         translate('accessibility').questionnaire.finished,
