@@ -3,10 +3,8 @@
 /***********************************************************************************************
 imports
 ***********************************************************************************************/
-
-import { combineReducers, createStore, applyMiddleware } from 'redux';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import thunk from 'redux-thunk';
-import { composeWithDevTools } from '@redux-devtools/extension';
 import EncryptedStorage from 'react-native-encrypted-storage';
 import { persistStore, persistReducer } from 'redux-persist';
 
@@ -53,11 +51,10 @@ export
 ***********************************************************************************************/
 
 // create store with middleware and apply redux devtools for debugging
-export const reduxStore = createStore(
-  persistedReducer,
-  composeWithDevTools({ trace: !!__DEV__, traceLimit: 25 })(
-    applyMiddleware(...middleware),
-  ),
-);
+export const reduxStore = configureStore({
+  reducer: persistedReducer,
+  devTools: { trace: !!__DEV__, traceLimit: 25 },
+  middleware,
+});
 
 export const persistor = persistStore(reduxStore);
