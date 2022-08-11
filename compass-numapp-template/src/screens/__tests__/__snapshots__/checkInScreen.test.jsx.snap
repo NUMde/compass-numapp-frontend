@@ -483,6 +483,7 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
             style={
               Object {
                 "marginHorizontal": 52.325581395348834,
+                "marginVertical": 43.604651162790695,
               }
             }
           >
