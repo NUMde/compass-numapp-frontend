@@ -10,6 +10,7 @@ import * as RNLocalize from 'react-native-localize';
 
 // components
 import SplashScreen from 'react-native-splash-screen';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 // redux & store
 import { Provider } from 'react-redux';
@@ -95,7 +96,9 @@ function App() {
 
       <Provider store={reduxStore}>
         <PersistGate loading={<Spinner />} persistor={persistor}>
-          <AppNavigator />
+          <SafeAreaView edges={['bottom']} style={localStyle.safeArea}>
+            <AppNavigator />
+          </SafeAreaView>
         </PersistGate>
       </Provider>
     </View>
@@ -110,6 +113,10 @@ const localStyle = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+  safeArea: {
+    flex: 1,
+    backgroundColor: theme.values.defaultBackgroundColor,
   },
 });
 

@@ -228,8 +228,7 @@ function CheckInScreen({ navigation }) {
 
       {/*  center content */}
       {subjectId && (
-        <View style={[localStyle.flexi, localStyle.wrapper]}>
-          <ScrollIndicatorWrapper>
+        <ScrollIndicatorWrapper>
           <View style={[localStyle.wrapper, localStyle.content]}>
             {/* renders the listview item representing the questionnaire */}
             {!noNewQuestionnaireAvailableYet && status !== 'off-study' && (
@@ -265,7 +264,6 @@ function CheckInScreen({ navigation }) {
             />
           </View>
         </ScrollIndicatorWrapper>
-        </View>
       )}
     </View>
   );
@@ -285,10 +283,7 @@ const localStyle = StyleSheet.create({
     flexDirection: 'column',
     backgroundColor: theme.values.defaultBackgroundColor,
   },
-
-  flexi: {
-    flex: 1,
-  },
+  content: { justifyContent: 'space-between' },
 });
 
 export default CheckInScreen;

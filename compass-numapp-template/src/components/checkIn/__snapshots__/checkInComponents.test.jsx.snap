@@ -2,209 +2,201 @@
 
 exports[`checkInListView should render the 'listView' 1`] = `
 <View
-  style={
-    Object {
-      "marginVertical": 43.604651162790695,
-    }
-  }
+  accessibilityHint="Opens new page to see the questionnaire's categories.This questionnaire has not been answered yet."
+  accessibilityLabel="Your Entry-Questionnaire Title. To be completed till:  03/14/2022"
+  accessibilityRole="button"
+  accessible={true}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  testID="CheckInListItem"
 >
   <View
-    accessibilityHint="Opens new page to see the questionnaire's categories.This questionnaire has not been answered yet."
-    accessibilityLabel="Your Entry-Questionnaire Title. To be completed till:  03/14/2022"
-    accessibilityRole="button"
-    accessible={true}
-    focusable={true}
-    onClick={[Function]}
-    onResponderGrant={[Function]}
-    onResponderMove={[Function]}
-    onResponderRelease={[Function]}
-    onResponderTerminate={[Function]}
-    onResponderTerminationRequest={[Function]}
-    onStartShouldSetResponder={[Function]}
-    testID="CheckInListItem"
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#EB576A",
+        "borderBottomColor": "#EB576A",
+        "borderColor": "#bcbbc1",
+        "borderTopColor": "#EB576A",
+        "flexDirection": "row",
+        "padding": 52.325581395348834,
+        "width": "100%",
+      }
+    }
+    testID="padView"
   >
     <View
       style={
+        Array [
+          Object {
+            "alignItems": "flex-start",
+            "flex": 1,
+            "justifyContent": "center",
+          },
+          undefined,
+        ]
+      }
+      theme={
         Object {
-          "alignItems": "center",
-          "backgroundColor": "#EB576A",
-          "borderBottomColor": "#EB576A",
-          "borderColor": "#bcbbc1",
-          "borderTopColor": "#EB576A",
-          "flexDirection": "row",
-          "padding": 52.325581395348834,
-          "width": "100%",
+          "colors": Object {
+            "black": "#242424",
+            "disabled": "hsl(208, 8%, 90%)",
+            "divider": "#bcbbc1",
+            "error": "#ff190c",
+            "grey0": "#393e42",
+            "grey1": "#43484d",
+            "grey2": "#5e6977",
+            "grey3": "#86939e",
+            "grey4": "#bdc6cf",
+            "grey5": "#e1e8ee",
+            "greyOutline": "#bbb",
+            "platform": Object {
+              "android": Object {
+                "error": "#f44336",
+                "grey": "rgba(0, 0, 0, 0.54)",
+                "primary": "#2196f3",
+                "searchBg": "#dcdce1",
+                "secondary": "#9C27B0",
+                "success": "#4caf50",
+                "warning": "#ffeb3b",
+              },
+              "default": Object {
+                "error": "#ff3b30",
+                "grey": "#7d7d7d",
+                "primary": "#007aff",
+                "searchBg": "#dcdce1",
+                "secondary": "#5856d6",
+                "success": "#4cd964",
+                "warning": "#ffcc00",
+              },
+              "ios": Object {
+                "error": "#ff3b30",
+                "grey": "#7d7d7d",
+                "primary": "#007aff",
+                "searchBg": "#dcdce1",
+                "secondary": "#5856d6",
+                "success": "#4cd964",
+                "warning": "#ffcc00",
+              },
+              "web": Object {
+                "error": "#ff190c",
+                "grey": "#393e42",
+                "primary": "#2089dc",
+                "searchBg": "#303337",
+                "secondary": "#ca71eb",
+                "success": "#52c41a",
+                "warning": "#faad14",
+              },
+            },
+            "primary": "#2089dc",
+            "searchBg": "#303337",
+            "secondary": "#ca71eb",
+            "success": "#52c41a",
+            "warning": "#faad14",
+            "white": "#ffffff",
+          },
         }
       }
-      testID="padView"
     >
-      <View
+      <Text
         style={
-          Array [
+          Object {
+            "backgroundColor": "transparent",
+            "color": "#F8F9FA",
+            "fontFamily": "IBMPlexSans-SemiBold",
+            "fontSize": 30,
+            "lineHeight": 37.5,
+          }
+        }
+        testID="listItemTitle"
+      >
+        Your Entry-Questionnaire Title
+      </Text>
+      <Text
+        style={
+          Object {
+            "backgroundColor": "transparent",
+            "color": "#F8F9FA",
+            "fontFamily": "IBMPlexSans",
+            "fontSize": 28.125,
+            "lineHeight": 37.5,
+          }
+        }
+        testID="listItemTitle"
+      >
+        To be completed till:  03/14/2022
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "paddingLeft": 16,
+        }
+      }
+    />
+    <View
+      style={
+        Object {
+          "alignSelf": "center",
+          "backgroundColor": "#F8F9FA",
+          "borderRadius": 16,
+          "height": 28,
+          "margin": 7,
+          "overflow": "hidden",
+          "shadowColor": "rgba(0,0,0, .4)",
+          "shadowOffset": Object {
+            "height": 1,
+            "width": 1,
+          },
+          "shadowOpacity": 1,
+          "shadowRadius": 1,
+          "width": 28,
+        }
+      }
+    >
+      <View>
+        <View
+          style={
             Object {
-              "alignItems": "flex-start",
-              "flex": 1,
+              "alignItems": "center",
+              "backgroundColor": "#ffffff",
+              "borderRadius": 16,
+              "height": 28,
               "justifyContent": "center",
-            },
-            undefined,
-          ]
-        }
-        theme={
-          Object {
-            "colors": Object {
-              "black": "#242424",
-              "disabled": "hsl(208, 8%, 90%)",
-              "divider": "#bcbbc1",
-              "error": "#ff190c",
-              "grey0": "#393e42",
-              "grey1": "#43484d",
-              "grey2": "#5e6977",
-              "grey3": "#86939e",
-              "grey4": "#bdc6cf",
-              "grey5": "#e1e8ee",
-              "greyOutline": "#bbb",
-              "platform": Object {
-                "android": Object {
-                  "error": "#f44336",
-                  "grey": "rgba(0, 0, 0, 0.54)",
-                  "primary": "#2196f3",
-                  "searchBg": "#dcdce1",
-                  "secondary": "#9C27B0",
-                  "success": "#4caf50",
-                  "warning": "#ffeb3b",
-                },
-                "default": Object {
-                  "error": "#ff3b30",
-                  "grey": "#7d7d7d",
-                  "primary": "#007aff",
-                  "searchBg": "#dcdce1",
-                  "secondary": "#5856d6",
-                  "success": "#4cd964",
-                  "warning": "#ffcc00",
-                },
-                "ios": Object {
-                  "error": "#ff3b30",
-                  "grey": "#7d7d7d",
-                  "primary": "#007aff",
-                  "searchBg": "#dcdce1",
-                  "secondary": "#5856d6",
-                  "success": "#4cd964",
-                  "warning": "#ffcc00",
-                },
-                "web": Object {
-                  "error": "#ff190c",
-                  "grey": "#393e42",
-                  "primary": "#2089dc",
-                  "searchBg": "#303337",
-                  "secondary": "#ca71eb",
-                  "success": "#52c41a",
-                  "warning": "#faad14",
-                },
-              },
-              "primary": "#2089dc",
-              "searchBg": "#303337",
-              "secondary": "#ca71eb",
-              "success": "#52c41a",
-              "warning": "#faad14",
-              "white": "#ffffff",
-            },
-          }
-        }
-      >
-        <Text
-          style={
-            Object {
-              "backgroundColor": "transparent",
-              "color": "#F8F9FA",
-              "fontFamily": "IBMPlexSans-SemiBold",
-              "fontSize": 30,
-              "lineHeight": 37.5,
+              "width": 28,
             }
           }
-          testID="listItemTitle"
         >
-          Your Entry-Questionnaire Title
-        </Text>
-        <Text
-          style={
-            Object {
-              "backgroundColor": "transparent",
-              "color": "#F8F9FA",
-              "fontFamily": "IBMPlexSans",
-              "fontSize": 28.125,
-              "lineHeight": 37.5,
-            }
-          }
-          testID="listItemTitle"
-        >
-          To be completed till:  03/14/2022
-        </Text>
-      </View>
-      <View
-        style={
-          Object {
-            "paddingLeft": 16,
-          }
-        }
-      />
-      <View
-        style={
-          Object {
-            "alignSelf": "center",
-            "backgroundColor": "#F8F9FA",
-            "borderRadius": 16,
-            "height": 28,
-            "margin": 7,
-            "overflow": "hidden",
-            "shadowColor": "rgba(0,0,0, .4)",
-            "shadowOffset": Object {
-              "height": 1,
-              "width": 1,
-            },
-            "shadowOpacity": 1,
-            "shadowRadius": 1,
-            "width": 28,
-          }
-        }
-      >
-        <View>
-          <View
+          <Text
+            allowFontScaling={false}
+            selectable={false}
             style={
-              Object {
-                "alignItems": "center",
-                "backgroundColor": "#ffffff",
-                "borderRadius": 16,
-                "height": 28,
-                "justifyContent": "center",
-                "width": 28,
-              }
+              Array [
+                Object {
+                  "color": "#EB576A",
+                  "fontSize": 12,
+                },
+                Object {
+                  "backgroundColor": "transparent",
+                },
+                Object {
+                  "fontFamily": "Material Design Icons",
+                  "fontStyle": "normal",
+                  "fontWeight": "normal",
+                },
+                Object {},
+              ]
             }
+            testID="iconIcon"
           >
-            <Text
-              allowFontScaling={false}
-              selectable={false}
-              style={
-                Array [
-                  Object {
-                    "color": "#EB576A",
-                    "fontSize": 12,
-                  },
-                  Object {
-                    "backgroundColor": "transparent",
-                  },
-                  Object {
-                    "fontFamily": "Material Design Icons",
-                    "fontStyle": "normal",
-                    "fontWeight": "normal",
-                  },
-                  Object {},
-                ]
-              }
-              testID="iconIcon"
-            >
-              󰲶
-            </Text>
-          </View>
+            󰲶
+          </Text>
         </View>
       </View>
     </View>
@@ -217,7 +209,6 @@ exports[`welcomeText should render the welcomeText for firstTime and no question
   style={
     Object {
       "marginHorizontal": 52.325581395348834,
-      "marginVertical": 43.604651162790695,
     }
   }
 >
@@ -244,7 +235,7 @@ exports[`welcomeText should render the welcomeText for firstTime and no question
           "fontFamily": "IBMPlexSans",
           "fontSize": 28.125,
           "lineHeight": 37.5,
-          "marginTop": 34.883720930232556,
+          "marginVertical": 17.441860465116278,
           "textAlign": "center",
         }
       }
@@ -273,7 +264,7 @@ exports[`welcomeText should render the welcomeText for firstTime and no question
             "fontFamily": "IBMPlexSans-SemiBold",
             "fontSize": 31.875,
             "lineHeight": 41.25,
-            "marginTop": 34.883720930232556,
+            "marginVertical": 17.441860465116278,
             "textAlign": "center",
           }
         }
@@ -289,7 +280,7 @@ exports[`welcomeText should render the welcomeText for firstTime and no question
               "fontFamily": "IBMPlexSans-SemiBold",
               "fontSize": 31.875,
               "lineHeight": 41.25,
-              "marginTop": 34.883720930232556,
+              "marginVertical": 17.441860465116278,
               "textAlign": "center",
             },
             Object {
@@ -310,7 +301,7 @@ exports[`welcomeText should render the welcomeText for firstTime and no question
           "fontFamily": "IBMPlexSans",
           "fontSize": 28.125,
           "lineHeight": 37.5,
-          "marginTop": 34.883720930232556,
+          "marginVertical": 17.441860465116278,
           "textAlign": "center",
         }
       }
@@ -326,7 +317,6 @@ exports[`welcomeText should render the welcomeText for firstTime and questionnai
   style={
     Object {
       "marginHorizontal": 52.325581395348834,
-      "marginVertical": 43.604651162790695,
     }
   }
 >
@@ -353,7 +343,7 @@ exports[`welcomeText should render the welcomeText for firstTime and questionnai
           "fontFamily": "IBMPlexSans",
           "fontSize": 28.125,
           "lineHeight": 37.5,
-          "marginTop": 34.883720930232556,
+          "marginVertical": 17.441860465116278,
           "textAlign": "center",
         }
       }
@@ -381,7 +371,7 @@ exports[`welcomeText should render the welcomeText for firstTime and questionnai
           "fontFamily": "IBMPlexSans",
           "fontSize": 28.125,
           "lineHeight": 37.5,
-          "marginTop": 34.883720930232556,
+          "marginVertical": 17.441860465116278,
           "textAlign": "center",
         }
       }
@@ -397,7 +387,6 @@ exports[`welcomeText should render the welcomeText for subsequent visits and no 
   style={
     Object {
       "marginHorizontal": 52.325581395348834,
-      "marginVertical": 43.604651162790695,
     }
   }
 >
@@ -424,7 +413,7 @@ exports[`welcomeText should render the welcomeText for subsequent visits and no 
           "fontFamily": "IBMPlexSans",
           "fontSize": 28.125,
           "lineHeight": 37.5,
-          "marginTop": 34.883720930232556,
+          "marginVertical": 17.441860465116278,
           "textAlign": "center",
         }
       }
@@ -440,7 +429,7 @@ exports[`welcomeText should render the welcomeText for subsequent visits and no 
             "fontFamily": "IBMPlexSans-SemiBold",
             "fontSize": 31.875,
             "lineHeight": 41.25,
-            "marginTop": 34.883720930232556,
+            "marginVertical": 17.441860465116278,
             "textAlign": "center",
           }
         }
@@ -456,7 +445,7 @@ exports[`welcomeText should render the welcomeText for subsequent visits and no 
               "fontFamily": "IBMPlexSans-SemiBold",
               "fontSize": 31.875,
               "lineHeight": 41.25,
-              "marginTop": 34.883720930232556,
+              "marginVertical": 17.441860465116278,
               "textAlign": "center",
             },
             Object {
@@ -477,7 +466,7 @@ exports[`welcomeText should render the welcomeText for subsequent visits and no 
           "fontFamily": "IBMPlexSans",
           "fontSize": 28.125,
           "lineHeight": 37.5,
-          "marginTop": 34.883720930232556,
+          "marginVertical": 17.441860465116278,
           "textAlign": "center",
         }
       }
@@ -493,7 +482,6 @@ exports[`welcomeText should render the welcomeText for subsequent visits and que
   style={
     Object {
       "marginHorizontal": 52.325581395348834,
-      "marginVertical": 43.604651162790695,
     }
   }
 >
@@ -521,7 +509,7 @@ exports[`welcomeText should render the welcomeText for subsequent visits and que
             "fontFamily": "IBMPlexSans",
             "fontSize": 28.125,
             "lineHeight": 37.5,
-            "marginTop": 34.883720930232556,
+            "marginVertical": 17.441860465116278,
             "textAlign": "center",
           }
         }
@@ -536,7 +524,7 @@ exports[`welcomeText should render the welcomeText for subsequent visits and que
             "fontFamily": "IBMPlexSans-SemiBold",
             "fontSize": 31.875,
             "lineHeight": 41.25,
-            "marginTop": 34.883720930232556,
+            "marginVertical": 17.441860465116278,
             "textAlign": "center",
           }
         }
@@ -553,7 +541,7 @@ exports[`welcomeText should render the welcomeText for subsequent visits and que
           "fontFamily": "IBMPlexSans",
           "fontSize": 28.125,
           "lineHeight": 37.5,
-          "marginTop": 34.883720930232556,
+          "marginVertical": 17.441860465116278,
           "textAlign": "center",
         }
       }
@@ -569,7 +557,6 @@ exports[`welcomeText should render the welcomeText when off-study 1`] = `
   style={
     Object {
       "marginHorizontal": 52.325581395348834,
-      "marginVertical": 43.604651162790695,
     }
   }
 >
@@ -596,7 +583,7 @@ exports[`welcomeText should render the welcomeText when off-study 1`] = `
           "fontFamily": "IBMPlexSans",
           "fontSize": 28.125,
           "lineHeight": 37.5,
-          "marginTop": 34.883720930232556,
+          "marginVertical": 17.441860465116278,
           "textAlign": "center",
         }
       }

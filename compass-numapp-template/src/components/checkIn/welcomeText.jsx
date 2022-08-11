@@ -141,7 +141,7 @@ function WelcomeText({
 
       {/* if the user update failed */}
       {error && error.failedAction === 'user/UPDATE' && (
-        <View style={localStyle.wrapper} testID="user_update_error">
+        <View testID="user_update_error">
           <Text style={[localStyle.welcomeText, localStyle.welcomeTextRed]}>
             {translate('generic').error}
           </Text>
@@ -155,7 +155,7 @@ function WelcomeText({
       {error &&
         (error.failedAction === 'shared/SEND_REPORT' ||
           error.failedAction === 'shared/SEND_QUESTIONNAIRE_RESPONSE') && (
-          <View style={localStyle.wrapper} testID="submission_error">
+          <View testID="submission_error">
             <Text style={[localStyle.welcomeText, localStyle.welcomeTextRed]}>
               {translate('generic').error}
             </Text>
@@ -202,7 +202,7 @@ const localStyle = StyleSheet.create({
   },
 
   infoText: {
-    marginTop: appConfig.scaleUiFkt(20),
+    marginVertical: appConfig.scaleUiFkt(10),
     textAlign: 'center',
     color: theme.values.defaultParagraphTextColor,
     alignSelf: 'center',
@@ -210,7 +210,7 @@ const localStyle = StyleSheet.create({
   },
 
   timeText: {
-    marginTop: appConfig.scaleUiFkt(20),
+    marginVertical: appConfig.scaleUiFkt(10),
     textAlign: 'center',
     color: theme.colors.accent4,
     alignSelf: 'center',

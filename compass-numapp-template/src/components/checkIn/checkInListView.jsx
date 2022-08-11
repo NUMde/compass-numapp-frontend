@@ -5,7 +5,7 @@ imports
 ***********************************************************************************************/
 
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
 // components
@@ -99,51 +99,49 @@ const getChevronProps = (done, started) => {
  ***********************************************************************************************/
 function CheckInListView({ done, started, dueDate, firstTime, navigation }) {
   return (
-    <View style={localStyle.wrapper}>
-      <ListItem
-        containerStyle={[
-          localStyle.containerStyle,
-          // get additional styling depending on the state of the questionnaire
-          getListItemStyle(done, started),
-        ]}
-        onPress={() => navigation.navigate(Routes.SURVEY)}
-        accessibilityLabel={`${
-          firstTime
+    <ListItem
+      containerStyle={[
+        localStyle.containerStyle,
+        // get additional styling depending on the state of the questionnaire
+        getListItemStyle(done, started),
+      ]}
+      onPress={() => navigation.navigate(Routes.SURVEY)}
+      accessibilityLabel={`${
+        firstTime
+          ? translate('survey').surveyTitleFirstTime
+          : translate('survey').surveyTitle
+      }. ${
+        translate('survey').surveySubTitle +
+        formatDateString(new Date(dueDate), { locale: getLanguageTag() })
+      }`}
+      accessibilityRole={translate('accessibility').types.button}
+      accessibilityHint={getAccessibilityHint(done, started)}
+      testID="CheckInListItem"
+    >
+      <ListItem.Content>
+        {/* shows a special title for first-time-users or the regular title for all other users */}
+        <ListItem.Title style={localStyle.title}>
+          {firstTime
             ? translate('survey').surveyTitleFirstTime
-            : translate('survey').surveyTitle
-        }. ${
-          translate('survey').surveySubTitle +
-          formatDateString(new Date(dueDate), { locale: getLanguageTag() })
-        }`}
-        accessibilityRole={translate('accessibility').types.button}
-        accessibilityHint={getAccessibilityHint(done, started)}
-        testID="CheckInListItem"
-      >
-        <ListItem.Content>
-          {/* shows a special title for first-time-users or the regular title for all other users */}
-          <ListItem.Title style={localStyle.title}>
-            {firstTime
-              ? translate('survey').surveyTitleFirstTime
-              : translate('survey').surveyTitle}
-          </ListItem.Title>
+            : translate('survey').surveyTitle}
+        </ListItem.Title>
 
-          {/* subtitle with formatted due date of the questionnaire */}
-          <ListItem.Subtitle style={localStyle.subTitle}>
-            {translate('survey').surveySubTitle +
-              formatDateString(new Date(dueDate), { locale: getLanguageTag() })}
-          </ListItem.Subtitle>
-        </ListItem.Content>
-        {/* renders icon */}
-        <ListItem.Chevron
-          type="material-community"
-          size={12}
-          raised
-          containerStyle={{ backgroundColor: theme.colors.white }}
-          // get additional properties based on the state of the questionnaire
-          iconProps={getChevronProps(done, started)}
-        />
-      </ListItem>
-    </View>
+        {/* subtitle with formatted due date of the questionnaire */}
+        <ListItem.Subtitle style={localStyle.subTitle}>
+          {translate('survey').surveySubTitle +
+            formatDateString(new Date(dueDate), { locale: getLanguageTag() })}
+        </ListItem.Subtitle>
+      </ListItem.Content>
+      {/* renders icon */}
+      <ListItem.Chevron
+        type="material-community"
+        size={12}
+        raised
+        containerStyle={{ backgroundColor: theme.colors.white }}
+        // get additional properties based on the state of the questionnaire
+        iconProps={getChevronProps(done, started)}
+      />
+    </ListItem>
   );
 }
 
@@ -173,7 +171,6 @@ const localStyle = StyleSheet.create({
     width: '100%',
     padding: appConfig.scaleUiFkt(30),
   },
-  wrapper: { marginVertical: appConfig.scaleUiFkt(25) },
 
   title: {
     ...theme.fonts.title2,

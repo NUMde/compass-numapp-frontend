@@ -47,93 +47,89 @@ function CheckInTiles({
   exportAndUploadQuestionnaireResponse,
 }) {
   return (
-    <View style={localStyle.tileWrapper}>
-      {
-        <View style={localStyle.tileContainer}>
-          {/* if there is a completed questionnaire render the button to transmit the it*/}
-          {!noNewQuestionnaireAvailableYet &&
-            categoriesLoaded &&
-            status !== 'off-study' &&
-            done && (
-              <View>
-                <TouchableOpacity
-                  style={{ ...localStyle.tile, ...localStyle.buttonGreen }}
-                  disabled={noNewQuestionnaireAvailableYet}
-                  onPress={exportAndUploadQuestionnaireResponse}
-                  accessibilityLabel={translate('survey').send}
-                  accessibilityRole={translate('accessibility').types.button}
-                  accessibilityHint={
-                    translate('accessibility').questionnaire.sendHint
-                  }
-                  testID="send_response_btn"
-                >
-                  <View style={localStyle.buttonWrapper}>
-                    <Icon
-                      name="school"
-                      color={theme.colors.white}
-                      iconStyle={localStyle.buttonIcon}
-                    />
-
-                    <Text style={localStyle.tileText}>
-                      {translate('survey').send}
-                    </Text>
-                  </View>
-                </TouchableOpacity>
-              </View>
-            )}
-
-          {/* the 'send report' button */}
-          {status !== 'off-study' && (
+    <View style={localStyle.tileContainer}>
+      {/* if there is a completed questionnaire render the button to transmit the it*/}
+      {!noNewQuestionnaireAvailableYet &&
+        categoriesLoaded &&
+        status !== 'off-study' &&
+        done && (
+          <View>
             <TouchableOpacity
-              onPress={sendReport}
-              // renders the button in grey if there is no questionnaire available
-              // or if the user already send out a report and is still on a special interval (additional_iterations_left will be greater than 0 if thats the case)
-              style={
-                noNewQuestionnaireAvailableYet || iterationsLeft > 0
-                  ? localStyle.tile
-                  : localStyle.disabledTile
+              style={{ ...localStyle.tile, ...localStyle.buttonGreen }}
+              disabled={noNewQuestionnaireAvailableYet}
+              onPress={exportAndUploadQuestionnaireResponse}
+              accessibilityLabel={translate('survey').send}
+              accessibilityRole={translate('accessibility').types.button}
+              accessibilityHint={
+                translate('accessibility').questionnaire.sendHint
               }
-              accessibilityRole={translate('accessibility').types.button}
-              testID="send_report_btn"
+              testID="send_response_btn"
             >
               <View style={localStyle.buttonWrapper}>
                 <Icon
-                  name="error"
+                  name="school"
                   color={theme.colors.white}
                   iconStyle={localStyle.buttonIcon}
                 />
-                <Text style={localStyle.tileText}>
-                  {translate('reporting').symptoms_header}
-                </Text>
-              </View>
-            </TouchableOpacity>
-          )}
 
-          {/* display logout button when user is 'off-study' */}
-          {status === 'off-study' && appConfig.allowRemovalOfDataAtEndOfStudy && (
-            <TouchableOpacity
-              onPress={deleteLocalDataAndLogout}
-              style={{
-                ...localStyle.tile,
-                ...localStyle.deleteAndLogoutTile,
-              }}
-              accessibilityRole={translate('accessibility').types.button}
-              testID="logout_btn"
-            >
-              <View style={localStyle.buttonWrapper}>
-                <Icon
-                  name="warning"
-                  color={theme.colors.white}
-                  iconStyle={localStyle.buttonIcon}
-                />
                 <Text style={localStyle.tileText}>
-                  {translate('generic').eraseLocalDataAtEndOfStudyTitle}
+                  {translate('survey').send}
                 </Text>
               </View>
             </TouchableOpacity>
-          )}
-        </View>
-      }
+          </View>
+        )}
+
+      {/* the 'send report' button */}
+      {status !== 'off-study' && (
+        <TouchableOpacity
+          onPress={sendReport}
+          // renders the button in grey if there is no questionnaire available
+          // or if the user already send out a report and is still on a special interval (additional_iterations_left will be greater than 0 if thats the case)
+          style={
+            noNewQuestionnaireAvailableYet || iterationsLeft > 0
+              ? localStyle.tile
+              : localStyle.disabledTile
+          }
+          accessibilityRole={translate('accessibility').types.button}
+          testID="send_report_btn"
+        >
+          <View style={localStyle.buttonWrapper}>
+            <Icon
+              name="error"
+              color={theme.colors.white}
+              iconStyle={localStyle.buttonIcon}
+            />
+            <Text style={localStyle.tileText}>
+              {translate('reporting').symptoms_header}
+            </Text>
+          </View>
+        </TouchableOpacity>
+      )}
+
+      {/* display logout button when user is 'off-study' */}
+      {status === 'off-study' && appConfig.allowRemovalOfDataAtEndOfStudy && (
+        <TouchableOpacity
+          onPress={deleteLocalDataAndLogout}
+          style={{
+            ...localStyle.tile,
+            ...localStyle.deleteAndLogoutTile,
+          }}
+          accessibilityRole={translate('accessibility').types.button}
+          testID="logout_btn"
+        >
+          <View style={localStyle.buttonWrapper}>
+            <Icon
+              name="warning"
+              color={theme.colors.white}
+              iconStyle={localStyle.buttonIcon}
+            />
+            <Text style={localStyle.tileText}>
+              {translate('generic').eraseLocalDataAtEndOfStudyTitle}
+            </Text>
+          </View>
+        </TouchableOpacity>
+      )}
     </View>
   );
 }
@@ -166,14 +162,8 @@ const { width } = Dimensions.get('window');
 const localStyle = StyleSheet.create({
   tileContainer: {
     flexWrap: 'wrap',
-    alignItems: 'center',
-    alignContent: 'center',
     flexDirection: 'row',
     justifyContent: 'center',
-  },
-
-  tileWrapper: {
-    marginBottom: 15,
   },
 
   tile: {
