@@ -156,8 +156,8 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
-    implementation "com.facebook.react:react-native:0.66.0"
-    implementation 'org.webkit:android-jsc:r250230'
+    implementation "com.facebook.react:react-native:+"
+    implementation 'org.webkit:android-jsc:+'
 }
 
 
