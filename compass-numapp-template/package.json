@@ -30,7 +30,7 @@
     "@reduxjs/toolkit": "1.8.5",
     "babel-plugin-module-resolver": "4.1.0",
     "buffer": "6.0.3",
-    "i18n-js": "3.9.2",
+    "i18n-js": "4.1.1",
     "lodash.clonedeep": "4.5.0",
     "lodash.debounce": "4.0.8",
     "lodash.memoize": "4.1.2",
