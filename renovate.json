@@ -15,5 +15,17 @@
         "after 6pm every weekday",
         "before 5am every weekday",
         "every weekend"
-    ]
+    ],
+    "gradle": {
+        "enabled": false
+    },
+    "gradle-wrapper": {
+        "enabled": false
+    },
+    "github-actions": {
+        "enabled": false
+    },
+    "cocoapods": {
+        "enabled": false
+    }
 }
