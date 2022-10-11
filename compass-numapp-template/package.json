@@ -78,7 +78,7 @@
     "jest-transform-stub": "2.0.0",
     "jsdom": "20.0.1",
     "metro-react-native-babel-preset": "0.72.3",
-    "msw": "0.47.3",
+    "msw": "0.47.4",
     "patch-package": "6.4.7",
     "react-test-renderer": "17.0.2"
   },
