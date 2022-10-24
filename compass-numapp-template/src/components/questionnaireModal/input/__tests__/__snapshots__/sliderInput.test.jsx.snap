@@ -42,16 +42,15 @@ exports[`SliderInput should render sliderInput with all properties 1`] = `
     style={
       Array [
         Object {
-          "height": 40,
+          "width": 710,
         },
         Object {
-          "width": 710,
+          "height": 40,
         },
       ]
     }
     tapToSeek={false}
     testID="Slider"
-    thumbImage={null}
     value={5}
   />
   <View
