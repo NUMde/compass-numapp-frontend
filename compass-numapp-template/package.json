@@ -79,7 +79,7 @@
     "jsdom": "20.0.1",
     "metro-react-native-babel-preset": "0.73.3",
     "msw": "0.47.4",
-    "patch-package": "6.4.7",
+    "patch-package": "6.5.0",
     "react-test-renderer": "17.0.2"
   },
   "private": true,
