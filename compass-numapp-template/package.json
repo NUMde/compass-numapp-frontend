@@ -76,7 +76,7 @@
     "eslint-plugin-prettier": "4.2.1",
     "jest": "27.5.1",
     "jest-transform-stub": "2.0.0",
-    "jsdom": "20.0.1",
+    "jsdom": "20.0.2",
     "metro-react-native-babel-preset": "0.73.3",
     "msw": "0.47.4",
     "patch-package": "6.5.0",
