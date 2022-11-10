@@ -46,12 +46,12 @@ describe('CheckInScreen', () => {
         },
       },
     );
-    waitFor(() =>
-      expect(getByText(en.survey.welcomeTitleFirstTime)).toBeTruthy(),
-    ).then(() => {
-      expect(toJSON()).toMatchSnapshot();
-      done();
-    });
+    waitFor(() => expect(getByText(en.survey.titleCheckIn)).toBeTruthy()).then(
+      () => {
+        expect(toJSON()).toMatchSnapshot();
+        done();
+      },
+    );
   });
 
   it('should trigger user update when mounting CheckInScreen', (done) => {
