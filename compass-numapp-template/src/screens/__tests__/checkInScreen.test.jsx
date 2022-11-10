@@ -26,7 +26,6 @@ describe('CheckInScreen', () => {
   });
 
   afterEach(() => {
-    server.resetHandlers();
     jest.clearAllMocks();
   });
 
@@ -42,16 +41,23 @@ describe('CheckInScreen', () => {
       <CheckInScreen navigation={{ navigate, goBack }} />,
       {
         initialState: {
-          User: { subjectId: 'someUserId', additional_iterations_left: 0 },
+          User: {
+            subjectId: 'someUserId',
+            additional_iterations_left: 0,
+            status: 'on-study',
+            firstTime: true,
+            start_date: new Date().toDateString(),
+            due_date: new Date().toDateString(),
+          },
         },
       },
     );
-    waitFor(() =>
-      expect(getByText(en.survey.welcomeTitleFirstTime)).toBeTruthy(),
-    ).then(() => {
-      expect(toJSON()).toMatchSnapshot();
-      done();
-    });
+    waitFor(() => expect(getByText(en.survey.titleCheckIn)).toBeTruthy()).then(
+      () => {
+        expect(toJSON()).toMatchSnapshot();
+        done();
+      },
+    );
   });
 
   it('should trigger user update when mounting CheckInScreen', (done) => {
@@ -62,7 +68,14 @@ describe('CheckInScreen', () => {
       <CheckInScreen navigation={{ navigate, goBack }} />,
       {
         initialState: {
-          User: { subjectId: 'someUserId', additional_iterations_left: 1 },
+          User: {
+            subjectId: 'someUserId',
+            additional_iterations_left: 1,
+            status: 'on-study',
+            firstTime: true,
+            start_date: new Date().toDateString(),
+            due_date: new Date().toDateString(),
+          },
         },
       },
     );
@@ -92,6 +105,10 @@ describe('CheckInScreen', () => {
             subjectId: 'someUserId',
             current_questionnaire_id: 'http://example.com:1.0',
             additional_iterations_left: 1,
+            status: 'on-study',
+            firstTime: true,
+            start_date: new Date().toDateString(),
+            due_date: new Date().toDateString(),
           },
           Questionnaire: {
             itemMap,
@@ -130,9 +147,11 @@ describe('CheckInScreen', () => {
             current_questionnaire_id:
               'http://hl7.org/fhir/Questionnaire/Fragebogen_COMPASS_Beispiel|1.0',
             status: 'on-study',
-            start_date: new Date(),
+            start_date: new Date().toDateString(),
             firstTime: true,
-            due_date: new Date(new Date().setDate(new Date().getDate() + 3)),
+            due_date: new Date(
+              new Date().setDate(new Date().getDate() + 3),
+            ).toDateString(),
             certificate: appConfig.defaultRecipientCertificatePemString,
             additional_iterations_left: 1,
           },
@@ -171,9 +190,11 @@ describe('CheckInScreen', () => {
             current_questionnaire_id:
               'http://hl7.org/fhir/Questionnaire/Fragebogen_COMPASS_Beispiel|1.0',
             status: 'on-study',
-            start_date: new Date(),
+            start_date: new Date().toDateString(),
             firstTime: true,
-            due_date: new Date(new Date().setDate(new Date().getDate() + 3)),
+            due_date: new Date(
+              new Date().setDate(new Date().getDate() + 3),
+            ).toDateString(),
             certificate: appConfig.defaultRecipientCertificatePemString,
             additional_iterations_left: 0,
           },
@@ -218,9 +239,11 @@ describe('CheckInScreen', () => {
             current_questionnaire_id:
               'http://hl7.org/fhir/Questionnaire/Fragebogen_COMPASS_Beispiel|1.0',
             status: 'on-study',
-            start_date: new Date(),
+            start_date: new Date().toDateString(),
             firstTime: true,
-            due_date: new Date(new Date().setDate(new Date().getDate() + 3)),
+            due_date: new Date(
+              new Date().setDate(new Date().getDate() + 3),
+            ).toDateString(),
             certificate: appConfig.defaultRecipientCertificatePemString,
             additional_iterations_left: 1,
           },
@@ -265,9 +288,11 @@ describe('CheckInScreen', () => {
             current_questionnaire_id:
               'http://hl7.org/fhir/Questionnaire/Fragebogen_COMPASS_Beispiel|1.0',
             status: 'on-study',
-            start_date: new Date(),
+            start_date: new Date().toDateString(),
             firstTime: true,
-            due_date: new Date(new Date().setDate(new Date().getDate() + 3)),
+            due_date: new Date(
+              new Date().setDate(new Date().getDate() + 3),
+            ).toDateString(),
             certificate: appConfig.defaultRecipientCertificatePemString,
             additional_iterations_left: 0,
           },
@@ -311,9 +336,13 @@ describe('CheckInScreen', () => {
             current_questionnaire_id:
               'http://hl7.org/fhir/Questionnaire/Fragebogen_COMPASS_Beispiel|1.0',
             status: 'on-study',
-            start_date: new Date(new Date().setDate(new Date().getDate() + 2)),
+            start_date: new Date(
+              new Date().setDate(new Date().getDate() + 2),
+            ).toDateString(),
             firstTime: true,
-            due_date: new Date(new Date().setDate(new Date().getDate() + 3)),
+            due_date: new Date(
+              new Date().setDate(new Date().getDate() + 3),
+            ).toDateString(),
             certificate: appConfig.defaultRecipientCertificatePemString,
             additional_iterations_left: 0,
           },
@@ -368,9 +397,11 @@ describe('CheckInScreen', () => {
             current_questionnaire_id:
               'http://hl7.org/fhir/Questionnaire/Fragebogen_COMPASS_Beispiel|1.0',
             status: 'on-study',
-            start_date: new Date(),
+            start_date: new Date().toDateString(),
             firstTime: true,
-            due_date: new Date(new Date().setDate(new Date().getDate() + 3)),
+            due_date: new Date(
+              new Date().setDate(new Date().getDate() + 3),
+            ).toDateString(),
             certificate: appConfig.defaultRecipientCertificatePemString,
             additional_iterations_left: 0,
           },
@@ -422,9 +453,11 @@ describe('CheckInScreen', () => {
             current_questionnaire_id:
               'http://hl7.org/fhir/Questionnaire/Fragebogen_COMPASS_Beispiel|1.0',
             status: 'on-study',
-            start_date: new Date(),
+            start_date: new Date().toDateString(),
             firstTime: true,
-            due_date: new Date(new Date().setDate(new Date().getDate() + 3)),
+            due_date: new Date(
+              new Date().setDate(new Date().getDate() + 3),
+            ).toDateString(),
             certificate: appConfig.defaultRecipientCertificatePemString,
             additional_iterations_left: 1,
           },
@@ -460,7 +493,14 @@ describe('CheckInScreen', () => {
     const spyRest = jest.spyOn(loggedInClient, 'updateDeviceToken');
     renderWithRedux(<CheckInScreen navigation={{ navigate, goBack }} />, {
       initialState: {
-        User: { subjectId: 'someUserId', additional_iterations_left: 0 },
+        User: {
+          subjectId: 'someUserId',
+          additional_iterations_left: 0,
+          status: 'on-study',
+          firstTime: true,
+          start_date: new Date().toDateString(),
+          due_date: new Date().toDateString(),
+        },
       },
     });
 
