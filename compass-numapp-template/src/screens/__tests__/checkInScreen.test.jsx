@@ -26,7 +26,6 @@ describe('CheckInScreen', () => {
   });
 
   afterEach(() => {
-    // server.resetHandlers();
     jest.clearAllMocks();
   });
 
