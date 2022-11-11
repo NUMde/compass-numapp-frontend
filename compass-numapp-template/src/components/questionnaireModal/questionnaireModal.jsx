@@ -25,7 +25,7 @@
 imports
 ***********************************************************************************************/
 
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import {
   TouchableOpacity,
   Text,
@@ -64,7 +64,7 @@ function QuestionnaireModal() {
   const modalTitleRef = useRef();
 
   // setting defaults
-  let scrollOffset = 0;
+  const [scrollOffset, setScrollOffset] = useState(0);
 
   const { pageIndex, categoryIndex, categories } = useSelector(
     (state) => state.Questionnaire,
@@ -83,7 +83,7 @@ function QuestionnaireModal() {
    */
   const handleOnScroll = (event) => {
     // just sets the current scrollOffset
-    scrollOffset = event.nativeEvent.contentOffset.y;
+    setScrollOffset(event.nativeEvent.contentOffset.y);
   };
 
   /**
