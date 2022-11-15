@@ -22,8 +22,8 @@
   "dependencies": {
     "@react-native-community/datetimepicker": "6.6.0",
     "@react-native-community/slider": "4.3.3",
-    "@react-native-firebase/app": "16.4.3",
-    "@react-native-firebase/messaging": "16.4.3",
+    "@react-native-firebase/app": "16.4.4",
+    "@react-native-firebase/messaging": "16.4.4",
     "@react-native-picker/picker": "2.4.8",
     "@react-navigation/native": "6.0.13",
     "@react-navigation/native-stack": "6.9.1",
