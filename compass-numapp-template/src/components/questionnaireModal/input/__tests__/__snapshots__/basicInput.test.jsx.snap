@@ -74,9 +74,7 @@ exports[`BasicInput should render basic input 1`] = `
           "margin": 5,
         }
       }
-    >
-      
-    </Text>
+    />
   </View>
 </View>
 `;
