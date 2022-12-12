@@ -63,7 +63,7 @@
     "@react-native-community/eslint-config": "3.2.0",
     "@testing-library/react-native": "11.0.0",
     "babel-jest": "27.5.1",
-    "eslint": "8.28.0",
+    "eslint": "8.29.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-prettier": "8.5.0",
     "eslint-formatter-github-annotations": "0.1.0",
