@@ -61,7 +61,7 @@
     "@babel/eslint-parser": "^7.19.1",
     "@babel/preset-env": "7.20.2",
     "@react-native-community/eslint-config": "3.2.0",
-    "@testing-library/react-native": "11.0.0",
+    "@testing-library/react-native": "11.5.4",
     "babel-jest": "27.5.1",
     "eslint": "8.32.0",
     "eslint-config-airbnb": "19.0.4",
