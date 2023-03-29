@@ -4,7 +4,7 @@ exports[`Banner should render the banner 1`] = `
 <View
   accessibilityIgnoresInvertColors={true}
   style={
-    Object {
+    {
       "backgroundColor": "#F8F9FA",
       "flexDirection": "column",
       "height": 354.06976744186045,
@@ -16,20 +16,20 @@ exports[`Banner should render the banner 1`] = `
   <Image
     resizeMode="cover"
     source={
-      Object {
+      {
         "process": [Function],
       }
     }
     style={
-      Array [
-        Object {
+      [
+        {
           "bottom": 0,
           "left": 0,
           "position": "absolute",
           "right": 0,
           "top": 0,
         },
-        Object {
+        {
           "height": 354.06976744186045,
           "width": "100%",
         },
@@ -39,7 +39,7 @@ exports[`Banner should render the banner 1`] = `
   />
   <View
     style={
-      Object {
+      {
         "alignItems": "center",
         "alignSelf": "center",
         "flexDirection": "row",
@@ -51,7 +51,7 @@ exports[`Banner should render the banner 1`] = `
   >
     <View
       style={
-        Object {
+        {
           "overflow": "hidden",
         }
       }
@@ -61,7 +61,7 @@ exports[`Banner should render the banner 1`] = `
         accessibilityLabel="refresh"
         accessibilityRole="button"
         accessibilityState={
-          Object {
+          {
             "disabled": false,
           }
         }
@@ -78,7 +78,7 @@ exports[`Banner should render the banner 1`] = `
       >
         <View
           style={
-            Object {
+            {
               "alignItems": "center",
               "backgroundColor": "transparent",
               "justifyContent": "center",
@@ -89,20 +89,20 @@ exports[`Banner should render the banner 1`] = `
             allowFontScaling={false}
             selectable={false}
             style={
-              Array [
-                Object {
+              [
+                {
                   "color": "#EB576A",
                   "fontSize": 48.83720930232558,
                 },
-                Object {
+                {
                   "backgroundColor": "transparent",
                 },
-                Object {
+                {
                   "fontFamily": "Material Design Icons",
                   "fontStyle": "normal",
                   "fontWeight": "normal",
                 },
-                Object {},
+                {},
               ]
             }
             testID="iconIcon"
@@ -114,7 +114,7 @@ exports[`Banner should render the banner 1`] = `
     </View>
     <View
       style={
-        Object {
+        {
           "alignItems": "center",
         }
       }
@@ -123,7 +123,7 @@ exports[`Banner should render the banner 1`] = `
         accessibilityRole="header"
         numberOfLines={1}
         style={
-          Object {
+          {
             "color": "#1F2532",
             "fontFamily": "IBMPlexSans-SemiBold",
             "fontSize": 33.75,
@@ -137,7 +137,7 @@ exports[`Banner should render the banner 1`] = `
         accessibilityRole="header"
         numberOfLines={1}
         style={
-          Object {
+          {
             "color": "#1F2532",
             "fontFamily": "IBMPlexSans",
             "fontSize": 30,
@@ -150,7 +150,7 @@ exports[`Banner should render the banner 1`] = `
     </View>
     <View
       style={
-        Object {
+        {
           "overflow": "hidden",
         }
       }
@@ -160,7 +160,7 @@ exports[`Banner should render the banner 1`] = `
         accessibilityLabel="Additional Information"
         accessibilityRole="button"
         accessibilityState={
-          Object {
+          {
             "disabled": false,
           }
         }
@@ -177,7 +177,7 @@ exports[`Banner should render the banner 1`] = `
       >
         <View
           style={
-            Object {
+            {
               "alignItems": "center",
               "backgroundColor": "transparent",
               "justifyContent": "center",
@@ -188,20 +188,20 @@ exports[`Banner should render the banner 1`] = `
             allowFontScaling={false}
             selectable={false}
             style={
-              Array [
-                Object {
+              [
+                {
                   "color": "#EB576A",
                   "fontSize": 48.83720930232558,
                 },
-                Object {
+                {
                   "backgroundColor": "transparent",
                 },
-                Object {
+                {
                   "fontFamily": "Material Design Icons",
                   "fontStyle": "normal",
                   "fontWeight": "normal",
                 },
-                Object {},
+                {},
               ]
             }
             testID="iconIcon"
@@ -214,7 +214,7 @@ exports[`Banner should render the banner 1`] = `
   </View>
   <View
     style={
-      Object {
+      {
         "flex": 1,
         "flexDirection": "column",
         "justifyContent": "center",
@@ -224,12 +224,12 @@ exports[`Banner should render the banner 1`] = `
     <Image
       resizeMode="contain"
       source={
-        Object {
+        {
           "process": [Function],
         }
       }
       style={
-        Object {
+        {
           "alignSelf": "center",
           "bottom": 7.848837209302324,
           "maxHeight": 247.02541914548405,
@@ -246,7 +246,7 @@ exports[`Banner should render the banner with title & without subtitle 1`] = `
 <View
   accessibilityIgnoresInvertColors={true}
   style={
-    Object {
+    {
       "backgroundColor": "#F8F9FA",
       "flexDirection": "column",
       "height": 354.06976744186045,
@@ -258,20 +258,20 @@ exports[`Banner should render the banner with title & without subtitle 1`] = `
   <Image
     resizeMode="cover"
     source={
-      Object {
+      {
         "process": [Function],
       }
     }
     style={
-      Array [
-        Object {
+      [
+        {
           "bottom": 0,
           "left": 0,
           "position": "absolute",
           "right": 0,
           "top": 0,
         },
-        Object {
+        {
           "height": 354.06976744186045,
           "width": "100%",
         },
@@ -281,7 +281,7 @@ exports[`Banner should render the banner with title & without subtitle 1`] = `
   />
   <View
     style={
-      Object {
+      {
         "alignItems": "center",
         "alignSelf": "center",
         "flexDirection": "row",
@@ -293,7 +293,7 @@ exports[`Banner should render the banner with title & without subtitle 1`] = `
   >
     <View
       style={
-        Object {
+        {
           "overflow": "hidden",
         }
       }
@@ -303,7 +303,7 @@ exports[`Banner should render the banner with title & without subtitle 1`] = `
         accessibilityLabel="refresh"
         accessibilityRole="button"
         accessibilityState={
-          Object {
+          {
             "disabled": false,
           }
         }
@@ -320,7 +320,7 @@ exports[`Banner should render the banner with title & without subtitle 1`] = `
       >
         <View
           style={
-            Object {
+            {
               "alignItems": "center",
               "backgroundColor": "transparent",
               "justifyContent": "center",
@@ -331,20 +331,20 @@ exports[`Banner should render the banner with title & without subtitle 1`] = `
             allowFontScaling={false}
             selectable={false}
             style={
-              Array [
-                Object {
+              [
+                {
                   "color": "#EB576A",
                   "fontSize": 48.83720930232558,
                 },
-                Object {
+                {
                   "backgroundColor": "transparent",
                 },
-                Object {
+                {
                   "fontFamily": "Material Design Icons",
                   "fontStyle": "normal",
                   "fontWeight": "normal",
                 },
-                Object {},
+                {},
               ]
             }
             testID="iconIcon"
@@ -356,7 +356,7 @@ exports[`Banner should render the banner with title & without subtitle 1`] = `
     </View>
     <View
       style={
-        Object {
+        {
           "alignItems": "center",
         }
       }
@@ -365,7 +365,7 @@ exports[`Banner should render the banner with title & without subtitle 1`] = `
         accessibilityRole="header"
         numberOfLines={1}
         style={
-          Object {
+          {
             "color": "#1F2532",
             "fontFamily": "IBMPlexSans-SemiBold",
             "fontSize": 33.75,
@@ -378,7 +378,7 @@ exports[`Banner should render the banner with title & without subtitle 1`] = `
     </View>
     <View
       style={
-        Object {
+        {
           "overflow": "hidden",
         }
       }
@@ -388,7 +388,7 @@ exports[`Banner should render the banner with title & without subtitle 1`] = `
         accessibilityLabel="Additional Information"
         accessibilityRole="button"
         accessibilityState={
-          Object {
+          {
             "disabled": false,
           }
         }
@@ -405,7 +405,7 @@ exports[`Banner should render the banner with title & without subtitle 1`] = `
       >
         <View
           style={
-            Object {
+            {
               "alignItems": "center",
               "backgroundColor": "transparent",
               "justifyContent": "center",
@@ -416,20 +416,20 @@ exports[`Banner should render the banner with title & without subtitle 1`] = `
             allowFontScaling={false}
             selectable={false}
             style={
-              Array [
-                Object {
+              [
+                {
                   "color": "#EB576A",
                   "fontSize": 48.83720930232558,
                 },
-                Object {
+                {
                   "backgroundColor": "transparent",
                 },
-                Object {
+                {
                   "fontFamily": "Material Design Icons",
                   "fontStyle": "normal",
                   "fontWeight": "normal",
                 },
-                Object {},
+                {},
               ]
             }
             testID="iconIcon"
@@ -442,7 +442,7 @@ exports[`Banner should render the banner with title & without subtitle 1`] = `
   </View>
   <View
     style={
-      Object {
+      {
         "flex": 1,
         "flexDirection": "column",
         "justifyContent": "center",
@@ -452,12 +452,12 @@ exports[`Banner should render the banner with title & without subtitle 1`] = `
     <Image
       resizeMode="contain"
       source={
-        Object {
+        {
           "process": [Function],
         }
       }
       style={
-        Object {
+        {
           "alignSelf": "center",
           "bottom": 13.081395348837209,
           "maxHeight": 308.781773931855,
@@ -474,7 +474,7 @@ exports[`ScrollIndicatorWrapper scrollIndicatorWrapper should be rendered 1`] = 
 <View
   onLayout={[Function]}
   style={
-    Object {
+    {
       "flex": 1,
       "flexDirection": "column",
       "width": "100%",
@@ -483,7 +483,7 @@ exports[`ScrollIndicatorWrapper scrollIndicatorWrapper should be rendered 1`] = 
 >
   <RCTScrollView
     contentContainerStyle={
-      Object {
+      {
         "flexGrow": 1,
       }
     }
@@ -491,7 +491,7 @@ exports[`ScrollIndicatorWrapper scrollIndicatorWrapper should be rendered 1`] = 
     onScroll={[Function]}
     scrollEventThrottle={16}
     style={
-      Object {
+      {
         "flex": 1,
         "flexDirection": "column",
         "width": "100%",
@@ -519,7 +519,7 @@ exports[`Spinner should render the spinner 1`] = `
 >
   <View
     style={
-      Object {
+      {
         "backgroundColor": "#1F2532",
         "bottom": 0,
         "flex": 1,
@@ -532,7 +532,7 @@ exports[`Spinner should render the spinner 1`] = `
   >
     <View
       style={
-        Object {
+        {
           "alignItems": "center",
           "bottom": 0,
           "justifyContent": "center",
@@ -547,7 +547,7 @@ exports[`Spinner should render the spinner 1`] = `
         color="#EB576A"
         size="large"
         style={
-          Object {
+          {
             "flex": 1,
           }
         }

@@ -20,13 +20,13 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
   scrollTo={[Function]}
   statusBarTranslucent={false}
   supportedOrientations={
-    Array [
+    [
       "portrait",
       "landscape",
     ]
   }
   swipeDirection={
-    Array [
+    [
       "down",
     ]
   }
@@ -48,7 +48,7 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
     style={
-      Object {
+      {
         "backgroundColor": "black",
         "bottom": 0,
         "height": 1334,
@@ -65,21 +65,21 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
     onLayout={[Function]}
     pointerEvents="box-none"
     style={
-      Array [
-        Array [
-          Object {
+      [
+        [
+          {
             "margin": 37.5,
-            "transform": Array [
-              Object {
+            "transform": [
+              {
                 "translateY": 0,
               },
             ],
           },
-          Object {
+          {
             "flex": 1,
             "justifyContent": "center",
           },
-          Object {
+          {
             "borderRadius": 10,
             "justifyContent": "flex-end",
             "marginBottom": 0,
@@ -87,11 +87,11 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
             "marginRight": 0,
             "marginTop": 20,
           },
-          Object {
+          {
             "margin": 0,
           },
         ],
-        Object {
+        {
           "paddingBottom": 0,
         },
       ]
@@ -128,7 +128,7 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
       scrollTo={[Function]}
       statusBarTranslucent={false}
       style={
-        Object {
+        {
           "borderRadius": 10,
           "flex": 1,
           "justifyContent": "flex-end",
@@ -139,21 +139,21 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
           "marginRight": 0,
           "marginTop": 20,
           "top": 0,
-          "transform": Array [
-            Object {
+          "transform": [
+            {
               "translateY": 1334,
             },
           ],
         }
       }
       supportedOrientations={
-        Array [
+        [
           "portrait",
           "landscape",
         ]
       }
       swipeDirection={
-        Array [
+        [
           "down",
         ]
       }
@@ -161,7 +161,7 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
     >
       <View
         style={
-          Object {
+          {
             "backgroundColor": "#F8F9FA",
             "borderTopLeftRadius": 10,
             "borderTopRightRadius": 10,
@@ -173,7 +173,7 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
       >
         <View
           style={
-            Object {
+            {
               "alignItems": "center",
               "flexDirection": "row",
               "justifyContent": "space-between",
@@ -185,7 +185,7 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
           <Text
             accessibilityRole="header"
             style={
-              Object {
+              {
                 "color": "#1F2532",
                 "fontFamily": "IBMPlexSans-SemiBold",
                 "fontSize": 45,
@@ -210,7 +210,7 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Object {
+              {
                 "opacity": 1,
               }
             }
@@ -218,7 +218,7 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
           >
             <View
               style={
-                Object {
+                {
                   "overflow": "hidden",
                 }
               }
@@ -228,7 +228,7 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
               >
                 <View
                   style={
-                    Object {
+                    {
                       "alignItems": "center",
                       "backgroundColor": "transparent",
                       "justifyContent": "center",
@@ -239,20 +239,20 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
                     allowFontScaling={false}
                     selectable={false}
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "color": "#1F2532",
                           "fontSize": 24,
                         },
-                        Object {
+                        {
                           "backgroundColor": "transparent",
                         },
-                        Object {
+                        {
                           "fontFamily": "Material Design Icons",
                           "fontStyle": "normal",
                           "fontWeight": "normal",
                         },
-                        Object {},
+                        {},
                       ]
                     }
                     testID="iconIcon"
@@ -271,14 +271,14 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
           <View>
             <View
               style={
-                Object {
+                {
                   "marginBottom": 10,
                 }
               }
             >
               <Text
                 style={
-                  Object {
+                  {
                     "color": "#1F2532",
                     "fontFamily": "IBMPlexSans-SemiBold",
                     "fontSize": 33.75,
@@ -302,7 +302,7 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
                 onResponderTerminationRequest={[Function]}
                 onStartShouldSetResponder={[Function]}
                 style={
-                  Object {
+                  {
                     "opacity": 1,
                   }
                 }
@@ -310,7 +310,7 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
               >
                 <View
                   style={
-                    Object {
+                    {
                       "paddingHorizontal": 10,
                       "width": "100%",
                     }
@@ -319,13 +319,13 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
                   <View
                     collapsable={false}
                     style={
-                      Object {
+                      {
                         "alignItems": "center",
                         "borderBottomWidth": 1,
                         "borderColor": "#86939e",
                         "flexDirection": "row",
-                        "transform": Array [
-                          Object {
+                        "transform": [
+                          {
                             "translateX": 0,
                           },
                         ],
@@ -334,7 +334,7 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
                   >
                     <View
                       style={
-                        Object {
+                        {
                           "alignItems": "center",
                           "height": 40,
                           "justifyContent": "center",
@@ -345,7 +345,7 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
                     >
                       <View
                         style={
-                          Object {
+                          {
                             "overflow": "hidden",
                           }
                         }
@@ -353,7 +353,7 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
                         <View>
                           <View
                             style={
-                              Object {
+                              {
                                 "alignItems": "center",
                                 "backgroundColor": "transparent",
                                 "justifyContent": "center",
@@ -364,20 +364,20 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
                               allowFontScaling={false}
                               selectable={false}
                               style={
-                                Array [
-                                  Object {
+                                [
+                                  {
                                     "color": "#242424",
                                     "fontSize": 24,
                                   },
-                                  Object {
+                                  {
                                     "backgroundColor": "transparent",
                                   },
-                                  Object {
+                                  {
                                     "fontFamily": "FontAwesome",
                                     "fontStyle": "normal",
                                     "fontWeight": "normal",
                                   },
-                                  Object {},
+                                  {},
                                 ]
                               }
                               testID="iconIcon"
@@ -393,7 +393,7 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
                       placeholderTextColor="#86939e"
                       pointerEvents="none"
                       style={
-                        Object {
+                        {
                           "color": "#242424",
                           "flex": 1,
                           "fontSize": 18,
@@ -407,7 +407,7 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
                   </View>
                   <Text
                     style={
-                      Object {
+                      {
                         "color": "#ff190c",
                         "fontSize": 12,
                         "margin": 5,
@@ -422,7 +422,7 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
       </View>
       <View
         style={
-          Object {
+          {
             "backgroundColor": "#F8F9FA",
           }
         }
@@ -430,7 +430,7 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
       >
         <View
           style={
-            Object {
+            {
               "alignSelf": "center",
               "backgroundColor": "#DADADA",
               "borderRadius": 2.5,
@@ -443,13 +443,13 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
         >
           <View
             style={
-              Array [
-                Object {
+              [
+                {
                   "backgroundColor": "#1F2532",
                   "borderRadius": 2.5,
                   "height": 5,
                 },
-                Object {
+                {
                   "width": "22.22222222222222%",
                 },
               ]
@@ -458,7 +458,7 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
         </View>
         <View
           style={
-            Object {
+            {
               "alignItems": "center",
               "flexDirection": "row",
               "flexWrap": "nowrap",
@@ -470,12 +470,12 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
         >
           <View
             style={
-              Array [
-                Object {
+              [
+                {
                   "borderRadius": 3,
                   "overflow": "hidden",
                 },
-                Object {
+                {
                   "borderRadius": 3,
                 },
                 undefined,
@@ -488,7 +488,7 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
               accessibilityLabel="back"
               accessibilityRole="button"
               accessibilityState={
-                Object {
+                {
                   "busy": false,
                   "disabled": false,
                 }
@@ -504,7 +504,7 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
               onResponderTerminationRequest={[Function]}
               onStartShouldSetResponder={[Function]}
               style={
-                Object {
+                {
                   "height": 44,
                   "opacity": 1,
                   "position": "relative",
@@ -515,7 +515,7 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
             >
               <View
                 style={
-                  Object {
+                  {
                     "alignItems": "center",
                     "backgroundColor": "transparent",
                     "borderColor": "#2089dc",
@@ -529,7 +529,7 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
               >
                 <View
                   style={
-                    Object {
+                    {
                       "overflow": "hidden",
                     }
                   }
@@ -537,7 +537,7 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
                   <View>
                     <View
                       style={
-                        Object {
+                        {
                           "alignItems": "center",
                           "backgroundColor": "transparent",
                           "justifyContent": "center",
@@ -548,20 +548,20 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
                         allowFontScaling={false}
                         selectable={false}
                         style={
-                          Array [
-                            Object {
+                          [
+                            {
                               "color": "#1F2532",
                               "fontSize": 24,
                             },
-                            Object {
+                            {
                               "backgroundColor": "transparent",
                             },
-                            Object {
+                            {
                               "fontFamily": "Material Design Icons",
                               "fontStyle": "normal",
                               "fontWeight": "normal",
                             },
-                            Object {},
+                            {},
                           ]
                         }
                         testID="iconIcon"
@@ -576,12 +576,12 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
           </View>
           <View
             style={
-              Array [
-                Object {
+              [
+                {
                   "borderRadius": 3,
                   "overflow": "hidden",
                 },
-                Object {
+                {
                   "borderRadius": 3,
                 },
                 undefined,
@@ -594,7 +594,7 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
               accessibilityLabel="Next question, even though question is not yet answered."
               accessibilityRole="button"
               accessibilityState={
-                Object {
+                {
                   "busy": false,
                   "disabled": false,
                 }
@@ -610,7 +610,7 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
               onResponderTerminationRequest={[Function]}
               onStartShouldSetResponder={[Function]}
               style={
-                Object {
+                {
                   "opacity": 1,
                 }
               }
@@ -618,7 +618,7 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
             >
               <View
                 style={
-                  Object {
+                  {
                     "alignItems": "center",
                     "backgroundColor": "transparent",
                     "borderColor": "#2089dc",
@@ -632,7 +632,7 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
               >
                 <View
                   style={
-                    Object {
+                    {
                       "borderRadius": 28,
                       "height": 52,
                       "margin": 7,
@@ -644,7 +644,7 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
                   <View>
                     <View
                       style={
-                        Object {
+                        {
                           "alignItems": "center",
                           "backgroundColor": "#1F2532",
                           "borderRadius": 28,
@@ -658,20 +658,20 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
                         allowFontScaling={false}
                         selectable={false}
                         style={
-                          Array [
-                            Object {
+                          [
+                            {
                               "color": "#ffffff",
                               "fontSize": 24,
                             },
-                            Object {
+                            {
                               "backgroundColor": "transparent",
                             },
-                            Object {
+                            {
                               "fontFamily": "Material Design Icons",
                               "fontStyle": "normal",
                               "fontWeight": "normal",
                             },
-                            Object {},
+                            {},
                           ]
                         }
                         testID="iconIcon"
@@ -686,12 +686,12 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
           </View>
           <View
             style={
-              Array [
-                Object {
+              [
+                {
                   "borderRadius": 3,
                   "overflow": "hidden",
                 },
-                Object {
+                {
                   "borderRadius": 3,
                 },
                 undefined,
@@ -703,7 +703,7 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
               accessibilityHint="Jump to the next question."
               accessibilityRole="button"
               accessibilityState={
-                Object {
+                {
                   "busy": false,
                   "disabled": false,
                 }
@@ -719,7 +719,7 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
               onResponderTerminationRequest={[Function]}
               onStartShouldSetResponder={[Function]}
               style={
-                Object {
+                {
                   "height": 44,
                   "opacity": 1,
                   "position": "relative",
@@ -730,7 +730,7 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
             >
               <View
                 style={
-                  Object {
+                  {
                     "alignItems": "center",
                     "backgroundColor": "transparent",
                     "borderColor": "#2089dc",
@@ -744,7 +744,7 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
               >
                 <View
                   style={
-                    Object {
+                    {
                       "overflow": "hidden",
                     }
                   }
@@ -752,7 +752,7 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
                   <View>
                     <View
                       style={
-                        Object {
+                        {
                           "alignItems": "center",
                           "backgroundColor": "transparent",
                           "justifyContent": "center",
@@ -763,20 +763,20 @@ exports[`Questionnaire Modal should render the modal with the progressBar 1`] = 
                         allowFontScaling={false}
                         selectable={false}
                         style={
-                          Array [
-                            Object {
+                          [
+                            {
                               "color": "#1F2532",
                               "fontSize": 24,
                             },
-                            Object {
+                            {
                               "backgroundColor": "transparent",
                             },
-                            Object {
+                            {
                               "fontFamily": "Material Design Icons",
                               "fontStyle": "normal",
                               "fontWeight": "normal",
                             },
-                            Object {},
+                            {},
                           ]
                         }
                         testID="iconIcon"

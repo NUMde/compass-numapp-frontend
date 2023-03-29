@@ -3,14 +3,14 @@
 exports[`DateInput (Android/default) should render a dateInput element 1`] = `
 <View
   style={
-    Object {
+    {
       "marginBottom": 10,
     }
   }
 >
   <Text
     style={
-      Object {
+      {
         "color": "#1F2532",
         "fontFamily": "IBMPlexSans-SemiBold",
         "fontSize": 33.75,
@@ -34,7 +34,7 @@ exports[`DateInput (Android/default) should render a dateInput element 1`] = `
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
     style={
-      Object {
+      {
         "opacity": 1,
       }
     }
@@ -42,7 +42,7 @@ exports[`DateInput (Android/default) should render a dateInput element 1`] = `
   >
     <View
       style={
-        Object {
+        {
           "paddingHorizontal": 10,
           "width": "100%",
         }
@@ -51,13 +51,13 @@ exports[`DateInput (Android/default) should render a dateInput element 1`] = `
       <View
         collapsable={false}
         style={
-          Object {
+          {
             "alignItems": "center",
             "borderBottomWidth": 1,
             "borderColor": "#86939e",
             "flexDirection": "row",
-            "transform": Array [
-              Object {
+            "transform": [
+              {
                 "translateX": 0,
               },
             ],
@@ -66,7 +66,7 @@ exports[`DateInput (Android/default) should render a dateInput element 1`] = `
       >
         <View
           style={
-            Object {
+            {
               "alignItems": "center",
               "height": 40,
               "justifyContent": "center",
@@ -77,7 +77,7 @@ exports[`DateInput (Android/default) should render a dateInput element 1`] = `
         >
           <View
             style={
-              Object {
+              {
                 "overflow": "hidden",
               }
             }
@@ -85,7 +85,7 @@ exports[`DateInput (Android/default) should render a dateInput element 1`] = `
             <View>
               <View
                 style={
-                  Object {
+                  {
                     "alignItems": "center",
                     "backgroundColor": "transparent",
                     "justifyContent": "center",
@@ -96,20 +96,20 @@ exports[`DateInput (Android/default) should render a dateInput element 1`] = `
                   allowFontScaling={false}
                   selectable={false}
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "color": "#242424",
                         "fontSize": 24,
                       },
-                      Object {
+                      {
                         "backgroundColor": "transparent",
                       },
-                      Object {
+                      {
                         "fontFamily": "FontAwesome",
                         "fontStyle": "normal",
                         "fontWeight": "normal",
                       },
-                      Object {},
+                      {},
                     ]
                   }
                   testID="iconIcon"
@@ -125,7 +125,7 @@ exports[`DateInput (Android/default) should render a dateInput element 1`] = `
           placeholderTextColor="#86939e"
           pointerEvents="none"
           style={
-            Object {
+            {
               "color": "#242424",
               "flex": 1,
               "fontSize": 18,
@@ -139,7 +139,7 @@ exports[`DateInput (Android/default) should render a dateInput element 1`] = `
       </View>
       <Text
         style={
-          Object {
+          {
             "color": "#ff190c",
             "fontSize": 12,
             "margin": 5,
@@ -154,14 +154,14 @@ exports[`DateInput (Android/default) should render a dateInput element 1`] = `
 exports[`DateInput (iOS) should render a dateInput element 1`] = `
 <View
   style={
-    Object {
+    {
       "marginBottom": 10,
     }
   }
 >
   <Text
     style={
-      Object {
+      {
         "color": "#1F2532",
         "fontFamily": "IBMPlexSans-SemiBold",
         "fontSize": 33.75,
@@ -185,7 +185,7 @@ exports[`DateInput (iOS) should render a dateInput element 1`] = `
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
     style={
-      Object {
+      {
         "opacity": 1,
       }
     }
@@ -193,7 +193,7 @@ exports[`DateInput (iOS) should render a dateInput element 1`] = `
   >
     <View
       style={
-        Object {
+        {
           "paddingHorizontal": 10,
           "width": "100%",
         }
@@ -202,13 +202,13 @@ exports[`DateInput (iOS) should render a dateInput element 1`] = `
       <View
         collapsable={false}
         style={
-          Object {
+          {
             "alignItems": "center",
             "borderBottomWidth": 1,
             "borderColor": "#86939e",
             "flexDirection": "row",
-            "transform": Array [
-              Object {
+            "transform": [
+              {
                 "translateX": 0,
               },
             ],
@@ -217,7 +217,7 @@ exports[`DateInput (iOS) should render a dateInput element 1`] = `
       >
         <View
           style={
-            Object {
+            {
               "alignItems": "center",
               "height": 40,
               "justifyContent": "center",
@@ -228,7 +228,7 @@ exports[`DateInput (iOS) should render a dateInput element 1`] = `
         >
           <View
             style={
-              Object {
+              {
                 "overflow": "hidden",
               }
             }
@@ -236,7 +236,7 @@ exports[`DateInput (iOS) should render a dateInput element 1`] = `
             <View>
               <View
                 style={
-                  Object {
+                  {
                     "alignItems": "center",
                     "backgroundColor": "transparent",
                     "justifyContent": "center",
@@ -247,20 +247,20 @@ exports[`DateInput (iOS) should render a dateInput element 1`] = `
                   allowFontScaling={false}
                   selectable={false}
                   style={
-                    Array [
-                      Object {
+                    [
+                      {
                         "color": "#242424",
                         "fontSize": 24,
                       },
-                      Object {
+                      {
                         "backgroundColor": "transparent",
                       },
-                      Object {
+                      {
                         "fontFamily": "FontAwesome",
                         "fontStyle": "normal",
                         "fontWeight": "normal",
                       },
-                      Object {},
+                      {},
                     ]
                   }
                   testID="iconIcon"
@@ -276,7 +276,7 @@ exports[`DateInput (iOS) should render a dateInput element 1`] = `
           placeholderTextColor="#86939e"
           pointerEvents="none"
           style={
-            Object {
+            {
               "color": "#242424",
               "flex": 1,
               "fontSize": 18,
@@ -290,7 +290,7 @@ exports[`DateInput (iOS) should render a dateInput element 1`] = `
       </View>
       <Text
         style={
-          Object {
+          {
             "color": "#ff190c",
             "fontSize": 12,
             "margin": 5,

@@ -3,11 +3,11 @@
 exports[`SurveyScreen should render the screen when not completed 1`] = `
 <View
   style={
-    Array [
-      Object {
+    [
+      {
         "flex": 1,
       },
-      Object {
+      {
         "backgroundColor": "#F8F9FA",
       },
     ]
@@ -17,7 +17,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
   <View
     accessibilityIgnoresInvertColors={true}
     style={
-      Object {
+      {
         "backgroundColor": "#F8F9FA",
         "flexDirection": "column",
         "height": 354.06976744186045,
@@ -29,20 +29,20 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
     <Image
       resizeMode="cover"
       source={
-        Object {
+        {
           "process": [Function],
         }
       }
       style={
-        Array [
-          Object {
+        [
+          {
             "bottom": 0,
             "left": 0,
             "position": "absolute",
             "right": 0,
             "top": 0,
           },
-          Object {
+          {
             "height": 354.06976744186045,
             "width": "100%",
           },
@@ -52,7 +52,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
     />
     <View
       style={
-        Object {
+        {
           "alignItems": "center",
           "alignSelf": "center",
           "flexDirection": "row",
@@ -64,7 +64,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
     >
       <View
         style={
-          Object {
+          {
             "overflow": "hidden",
           }
         }
@@ -74,7 +74,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
           accessibilityLabel="back"
           accessibilityRole="button"
           accessibilityState={
-            Object {
+            {
               "disabled": false,
             }
           }
@@ -91,7 +91,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
         >
           <View
             style={
-              Object {
+              {
                 "alignItems": "center",
                 "backgroundColor": "transparent",
                 "justifyContent": "center",
@@ -102,20 +102,20 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
               allowFontScaling={false}
               selectable={false}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#EB576A",
                     "fontSize": 48.83720930232558,
                   },
-                  Object {
+                  {
                     "backgroundColor": "transparent",
                   },
-                  Object {
+                  {
                     "fontFamily": "Material Design Icons",
                     "fontStyle": "normal",
                     "fontWeight": "normal",
                   },
-                  Object {},
+                  {},
                 ]
               }
               testID="iconIcon"
@@ -127,7 +127,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
       </View>
       <View
         style={
-          Object {
+          {
             "alignItems": "center",
           }
         }
@@ -136,7 +136,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
           accessibilityRole="header"
           numberOfLines={1}
           style={
-            Object {
+            {
               "color": "#1F2532",
               "fontFamily": "IBMPlexSans-SemiBold",
               "fontSize": 33.75,
@@ -149,7 +149,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
       </View>
       <View
         style={
-          Object {
+          {
             "overflow": "hidden",
           }
         }
@@ -159,7 +159,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
           accessibilityLabel="Additional Information"
           accessibilityRole="button"
           accessibilityState={
-            Object {
+            {
               "disabled": false,
             }
           }
@@ -176,7 +176,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
         >
           <View
             style={
-              Object {
+              {
                 "alignItems": "center",
                 "backgroundColor": "transparent",
                 "justifyContent": "center",
@@ -187,20 +187,20 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
               allowFontScaling={false}
               selectable={false}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#EB576A",
                     "fontSize": 48.83720930232558,
                   },
-                  Object {
+                  {
                     "backgroundColor": "transparent",
                   },
-                  Object {
+                  {
                     "fontFamily": "Material Design Icons",
                     "fontStyle": "normal",
                     "fontWeight": "normal",
                   },
-                  Object {},
+                  {},
                 ]
               }
               testID="iconIcon"
@@ -213,7 +213,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
     </View>
     <View
       style={
-        Object {
+        {
           "flex": 1,
           "flexDirection": "column",
           "justifyContent": "center",
@@ -223,12 +223,12 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
       <Image
         resizeMode="contain"
         source={
-          Object {
+          {
             "process": [Function],
           }
         }
         style={
-          Object {
+          {
             "alignSelf": "center",
             "bottom": 13.081395348837209,
             "maxHeight": 308.781773931855,
@@ -258,13 +258,13 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
     scrollTo={[Function]}
     statusBarTranslucent={false}
     supportedOrientations={
-      Array [
+      [
         "portrait",
         "landscape",
       ]
     }
     swipeDirection={
-      Array [
+      [
         "down",
       ]
     }
@@ -276,7 +276,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
   <View
     onLayout={[Function]}
     style={
-      Object {
+      {
         "flex": 1,
         "flexDirection": "column",
         "width": "100%",
@@ -285,7 +285,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
   >
     <RCTScrollView
       contentContainerStyle={
-        Object {
+        {
           "flexGrow": 1,
         }
       }
@@ -293,7 +293,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
       onScroll={[Function]}
       scrollEventThrottle={16}
       style={
-        Object {
+        {
           "flex": 1,
           "flexDirection": "column",
           "width": "100%",
@@ -303,11 +303,11 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
       <View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "flex": 1,
               },
-              Object {
+              {
                 "backgroundColor": "#F8F9FA",
               },
             ]
@@ -315,7 +315,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
         >
           <View
             style={
-              Object {
+              {
                 "backgroundColor": "#F8F9FA",
                 "flexDirection": "column",
               }
@@ -328,7 +328,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
             >
               <View
                 style={
-                  Object {
+                  {
                     "alignItems": "center",
                     "backgroundColor": "#F8F9FA",
                     "borderColor": "#bcbbc1",
@@ -351,7 +351,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                   onResponderTerminationRequest={[Function]}
                   onStartShouldSetResponder={[Function]}
                   style={
-                    Object {
+                    {
                       "backgroundColor": "#F8F9FA",
                       "flex": 1,
                       "flexDirection": "row",
@@ -362,7 +362,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                 >
                   <View
                     style={
-                      Object {
+                      {
                         "alignSelf": "center",
                         "borderRadius": 16,
                         "height": 28,
@@ -377,7 +377,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                     >
                       <View
                         style={
-                          Object {
+                          {
                             "alignItems": "center",
                             "backgroundColor": "#EB576A",
                             "borderRadius": 16,
@@ -391,20 +391,20 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                           allowFontScaling={false}
                           selectable={false}
                           style={
-                            Array [
-                              Object {
+                            [
+                              {
                                 "color": "#ffffff",
                                 "fontSize": 12,
                               },
-                              Object {
+                              {
                                 "backgroundColor": "transparent",
                               },
-                              Object {
+                              {
                                 "fontFamily": "Material Design Icons",
                                 "fontStyle": "normal",
                                 "fontWeight": "normal",
                               },
-                              Object {},
+                              {},
                             ]
                           }
                           testID="iconIcon"
@@ -416,8 +416,8 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                   </View>
                   <View
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "alignItems": "flex-start",
                           "flex": 1,
                           "justifyContent": "center",
@@ -426,8 +426,8 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                       ]
                     }
                     theme={
-                      Object {
-                        "colors": Object {
+                      {
+                        "colors": {
                           "black": "#242424",
                           "disabled": "hsl(208, 8%, 90%)",
                           "divider": "#bcbbc1",
@@ -439,8 +439,8 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                           "grey4": "#bdc6cf",
                           "grey5": "#e1e8ee",
                           "greyOutline": "#bbb",
-                          "platform": Object {
-                            "android": Object {
+                          "platform": {
+                            "android": {
                               "error": "#f44336",
                               "grey": "rgba(0, 0, 0, 0.54)",
                               "primary": "#2196f3",
@@ -449,7 +449,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                               "success": "#4caf50",
                               "warning": "#ffeb3b",
                             },
-                            "default": Object {
+                            "default": {
                               "error": "#ff3b30",
                               "grey": "#7d7d7d",
                               "primary": "#007aff",
@@ -458,7 +458,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                               "success": "#4cd964",
                               "warning": "#ffcc00",
                             },
-                            "ios": Object {
+                            "ios": {
                               "error": "#ff3b30",
                               "grey": "#7d7d7d",
                               "primary": "#007aff",
@@ -467,7 +467,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                               "success": "#4cd964",
                               "warning": "#ffcc00",
                             },
-                            "web": Object {
+                            "web": {
                               "error": "#ff190c",
                               "grey": "#393e42",
                               "primary": "#2089dc",
@@ -489,7 +489,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                   >
                     <Text
                       style={
-                        Object {
+                        {
                           "backgroundColor": "transparent",
                           "color": "#1F2532",
                           "fontFamily": "IBMPlexSans-SemiBold",
@@ -506,7 +506,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                 </View>
                 <View
                   style={
-                    Object {
+                    {
                       "paddingLeft": 16,
                     }
                   }
@@ -514,9 +514,9 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                 <View
                   collapsable={false}
                   style={
-                    Object {
-                      "transform": Array [
-                        Object {
+                    {
+                      "transform": [
+                        {
                           "rotate": "0deg",
                         },
                       ],
@@ -525,7 +525,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                 >
                   <View
                     style={
-                      Object {
+                      {
                         "overflow": "hidden",
                       }
                     }
@@ -534,7 +534,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                       accessibilityHint="show items of this category"
                       accessibilityRole="button"
                       accessibilityState={
-                        Object {
+                        {
                           "disabled": false,
                         }
                       }
@@ -550,7 +550,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                     >
                       <View
                         style={
-                          Object {
+                          {
                             "alignItems": "center",
                             "backgroundColor": "transparent",
                             "justifyContent": "center",
@@ -561,20 +561,20 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                           allowFontScaling={false}
                           selectable={false}
                           style={
-                            Array [
-                              Object {
+                            [
+                              {
                                 "color": undefined,
                                 "fontSize": 24,
                               },
-                              Object {
+                              {
                                 "backgroundColor": "transparent",
                               },
-                              Object {
+                              {
                                 "fontFamily": "Material Icons",
                                 "fontStyle": "normal",
                                 "fontWeight": "normal",
                               },
-                              Object {},
+                              {},
                             ]
                           }
                           testID="iconIcon"
@@ -590,7 +590,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
             <View
               collapsable={false}
               style={
-                Object {
+                {
                   "maxHeight": "0%",
                   "opacity": 0,
                 }
@@ -603,7 +603,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
             >
               <View
                 style={
-                  Object {
+                  {
                     "alignItems": "center",
                     "backgroundColor": "#F8F9FA",
                     "borderColor": "#bcbbc1",
@@ -626,7 +626,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                   onResponderTerminationRequest={[Function]}
                   onStartShouldSetResponder={[Function]}
                   style={
-                    Object {
+                    {
                       "backgroundColor": "#F8F9FA",
                       "flex": 1,
                       "flexDirection": "row",
@@ -637,7 +637,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                 >
                   <View
                     style={
-                      Object {
+                      {
                         "alignSelf": "center",
                         "borderRadius": 16,
                         "height": 28,
@@ -652,7 +652,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                     >
                       <View
                         style={
-                          Object {
+                          {
                             "alignItems": "center",
                             "backgroundColor": "#EB576A",
                             "borderRadius": 16,
@@ -666,20 +666,20 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                           allowFontScaling={false}
                           selectable={false}
                           style={
-                            Array [
-                              Object {
+                            [
+                              {
                                 "color": "#ffffff",
                                 "fontSize": 12,
                               },
-                              Object {
+                              {
                                 "backgroundColor": "transparent",
                               },
-                              Object {
+                              {
                                 "fontFamily": "Material Design Icons",
                                 "fontStyle": "normal",
                                 "fontWeight": "normal",
                               },
-                              Object {},
+                              {},
                             ]
                           }
                           testID="iconIcon"
@@ -691,8 +691,8 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                   </View>
                   <View
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "alignItems": "flex-start",
                           "flex": 1,
                           "justifyContent": "center",
@@ -701,8 +701,8 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                       ]
                     }
                     theme={
-                      Object {
-                        "colors": Object {
+                      {
+                        "colors": {
                           "black": "#242424",
                           "disabled": "hsl(208, 8%, 90%)",
                           "divider": "#bcbbc1",
@@ -714,8 +714,8 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                           "grey4": "#bdc6cf",
                           "grey5": "#e1e8ee",
                           "greyOutline": "#bbb",
-                          "platform": Object {
-                            "android": Object {
+                          "platform": {
+                            "android": {
                               "error": "#f44336",
                               "grey": "rgba(0, 0, 0, 0.54)",
                               "primary": "#2196f3",
@@ -724,7 +724,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                               "success": "#4caf50",
                               "warning": "#ffeb3b",
                             },
-                            "default": Object {
+                            "default": {
                               "error": "#ff3b30",
                               "grey": "#7d7d7d",
                               "primary": "#007aff",
@@ -733,7 +733,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                               "success": "#4cd964",
                               "warning": "#ffcc00",
                             },
-                            "ios": Object {
+                            "ios": {
                               "error": "#ff3b30",
                               "grey": "#7d7d7d",
                               "primary": "#007aff",
@@ -742,7 +742,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                               "success": "#4cd964",
                               "warning": "#ffcc00",
                             },
-                            "web": Object {
+                            "web": {
                               "error": "#ff190c",
                               "grey": "#393e42",
                               "primary": "#2089dc",
@@ -764,7 +764,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                   >
                     <Text
                       style={
-                        Object {
+                        {
                           "backgroundColor": "transparent",
                           "color": "#1F2532",
                           "fontFamily": "IBMPlexSans-SemiBold",
@@ -781,7 +781,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                 </View>
                 <View
                   style={
-                    Object {
+                    {
                       "paddingLeft": 16,
                     }
                   }
@@ -789,9 +789,9 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                 <View
                   collapsable={false}
                   style={
-                    Object {
-                      "transform": Array [
-                        Object {
+                    {
+                      "transform": [
+                        {
                           "rotate": "0deg",
                         },
                       ],
@@ -800,7 +800,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                 >
                   <View
                     style={
-                      Object {
+                      {
                         "overflow": "hidden",
                       }
                     }
@@ -809,7 +809,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                       accessibilityHint="show items of this category"
                       accessibilityRole="button"
                       accessibilityState={
-                        Object {
+                        {
                           "disabled": false,
                         }
                       }
@@ -825,7 +825,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                     >
                       <View
                         style={
-                          Object {
+                          {
                             "alignItems": "center",
                             "backgroundColor": "transparent",
                             "justifyContent": "center",
@@ -836,20 +836,20 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                           allowFontScaling={false}
                           selectable={false}
                           style={
-                            Array [
-                              Object {
+                            [
+                              {
                                 "color": undefined,
                                 "fontSize": 24,
                               },
-                              Object {
+                              {
                                 "backgroundColor": "transparent",
                               },
-                              Object {
+                              {
                                 "fontFamily": "Material Icons",
                                 "fontStyle": "normal",
                                 "fontWeight": "normal",
                               },
-                              Object {},
+                              {},
                             ]
                           }
                           testID="iconIcon"
@@ -865,7 +865,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
             <View
               collapsable={false}
               style={
-                Object {
+                {
                   "maxHeight": "0%",
                   "opacity": 0,
                 }
@@ -878,7 +878,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
             >
               <View
                 style={
-                  Object {
+                  {
                     "alignItems": "center",
                     "backgroundColor": "#F8F9FA",
                     "borderColor": "#bcbbc1",
@@ -901,7 +901,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                   onResponderTerminationRequest={[Function]}
                   onStartShouldSetResponder={[Function]}
                   style={
-                    Object {
+                    {
                       "backgroundColor": "#F8F9FA",
                       "flex": 1,
                       "flexDirection": "row",
@@ -912,7 +912,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                 >
                   <View
                     style={
-                      Object {
+                      {
                         "alignSelf": "center",
                         "borderRadius": 16,
                         "height": 28,
@@ -927,7 +927,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                     >
                       <View
                         style={
-                          Object {
+                          {
                             "alignItems": "center",
                             "backgroundColor": "#EB576A",
                             "borderRadius": 16,
@@ -941,20 +941,20 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                           allowFontScaling={false}
                           selectable={false}
                           style={
-                            Array [
-                              Object {
+                            [
+                              {
                                 "color": "#ffffff",
                                 "fontSize": 12,
                               },
-                              Object {
+                              {
                                 "backgroundColor": "transparent",
                               },
-                              Object {
+                              {
                                 "fontFamily": "Material Design Icons",
                                 "fontStyle": "normal",
                                 "fontWeight": "normal",
                               },
-                              Object {},
+                              {},
                             ]
                           }
                           testID="iconIcon"
@@ -966,8 +966,8 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                   </View>
                   <View
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "alignItems": "flex-start",
                           "flex": 1,
                           "justifyContent": "center",
@@ -976,8 +976,8 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                       ]
                     }
                     theme={
-                      Object {
-                        "colors": Object {
+                      {
+                        "colors": {
                           "black": "#242424",
                           "disabled": "hsl(208, 8%, 90%)",
                           "divider": "#bcbbc1",
@@ -989,8 +989,8 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                           "grey4": "#bdc6cf",
                           "grey5": "#e1e8ee",
                           "greyOutline": "#bbb",
-                          "platform": Object {
-                            "android": Object {
+                          "platform": {
+                            "android": {
                               "error": "#f44336",
                               "grey": "rgba(0, 0, 0, 0.54)",
                               "primary": "#2196f3",
@@ -999,7 +999,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                               "success": "#4caf50",
                               "warning": "#ffeb3b",
                             },
-                            "default": Object {
+                            "default": {
                               "error": "#ff3b30",
                               "grey": "#7d7d7d",
                               "primary": "#007aff",
@@ -1008,7 +1008,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                               "success": "#4cd964",
                               "warning": "#ffcc00",
                             },
-                            "ios": Object {
+                            "ios": {
                               "error": "#ff3b30",
                               "grey": "#7d7d7d",
                               "primary": "#007aff",
@@ -1017,7 +1017,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                               "success": "#4cd964",
                               "warning": "#ffcc00",
                             },
-                            "web": Object {
+                            "web": {
                               "error": "#ff190c",
                               "grey": "#393e42",
                               "primary": "#2089dc",
@@ -1039,7 +1039,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                   >
                     <Text
                       style={
-                        Object {
+                        {
                           "backgroundColor": "transparent",
                           "color": "#1F2532",
                           "fontFamily": "IBMPlexSans-SemiBold",
@@ -1056,7 +1056,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                 </View>
                 <View
                   style={
-                    Object {
+                    {
                       "paddingLeft": 16,
                     }
                   }
@@ -1064,9 +1064,9 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                 <View
                   collapsable={false}
                   style={
-                    Object {
-                      "transform": Array [
-                        Object {
+                    {
+                      "transform": [
+                        {
                           "rotate": "0deg",
                         },
                       ],
@@ -1075,7 +1075,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                 >
                   <View
                     style={
-                      Object {
+                      {
                         "overflow": "hidden",
                       }
                     }
@@ -1084,7 +1084,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                       accessibilityHint="show items of this category"
                       accessibilityRole="button"
                       accessibilityState={
-                        Object {
+                        {
                           "disabled": false,
                         }
                       }
@@ -1100,7 +1100,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                     >
                       <View
                         style={
-                          Object {
+                          {
                             "alignItems": "center",
                             "backgroundColor": "transparent",
                             "justifyContent": "center",
@@ -1111,20 +1111,20 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                           allowFontScaling={false}
                           selectable={false}
                           style={
-                            Array [
-                              Object {
+                            [
+                              {
                                 "color": undefined,
                                 "fontSize": 24,
                               },
-                              Object {
+                              {
                                 "backgroundColor": "transparent",
                               },
-                              Object {
+                              {
                                 "fontFamily": "Material Icons",
                                 "fontStyle": "normal",
                                 "fontWeight": "normal",
                               },
-                              Object {},
+                              {},
                             ]
                           }
                           testID="iconIcon"
@@ -1140,7 +1140,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
             <View
               collapsable={false}
               style={
-                Object {
+                {
                   "maxHeight": "0%",
                   "opacity": 0,
                 }
@@ -1153,7 +1153,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
             >
               <View
                 style={
-                  Object {
+                  {
                     "alignItems": "center",
                     "backgroundColor": "#F8F9FA",
                     "borderColor": "#bcbbc1",
@@ -1176,7 +1176,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                   onResponderTerminationRequest={[Function]}
                   onStartShouldSetResponder={[Function]}
                   style={
-                    Object {
+                    {
                       "backgroundColor": "#F8F9FA",
                       "flex": 1,
                       "flexDirection": "row",
@@ -1187,7 +1187,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                 >
                   <View
                     style={
-                      Object {
+                      {
                         "alignSelf": "center",
                         "borderRadius": 16,
                         "height": 28,
@@ -1202,7 +1202,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                     >
                       <View
                         style={
-                          Object {
+                          {
                             "alignItems": "center",
                             "backgroundColor": "#EB576A",
                             "borderRadius": 16,
@@ -1216,20 +1216,20 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                           allowFontScaling={false}
                           selectable={false}
                           style={
-                            Array [
-                              Object {
+                            [
+                              {
                                 "color": "#ffffff",
                                 "fontSize": 12,
                               },
-                              Object {
+                              {
                                 "backgroundColor": "transparent",
                               },
-                              Object {
+                              {
                                 "fontFamily": "Material Design Icons",
                                 "fontStyle": "normal",
                                 "fontWeight": "normal",
                               },
-                              Object {},
+                              {},
                             ]
                           }
                           testID="iconIcon"
@@ -1241,8 +1241,8 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                   </View>
                   <View
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "alignItems": "flex-start",
                           "flex": 1,
                           "justifyContent": "center",
@@ -1251,8 +1251,8 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                       ]
                     }
                     theme={
-                      Object {
-                        "colors": Object {
+                      {
+                        "colors": {
                           "black": "#242424",
                           "disabled": "hsl(208, 8%, 90%)",
                           "divider": "#bcbbc1",
@@ -1264,8 +1264,8 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                           "grey4": "#bdc6cf",
                           "grey5": "#e1e8ee",
                           "greyOutline": "#bbb",
-                          "platform": Object {
-                            "android": Object {
+                          "platform": {
+                            "android": {
                               "error": "#f44336",
                               "grey": "rgba(0, 0, 0, 0.54)",
                               "primary": "#2196f3",
@@ -1274,7 +1274,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                               "success": "#4caf50",
                               "warning": "#ffeb3b",
                             },
-                            "default": Object {
+                            "default": {
                               "error": "#ff3b30",
                               "grey": "#7d7d7d",
                               "primary": "#007aff",
@@ -1283,7 +1283,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                               "success": "#4cd964",
                               "warning": "#ffcc00",
                             },
-                            "ios": Object {
+                            "ios": {
                               "error": "#ff3b30",
                               "grey": "#7d7d7d",
                               "primary": "#007aff",
@@ -1292,7 +1292,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                               "success": "#4cd964",
                               "warning": "#ffcc00",
                             },
-                            "web": Object {
+                            "web": {
                               "error": "#ff190c",
                               "grey": "#393e42",
                               "primary": "#2089dc",
@@ -1314,7 +1314,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                   >
                     <Text
                       style={
-                        Object {
+                        {
                           "backgroundColor": "transparent",
                           "color": "#1F2532",
                           "fontFamily": "IBMPlexSans-SemiBold",
@@ -1331,7 +1331,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                 </View>
                 <View
                   style={
-                    Object {
+                    {
                       "paddingLeft": 16,
                     }
                   }
@@ -1339,9 +1339,9 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                 <View
                   collapsable={false}
                   style={
-                    Object {
-                      "transform": Array [
-                        Object {
+                    {
+                      "transform": [
+                        {
                           "rotate": "0deg",
                         },
                       ],
@@ -1350,7 +1350,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                 >
                   <View
                     style={
-                      Object {
+                      {
                         "overflow": "hidden",
                       }
                     }
@@ -1359,7 +1359,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                       accessibilityHint="show items of this category"
                       accessibilityRole="button"
                       accessibilityState={
-                        Object {
+                        {
                           "disabled": false,
                         }
                       }
@@ -1375,7 +1375,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                     >
                       <View
                         style={
-                          Object {
+                          {
                             "alignItems": "center",
                             "backgroundColor": "transparent",
                             "justifyContent": "center",
@@ -1386,20 +1386,20 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                           allowFontScaling={false}
                           selectable={false}
                           style={
-                            Array [
-                              Object {
+                            [
+                              {
                                 "color": undefined,
                                 "fontSize": 24,
                               },
-                              Object {
+                              {
                                 "backgroundColor": "transparent",
                               },
-                              Object {
+                              {
                                 "fontFamily": "Material Icons",
                                 "fontStyle": "normal",
                                 "fontWeight": "normal",
                               },
-                              Object {},
+                              {},
                             ]
                           }
                           testID="iconIcon"
@@ -1415,7 +1415,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
             <View
               collapsable={false}
               style={
-                Object {
+                {
                   "maxHeight": "0%",
                   "opacity": 0,
                 }
@@ -1428,7 +1428,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
             >
               <View
                 style={
-                  Object {
+                  {
                     "alignItems": "center",
                     "backgroundColor": "#F8F9FA",
                     "borderColor": "#bcbbc1",
@@ -1451,7 +1451,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                   onResponderTerminationRequest={[Function]}
                   onStartShouldSetResponder={[Function]}
                   style={
-                    Object {
+                    {
                       "backgroundColor": "#F8F9FA",
                       "flex": 1,
                       "flexDirection": "row",
@@ -1462,7 +1462,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                 >
                   <View
                     style={
-                      Object {
+                      {
                         "alignSelf": "center",
                         "borderRadius": 16,
                         "height": 28,
@@ -1477,7 +1477,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                     >
                       <View
                         style={
-                          Object {
+                          {
                             "alignItems": "center",
                             "backgroundColor": "#EB576A",
                             "borderRadius": 16,
@@ -1491,20 +1491,20 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                           allowFontScaling={false}
                           selectable={false}
                           style={
-                            Array [
-                              Object {
+                            [
+                              {
                                 "color": "#ffffff",
                                 "fontSize": 12,
                               },
-                              Object {
+                              {
                                 "backgroundColor": "transparent",
                               },
-                              Object {
+                              {
                                 "fontFamily": "Material Design Icons",
                                 "fontStyle": "normal",
                                 "fontWeight": "normal",
                               },
-                              Object {},
+                              {},
                             ]
                           }
                           testID="iconIcon"
@@ -1516,8 +1516,8 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                   </View>
                   <View
                     style={
-                      Array [
-                        Object {
+                      [
+                        {
                           "alignItems": "flex-start",
                           "flex": 1,
                           "justifyContent": "center",
@@ -1526,8 +1526,8 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                       ]
                     }
                     theme={
-                      Object {
-                        "colors": Object {
+                      {
+                        "colors": {
                           "black": "#242424",
                           "disabled": "hsl(208, 8%, 90%)",
                           "divider": "#bcbbc1",
@@ -1539,8 +1539,8 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                           "grey4": "#bdc6cf",
                           "grey5": "#e1e8ee",
                           "greyOutline": "#bbb",
-                          "platform": Object {
-                            "android": Object {
+                          "platform": {
+                            "android": {
                               "error": "#f44336",
                               "grey": "rgba(0, 0, 0, 0.54)",
                               "primary": "#2196f3",
@@ -1549,7 +1549,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                               "success": "#4caf50",
                               "warning": "#ffeb3b",
                             },
-                            "default": Object {
+                            "default": {
                               "error": "#ff3b30",
                               "grey": "#7d7d7d",
                               "primary": "#007aff",
@@ -1558,7 +1558,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                               "success": "#4cd964",
                               "warning": "#ffcc00",
                             },
-                            "ios": Object {
+                            "ios": {
                               "error": "#ff3b30",
                               "grey": "#7d7d7d",
                               "primary": "#007aff",
@@ -1567,7 +1567,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                               "success": "#4cd964",
                               "warning": "#ffcc00",
                             },
-                            "web": Object {
+                            "web": {
                               "error": "#ff190c",
                               "grey": "#393e42",
                               "primary": "#2089dc",
@@ -1589,7 +1589,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                   >
                     <Text
                       style={
-                        Object {
+                        {
                           "backgroundColor": "transparent",
                           "color": "#1F2532",
                           "fontFamily": "IBMPlexSans-SemiBold",
@@ -1606,7 +1606,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                 </View>
                 <View
                   style={
-                    Object {
+                    {
                       "paddingLeft": 16,
                     }
                   }
@@ -1614,9 +1614,9 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                 <View
                   collapsable={false}
                   style={
-                    Object {
-                      "transform": Array [
-                        Object {
+                    {
+                      "transform": [
+                        {
                           "rotate": "0deg",
                         },
                       ],
@@ -1625,7 +1625,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                 >
                   <View
                     style={
-                      Object {
+                      {
                         "overflow": "hidden",
                       }
                     }
@@ -1634,7 +1634,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                       accessibilityHint="show items of this category"
                       accessibilityRole="button"
                       accessibilityState={
-                        Object {
+                        {
                           "disabled": false,
                         }
                       }
@@ -1650,7 +1650,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                     >
                       <View
                         style={
-                          Object {
+                          {
                             "alignItems": "center",
                             "backgroundColor": "transparent",
                             "justifyContent": "center",
@@ -1661,20 +1661,20 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                           allowFontScaling={false}
                           selectable={false}
                           style={
-                            Array [
-                              Object {
+                            [
+                              {
                                 "color": undefined,
                                 "fontSize": 24,
                               },
-                              Object {
+                              {
                                 "backgroundColor": "transparent",
                               },
-                              Object {
+                              {
                                 "fontFamily": "Material Icons",
                                 "fontStyle": "normal",
                                 "fontWeight": "normal",
                               },
-                              Object {},
+                              {},
                             ]
                           }
                           testID="iconIcon"
@@ -1690,7 +1690,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
             <View
               collapsable={false}
               style={
-                Object {
+                {
                   "maxHeight": "0%",
                   "opacity": 0,
                 }
@@ -1703,7 +1703,7 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
   </View>
   <View
     style={
-      Object {
+      {
         "alignSelf": "flex-end",
         "flex": 0.16666666666666666,
         "justifyContent": "center",

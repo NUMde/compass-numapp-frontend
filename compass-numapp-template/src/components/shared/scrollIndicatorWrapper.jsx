@@ -89,26 +89,28 @@ export default function ScrollIndicatorWrapper({ children }) {
 
       {/* if "allowScrollIndicators" is true and the situation calls for a scroll indicator ("showIndicator") and
 				we are not in accessibility-mode */}
-      {theme.ui.allowScrollIndicators && showIndicator && !isAccessibilityOn && (
-        <TouchableOpacity
-          accessibilityRole={translate('accessibility').types.button}
-          style={localStyle.indicator}
-          onPress={() => {
-            scrollViewRef.current.scrollTo({
-              x: 0,
-              y: nextScrollValue,
-              animated: true,
-            });
-          }}
-        >
-          <Icon
-            name="chevron-down"
-            type="font-awesome"
-            color={theme.values.defaultScrollIndicatorIconColor}
-            size={15}
-          />
-        </TouchableOpacity>
-      )}
+      {theme.ui.allowScrollIndicators &&
+        showIndicator &&
+        !isAccessibilityOn && (
+          <TouchableOpacity
+            accessibilityRole={translate('accessibility').types.button}
+            style={localStyle.indicator}
+            onPress={() => {
+              scrollViewRef.current.scrollTo({
+                x: 0,
+                y: nextScrollValue,
+                animated: true,
+              });
+            }}
+          >
+            <Icon
+              name="chevron-down"
+              type="font-awesome"
+              color={theme.values.defaultScrollIndicatorIconColor}
+              size={15}
+            />
+          </TouchableOpacity>
+        )}
     </KeyboardAvoidingView>
   );
 }

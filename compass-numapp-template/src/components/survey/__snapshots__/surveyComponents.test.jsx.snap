@@ -3,7 +3,7 @@
 exports[`categoriesList should render the categories list 1`] = `
 <View
   style={
-    Object {
+    {
       "backgroundColor": "#F8F9FA",
       "flexDirection": "column",
     }
@@ -16,7 +16,7 @@ exports[`categoriesList should render the categories list 1`] = `
   >
     <View
       style={
-        Object {
+        {
           "alignItems": "center",
           "backgroundColor": "#F8F9FA",
           "borderColor": "#bcbbc1",
@@ -39,7 +39,7 @@ exports[`categoriesList should render the categories list 1`] = `
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
         style={
-          Object {
+          {
             "backgroundColor": "#F8F9FA",
             "flex": 1,
             "flexDirection": "row",
@@ -50,7 +50,7 @@ exports[`categoriesList should render the categories list 1`] = `
       >
         <View
           style={
-            Object {
+            {
               "alignSelf": "center",
               "borderRadius": 16,
               "height": 28,
@@ -65,7 +65,7 @@ exports[`categoriesList should render the categories list 1`] = `
           >
             <View
               style={
-                Object {
+                {
                   "alignItems": "center",
                   "backgroundColor": "#EB576A",
                   "borderRadius": 16,
@@ -79,20 +79,20 @@ exports[`categoriesList should render the categories list 1`] = `
                 allowFontScaling={false}
                 selectable={false}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": "#ffffff",
                       "fontSize": 12,
                     },
-                    Object {
+                    {
                       "backgroundColor": "transparent",
                     },
-                    Object {
+                    {
                       "fontFamily": "Material Design Icons",
                       "fontStyle": "normal",
                       "fontWeight": "normal",
                     },
-                    Object {},
+                    {},
                   ]
                 }
                 testID="iconIcon"
@@ -104,8 +104,8 @@ exports[`categoriesList should render the categories list 1`] = `
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "alignItems": "flex-start",
                 "flex": 1,
                 "justifyContent": "center",
@@ -114,8 +114,8 @@ exports[`categoriesList should render the categories list 1`] = `
             ]
           }
           theme={
-            Object {
-              "colors": Object {
+            {
+              "colors": {
                 "black": "#242424",
                 "disabled": "hsl(208, 8%, 90%)",
                 "divider": "#bcbbc1",
@@ -127,8 +127,8 @@ exports[`categoriesList should render the categories list 1`] = `
                 "grey4": "#bdc6cf",
                 "grey5": "#e1e8ee",
                 "greyOutline": "#bbb",
-                "platform": Object {
-                  "android": Object {
+                "platform": {
+                  "android": {
                     "error": "#f44336",
                     "grey": "rgba(0, 0, 0, 0.54)",
                     "primary": "#2196f3",
@@ -137,7 +137,7 @@ exports[`categoriesList should render the categories list 1`] = `
                     "success": "#4caf50",
                     "warning": "#ffeb3b",
                   },
-                  "default": Object {
+                  "default": {
                     "error": "#ff3b30",
                     "grey": "#7d7d7d",
                     "primary": "#007aff",
@@ -146,7 +146,7 @@ exports[`categoriesList should render the categories list 1`] = `
                     "success": "#4cd964",
                     "warning": "#ffcc00",
                   },
-                  "ios": Object {
+                  "ios": {
                     "error": "#ff3b30",
                     "grey": "#7d7d7d",
                     "primary": "#007aff",
@@ -155,7 +155,7 @@ exports[`categoriesList should render the categories list 1`] = `
                     "success": "#4cd964",
                     "warning": "#ffcc00",
                   },
-                  "web": Object {
+                  "web": {
                     "error": "#ff190c",
                     "grey": "#393e42",
                     "primary": "#2089dc",
@@ -177,7 +177,7 @@ exports[`categoriesList should render the categories list 1`] = `
         >
           <Text
             style={
-              Object {
+              {
                 "backgroundColor": "transparent",
                 "color": "#1F2532",
                 "fontFamily": "IBMPlexSans-SemiBold",
@@ -194,7 +194,7 @@ exports[`categoriesList should render the categories list 1`] = `
       </View>
       <View
         style={
-          Object {
+          {
             "paddingLeft": 16,
           }
         }
@@ -202,9 +202,9 @@ exports[`categoriesList should render the categories list 1`] = `
       <View
         collapsable={false}
         style={
-          Object {
-            "transform": Array [
-              Object {
+          {
+            "transform": [
+              {
                 "rotate": "0deg",
               },
             ],
@@ -213,7 +213,7 @@ exports[`categoriesList should render the categories list 1`] = `
       >
         <View
           style={
-            Object {
+            {
               "overflow": "hidden",
             }
           }
@@ -222,7 +222,7 @@ exports[`categoriesList should render the categories list 1`] = `
             accessibilityHint="show items of this category"
             accessibilityRole="button"
             accessibilityState={
-              Object {
+              {
                 "disabled": false,
               }
             }
@@ -238,7 +238,7 @@ exports[`categoriesList should render the categories list 1`] = `
           >
             <View
               style={
-                Object {
+                {
                   "alignItems": "center",
                   "backgroundColor": "transparent",
                   "justifyContent": "center",
@@ -249,20 +249,20 @@ exports[`categoriesList should render the categories list 1`] = `
                 allowFontScaling={false}
                 selectable={false}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": undefined,
                       "fontSize": 24,
                     },
-                    Object {
+                    {
                       "backgroundColor": "transparent",
                     },
-                    Object {
+                    {
                       "fontFamily": "Material Icons",
                       "fontStyle": "normal",
                       "fontWeight": "normal",
                     },
-                    Object {},
+                    {},
                   ]
                 }
                 testID="iconIcon"
@@ -278,7 +278,7 @@ exports[`categoriesList should render the categories list 1`] = `
   <View
     collapsable={false}
     style={
-      Object {
+      {
         "maxHeight": "0%",
         "opacity": 0,
       }
@@ -291,7 +291,7 @@ exports[`categoriesList should render the categories list 1`] = `
   >
     <View
       style={
-        Object {
+        {
           "alignItems": "center",
           "backgroundColor": "#F8F9FA",
           "borderColor": "#bcbbc1",
@@ -314,7 +314,7 @@ exports[`categoriesList should render the categories list 1`] = `
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
         style={
-          Object {
+          {
             "backgroundColor": "#F8F9FA",
             "flex": 1,
             "flexDirection": "row",
@@ -325,7 +325,7 @@ exports[`categoriesList should render the categories list 1`] = `
       >
         <View
           style={
-            Object {
+            {
               "alignSelf": "center",
               "borderRadius": 16,
               "height": 28,
@@ -340,7 +340,7 @@ exports[`categoriesList should render the categories list 1`] = `
           >
             <View
               style={
-                Object {
+                {
                   "alignItems": "center",
                   "backgroundColor": "#FFC107",
                   "borderRadius": 16,
@@ -354,20 +354,20 @@ exports[`categoriesList should render the categories list 1`] = `
                 allowFontScaling={false}
                 selectable={false}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": "#ffffff",
                       "fontSize": 12,
                     },
-                    Object {
+                    {
                       "backgroundColor": "transparent",
                     },
-                    Object {
+                    {
                       "fontFamily": "Material Design Icons",
                       "fontStyle": "normal",
                       "fontWeight": "normal",
                     },
-                    Object {},
+                    {},
                   ]
                 }
                 testID="iconIcon"
@@ -379,8 +379,8 @@ exports[`categoriesList should render the categories list 1`] = `
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "alignItems": "flex-start",
                 "flex": 1,
                 "justifyContent": "center",
@@ -389,8 +389,8 @@ exports[`categoriesList should render the categories list 1`] = `
             ]
           }
           theme={
-            Object {
-              "colors": Object {
+            {
+              "colors": {
                 "black": "#242424",
                 "disabled": "hsl(208, 8%, 90%)",
                 "divider": "#bcbbc1",
@@ -402,8 +402,8 @@ exports[`categoriesList should render the categories list 1`] = `
                 "grey4": "#bdc6cf",
                 "grey5": "#e1e8ee",
                 "greyOutline": "#bbb",
-                "platform": Object {
-                  "android": Object {
+                "platform": {
+                  "android": {
                     "error": "#f44336",
                     "grey": "rgba(0, 0, 0, 0.54)",
                     "primary": "#2196f3",
@@ -412,7 +412,7 @@ exports[`categoriesList should render the categories list 1`] = `
                     "success": "#4caf50",
                     "warning": "#ffeb3b",
                   },
-                  "default": Object {
+                  "default": {
                     "error": "#ff3b30",
                     "grey": "#7d7d7d",
                     "primary": "#007aff",
@@ -421,7 +421,7 @@ exports[`categoriesList should render the categories list 1`] = `
                     "success": "#4cd964",
                     "warning": "#ffcc00",
                   },
-                  "ios": Object {
+                  "ios": {
                     "error": "#ff3b30",
                     "grey": "#7d7d7d",
                     "primary": "#007aff",
@@ -430,7 +430,7 @@ exports[`categoriesList should render the categories list 1`] = `
                     "success": "#4cd964",
                     "warning": "#ffcc00",
                   },
-                  "web": Object {
+                  "web": {
                     "error": "#ff190c",
                     "grey": "#393e42",
                     "primary": "#2089dc",
@@ -452,7 +452,7 @@ exports[`categoriesList should render the categories list 1`] = `
         >
           <Text
             style={
-              Object {
+              {
                 "backgroundColor": "transparent",
                 "color": "#1F2532",
                 "fontFamily": "IBMPlexSans-SemiBold",
@@ -469,7 +469,7 @@ exports[`categoriesList should render the categories list 1`] = `
       </View>
       <View
         style={
-          Object {
+          {
             "paddingLeft": 16,
           }
         }
@@ -477,9 +477,9 @@ exports[`categoriesList should render the categories list 1`] = `
       <View
         collapsable={false}
         style={
-          Object {
-            "transform": Array [
-              Object {
+          {
+            "transform": [
+              {
                 "rotate": "0deg",
               },
             ],
@@ -488,7 +488,7 @@ exports[`categoriesList should render the categories list 1`] = `
       >
         <View
           style={
-            Object {
+            {
               "overflow": "hidden",
             }
           }
@@ -497,7 +497,7 @@ exports[`categoriesList should render the categories list 1`] = `
             accessibilityHint="show items of this category"
             accessibilityRole="button"
             accessibilityState={
-              Object {
+              {
                 "disabled": false,
               }
             }
@@ -513,7 +513,7 @@ exports[`categoriesList should render the categories list 1`] = `
           >
             <View
               style={
-                Object {
+                {
                   "alignItems": "center",
                   "backgroundColor": "transparent",
                   "justifyContent": "center",
@@ -524,20 +524,20 @@ exports[`categoriesList should render the categories list 1`] = `
                 allowFontScaling={false}
                 selectable={false}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": undefined,
                       "fontSize": 24,
                     },
-                    Object {
+                    {
                       "backgroundColor": "transparent",
                     },
-                    Object {
+                    {
                       "fontFamily": "Material Icons",
                       "fontStyle": "normal",
                       "fontWeight": "normal",
                     },
-                    Object {},
+                    {},
                   ]
                 }
                 testID="iconIcon"
@@ -553,7 +553,7 @@ exports[`categoriesList should render the categories list 1`] = `
   <View
     collapsable={false}
     style={
-      Object {
+      {
         "maxHeight": "0%",
         "opacity": 0,
       }
@@ -566,7 +566,7 @@ exports[`categoriesList should render the categories list 1`] = `
   >
     <View
       style={
-        Object {
+        {
           "alignItems": "center",
           "backgroundColor": "#F8F9FA",
           "borderColor": "#bcbbc1",
@@ -589,7 +589,7 @@ exports[`categoriesList should render the categories list 1`] = `
         onResponderTerminationRequest={[Function]}
         onStartShouldSetResponder={[Function]}
         style={
-          Object {
+          {
             "backgroundColor": "#F8F9FA",
             "flex": 1,
             "flexDirection": "row",
@@ -600,7 +600,7 @@ exports[`categoriesList should render the categories list 1`] = `
       >
         <View
           style={
-            Object {
+            {
               "alignSelf": "center",
               "borderRadius": 16,
               "height": 28,
@@ -615,7 +615,7 @@ exports[`categoriesList should render the categories list 1`] = `
           >
             <View
               style={
-                Object {
+                {
                   "alignItems": "center",
                   "backgroundColor": "#006864",
                   "borderRadius": 16,
@@ -629,20 +629,20 @@ exports[`categoriesList should render the categories list 1`] = `
                 allowFontScaling={false}
                 selectable={false}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": "#ffffff",
                       "fontSize": 12,
                     },
-                    Object {
+                    {
                       "backgroundColor": "transparent",
                     },
-                    Object {
+                    {
                       "fontFamily": "Material Design Icons",
                       "fontStyle": "normal",
                       "fontWeight": "normal",
                     },
-                    Object {},
+                    {},
                   ]
                 }
                 testID="iconIcon"
@@ -654,8 +654,8 @@ exports[`categoriesList should render the categories list 1`] = `
         </View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "alignItems": "flex-start",
                 "flex": 1,
                 "justifyContent": "center",
@@ -664,8 +664,8 @@ exports[`categoriesList should render the categories list 1`] = `
             ]
           }
           theme={
-            Object {
-              "colors": Object {
+            {
+              "colors": {
                 "black": "#242424",
                 "disabled": "hsl(208, 8%, 90%)",
                 "divider": "#bcbbc1",
@@ -677,8 +677,8 @@ exports[`categoriesList should render the categories list 1`] = `
                 "grey4": "#bdc6cf",
                 "grey5": "#e1e8ee",
                 "greyOutline": "#bbb",
-                "platform": Object {
-                  "android": Object {
+                "platform": {
+                  "android": {
                     "error": "#f44336",
                     "grey": "rgba(0, 0, 0, 0.54)",
                     "primary": "#2196f3",
@@ -687,7 +687,7 @@ exports[`categoriesList should render the categories list 1`] = `
                     "success": "#4caf50",
                     "warning": "#ffeb3b",
                   },
-                  "default": Object {
+                  "default": {
                     "error": "#ff3b30",
                     "grey": "#7d7d7d",
                     "primary": "#007aff",
@@ -696,7 +696,7 @@ exports[`categoriesList should render the categories list 1`] = `
                     "success": "#4cd964",
                     "warning": "#ffcc00",
                   },
-                  "ios": Object {
+                  "ios": {
                     "error": "#ff3b30",
                     "grey": "#7d7d7d",
                     "primary": "#007aff",
@@ -705,7 +705,7 @@ exports[`categoriesList should render the categories list 1`] = `
                     "success": "#4cd964",
                     "warning": "#ffcc00",
                   },
-                  "web": Object {
+                  "web": {
                     "error": "#ff190c",
                     "grey": "#393e42",
                     "primary": "#2089dc",
@@ -727,7 +727,7 @@ exports[`categoriesList should render the categories list 1`] = `
         >
           <Text
             style={
-              Object {
+              {
                 "backgroundColor": "transparent",
                 "color": "#1F2532",
                 "fontFamily": "IBMPlexSans-SemiBold",
@@ -744,7 +744,7 @@ exports[`categoriesList should render the categories list 1`] = `
       </View>
       <View
         style={
-          Object {
+          {
             "paddingLeft": 16,
           }
         }
@@ -752,9 +752,9 @@ exports[`categoriesList should render the categories list 1`] = `
       <View
         collapsable={false}
         style={
-          Object {
-            "transform": Array [
-              Object {
+          {
+            "transform": [
+              {
                 "rotate": "0deg",
               },
             ],
@@ -763,7 +763,7 @@ exports[`categoriesList should render the categories list 1`] = `
       >
         <View
           style={
-            Object {
+            {
               "overflow": "hidden",
             }
           }
@@ -772,7 +772,7 @@ exports[`categoriesList should render the categories list 1`] = `
             accessibilityHint="show items of this category"
             accessibilityRole="button"
             accessibilityState={
-              Object {
+              {
                 "disabled": false,
               }
             }
@@ -788,7 +788,7 @@ exports[`categoriesList should render the categories list 1`] = `
           >
             <View
               style={
-                Object {
+                {
                   "alignItems": "center",
                   "backgroundColor": "transparent",
                   "justifyContent": "center",
@@ -799,20 +799,20 @@ exports[`categoriesList should render the categories list 1`] = `
                 allowFontScaling={false}
                 selectable={false}
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "color": undefined,
                       "fontSize": 24,
                     },
-                    Object {
+                    {
                       "backgroundColor": "transparent",
                     },
-                    Object {
+                    {
                       "fontFamily": "Material Icons",
                       "fontStyle": "normal",
                       "fontWeight": "normal",
                     },
-                    Object {},
+                    {},
                   ]
                 }
                 testID="iconIcon"
@@ -828,7 +828,7 @@ exports[`categoriesList should render the categories list 1`] = `
   <View
     collapsable={false}
     style={
-      Object {
+      {
         "maxHeight": "0%",
         "opacity": 0,
       }

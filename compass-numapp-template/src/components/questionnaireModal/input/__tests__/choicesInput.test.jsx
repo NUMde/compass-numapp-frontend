@@ -93,8 +93,8 @@ describe('choicesInput (CheckBoxes)', () => {
 
     const selectedItem = getByText('\uf046');
     expect(selectedItem).toBeTruthy();
-    expect(selectedItem.parent.parent.props.checked).toBe(true);
-    expect(selectedItem.parent.parent.props.title).toBe('Option C');
+    expect(selectedItem.parent.parent.parent.props.checked).toBe(true);
+    expect(selectedItem.parent.parent.parent.props.title).toBe('Option C');
 
     fireEvent.press(selectedItem);
 
@@ -143,12 +143,14 @@ describe('choicesInput (RadioButtons)', () => {
     });
     const selectedItem = getByText('\uf192');
     expect(selectedItem).toBeTruthy();
-    expect(selectedItem.parent.parent.props.title).toBe('Option C');
+    expect(selectedItem.parent.parent.parent.props.title).toBe('Option C');
     act(() => {
       fireEvent.press(getAllByText('\uf10c')[3]);
     });
-    expect(getByText('\uf192').parent.parent.props.checked).toBe(true);
-    expect(getByText('\uf192').parent.parent.props.title).toBe('Option E');
+    expect(getByText('\uf192').parent.parent.parent.props.checked).toBe(true);
+    expect(getByText('\uf192').parent.parent.parent.props.title).toBe(
+      'Option E',
+    );
   });
 });
 

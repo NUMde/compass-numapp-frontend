@@ -18,7 +18,7 @@ exports[`checkInListView should render the 'listView' 1`] = `
 >
   <View
     style={
-      Object {
+      {
         "alignItems": "center",
         "backgroundColor": "#EB576A",
         "borderBottomColor": "#EB576A",
@@ -33,8 +33,8 @@ exports[`checkInListView should render the 'listView' 1`] = `
   >
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "alignItems": "flex-start",
             "flex": 1,
             "justifyContent": "center",
@@ -43,8 +43,8 @@ exports[`checkInListView should render the 'listView' 1`] = `
         ]
       }
       theme={
-        Object {
-          "colors": Object {
+        {
+          "colors": {
             "black": "#242424",
             "disabled": "hsl(208, 8%, 90%)",
             "divider": "#bcbbc1",
@@ -56,8 +56,8 @@ exports[`checkInListView should render the 'listView' 1`] = `
             "grey4": "#bdc6cf",
             "grey5": "#e1e8ee",
             "greyOutline": "#bbb",
-            "platform": Object {
-              "android": Object {
+            "platform": {
+              "android": {
                 "error": "#f44336",
                 "grey": "rgba(0, 0, 0, 0.54)",
                 "primary": "#2196f3",
@@ -66,7 +66,7 @@ exports[`checkInListView should render the 'listView' 1`] = `
                 "success": "#4caf50",
                 "warning": "#ffeb3b",
               },
-              "default": Object {
+              "default": {
                 "error": "#ff3b30",
                 "grey": "#7d7d7d",
                 "primary": "#007aff",
@@ -75,7 +75,7 @@ exports[`checkInListView should render the 'listView' 1`] = `
                 "success": "#4cd964",
                 "warning": "#ffcc00",
               },
-              "ios": Object {
+              "ios": {
                 "error": "#ff3b30",
                 "grey": "#7d7d7d",
                 "primary": "#007aff",
@@ -84,7 +84,7 @@ exports[`checkInListView should render the 'listView' 1`] = `
                 "success": "#4cd964",
                 "warning": "#ffcc00",
               },
-              "web": Object {
+              "web": {
                 "error": "#ff190c",
                 "grey": "#393e42",
                 "primary": "#2089dc",
@@ -106,7 +106,7 @@ exports[`checkInListView should render the 'listView' 1`] = `
     >
       <Text
         style={
-          Object {
+          {
             "backgroundColor": "transparent",
             "color": "#F8F9FA",
             "fontFamily": "IBMPlexSans-SemiBold",
@@ -120,7 +120,7 @@ exports[`checkInListView should render the 'listView' 1`] = `
       </Text>
       <Text
         style={
-          Object {
+          {
             "backgroundColor": "transparent",
             "color": "#F8F9FA",
             "fontFamily": "IBMPlexSans",
@@ -135,14 +135,14 @@ exports[`checkInListView should render the 'listView' 1`] = `
     </View>
     <View
       style={
-        Object {
+        {
           "paddingLeft": 16,
         }
       }
     />
     <View
       style={
-        Object {
+        {
           "alignSelf": "center",
           "backgroundColor": "#F8F9FA",
           "borderRadius": 16,
@@ -150,7 +150,7 @@ exports[`checkInListView should render the 'listView' 1`] = `
           "margin": 7,
           "overflow": "hidden",
           "shadowColor": "rgba(0,0,0, .4)",
-          "shadowOffset": Object {
+          "shadowOffset": {
             "height": 1,
             "width": 1,
           },
@@ -163,7 +163,7 @@ exports[`checkInListView should render the 'listView' 1`] = `
       <View>
         <View
           style={
-            Object {
+            {
               "alignItems": "center",
               "backgroundColor": "#ffffff",
               "borderRadius": 16,
@@ -177,20 +177,20 @@ exports[`checkInListView should render the 'listView' 1`] = `
             allowFontScaling={false}
             selectable={false}
             style={
-              Array [
-                Object {
+              [
+                {
                   "color": "#EB576A",
                   "fontSize": 12,
                 },
-                Object {
+                {
                   "backgroundColor": "transparent",
                 },
-                Object {
+                {
                   "fontFamily": "Material Design Icons",
                   "fontStyle": "normal",
                   "fontWeight": "normal",
                 },
-                Object {},
+                {},
               ]
             }
             testID="iconIcon"
@@ -207,7 +207,7 @@ exports[`checkInListView should render the 'listView' 1`] = `
 exports[`welcomeText should render the welcomeText for firstTime and no questionnaire 1`] = `
 <View
   style={
-    Object {
+    {
       "marginHorizontal": 52.325581395348834,
       "marginVertical": 43.604651162790695,
     }
@@ -216,7 +216,7 @@ exports[`welcomeText should render the welcomeText for firstTime and no question
   <View>
     <Text
       style={
-        Object {
+        {
           "alignSelf": "center",
           "color": "#1F2532",
           "fontFamily": "IBMPlexSans-SemiBold",
@@ -230,7 +230,7 @@ exports[`welcomeText should render the welcomeText for firstTime and no question
     </Text>
     <Text
       style={
-        Object {
+        {
           "alignSelf": "center",
           "color": "#1F2532",
           "fontFamily": "IBMPlexSans",
@@ -244,7 +244,7 @@ exports[`welcomeText should render the welcomeText for firstTime and no question
       This is text that is presented to first-time-users. It tells them when the first questionnaire is due: 
       <Text
         style={
-          Object {
+          {
             "fontFamily": "IBMPlexSans-SemiBold",
             "fontSize": 26.25,
             "lineHeight": 35.625,
@@ -259,7 +259,7 @@ exports[`welcomeText should render the welcomeText for firstTime and no question
     <View>
       <Text
         style={
-          Object {
+          {
             "alignSelf": "center",
             "color": "#1F2532",
             "fontFamily": "IBMPlexSans-SemiBold",
@@ -274,8 +274,8 @@ exports[`welcomeText should render the welcomeText for firstTime and no question
       </Text>
       <Text
         style={
-          Array [
-            Object {
+          [
+            {
               "alignSelf": "center",
               "color": "#1F2532",
               "fontFamily": "IBMPlexSans-SemiBold",
@@ -284,7 +284,7 @@ exports[`welcomeText should render the welcomeText for firstTime and no question
               "marginVertical": 17.441860465116278,
               "textAlign": "center",
             },
-            Object {
+            {
               "color": "#006864",
             },
           ]
@@ -296,7 +296,7 @@ exports[`welcomeText should render the welcomeText for firstTime and no question
     </View>
     <Text
       style={
-        Object {
+        {
           "alignSelf": "center",
           "color": "#1F2532",
           "fontFamily": "IBMPlexSans",
@@ -316,7 +316,7 @@ exports[`welcomeText should render the welcomeText for firstTime and no question
 exports[`welcomeText should render the welcomeText for firstTime and questionnaire 1`] = `
 <View
   style={
-    Object {
+    {
       "marginHorizontal": 52.325581395348834,
       "marginVertical": 43.604651162790695,
     }
@@ -325,7 +325,7 @@ exports[`welcomeText should render the welcomeText for firstTime and questionnai
   <View>
     <Text
       style={
-        Object {
+        {
           "alignSelf": "center",
           "color": "#1F2532",
           "fontFamily": "IBMPlexSans-SemiBold",
@@ -339,7 +339,7 @@ exports[`welcomeText should render the welcomeText for firstTime and questionnai
     </Text>
     <Text
       style={
-        Object {
+        {
           "alignSelf": "center",
           "color": "#1F2532",
           "fontFamily": "IBMPlexSans",
@@ -353,7 +353,7 @@ exports[`welcomeText should render the welcomeText for firstTime and questionnai
       This is text that is presented to first-time-users. It tells them when the first questionnaire is due: 
       <Text
         style={
-          Object {
+          {
             "fontFamily": "IBMPlexSans-SemiBold",
             "fontSize": 26.25,
             "lineHeight": 35.625,
@@ -367,7 +367,7 @@ exports[`welcomeText should render the welcomeText for firstTime and questionnai
     </Text>
     <Text
       style={
-        Object {
+        {
           "alignSelf": "center",
           "color": "#1F2532",
           "fontFamily": "IBMPlexSans",
@@ -387,7 +387,7 @@ exports[`welcomeText should render the welcomeText for firstTime and questionnai
 exports[`welcomeText should render the welcomeText for subsequent visits and no questionnaire 1`] = `
 <View
   style={
-    Object {
+    {
       "marginHorizontal": 52.325581395348834,
       "marginVertical": 43.604651162790695,
     }
@@ -396,7 +396,7 @@ exports[`welcomeText should render the welcomeText for subsequent visits and no 
   <View>
     <Text
       style={
-        Object {
+        {
           "alignSelf": "center",
           "color": "#1F2532",
           "fontFamily": "IBMPlexSans-SemiBold",
@@ -410,7 +410,7 @@ exports[`welcomeText should render the welcomeText for subsequent visits and no 
     </Text>
     <Text
       style={
-        Object {
+        {
           "alignSelf": "center",
           "color": "#1F2532",
           "fontFamily": "IBMPlexSans",
@@ -426,7 +426,7 @@ exports[`welcomeText should render the welcomeText for subsequent visits and no 
     <View>
       <Text
         style={
-          Object {
+          {
             "alignSelf": "center",
             "color": "#1F2532",
             "fontFamily": "IBMPlexSans-SemiBold",
@@ -441,8 +441,8 @@ exports[`welcomeText should render the welcomeText for subsequent visits and no 
       </Text>
       <Text
         style={
-          Array [
-            Object {
+          [
+            {
               "alignSelf": "center",
               "color": "#1F2532",
               "fontFamily": "IBMPlexSans-SemiBold",
@@ -451,7 +451,7 @@ exports[`welcomeText should render the welcomeText for subsequent visits and no 
               "marginVertical": 17.441860465116278,
               "textAlign": "center",
             },
-            Object {
+            {
               "color": "#006864",
             },
           ]
@@ -463,7 +463,7 @@ exports[`welcomeText should render the welcomeText for subsequent visits and no 
     </View>
     <Text
       style={
-        Object {
+        {
           "alignSelf": "center",
           "color": "#1F2532",
           "fontFamily": "IBMPlexSans",
@@ -483,7 +483,7 @@ exports[`welcomeText should render the welcomeText for subsequent visits and no 
 exports[`welcomeText should render the welcomeText for subsequent visits and questionnaire 1`] = `
 <View
   style={
-    Object {
+    {
       "marginHorizontal": 52.325581395348834,
       "marginVertical": 43.604651162790695,
     }
@@ -492,7 +492,7 @@ exports[`welcomeText should render the welcomeText for subsequent visits and que
   <View>
     <Text
       style={
-        Object {
+        {
           "alignSelf": "center",
           "color": "#1F2532",
           "fontFamily": "IBMPlexSans-SemiBold",
@@ -507,7 +507,7 @@ exports[`welcomeText should render the welcomeText for subsequent visits and que
     <View>
       <Text
         style={
-          Object {
+          {
             "alignSelf": "center",
             "color": "#1F2532",
             "fontFamily": "IBMPlexSans",
@@ -522,7 +522,7 @@ exports[`welcomeText should render the welcomeText for subsequent visits and que
       </Text>
       <Text
         style={
-          Object {
+          {
             "alignSelf": "center",
             "color": "#1F2532",
             "fontFamily": "IBMPlexSans-SemiBold",
@@ -539,7 +539,7 @@ exports[`welcomeText should render the welcomeText for subsequent visits and que
     </View>
     <Text
       style={
-        Object {
+        {
           "alignSelf": "center",
           "color": "#1F2532",
           "fontFamily": "IBMPlexSans",
@@ -559,7 +559,7 @@ exports[`welcomeText should render the welcomeText for subsequent visits and que
 exports[`welcomeText should render the welcomeText when off-study 1`] = `
 <View
   style={
-    Object {
+    {
       "marginHorizontal": 52.325581395348834,
       "marginVertical": 43.604651162790695,
     }
@@ -568,7 +568,7 @@ exports[`welcomeText should render the welcomeText when off-study 1`] = `
   <View>
     <Text
       style={
-        Object {
+        {
           "alignSelf": "center",
           "color": "#1F2532",
           "fontFamily": "IBMPlexSans-SemiBold",
@@ -582,7 +582,7 @@ exports[`welcomeText should render the welcomeText when off-study 1`] = `
     </Text>
     <Text
       style={
-        Object {
+        {
           "alignSelf": "center",
           "color": "#1F2532",
           "fontFamily": "IBMPlexSans",

@@ -3,7 +3,7 @@
 exports[`CheckInScreen should render the CheckInScreen 1`] = `
 <View
   style={
-    Object {
+    {
       "backgroundColor": "#F8F9FA",
       "flexDirection": "column",
       "height": "100%",
@@ -14,7 +14,7 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
   <View
     accessibilityIgnoresInvertColors={true}
     style={
-      Object {
+      {
         "backgroundColor": "#F8F9FA",
         "flexDirection": "column",
         "height": 354.06976744186045,
@@ -26,20 +26,20 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
     <Image
       resizeMode="cover"
       source={
-        Object {
+        {
           "process": [Function],
         }
       }
       style={
-        Array [
-          Object {
+        [
+          {
             "bottom": 0,
             "left": 0,
             "position": "absolute",
             "right": 0,
             "top": 0,
           },
-          Object {
+          {
             "height": 354.06976744186045,
             "width": "100%",
           },
@@ -49,7 +49,7 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
     />
     <View
       style={
-        Object {
+        {
           "alignItems": "center",
           "alignSelf": "center",
           "flexDirection": "row",
@@ -61,7 +61,7 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
     >
       <View
         style={
-          Object {
+          {
             "overflow": "hidden",
           }
         }
@@ -71,7 +71,7 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
           accessibilityLabel="refresh"
           accessibilityRole="button"
           accessibilityState={
-            Object {
+            {
               "disabled": false,
             }
           }
@@ -88,7 +88,7 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
         >
           <View
             style={
-              Object {
+              {
                 "alignItems": "center",
                 "backgroundColor": "transparent",
                 "justifyContent": "center",
@@ -99,20 +99,20 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
               allowFontScaling={false}
               selectable={false}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#EB576A",
                     "fontSize": 48.83720930232558,
                   },
-                  Object {
+                  {
                     "backgroundColor": "transparent",
                   },
-                  Object {
+                  {
                     "fontFamily": "Material Design Icons",
                     "fontStyle": "normal",
                     "fontWeight": "normal",
                   },
-                  Object {},
+                  {},
                 ]
               }
               testID="iconIcon"
@@ -124,7 +124,7 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
       </View>
       <View
         style={
-          Object {
+          {
             "alignItems": "center",
           }
         }
@@ -133,7 +133,7 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
           accessibilityRole="header"
           numberOfLines={1}
           style={
-            Object {
+            {
               "color": "#1F2532",
               "fontFamily": "IBMPlexSans-SemiBold",
               "fontSize": 33.75,
@@ -146,7 +146,7 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
       </View>
       <View
         style={
-          Object {
+          {
             "overflow": "hidden",
           }
         }
@@ -156,7 +156,7 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
           accessibilityLabel="Additional Information"
           accessibilityRole="button"
           accessibilityState={
-            Object {
+            {
               "disabled": false,
             }
           }
@@ -173,7 +173,7 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
         >
           <View
             style={
-              Object {
+              {
                 "alignItems": "center",
                 "backgroundColor": "transparent",
                 "justifyContent": "center",
@@ -184,20 +184,20 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
               allowFontScaling={false}
               selectable={false}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#EB576A",
                     "fontSize": 48.83720930232558,
                   },
-                  Object {
+                  {
                     "backgroundColor": "transparent",
                   },
-                  Object {
+                  {
                     "fontFamily": "Material Design Icons",
                     "fontStyle": "normal",
                     "fontWeight": "normal",
                   },
-                  Object {},
+                  {},
                 ]
               }
               testID="iconIcon"
@@ -210,7 +210,7 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
     </View>
     <View
       style={
-        Object {
+        {
           "flex": 1,
           "flexDirection": "column",
           "justifyContent": "center",
@@ -220,12 +220,12 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
       <Image
         resizeMode="contain"
         source={
-          Object {
+          {
             "process": [Function],
           }
         }
         style={
-          Object {
+          {
             "alignSelf": "center",
             "bottom": 13.081395348837209,
             "maxHeight": 308.781773931855,
@@ -239,7 +239,7 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
   <View
     onLayout={[Function]}
     style={
-      Object {
+      {
         "flex": 1,
         "flexDirection": "column",
         "width": "100%",
@@ -248,7 +248,7 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
   >
     <RCTScrollView
       contentContainerStyle={
-        Object {
+        {
           "flexGrow": 1,
         }
       }
@@ -256,7 +256,7 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
       onScroll={[Function]}
       scrollEventThrottle={16}
       style={
-        Object {
+        {
           "flex": 1,
           "flexDirection": "column",
           "width": "100%",
@@ -266,13 +266,13 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
       <View>
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "backgroundColor": "#F8F9FA",
                 "flexDirection": "column",
                 "height": "100%",
               },
-              Object {
+              {
                 "justifyContent": "space-between",
               },
             ]
@@ -295,7 +295,7 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
           >
             <View
               style={
-                Object {
+                {
                   "alignItems": "center",
                   "backgroundColor": "#EB576A",
                   "borderBottomColor": "#EB576A",
@@ -310,8 +310,8 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
             >
               <View
                 style={
-                  Array [
-                    Object {
+                  [
+                    {
                       "alignItems": "flex-start",
                       "flex": 1,
                       "justifyContent": "center",
@@ -320,8 +320,8 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
                   ]
                 }
                 theme={
-                  Object {
-                    "colors": Object {
+                  {
+                    "colors": {
                       "black": "#242424",
                       "disabled": "hsl(208, 8%, 90%)",
                       "divider": "#bcbbc1",
@@ -333,8 +333,8 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
                       "grey4": "#bdc6cf",
                       "grey5": "#e1e8ee",
                       "greyOutline": "#bbb",
-                      "platform": Object {
-                        "android": Object {
+                      "platform": {
+                        "android": {
                           "error": "#f44336",
                           "grey": "rgba(0, 0, 0, 0.54)",
                           "primary": "#2196f3",
@@ -343,7 +343,7 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
                           "success": "#4caf50",
                           "warning": "#ffeb3b",
                         },
-                        "default": Object {
+                        "default": {
                           "error": "#ff3b30",
                           "grey": "#7d7d7d",
                           "primary": "#007aff",
@@ -352,7 +352,7 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
                           "success": "#4cd964",
                           "warning": "#ffcc00",
                         },
-                        "ios": Object {
+                        "ios": {
                           "error": "#ff3b30",
                           "grey": "#7d7d7d",
                           "primary": "#007aff",
@@ -361,7 +361,7 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
                           "success": "#4cd964",
                           "warning": "#ffcc00",
                         },
-                        "web": Object {
+                        "web": {
                           "error": "#ff190c",
                           "grey": "#393e42",
                           "primary": "#2089dc",
@@ -383,7 +383,7 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
               >
                 <Text
                   style={
-                    Object {
+                    {
                       "backgroundColor": "transparent",
                       "color": "#F8F9FA",
                       "fontFamily": "IBMPlexSans-SemiBold",
@@ -397,7 +397,7 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
                 </Text>
                 <Text
                   style={
-                    Object {
+                    {
                       "backgroundColor": "transparent",
                       "color": "#F8F9FA",
                       "fontFamily": "IBMPlexSans",
@@ -412,14 +412,14 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
               </View>
               <View
                 style={
-                  Object {
+                  {
                     "paddingLeft": 16,
                   }
                 }
               />
               <View
                 style={
-                  Object {
+                  {
                     "alignSelf": "center",
                     "backgroundColor": "#F8F9FA",
                     "borderRadius": 16,
@@ -427,7 +427,7 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
                     "margin": 7,
                     "overflow": "hidden",
                     "shadowColor": "rgba(0,0,0, .4)",
-                    "shadowOffset": Object {
+                    "shadowOffset": {
                       "height": 1,
                       "width": 1,
                     },
@@ -440,7 +440,7 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
                 <View>
                   <View
                     style={
-                      Object {
+                      {
                         "alignItems": "center",
                         "backgroundColor": "#ffffff",
                         "borderRadius": 16,
@@ -454,20 +454,20 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
                       allowFontScaling={false}
                       selectable={false}
                       style={
-                        Array [
-                          Object {
+                        [
+                          {
                             "color": "#EB576A",
                             "fontSize": 12,
                           },
-                          Object {
+                          {
                             "backgroundColor": "transparent",
                           },
-                          Object {
+                          {
                             "fontFamily": "Material Design Icons",
                             "fontStyle": "normal",
                             "fontWeight": "normal",
                           },
-                          Object {},
+                          {},
                         ]
                       }
                       testID="iconIcon"
@@ -481,7 +481,7 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
           </View>
           <View
             style={
-              Object {
+              {
                 "marginHorizontal": 52.325581395348834,
                 "marginVertical": 43.604651162790695,
               }
@@ -490,7 +490,7 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
             <View>
               <Text
                 style={
-                  Object {
+                  {
                     "alignSelf": "center",
                     "color": "#1F2532",
                     "fontFamily": "IBMPlexSans-SemiBold",
@@ -504,7 +504,7 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
               </Text>
               <Text
                 style={
-                  Object {
+                  {
                     "alignSelf": "center",
                     "color": "#1F2532",
                     "fontFamily": "IBMPlexSans",
@@ -518,7 +518,7 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
                 This is text that is presented to first-time-users. It tells them when the first questionnaire is due: 
                 <Text
                   style={
-                    Object {
+                    {
                       "fontFamily": "IBMPlexSans-SemiBold",
                       "fontSize": 26.25,
                       "lineHeight": 35.625,
@@ -532,7 +532,7 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
               </Text>
               <Text
                 style={
-                  Object {
+                  {
                     "alignSelf": "center",
                     "color": "#1F2532",
                     "fontFamily": "IBMPlexSans",
@@ -549,7 +549,7 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
           </View>
           <View
             style={
-              Object {
+              {
                 "flexDirection": "row",
                 "flexWrap": "wrap",
                 "justifyContent": "center",
@@ -569,7 +569,7 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
               onResponderTerminationRequest={[Function]}
               onStartShouldSetResponder={[Function]}
               style={
-                Object {
+                {
                   "alignItems": "center",
                   "backgroundColor": "#DADADA",
                   "borderRadius": 5,
@@ -587,14 +587,14 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
             >
               <View
                 style={
-                  Object {
+                  {
                     "justifyContent": "space-around",
                   }
                 }
               >
                 <View
                   style={
-                    Object {
+                    {
                       "overflow": "hidden",
                     }
                   }
@@ -602,7 +602,7 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
                   <View>
                     <View
                       style={
-                        Object {
+                        {
                           "alignItems": "center",
                           "backgroundColor": "transparent",
                           "justifyContent": "center",
@@ -613,21 +613,21 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
                         allowFontScaling={false}
                         selectable={false}
                         style={
-                          Array [
-                            Object {
+                          [
+                            {
                               "color": "#F8F9FA",
                               "fontSize": 24,
                             },
-                            Object {
+                            {
                               "backgroundColor": "transparent",
                               "marginBottom": 5,
                             },
-                            Object {
+                            {
                               "fontFamily": "Material Icons",
                               "fontStyle": "normal",
                               "fontWeight": "normal",
                             },
-                            Object {},
+                            {},
                           ]
                         }
                         testID="iconIcon"
@@ -639,7 +639,7 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
                 </View>
                 <Text
                   style={
-                    Object {
+                    {
                       "color": "white",
                       "fontFamily": "IBMPlexSans-SemiBold",
                       "fontSize": 26.25,

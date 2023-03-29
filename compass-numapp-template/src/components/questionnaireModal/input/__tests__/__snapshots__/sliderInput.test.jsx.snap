@@ -3,14 +3,14 @@
 exports[`SliderInput should render sliderInput with all properties 1`] = `
 <View
   style={
-    Object {
+    {
       "marginBottom": 10,
     }
   }
 >
   <Text
     style={
-      Object {
+      {
         "color": "#1F2532",
         "fontFamily": "IBMPlexSans-SemiBold",
         "fontSize": 33.75,
@@ -40,11 +40,11 @@ exports[`SliderInput should render sliderInput with all properties 1`] = `
     onStartShouldSetResponder={[Function]}
     step={1}
     style={
-      Array [
-        Object {
+      [
+        {
           "width": 710,
         },
-        Object {
+        {
           "height": 40,
         },
       ]
@@ -55,7 +55,7 @@ exports[`SliderInput should render sliderInput with all properties 1`] = `
   />
   <View
     style={
-      Object {
+      {
         "flex": 1,
         "flexDirection": "row",
         "justifyContent": "space-between",
@@ -65,7 +65,7 @@ exports[`SliderInput should render sliderInput with all properties 1`] = `
   >
     <Text
       style={
-        Object {
+        {
           "textAlign": "left",
           "width": "33%",
         }
@@ -75,7 +75,7 @@ exports[`SliderInput should render sliderInput with all properties 1`] = `
     </Text>
     <Text
       style={
-        Object {
+        {
           "textAlign": "right",
           "width": "33%",
         }
