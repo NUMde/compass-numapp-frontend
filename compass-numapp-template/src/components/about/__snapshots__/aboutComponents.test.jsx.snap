@@ -15,7 +15,7 @@ exports[`aboutListItem should render the aboutListItem 1`] = `
 >
   <View
     style={
-      Object {
+      {
         "alignItems": "center",
         "backgroundColor": "#F8F9FA",
         "borderBottomColor": "#F8F9FA",
@@ -30,8 +30,8 @@ exports[`aboutListItem should render the aboutListItem 1`] = `
   >
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "alignItems": "flex-start",
             "flex": 1,
             "justifyContent": "center",
@@ -40,8 +40,8 @@ exports[`aboutListItem should render the aboutListItem 1`] = `
         ]
       }
       theme={
-        Object {
-          "colors": Object {
+        {
+          "colors": {
             "black": "#242424",
             "disabled": "hsl(208, 8%, 90%)",
             "divider": "#bcbbc1",
@@ -53,8 +53,8 @@ exports[`aboutListItem should render the aboutListItem 1`] = `
             "grey4": "#bdc6cf",
             "grey5": "#e1e8ee",
             "greyOutline": "#bbb",
-            "platform": Object {
-              "android": Object {
+            "platform": {
+              "android": {
                 "error": "#f44336",
                 "grey": "rgba(0, 0, 0, 0.54)",
                 "primary": "#2196f3",
@@ -63,7 +63,7 @@ exports[`aboutListItem should render the aboutListItem 1`] = `
                 "success": "#4caf50",
                 "warning": "#ffeb3b",
               },
-              "default": Object {
+              "default": {
                 "error": "#ff3b30",
                 "grey": "#7d7d7d",
                 "primary": "#007aff",
@@ -72,7 +72,7 @@ exports[`aboutListItem should render the aboutListItem 1`] = `
                 "success": "#4cd964",
                 "warning": "#ffcc00",
               },
-              "ios": Object {
+              "ios": {
                 "error": "#ff3b30",
                 "grey": "#7d7d7d",
                 "primary": "#007aff",
@@ -81,7 +81,7 @@ exports[`aboutListItem should render the aboutListItem 1`] = `
                 "success": "#4cd964",
                 "warning": "#ffcc00",
               },
-              "web": Object {
+              "web": {
                 "error": "#ff190c",
                 "grey": "#393e42",
                 "primary": "#2089dc",
@@ -103,7 +103,7 @@ exports[`aboutListItem should render the aboutListItem 1`] = `
     >
       <Text
         style={
-          Object {
+          {
             "backgroundColor": "transparent",
             "color": "#242424",
             "fontFamily": "IBMPlexSans-SemiBold",
@@ -117,7 +117,7 @@ exports[`aboutListItem should render the aboutListItem 1`] = `
       </Text>
       <Text
         style={
-          Object {
+          {
             "backgroundColor": "transparent",
             "color": "#1F2532",
             "fontFamily": "IBMPlexSans",
@@ -132,14 +132,14 @@ exports[`aboutListItem should render the aboutListItem 1`] = `
     </View>
     <View
       style={
-        Object {
+        {
           "paddingLeft": 16,
         }
       }
     />
     <View
       style={
-        Object {
+        {
           "alignSelf": "center",
           "borderRadius": 16,
           "height": 28,
@@ -152,7 +152,7 @@ exports[`aboutListItem should render the aboutListItem 1`] = `
       <View>
         <View
           style={
-            Object {
+            {
               "alignItems": "center",
               "backgroundColor": "#006864",
               "borderRadius": 16,
@@ -166,20 +166,20 @@ exports[`aboutListItem should render the aboutListItem 1`] = `
             allowFontScaling={false}
             selectable={false}
             style={
-              Array [
-                Object {
+              [
+                {
                   "color": "#ffffff",
                   "fontSize": 12,
                 },
-                Object {
+                {
                   "backgroundColor": "transparent",
                 },
-                Object {
+                {
                   "fontFamily": "Entypo",
                   "fontStyle": "normal",
                   "fontWeight": "normal",
                 },
-                Object {},
+                {},
               ]
             }
             testID="iconIcon"
@@ -208,7 +208,7 @@ exports[`aboutListLink should render the aboutListLink 1`] = `
 >
   <View
     style={
-      Object {
+      {
         "alignItems": "center",
         "backgroundColor": "#F8F9FA",
         "borderBottomColor": "#F8F9FA",
@@ -223,8 +223,8 @@ exports[`aboutListLink should render the aboutListLink 1`] = `
   >
     <View
       style={
-        Array [
-          Object {
+        [
+          {
             "alignItems": "flex-start",
             "flex": 1,
             "justifyContent": "center",
@@ -233,8 +233,8 @@ exports[`aboutListLink should render the aboutListLink 1`] = `
         ]
       }
       theme={
-        Object {
-          "colors": Object {
+        {
+          "colors": {
             "black": "#242424",
             "disabled": "hsl(208, 8%, 90%)",
             "divider": "#bcbbc1",
@@ -246,8 +246,8 @@ exports[`aboutListLink should render the aboutListLink 1`] = `
             "grey4": "#bdc6cf",
             "grey5": "#e1e8ee",
             "greyOutline": "#bbb",
-            "platform": Object {
-              "android": Object {
+            "platform": {
+              "android": {
                 "error": "#f44336",
                 "grey": "rgba(0, 0, 0, 0.54)",
                 "primary": "#2196f3",
@@ -256,7 +256,7 @@ exports[`aboutListLink should render the aboutListLink 1`] = `
                 "success": "#4caf50",
                 "warning": "#ffeb3b",
               },
-              "default": Object {
+              "default": {
                 "error": "#ff3b30",
                 "grey": "#7d7d7d",
                 "primary": "#007aff",
@@ -265,7 +265,7 @@ exports[`aboutListLink should render the aboutListLink 1`] = `
                 "success": "#4cd964",
                 "warning": "#ffcc00",
               },
-              "ios": Object {
+              "ios": {
                 "error": "#ff3b30",
                 "grey": "#7d7d7d",
                 "primary": "#007aff",
@@ -274,7 +274,7 @@ exports[`aboutListLink should render the aboutListLink 1`] = `
                 "success": "#4cd964",
                 "warning": "#ffcc00",
               },
-              "web": Object {
+              "web": {
                 "error": "#ff190c",
                 "grey": "#393e42",
                 "primary": "#2089dc",
@@ -296,7 +296,7 @@ exports[`aboutListLink should render the aboutListLink 1`] = `
     >
       <Text
         style={
-          Object {
+          {
             "backgroundColor": "transparent",
             "color": "#242424",
             "fontFamily": "IBMPlexSans-SemiBold",
@@ -310,7 +310,7 @@ exports[`aboutListLink should render the aboutListLink 1`] = `
       </Text>
       <Text
         style={
-          Object {
+          {
             "backgroundColor": "transparent",
             "color": "#1F2532",
             "fontFamily": "IBMPlexSans",
@@ -325,14 +325,14 @@ exports[`aboutListLink should render the aboutListLink 1`] = `
     </View>
     <View
       style={
-        Object {
+        {
           "paddingLeft": 16,
         }
       }
     />
     <View
       style={
-        Object {
+        {
           "alignSelf": "center",
           "borderRadius": 16,
           "height": 28,
@@ -345,7 +345,7 @@ exports[`aboutListLink should render the aboutListLink 1`] = `
       <View>
         <View
           style={
-            Object {
+            {
               "alignItems": "center",
               "backgroundColor": "#EB576A",
               "borderRadius": 16,
@@ -359,20 +359,20 @@ exports[`aboutListLink should render the aboutListLink 1`] = `
             allowFontScaling={false}
             selectable={false}
             style={
-              Array [
-                Object {
+              [
+                {
                   "color": "#ffffff",
                   "fontSize": 12,
                 },
-                Object {
+                {
                   "backgroundColor": "transparent",
                 },
-                Object {
+                {
                   "fontFamily": "Entypo",
                   "fontStyle": "normal",
                   "fontWeight": "normal",
                 },
-                Object {},
+                {},
               ]
             }
             testID="iconIcon"
@@ -406,7 +406,7 @@ exports[`redirectModal should render the redirectModal 1`] = `
   scrollTo={null}
   statusBarTranslucent={false}
   supportedOrientations={
-    Array [
+    [
       "portrait",
       "landscape",
     ]
@@ -429,7 +429,7 @@ exports[`redirectModal should render the redirectModal 1`] = `
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
     style={
-      Object {
+      {
         "backgroundColor": "black",
         "bottom": 0,
         "height": 1334,
@@ -446,21 +446,21 @@ exports[`redirectModal should render the redirectModal 1`] = `
     onLayout={[Function]}
     pointerEvents="box-none"
     style={
-      Array [
-        Array [
-          Object {
+      [
+        [
+          {
             "margin": 37.5,
-            "transform": Array [
-              Object {
+            "transform": [
+              {
                 "translateY": 0,
               },
             ],
           },
-          Object {
+          {
             "flex": 1,
             "justifyContent": "center",
           },
-          Object {
+          {
             "borderColor": "#F8F9FA",
             "borderRadius": 10,
             "justifyContent": "flex-end",
@@ -469,11 +469,11 @@ exports[`redirectModal should render the redirectModal 1`] = `
             "marginRight": 0,
             "marginTop": 80,
           },
-          Object {
+          {
             "margin": 0,
           },
         ],
-        Object {
+        {
           "paddingBottom": 0,
         },
       ]
@@ -498,7 +498,7 @@ exports[`redirectModal should render the redirectModal 1`] = `
       scrollTo={null}
       statusBarTranslucent={false}
       style={
-        Object {
+        {
           "borderColor": "#F8F9FA",
           "borderRadius": 10,
           "flex": 1,
@@ -508,15 +508,15 @@ exports[`redirectModal should render the redirectModal 1`] = `
           "marginLeft": 0,
           "marginRight": 0,
           "marginTop": 80,
-          "transform": Array [
-            Object {
+          "transform": [
+            {
               "translateY": 1334,
             },
           ],
         }
       }
       supportedOrientations={
-        Array [
+        [
           "portrait",
           "landscape",
         ]
@@ -525,7 +525,7 @@ exports[`redirectModal should render the redirectModal 1`] = `
     >
       <View
         style={
-          Object {
+          {
             "backgroundColor": "#F8F9FA",
             "borderColor": "#F8F9FA",
             "borderTopLeftRadius": 10,
@@ -539,7 +539,7 @@ exports[`redirectModal should render the redirectModal 1`] = `
       >
         <View
           style={
-            Object {
+            {
               "paddingBottom": 20,
               "paddingTop": 20,
             }
@@ -547,7 +547,7 @@ exports[`redirectModal should render the redirectModal 1`] = `
         >
           <View
             style={
-              Object {
+              {
                 "borderBottomColor": "#F8F9FA",
                 "borderBottomWidth": 1,
                 "flexDirection": "row",
@@ -558,7 +558,7 @@ exports[`redirectModal should render the redirectModal 1`] = `
           >
             <Text
               style={
-                Object {
+                {
                   "color": "#1F2532",
                   "fontFamily": "IBMPlexSans-SemiBold",
                   "fontSize": 45,
@@ -585,14 +585,14 @@ exports[`redirectModal should render the redirectModal 1`] = `
               onResponderTerminationRequest={[Function]}
               onStartShouldSetResponder={[Function]}
               style={
-                Object {
+                {
                   "opacity": 1,
                 }
               }
             >
               <View
                 style={
-                  Object {
+                  {
                     "overflow": "hidden",
                   }
                 }
@@ -602,7 +602,7 @@ exports[`redirectModal should render the redirectModal 1`] = `
                 >
                   <View
                     style={
-                      Object {
+                      {
                         "alignItems": "center",
                         "backgroundColor": "transparent",
                         "justifyContent": "center",
@@ -613,20 +613,20 @@ exports[`redirectModal should render the redirectModal 1`] = `
                       allowFontScaling={false}
                       selectable={false}
                       style={
-                        Array [
-                          Object {
+                        [
+                          {
                             "color": "#1F2532",
                             "fontSize": 24,
                           },
-                          Object {
+                          {
                             "backgroundColor": "transparent",
                           },
-                          Object {
+                          {
                             "fontFamily": "Material Design Icons",
                             "fontStyle": "normal",
                             "fontWeight": "normal",
                           },
-                          Object {},
+                          {},
                         ]
                       }
                       testID="iconIcon"
@@ -640,7 +640,7 @@ exports[`redirectModal should render the redirectModal 1`] = `
           </View>
           <Text
             style={
-              Object {
+              {
                 "color": "#1F2532",
                 "fontFamily": "IBMPlexSans",
                 "fontSize": 28.125,
@@ -655,7 +655,7 @@ exports[`redirectModal should render the redirectModal 1`] = `
       </View>
       <View
         style={
-          Object {
+          {
             "backgroundColor": "#DADADA",
             "height": 1,
           }
@@ -663,7 +663,7 @@ exports[`redirectModal should render the redirectModal 1`] = `
       />
       <View
         style={
-          Object {
+          {
             "alignItems": "center",
             "backgroundColor": "#F8F9FA",
             "flexDirection": "row",
@@ -674,7 +674,7 @@ exports[`redirectModal should render the redirectModal 1`] = `
       >
         <View
           style={
-            Object {
+            {
               "height": "auto",
               "margin": 10,
               "width": 44,
@@ -683,12 +683,12 @@ exports[`redirectModal should render the redirectModal 1`] = `
         />
         <View
           style={
-            Array [
-              Object {
+            [
+              {
                 "borderRadius": 3,
                 "overflow": "hidden",
               },
-              Object {
+              {
                 "borderRadius": 3,
               },
               undefined,
@@ -701,7 +701,7 @@ exports[`redirectModal should render the redirectModal 1`] = `
             accessibilityLabel="accept"
             accessibilityRole="button"
             accessibilityState={
-              Object {
+              {
                 "busy": false,
                 "disabled": false,
               }
@@ -717,7 +717,7 @@ exports[`redirectModal should render the redirectModal 1`] = `
             onResponderTerminationRequest={[Function]}
             onStartShouldSetResponder={[Function]}
             style={
-              Object {
+              {
                 "opacity": 1,
               }
             }
@@ -725,7 +725,7 @@ exports[`redirectModal should render the redirectModal 1`] = `
           >
             <View
               style={
-                Object {
+                {
                   "alignItems": "center",
                   "backgroundColor": "transparent",
                   "borderColor": "#2089dc",
@@ -739,7 +739,7 @@ exports[`redirectModal should render the redirectModal 1`] = `
             >
               <View
                 style={
-                  Object {
+                  {
                     "borderRadius": 28,
                     "height": 52,
                     "margin": 7,
@@ -751,7 +751,7 @@ exports[`redirectModal should render the redirectModal 1`] = `
                 <View>
                   <View
                     style={
-                      Object {
+                      {
                         "alignItems": "center",
                         "backgroundColor": "#1F2532",
                         "borderRadius": 28,
@@ -765,20 +765,20 @@ exports[`redirectModal should render the redirectModal 1`] = `
                       allowFontScaling={false}
                       selectable={false}
                       style={
-                        Array [
-                          Object {
+                        [
+                          {
                             "color": "#ffffff",
                             "fontSize": 24,
                           },
-                          Object {
+                          {
                             "backgroundColor": "transparent",
                           },
-                          Object {
+                          {
                             "fontFamily": "Material Design Icons",
                             "fontStyle": "normal",
                             "fontWeight": "normal",
                           },
-                          Object {},
+                          {},
                         ]
                       }
                       testID="iconIcon"
@@ -793,7 +793,7 @@ exports[`redirectModal should render the redirectModal 1`] = `
         </View>
         <View
           style={
-            Object {
+            {
               "height": "auto",
               "margin": 10,
               "width": 44,

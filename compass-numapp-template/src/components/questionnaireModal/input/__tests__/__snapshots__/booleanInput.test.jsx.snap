@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`BooleanInput should render a BooleanInput 1`] = `
-Array [
+[
   <Text
     style={
-      Object {
+      {
         "color": "#1F2532",
         "fontFamily": "IBMPlexSans-SemiBold",
         "fontSize": 33.75,
@@ -19,7 +19,7 @@ Array [
   <View
     accessibilityRole="checkbox"
     accessibilityState={
-      Object {
+      {
         "checked": false,
       }
     }
@@ -34,7 +34,7 @@ Array [
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
     style={
-      Object {
+      {
         "backgroundColor": "transparent",
         "borderColor": "transparent",
         "borderRadius": 3,
@@ -52,7 +52,7 @@ Array [
   >
     <View
       style={
-        Object {
+        {
           "alignItems": "center",
           "flexDirection": "row",
         }
@@ -62,20 +62,20 @@ Array [
         allowFontScaling={false}
         selectable={false}
         style={
-          Array [
-            Object {
+          [
+            {
               "color": "#919191",
               "fontSize": 24,
             },
-            Object {
+            {
               "minWidth": 24,
             },
-            Object {
+            {
               "fontFamily": "FontAwesome",
               "fontStyle": "normal",
               "fontWeight": "normal",
             },
-            Object {},
+            {},
           ]
         }
       >
@@ -83,7 +83,7 @@ Array [
       </Text>
       <Text
         style={
-          Object {
+          {
             "color": "#1F2532",
             "fontFamily": "IBMPlexSans-SemiBold",
             "fontSize": 26.25,
@@ -104,7 +104,7 @@ Array [
   <View
     accessibilityRole="checkbox"
     accessibilityState={
-      Object {
+      {
         "checked": false,
       }
     }
@@ -119,7 +119,7 @@ Array [
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
     style={
-      Object {
+      {
         "backgroundColor": "transparent",
         "borderColor": "transparent",
         "borderRadius": 3,
@@ -137,7 +137,7 @@ Array [
   >
     <View
       style={
-        Object {
+        {
           "alignItems": "center",
           "flexDirection": "row",
         }
@@ -147,20 +147,20 @@ Array [
         allowFontScaling={false}
         selectable={false}
         style={
-          Array [
-            Object {
+          [
+            {
               "color": "#919191",
               "fontSize": 24,
             },
-            Object {
+            {
               "minWidth": 24,
             },
-            Object {
+            {
               "fontFamily": "FontAwesome",
               "fontStyle": "normal",
               "fontWeight": "normal",
             },
-            Object {},
+            {},
           ]
         }
       >
@@ -168,7 +168,7 @@ Array [
       </Text>
       <Text
         style={
-          Object {
+          {
             "color": "#1F2532",
             "fontFamily": "IBMPlexSans-SemiBold",
             "fontSize": 26.25,

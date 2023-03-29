@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`choicesInput (CheckBoxes) should render a list of choices as checkboxes 1`] = `
-Array [
+[
   <Text
     accessibilityHint="Single Choice - only one answer option can be selected."
     accessibilityLabel="choice"
     style={
-      Object {
+      {
         "color": "#1F2532",
         "fontFamily": "IBMPlexSans-SemiBold",
         "fontSize": 32.8125,
@@ -22,7 +22,7 @@ Array [
   <View
     accessibilityRole="checkbox"
     accessibilityState={
-      Object {
+      {
         "checked": false,
       }
     }
@@ -37,7 +37,7 @@ Array [
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
     style={
-      Object {
+      {
         "backgroundColor": "transparent",
         "borderColor": "transparent",
         "borderRadius": 3,
@@ -55,7 +55,7 @@ Array [
   >
     <View
       style={
-        Object {
+        {
           "alignItems": "center",
           "flexDirection": "row",
         }
@@ -66,20 +66,20 @@ Array [
         onPress={[Function]}
         selectable={false}
         style={
-          Array [
-            Object {
+          [
+            {
               "color": "#919191",
               "fontSize": 24,
             },
-            Object {
+            {
               "minWidth": 24,
             },
-            Object {
+            {
               "fontFamily": "FontAwesome",
               "fontStyle": "normal",
               "fontWeight": "normal",
             },
-            Object {},
+            {},
           ]
         }
       >
@@ -87,7 +87,7 @@ Array [
       </Text>
       <Text
         style={
-          Object {
+          {
             "color": "#1F2532",
             "fontFamily": "IBMPlexSans-SemiBold",
             "fontSize": 26.25,
@@ -108,7 +108,7 @@ Array [
   <View
     accessibilityRole="checkbox"
     accessibilityState={
-      Object {
+      {
         "checked": false,
       }
     }
@@ -123,7 +123,7 @@ Array [
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
     style={
-      Object {
+      {
         "backgroundColor": "transparent",
         "borderColor": "transparent",
         "borderRadius": 3,
@@ -141,7 +141,7 @@ Array [
   >
     <View
       style={
-        Object {
+        {
           "alignItems": "center",
           "flexDirection": "row",
         }
@@ -152,20 +152,20 @@ Array [
         onPress={[Function]}
         selectable={false}
         style={
-          Array [
-            Object {
+          [
+            {
               "color": "#919191",
               "fontSize": 24,
             },
-            Object {
+            {
               "minWidth": 24,
             },
-            Object {
+            {
               "fontFamily": "FontAwesome",
               "fontStyle": "normal",
               "fontWeight": "normal",
             },
-            Object {},
+            {},
           ]
         }
       >
@@ -173,7 +173,7 @@ Array [
       </Text>
       <Text
         style={
-          Object {
+          {
             "color": "#1F2532",
             "fontFamily": "IBMPlexSans-SemiBold",
             "fontSize": 26.25,
@@ -194,7 +194,7 @@ Array [
   <View
     accessibilityRole="checkbox"
     accessibilityState={
-      Object {
+      {
         "checked": false,
       }
     }
@@ -209,7 +209,7 @@ Array [
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
     style={
-      Object {
+      {
         "backgroundColor": "transparent",
         "borderColor": "transparent",
         "borderRadius": 3,
@@ -227,7 +227,7 @@ Array [
   >
     <View
       style={
-        Object {
+        {
           "alignItems": "center",
           "flexDirection": "row",
         }
@@ -238,20 +238,20 @@ Array [
         onPress={[Function]}
         selectable={false}
         style={
-          Array [
-            Object {
+          [
+            {
               "color": "#919191",
               "fontSize": 24,
             },
-            Object {
+            {
               "minWidth": 24,
             },
-            Object {
+            {
               "fontFamily": "FontAwesome",
               "fontStyle": "normal",
               "fontWeight": "normal",
             },
-            Object {},
+            {},
           ]
         }
       >
@@ -259,7 +259,7 @@ Array [
       </Text>
       <Text
         style={
-          Object {
+          {
             "color": "#1F2532",
             "fontFamily": "IBMPlexSans-SemiBold",
             "fontSize": 26.25,
@@ -280,7 +280,7 @@ Array [
   <View
     accessibilityRole="checkbox"
     accessibilityState={
-      Object {
+      {
         "checked": false,
       }
     }
@@ -295,7 +295,7 @@ Array [
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
     style={
-      Object {
+      {
         "backgroundColor": "transparent",
         "borderColor": "transparent",
         "borderRadius": 3,
@@ -313,7 +313,7 @@ Array [
   >
     <View
       style={
-        Object {
+        {
           "alignItems": "center",
           "flexDirection": "row",
         }
@@ -324,20 +324,20 @@ Array [
         onPress={[Function]}
         selectable={false}
         style={
-          Array [
-            Object {
+          [
+            {
               "color": "#919191",
               "fontSize": 24,
             },
-            Object {
+            {
               "minWidth": 24,
             },
-            Object {
+            {
               "fontFamily": "FontAwesome",
               "fontStyle": "normal",
               "fontWeight": "normal",
             },
-            Object {},
+            {},
           ]
         }
       >
@@ -345,7 +345,7 @@ Array [
       </Text>
       <Text
         style={
-          Object {
+          {
             "color": "#1F2532",
             "fontFamily": "IBMPlexSans-SemiBold",
             "fontSize": 26.25,
@@ -366,7 +366,7 @@ Array [
   <View
     accessibilityRole="checkbox"
     accessibilityState={
-      Object {
+      {
         "checked": false,
       }
     }
@@ -381,7 +381,7 @@ Array [
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
     style={
-      Object {
+      {
         "backgroundColor": "transparent",
         "borderColor": "transparent",
         "borderRadius": 3,
@@ -399,7 +399,7 @@ Array [
   >
     <View
       style={
-        Object {
+        {
           "alignItems": "center",
           "flexDirection": "row",
         }
@@ -410,20 +410,20 @@ Array [
         onPress={[Function]}
         selectable={false}
         style={
-          Array [
-            Object {
+          [
+            {
               "color": "#919191",
               "fontSize": 24,
             },
-            Object {
+            {
               "minWidth": 24,
             },
-            Object {
+            {
               "fontFamily": "FontAwesome",
               "fontStyle": "normal",
               "fontWeight": "normal",
             },
-            Object {},
+            {},
           ]
         }
       >
@@ -431,7 +431,7 @@ Array [
       </Text>
       <Text
         style={
-          Object {
+          {
             "color": "#1F2532",
             "fontFamily": "IBMPlexSans-SemiBold",
             "fontSize": 26.25,
@@ -452,7 +452,7 @@ Array [
   <View
     accessibilityRole="checkbox"
     accessibilityState={
-      Object {
+      {
         "checked": false,
       }
     }
@@ -467,7 +467,7 @@ Array [
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
     style={
-      Object {
+      {
         "backgroundColor": "transparent",
         "borderColor": "transparent",
         "borderRadius": 3,
@@ -485,7 +485,7 @@ Array [
   >
     <View
       style={
-        Object {
+        {
           "alignItems": "center",
           "flexDirection": "row",
         }
@@ -496,20 +496,20 @@ Array [
         onPress={[Function]}
         selectable={false}
         style={
-          Array [
-            Object {
+          [
+            {
               "color": "#919191",
               "fontSize": 24,
             },
-            Object {
+            {
               "minWidth": 24,
             },
-            Object {
+            {
               "fontFamily": "FontAwesome",
               "fontStyle": "normal",
               "fontWeight": "normal",
             },
-            Object {},
+            {},
           ]
         }
       >
@@ -517,7 +517,7 @@ Array [
       </Text>
       <Text
         style={
-          Object {
+          {
             "color": "#1F2532",
             "fontFamily": "IBMPlexSans-SemiBold",
             "fontSize": 26.25,
@@ -539,12 +539,12 @@ Array [
 `;
 
 exports[`choicesInput (DropDown) should render a list of choices as dropdown 1`] = `
-Array [
+[
   <Text
     accessibilityHint="Single Choice - only one answer option can be selected."
     accessibilityLabel="choice"
     style={
-      Object {
+      {
         "color": "#1F2532",
         "fontFamily": "IBMPlexSans-SemiBold",
         "fontSize": 32.8125,
@@ -560,42 +560,42 @@ Array [
   <View>
     <RNCPicker
       items={
-        Array [
-          Object {
+        [
+          {
             "label": "Option A",
             "testID": undefined,
             "textColor": undefined,
-            "value": "{\\"valueString\\":\\"Option A\\"}",
+            "value": "{"valueString":"Option A"}",
           },
-          Object {
+          {
             "label": "Option B",
             "testID": undefined,
             "textColor": undefined,
-            "value": "{\\"valueString\\":\\"Option B\\"}",
+            "value": "{"valueString":"Option B"}",
           },
-          Object {
+          {
             "label": "Option C",
             "testID": undefined,
             "textColor": undefined,
-            "value": "{\\"valueString\\":\\"Option C\\"}",
+            "value": "{"valueString":"Option C"}",
           },
-          Object {
+          {
             "label": "Option D",
             "testID": undefined,
             "textColor": undefined,
-            "value": "{\\"valueString\\":\\"Option D\\"}",
+            "value": "{"valueString":"Option D"}",
           },
-          Object {
+          {
             "label": "Option E",
             "testID": undefined,
             "textColor": undefined,
-            "value": "{\\"valueCoding\\":{\\"code\\":\\"someCode\\",\\"system\\":\\"someSystem\\",\\"display\\":\\"Option E\\"}}",
+            "value": "{"valueCoding":{"code":"someCode","system":"someSystem","display":"Option E"}}",
           },
-          Object {
+          {
             "label": "someCode",
             "testID": undefined,
             "textColor": undefined,
-            "value": "{\\"valueCoding\\":{\\"code\\":\\"someCode\\",\\"system\\":\\"someSystem\\"}}",
+            "value": "{"valueCoding":{"code":"someCode","system":"someSystem"}}",
           },
         ]
       }
@@ -603,8 +603,8 @@ Array [
       onChange={[Function]}
       selectedIndex={0}
       style={
-        Array [
-          Object {
+        [
+          {
             "height": 216,
           },
           undefined,
@@ -617,12 +617,12 @@ Array [
 `;
 
 exports[`choicesInput (RadioButtons) should render a list of choices as radio buttons 1`] = `
-Array [
+[
   <Text
     accessibilityHint="Single Choice - only one answer option can be selected."
     accessibilityLabel="choice"
     style={
-      Object {
+      {
         "color": "#1F2532",
         "fontFamily": "IBMPlexSans-SemiBold",
         "fontSize": 32.8125,
@@ -638,7 +638,7 @@ Array [
   <View
     accessibilityRole="checkbox"
     accessibilityState={
-      Object {
+      {
         "checked": false,
       }
     }
@@ -653,7 +653,7 @@ Array [
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
     style={
-      Object {
+      {
         "backgroundColor": "transparent",
         "borderColor": "transparent",
         "borderRadius": 3,
@@ -671,7 +671,7 @@ Array [
   >
     <View
       style={
-        Object {
+        {
           "alignItems": "center",
           "flexDirection": "row",
         }
@@ -682,20 +682,20 @@ Array [
         onPress={[Function]}
         selectable={false}
         style={
-          Array [
-            Object {
+          [
+            {
               "color": "#919191",
               "fontSize": 24,
             },
-            Object {
+            {
               "minWidth": 24,
             },
-            Object {
+            {
               "fontFamily": "FontAwesome",
               "fontStyle": "normal",
               "fontWeight": "normal",
             },
-            Object {},
+            {},
           ]
         }
       >
@@ -703,7 +703,7 @@ Array [
       </Text>
       <Text
         style={
-          Object {
+          {
             "color": "#1F2532",
             "fontFamily": "IBMPlexSans-SemiBold",
             "fontSize": 26.25,
@@ -724,7 +724,7 @@ Array [
   <View
     accessibilityRole="checkbox"
     accessibilityState={
-      Object {
+      {
         "checked": false,
       }
     }
@@ -739,7 +739,7 @@ Array [
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
     style={
-      Object {
+      {
         "backgroundColor": "transparent",
         "borderColor": "transparent",
         "borderRadius": 3,
@@ -757,7 +757,7 @@ Array [
   >
     <View
       style={
-        Object {
+        {
           "alignItems": "center",
           "flexDirection": "row",
         }
@@ -768,20 +768,20 @@ Array [
         onPress={[Function]}
         selectable={false}
         style={
-          Array [
-            Object {
+          [
+            {
               "color": "#919191",
               "fontSize": 24,
             },
-            Object {
+            {
               "minWidth": 24,
             },
-            Object {
+            {
               "fontFamily": "FontAwesome",
               "fontStyle": "normal",
               "fontWeight": "normal",
             },
-            Object {},
+            {},
           ]
         }
       >
@@ -789,7 +789,7 @@ Array [
       </Text>
       <Text
         style={
-          Object {
+          {
             "color": "#1F2532",
             "fontFamily": "IBMPlexSans-SemiBold",
             "fontSize": 26.25,
@@ -810,7 +810,7 @@ Array [
   <View
     accessibilityRole="checkbox"
     accessibilityState={
-      Object {
+      {
         "checked": false,
       }
     }
@@ -825,7 +825,7 @@ Array [
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
     style={
-      Object {
+      {
         "backgroundColor": "transparent",
         "borderColor": "transparent",
         "borderRadius": 3,
@@ -843,7 +843,7 @@ Array [
   >
     <View
       style={
-        Object {
+        {
           "alignItems": "center",
           "flexDirection": "row",
         }
@@ -854,20 +854,20 @@ Array [
         onPress={[Function]}
         selectable={false}
         style={
-          Array [
-            Object {
+          [
+            {
               "color": "#919191",
               "fontSize": 24,
             },
-            Object {
+            {
               "minWidth": 24,
             },
-            Object {
+            {
               "fontFamily": "FontAwesome",
               "fontStyle": "normal",
               "fontWeight": "normal",
             },
-            Object {},
+            {},
           ]
         }
       >
@@ -875,7 +875,7 @@ Array [
       </Text>
       <Text
         style={
-          Object {
+          {
             "color": "#1F2532",
             "fontFamily": "IBMPlexSans-SemiBold",
             "fontSize": 26.25,
@@ -896,7 +896,7 @@ Array [
   <View
     accessibilityRole="checkbox"
     accessibilityState={
-      Object {
+      {
         "checked": false,
       }
     }
@@ -911,7 +911,7 @@ Array [
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
     style={
-      Object {
+      {
         "backgroundColor": "transparent",
         "borderColor": "transparent",
         "borderRadius": 3,
@@ -929,7 +929,7 @@ Array [
   >
     <View
       style={
-        Object {
+        {
           "alignItems": "center",
           "flexDirection": "row",
         }
@@ -940,20 +940,20 @@ Array [
         onPress={[Function]}
         selectable={false}
         style={
-          Array [
-            Object {
+          [
+            {
               "color": "#919191",
               "fontSize": 24,
             },
-            Object {
+            {
               "minWidth": 24,
             },
-            Object {
+            {
               "fontFamily": "FontAwesome",
               "fontStyle": "normal",
               "fontWeight": "normal",
             },
-            Object {},
+            {},
           ]
         }
       >
@@ -961,7 +961,7 @@ Array [
       </Text>
       <Text
         style={
-          Object {
+          {
             "color": "#1F2532",
             "fontFamily": "IBMPlexSans-SemiBold",
             "fontSize": 26.25,
@@ -982,7 +982,7 @@ Array [
   <View
     accessibilityRole="checkbox"
     accessibilityState={
-      Object {
+      {
         "checked": false,
       }
     }
@@ -997,7 +997,7 @@ Array [
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
     style={
-      Object {
+      {
         "backgroundColor": "transparent",
         "borderColor": "transparent",
         "borderRadius": 3,
@@ -1015,7 +1015,7 @@ Array [
   >
     <View
       style={
-        Object {
+        {
           "alignItems": "center",
           "flexDirection": "row",
         }
@@ -1026,20 +1026,20 @@ Array [
         onPress={[Function]}
         selectable={false}
         style={
-          Array [
-            Object {
+          [
+            {
               "color": "#919191",
               "fontSize": 24,
             },
-            Object {
+            {
               "minWidth": 24,
             },
-            Object {
+            {
               "fontFamily": "FontAwesome",
               "fontStyle": "normal",
               "fontWeight": "normal",
             },
-            Object {},
+            {},
           ]
         }
       >
@@ -1047,7 +1047,7 @@ Array [
       </Text>
       <Text
         style={
-          Object {
+          {
             "color": "#1F2532",
             "fontFamily": "IBMPlexSans-SemiBold",
             "fontSize": 26.25,
@@ -1068,7 +1068,7 @@ Array [
   <View
     accessibilityRole="checkbox"
     accessibilityState={
-      Object {
+      {
         "checked": false,
       }
     }
@@ -1083,7 +1083,7 @@ Array [
     onResponderTerminationRequest={[Function]}
     onStartShouldSetResponder={[Function]}
     style={
-      Object {
+      {
         "backgroundColor": "transparent",
         "borderColor": "transparent",
         "borderRadius": 3,
@@ -1101,7 +1101,7 @@ Array [
   >
     <View
       style={
-        Object {
+        {
           "alignItems": "center",
           "flexDirection": "row",
         }
@@ -1112,20 +1112,20 @@ Array [
         onPress={[Function]}
         selectable={false}
         style={
-          Array [
-            Object {
+          [
+            {
               "color": "#919191",
               "fontSize": 24,
             },
-            Object {
+            {
               "minWidth": 24,
             },
-            Object {
+            {
               "fontFamily": "FontAwesome",
               "fontStyle": "normal",
               "fontWeight": "normal",
             },
-            Object {},
+            {},
           ]
         }
       >
@@ -1133,7 +1133,7 @@ Array [
       </Text>
       <Text
         style={
-          Object {
+          {
             "color": "#1F2532",
             "fontFamily": "IBMPlexSans-SemiBold",
             "fontSize": 26.25,

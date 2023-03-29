@@ -8,7 +8,7 @@ exports[`AboutScreen should render the about screen 1`] = `
 >
   <View
     style={
-      Object {
+      {
         "backgroundColor": "#1F2532",
         "bottom": 0,
         "flex": 1,
@@ -21,7 +21,7 @@ exports[`AboutScreen should render the about screen 1`] = `
   >
     <View
       style={
-        Object {
+        {
           "alignItems": "center",
           "bottom": 0,
           "justifyContent": "center",
@@ -36,7 +36,7 @@ exports[`AboutScreen should render the about screen 1`] = `
         color="#EB576A"
         size="large"
         style={
-          Object {
+          {
             "flex": 1,
           }
         }

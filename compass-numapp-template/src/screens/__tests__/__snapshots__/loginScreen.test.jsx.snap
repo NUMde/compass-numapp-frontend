@@ -3,7 +3,7 @@
 exports[`LoginScreen should render the login screen 1`] = `
 <View
   style={
-    Object {
+    {
       "backgroundColor": "#F8F9FA",
       "flex": 1,
     }
@@ -13,7 +13,7 @@ exports[`LoginScreen should render the login screen 1`] = `
   <View
     accessibilityIgnoresInvertColors={true}
     style={
-      Object {
+      {
         "backgroundColor": "#F8F9FA",
         "flexDirection": "column",
         "height": 354.06976744186045,
@@ -25,20 +25,20 @@ exports[`LoginScreen should render the login screen 1`] = `
     <Image
       resizeMode="cover"
       source={
-        Object {
+        {
           "process": [Function],
         }
       }
       style={
-        Array [
-          Object {
+        [
+          {
             "bottom": 0,
             "left": 0,
             "position": "absolute",
             "right": 0,
             "top": 0,
           },
-          Object {
+          {
             "height": 354.06976744186045,
             "width": "100%",
           },
@@ -48,7 +48,7 @@ exports[`LoginScreen should render the login screen 1`] = `
     />
     <View
       style={
-        Object {
+        {
           "alignItems": "center",
           "alignSelf": "center",
           "flexDirection": "row",
@@ -60,7 +60,7 @@ exports[`LoginScreen should render the login screen 1`] = `
     >
       <View
         style={
-          Object {
+          {
             "overflow": "hidden",
           }
         }
@@ -70,7 +70,7 @@ exports[`LoginScreen should render the login screen 1`] = `
           accessibilityLabel="back"
           accessibilityRole="button"
           accessibilityState={
-            Object {
+            {
               "disabled": false,
             }
           }
@@ -87,7 +87,7 @@ exports[`LoginScreen should render the login screen 1`] = `
         >
           <View
             style={
-              Object {
+              {
                 "alignItems": "center",
                 "backgroundColor": "transparent",
                 "justifyContent": "center",
@@ -98,20 +98,20 @@ exports[`LoginScreen should render the login screen 1`] = `
               allowFontScaling={false}
               selectable={false}
               style={
-                Array [
-                  Object {
+                [
+                  {
                     "color": "#EB576A",
                     "fontSize": 48.83720930232558,
                   },
-                  Object {
+                  {
                     "backgroundColor": "transparent",
                   },
-                  Object {
+                  {
                     "fontFamily": "Material Design Icons",
                     "fontStyle": "normal",
                     "fontWeight": "normal",
                   },
-                  Object {},
+                  {},
                 ]
               }
               testID="iconIcon"
@@ -123,7 +123,7 @@ exports[`LoginScreen should render the login screen 1`] = `
       </View>
       <View
         style={
-          Object {
+          {
             "alignItems": "center",
           }
         }
@@ -132,7 +132,7 @@ exports[`LoginScreen should render the login screen 1`] = `
           accessibilityRole="header"
           numberOfLines={1}
           style={
-            Object {
+            {
               "color": "#1F2532",
               "fontFamily": "IBMPlexSans-SemiBold",
               "fontSize": 33.75,
@@ -145,7 +145,7 @@ exports[`LoginScreen should render the login screen 1`] = `
       </View>
       <View
         style={
-          Object {
+          {
             "height": 26,
             "width": 26,
           }
@@ -154,7 +154,7 @@ exports[`LoginScreen should render the login screen 1`] = `
     </View>
     <View
       style={
-        Object {
+        {
           "flex": 1,
           "flexDirection": "column",
           "justifyContent": "center",
@@ -164,12 +164,12 @@ exports[`LoginScreen should render the login screen 1`] = `
       <Image
         resizeMode="contain"
         source={
-          Object {
+          {
             "process": [Function],
           }
         }
         style={
-          Object {
+          {
             "alignSelf": "center",
             "bottom": 13.081395348837209,
             "maxHeight": 308.781773931855,
@@ -182,7 +182,7 @@ exports[`LoginScreen should render the login screen 1`] = `
   </View>
   <View
     style={
-      Object {
+      {
         "alignItems": "center",
         "flex": 1,
       }
@@ -191,7 +191,7 @@ exports[`LoginScreen should render the login screen 1`] = `
   >
     <Text
       style={
-        Object {
+        {
           "color": "#1F2532",
           "flexBasis": 33,
           "flexGrow": 1,
