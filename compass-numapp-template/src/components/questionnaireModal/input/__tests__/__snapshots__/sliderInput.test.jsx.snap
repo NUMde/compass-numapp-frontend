@@ -25,8 +25,8 @@ exports[`SliderInput should render sliderInput with all properties 1`] = `
   <RNCSlider
     accessibilityHint="0 equals Low-Label, and 10 equals High-Label"
     disabled={false}
-    enabled={true}
     inverted={false}
+    lowerLimit={-9007199254740991}
     maximumTrackTintColor="#1F2532"
     maximumValue={10}
     minimumTrackTintColor="#1F2532"
@@ -51,6 +51,7 @@ exports[`SliderInput should render sliderInput with all properties 1`] = `
     }
     tapToSeek={false}
     testID="Slider"
+    upperLimit={9007199254740991}
     value={5}
   />
   <View
