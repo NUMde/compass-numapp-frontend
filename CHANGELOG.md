@@ -23,6 +23,61 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 -   -/-
 
+## [0.3.0] - 2023-03-30
+
+### Added
+
+-   Add CodeQL workflow for GitHub code scanning by @lgtm-com (https://github.com/NUMde/compass-numapp-frontend/pull/303)
+
+### Fixed
+
+-   Correcting text in German translation (de.js) by @medonja (https://github.com/NUMde/compass-numapp-frontend/pull/215)
+-   fix scroll behavior in questionnaire modal by @mbastian93 (https://github.com/NUMde/compass-numapp-frontend/pull/314)
+
+### Changed
+
+-   update dependency eslint-plugin-prettier to v4.2.1 (https://github.com/NUMde/compass-numapp-frontend/pull/197)
+-   update dependency react-native-vector-icons to v9.2.0 (https://github.com/NUMde/compass-numapp-frontend/pull/207)
+-   update dependency redux to v4.2.0 (https://github.com/NUMde/compass-numapp-frontend/pull/212)
+-   update dependency @testing-library/react-native to v11 (https://github.com/NUMde/compass-numapp-frontend/pull/224)
+-   migrate redux store setup by @mbastian93 (https://github.com/NUMde/compass-numapp-frontend/pull/226)
+-   update dependency @react-navigation/native-stack to v6.9.1 (https://github.com/NUMde/compass-numapp-frontend/pull/282)
+-   update dependency react-native-gesture-handler to v2.8.0 (https://github.com/NUMde/compass-numapp-frontend/pull/294)
+-   update dependency react-native-screens to v3.18.2( https://github.com/NUMde/compass-numapp-frontend/pull/296)
+-   update dependency react-native-encrypted-storage to v4.0.3 (https://github.com/NUMde/compass-numapp-frontend/pull/306)
+-   update dependency react-redux to v8.0.5 (https://github.com/NUMde/compass-numapp-frontend/pull/307)
+-   update dependency redux-thunk to v2.4.2 (https://github.com/NUMde/compass-numapp-frontend/pull/311)
+-   update babel monorepo to v7.20.2 (https://github.com/NUMde/compass-numapp-frontend/pull/313)
+-   update dependency react-native-reanimated to v2.13.0 (https://github.com/NUMde/compass-numapp-frontend/pull/321)
+-   update dependency jsdom to v20.0.3 (https://github.com/NUMde/compass-numapp-frontend/pull/324)
+-   update dependency @react-native-community/eslint-config to v3.2.0 (https://github.com/NUMde/compass-numapp-frontend/pull/326)
+-   update dependency react-native-webview to v11.26.0 (https://github.com/NUMde/compass-numapp-frontend/pull/340)
+-   update dependency eslint-plugin-jest to v27.2.1 (https://github.com/NUMde/compass-numapp-frontend/pull/343)
+-   update react-navigation monorepo (https://github.com/NUMde/compass-numapp-frontend/pull/344)
+-   update dependency eslint to v8.32.0 (https://github.com/NUMde/compass-numapp-frontend/pull/346)
+-   update dependency @babel/core to v7.20.12 (https://github.com/NUMde/compass-numapp-frontend/pull/347)
+-   update dependency patch-package to v6.5.1 (https://github.com/NUMde/compass-numapp-frontend/pull/348)
+-   update dependency react-native-elements to v3.4.3 (https://github.com/NUMde/compass-numapp-frontend/pull/349)
+-   update dependency eslint-import-resolver-babel-module to v5.3.2 (https://github.com/NUMde/compass-numapp-frontend/pull/351)
+-   update dependency eslint-config-prettier to v8.6.0 (https://github.com/NUMde/compass-numapp-frontend/pull/352)
+-   update dependency eslint-plugin-import to v2.27.5 (https://github.com/NUMde/compass-numapp-frontend/pull/353)
+-   update dependency eslint-plugin-jsx-a11y to v6.7.1 (https://github.com/NUMde/compass-numapp-frontend/pull/354)
+-   Bump react+react native by @mbastian93 (https://github.com/NUMde/compass-numapp-frontend/pull/362)
+-   update dependency metro-react-native-babel-preset to v0.76.0 (https://github.com/NUMde/compass-numapp-frontend/pull/357)
+-   update dependency msw to v0.49.3 (https://github.com/NUMde/compass-numapp-frontend/pull/358)
+-   update @react-native-firebase to v16.7.0 (https://github.com/NUMde/compass-numapp-frontend/pull/359)
+-   update dependency @react-native-community/datetimepicker to v6.7.5 (https://github.com/NUMde/compass-numapp-frontend/pull/360)
+-   update dependency @react-native-picker/picker to v2.4.9 (https://github.com/NUMde/compass-numapp-frontend/pull/363)
+-   update dependency @reduxjs/toolkit to v1.9.3 (https://github.com/NUMde/compass-numapp-frontend/pull/364)
+-   update dependency react-native-localize to v2.2.6 (https://github.com/NUMde/compass-numapp-frontend/pull/365)
+-   update dependency react-native-vision-camera to v2.15.4 h(ttps://github.com/NUMde/compass-numapp-frontend/pull/366)
+-   update dependency @react-native-community/slider to v4.4.2 (https://github.com/NUMde/compass-numapp-frontend/pull/355)
+-   Bump json5 and babel-plugin-module-resolver in /compass-numapp-template by @dependabot (https://github.com/NUMde/compass-numapp-frontend/pull/356)
+
+### Removed
+
+-   -/-
+
 ## [0.2.0] - 2022-07-12
 
 ### Added
