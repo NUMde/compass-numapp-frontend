@@ -461,7 +461,7 @@ const createResponseJSON = (questionnaireItemMap, categories, FHIRmetadata) => {
     authored: new Date().toISOString(),
     item: createItems(categories),
     resourceType: 'QuestionnaireResponse',
-    questionnaire: FHIRmetadata.url,
+    questionnaire: `${FHIRmetadata.url}|${FHIRmetadata.version}`,
     identifier: FHIRmetadata.identifier,
     status: 'completed',
   };
