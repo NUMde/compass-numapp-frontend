@@ -2,7 +2,7 @@ export default {
   resourceType: 'QuestionnaireResponse',
   status: 'completed',
   questionnaire:
-    'http://hl7.org/fhir/Questionnaire/Fragebogen_COMPASS_Beispiel',
+    'http://hl7.org/fhir/Questionnaire/Fragebogen_COMPASS_Beispiel|1.0',
   item: [
     {
       linkId: '1',

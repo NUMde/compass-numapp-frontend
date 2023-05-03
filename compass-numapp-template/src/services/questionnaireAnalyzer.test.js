@@ -76,6 +76,7 @@ describe('createResponseJSON', () => {
   it('should create the response object which should match the expected JSON', () => {
     const metadata = {
       url: 'http://hl7.org/fhir/Questionnaire/Fragebogen_COMPASS_Beispiel',
+      version: '1.0',
     };
     const responseObject = JSON.parse(
       analyzer.createResponseJSON(itemMap, categories, metadata).body,
