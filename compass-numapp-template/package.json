@@ -20,7 +20,7 @@
     "lint:annotate": "eslint -f github-annotations . --ext .js,.jsx"
   },
   "dependencies": {
-    "@react-native-community/datetimepicker": "6.7.5",
+    "@react-native-community/datetimepicker": "7.1.0",
     "@react-native-community/slider": "4.4.2",
     "@react-native-firebase/app": "17.5.0",
     "@react-native-firebase/messaging": "17.5.0",
