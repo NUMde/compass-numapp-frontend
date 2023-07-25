@@ -2,78 +2,78 @@
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 name: main workflow
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main, develop]
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main, develop]
 jobs:
-  run_tests:
-    runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 24
-      matrix:
-        node-version: [16.x]
-    steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: cache node_modules
-      uses: actions/cache@v3
-      with:
-        path: ~/.npm
-        key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: ${{ runner.OS }}-build-${{ env.cache-name }}-
-          ${{ runner.OS }}-build-
-          ${{ runner.OS }}-
-    - name: install npm
-      run: npm install -g npm@latest
-    - name: install node dependencies
-      run: cd compass-numapp-template && npm ci
-      env:
-        CI: true
-    - name: create config files
-      run: cd compass-numapp-template/src/config && mv appConfig.sample.js appConfig.js && mv devConfig.sample.js devConfig.js && mv theme.sample.js theme.js
-    - name: fetch questionnaire
-      run: mkdir compass-numapp-template/src/assets/files && curl https://raw.githubusercontent.com/NUMde/compass-implementation-guide/master/input/questionnaire-generic.json > ./compass-numapp-template/src/assets/files/questionnaire.json
-    - name: run all tests & generate coverage report
-      run: cd compass-numapp-template && npm test -- --collectCoverage
-    - name: upload coverage report
-      uses: codecov/codecov-action@v3
-      with:
-        files: ./compass-numapp-template/coverage/clover.xml
-        flags: unittests
-        name: codecov-umbrella
-  lint_annotations:
-    runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 24
-      matrix:
-        node-version: [16.x]
-    steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: cache node_modules
-      uses: actions/cache@v3
-      with:
-        path: ~/.npm
-        key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: ${{ runner.OS }}-build-${{ env.cache-name }}-
-          ${{ runner.OS }}-build-
-          ${{ runner.OS }}-
-    - name: install npm
-      run: npm install -g npm@latest
-    - name: install node dependencies
-      run:  cd compass-numapp-template && npm ci
-      env:
-        CI: true
-    - name: create config files
-      run: cd compass-numapp-template/src/config && mv appConfig.sample.js appConfig.js && mv devConfig.sample.js devConfig.js && mv theme.sample.js theme.js
-    - name: fetch questionnaire
-      run: mkdir compass-numapp-template/src/assets/files && curl https://raw.githubusercontent.com/NUMde/compass-implementation-guide/master/input/questionnaire-generic.json > ./compass-numapp-template/src/assets/files/questionnaire.json
-    - name: run lint & generate annotations
-      run: cd compass-numapp-template && npm run lint:annotate
+    run_tests:
+        runs-on: ubuntu-latest
+        strategy:
+            max-parallel: 24
+            matrix:
+                node-version: [18.x]
+        steps:
+            - uses: actions/checkout@v3
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v3
+              with:
+                  node-version: ${{ matrix.node-version }}
+            - name: cache node_modules
+              uses: actions/cache@v3
+              with:
+                  path: ~/.npm
+                  key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
+                  restore-keys: ${{ runner.OS }}-build-${{ env.cache-name }}-
+                      ${{ runner.OS }}-build-
+                      ${{ runner.OS }}-
+            - name: install npm
+              run: npm install -g npm@latest
+            - name: install node dependencies
+              run: cd compass-numapp-template && npm ci
+              env:
+                  CI: true
+            - name: create config files
+              run: cd compass-numapp-template/src/config && mv appConfig.sample.js appConfig.js && mv devConfig.sample.js devConfig.js && mv theme.sample.js theme.js
+            - name: fetch questionnaire
+              run: mkdir compass-numapp-template/src/assets/files && curl https://raw.githubusercontent.com/NUMde/compass-implementation-guide/master/input/questionnaire-generic.json > ./compass-numapp-template/src/assets/files/questionnaire.json
+            - name: run all tests & generate coverage report
+              run: cd compass-numapp-template && npm test -- --collectCoverage
+            - name: upload coverage report
+              uses: codecov/codecov-action@v3
+              with:
+                  files: ./compass-numapp-template/coverage/clover.xml
+                  flags: unittests
+                  name: codecov-umbrella
+    lint_annotations:
+        runs-on: ubuntu-latest
+        strategy:
+            max-parallel: 24
+            matrix:
+                node-version: [18.x]
+        steps:
+            - uses: actions/checkout@v3
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v3
+              with:
+                  node-version: ${{ matrix.node-version }}
+            - name: cache node_modules
+              uses: actions/cache@v3
+              with:
+                  path: ~/.npm
+                  key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
+                  restore-keys: ${{ runner.OS }}-build-${{ env.cache-name }}-
+                      ${{ runner.OS }}-build-
+                      ${{ runner.OS }}-
+            - name: install npm
+              run: npm install -g npm@latest
+            - name: install node dependencies
+              run: cd compass-numapp-template && npm ci
+              env:
+                  CI: true
+            - name: create config files
+              run: cd compass-numapp-template/src/config && mv appConfig.sample.js appConfig.js && mv devConfig.sample.js devConfig.js && mv theme.sample.js theme.js
+            - name: fetch questionnaire
+              run: mkdir compass-numapp-template/src/assets/files && curl https://raw.githubusercontent.com/NUMde/compass-implementation-guide/master/input/questionnaire-generic.json > ./compass-numapp-template/src/assets/files/questionnaire.json
+            - name: run lint & generate annotations
+              run: cd compass-numapp-template && npm run lint:annotate
