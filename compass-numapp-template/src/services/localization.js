@@ -107,8 +107,7 @@ const generateDefaultI18nConfigValues = () => {
   const fallback = { languageTag: defaultLanguage, isRTL: defaultIsRTL };
   // returns the language settings best matching the users device
   return (
-    RNLocalize.findBestAvailableLanguage(Object.keys(availableLanguages)) ||
-    fallback
+    RNLocalize.findBestLanguageTag(Object.keys(availableLanguages)) || fallback
   );
 };
 

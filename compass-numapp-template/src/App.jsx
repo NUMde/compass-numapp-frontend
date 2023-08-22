@@ -4,8 +4,15 @@
 imports
 ***********************************************************************************************/
 
-import React, { useEffect } from 'react';
-import { StyleSheet, View, StatusBar, LogBox, Platform } from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import {
+  StyleSheet,
+  View,
+  StatusBar,
+  LogBox,
+  Platform,
+  AppState,
+} from 'react-native';
 import * as RNLocalize from 'react-native-localize';
 
 // components
@@ -33,7 +40,11 @@ import { Spinner } from '~components/shared';
 
 // services
 import localStorage from '~services/localStorage';
-import { availableLanguages, initLocalization } from '~services/localization';
+import {
+  availableLanguages,
+  initLocalization,
+  getLanguageTag,
+} from '~services/localization';
 
 /***********************************************************************************************
 global variables / settings
@@ -50,19 +61,26 @@ Component
 ***********************************************************************************************/
 
 function App() {
+  const appState = useRef(AppState.currentState);
   /**
    * handler for when the user changes the system language
    */
   const handleLocalizationChange = () => {
-    reduxStore.dispatch(
-      updateLanguage(
-        RNLocalize.findBestAvailableLanguage(Object.keys(availableLanguages)),
-      ),
-    );
+    const newLanguage = RNLocalize.findBestLanguageTag(availableLanguages);
+    if (newLanguage !== getLanguageTag()) {
+      reduxStore.dispatch(updateLanguage(newLanguage));
+    }
   };
 
   useEffect(() => {
-    RNLocalize.addEventListener('change', handleLocalizationChange);
+    const subscription = AppState.addEventListener('change', (nextAppState) => {
+      if (
+        appState.current.match(/inactive|background/) &&
+        nextAppState === 'active'
+      ) {
+        handleLocalizationChange();
+      }
+    });
 
     // load user language from localStorage and initialize localization
     localStorage.loadUserLanguage().then((langCode) => {
@@ -70,11 +88,7 @@ function App() {
       reduxStore.dispatch(init());
       SplashScreen.hide();
     });
-
-    return () => {
-      // removeEventListener when unmounting
-      RNLocalize.removeEventListener('change', handleLocalizationChange);
-    };
+    return () => subscription.remove();
   }, []);
 
   // should this be a demo init kiosk mode
