@@ -13,7 +13,8 @@ brew install npm
 cd ../../compass-numapp-template
 npm ci
 
-cd ios
+echo "$PWD"
 
 echo "$GOOGLE_SERVICES_SECRET" > ./GoogleService-Info.plist
+ls
 pod install 
