@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "Compass.app"
+               BuildableName = "NUM-Compass.app"
                BlueprintName = "Compass"
                ReferencedContainer = "container:Compass.xcodeproj">
             </BuildableReference>
@@ -45,11 +45,24 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Compass.app"
+            BuildableName = "NUM-Compass.app"
             BlueprintName = "Compass"
             ReferencedContainer = "container:Compass.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = ""
+            isEnabled = "NO">
+         </CommandLineArgument>
+      </CommandLineArguments>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "NO_FLIPPER"
+            value = "1"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -62,7 +75,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "Compass.app"
+            BuildableName = "NUM-Compass.app"
             BlueprintName = "Compass"
             ReferencedContainer = "container:Compass.xcodeproj">
          </BuildableReference>
