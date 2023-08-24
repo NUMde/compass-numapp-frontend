@@ -10,11 +10,9 @@ echo 'export PATH="/usr/local/opt/node@18/bin:$PATH"' >> ~/.zshrc
 brew install npm
 
 # Install dependencies
-cd ../../compass-numapp-template
+cd ../..
 npm ci
 
-echo "$PWD"
-
+cd  ios
 echo "$GOOGLE_SERVICES_SECRET" > ./GoogleService-Info.plist
-ls
 pod install 
