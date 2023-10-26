@@ -5,6 +5,14 @@ exports[`checkInListView should render the 'listView' 1`] = `
   accessibilityHint="Opens new page to see the questionnaire's categories.This questionnaire has not been answered yet."
   accessibilityLabel="Your Entry-Questionnaire Title. To be completed till:  03/14/2022"
   accessibilityRole="button"
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
   accessible={true}
   focusable={true}
   onClick={[Function]}

@@ -83,6 +83,7 @@ const sendReport = createAsyncThunk(
         [
           {
             text: translate('generic').ok,
+            onPress: () => {},
           },
         ],
         { cancelable: false },

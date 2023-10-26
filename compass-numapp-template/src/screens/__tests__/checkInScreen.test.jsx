@@ -270,13 +270,7 @@ describe('CheckInScreen', () => {
   });
 
   it('should notify that a questionnaire is available to report symptoms', async () => {
-    const spyAlert = jest
-      .spyOn(Alert, 'alert')
-      .mockImplementation(async (_title, _message, callbackOrButtons) => {
-        if (callbackOrButtons && callbackOrButtons[0]) {
-          callbackOrButtons[0].onPress();
-        }
-      });
+    const spyAlert = jest.spyOn(Alert, 'alert');
     const navigate = jest.fn();
     const goBack = jest.fn();
     const { findByText } = renderWithRedux(
@@ -319,13 +313,7 @@ describe('CheckInScreen', () => {
   });
 
   it('should send report', (done) => {
-    const spyAlert = jest
-      .spyOn(Alert, 'alert')
-      .mockImplementation(async (_title, _message, callbackOrButtons) => {
-        if (callbackOrButtons && callbackOrButtons[0]) {
-          callbackOrButtons[0].onPress();
-        }
-      });
+    const spyAlert = jest.spyOn(Alert, 'alert');
     const navigate = jest.fn();
     const goBack = jest.fn();
     const { findByText, getByTestId, queryByTestId, getByText } =

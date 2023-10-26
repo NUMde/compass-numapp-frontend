@@ -23,7 +23,19 @@ exports[`choicesInput (CheckBoxes) should render a list of choices as checkboxes
     accessibilityRole="checkbox"
     accessibilityState={
       {
+        "busy": undefined,
         "checked": false,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
       }
     }
     accessible={true}
@@ -109,7 +121,19 @@ exports[`choicesInput (CheckBoxes) should render a list of choices as checkboxes
     accessibilityRole="checkbox"
     accessibilityState={
       {
+        "busy": undefined,
         "checked": false,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
       }
     }
     accessible={true}
@@ -195,7 +219,19 @@ exports[`choicesInput (CheckBoxes) should render a list of choices as checkboxes
     accessibilityRole="checkbox"
     accessibilityState={
       {
+        "busy": undefined,
         "checked": false,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
       }
     }
     accessible={true}
@@ -281,7 +317,19 @@ exports[`choicesInput (CheckBoxes) should render a list of choices as checkboxes
     accessibilityRole="checkbox"
     accessibilityState={
       {
+        "busy": undefined,
         "checked": false,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
       }
     }
     accessible={true}
@@ -367,7 +415,19 @@ exports[`choicesInput (CheckBoxes) should render a list of choices as checkboxes
     accessibilityRole="checkbox"
     accessibilityState={
       {
+        "busy": undefined,
         "checked": false,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
       }
     }
     accessible={true}
@@ -453,7 +513,19 @@ exports[`choicesInput (CheckBoxes) should render a list of choices as checkboxes
     accessibilityRole="checkbox"
     accessibilityState={
       {
+        "busy": undefined,
         "checked": false,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
       }
     }
     accessible={true}
@@ -639,7 +711,19 @@ exports[`choicesInput (RadioButtons) should render a list of choices as radio bu
     accessibilityRole="checkbox"
     accessibilityState={
       {
+        "busy": undefined,
         "checked": false,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
       }
     }
     accessible={true}
@@ -725,7 +809,19 @@ exports[`choicesInput (RadioButtons) should render a list of choices as radio bu
     accessibilityRole="checkbox"
     accessibilityState={
       {
+        "busy": undefined,
         "checked": false,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
       }
     }
     accessible={true}
@@ -811,7 +907,19 @@ exports[`choicesInput (RadioButtons) should render a list of choices as radio bu
     accessibilityRole="checkbox"
     accessibilityState={
       {
+        "busy": undefined,
         "checked": false,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
       }
     }
     accessible={true}
@@ -897,7 +1005,19 @@ exports[`choicesInput (RadioButtons) should render a list of choices as radio bu
     accessibilityRole="checkbox"
     accessibilityState={
       {
+        "busy": undefined,
         "checked": false,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
       }
     }
     accessible={true}
@@ -983,7 +1103,19 @@ exports[`choicesInput (RadioButtons) should render a list of choices as radio bu
     accessibilityRole="checkbox"
     accessibilityState={
       {
+        "busy": undefined,
         "checked": false,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
       }
     }
     accessible={true}
@@ -1069,7 +1201,19 @@ exports[`choicesInput (RadioButtons) should render a list of choices as radio bu
     accessibilityRole="checkbox"
     accessibilityState={
       {
+        "busy": undefined,
         "checked": false,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
       }
     }
     accessible={true}

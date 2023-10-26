@@ -33,6 +33,12 @@ const middleware = [];
 
 middleware.push(thunk);
 
+if (__DEV__) {
+  // eslint-disable-next-line import/no-extraneous-dependencies, global-require
+  const createDebugger = require('redux-flipper').default;
+  middleware.push(createDebugger());
+}
+
 // add custom middleware here
 // middleware.push(customMiddleware)
 
@@ -53,7 +59,6 @@ export
 // create store with middleware and apply redux devtools for debugging
 export const reduxStore = configureStore({
   reducer: persistedReducer,
-  devTools: { trace: !!__DEV__, traceLimit: 25 },
   middleware,
 });
 
