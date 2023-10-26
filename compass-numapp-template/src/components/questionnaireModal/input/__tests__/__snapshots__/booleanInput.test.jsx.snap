@@ -20,7 +20,19 @@ exports[`BooleanInput should render a BooleanInput 1`] = `
     accessibilityRole="checkbox"
     accessibilityState={
       {
+        "busy": undefined,
         "checked": false,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
       }
     }
     accessible={true}
@@ -105,7 +117,19 @@ exports[`BooleanInput should render a BooleanInput 1`] = `
     accessibilityRole="checkbox"
     accessibilityState={
       {
+        "busy": undefined,
         "checked": false,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
       }
     }
     accessible={true}

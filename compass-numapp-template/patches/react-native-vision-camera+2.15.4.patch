@@ -1,0 +1,26 @@
+diff --git a/node_modules/react-native-vision-camera/android/src/main/cpp/MakeJSIRuntime.h b/node_modules/react-native-vision-camera/android/src/main/cpp/MakeJSIRuntime.h
+index 39045bd..7567a0d 100644
+--- a/node_modules/react-native-vision-camera/android/src/main/cpp/MakeJSIRuntime.h
++++ b/node_modules/react-native-vision-camera/android/src/main/cpp/MakeJSIRuntime.h
+@@ -12,7 +12,7 @@
+   #include <hermes/hermes.h>
+ #else
+   // JSC
+-  #include <jsi/JSCRuntime.h>
++  #include <React-jsi/JSCRuntime.h>
+ #endif
+ 
+ namespace vision {
+diff --git a/node_modules/react-native-vision-camera/ios/React Utils/MakeJSIRuntime.h b/node_modules/react-native-vision-camera/ios/React Utils/MakeJSIRuntime.h
+index a428c01..0d80e3c 100644
+--- a/node_modules/react-native-vision-camera/ios/React Utils/MakeJSIRuntime.h	
++++ b/node_modules/react-native-vision-camera/ios/React Utils/MakeJSIRuntime.h	
+@@ -22,7 +22,7 @@
+   #include <v8runtime/V8RuntimeFactory.h>
+ #else
+   // JSC
+-  #include <jsi/JSCRuntime.h>
++  #include <React-jsc/JSCRuntime.h>
+ #endif
+ 
+ using namespace facebook;

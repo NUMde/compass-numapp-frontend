@@ -65,6 +65,14 @@ exports[`Banner should render the banner 1`] = `
             "disabled": false,
           }
         }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
         accessible={true}
         focusable={true}
         onClick={[Function]}
@@ -162,6 +170,14 @@ exports[`Banner should render the banner 1`] = `
         accessibilityState={
           {
             "disabled": false,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
           }
         }
         accessible={true}
@@ -307,6 +323,14 @@ exports[`Banner should render the banner with title & without subtitle 1`] = `
             "disabled": false,
           }
         }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
         accessible={true}
         focusable={true}
         onClick={[Function]}
@@ -390,6 +414,14 @@ exports[`Banner should render the banner with title & without subtitle 1`] = `
         accessibilityState={
           {
             "disabled": false,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
           }
         }
         accessible={true}

@@ -207,6 +207,23 @@ The logo file (as well as the logoBackground) can be updated by updating the 'CU
                 accessibilityHint="Starts login process and redirects to QRCode scanner."
                 accessibilityLabel="Navigate to Login Screen"
                 accessibilityRole="button"
+                accessibilityState={
+                  {
+                    "busy": undefined,
+                    "checked": undefined,
+                    "disabled": undefined,
+                    "expanded": undefined,
+                    "selected": undefined,
+                  }
+                }
+                accessibilityValue={
+                  {
+                    "max": undefined,
+                    "min": undefined,
+                    "now": undefined,
+                    "text": undefined,
+                  }
+                }
                 accessible={true}
                 collapsable={false}
                 focusable={true}

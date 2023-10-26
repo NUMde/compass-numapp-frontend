@@ -78,6 +78,14 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
               "disabled": false,
             }
           }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
           accessible={true}
           focusable={true}
           onClick={[Function]}
@@ -161,6 +169,14 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
           accessibilityState={
             {
               "disabled": false,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
             }
           }
           accessible={true}
@@ -340,6 +356,23 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                 testID="padView"
               >
                 <View
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": undefined,
+                      "disabled": undefined,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  accessibilityValue={
+                    {
+                      "max": undefined,
+                      "min": undefined,
+                      "now": undefined,
+                      "text": undefined,
+                    }
+                  }
                   accessible={true}
                   collapsable={false}
                   focusable={true}
@@ -538,6 +571,14 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                           "disabled": false,
                         }
                       }
+                      accessibilityValue={
+                        {
+                          "max": undefined,
+                          "min": undefined,
+                          "now": undefined,
+                          "text": undefined,
+                        }
+                      }
                       accessible={true}
                       focusable={true}
                       onClick={[Function]}
@@ -615,6 +656,23 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                 testID="padView"
               >
                 <View
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": undefined,
+                      "disabled": undefined,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  accessibilityValue={
+                    {
+                      "max": undefined,
+                      "min": undefined,
+                      "now": undefined,
+                      "text": undefined,
+                    }
+                  }
                   accessible={true}
                   collapsable={false}
                   focusable={true}
@@ -813,6 +871,14 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                           "disabled": false,
                         }
                       }
+                      accessibilityValue={
+                        {
+                          "max": undefined,
+                          "min": undefined,
+                          "now": undefined,
+                          "text": undefined,
+                        }
+                      }
                       accessible={true}
                       focusable={true}
                       onClick={[Function]}
@@ -890,6 +956,23 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                 testID="padView"
               >
                 <View
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": undefined,
+                      "disabled": undefined,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  accessibilityValue={
+                    {
+                      "max": undefined,
+                      "min": undefined,
+                      "now": undefined,
+                      "text": undefined,
+                    }
+                  }
                   accessible={true}
                   collapsable={false}
                   focusable={true}
@@ -1088,6 +1171,14 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                           "disabled": false,
                         }
                       }
+                      accessibilityValue={
+                        {
+                          "max": undefined,
+                          "min": undefined,
+                          "now": undefined,
+                          "text": undefined,
+                        }
+                      }
                       accessible={true}
                       focusable={true}
                       onClick={[Function]}
@@ -1165,6 +1256,23 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                 testID="padView"
               >
                 <View
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": undefined,
+                      "disabled": undefined,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  accessibilityValue={
+                    {
+                      "max": undefined,
+                      "min": undefined,
+                      "now": undefined,
+                      "text": undefined,
+                    }
+                  }
                   accessible={true}
                   collapsable={false}
                   focusable={true}
@@ -1363,6 +1471,14 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                           "disabled": false,
                         }
                       }
+                      accessibilityValue={
+                        {
+                          "max": undefined,
+                          "min": undefined,
+                          "now": undefined,
+                          "text": undefined,
+                        }
+                      }
                       accessible={true}
                       focusable={true}
                       onClick={[Function]}
@@ -1440,6 +1556,23 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                 testID="padView"
               >
                 <View
+                  accessibilityState={
+                    {
+                      "busy": undefined,
+                      "checked": undefined,
+                      "disabled": undefined,
+                      "expanded": undefined,
+                      "selected": undefined,
+                    }
+                  }
+                  accessibilityValue={
+                    {
+                      "max": undefined,
+                      "min": undefined,
+                      "now": undefined,
+                      "text": undefined,
+                    }
+                  }
                   accessible={true}
                   collapsable={false}
                   focusable={true}
@@ -1636,6 +1769,14 @@ exports[`SurveyScreen should render the screen when not completed 1`] = `
                       accessibilityState={
                         {
                           "disabled": false,
+                        }
+                      }
+                      accessibilityValue={
+                        {
+                          "max": undefined,
+                          "min": undefined,
+                          "now": undefined,
+                          "text": undefined,
                         }
                       }
                       accessible={true}

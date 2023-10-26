@@ -149,6 +149,7 @@ function CheckInScreen({ navigation }) {
         [
           {
             text: translate('generic').ok,
+            onPress: () => {},
           },
         ],
         { cancelable: false },
@@ -161,6 +162,7 @@ function CheckInScreen({ navigation }) {
         [
           {
             text: translate('generic').ok,
+            onPress: () => {},
           },
         ],
         { cancelable: false },
