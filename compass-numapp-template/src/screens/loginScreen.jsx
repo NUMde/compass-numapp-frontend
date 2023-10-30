@@ -20,11 +20,10 @@ import { navigationPropType } from '~propTypes';
 // components
 import {
   Camera,
-  useCameraDevices,
-  useFrameProcessor,
+  useCameraDevice,
+  useCameraPermission,
+  useCodeScanner,
 } from 'react-native-vision-camera';
-import { scanBarcodes, BarcodeFormat } from 'vision-camera-code-scanner';
-import { runOnJS } from 'react-native-reanimated';
 
 // custom components
 import { Banner } from '~components/shared';
@@ -74,34 +73,31 @@ function LoginScreen({ navigation }) {
 
   const { subjectId } = useSelector((state) => state.User);
   const { error } = useSelector((state) => state.Globals);
-  const [hasPermission, setHasPermission] = useState(false);
+  const { hasPermission, requestPermission } = useCameraPermission();
 
   const [qrCodes, setQrCodes] = useState([]);
 
-  const device = useCameraDevices().back;
+  const device = useCameraDevice('back');
 
-  // set up detection of QR codes
-  const frameProcessor = useFrameProcessor((frame) => {
-    // lgtm [js/unknown-directive]
-    'worklet';
-
-    const detectedQrCodes = scanBarcodes(frame, [BarcodeFormat.QR_CODE]);
-    runOnJS(setQrCodes)(detectedQrCodes);
-  }, []);
+  const qrCodeScanner = useCodeScanner({
+    codeTypes: ['qr'],
+    onCodeScanned: (codes) => {
+      setQrCodes(codes);
+    },
+  });
 
   // request permission to use camera
   useEffect(() => {
-    (async () => {
-      const status = await Camera.requestCameraPermission();
-      setHasPermission(status === 'authorized');
-    })();
-  }, []);
+    if (!hasPermission) {
+      requestPermission();
+    }
+  }, [requestPermission, hasPermission]);
 
   // trigger login when barcode was detected
   useEffect(() => {
     if (qrCodes.length) {
       // parses the input string to determine the subjectId (from the qr-code)
-      const scannedSubjectId = checkQrCodeForUsername(qrCodes[0].content.data);
+      const scannedSubjectId = checkQrCodeForUsername(qrCodes[0].value);
 
       // triggers the login
       dispatch(sendCredentials(scannedSubjectId));
@@ -137,15 +133,12 @@ function LoginScreen({ navigation }) {
 
       <View style={localStyle.content} testID="scannerWrapper">
         {/* the qr-code-scanner */}
-        {!!device && hasPermission && !error && (
+        {device && hasPermission && !error && (
           <Camera
             device={device}
             isActive={isFocused}
-            frameProcessor={frameProcessor}
-            frameProcessorFps={1}
+            codeScanner={qrCodeScanner}
             style={localStyle.camera}
-            photo={true}
-            video={false}
           />
         )}
         {/* show button to reactivate camera */}
