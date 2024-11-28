@@ -15,6 +15,13 @@ NativeModules.CameraView = {
   },
 };
 
+NativeModules.CameraDevices = {
+  getConstants: () => ({
+    availableCameraDevices: [],
+    userPreferredCameraDevice: undefined,
+  }),
+};
+
 jest.mock('@react-navigation/native', () => ({
   useIsFocused: jest.fn(),
 }));
