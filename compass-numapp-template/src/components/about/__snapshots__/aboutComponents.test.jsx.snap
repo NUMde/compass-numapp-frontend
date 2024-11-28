@@ -2,6 +2,14 @@
 
 exports[`aboutListItem should render the aboutListItem 1`] = `
 <View
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
   accessible={true}
   focusable={true}
   onClick={[Function]}
@@ -195,6 +203,14 @@ exports[`aboutListItem should render the aboutListItem 1`] = `
 
 exports[`aboutListLink should render the aboutListLink 1`] = `
 <View
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
   accessible={true}
   focusable={true}
   onClick={[Function]}
@@ -417,6 +433,15 @@ exports[`redirectModal should render the redirectModal 1`] = `
   visible={true}
 >
   <View
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
     accessible={true}
     collapsable={false}
     focusable={true}
@@ -574,6 +599,23 @@ exports[`redirectModal should render the redirectModal 1`] = `
               accessibilityHint="Closes current page or modal."
               accessibilityLabel="close"
               accessibilityRole="button"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
               accessible={true}
               collapsable={false}
               focusable={true}
@@ -703,7 +745,18 @@ exports[`redirectModal should render the redirectModal 1`] = `
             accessibilityState={
               {
                 "busy": false,
+                "checked": undefined,
                 "disabled": false,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
               }
             }
             accessible={true}

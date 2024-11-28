@@ -75,6 +75,14 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
               "disabled": false,
             }
           }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
           accessible={true}
           focusable={true}
           onClick={[Function]}
@@ -158,6 +166,14 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
           accessibilityState={
             {
               "disabled": false,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
             }
           }
           accessible={true}
@@ -282,6 +298,14 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
             accessibilityHint="Opens new page to see the questionnaire's categories.This questionnaire has not been answered yet."
             accessibilityLabel="Your Entry-Questionnaire Title. To be completed till:  03/14/2022"
             accessibilityRole="button"
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
             accessible={true}
             focusable={true}
             onClick={[Function]}
@@ -558,6 +582,23 @@ exports[`CheckInScreen should render the CheckInScreen 1`] = `
           >
             <View
               accessibilityRole="button"
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
               accessible={true}
               collapsable={false}
               focusable={true}

@@ -74,6 +74,14 @@ exports[`LoginScreen should render the login screen 1`] = `
               "disabled": false,
             }
           }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
           accessible={true}
           focusable={true}
           onClick={[Function]}
