@@ -1,14 +1,23 @@
 {
-    "extends": ["config:base"],
+    "extends": [
+        "config:recommended"
+    ],
     "timezone": "Europe/Berlin",
     "packageRules": [
         {
-            "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+            "matchUpdateTypes": [
+                "minor",
+                "patch",
+                "pin",
+                "digest"
+            ],
             "automerge": true
         },
         {
             "groupName": "@react-native-firebase",
-            "matchPackagePatterns": ["@react-native-firebase"]
+            "matchPackageNames": [
+                "/@react-native-firebase/"
+            ]
         }
     ],
     "schedule": [
