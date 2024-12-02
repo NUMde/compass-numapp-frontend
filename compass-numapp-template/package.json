@@ -27,7 +27,7 @@
     "@react-native-picker/picker": "2.4.10",
     "@react-navigation/native": "6.1.18",
     "@react-navigation/native-stack": "6.11.0",
-    "@reduxjs/toolkit": "1.9.5",
+    "@reduxjs/toolkit": "1.9.7",
     "babel-plugin-module-resolver": "5.0.2",
     "buffer": "6.0.3",
     "i18n-js": "3.9.2",
