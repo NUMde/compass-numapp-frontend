@@ -57,7 +57,7 @@
     "vision-camera-code-scanner": "0.2.0"
   },
   "devDependencies": {
-    "@babel/core": "7.23.2",
+    "@babel/core": "7.29.6",
     "@babel/eslint-parser": "^7.19.1",
     "@babel/preset-env": "7.23.2",
     "@react-native-community/eslint-config": "3.2.0",
